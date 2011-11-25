@@ -115,7 +115,7 @@ Llenaste incorrectamente la imagen de verificación (CAPTCHA). Debes escribir ex
 //Consultamos si ya existe la cuenta en el LDAP
 $cuenta_limitar = array("mail","uid");
 $cuenta_filtro_buscar="(&(mail=$mail)(uid=$uid))";
-$cuenta_verificar_ldap = ldap_search($ldapc, $ldap_base, $cuenta_filtro_buscar, $cuenta_limitar) or die ('<div class="error">Hubo un error en la buśqueda con el LDAP: ' . ldap_error($ldapc) . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
+$cuenta_verificar_ldap = ldap_search($ldapc, $ldap_buscar, $cuenta_filtro_buscar, $cuenta_limitar) or die ('<div class="error">Hubo un error en la buśqueda con el LDAP: ' . ldap_error($ldapc) . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
 $cuenta_entradas_ldap = ldap_get_entries($ldapc, $cuenta_verificar_ldap) or die ('<div class="error">Hubo un error retirando los resultados del LDAP: ' . ldap_error($ldapc) . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
 
 if($cuenta_entradas_ldap["count"]==0){
@@ -151,7 +151,7 @@ $result = mysql_query($query) or die ('<div class="error">Hubo un error en la es
 //Preparamos el correo de confirmación
 $headers = "From: plataforma-colaborativa@canaima.softwarelibre.gob.ve\nContent-Type: text/html; charset=utf-8";
 $subject = "Reestablecimiento de Contraseña en la Plataforma Colaborativa de Canaima";
-$file_url = "http://".$URL_base."/".basename(dirname(__FILE__))."/generar_password_activado.php";
+$file_url = "http://".$URL_base."/generar_password_activado.php";
 $body = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><HTML><HEAD><META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8"><TITLE>Reestablecimiento de Contraseña en la Plataforma Colaborativa de Canaima</TITLE><META NAME="GENERATOR" CONTENT="Canaima GNU/Linux"><META NAME="AUTHOR" CONTENT="Luis Alejandro Martínez Faneyth"></HEAD><BODY LANG="es-VE" DIR="LTR"><p>Has recibido éste correo electrónico porque alguien solicitó un reestablecimiento de contraseña para el usuario "<strong>'.$uid.'</strong>"en la Plataforma Colaborativa de Canaima. Haz click en el siguiente enlace para confirmar tu petición.</p><p><a href="'."$file_url?mail=$mail&uid=$uid&token=$token".'>CONFIRMAR</a></p><br /><br /><p>Equipo de la Plataforma Colaborativa de Canaima</p></BODY></HTML>';
 
 //Enviamos el correo

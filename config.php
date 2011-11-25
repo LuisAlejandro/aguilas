@@ -24,7 +24,7 @@ $ldap_base = "dc=nodomain";
 //Servidor donde se encuentra el Directorio LDAP
 $ldap_server = "localhost";
 //Array asociativo de Nombre Grupo => Código Grupo (gidNumber)
-$ldap_gid=array("Gente"=>"513","Administradores"=>"200");
+$ldap_gid=array("Gente"=>"100","Administradores"=>"200");
 $ldap_gid_flip=array_flip($ldap_gid); // No se toca
 
 //Dominio web

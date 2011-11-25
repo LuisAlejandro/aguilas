@@ -118,7 +118,7 @@ El Correo Electrónico proporcionado no es válido. Cambia tu cuenta
 //Consultamos si ya existe la cuenta en el LDAP
 $eliminar_limitar = array("dn");
 $eliminar_filtro_buscar = "(&(mail=".$mail.")(userPassword=".$userPassword.")(uid=".$uid."))";
-$eliminar_verificar_ldap = ldap_search($ldapc, $ldap_base, $eliminar_filtro_buscar, $eliminar_limitar) or die ('<div class="error">Hubo un error en la buśqueda con el LDAP: ' . ldap_error() . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
+$eliminar_verificar_ldap = ldap_search($ldapc, $ldap_buscar, $eliminar_filtro_buscar, $eliminar_limitar) or die ('<div class="error">Hubo un error en la buśqueda con el LDAP: ' . ldap_error() . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
 $eliminar_entradas_ldap = ldap_get_entries($ldapc, $eliminar_verificar_ldap) or die ('<div class="error">Hubo un error retirando los resultados del LDAP: ' . ldap_error() . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
 
 $total_usuarios=$eliminar_entradas_ldap['count'];

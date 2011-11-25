@@ -91,7 +91,7 @@ El Correo Electrónico proporcionado no es válido. Solicita una cuenta nueva co
 //Consultamos si ya existe la cuenta en el LDAP
 $olvido_limitar = array("uidNumber","uid","cn","gidNumber");
 $olvido_filtro_buscar = "(mail=".$mail.")";
-$olvido_verificar_ldap = ldap_search($ldapc, $ldap_base, $olvido_filtro_buscar, $olvido_limitar) or die ('<div class="error">Hubo un error en la buśqueda con el LDAP: ' . ldap_error() . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
+$olvido_verificar_ldap = ldap_search($ldapc, $ldap_buscar, $olvido_filtro_buscar, $olvido_limitar) or die ('<div class="error">Hubo un error en la buśqueda con el LDAP: ' . ldap_error() . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
 $olvido_entradas_ldap = ldap_get_entries($ldapc, $olvido_verificar_ldap) or die ('<div class="error">Hubo un error retirando los resultados del LDAP: ' . ldap_error() . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
 
 $total_usuarios=$olvido_entradas_ldap['count'];
@@ -122,7 +122,7 @@ for ($i = 0; $i <= $total_usuarios_1; $i++) {
 echo "<td class=\"px70\">".$olvido_entradas_ldap[$i]['uidnumber'][0]."</td>";
 echo "<td class=\"px300\">".$olvido_entradas_ldap[$i]['uid'][0]."</td>";
 echo "<td class=\"px360\">".$olvido_entradas_ldap[$i]['cn'][0]."</td>";
-echo "<td class=\"px70\">".$olvido_entradas_ldap[$i]['gidnumber'][0]."</td></tr>";
+echo "<td class=\"px70\">".$ldap_gid_flip[$olvido_entradas_ldap[$i]['gidnumber'][0]]."</td></tr>";
 }
 
 echo "</table>";

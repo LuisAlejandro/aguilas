@@ -144,7 +144,7 @@ La longitud de la contraseña debe ser de 8 caracteres mínimo y 20 caracteres m
 //Consultamos si ya existe la cuenta en el LDAP
 $pass_limitar = array("dn");
 $pass_filtro_buscar = "(&(mail=".$mail.")(userPassword=".$userPasswordOld.")(uid=".$uid."))";
-$pass_verificar_ldap = ldap_search($ldapc, $ldap_base, $pass_filtro_buscar, $pass_limitar) or die ('<div class="error">Hubo un error en la buśqueda con el LDAP: ' . ldap_error() . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
+$pass_verificar_ldap = ldap_search($ldapc, $ldap_buscar, $pass_filtro_buscar, $pass_limitar) or die ('<div class="error">Hubo un error en la buśqueda con el LDAP: ' . ldap_error() . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
 $pass_entradas_ldap = ldap_get_entries($ldapc, $pass_verificar_ldap) or die ('<div class="error">Hubo un error retirando los resultados del LDAP: ' . ldap_error() . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
 
 $total_usuarios=$pass_entradas_ldap['count'];

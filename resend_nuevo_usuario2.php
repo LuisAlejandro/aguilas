@@ -122,7 +122,7 @@ $givenName=$row['givenName'];
 
 $headers = "From: plataforma-colaborativa@canaima.softwarelibre.gob.ve\nContent-Type: text/html; charset=utf-8";
 $subject = "Activación de Nuevo Usuario en la Plataforma Colaborativa de Canaima";
-$file_url = "http://".$URL_base."/".basename(dirname(__FILE__))."/nuevo_usuario_activado.php";
+$file_url = "http://".$URL_base."/nuevo_usuario_activado.php";
 $body = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><HTML><HEAD><META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8"><TITLE>Activación de Nuevo Usuario en la Plataforma Colaborativa de Canaima</TITLE><META NAME="GENERATOR" CONTENT="Canaima GNU/Linux"><META NAME="AUTHOR" CONTENT="Luis Alejandro Martínez Faneyth"></HEAD><BODY LANG="es-VE" DIR="LTR"><p>Hola, <strong>'.$givenName.'</strong>.</p><p>Has recibido éste correo electrónico porque hiciste una petición de Nuevo Usuario en la Plataforma Colaborativa de Canaima. Haz click en el siguiente enlace para confirmar tu petición.</p><p><a href="'."$file_url?uid=$uid&token=$token".'">CONFIRMAR</a></p><br /><br /><p>Equipo de la Plataforma Colaborativa de Canaima</p></BODY></HTML>';
 
 //Enviamos el correo

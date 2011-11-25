@@ -6,6 +6,7 @@ include "get_post.php";
 include "conectar_db_ldap.php";
 include "conectar_db_mysql.php";
 include "functions.php";
+include "crear_maxuid.php"
 
 ?>
 
@@ -19,6 +20,8 @@ $probar=mysql_query('DESCRIBE nuevo_usuario');
 if(($probar==FALSE)){include "crear_user_table.php";}
 //Guardamos la fecha del día de hoy
 $time_today = date("d-m-Y-H:i:s");
+//Guardamos la IP del visitante
+$IP = $_SERVER['REMOTE_ADDR'];
 
 // ---------- VALIDACIONES --------------------------------------------
 
@@ -111,7 +114,7 @@ while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
 //Consultamos si ya existe el uid en el LDAP
 $uid_limitar = array("uid");
 $uid_filtro_buscar="(uid=$uid)";
-$uid_verificar_ldap = ldap_search($ldapc, $ldap_base, $uid_filtro_buscar, $uid_limitar) or die ('<div class="error">Hubo un error en la buśqueda con el LDAP: ' . ldap_error($ldapc) . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
+$uid_verificar_ldap = ldap_search($ldapc, $ldap_buscar, $uid_filtro_buscar, $uid_limitar) or die ('<div class="error">Hubo un error en la buśqueda con el LDAP: ' . ldap_error($ldapc) . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
 $uid_entradas_ldap = ldap_get_entries($ldapc, $uid_verificar_ldap) or die ('<div class="error">Hubo un error retirando los resultados del LDAP: ' . ldap_error($ldapc) . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
 
 if($uid_entradas_ldap['count']==1){
@@ -140,33 +143,15 @@ Existe una inconsistencia en la Base de Datos. Hay dos o más cuentas que compar
 
 }elseif($uid_entradas_ldap['count']==0){
 	
-//Nos traemos todos los uidNumber existentes para determinar
-//cuál es el uidNumber que debe asignársele al nuevo usuario
 $new_limitar = array("uidNumber");
-$new_filtro_buscar="(uid=*)";
-$new_verificar_ldap = ldap_search($ldapc, $ldap_base, $new_filtro_buscar, $new_limitar) or die ('<div class="error">Hubo un error en la buśqueda con el LDAP: ' . ldap_error($ldapc) . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
+$new_filtro_buscar="(uid=maxUID)";
+$new_verificar_ldap = ldap_search($ldapc, $ldap_buscar, $new_filtro_buscar, $new_limitar) or die ('<div class="error">Hubo un error en la buśqueda con el LDAP: ' . ldap_error($ldapc) . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
 $new_entradas_ldap = ldap_get_entries($ldapc, $new_verificar_ldap) or die ('<div class="error">Hubo un error retirando los resultados del LDAP: ' . ldap_error($ldapc) . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
 
-if($new_entradas_ldap['count']==0){
-	
-$max_uidnumber="0";
-
-}else{
-	
-$total_usuarios=$new_entradas_ldap['count']-1;
-
-//Los metemos todos en un array "plano"
-for ($i = 0; $i <= $total_usuarios; $i++) {
-$calcular_mun[$i]=$new_entradas_ldap[$i]['uidnumber'][0];
-}
-
-//Determinamos cuál es el mayor
-$max_uidnumber=max($calcular_mun);
-
-}
+$max_uidnumber=$new_entradas_ldap[0]['uidnumber'][0];
 
 //Especificamos el dn del nuevo usuario
-$ldap_nuevo="uid=".$row['uid'].",".$ldap_base."";
+$ldap_nuevo="uid=".$row['uid'].",".$ldap_base_nuevo;
 //Llenamos el array $in con los datos del nuevo usuario
 $in['givenName'] = $row['givenName'];
 $in['sn'] = $row['sn'];
@@ -175,15 +160,26 @@ $in['uid'] = $row['uid'];
 $in['mail'] = $row['mail'];
 $mail=$in['mail'];
 $in['uidNumber'] = $max_uidnumber+1;
-$in['userPassword'] = $row['userPassword'];
 $in['gidNumber'] = $ldap_gid['Gente'];
+$in['userPassword'] = $row['userPassword'];
 $in['homeDirectory'] = "/home/".$row['uid'];
 $in['objectClass'][0] = "inetOrgPerson";
 $in['objectClass'][1] = "posixAccount";
 $in['objectClass'][2] = "top";
+$in['objectClass'][3] = "person";
+$in['objectClass'][4] = "shadowAccount";
+$in['objectClass'][5] = "organizationalPerson";
+$in['objectClass'][6] = "tracUser";
+$in['tracperm'] = "WIKI_VIEW";
+$in['loginShell'] = "/bin/false";
+$in['description'] = "Entrada creada por el Sistema de Registro AGUILAS el ".$time_today.", a petición de ".$IP;
+
+$in2['uidNumber'] = $in['uidNumber'];
 
 //Hacemos el query con los datos
 $r = ldap_add($ldapc,$ldap_nuevo,$in) or die ('<div class="error">Hubo un error insertando entradas al LDAP: ' . ldap_error($ldapc) . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
+
+$uidmasuno = ldap_modify($ldapc, "uid=maxUID,".$ldap_base_nuevo, $in2) or die ('<div class="error">Hubo un error insertando entradas al LDAP: ' . ldap_error($ldapc) . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
 
 //Preparamos el correo de confirmación
 $headers = "From: plataforma-colaborativa@canaima.softwarelibre.gob.ve\nContent-Type: text/html; charset=utf-8";

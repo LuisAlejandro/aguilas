@@ -55,7 +55,7 @@ Tu búsqueda contiene caracteres inválidos. Sólo se permiten letras (mayúscul
 //Hacemos la búsqueda en el LDAP
 $search_limitar = array("uidNumber","uid","cn","gidNumber");
 $search_filtro_buscar = "(|(uid=*".$searchInput."*)(cn=*".$searchInput."*))";
-$search_verificar_ldap = ldap_search($ldapc, $ldap_base, $search_filtro_buscar, $search_limitar);
+$search_verificar_ldap = ldap_search($ldapc, $ldap_buscar, $search_filtro_buscar, $search_limitar);
 $search_entradas_ldap = ldap_get_entries($ldapc, $search_verificar_ldap);
 
 $total_usuarios=$search_entradas_ldap['count'];

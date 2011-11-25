@@ -115,7 +115,7 @@ $nuevaContrasenia=$in['userPassword'];
 //Nos traemos el dn correspondiente a la cuenta que coincida con uid y mail
 $pass_limitar = array("dn");
 $pass_filtro_buscar = "(&(mail=$mail)(uid=$uid))";
-$pass_verificar_ldap = ldap_search($ldapc, $ldap_base, $pass_filtro_buscar, $pass_limitar) or die ('<div class="error">Hubo un error en la buśqueda con el LDAP: ' . ldap_error() . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
+$pass_verificar_ldap = ldap_search($ldapc, $ldap_buscar, $pass_filtro_buscar, $pass_limitar) or die ('<div class="error">Hubo un error en la buśqueda con el LDAP: ' . ldap_error() . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
 $pass_entradas_ldap = ldap_get_entries($ldapc, $pass_verificar_ldap) or die ('<div class="error">Hubo un error retirando los resultados del LDAP: ' . ldap_error() . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
 
 if($pass_entradas_ldap['count']==0){

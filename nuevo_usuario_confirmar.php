@@ -67,13 +67,13 @@ $image_captcha = md5($image_captcha);
 //Consultamos si ya existe el uid en el LDAP
 $uid_limitar = array("uid");
 $uid_filtro_buscar="(uid=$uid)";
-$uid_verificar_ldap = ldap_search($ldapc, $ldap_base, $uid_filtro_buscar, $uid_limitar);
+$uid_verificar_ldap = ldap_search($ldapc, $ldap_buscar, $uid_filtro_buscar, $uid_limitar);
 $uid_entradas_ldap = ldap_get_entries($ldapc, $uid_verificar_ldap);
 
 //Consultamos si ya existe la mail en el LDAP
 $mail_limitar = array("mail");
 $mail_filtro_buscar="(mail=$mail)";
-$mail_verificar_ldap = ldap_search($ldapc, $ldap_base, $mail_filtro_buscar, $mail_limitar);
+$mail_verificar_ldap = ldap_search($ldapc, $ldap_buscar, $mail_filtro_buscar, $mail_limitar);
 $mail_entradas_ldap = ldap_get_entries($ldapc, $mail_verificar_ldap);
 
 if($uid_entradas_ldap["count"]>0){
@@ -217,7 +217,7 @@ $result = mysql_query($query) or die ('<div class="error">Hubo un error en la es
 //Preparamos el correo de confirmación
 $headers = "From: plataforma-colaborativa@canaima.softwarelibre.gob.ve\nContent-Type: text/html; charset=utf-8";
 $subject = "Activación de Nuevo Usuario en la Plataforma Colaborativa de Canaima";
-$file_url = "http://".$URL_base."/".basename(dirname(__FILE__))."/nuevo_usuario_activado.php";
+$file_url = "http://".$URL_base."/nuevo_usuario_activado.php";
 $body = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><HTML><HEAD><META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8"><TITLE>Activación de Nuevo Usuario en la Plataforma Colaborativa de Canaima</TITLE><META NAME="GENERATOR" CONTENT="Canaima GNU/Linux"><META NAME="AUTHOR" CONTENT="Luis Alejandro Martínez Faneyth"></HEAD><BODY LANG="es-VE" DIR="LTR"><p>Hola, <strong>'.$givenName.'</strong>.</p><p>Has recibido éste correo electrónico porque hiciste una petición de Nuevo Usuario en la Plataforma Colaborativa de Canaima. Haz click en el siguiente enlace para confirmar tu petición.</p><p><a href="'."$file_url?uid=$uid&token=$token".'">CONFIRMAR</a></p><br /><br /><p>Equipo de la Plataforma Colaborativa de Canaima</p></BODY></HTML>';
 
 //Enviamos el correo
