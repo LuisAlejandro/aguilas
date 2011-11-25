@@ -1,3 +1,14 @@
+commit 7f36e6e47bc9564f5466dfd2d5c0b0a5906a981c
+Author: Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>
+Date:   Fri Nov 25 10:08:36 2011 -0430
+
+    Mejoras varias:
+    
+    	* Cambio de permisos a *.php
+    	* Mejora de la lectura de la configuración
+    	* Auto-incremento del uidNumber
+    	* Perfeccionamiento del código
+
 commit 4ab39b74f67d9cb1d5354938d1656d17826bf097
 Author: Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>
 Date:   Sun May 8 09:18:28 2011 -0430
