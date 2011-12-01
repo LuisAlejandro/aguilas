@@ -1,10 +1,14 @@
-<?php 
+<?php
 
-$allowed_ops=array("uid","userPassword","image_captcha");
+$allowed_ops = array("uid", "userPassword", "image_captcha");
+
+include "config.php";
 include "themes/$app_theme/header.php";
 include "Parameters.php";
 include "LDAPConnection.php";
 include "Functions.php";
+
+InitCaptcha();
 
 ?>
 
@@ -12,177 +16,116 @@ include "Functions.php";
 
 <?php
 
-//Guardamos la fecha del día de hoy
-$time_today = date("d-m-Y-H:i:s");
+// USER INPUT VALIDATION ------------------------------------------------------- 
+// Some of the parameters were not set, the form was not used to get here
+if (!isset($uid) || !isset($userPassword) || !isset($image_captcha)) {
 
-// ---------- USER INPUT VALIDATION -------------------------------------------- 
+    VariableNotSet();
+  
+// Some of the parameters are empty
+} elseif ($uid == '' || $userPassword == '' || $image_captcha == '') {
 
-if(!isset($uid)||!isset($userPassword)||!isset($image_captcha)){
+    EmptyVariable();
 
-?>
-	
-<div class="error">
-¡EPA! ¿Por donde estás tratando de entrar, muchachito o muchachita? Usa los canales regulares.
-<br /><br />
-<a href="javascript:history.back(1);">Atrás</a>
-</div>
+// The cookie has expired
+} elseif (!isset($session_captcha)) {
 
-<?php
+    ExpiredCaptcha();
 
-}elseif($uid==''||$userPassword==''||$image_captcha==''){
+// We compare the cookie hash with the user entry
+// If they are different, the user messed up
+} elseif ($session_captcha <> $image_captcha) {
 
-?>
-	
-<div class="error">
-Hubo un error en el llenado del Formulario.
-<br /><br />
-<a href="javascript:history.back(1);">Atrás</a>
-</div>
+    WrongCaptcha();
 
-<?php
+// Invalid username
+} elseif (preg_match("/^[A-Za-z0-9_-]+$/", $uid) == 0) {
 
-}else{
+    InvalidUsername();
 
-//---------- CAPTCHA -------------------------------------------------
-//Iniciamos sesión (cookies)
-session_start();
-if(isset($_SESSION['captcha'])){
-$session_captcha = $_SESSION['captcha'];
-}else{
-$session_captcha = "CADUCO";
-}
-//Convertimos a MD5 lo que el usuario puso en el formulario
-$image_captcha = md5($image_captcha);
-//---------- CAPTCHA -------------------------------------------------
+// Invalid Password
+} elseif (preg_match("/^[A-Za-z0-9@#$%^&+=!.-_]+$/", $userPassword) == 0) {
 
-if($session_captcha=="CADUCO"){
+    InvalidPassword();
+    
+} else {
 
-?>
+    // VALIDATION PASSED -----------------------------------------------------------
+    // We stablish what attributes are going to be retrieved from each entry
+    $search_limit = array("dn", "givenName", "sn", "cn", "uid", "userPassword", "mail", "uidNumber", "gidNumber");
 
-<div class="error">
-La página ha caducado.
-<br /><br />
-<a href="javascript:history.back(1);">Atrás</a>
-</div>
+    // The filter string to search through LDAP
+    $search_string = "(&(userPassword=" . $userPassword . ")(uid=" . $uid . "))";
 
-<?php
+    // The attribute the array of entries is going to be sorted by
+    $sort_string = 'cn';
 
-}elseif($session_captcha<>$image_captcha){
+    // Searching ...
+    $search_entries = AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $sort_string);
 
-?>
+    // How much did we get?
+    $result_count = $search_entries['count'];
 
-<div class="error">
-Llenaste incorrectamente la imagen de verificación (CAPTCHA). Debes escribir exactamente lo que dice la imagen en el campo de texto.
-<br /><br />
-<a href="javascript:history.back(1);">Atrás</a>
-</div>
+    // If we didn't get any entries, then something is wrong
+    if ($result_count == 0) {
 
-<?php
+        NoResults();
 
-}elseif(preg_match("/^[A-Za-z0-9_]+$/",$uid)==0){
+    // If we got more than one entry, then something is really messed up
+    } elseif ($result_count > 1) {
 
-?>
+        MultipleResults();
 
-<div class="error">
-El nombre de usuario es inválido.
-<br /><br />
-<a href="javascript:history.back(1);">Atrás</a>
-</div>
+    // If we got one coincidence, then we can proceed to deletion
+    } elseif ($result_count == 1) {
 
-<?php
+        // Constructing an array of the name of theelements we want to edit ...
+        $objects = array("uid", "uidNumber", "givenName", "sn", "cn", "mail", "userPassword", "gidNumber");
+        
+        // ... and it's descriptive tags
+        $tags = array(  _("Nombre de Usuario"),
+                        _("Número de Usuario (ID)"),
+                        _("Nombres"),
+                        _("Apellidos"),
+                        _("Nombre Completo"),
+                        _("Correo Electrónico"),
+                        _("Contraseña"),
+                        _("Grupo"));
+        
+        // We get their respective values in an array too
+        $contents = array(  $search_entries[0]['uid'][0],
+                            $search_entries[0]['uidnumber'][0],
+                            $search_entries[0]['givenname'][0],
+                            $search_entries[0]['sn'][0],
+                            $search_entries[0]['cn'][0],
+                            $search_entries[0]['mail'][0],
+                            preg_replace("/[A-Za-z0-9@#$%^&+=!.-_]/", "*", $search_entries[0]['userpassword'][0]),
+                            $ldap_gid_flip[$search_entries[0]['gidnumber'][0]]);
+        
+        // Tell me which ones you want to make editable and which don't
+        // 1 = editable
+        // 0 = uneditable
+        $edit = array(0, 0, 1, 1, 0, 1, 0, 0);
+        
+        // How much do we have?
+        $num = count($edit) - 1;
+        
+        // Let's filter some ajax-incompatible characters first
+        $who = str_replace(",", "__@_@_@__", $search_entries[0]['dn']);
+        $who = str_replace("=", "__%_%_%__", $who);
 
-}elseif(preg_match("/^[A-Za-z0-9]+$/",$userPassword)==0){
-
-?>
-
-<div class="error">
-La contraseña contiene caracteres inválidos. Sólo se permiten letras (mayúsculas y minúsculas) y números.
-<br /><br />
-<a href="javascript:history.back(1);">Atrás</a>
-</div>
-
-<?php
-
-}elseif((strlen($userPassword)<8)||(strlen($userPassword)>20)){
-
-?>
-
-<div class="error">
-La longitud de la contraseña debe ser de 8 caracteres mínimo y 20 caracteres máximo.
-<br /><br />
-<a href="javascript:history.back(1);">Atrás</a>
-</div>
-
-<?php
-
-}else{
-
-//Consultamos si ya existe la cuenta en el LDAP
-$edit_limitar = array("dn","givenName","sn","cn","uid","userPassword","mail","uidNumber","gidNumber");
-$edit_filtro_buscar = "(&(userPassword=".$userPassword.")(uid=".$uid."))";
-$edit_verificar_ldap = ldap_search($ldapc, $ldap_buscar, $edit_filtro_buscar, $edit_limitar) or die ('<div class="error">Hubo un error en la buśqueda con el LDAP: ' . ldap_error() . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
-$edit_entradas_ldap = ldap_get_entries($ldapc, $edit_verificar_ldap) or die ('<div class="error">Hubo un error retirando los resultados del LDAP: ' . ldap_error() . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
-
-$total_usuarios=$edit_entradas_ldap['count'];
-$total_usuarios_1=$total_usuarios-1;
-
-if($edit_entradas_ldap['count']==0){
-
-?>
-
-<div class="error">
-Los datos proporcionados no coinciden.
-<br /><br />
-<a href="javascript:history.back(1);">Atrás</a>
-</div>
-
-<?php
-
-}elseif($edit_entradas_ldap['count']>1){
-
-?>
-
-<div class="error">
-Existe una inconsistencia en la Base de Datos. Hay dos o más cuentas que comparten el mismo nombre de usuario, lo cual es inapropiado. Para poder continuar debes eliminar tu cuenta de usuario y crear una nueva.
-<br /><br />
-<a href="javascript:history.back(1);">Atrás</a>
-</div>
-
-<?php
-
-}elseif($edit_entradas_ldap['count']==1){
-
-$objeto_array=array("uid","uidNumber","givenName","sn","cn","mail","userPassword","gidNumber");
-$etiqueta_array=array("Nombre de Usuario","Número de Usuario (ID)","Nombres","Apellidos","Nombre Completo","Correo Electrónico","Contraseña","Grupo");
-$contenido_array=array($edit_entradas_ldap[0]['uid'][0],$edit_entradas_ldap[0]['uidnumber'][0],$edit_entradas_ldap[0]['givenname'][0],$edit_entradas_ldap[0]['sn'][0],$edit_entradas_ldap[0]['cn'][0],$edit_entradas_ldap[0]['mail'][0],preg_replace("/[A-Za-z0-9]/","*",$edit_entradas_ldap[0]['userpassword'][0]),$ldap_gid_flip[$edit_entradas_ldap[0]['gidnumber'][0]]);
-$edit_array=array(0,0,1,1,0,1,0,0);
-$num_array=count($edit_array)-1;
-$quien=str_replace(",","__@_@_@__",$edit_entradas_ldap[0]['dn']);
-$quien=str_replace("=","__%_%_%__",$quien);
-
-echo "<table>";
-
-for ($i = 0; $i <= $num_array; $i++) {
-asistente_ajax($objeto_array[$i],$etiqueta_array[$i],$contenido_array[$i],$edit_array[$i],$quien);
+        // Finally, we build up all the AJAX form with our assistant
+        echo "<table>";
+        for ($i = 0; $i <= $num; $i++) {
+            AJAXAssistant($objects[$i], $tags[$i], $contents[$i], $edit[$i], $who);
+        }
+        echo "</table>";
+    }
+    
 }
 
-echo "</table>";
-
-}
-
-}
-
-}
-
-$ldapx = ldap_close($ldapc)
-        or die (
-        '<div class="error">'
-        . _("Hubo un error cerrando la conexión con el LDAP: ")
-        . ldap_error($ldapc)
-        . '.<br /><br /><a href="javascript:history.back(1);">'
-        . _("Atrás")
-        . '</a></div>'
-        );
+// Closing the connection
+$ldapx = AssistedLDAPClose($ldapc);
 
 include "themes/$app_theme/footer.php";
 

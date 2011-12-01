@@ -1,6 +1,6 @@
 <?php
 
-$ldap_gid_flip=array_flip($ldap_gid);
+$ldap_gid_flip = array_flip($ldap_gid);
 
 $ldapc = ldap_connect($ldap_server)
         or die (

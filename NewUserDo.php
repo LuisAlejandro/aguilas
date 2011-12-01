@@ -1,27 +1,19 @@
 <?php
 
-$allowed_ops=array("uid","mail","token");
+$allowed_ops = array("uid","mail","token");
+
+include "config.php";
 include "themes/$app_theme/header.php";
 include "Parameters.php";
 include "LDAPConnection.php";
 include "MYSQLConnection.php";
 include "Functions.php";
-include "CreateMaxUIDEntry.php";
 
 ?>
 
 <h2><?= _("Estado de la Solicitud") ?></h2>
 
 <?php
-
-//Verificamos si la tabla "nuevo_usuario" existe
-$probar=mysql_query('DESCRIBE nuevo_usuario');
-//Si no existe, la creamos
-if(($probar==FALSE)){include "CreateUserTable.php";}
-//Guardamos la fecha del día de hoy
-$time_today = date("d-m-Y-H:i:s");
-//Guardamos la IP del visitante
-$IP = $_SERVER['REMOTE_ADDR'];
 
 // ---------- USER INPUT VALIDATION -------------------------------------------- 
 

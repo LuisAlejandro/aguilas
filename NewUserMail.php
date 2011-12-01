@@ -9,31 +9,13 @@ include "LDAPConnection.php";
 include "MYSQLConnection.php";
 include "Functions.php";
 
+InitCaptcha();
+
 ?>
 
 <h2><?= _("Estado de la Solicitud") ?></h2>
 
 <?php
-
-// We store today's date
-$time_today = date("d-m-Y-H:i:s");
-
-// Let's see if our table exists
-$tbl_test = mysql_query('DESCRIBE NewUser');
-
-// Create the table if we don't have it
-if (($tbl_test == FALSE)) {
-    include "CreateUserTable.php";
-}
-
-// Generate confirmation token to send by e-mail
-$token = md5(mt_rand() . "-" . time() . "-" . $_SERVER['REMOTE_ADDR'] . "-" . mt_rand());
-
-// A little description
-$description = _("Solicitado por ")
-        . $_SERVER['REMOTE_ADDR']
-        . _(" a las ")
-        . $time_today;
 
 // USER INPUT VALIDATION ------------------------------------------------------- 
 // Some of the parameters were not set, the form was not used to get here
@@ -45,42 +27,36 @@ if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset
 } elseif ($uid == '' || $givenName == '' || $sn == '' || $mail == '' || $userPassword == '' || $description == '' || $token == '' || $image_captcha == '') {
 
     EmptyVariable();
+
 } else {
-
-    // CAPTCHA -----------------------------------------------------------------
-    // Starting session (cookies)
-    session_start();
-
-    // We get the hash from the cookie
-    if (isset($_SESSION['captcha'])) {
-        $session_captcha = $_SESSION['captcha'];
-        // If it's not there, then the cookie expired
-    } else {
-        $session_captcha = "expired";
-    }
-
-    // Let's MD5 the user entry
-    $image_captcha = md5($image_captcha);
 
     // We stablish what attributes are going to be retrieved from each entry
     $search_limit1 = array("uid");
+    
     // The filter string to search through LDAP
-    $search_string1 = "(uid=$uid)";
+    $search_string1 = "(uid=".$uid.")";
+    
     // The attribute the array of entries is going to be sorted by
     $sort_string1 = 'uid';
+    
     // Searching ...
     $search_entries1 = AssistedLDAPSearch($ldapc, $ldap_base, $search_string1, $search_limit1, $sort_string1);
+    
     // How much did we get?
     $result_count1 = $search_entries1['count'];
 
     // We stablish what attributes are going to be retrieved from each entry
     $search_limit2 = array("mail");
+    
     // The filter string to search through LDAP
-    $search_string2 = "(mail=$mail)";
+    $search_string2 = "(mail=".$mail.")";
+    
     // The attribute the array of entries is going to be sorted by
     $sort_string2 = 'mail';
+    
     // Searching ...
     $search_entries2 = AssistedLDAPSearch($ldapc, $ldap_base, $search_string2, $search_limit2, $sort_string2);
+    
     // How much did we get?
     $result_count2 = $search_entries2['count'];
 
@@ -95,7 +71,7 @@ if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset
         UsedEMail();
 
     // The cookie has expired
-    } elseif ($session_captcha == "expired") {
+    } elseif (!isset($session_captcha)) {
 
         ExpiredCaptcha();
 
@@ -122,24 +98,24 @@ if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset
 
     // Invalid First Name
     } elseif (preg_match("/^[A-Za-záäéëíïóöúüñÁÄÉËÍÏÓÖÚÜÑ\s?]+$/", $givenName) == 0) {
-        
+
         Invalid1Name();
-    
+
     // Invalid Last Name
     } elseif (preg_match("/^[A-Za-záäéëíïóöúüñÁÄÉËÍÏÓÖÚÜÑ\s?]+$/", $sn) == 0) {
 
         Invalid2Name();
-        
+
     // Password has less than 8 characters or more than 20
     } elseif ((strlen($userPassword) < 8) || (strlen($userPassword) > 20)) {
 
         WrongPasswordLength();
-        
+
     // Invalid e-mail
     } elseif (preg_match("/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/", $mail) == 0) {
 
         InvalidEMail();
-        
+
     } else {
 
         // We build up our query to insert the user data into a temporary MYSQL Database
@@ -151,7 +127,7 @@ if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset
 
         // Inserting the row on the table ...
         $ins_r = AssistedMYSQLQuery($ins_q);
-            
+
         // If the insert went OK, we send the notification e-mail to the user
         if ($ins_r) {
             $send = AssistedEMail("NewUserMail", $mail);
@@ -169,7 +145,7 @@ if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset
         }            
 
     }
-    
+
 }
 
 // Closing the connection
