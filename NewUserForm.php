@@ -171,4 +171,6 @@ include "themes/$app_theme/header.php";
     var userPasswordBis_var = new Spry.Widget.ValidationTextField("userPasswordBis_js", "custom", {validation: passwordIgual, validateOn:["blur"], maxChars:20, minChars:8});
     var image_captcha_var = new Spry.Widget.ValidationTextField("image_captcha_js", "none", {validateOn:["blur"], maxChars:8});
 </script>
-<?php include "themes/$app_theme/footer.php"; ?>
+<?php
+include "themes/$app_theme/footer.php";
+?>

@@ -1,8 +1,6 @@
-<?php 
-
+<?php
 include "config.php";
 include "themes/$app_theme/header.php";
-
 ?>
 
 <h2><?= _("Generar Contraseña") ?></h2>
@@ -76,15 +74,11 @@ include "themes/$app_theme/header.php";
     </table>
     <input type='submit' value="<?= _("ENVIAR") ?>" class="boton" />
 </form>
-
 <script type="text/javascript">
 var uid_var = new Spry.Widget.ValidationTextField("uid_js", "none", {validateOn:["blur"], maxChars:60});
 var mail_var = new Spry.Widget.ValidationTextField("mail_js", "email", {validateOn:["blur"], maxChars:60});
 var image_captcha_var = new Spry.Widget.ValidationTextField("image_captcha_js", "none", {validateOn:["blur"], maxChars:8});
 </script>
-
-<?php 
-
+<?php
 include "themes/$app_theme/footer.php";
-
 ?>

@@ -153,6 +153,29 @@ function AssistedEMail($what, $where) {
                     . '</BODY>'
                     . '</HTML>';
             break;
+
+        case "DeleteUserDo":
+            $subject = _("Usuario Eliminado en ") . $app_name;
+            $body = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">'
+                    . '<HTML>'
+                    . '<HEAD>'
+                    . '<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">'
+                    . '<TITLE>' . $subject . '</TITLE>'
+                    . '<META NAME="GENERATOR" CONTENT="AGUILAS">'
+                    . '<META NAME="AUTHOR" CONTENT="AGUILAS">'
+                    . '</HEAD>'
+                    . '<BODY LANG="' . $app_locale . '" DIR="LTR">'
+                    . '<p>' . _("Estimado usuario ") . '"<strong>' . $uid . '</strong>".</p>'
+                    . '<p>'
+                    . _("Tu cuenta ha sido eliminada satisfactoriamente de ")
+                    . $app_name . '.'
+                    . '</p>'
+                    . '<br /><br />'
+                    . '<p>' . $app_operator . '</p>'
+                    . '</BODY>'
+                    . '</HTML>';
+            break;
+
     }
 
     $send = mail($where, $subject, $body, $headers);
@@ -163,12 +186,6 @@ function WriteLog($log_file, $time_today) {
     $log_location = __DIR__ . "/logs/" . $log_file . ".log";
 
     switch ($log_file) {
-        case "Ajax":
-            $log_string = "[" . $time_today . "]: "
-                    . _("Se ha modificado el atributo ") . $obj_a
-                    . _(" del usuario ") . $who_a . ".\n";
-            break;
-
         case "ChangePasswordDo":
             $log_string = "[" . $time_today . "]: "
                     . _("Se ha enviado un correo de éxito (Cambiar Contraseña) a ")
@@ -197,6 +214,12 @@ function WriteLog($log_file, $time_today) {
             $log_string = "[" . $time_today . "]: "
                     . _("Se ha enviado un correo de confirmación (Nuevo Usuario) a ")
                     . $mail . " (uid: $uid; token: $token).\n";
+            break;
+
+        case "DeleteUserDo":
+            $log_string = "[" . $time_today . "]: "
+                    . _("Se ha enviado un correo de éxito (Eliminar Usuario) a ")
+                    . $mail . " (uid: $uid).\n";
             break;
     }
 
@@ -233,6 +256,24 @@ function VariableNotSet() {
         <?php
     }
 
+function InitCaptcha() {
+    // CAPTCHA ---------------------------------------------------------------------
+    // Starting session (cookies)
+    session_start();
+    // We get the hash from the cookie
+    // If it's not there, then the cookie expired
+    if (isset($_SESSION['captcha'])) {
+        $session_captcha = $_SESSION['captcha'];
+    }
+
+    if (isset($image_captcha)){
+        // Let's MD5 the user entry
+        $image_captcha = md5($image_captcha);
+    }else{
+        WrongCaptcha();
+    }
+}
+    
     function ExpiredCaptcha() {
         ?>
     <div class="error">
@@ -451,6 +492,20 @@ function VariableNotSet() {
         );
         return($r);
     }
+    
+        function AssistedLDAPDelete($ldapc, $dn) {
+        $r = ldap_delete($ldapc, $dn)
+                or die(
+                        '<div class="error">'
+                        . _("Hubo un error eliminando entradas del LDAP: ")
+                        . ldap_error($ldapc)
+                        . '.<br /><br /><a href="javascript:history.back(1);">'
+                        . _("Atrás")
+                        . '</a></div>'
+                        . file_get_contents("themes/$app_theme/footer.php")
+        );
+        return($r);
+    }
 
     function AssistedLDAPClose($ldapc) {
         $ldapx = ldap_close($ldapc)
@@ -538,29 +593,53 @@ function VariableNotSet() {
         return($search_entries);
     }
 
-    function asistente_ajax($objeto_asist, $etiqueta_input, $contenido_input, $show_edit, $quien_asist) {
+function AJAXAssistant($objects, $tags, $contents, $edit, $who) {
         ?>
     <tr>
-        <td class="px160"><?php echo $etiqueta_input; ?></td>
-        <td class="px120"><?php if ($show_edit) { ?>pulse sobre el campo para editarlo<?php } else { ?>este campo no puede editarse<?php } ?></td>
+        <td class="px160">
+            <?= $tags ?>
+        </td>
+        <td class="px120">
+            <?php
+            
+            if ($edit) {
+                echo _("pulse sobre el campo para editarlo");
+            } else {
+                echo _("este campo no puede editarse");
+            }
+            
+            ?>
+        </td>
         <td class="px640">
             <div>
-                <table <?php if ($show_edit) { ?>class="infoBox" cellSpacing="2" cellPadding="3"<?php } else { ?>class="infoBox_null"<?php } ?>>
+                <?php
+
+                if ($edit) {
+                    echo '<table class="infoBox" cellSpacing="2" cellPadding="3">';
+                } else {
+                    echo '<table class="infoBox_null">';
+                }
+
+                ?>
                     <tr valign="middle">
-                        <td id="<? echo $objeto_asist; ?>_rg" <?php if ($show_edit) { ?>onmouseover="flashRow(this);" onclick="changeAjax('<? echo $objeto_asist; ?>');" onmouseout="unFlashRow(this);"<?php } ?>>
-                            <div class="superBigSize" id="<? echo $objeto_asist; ?>_rg_display_section"><? echo $contenido_input; ?></div>
+                        <td id="<?= $objects ?>_rg" <?php if ($edit) { ?>onmouseover="flashRow(this);" onclick="changeAjax('<?= $objects ?>');" onmouseout="unFlashRow(this);"<?php } ?>>
+                            <div class="superBigSize" id="<?= $objects ?>_rg_display_section">
+                                <?= $contents ?>
+                            </div>
                         </td>
-    <?php if ($show_edit) { ?>
-                            <td id="<? echo $objeto_asist; ?>_hv">
-                                <div id="<? echo $objeto_asist; ?>_hv_editing_section">
-                                    <input class="superBigSize editMode" id="<? echo $objeto_asist; ?>" name="<? echo $objeto_asist; ?>" value="<? echo $contenido_input; ?>" <?php if ($objeto_asist == "givenName" || $objeto_asist == "sn") { ?>onkeyup="actualiza_cn();"<?php } ?> />&nbsp;
-                                    <input class="AjaxButton" onclick="sendAjax('<? echo $objeto_asist; ?>','<? echo $quien_asist; ?>');" type="button" value="Guardar" />&nbsp;
-                                    <input class="AjaxButton" onclick="cancelAjax('<? echo $objeto_asist; ?>');" type="button" value="Cancelar" />
+                            <?php if ($edit) { ?>
+                            <td id="<?= $objects ?>_hv">
+                                <div id="<?= $objects ?>_hv_editing_section">
+                                    <input class="superBigSize editMode" id="<?= $objects ?>" name="<?= $objects ?>" value="<?= $contents ?>" <?php if ($objects == "givenName" || $objects == "sn") { ?>onkeyup="update_cn();"<?php } ?> />&nbsp;
+                                    <input class="AjaxButton" onclick="sendAjax('<?= $objects ?>','<?= $who ?>');" type="button" value="<?= _("Guardar") ?>" />&nbsp;
+                                    <input class="AjaxButton" onclick="cancelAjax('<?= $objects ?>');" type="button" value="<?= _("Cancelar") ?>" />
                                 </div>
-                                <span class="savingAjaxWithBackground" id="<? echo $objeto_asist; ?>_hv_saving_section">&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;</span>
+                                <span class="savingAjaxWithBackground" id="<?= $objects ?>_hv_saving_section">
+                                    &#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;
+                                </span>
                                 <script type="text/javascript">
-                                    document.getElementById('<? echo $objeto_asist; ?>_hv').style.display = 'none';
-                                    document.getElementById('<? echo $objeto_asist; ?>_hv_saving_section').style.display = 'none';
+                                    document.getElementById('<?= $objects ?>_hv').style.display = 'none';
+                                    document.getElementById('<?= $objects ?>_hv_saving_section').style.display = 'none';
                                 </script>
                             </td>
     <?php } ?>
