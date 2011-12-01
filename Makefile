@@ -2,6 +2,20 @@
 
 SHELL := sh -e
 
+IMAGES :=	"captcha" \
+		"editar" \
+		"eliminar" \
+		"favicon" \
+		"fondoforma" \
+		"listar" \
+		"logo" \
+		"nuevo" \
+		"olvidar" \
+		"password"
+
+THEMES :=	"debian" \
+		"canaima"
+
 all: build
 
 test:
@@ -10,7 +24,21 @@ test:
 
 build:
 
-	@echo "Nada para hacer"
+	for THEME in $(THEMES); \
+	do \
+		for IMAGE in $(IMAGES); \
+		do \
+			convert themes/$${THEME}/images/$${IMAGE}.svg themes/$${THEME}/images/$${IMAGE}.png; \
+		done \
+	done \
+
+	for THEME in $(THEMES); \
+	do \
+		xcf2png -o themes/$${THEME}/images/banner.png themes/$${THEME}/images/banner.xcf; \
+		icotool -c -o themes/$${THEME}/images/favicon.ico themes/$${THEME}/images/favicon.png; \
+		convert themes/$${THEME}/images/banner.png themes/$${THEME}/images/banner.jpg; \
+	done
+
 
 install:
 
@@ -32,6 +60,13 @@ uninstall:
 	rm -rf $(DESTDIR)/var/www/aguilas/
 
 clean:
+
+	for THEME in $(THEMES); \
+	do \
+		rm -rf themes/$${THEME}/images/*.png; \
+		rm -rf themes/$${THEME}/images/*.jpg; \
+		rm -rf themes/$${THEME}/images/*.ico; \
+	done
 
 distclean:
 

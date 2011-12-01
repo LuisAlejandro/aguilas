@@ -107,6 +107,10 @@ AGUILAS tiene las siguientes funcionalidades:
 * Implementación de LDAP (OpenLDAP preferiblemente).
 * PHP5
 * Apache2
+* imagemagick
+* libmagickcore3-extra
+* icoutils
+* xcftools
 
 **INSTALACIÓN**
 ===============
