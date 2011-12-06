@@ -7,10 +7,9 @@ $time_today = date("d-m-Y-H:i:s");
 $token = md5(mt_rand() . "-" . time() . "-" . $_SERVER['REMOTE_ADDR'] . "-" . mt_rand());
 
 // A little description
-$description = _("Solicitado por ")
-        . $_SERVER['REMOTE_ADDR']
-        . _(" a las ")
-        . $time_today;
+$description = _("Entrada creada por $app_name a las " )
+                    . $time_today . _(", a petición de ")
+                    . $_SERVER['REMOTE_ADDR'];
 
 foreach( $_POST as $key => $value ){
     $asign = "\$" . $key . "='" . $value . "';";

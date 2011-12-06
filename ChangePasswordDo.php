@@ -4,9 +4,9 @@ $allowed_ops = array("uid", "mail", "userPasswordOld", "userPassword", "userPass
 
 include "config.php";
 include "themes/$app_theme/header.php";
+include "Functions.php";
 include "Parameters.php";
 include "LDAPConnection.php";
-include "Functions.php";
 
 InitCaptcha();
 
@@ -38,34 +38,57 @@ if (!isset($uid) || !isset($mail) || !isset($userPasswordOld) || !isset($userPas
 
     WrongCaptcha();
 
-// Invalid e-mail
-} elseif (preg_match("/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/", $mail) == 0) {
-
-    InvalidEMail();
-
 // Invalid username
 } elseif (preg_match("/^[A-Za-z0-9_-]+$/", $uid) == 0) {
 
     InvalidUsername();
+
+// Username has less than 3 characters or more than 30
+} elseif ((strlen($uid) < 3) || (strlen($uid) > 30)) {
+
+    WrongUIDLength();
+
+// Invalid e-mail
+} elseif (preg_match("/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/", $mail) == 0) {
+
+    InvalidEMail();
 
 // Invalid Password
 } elseif (preg_match("/^[A-Za-z0-9@#$%^&+=!.-_]+$/", $userPassword) == 0) {
 
     InvalidPassword();
 
+// Password has less than 8 characters or more than 30
+} elseif ((strlen($userPassword) < 8) || (strlen($userPassword) > 30)) {
+
+    WrongPasswordLength();
+
+// Invalid Old Password
+} elseif (preg_match("/^[A-Za-z0-9@#$%^&+=!.-_]+$/", $userPasswordOld) == 0) {
+
+    InvalidOldPassword();
+
+// Old Password has less than 8 characters or more than 30
+} elseif ((strlen($userPasswordOld) < 8) || (strlen($userPasswordOld) > 30)) {
+
+    WrongOldPasswordLength();
+    
 // Passwords do not match
 } elseif ($userPassword <> $userPasswordBis) {
 
     DifferentPasswords();
 
-// Password has less than 8 characters or more than 20
-} elseif ((strlen($userPassword) < 8) || (strlen($userPassword) > 20)) {
-
-    WrongPasswordLength();
-
 } else {
 
-    // VALIDATION PASSED -----------------------------------------------------------
+    // VALIDATION PASSED -------------------------------------------------------
+
+    // Encoding the passwords
+    $userPassword = EncodePassword($userPassword, $ldap_enc);
+    $userPasswordOld = EncodePassword($userPasswordOld, $ldap_enc);
+    
+    // We are going to search for a user entry matching the data provided by
+    // the user on the form 
+
     // We stablish what attributes are going to be retrieved from each entry
     $search_limit = array("dn");
 
@@ -73,7 +96,7 @@ if (!isset($uid) || !isset($mail) || !isset($userPasswordOld) || !isset($userPas
     $search_string = "(&(mail=" . $mail . ")(userPassword=" . $userPasswordOld . ")(uid=" . $uid . "))";
 
     // The attribute the array of entries is going to be sorted by
-    $sort_string = 'cn';
+    $sort_string = 'dn';
 
     // Searching ...
     $search_entries = AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $sort_string);
@@ -81,12 +104,15 @@ if (!isset($uid) || !isset($mail) || !isset($userPasswordOld) || !isset($userPas
     // How much did we get?
     $result_count = $search_entries['count'];
 
-    // If we didn't get any entries, then something is wrong
+    // If we didn't get any entries, there are no user entries matching the 
+    // data provided by the user. Maybe the user doesn't exist or the user made
+    // a mistake entering the data
     if ($result_count == 0) {
 
         NoResults();
 
-    // If we got more than one entry, then something is really messed up
+    // If we got more than one entry, then something is really messed up with
+    // the database, there must not be more than one entry with the same data
     } elseif ($result_count > 1) {
 
         MultipleResults();
@@ -94,11 +120,14 @@ if (!isset($uid) || !isset($mail) || !isset($userPasswordOld) || !isset($userPas
     // If we got one coincidence, then we can proceed to modification
     } elseif ($result_count == 1) {
 
+        // What dn are we going to modify?
+        $moddn = $search_entries['0']['dn'];
+
         // We fill in our attribute modificator array
         $in['userPassword'] = $userPassword;
 
         // Modifying ...
-        $mod = AssistedLDAPModify($ldapc, $search_entries['0']['dn'], $in);
+        $mod = AssistedLDAPModify($ldapc, $moddn, $in);
 
         // If the modifying went OK, we send the notification e-mail to the user
         if ($mod) {

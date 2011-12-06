@@ -1,13 +1,13 @@
 <?php
 
-$allowed_ops = array("uid", "mail", "token", "givenName", "sn", "userPassword", "userPasswordBis", "image_captcha");
+$allowed_ops = array("uid", "mail", "givenName", "sn", "userPassword", "userPasswordBis", "image_captcha");
 
 include "config.php";
 include "themes/$app_theme/header.php";
+include "Functions.php";
 include "Parameters.php";
 include "LDAPConnection.php";
 include "MYSQLConnection.php";
-include "Functions.php";
 
 InitCaptcha();
 
@@ -81,35 +81,50 @@ if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset
 
         WrongCaptcha();
 
-    // Passwords do not match
-    } elseif ($userPassword <> $userPasswordBis) {
-
-        DifferentPasswords();
-
     // Invalid username
     } elseif (preg_match("/^[A-Za-z0-9_-]+$/", $uid) == 0) {
 
         InvalidUsername();
+        
+    // Username has less than 3 characters or more than 30
+    } elseif ((strlen($uid) < 3) || (strlen($uid) > 30)) {
+
+        WrongUIDLength();
 
     // Invalid Password
     } elseif (preg_match("/^[A-Za-z0-9@#$%^&+=!.-_]+$/", $userPassword) == 0) {
 
         InvalidPassword();
 
+    // Password has less than 8 characters or more than 30
+    } elseif ((strlen($userPassword) < 8) || (strlen($userPassword) > 30)) {
+
+        WrongPasswordLength();
+
+    // Passwords do not match
+    } elseif ($userPassword <> $userPasswordBis) {
+
+        DifferentPasswords();
+
     // Invalid First Name
     } elseif (preg_match("/^[A-Za-záäéëíïóöúüñÁÄÉËÍÏÓÖÚÜÑ\s?]+$/", $givenName) == 0) {
 
         Invalid1Name();
+
+    // First name has more than 60 characters
+    } elseif (strlen($givenName) > 60) {
+
+        Wrong1NameLength();
 
     // Invalid Last Name
     } elseif (preg_match("/^[A-Za-záäéëíïóöúüñÁÄÉËÍÏÓÖÚÜÑ\s?]+$/", $sn) == 0) {
 
         Invalid2Name();
 
-    // Password has less than 8 characters or more than 20
-    } elseif ((strlen($userPassword) < 8) || (strlen($userPassword) > 20)) {
+    // Last name has more than 60 characters
+    } elseif (strlen($sn) > 60) {
 
-        WrongPasswordLength();
+        Wrong2NameLength();
 
     // Invalid e-mail
     } elseif (preg_match("/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/", $mail) == 0) {
@@ -117,13 +132,31 @@ if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset
         InvalidEMail();
 
     } else {
+        
+        $val_q = 'DESCRIBE NewUser';
+        
+        // Let's see if our table exists
+        $val_r = AssistedMYSQLQuery($val_q);
+
+        // Create the table if we don't have it
+        if (!$val_r) {
+            include "CreateUserTable.php";
+        }
 
         // We build up our query to insert the user data into a temporary MYSQL Database
         // while the user gets the confirmation e-mail and clicks the link
         $ins_q = "INSERT INTO NewUser "
-                ."(uid, givenName, sn, mail, userPassword, description, token)"
-                . " VALUES "
-                . "('" . $uid . "', '" . $mail . "', '" . $token . "', '" . $description . "')";
+                ."(uid, givenName, sn, mail, userPassword, description, token) "
+                . "VALUES "
+                . "('"
+                . $uid . "', '"
+                . $givenName . "', '"
+                . $sn . "', '"
+                . $mail . "', '"
+                . $userPassword . "', '"
+                . $description . "', '"
+                . $token
+                . "')";
 
         // Inserting the row on the table ...
         $ins_r = AssistedMYSQLQuery($ins_q);

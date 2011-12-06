@@ -4,15 +4,15 @@ $allowed_ops = array("uid", "userPassword", "image_captcha");
 
 include "config.php";
 include "themes/$app_theme/header.php";
+include "Functions.php";
 include "Parameters.php";
 include "LDAPConnection.php";
-include "Functions.php";
 
 InitCaptcha();
 
 ?>
 
-<h2><?= _("Estado de la Solicitud") ?></h2>
+<h2><?= _("Perfil de Usuario") ?></h2>
 
 <?php
 
@@ -43,14 +43,27 @@ if (!isset($uid) || !isset($userPassword) || !isset($image_captcha)) {
 
     InvalidUsername();
 
+// Username has less than 3 characters or more than 30
+} elseif ((strlen($uid) < 3) || (strlen($uid) > 30)) {
+
+    WrongUIDLength();
+
 // Invalid Password
 } elseif (preg_match("/^[A-Za-z0-9@#$%^&+=!.-_]+$/", $userPassword) == 0) {
 
     InvalidPassword();
     
+// Password has less than 8 characters or more than 30
+} elseif ((strlen($userPassword) < 8) || (strlen($userPassword) > 30)) {
+
+    WrongPasswordLength();
+
 } else {
 
-    // VALIDATION PASSED -----------------------------------------------------------
+    // VALIDATION PASSED -------------------------------------------------------
+
+    // We are going to search for a user matching the data entered 
+
     // We stablish what attributes are going to be retrieved from each entry
     $search_limit = array("dn", "givenName", "sn", "cn", "uid", "userPassword", "mail", "uidNumber", "gidNumber");
 
@@ -58,7 +71,7 @@ if (!isset($uid) || !isset($userPassword) || !isset($image_captcha)) {
     $search_string = "(&(userPassword=" . $userPassword . ")(uid=" . $uid . "))";
 
     // The attribute the array of entries is going to be sorted by
-    $sort_string = 'cn';
+    $sort_string = 'uid';
 
     // Searching ...
     $search_entries = AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $sort_string);

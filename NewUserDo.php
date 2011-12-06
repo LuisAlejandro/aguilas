@@ -1,13 +1,13 @@
 <?php
 
-$allowed_ops = array("uid","mail","token");
+$allowed_ops = array("uid", "mail", "token");
 
 include "config.php";
 include "themes/$app_theme/header.php";
+include "Functions.php";
 include "Parameters.php";
 include "LDAPConnection.php";
 include "MYSQLConnection.php";
-include "Functions.php";
 
 ?>
 
@@ -15,232 +15,233 @@ include "Functions.php";
 
 <?php
 
-// ---------- USER INPUT VALIDATION -------------------------------------------- 
+// USER INPUT VALIDATION ------------------------------------------------------- 
+// Some of the parameters were not set, the form was not used to get here
+if (!isset($uid) || !isset($mail) || !isset($token)) {
 
-if(!isset($uid)||!isset($token)){
+    VariableNotSet();
 
-?>
-	
-<div class="error">
-¡EPA! ¿Por donde estás tratando de entrar, muchachito o muchachita? Usa los canales regulares.
-<br /><br />
-<a href="javascript:history.back(1);">Atrás</a>
-</div>
+// Some of the parameters are empty
+} elseif ($uid == '' || $mail == '' || $token == '') {
 
-<?php
+    EmptyVariable();
 
-}elseif($uid==''||$token==''){
+// Invalid username
+} elseif (preg_match("/^[A-Za-z0-9_-]+$/", $uid) == 0) {
 
-?>
-	
-<div class="error">
-Hubo un error en el llenado del Formulario.
-<br /><br />
-<a href="javascript:history.back(1);">Atrás</a>
-</div>
+    InvalidUsername();
+    
+// Username has less than 3 characters or more than 30
+} elseif ((strlen($uid) < 3) || (strlen($uid) > 30)) {
 
-<?php
+    WrongUIDLength();
 
-}elseif(preg_match("/^[A-Za-z0-9_]+$/",$uid)==0){
+// Invalid e-mail
+} elseif (preg_match("/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/", $mail) == 0) {
 
-?>
+    InvalidEMail();
 
-<div class="error">
-El nombre de usuario es inválido.
-<br /><br />
-<a href="javascript:history.back(1);">Atrás</a>
-</div>
+// Invalid Token
+} elseif (preg_match("/^[A-Za-z0-9]+$/", $token) == 0) {
 
-<?php
+    InvalidToken();
+    
+// Token character length is different than 32
+} elseif (strlen($token) <> 32) {
 
-}elseif(preg_match("/^[A-Za-z0-9]+$/",$token)==0){
+    InvalidToken();
+    
+} else {
+    
+    // VALIDATION PASSED -------------------------------------------------------
+    // We build up our query to search for the uid and token previously inserted
+    // in the temporary database
+    $sel_q = "SELECT * FROM NewUser"
+                    . " WHERE mail='" . $mail . "'"
+                    . " AND uid='" . $uid . "'"
+                    . " AND token='" . $token . "'"
+                    . " ORDER BY token DESC LIMIT 0,1";
 
-?>
+    // Searching ...
+    $sel_r = AssistedMYSQLQuery($sel_q);
 
-<div class="error">
-El token de confirmación es inválido.
-<br /><br />
-<a href="javascript:history.back(1);">Atrás</a>
-</div>
+    // How much did we get?
+    $sel_n = mysql_num_rows($sel_r);
 
-<?php
+    // If we get no results, then the user has been created already or
+    // there has not been any new user request asociated to the uid or
+    // token provided by the user
+    if ($sel_n == 0) {
 
-}else{
-	
-//Consultamos en la base de datos temporal si hay un registro con los $uid y $token
-//que vienen de $_GET
-$query = "SELECT * FROM nuevo_usuario WHERE uid='".$uid."' AND token='".$token."'";
-$result = mysql_query($query) or die('<div class="error">Hubo un error en la lectura de la Base de Datos "nuevo_usuario": ' . mysql_error() . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
+        NoRequests();
 
-$result_num=mysql_num_rows($result);
+    // More than one result is IMPOSSIBLE, didn't we already limit it to 1 on
+    // the SQL query?
+    } elseif ($sel_n > 1) {
 
-//Si no hay resultados, la consulta está mal hecha
-if($result_num==0){
-	
-?>
+        RuntimeError();
+        
+    // If there is at least one new user petition, we continue  
+    } elseif ($sel_n == 1) {
 
-<div class="error">
-Token de confirmación Inválido
-<br /><br />
-<a href="javascript:history.back(1);">Volver</a>
-</div>
+        while ($row = mysql_fetch_array($sel_r, MYSQL_ASSOC)) {
 
-<?php
+            // Let's search if the user has already been created
+            
+            // We stablish what attributes are going to be retrieved from each entry
+            $search_limit = array("uid");
 
-}elseif($result_num>1){
+            // The filter string to search through LDAP
+            $search_string = "(uid=".$uid.")";
 
-?>
+            // The attribute the array of entries is going to be sorted by
+            $sort_string = 'uid';
 
-<div class="error">
-Hubo un error en la consulta, al parecer existen tokens iguales en la Base de Datos... Lo cual es imposible. Envía éste error a plataforma-colaborativa@canaima.softwarelibre.gob.ve y vuelve a hacer una petición nuevo usuario. Disculpa las molestias causadas.
-<br /><br />
-<a href="javascript:history.back(1);">Atrás</a>
-</div>
+            // Searching ...
+            $search_entries = AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $sort_string);
 
-<?php
+            // How much did we get?
+            $result_count = $search_entries['count'];
+ 
+            // If we get one result, then the user was created
+            // probably the user made multiple new user petitions, created the
+            // user and then forgot and clicked the confirmation email again
+            if ($result_count == 1) {
 
-}elseif($result_num==1){
-	
-while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+                UserExists();
+            
+            // If we get more than one result, then uid is repeated on the
+            // database, which is fatal
+            } elseif ($result_count > 1) {
+ 
+                MultipleResults();
 
-//Consultamos si ya existe el uid en el LDAP
-$uid_limitar = array("uid");
-$uid_filtro_buscar="(uid=$uid)";
-$uid_verificar_ldap = ldap_search($ldapc, $ldap_buscar, $uid_filtro_buscar, $uid_limitar) or die ('<div class="error">Hubo un error en la buśqueda con el LDAP: ' . ldap_error($ldapc) . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
-$uid_entradas_ldap = ldap_get_entries($ldapc, $uid_verificar_ldap) or die ('<div class="error">Hubo un error retirando los resultados del LDAP: ' . ldap_error($ldapc) . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
+            // If there's no results, we are ready to go!
+            } elseif ($result_count == 0) {
 
-if($uid_entradas_ldap['count']==1){
+                // Let's find out what was the last uidNumber created
 
-?>
+                // We stablish what attributes are going to be retrieved from each entry
+                $search_limit = array("uidNumber");
 
-<div class="error">
-El usuario ya existe. Al parecer alguien más creó el usuario mientras tu revisabas tu correo de confirmación. Lo sentimos, debes hacer la petición de nuevo (con otro nombre de usuario).
-<br /><br />
-<a href="javascript:history.back(1);">Atrás</a>
-</div>
+                // The filter string to search through LDAP
+                $search_string = "(uid=maxUID)";
 
-<?php
+                // The attribute the array of entries is going to be sorted by
+                $sort_string = 'uidNumber';
 
-}elseif($uid_entradas_ldap['count']>1){
+                // Searching ...
+                $search_entries = AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $sort_string);
 
-?>
+                // How much did we get?
+                $result_count = $search_entries['count'];
+                
+                // If we get no results, then the maxUID entry doesn't exist
+                // it means the system has never been used, so we create it
+                // and set the last uidNumber to 1
+                if ($result_count == 0){
+                    
+                    // Creating maxUID entry ...
+                    include "CreateMaxUIDEntry.php";
+                    
+                    // Setting last uidNumber to the first
+                    $lastuidnumber = $maxuidstart;
+                    
+                // If we get more than one maxUID entry, we are in really big
+                //  problems: FATAL ERROR TIME
+                } elseif($result_count > 1) {
+                    
+                    MoreThanOneMaxUID();
+                    
+                // If we got one maxUID entry, we are good to go, the last
+                // uidNumber is what we got in the search
+                } elseif ($result_count == 1) {
+                    $lastuidnumber = $search_entries[0]['uidnumber'][0];
+                }
 
-<div class="error">
-Existe una inconsistencia en la Base de Datos. Hay dos o más cuentas que comparten el mismo nombre de usuario y correo electrónico, lo cual es inapropiado. Por favor informa de éste error al correo platadorma
-<br /><br />
-<a href="javascript:history.back(1);">Atrás</a>
-</div>
+                // We build up an array with all the attributes we want to insert into
+                // the new LDAP entry
+                $newdn = "uid=" . $row['uid'] . "," . $ldap_base;
+                
+                // We fill up the entry data on the array
+                $in['givenName'] = $row['givenName'];
+                $in['sn'] = $row['sn'];
+                $in['cn'] = $row['givenName'] . " " . $row['sn'];
+                $in['uid'] = $row['uid'];
+                $in['mail'] = $row['mail'];
+                $mail = $in['mail'];
+                $in['uidNumber'] = $lastuidnumber + 1;
+                $in['gidNumber'] = $ldap_gid[$ldap_default_group];
+                $in['userPassword'] = $row['userPassword'];
+                $in['homeDirectory'] = "/home/" . $row['uid'];
+                $in['objectClass'][0] = "inetOrgPerson";
+                $in['objectClass'][1] = "posixAccount";
+                $in['objectClass'][2] = "top";
+                $in['objectClass'][3] = "person";
+                $in['objectClass'][4] = "shadowAccount";
+                $in['objectClass'][5] = "organizationalPerson";
+                $in['objectClass'][6] = "tracUser";
+                $in['tracperm'] = "WIKI_VIEW";
+                $in['loginShell'] = "/bin/false";
+                $in['description'] = $row['description'];
 
-<?php
+                // Adding ...
+                $add = AssistedLDAPAdd($ldapc, $newdn, $in);
+                
+                // If the adding went OK, we increment the maxUID
+                if ($add) {
+                    
+                    // Building the maxUID entry to modify
+                    $moddn = "uid=maxUID," . $ldap_base;
+                    
+                    // We build up the array that's going to modify the maxUID entry
+                    $in2['uidNumber'] = $in['uidNumber'];
+                    
+                    // Incrementing maxUID entry
+                    $mod = AssistedLDAPModify($ldapc, $moddn, $in2);
+                
+                }
+                
+                // If the modification went OK, we send the notification e-mail to the user
+                if ($mod) {
+                    $send = AssistedEMail("NewUserDo", $mail);
+                }
 
-}elseif($uid_entradas_ldap['count']==0){
-	
-$new_limitar = array("uidNumber");
-$new_filtro_buscar="(uid=maxUID)";
-$new_verificar_ldap = ldap_search($ldapc, $ldap_buscar, $new_filtro_buscar, $new_limitar) or die ('<div class="error">Hubo un error en la buśqueda con el LDAP: ' . ldap_error($ldapc) . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
-$new_entradas_ldap = ldap_get_entries($ldapc, $new_verificar_ldap) or die ('<div class="error">Hubo un error retirando los resultados del LDAP: ' . ldap_error($ldapc) . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
+                // If the mailing went OK ... 
+                if ($send) {
 
-$max_uidnumber=$new_entradas_ldap[0]['uidnumber'][0];
+                    // We need to get rid of the temporary entry
+                    $del_q = "DELETE FROM NewUser"
+                                    . " WHERE uid='" . $uid . "'"
+                                    . " AND token='" . $token . "'";
 
-//Especificamos el dn del nuevo usuario
-$ldap_nuevo="uid=".$row['uid'].",".$ldap_base_nuevo;
-//Llenamos el array $in con los datos del nuevo usuario
-$in['givenName'] = $row['givenName'];
-$in['sn'] = $row['sn'];
-$in['cn'] = $row['givenName']." ".$row['sn'];
-$in['uid'] = $row['uid'];
-$in['mail'] = $row['mail'];
-$mail=$in['mail'];
-$in['uidNumber'] = $max_uidnumber+1;
-$in['gidNumber'] = $ldap_gid['Gente'];
-$in['userPassword'] = $row['userPassword'];
-$in['homeDirectory'] = "/home/".$row['uid'];
-$in['objectClass'][0] = "inetOrgPerson";
-$in['objectClass'][1] = "posixAccount";
-$in['objectClass'][2] = "top";
-$in['objectClass'][3] = "person";
-$in['objectClass'][4] = "shadowAccount";
-$in['objectClass'][5] = "organizationalPerson";
-$in['objectClass'][6] = "tracUser";
-$in['tracperm'] = "WIKI_VIEW";
-$in['loginShell'] = "/bin/false";
-$in['description'] = "Entrada creada por el Sistema de Registro AGUILAS el ".$time_today.", a petición de ".$IP;
+                    // Deleting the row from the table ...
+                    $del_r = AssistedMYSQLQuery($del_q);
 
-$in2['uidNumber'] = $in['uidNumber'];
+                    // We log the event
+                    WriteLog("NewUserDo");
+                    
+                    // Print the good news to the user
+                    Success("NewUserDo");
+                    
+                } else {
+                    // We fail nicely, at least
+                    Fail("NewUserDo");
+                }
+   
+            }
 
-//Hacemos el query con los datos
-$r = ldap_add($ldapc,$ldap_nuevo,$in) or die ('<div class="error">Hubo un error insertando entradas al LDAP: ' . ldap_error($ldapc) . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
-
-$uidmasuno = ldap_modify($ldapc, "uid=maxUID,".$ldap_base_nuevo, $in2) or die ('<div class="error">Hubo un error insertando entradas al LDAP: ' . ldap_error($ldapc) . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
-
-//Preparamos el correo de confirmación
-$headers = "From: plataforma-colaborativa@canaima.softwarelibre.gob.ve\nContent-Type: text/html; charset=utf-8";
-$subject = "Nuevo usuario en la Plataforma Colaborativa de Canaima";
-$body = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><HTML><HEAD><META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8"><TITLE>Nuevo Usuario en la Plataforma Colaborativa de Canaima</TITLE><META NAME="GENERATOR" CONTENT="Canaima GNU/Linux"><META NAME="AUTHOR" CONTENT="Luis Alejandro Martínez Faneyth"></HEAD><BODY LANG="es-VE" DIR="LTR"><p>Tu nuevo usuario "<strong>'.$uid.'</strong>" ha sido activado.</p><br /><br /><p>Equipo de la Plataforma Colaborativa de Canaima</p></BODY></HTML>';
-
-//Enviamos el correo
-if(mail($mail,$subject,$body,$headers)){
-
-//Guardamos el evento en el log
-$lf = new logfile();
-$registro_email= dirname(__FILE__). "/logs/nuevo_usuario";
-$lf->write("$time_today:Se ha enviado un email de éxito (Nuevo Usuario Activado) a $mail (uid:$uid;token:$token).\n\n",$registro_email);
-
-}else{
-
-?>
-
-<div class="error">
-Hubo un error enviando el correo de Activación de Usuario. Pero no te preocupes, tu usuario ya fué activado.
-<br /><br />
-<a href="javascript:history.back(1);">Atrás</a>
-</div>
-
-<?php
-
+        }
+        
+    }
+    
 }
 
-//Borramos el registro temporal en MYSQL
-$query = "DELETE FROM nuevo_usuario WHERE uid='".$uid."' AND token='".$token."'";
-$result2 = mysql_query($query) or die('<div class="error">Hubo un error en la lectura de la Base de Datos nuevo_usuario: ' . mysql_error() . '.<br /><br /><a href="javascript:history.back(1);">Atrás</a></div>');
+// Closing the connection
+$ldapx = AssistedLDAPClose($ldapc);
 
-?>
-
-<div class="exito">
-La cuenta <strong><?php echo $uid; ?></strong> ha sido activada correctamente. ¡Sigue Participando! Tu aporte es valioso.
-<br /><br />
-<a href="index.php">Portada</a>
-</div>
-
-<?php
-
-}
-
-}
-
-}
-
-}
-
-$ldapx = ldap_close($ldapc)
-        or die (
-        '<div class="error">'
-        . _("Hubo un error cerrando la conexión con el LDAP: ")
-        . ldap_error($ldapc)
-        . '.<br /><br /><a href="javascript:history.back(1);">'
-        . _("Atrás")
-        . '</a></div>'
-        );
-
-$mysqlx = mysql_close($mysqlc)
-        or die (
-        '<div class="error">'
-        . _("Hubo un error cerrando la conexión con la Base de Datos MYSQL: ")
-        . mysql_error($mysqlc)
-        . '.<br /><br /><a href="javascript:history.back(1);">'
-        . _("Atrás")
-        . '</a></div>'
-        );
+// Closing the connection
+$mysqlx = AssistedMYSQLClose($mysqlc);
 
 include "themes/$app_theme/footer.php";
 

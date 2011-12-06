@@ -2,9 +2,9 @@
 
 include "config.php";
 echo $app_theme;
-include "themes/$app_theme/header.php"
+include "themes/$app_theme/header.php";
 
-echo _("Creando base de datos 'aguilas' ...");
+echo _("Creando base de datos ") . $mysql_dbname . " ...";
 include "CreateDatabase.php";
 
 echo _("Creando tabla para las peticiones de reestablecimiento de contraseña ...");
@@ -18,6 +18,6 @@ include "CreateMaxUIDEntry.php";
 
 echo _("¡HECHO!");
 
-include "themes/$app_theme/footer.php"
+include "themes/$app_theme/footer.php";
 
 ?>

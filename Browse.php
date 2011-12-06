@@ -4,9 +4,9 @@ $allowed_ops = array("letter");
 
 include "config.php";
 include "themes/$app_theme/header.php";
+include "Functions.php";
 include "Parameters.php";
 include "LDAPConnection.php";
-include "Functions.php";
 
 ?>
 
@@ -21,20 +21,18 @@ $letters_array = array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","
 // USER INPUT VALIDATION ------------------------------------------------------- 
 // Do we have our letter?
 if(!isset($letter)){
-    
     $letter="a";
-    
+}
+
 // Is it on our array?
-}elseif(!in_array($letter, $letters_array)){
-    
+if(!in_array($letter, $letters_array)){
     ?>
     <div class="error">
-        <?= _("Esa letra no existe.") ?>
+        <?= _("Letra inválida.") ?>
         <br /><br />
         <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
     </div>
     <?php
-    
 }else{
 
     // VALIDATION PASSED -------------------------------------------------------

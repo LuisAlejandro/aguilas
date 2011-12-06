@@ -4,19 +4,16 @@ $allowed_ops = array("uid", "mail", "token");
 
 include "config.php";
 include "themes/$app_theme/header.php";
+include "Functions.php";
 include "Parameters.php";
 include "LDAPConnection.php";
 include "MYSQLConnection.php";
-include "Functions.php";
 
 ?>
 
 <h2><?= _("Estado de la Solicitud") ?></h2>
 
 <?php
-
-// We store today's date
-$time_today = date("d-m-Y-H:i:s");
 
 // USER INPUT VALIDATION ------------------------------------------------------- 
 // Some of the parameters were not set, the form was not used to get here
@@ -33,6 +30,11 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
 } elseif (preg_match("/^[A-Za-z0-9_-]+$/", $uid) == 0) {
 
     InvalidUsername();
+        
+// Username has less than 3 characters or more than 30
+} elseif ((strlen($uid) < 3) || (strlen($uid) > 30)) {
+
+    WrongUIDLength();
 
 // Invalid e-mail
 } elseif (preg_match("/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/", $mail) == 0) {
@@ -43,7 +45,12 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
 } elseif (preg_match("/^[A-Za-z0-9]+$/", $token) == 0) {
 
     InvalidToken();
+    
+// Token character length is different than 32
+} elseif (strlen($token) <> 32) {
 
+    InvalidToken();
+    
 } else {
 
     // VALIDATION PASSED -------------------------------------------------------
@@ -64,13 +71,13 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
     // If nothing found, we got an invalid token, email or uid
     if ($sel_n == 0) {
 
-        InvalidToken();
+        NoRequests();
 
     // If more than one found, we got a database corruption
     // tell the user he got an invalid token and ask him to repeat the operation
     } elseif ($sel_n > 1) {
 
-        InvalidToken();
+        RuntimeError();
 
     // If we got one coincidence, everything is going OK
     } elseif ($sel_n == 1) {
@@ -82,18 +89,14 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
             $mail = $row['mail'];
             $uid = $row['uid'];
 
-            // Generating pretty badass password
-            $in['userPassword'] = substr(md5(md5(mt_rand() . "-" . $mail . "+" . $uid . "+" . time() . "-" . mt_rand())), 0, 8);
-            $newPassword = $in['userPassword'];
-
             // We stablish what attributes are going to be retrieved from each entry
             $search_limit = array("dn");
 
             // The filter string to search through LDAP
-            $search_string = "(&(mail=$mail)(uid=$uid))";
+            $search_string = "(&(mail=".$mail.")(uid=".$uid."))";
 
             // The attribute the array of entries is going to be sorted by
-            $sort_string = 'cn';
+            $sort_string = 'dn';
 
             // Searching ...
             $search_entries = AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $sort_string);
@@ -115,9 +118,21 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
 
             // If we got one coincidence, we are on the right path
             } elseif ($result_count == 1) {
+            
+                // What dn are we going to modify?
+                $moddn = $search_entries['0']['dn'];
 
+                // Generating pretty badass password
+                $genPassword = substr(md5(md5(mt_rand()."+".time())), 0, 8);
+                
+                // We encode the password
+                $encPassword = "{MD5}" . base64_encode(pack("H*",md5($genPassword)));
+                
+                // We construct the modificator array
+                $in['userPassword'] = $encPassword;
+                
                 // Modifying ...
-                $mod = AssistedLDAPModify($ldapc, $search_entries['0']['dn'], $in);
+                $mod = AssistedLDAPModify($ldapc, $moddn, $in);
 
                 // If the modifying went OK, we send the notification e-mail to the user
                 if ($mod) {

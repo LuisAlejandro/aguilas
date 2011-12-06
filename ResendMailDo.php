@@ -4,9 +4,9 @@ $allowed_ops = array("mail", "image_captcha");
 
 include "config.php";
 include "themes/$app_theme/header.php";
+include "Functions.php";
 include "Parameters.php";
 include "MYSQLConnection.php";
-include "Functions.php";
 
 InitCaptcha();
 
@@ -63,9 +63,15 @@ if (!isset($mail) || !isset($image_captcha)) {
     if ($sel_n == 0) {
 
         NoRequests();
+        
+    // More than one result is IMPOSSIBLE, didn't we already limit it to 1 on
+    // the SQL query?
+    } elseif ($sel_n > 1) {
+
+        RuntimeError();
 
     // If there is at least one resend petition, we continue  
-    } elseif ($sel_n >= 1) {
+    } elseif ($sel_n == 1) {
 
         // Reading query result
         while ($row = mysql_fetch_array($sel_r, MYSQL_ASSOC)) {

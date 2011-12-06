@@ -4,9 +4,9 @@ $allowed_ops = array("mail", "image_captcha");
 
 include "config.php";
 include "themes/$app_theme/header.php";
+include "Functions.php";
 include "Parameters.php";
 include "LDAPConnection.php";
-include "Functions.php";
 
 InitCaptcha();
 
@@ -67,7 +67,7 @@ if (!isset($mail) || !isset($image_captcha)) {
         NoResults();
 
     // We can have more than one result
-    }  else {
+    } else {
         
         echo _("Los siguientes usuarios están asociados a la cuenta de correo ") . '"<strong>' . $mail . '<strong>".';
 

@@ -27,6 +27,9 @@ include "themes/$app_theme/header.php";
                     <span class="textfieldMaxCharsMsg">
 <?= _("Excediste el número máximo de 60 Caracteres.") ?>
                     </span>
+                    <span class="textfieldMinCharsMsg">
+                        <?= _("El nombre de usuario debe tener al menos 3 Caracteres.") ?>
+                    </span>
                 </span>
             </td>
         </tr>

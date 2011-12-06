@@ -7,9 +7,16 @@ $mysqlc = mysql_connect($mysql_host, $mysql_user, $mysql_pass)
         . '.<br /><br /><a href="javascript:history.back(1);">'
         . _("Atrás")
         . '</a></div>'
+        . file_get_contents("themes/$app_theme/footer.php")
         );
 
-$mysqls = mysql_select_db($mysql_dbname)
+$mysqls = mysql_select_db($mysql_dbname);
+
+if (!$mysqls) {
+
+    include "CreateDatabase.php";
+    
+    $mysqls = mysql_select_db($mysql_dbname)
         or die (
         _("Imposible selecionar la base de datos ")
         . '"' . $mysql_dbname . '": '
@@ -17,6 +24,8 @@ $mysqls = mysql_select_db($mysql_dbname)
         . '.<br /><br /><a href="javascript:history.back(1);">'
         . _("Atrás")
         . '</a></div>'
+        . file_get_contents("themes/$app_theme/footer.php")
         );
+}
 
 ?>

@@ -23,7 +23,10 @@ include "themes/$app_theme/header.php";
                         <?= _("No puedes dejar éste campo en blanco.") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("Excediste el número máximo de 60 Caracteres.") ?>
+                        <?= _("Excediste el número máximo de 30 Caracteres.") ?>
+                    </span>
+                    <span class="textfieldMinCharsMsg">
+                        <?= _("El nombre de usuario debe tener al menos 3 Caracteres.") ?>
                     </span>
                 </span>
             </td>
@@ -64,7 +67,7 @@ include "themes/$app_theme/header.php";
                         <?= _("No puedes dejar éste campo en blanco.") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("Excediste el número máximo de 20 Caracteres.") ?>
+                        <?= _("Excediste el número máximo de 30 Caracteres.") ?>
                     </span>
                     <span class="textfieldMinCharsMsg">
                         <?= _("La contraseña debe tener al menos 8 Caracteres.") ?>
@@ -86,7 +89,7 @@ include "themes/$app_theme/header.php";
                         <?= _("No puedes dejar éste campo en blanco.") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("Excediste el número máximo de 20 Caracteres.") ?>
+                        <?= _("Excediste el número máximo de 30 Caracteres.") ?>
                     </span>
                     <span class="textfieldMinCharsMsg">
                         <?= _("La contraseña debe tener al menos 8 Caracteres.") ?>
@@ -111,7 +114,7 @@ include "themes/$app_theme/header.php";
                         <?= _("Las contraseñas no coinciden.") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("Excediste el número máximo de 20 Caracteres.") ?>
+                        <?= _("Excediste el número máximo de 30 Caracteres.") ?>
                     </span>
                     <span class="textfieldMinCharsMsg">
                         <?= _("La contraseña debe tener al menos 8 Caracteres.") ?>
@@ -147,11 +150,11 @@ include "themes/$app_theme/header.php";
                             if (value != other_value){ return false; }
                             return true
                             }
-    var uid_var = new Spry.Widget.ValidationTextField("uid_js", "none", {validateOn:["blur"], maxChars:60});
+    var uid_var = new Spry.Widget.ValidationTextField("uid_js", "none", {validateOn:["blur"], maxChars:30, minChars:3});
     var mail_var = new Spry.Widget.ValidationTextField("mail_js", "email", {validateOn:["blur"], maxChars:60});
-    var userPasswordOld_var = new Spry.Widget.ValidationTextField("userPasswordOld_js", "none", {validateOn:["blur"], maxChars:20, minChars:8});
-    var userPassword_var = new Spry.Widget.ValidationTextField("userPassword_js", "none", {validateOn:["blur"], maxChars:20, minChars:8});
-    var userPasswordBis_var = new Spry.Widget.ValidationTextField("userPasswordBis_js", "custom", {validation: passwordIgual, validateOn:["blur"], maxChars:20, minChars:8});
+    var userPasswordOld_var = new Spry.Widget.ValidationTextField("userPasswordOld_js", "none", {validateOn:["blur"], maxChars:30, minChars:8});
+    var userPassword_var = new Spry.Widget.ValidationTextField("userPassword_js", "none", {validateOn:["blur"], maxChars:30, minChars:8});
+    var userPasswordBis_var = new Spry.Widget.ValidationTextField("userPasswordBis_js", "custom", {validation: passwordIgual, validateOn:["blur"], maxChars:30, minChars:8});
     var image_captcha_var = new Spry.Widget.ValidationTextField("image_captcha_js", "none", {validateOn:["blur"], maxChars:8});
 </script>
 <?php
