@@ -30,6 +30,10 @@ test:
 
 	@echo "Nada para hacer"
 
+config:
+
+	bash config.sh       
+
 build:
 
 	for THEME in $(THEMES); \
@@ -42,11 +46,9 @@ build:
 
 	for THEME in $(THEMES); \
 	do \
-		xcf2png -o themes/$${THEME}/images/banner.png themes/$${THEME}/images/banner.xcf; \
 		icotool -c -o themes/$${THEME}/images/favicon.ico themes/$${THEME}/images/favicon.png; \
 		convert themes/$${THEME}/images/banner.png themes/$${THEME}/images/banner.jpg; \
 	done
-
 
 install:
 
@@ -56,13 +58,13 @@ install:
 	cp -r locale themes $(DESTDIR)/usr/share/aguilas/
 	cp -r *.php $(DESTDIR)/usr/share/aguilas/
 	ln -s $(DESTDIR)/usr/share/aguilas /var/www/aguilas
-	chown -R www-data:www-data $(DESTDIR)/usr/share/aguilas/logs/
 	
 	for LOG in $(LOGS); \
 	do \
 		touch $(DESTDIR)/var/log/aguilas/$${LOG}.log; \
-	done
+	done \
 
+	chown -R www-data:www-data $(DESTDIR)/var/log/aguilas/
 
 uninstall:
 

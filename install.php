@@ -1,8 +1,8 @@
 <?php
 
 include "config.php";
-echo $app_theme;
 include "themes/$app_theme/header.php";
+include "Functions.php";
 
 echo _("Creando base de datos ") . $mysql_dbname . " ...";
 include "CreateDatabase.php";

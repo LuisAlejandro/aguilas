@@ -1,9 +1,9 @@
 #!/bin/bash
 
 CODE="es_VE"
-PO="locale/${CODE}/LS_MESSAGES/messages.po"
-POR="locale/${CODE}/LS_MESSAGES/messages2.po"
-MSGID="locale/${CODE}/LS_MESSAGES/msgid"
+PO="../locale/${CODE}/LS_MESSAGES/messages.po"
+POR="../locale/${CODE}/LS_MESSAGES/messages2.po"
+MSGID="../locale/${CODE}/LS_MESSAGES/msgid"
 
 cat ${PO} | grep 'msgid "' > ${MSGID}
 COUNT=$( cat ${MSGID} | wc -l )
