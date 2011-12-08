@@ -12,7 +12,7 @@ InitCaptcha();
 
 ?>
 
-<h2><?= _("Estado de la Solicitud") ?></h2>
+<h2><?= _("##REQUESTSTATUS##") ?></h2>
 
 <?php
 

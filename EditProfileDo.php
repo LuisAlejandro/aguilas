@@ -12,7 +12,7 @@ InitCaptcha();
 
 ?>
 
-<h2><?= _("Perfil de Usuario") ?></h2>
+<h2><?= _("##USERPROFILE##") ?></h2>
 
 <?php
 
@@ -96,14 +96,14 @@ if (!isset($uid) || !isset($userPassword) || !isset($image_captcha)) {
         $objects = array("uid", "uidNumber", "givenName", "sn", "cn", "mail", "userPassword", "gidNumber");
         
         // ... and it's descriptive tags
-        $tags = array(  _("Nombre de Usuario"),
-                        _("Número de Usuario (ID)"),
-                        _("Nombres"),
-                        _("Apellidos"),
-                        _("Nombre Completo"),
-                        _("Correo Electrónico"),
-                        _("Contraseña"),
-                        _("Grupo"));
+        $tags = array(  _("##USERNAME##"),
+                        _("##ID##"),
+                        _("##FIRSTNAME:FORM##"),
+                        _("##LASTNAME:FORM##"),
+                        _("##COMPLETENAME:FORM##"),
+                        _("##EMAIL##"),
+                        _("##PASSWORD##"),
+                        _("##GROUP##"));
         
         // We get their respective values in an array too
         $contents = array(  $search_entries[0]['uid'][0],

@@ -4,19 +4,19 @@ include "config.php";
 echo $app_theme;
 include "themes/$app_theme/header.php";
 
-echo _("Creando base de datos ") . $mysql_dbname . " ...";
+echo _("##CREATING:DATABASE##") . $mysql_dbname . " ...";
 include "CreateDatabase.php";
 
-echo _("Creando tabla para las peticiones de reestablecimiento de contraseña ...");
+echo _("##CREATING:TABLE:RESETPASSWORD##");
 include "CreatePasswordTable.php";
 
-echo _("Creando tabla para las peticiones de nuevos usuarios ...");
+echo _("##CREATING:TABLE:NEWUSER##");
 include "CreateUserTable.php";
 
-echo _("Creando entrada MaxUID en el LDAP ...");
+echo _("##CREATING:LDAP:MAXUID##");
 include "CreateMaxUIDEntry.php";
 
-echo _("¡HECHO!");
+echo _("##DONE##");
 
 include "themes/$app_theme/footer.php";
 

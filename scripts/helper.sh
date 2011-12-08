@@ -21,14 +21,15 @@ for LINE in $( seq 1 ${COUNT} ); do
 		TRANSLATION='msgstr "'${REPLY}'"'
 
 		read -p "Escribe el código: "
-		CODESTRING='msgid "##'${REPLY}'##"'
+		STRING="##${REPLY}##"
+		CODESTRING='msgid "'${STRING}'"'
 
 		sed -i "s/msgid \"${SENTENCE}\"/${CODESTRING}\n${TRANSLATION}/g" ${POR}
 
 		FILES=$( grep -R "${SENTENCE}" $(pwd) | grep ".*.php" | awk -F: '{print $1}' )
 
 		for FILE in ${FILES}; do
-			sed -i "s/_(\"${SENTENCE}\")/_(\"${CODESTRING}\")/g" ${FILE}
+			sed -i "s/_(\"${SENTENCE}\")/_(\"${STRING}\")/g" ${FILE}
 		done
 	fi
 

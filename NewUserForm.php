@@ -3,144 +3,144 @@ include "config.php";
 include "themes/$app_theme/header.php";
 ?>
 
-<h2><?= _("Solicitar una Cuenta de Usuario") ?></h2>
+<h2><?= _("##REQUESTNEWUSERACCOUNT:TITLE##") ?></h2>
 
-<p><?= _("Por favor completa el siguiente formulario para solicitar una cuenta de usuario en ") . $app_name . _(". Con esta cuenta podrás autenticarte en la mayoría de los Servicios. En la segunda columna del formulario hemos colocado algunos ejemplos para ayudarte en el llenado del formulario. Por favor, sigue las indicaciones del sistema para culminar el proceso exitosamente.") ?></p>
+<p><?= _("##REQUESTNEWUSERACCOUNT:GREETINGS##") . $app_name . _("##REQUESTNEWUSERACCOUNT:INTRO##") ?></p>
 
 <form method="post" action="NewUserMail.php">
     <table>
         <tr>
             <td class="px160">
-                <?= _("Nombres") ?>
+                <?= _("##FIRSTNAME:FORM##") ?>
             </td>
             <td class="px120">
-                <?= _("p. ej., Emeterio Ildefonso") ?>
+                <?= _("##FIRSTNAME:EXAMPLE##") ?>
             </td>
             <td class="px640">
                 <span id="givenName_js">
                     <input type="text" name="givenName" id="givenName" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("No puedes dejar éste campo en blanco.") ?>
+                        <?= _("##EMPTY:WARNING##") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("Excediste el número máximo de 60 Caracteres.") ?>
+                        <?= _("##LONGERTHAN60##") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("Apellidos") ?>
+                <?= _("##LASTNAME:FORM##") ?>
             </td>
             <td class="px120">
-                <?= _("p. ej., Alcántara Carrasco") ?>
+                <?= _("##LASTNAME:EXAMPLE##") ?>
             </td>
             <td class="px640">
                 <span id="sn_js">
                     <input type="text" name="sn" id="sn" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("No puedes dejar éste campo en blanco.") ?>
+                        <?= _("##EMPTY:WARNING##") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("Excediste el número máximo de 60 Caracteres.") ?>
+                        <?= _("##LONGERTHAN60##") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("Nombre de usuario") ?>
+                <?= _("##USERNAME##") ?>
             </td>
             <td class="px120">
-                <?= _("p. ej., emeteri0") ?>
+                <?= _("##USER:EXAMPLE##") ?>
             </td>
             <td class="px640">
                 <span id="uid_js">
                     <input type="text" name="uid" id="uid" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("No puedes dejar éste campo en blanco.") ?>
+                        <?= _("##EMPTY:WARNING##") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("Excediste el número máximo de 30 Caracteres.") ?>
+                        <?= _("##LONGERTHAN30##") ?>
                     </span>
                     <span class="textfieldMinCharsMsg">
-                        <?= _("El nombre de usuario debe tener al menos 3 Caracteres.") ?>
+                        <?= _("##ATLEAST3##") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("Correo electrónico") ?>
+                <?= _("##EMAIL##") ?>
             </td>
             <td class="px120">
-                <?= _("p. ej., eme@terio.org.ve") ?>
+                <?= _("##EMAIL:EXAMPLE##") ?>
             </td>
             <td class="px640">
                 <span id="mail_js">
                     <input type="text" name="mail" id="mail" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("No puedes dejar éste campo en blanco.") ?>
+                        <?= _("##EMPTY:WARNING##") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("Excediste el número máximo de 60 Caracteres.") ?>
+                        <?= _("##LONGERTHAN60##") ?>
                     </span>
                     <span class="textfieldInvalidFormatMsg">
-                        <?= _("Formato Inválido.") ?>
+                        <?= _("##INVALIDFORMAT##") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("Contraseña") ?>
+                <?= _("##PASSWORD##") ?>
             </td>
             <td class="px120">
-                <?= _("al menos ocho caracteres") ?>
+                <?= _("##ATLEAST8CHARS##") ?>
             </td>
             <td class="px640">
                 <span id="userPassword_js">
                     <input type="password" name="userPassword" id="userPassword" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("No puedes dejar éste campo en blanco.") ?>
+                        <?= _("##EMPTY:WARNING##") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("Excediste el número máximo de 30 Caracteres.") ?>
+                        <?= _("##LONGERTHAN30##") ?>
                     </span>
                     <span class="textfieldMinCharsMsg">
-                        <?= _("La contraseña debe tener al menos 8 Caracteres.") ?>
+                        <?= _("##ATLEAST8##") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("Contraseña (repítela)") ?>
+                <?= _("##PASSWORDREPEAT##") ?>
             </td>
             <td class="px120">
-                <?= _("al menos ocho caracteres") ?>
+                <?= _("##ATLEAST8CHARS##") ?>
             </td>
             <td class="px640">
                 <span id="userPasswordBis_js">
                     <input type="password" name="userPasswordBis" id="userPasswordBis" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("No puedes dejar éste campo en blanco.") ?>
+                        <?= _("##EMPTY:WARNING##") ?>
                     </span>
                     <span class="textfieldInvalidFormatMsg">
-                        <?= _("Las contraseñas no coinciden.") ?>
+                        <?= _("##PASSWORD:DIFFERENT##") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("Excediste el número máximo de 30 Caracteres.") ?>
+                        <?= _("##LONGERTHAN30##") ?>
                     </span>
                     <span class="textfieldMinCharsMsg">
-                        <?= _("La contraseña debe tener al menos 8 Caracteres.") ?>
+                        <?= _("##ATLEAST8##") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("Verificación") ?>
+                <?= _("##CAPTCHA##") ?>
             </td>
             <td class="px120">
                 <img alt="captcha" src="captcha.php" border="0">
@@ -149,16 +149,16 @@ include "themes/$app_theme/header.php";
                 <span id="image_captcha_js">
                     <input name="image_captcha" id="image_captcha" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("No puedes dejar éste campo en blanco.") ?>
+                        <?= _("##EMPTY:WARNING##") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("Excediste el número máximo de 8 Caracteres.") ?>
+                        <?= _("##LONGERTHAN8##") ?>
                     </span>
                 </span>
             </td>
         </tr>
     </table>
-    <input type="submit" value="<?= _("ENVIAR") ?>" class="boton" />
+    <input type="submit" value="<?= _("##SEND##") ?>" class="boton" />
 </form>
 <script type="text/javascript">
     var passwordIgual = function(value, options){

@@ -3,36 +3,36 @@
 <div id="portal-footer">
     <div id="footer">
         <a href="NewUserForm.php">
-            <?= _("Nuevo usuario") ?>
+            <?= _("##NEWUSER##") ?>
         </a>
         <a href="ChangePasswordForm.php">
-            <?= _("Cambiar contraseña") ?>
+            <?= _("##CHANGEPASSWORD##") ?>
         </a>
         <a href="ResetPasswordForm.php">
-            <?= _("Generar contraseña") ?>
+            <?= _("##RESETPASSWORD##") ?>
         </a>
         <a href="ForgotUsernameForm.php">
-            <?= _("Recordar usuario") ?>
+            <?= _("##REMINDUSER##") ?>
         </a>
         <a href="DeleteUserForm.php">
-            <?= _("Eliminar usuario") ?>
+            <?= _("##DELETEUSER##") ?>
         </a>
         <a href="EditProfileForm.php">
-            <?= _("Editar Perfil") ?>
+            <?= _("##EDITPROFILE##") ?>
         </a>
         <a href="Browse.php">
-            <?= _("Listar usuarios") ?>
+            <?= _("##BROWSEUSERS##") ?>
         </a>
     </div>
     
     <div>
-        <?= $app_name . _(" está potenciado por la aplicación ") ?>
+        <?= $app_name . _("##POWEREDBY##") ?>
         <strong>AGUILAS</strong>.
     </div>
     
     <div>
         <strong>AGUILAS</strong>
-        <?= _(" es una aplicación en PHP desarrollada por ") ?>
+        <?= _("##DEVELOPEDBY##") ?>
         <a href="http://www.huntingbears.com.ve/">
             Luis Alejandro Martínez Faneyth
         </a>.

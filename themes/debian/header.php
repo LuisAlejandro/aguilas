@@ -19,37 +19,37 @@
                     <ul id="p-personal">
                         <li>
                             <a href="NewUserForm.php">
-                                <?= _("Nuevo usuario") ?>
+                                <?= _("##NEWUSER##") ?>
                             </a>
                         </li>
                         <li>
                             <a href="ChangePasswordForm.php">
-                                <?= _("Cambiar contraseña") ?>
+                                <?= _("##CHANGEPASSWORD##") ?>
                             </a>
                         </li>
                         <li>
                             <a href="ResetPasswordForm.php">
-                                <?= _("Generar contraseña") ?>
+                                <?= _("##RESETPASSWORD##") ?>
                             </a>
                         </li>
                         <li>
                             <a href="ForgotUsernameForm.php">
-                                <?= _("Recordar usuario") ?>
+                                <?= _("##REMINDUSER##") ?>
                             </a>
                         </li>
                         <li>
                             <a href="DeleteUserForm.php">
-                                <?= _("Eliminar usuario") ?>
+                                <?= _("##DELETEUSER##") ?>
                             </a>
                         </li>
                         <li>
                             <a href="EditProfileForm.php">
-                                <?= _("Editar Perfil") ?>
+                                <?= _("##EDITPROFILE##") ?>
                             </a>
                         </li>
                         <li>
                             <a href="Browse.php">
-                                <?= _("Listar usuarios") ?>
+                                <?= _("##BROWSEUSERS##") ?>
                             </a>
                         </li>
                     </ul>
@@ -62,9 +62,9 @@
                     <form action="Search.php" id="searchform">
                         <div class="LSBox">
                             <div id="clock">
-                                <?= _("Introduce un término de búsqueda y presiona enter.") ?>
+                                <?= _("##SEARCH:FIELD:DESCRIPTION##") ?>
                             </div>
-                            <input id="searchInput" value="<?= _("Buscar Usuario") ?>" name="searchInput" type="text" onfocus="this.value=(this.value=='<?= _("Buscar Usuario") ?>') ? '' : this.value;" onblur="this.value=(this.value=='') ? '<?= _("Buscar Usuario") ?>' : this.value;"  />
+                            <input id="searchInput" value="<?= _("##SEARCHUSER##") ?>" name="searchInput" type="text" onfocus="this.value=(this.value=='<?= _("##SEARCHUSER##") ?>') ? '' : this.value;" onblur="this.value=(this.value=='') ? '<?= _("##SEARCHUSER##") ?>' : this.value;"  />
                         </div>
                     </form>
                 </div>

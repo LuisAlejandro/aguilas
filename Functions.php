@@ -8,10 +8,10 @@ function AssistedLDAPAdd($ldapc, $newdn, $in) {
     $r_add = ldap_add($ldapc, $newdn, $in)
             or die(
                     '<div class="error">'
-                    . _("Hubo un error agregando entradas del LDAP: ")
+                    . _("##LDAP:INSERT:ERROR##")
                     . ldap_error($ldapc)
                     . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("Atrás")
+                    . _("##BACK##")
                     . '</a></div>'
                     . file_get_contents("themes/$app_theme/footer.php")
     );
@@ -22,10 +22,10 @@ function AssistedLDAPModify($ldapc, $moddn, $in) {
     $r_mod = ldap_modify($ldapc, $moddn, $in)
             or die(
                     '<div class="error">'
-                    . _("Hubo un error modificando entradas del LDAP: ")
+                    . _("##LDAP:MODIFY:ERROR##")
                     . ldap_error($ldapc)
                     . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("Atrás")
+                    . _("##BACK##")
                     . '</a></div>'
                     . file_get_contents("themes/$app_theme/footer.php")
     );
@@ -36,10 +36,10 @@ function AssistedLDAPDelete($ldapc, $dn) {
     $r_del = ldap_delete($ldapc, $dn)
             or die(
                     '<div class="error">'
-                    . _("Hubo un error eliminando entradas del LDAP: ")
+                    . _("##LDAP:DELETE:ERROR##")
                     . ldap_error($ldapc)
                     . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("Atrás")
+                    . _("##BACK##")
                     . '</a></div>'
                     . file_get_contents("themes/$app_theme/footer.php")
     );
@@ -50,10 +50,10 @@ function AssistedLDAPClose($ldapc) {
     $ldapx = ldap_close($ldapc)
             or die(
                     '<div class="error">'
-                    . _("Hubo un error cerrando la conexión con el LDAP: ")
+                    . _("##LDAP:CLOSE:ERROR##")
                     . ldap_error($ldapc)
                     . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("Atrás")
+                    . _("##BACK##")
                     . '</a></div>'
                     . file_get_contents("themes/$app_theme/footer.php")
     );
@@ -66,10 +66,10 @@ function AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $
     $search_result = ldap_search($ldapc, $ldap_base, $search_string, $search_limit)
             or die(
                     '<div class="error">'
-                    . _("Hubo un error en la buśqueda con el LDAP: ")
+                    . _("##LDAP:SEARCH:ERROR##")
                     . ldap_error($ldapc)
                     . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("Atrás")
+                    . _("##BACK##")
                     . '</a></div>'
                     . file_get_contents("themes/$app_theme/footer.php")
     );
@@ -78,10 +78,10 @@ function AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $
     $search_sort = ldap_sort($ldapc, $search_result, $sort_string)
             or die(
                     '<div class="error">'
-                    . _("Hubo un error ordenando los resultados del LDAP: ")
+                    . _("##LDAP:SORT:ERROR##")
                     . ldap_error($ldapc)
                     . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("Atrás")
+                    . _("##BACK##")
                     . '</a></div>'
                     . file_get_contents("themes/$app_theme/footer.php")
     );
@@ -90,10 +90,10 @@ function AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $
     $search_entries = ldap_get_entries($ldapc, $search_result)
             or die(
                     '<div class="error">'
-                    . _("Hubo un error retirando los resultados del LDAP: ")
+                    . _("##LDAP:GET:ERROR##")
                     . ldap_error($ldapc)
                     . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("Atrás")
+                    . _("##BACK##")
                     . '</a></div>'
                     . file_get_contents("themes/$app_theme/footer.php")
     );
@@ -104,10 +104,10 @@ function AssistedMYSQLQuery($query) {
     $result = mysql_query($query)
             or die(
                     '<div class="error">'
-                    . _("Hubo un error en la consulta a la Base de Datos MYSQL: ")
+                    . _("##MYSQL:QUERY:ERROR##")
                     . mysql_error($query)
                     . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("Atrás")
+                    . _("##BACK##")
                     . '</a></div>'
                     . file_get_contents("themes/$app_theme/footer.php")
     );
@@ -118,10 +118,10 @@ function AssistedMYSQLClose($mysqlc) {
     $mysqlx = mysql_close($mysqlc)
             or die(
                     '<div class="error">'
-                    . _("Hubo un error cerrando la conexión con la Base de Datos MYSQL: ")
+                    . _("##MYSQL:CLOSE:ERROR##")
                     . mysql_error($mysqlc)
                     . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("Atrás")
+                    . _("##BACK##")
                     . '</a></div>'
                     . file_get_contents("themes/$app_theme/footer.php")
     );
@@ -140,7 +140,7 @@ function AssistedEMail($what, $where) {
     // What's the message?
     switch ($what) {
         case "ChangePasswordDo":
-            $subject = _("Cambio de Contraseña en ") . $app_name;
+            $subject = _("##EMAIL:PASSWORD:CHANGE##") . $app_name;
             $body = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">'
                     . '<HTML>'
                     . '<HEAD>'
@@ -151,7 +151,7 @@ function AssistedEMail($what, $where) {
                     . '</HEAD>'
                     . '<BODY LANG="' . $app_locale . '" DIR="LTR">'
                     . '<p>'
-                    . _("Hola! Tu contraseña en ") . $app_name . _(" ha sido cambiada.")
+                    . _("##EMAIL:PASSWORD:GREETINGS##") . $app_name . _("##EMAIL:PASSWORD:HASBEENCHANGED##")
                     . '</p>'
                     . '<br /><br />'
                     . '<p>' . $app_operator . '</p>'
@@ -160,7 +160,7 @@ function AssistedEMail($what, $where) {
             break;
 
         case "ResetPasswordMail":
-            $subject = _("Petición de Nueva Contraseña en ") . $app_name;
+            $subject = _("##EMAIL:PASSWORD:NEW##") . $app_name;
             $go_link = "http://" . $app_url . "/ResetPasswordDo.php"
                     . "?mail=" . $mail
                     . "&uid=" . $uid
@@ -175,11 +175,11 @@ function AssistedEMail($what, $where) {
                     . '</HEAD>'
                     . '<BODY LANG="' . $app_locale . '" DIR="LTR">'
                     . '<p>'
-                    . _("Has recibido éste correo porque alguien solicitó una nueva contraseña para el usuario ")
+                    . _("##EMAIL:PASSWORD:WHY##")
                     . '<strong>' . $uid . '</strong>'
-                    . _(" en ") . $app_name . '.'
+                    . _("##IN##") . $app_name . '.'
                     . '</p><p>'
-                    . _("Haz click en el siguiente enlace para confirmar tu petición.")
+                    . _("##EMAIL:CLICK:CONFIRM##")
                     . '</p>'
                     . '<p><a href="' . $go_link . '">CONFIRMAR</a></p>'
                     . '<br /><br />'
@@ -189,7 +189,7 @@ function AssistedEMail($what, $where) {
             break;
 
         case "ResetPasswordDo":
-            $subject = _("Nueva Contraseña en ") . $app_name;
+            $subject = _("##EMAIL:PASSWORD:NEW2##") . $app_name;
             $body = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">'
                     . '<HTML>'
                     . '<HEAD>'
@@ -200,7 +200,7 @@ function AssistedEMail($what, $where) {
                     . '</HEAD>'
                     . '<BODY LANG="' . $app_locale . '" DIR="LTR">'
                     . '<p>'
-                    . _("Hola, tu nueva contraseña es: ")
+                    . _("##EMAIL:PASSWORD:GREETINGS2##")
                     . '</p>'
                     . '<p><strong>' . $genPassword . '</strong></p>'
                     . '<br /><br />'
@@ -211,7 +211,7 @@ function AssistedEMail($what, $where) {
 
         case "NewUserMail":
         case "ResendMailDo":
-            $subject = _("Activación de Nuevo Usuario en ") . $app_name;
+            $subject = _("##EMAIL:NEWUSER:ACTIVATION##") . $app_name;
             $go_link = "http://" . $app_url . "/NewUserDo.php"
                     . "?mail=" . $mail
                     . "&uid=" . $uid
@@ -225,12 +225,12 @@ function AssistedEMail($what, $where) {
                     . '<META NAME="AUTHOR" CONTENT="AGUILAS">'
                     . '</HEAD>'
                     . '<BODY LANG="' . $app_locale . '" DIR="LTR">'
-                    . '<p>' . _("Hola, ") . '<strong>' . $givenName . '</strong>.</p>'
+                    . '<p>' . _("##HI##") . '<strong>' . $givenName . '</strong>.</p>'
                     . '<p>'
-                    . _("Has recibido éste correo electrónico porque hiciste una petición de Nuevo Usuario en ")
+                    . _("##EMAIL:NEWUSER:REQUEST##")
                     . $app_name . '.'
                     . '</p><p>'
-                    . _("Haz click en el siguiente enlace para confirmar tu petición.")
+                    . _("##EMAIL:CLICK:CONFIRM##")
                     . '</p>'
                     . '<p><a href="' . $go_link . '">CONFIRMAR</a></p>'
                     . '<br /><br />'
@@ -240,7 +240,7 @@ function AssistedEMail($what, $where) {
             break;
 
         case "DeleteUserDo":
-            $subject = _("Usuario Eliminado en ") . $app_name;
+            $subject = _("##EMAIL:DELETEDUSER:TITLE##") . $app_name;
             $body = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">'
                     . '<HTML>'
                     . '<HEAD>'
@@ -250,9 +250,9 @@ function AssistedEMail($what, $where) {
                     . '<META NAME="AUTHOR" CONTENT="AGUILAS">'
                     . '</HEAD>'
                     . '<BODY LANG="' . $app_locale . '" DIR="LTR">'
-                    . '<p>' . _("Estimado usuario ") . '"<strong>' . $uid . '</strong>".</p>'
+                    . '<p>' . _("##EMAIL:DELETEDUSER:GREETINGS##") . '"<strong>' . $uid . '</strong>".</p>'
                     . '<p>'
-                    . _("Tu cuenta ha sido eliminada satisfactoriamente de ")
+                    . _("##EMAIL:DELETEDUSER:SUCCESS##")
                     . $app_name . '.'
                     . '</p>'
                     . '<br /><br />'
@@ -274,46 +274,46 @@ function WriteLog($data, $log_file, $time_today) {
     switch ($log_file) {
         case "ChangePasswordDo":
             $log_string = "[" . $time_today . "]: "
-                    . _("Se ha enviado un correo de éxito (Cambiar Contraseña) a ")
+                    . _("##LOG:CHANGEPASSWORD:DONE##")
                     . $data['mail'] . " (uid: " . $data['uid'] . ").\n";
             break;
         case "ResetPasswordMail":
             $log_string = "[" . $time_today . "]: "
-                    . _("Se ha enviado un correo de confirmación (Generar Contraseña) a ")
+                    . _("##LOG:RESETPASSWORD:CONFIRM##")
                     . $data['mail']
                     . " (uid: " . $data['uid']
                     . "; token: " . $data['token'] . ").\n";
             break;
         case "ResetPasswordDo":
             $log_string = "[" . $time_today . "]: "
-                    . _("Se ha enviado un correo de éxito (Generar Contraseña) a ")
+                    . _("##LOG:RESETPASSWORD:DONE##")
                     . $data['mail']
                     . " (uid: " . $data['uid']
                     . "; token: " . $data['token'] . ").\n";
             break;
         case "ResendMailDo":
             $log_string = "[" . $time_today . "]: "
-                    . _("Se ha re-enviado un correo de confirmación (Nuevo Usuario) a ")
+                    . _("##LOG:NEWUSER:CONFIRM:AGAIN##")
                     . $data['mail']
                     . " (uid: " . $data['uid']
                     . "; token: " . $data['token'] . ").\n";
             break;
         case "NewUserMail":
             $log_string = "[" . $time_today . "]: "
-                    . _("Se ha enviado un correo de confirmación (Nuevo Usuario) a ")
+                    . _("##LOG:NEWUSER:CONFIRM##")
                     . $data['mail']
                     . " (uid: " . $data['uid']
                     . "; token: " . $data['token'] . ").\n";
             break;
         case "DeleteUserDo":
             $log_string = "[" . $time_today . "]: "
-                    . _("Se ha enviado un correo de éxito (Eliminar Usuario) a ")
+                    . _("##LOG:DELETEUSER:DONE##")
                     . $data['mail']
                     . " (uid: " . $data['uid'] . ").\n";
             break;
         case "NewUserDo":
             $log_string = "[" . $time_today . "]: "
-                    . _("Se ha enviado un correo de éxito (Nuevo Usuario) a ")
+                    . _("##LOG:NEWUSER:DONE##")
                     . $data['mail']
                     . " (uid: " . $data['uid'] . ").\n";
             break;
@@ -391,9 +391,9 @@ function InitCaptcha() {
 function VariableNotSet() {
     ?>
     <div class="error">
-        <?= _("Hubo un error en el llenado del Formulario. Por favor vuelve atrás y verifica que hayas rellenado todos los datos.") ?>
+        <?= _("##FORM:ERROR##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -401,9 +401,9 @@ function VariableNotSet() {
 function EmptyVariable() {
     ?>
     <div class="error">
-        <?= _("Hubo un error en el llenado del Formulario. Por favor vuelve atrás y verifica que hayas rellenado todos los datos.") ?>
+        <?= _("##FORM:ERROR##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -411,9 +411,9 @@ function EmptyVariable() {
 function InvalidSearch() {
     ?>
     <div class="error">
-        <?= _("Tu búsqueda contiene caracteres inválidos. Sólo se permiten letras (mayúsculas, minúsculas, ñ, guión inferior (_) y palabras acentuadas o con diéresis).") ?>
+        <?= _("##SEARCH:INVALID##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -421,9 +421,9 @@ function InvalidSearch() {
 function InvalidEMail() {
     ?>
     <div class="error">
-        <?= _("El Correo Electrónico proporcionado no es válido. Verifica si lo has escrito correctamente.") ?>
+        <?= _("##EMAIL:INVALID##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -431,9 +431,9 @@ function InvalidEMail() {
 function InvalidToken() {
     ?>
     <div class="error">
-        <?= _("El token de confirmación es inválido. Por favor realiza la solicitud de nuevo.") ?>
+        <?= _("##TOKEN:INVALID##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -441,9 +441,9 @@ function InvalidToken() {
 function InvalidUsername() {
     ?>
     <div class="error">
-        <?= _("El nombre de usuario es inválido. Sólo se permiten letras (mayúsculas y minúsculas), números, guiones (-) y guiones bajos (_).") ?>
+        <?= _("##USERNAME:INVALID##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -451,9 +451,9 @@ function InvalidUsername() {
 function InvalidPassword() {
     ?>
     <div class="error">
-        <?= _("La contraseña contiene caracteres inválidos. Sólo se permiten letras (mayúsculas y minúsculas), números y los siguientes símbolos: . ! @ # $ % ^ & + = - _") ?>
+        <?= _("##PASSWORD:INVALID##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -461,9 +461,9 @@ function InvalidPassword() {
 function InvalidOldPassword() {
     ?>
     <div class="error">
-        <?= _("La contraseña antigua contiene caracteres inválidos, lo cual es muy extraño. Utiliza el formulario de generar nueva contraseña para poder cambiarla.") ?>
+        <?= _("##OLDPASSWORD:INVALID##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -471,9 +471,9 @@ function InvalidOldPassword() {
 function DifferentPasswords() {
     ?>
     <div class="error">
-        <?= _("Las contraseñas no coinciden.") ?>
+        <?= _("##PASSWORD:DIFFERENT##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -481,9 +481,9 @@ function DifferentPasswords() {
 function WrongPasswordLength() {
     ?>
     <div class="error">
-        <?= _("La longitud de la contraseña debe ser de 8 caracteres mínimo y 30 caracteres máximo.") ?>
+        <?= _("##PASSWORD:INVALID:LENGTH##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -491,9 +491,9 @@ function WrongPasswordLength() {
 function WrongUIDLength() {
     ?>
     <div class="error">
-        <?= _("La longitud del nombre de usuario debe ser de 3 caracteres mínimo y 30 caracteres máximo.") ?>
+        <?= _("##USERNAME:INVALID:LENGTH##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -501,9 +501,9 @@ function WrongUIDLength() {
 function Wrong1NameLength() {
     ?>
     <div class="error">
-        <?= _("Tu nombre tiene una longitud mayor a 60 caracteres.") ?>
+        <?= _("##FIRSTNAME:INVALID:LENGTH##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -511,9 +511,9 @@ function Wrong1NameLength() {
 function Wrong2NameLength() {
     ?>
     <div class="error">
-        <?= _("Tu apellido tiene una longitud mayor a 60 caracteres.") ?>
+        <?= _("##LASTNAME:INVALID:LENGTH##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -521,9 +521,9 @@ function Wrong2NameLength() {
 function WrongOldPasswordLength() {
     ?>
     <div class="error">
-        <?= _("La longitud de la contraseña antigua es muy larga o muy corta, lo cual es muy extraño. Utiliza el formulario de generar nueva contraseña para poder cambiarla.") ?>
+        <?= _("##OLDPASSWORD:INVALID:LENGTH##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -531,7 +531,7 @@ function WrongOldPasswordLength() {
 function Invalid1Name() {
     ?>
     <div class="error">
-        <?= _("Tu nombre contiene caracteres inválidos. Sólo se permiten letras (mayúsculas, minúsculas, ñ y palabras acentuadas o con diéresis).") ?>
+        <?= _("##FIRSTNAME:INVALID##") ?>
         <br /><br />
         <a href="javascript:history.back(1);">Atrás</a>
     </div>
@@ -541,7 +541,7 @@ function Invalid1Name() {
 function Invalid2Name() {
     ?>
     <div class="error">
-        <?= _("Tu apellido contiene caracteres inválidos. Sólo se permiten letras (mayúsculas, minúsculas, ñ y palabras acentuadas o con diéresis).") ?>
+        <?= _("##LASTNAME:INVALID##") ?>
         <br /><br />
         <a href="javascript:history.back(1);">Atrás</a>
     </div>
@@ -551,9 +551,9 @@ function Invalid2Name() {
 function UserExists() {
     ?>
     <div class="error">
-        <?= _("El nombre de usuario escogido ya existe.") ?>
+        <?= _("##USERNAME:EXISTS##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -561,9 +561,9 @@ function UserExists() {
 function UsedEMail() {
     ?>	
     <div class="error">
-        <?= _("El correo indicado ya está asociado a un usuario.") ?>
+        <?= _("##EMAIL:EXISTS##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -575,9 +575,9 @@ function UsedEMail() {
 function NoRequests() {
     ?>
     <div class="error">
-        <?= _("No se han encontrado peticiones que coincidan con los datos proporcionados.") ?>
+        <?= _("##NOMATCH##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -585,9 +585,9 @@ function NoRequests() {
 function MultipleResults() {
     ?>
     <div class="error">
-        <?= _("Existe una inconsistencia en la Base de Datos. Existen dos o más cuentas que comparten algunos de los datos de usuario (nombre, correo, etc..), lo cual genera errores e imprecisiones en el sistema. Este error ha sido informado a los administradores para que realicen una correción manual.") ?>
+        <?= _("##DATABASE:CORRUPTION##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -595,9 +595,9 @@ function MultipleResults() {
 function NoResults() {
 ?>
     <div class="error">
-        <?= _("La información proporcionada no coincide con alguna cuenta existente. Por favor revisa los datos introducidos.") ?>
+        <?= _("##NOMATCH:ACCOUNT##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
 <?php
 }
@@ -605,30 +605,30 @@ function NoResults() {
 function Fail($at) {
     switch ($at) {
         case "ChangePasswordDo":
-            $fail_string = _("Ocurrió un error cambiando tu contraseña. Por favor intenta de nuevo más tarde.");
+            $fail_string = _("##FINAL:ERROR:CHANGEPASSWORD##");
             break;
         case "ResetPasswordMail":
-            $fail_string = _("Ocurrió un error enviando el correo de confirmación. Por favor intenta de nuevo más tarde.");
+            $fail_string = _("##FINAL:ERROR:CONFIRMATION##");
             break;
         case "ResetPasswordDo":
-            $fail_string = _("Ocurrió un error generando tu nueva contraseña. Por favor intenta de nuevo más tarde.");
+            $fail_string = _("##FINAL:ERROR:RESETPASSWORD##");
             break;
         case "DeleteUserDo":
-            $fail_string = _("Ocurrió un error eliminando tu cuenta. Por favor intenta de nuevo más tarde.");
+            $fail_string = _("##FINAL:ERROR:DELETEUSER##");
             break;
         case "NewUserDo":
-            $fail_string = _("Ocurrió un error creando tu cuenta. Por favor intenta de nuevo más tarde.");
+            $fail_string = _("##FINAL:ERROR:NEWUSER##");
             break;
         case "NewUserMail":
         case "ResendMailDo":
-            $fail_string = _("Ocurrió un error enviando el correo de confirmación. Por favor intenta de nuevo más tarde.");
+            $fail_string = _("##FINAL:ERROR:CONFIRMATION##");
             break;
     }
     ?>
     <div class="error">
         <?= $fail_string ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }
@@ -636,30 +636,30 @@ function Fail($at) {
 function Success($at) {
     switch ($at) {
         case "ChangePasswordDo":
-            $success_string = _("¡Éxito! Tu contraseña ha sido cambiada.");
+            $success_string = _("##FINAL:SUCCESS:RESETPASSWORD##");
             break;
         case "ResetPasswordMail":
-            $success_string = _("La solicitud de una nueva contraseña ha sido procesada correctamente. Revisa tu correo electrónico para finalizar el proceso.");
+            $success_string = _("##FINAL:CONFIRM:RESETPASSWORD##");
             break;
         case "ResetPasswordDo":
-            $success_string = _("¡Éxito! Hemos generado una nueva contraseña para ti. Revisa tu correo electrónico para encontrar más información.");
+            $success_string = _("##FINAL:SUCCESS:RESETPASSWORD:EMAIL##");
             break;
         case "DeleteUserDo":
-            $success_string = _("Tu cuenta ha sido eliminada satisfactoriamente.");
+            $success_string = _("##FINAL:SUCCESS:DELETE##");
             break;
         case "NewUserDo":
-            $success_string = _("¡Éxito! Tu cuenta ha sido creada satisfactoriamente.");
+            $success_string = _("##FINAL:SUCCESS:NEWUSER##");
             break;
         case "NewUserMail":
         case "ResendMailDo":
-            $success_string = _("La solicitud de la nueva cuenta ha sido procesada correctamente. Revisa tu correo electrónico para finalizar el proceso.");
+            $success_string = _("##FINAL:CONFIRM:NEWUSER##");
             break;
     }
     ?>
     <div class="exito">
         <?= $success_string ?>
         <br /><br />
-        <a href="index.php"><?= _("Portada") ?></a>
+        <a href="index.php"><?= _("##START##") ?></a>
     </div>
     <?php
 }
@@ -671,16 +671,16 @@ function Success($at) {
     <table>
         <tr>
             <td class="px70">
-                <strong><?= _("ID") ?></strong>
+                <strong><?= _("##ID##") ?></strong>
             </td>
             <td class="px300">
-                <strong><?= _("Nombre de Usuario") ?></strong>
+                <strong><?= _("##USERNAME##") ?></strong>
             </td>
             <td class="px360">
-                <strong><?= _("Nombre Real") ?></strong>
+                <strong><?= _("##REALNAME##") ?></strong>
             </td>
             <td class="px70">
-                <strong><?= _("Grupo") ?></strong>
+                <strong><?= _("##GROUP##") ?></strong>
             </td>
         </tr>
     <?php
@@ -706,9 +706,9 @@ function AJAXAssistant($objects, $tags, $contents, $edit, $who) {
             <?php
             
             if ($edit) {
-                echo _("pulse sobre el campo para editarlo");
+                echo _("##CLICKTOEDIT##");
             } else {
-                echo _("este campo no puede editarse");
+                echo _("##CANNOTEDIT##");
             }
             
             ?>
@@ -734,8 +734,8 @@ function AJAXAssistant($objects, $tags, $contents, $edit, $who) {
                             <td id="<?= $objects ?>_hv">
                                 <div id="<?= $objects ?>_hv_editing_section">
                                     <input class="superBigSize editMode" id="<?= $objects ?>" name="<?= $objects ?>" value="<?= $contents ?>" <?php if ($objects == "givenName" || $objects == "sn") { ?>onkeyup="update_cn();"<?php } ?> />&nbsp;
-                                    <input class="AjaxButton" onclick="sendAjax('<?= $objects ?>','<?= $who ?>');" type="button" value="<?= _("Guardar") ?>" />&nbsp;
-                                    <input class="AjaxButton" onclick="cancelAjax('<?= $objects ?>');" type="button" value="<?= _("Cancelar") ?>" />
+                                    <input class="AjaxButton" onclick="sendAjax('<?= $objects ?>','<?= $who ?>');" type="button" value="<?= _("##SAVE##") ?>" />&nbsp;
+                                    <input class="AjaxButton" onclick="cancelAjax('<?= $objects ?>');" type="button" value="<?= _("##CANCEL##") ?>" />
                                 </div>
                                 <span class="savingAjaxWithBackground" id="<?= $objects ?>_hv_saving_section">
                                     &#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;

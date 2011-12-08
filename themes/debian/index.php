@@ -1,8 +1,8 @@
 <div id="chiclet_left">
-    <p><?= _("Bienvenidos a") . $app_name ?></p>
+    <p><?= _("##WELCOMETO##") . $app_name ?></p>
     <p>
-        <?= _("Desde acá podrás gestionar directamente tus datos de usuario en ") ?>
-        <?= $app_name . _(". Creando una cuenta estarás conectado a los siguientes servicios:") ?>
+        <?= _("##INDEX:GREETINGS##") ?>
+        <?= $app_name . _("##INDEX:GREETINGS2##") ?>
     </p>
     
     <ul>
@@ -17,42 +17,42 @@
 <div id="chiclet_right">
     <div class="chiclet_usuario">
         <a href="NewUserForm.php">
-            <?= _("Solicitar una nueva cuenta de usuario") ?>
+            <?= _("##INDEX:NEWUSER##") ?>
         </a>
         <br />
 	<a href="ResendMailForm.php" class="chiclet_little">
-            <?= _("No me llegó el correo de confirmación cuando solicité una nueva cuenta") ?>
+            <?= _("##INDEX:DIDNTGETTHEEMAIL##") ?>
         </a>
         <br />
     </div>
     <div class="chiclet_password">
         <a href="ChangePasswordForm.php">
-            <?= _("Cambiar contraseña de usuario") ?>
+            <?= _("##INDEX:CHANGEPASSWORD##") ?>
         </a>
         <br />
         <a href="ResetPasswordForm.php" class="chiclet_little">
-            <?= _("Generar una nueva contraseña") ?>
+            <?= _("##INDEX:RESETPASSWORD##") ?>
         </a>
         <br />
     </div>
     <div class="chiclet_olvidar">
 	<a href="ForgotUsernameForm.php">
-            <?= _("Olvidé mi nombre de usuario") ?>
+            <?= _("##INDEX:FORGOTUSERNAME##") ?>
         </a>
     </div>
     <div class="chiclet_eliminar">
         <a href="DeleteUserForm.php">
-            <?= _("Eliminar usuario") ?>
+            <?= _("##DELETEUSER##") ?>
         </a>
     </div>
     <div class="chiclet_editar">
         <a href="EditProfileForm.php">
-            <?= _("Ver/Editar perfil de usuario") ?>
+            <?= _("##INDEX:EDITPROFILE##") ?>
         </a>
     </div>
     <div class="chiclet_listar">
         <a href="Browse.php">
-            <?= _("Listar todos los usuarios") ?>
+            <?= _("##INDEX:BROWSEUSERS##") ?>
         </a>
     </div>
 </div>

@@ -10,7 +10,7 @@ include "LDAPConnection.php";
 
 ?>
 
-<h2><?= _("Usuarios de ") . $app_name ?></h2>
+<h2><?= _("##USERSFROM##") . $app_name ?></h2>
 
 <?php
 
@@ -28,9 +28,9 @@ if(!isset($letter)){
 if(!in_array($letter, $letters_array)){
     ?>
     <div class="error">
-        <?= _("Letra inválida.") ?>
+        <?= _("##INVALIDLETTER##") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("Atrás") ?></a>
+        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
     </div>
     <?php
 }else{
@@ -71,7 +71,7 @@ if(!in_array($letter, $letters_array)){
     // How much did we get?
     $result_count = $search_entries['count'];
 
-    echo $result_count . _(" Usuarios encontrados cuyo nombre real comienza por la letra ") . strtoupper($letter);
+    echo $result_count . _("##XUSERSFOUND##") . strtoupper($letter);
 
     // Parsing the user table with the result entries
     ParseUserTable($search_entries, $result_count);

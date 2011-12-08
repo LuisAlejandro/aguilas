@@ -12,7 +12,7 @@ InitCaptcha();
 
 ?>
 
-<h2><?= _("Resultados de la Búsqueda") ?></h2>
+<h2><?= _("##SEARCHRESULTS##") ?></h2>
 
 <?php
 
@@ -69,7 +69,7 @@ if (!isset($mail) || !isset($image_captcha)) {
     // We can have more than one result
     } else {
         
-        echo _("Los siguientes usuarios están asociados a la cuenta de correo ") . '"<strong>' . $mail . '<strong>".';
+        echo _("##ASSOCIATEDUSERS##") . '"<strong>' . $mail . '<strong>".';
 
         // Parsing the user table with the result entries
         ParseUserTable($search_entries, $result_count);

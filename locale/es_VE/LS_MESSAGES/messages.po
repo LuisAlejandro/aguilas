@@ -18,12 +18,12 @@ msgstr ""
 "X-Poedit-SearchPath-0: /home/huntingbears/desarrollo/aguilas\n"
 
 #: /home/huntingbears/desarrollo/aguilas/Parameters.php:11
-msgid ", a petición de "
-msgstr ""
+msgid "##PETITION##"
+msgstr ", in petition of "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:11
-msgid "Hubo un error agregando entradas del LDAP: "
-msgstr ""
+msgid "##LDAP:INSERT:ERROR##"
+msgstr "An error has ocurred trying to insert entries on the LDAP database: "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:14
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:28
@@ -60,406 +60,406 @@ msgstr ""
 #: /home/huntingbears/desarrollo/aguilas/LDAPConnection.php:32
 #: /home/huntingbears/desarrollo/aguilas/LDAPConnection.php:44
 #: /home/huntingbears/desarrollo/aguilas/LDAPConnection.php:56
-msgid "Atrás"
-msgstr ""
+msgid "##BACK##"
+msgstr "Back"
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:25
-msgid "Hubo un error modificando entradas del LDAP: "
-msgstr ""
+msgid "##LDAP:MODIFY:ERROR##"
+msgstr "An error has ocurred trying to modify entries on the LDAP database: "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:39
-msgid "Hubo un error eliminando entradas del LDAP: "
-msgstr ""
+msgid "##LDAP:DELETE:ERROR##"
+msgstr "An error has ocurred trying to delete entries on the LDAP database: "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:53
-msgid "Hubo un error cerrando la conexión con el LDAP: "
-msgstr ""
+msgid "##LDAP:CLOSE:ERROR##"
+msgstr "An error has ocurred trying to close the connection to the LDAP database: "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:69
-msgid "Hubo un error en la buśqueda con el LDAP: "
-msgstr ""
+msgid "##LDAP:SEARCH:ERROR##"
+msgstr "An error has ocurred while the system was performing a search: "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:81
-msgid "Hubo un error ordenando los resultados del LDAP: "
-msgstr ""
+msgid "##LDAP:SORT:ERROR##"
+msgstr "There was an error organizing the LDAP search results: "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:93
-msgid "Hubo un error retirando los resultados del LDAP: "
-msgstr ""
+msgid "##LDAP:GET:ERROR##"
+msgstr "There was an error retrieving the LDAP search results: "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:107
-msgid "Hubo un error en la consulta a la Base de Datos MYSQL: "
-msgstr ""
+msgid "##MYSQL:QUERY:ERROR##"
+msgstr "An error has ocurred while the system was performing a MYSQL query on the database: "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:121
-msgid "Hubo un error cerrando la conexión con la Base de Datos MYSQL: "
-msgstr ""
+msgid "##MYSQL:CLOSE:ERROR##"
+msgstr "An error has ocurred trying to close the connection to the MYSQL database: "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:143
-msgid "Cambio de Contraseña en "
-msgstr ""
+msgid "##EMAIL:PASSWORD:CHANGE##"
+msgstr "Password Change in "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:154
-msgid "Hola! Tu contraseña en "
-msgstr ""
+msgid "##EMAIL:PASSWORD:GREETINGS##"
+msgstr "Hi! Your password in "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:154
-msgid " ha sido cambiada."
-msgstr ""
+msgid "##EMAIL:PASSWORD:HASBEENCHANGED##"
+msgstr "has been changed."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:163
-msgid "Petición de Nueva Contraseña en "
-msgstr ""
+msgid "##EMAIL:PASSWORD:NEW##"
+msgstr "New Password petition in "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:178
-msgid "Has recibido éste correo porque alguien solicitó una nueva contraseña para el usuario "
-msgstr ""
+msgid "##EMAIL:PASSWORD:WHY##"
+msgstr "You have received this e-mail because someone made a new password petition for the user "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:180
-msgid " en "
-msgstr ""
+msgid "##IN##"
+msgstr " in "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:182
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:233
-msgid "Haz click en el siguiente enlace para confirmar tu petición."
-msgstr ""
+msgid "##EMAIL:CLICK:CONFIRM##"
+msgstr "Click the following link to confirm your petition."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:192
-msgid "Nueva Contraseña en "
-msgstr ""
+msgid "##EMAIL:PASSWORD:NEW2##"
+msgstr "New Password in "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:203
-msgid "Hola, tu nueva contraseña es: "
-msgstr ""
+msgid "##EMAIL:PASSWORD:GREETINGS2##"
+msgstr "Hi, your new password is: "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:214
-msgid "Activación de Nuevo Usuario en "
-msgstr ""
+msgid "##EMAIL:NEWUSER:ACTIVATION##"
+msgstr "New user activation in "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:228
-msgid "Hola, "
-msgstr ""
+msgid "##HI##"
+msgstr "Hi, "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:230
-msgid "Has recibido éste correo electrónico porque hiciste una petición de Nuevo Usuario en "
-msgstr ""
+msgid "##EMAIL:NEWUSER:REQUEST##"
+msgstr "You have received this e-mail because you made a new user request in "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:243
-msgid "Usuario Eliminado en "
-msgstr ""
+msgid "##EMAIL:DELETEDUSER:TITLE##"
+msgstr "Deleted User in "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:253
-msgid "Estimado usuario "
-msgstr ""
+msgid "##EMAIL:DELETEDUSER:GREETINGS##"
+msgstr "Dear user "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:255
-msgid "Tu cuenta ha sido eliminada satisfactoriamente de "
-msgstr ""
+msgid "##EMAIL:DELETEDUSER:SUCCESS##"
+msgstr "Your account has been successfully deleted from "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:277
-msgid "Se ha enviado un correo de éxito (Cambiar Contraseña) a "
-msgstr ""
+msgid "##LOG:CHANGEPASSWORD:DONE##"
+msgstr "[ Change Password ] A success e-mail has been sent to "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:282
-msgid "Se ha enviado un correo de confirmación (Generar Contraseña) a "
-msgstr ""
+msgid "##LOG:RESETPASSWORD:CONFIRM##"
+msgstr "[ Reset Password ] A confirmation e-mail has been sent to "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:289
-msgid "Se ha enviado un correo de éxito (Generar Contraseña) a "
-msgstr ""
+msgid "##LOG:RESETPASSWORD:DONE##"
+msgstr "[ Reset Password ] A success e-mail has been sent to "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:296
-msgid "Se ha re-enviado un correo de confirmación (Nuevo Usuario) a "
-msgstr ""
+msgid "##LOG:NEWUSER:CONFIRM:AGAIN##"
+msgstr "[ New User ] A confirmation e-mail has been re-sent to "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:303
-msgid "Se ha enviado un correo de confirmación (Nuevo Usuario) a "
-msgstr ""
+msgid "##LOG:NEWUSER:CONFIRM##"
+msgstr "[ New User ] A confirmation e-mail has been sent to "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:310
-msgid "Se ha enviado un correo de éxito (Eliminar Usuario) a "
-msgstr ""
+msgid "##LOG:DELETEUSER:DONE##"
+msgstr "[ Delete User ] A success e-mail has been sent to "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:316
-msgid "Se ha enviado un correo de éxito (Nuevo Usuario) a "
-msgstr ""
+msgid "##LOG:NEWUSER:DONE##"
+msgstr "[ New User ] A success e-mail has been sent to "
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:394
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:404
-msgid "Hubo un error en el llenado del Formulario. Por favor vuelve atrás y verifica que hayas rellenado todos los datos."
-msgstr ""
+msgid "##FORM:ERROR##"
+msgstr "There was an error processing the form. Please go back and verify that you have entered the information correctly."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:414
-msgid "Tu búsqueda contiene caracteres inválidos. Sólo se permiten letras (mayúsculas, minúsculas, ñ, guión inferior (_) y palabras acentuadas o con diéresis)."
-msgstr ""
+msgid "##SEARCH:INVALID##"
+msgstr "Your search terms have invalid characters. You can only use letters (uppercase, lowercase), accented letters, umlaut and underscore."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:424
-msgid "El Correo Electrónico proporcionado no es válido. Verifica si lo has escrito correctamente."
-msgstr ""
+msgid "##EMAIL:INVALID##"
+msgstr "The e-mail you provided is not valid. Please go back and verify that you have entered it correctly."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:434
-msgid "El token de confirmación es inválido. Por favor realiza la solicitud de nuevo."
-msgstr ""
+msgid "##TOKEN:INVALID##"
+msgstr "The confirmation token is invalid. Please make the request again."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:444
-msgid "El nombre de usuario es inválido. Sólo se permiten letras (mayúsculas y minúsculas), números, guiones (-) y guiones bajos (_)."
-msgstr ""
+msgid "##USERNAME:INVALID##"
+msgstr "The username is invalid. You can only use letters (uppercase, lowercase), numbers, dashes and underscores."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:454
-msgid "La contraseña contiene caracteres inválidos. Sólo se permiten letras (mayúsculas y minúsculas), números y los siguientes símbolos: . ! @ # $ % ^ & + = - _"
-msgstr ""
+msgid "##PASSWORD:INVALID##"
+msgstr "The password has invalid characters. You can only use letters (uppercase, lowercase), numbers and these symbols: . ! @ # $ % ^ + = - _"
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:464
-msgid "La contraseña antigua contiene caracteres inválidos, lo cual es muy extraño. Utiliza el formulario de generar nueva contraseña para poder cambiarla."
-msgstr ""
+msgid "##OLDPASSWORD:INVALID##"
+msgstr "The old password has invalid characters, which is very strange. Please use the Reset Password form to change your password, and then come back here."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:474
-msgid "Las contraseñas no coinciden."
-msgstr ""
+msgid "##PASSWORD:DIFFERENT##"
+msgstr "Passwords do not match."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:484
-msgid "La longitud de la contraseña debe ser de 8 caracteres mínimo y 30 caracteres máximo."
-msgstr ""
+msgid "##PASSWORD:INVALID:LENGTH##"
+msgstr "Password length must be shorter than 30 characters and longer than 8."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:494
-msgid "La longitud del nombre de usuario debe ser de 3 caracteres mínimo y 30 caracteres máximo."
-msgstr ""
+msgid "##USERNAME:INVALID:LENGTH##"
+msgstr "Username length must be shorter than 30 characters and longer than 3."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:504
-msgid "Tu nombre tiene una longitud mayor a 60 caracteres."
-msgstr ""
+msgid "##FIRSTNAME:INVALID:LENGTH##"
+msgstr "Your first name is longer than 60 characters."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:514
-msgid "Tu apellido tiene una longitud mayor a 60 caracteres."
-msgstr ""
+msgid "##LASTNAME:INVALID:LENGTH##"
+msgstr "Your last name is longer than 60 characters."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:524
-msgid "La longitud de la contraseña antigua es muy larga o muy corta, lo cual es muy extraño. Utiliza el formulario de generar nueva contraseña para poder cambiarla."
-msgstr ""
+msgid "##OLDPASSWORD:INVALID:LENGTH##"
+msgstr "Your old password length is too short or too long, which is very strange. Please use the Reset Password form to change your password, and then come back here."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:534
-msgid "Tu nombre contiene caracteres inválidos. Sólo se permiten letras (mayúsculas, minúsculas, ñ y palabras acentuadas o con diéresis)."
-msgstr ""
+msgid "##FIRSTNAME:INVALID##"
+msgstr "Your first name has invalid characters. You can only use letters (uppercase, lowercase), accented letters or with umlaut."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:544
-msgid "Tu apellido contiene caracteres inválidos. Sólo se permiten letras (mayúsculas, minúsculas, ñ y palabras acentuadas o con diéresis)."
-msgstr ""
+msgid "##LASTNAME:INVALID##"
+msgstr "Your last name has invalid characters. You can only use letters (uppercase, lowercase), accented letters or with umlaut."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:554
-msgid "El nombre de usuario escogido ya existe."
-msgstr ""
+msgid "##USERNAME:EXISTS##"
+msgstr "The username already exists."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:564
-msgid "El correo indicado ya está asociado a un usuario."
-msgstr ""
+msgid "##EMAIL:EXISTS##"
+msgstr "The e-mail you provided is already asociated to an existing account."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:578
-msgid "No se han encontrado peticiones que coincidan con los datos proporcionados."
-msgstr ""
+msgid "##NOMATCH##"
+msgstr "There are no petitions matching the data provided."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:588
-msgid "Existe una inconsistencia en la Base de Datos. Existen dos o más cuentas que comparten algunos de los datos de usuario (nombre, correo, etc..), lo cual genera errores e imprecisiones en el sistema. Este error ha sido informado a los administradores para que realicen una correción manual."
-msgstr ""
+msgid "##DATABASE:CORRUPTION##"
+msgstr "There is an inconsistency with the database. There are two or more accounts sharing some user data (username, e-mail, etc...), which generates errors and inaccuracies on the system. This error has been informed to system administrators."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:598
-msgid "La información proporcionada no coincide con alguna cuenta existente. Por favor revisa los datos introducidos."
-msgstr ""
+msgid "##NOMATCH:ACCOUNT##"
+msgstr "The data provided doesn't match any existing account. Please go back and check the information you gave us."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:608
-msgid "Ocurrió un error cambiando tu contraseña. Por favor intenta de nuevo más tarde."
-msgstr ""
+msgid "##FINAL:ERROR:CHANGEPASSWORD##"
+msgstr "again later."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:611
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:624
-msgid "Ocurrió un error enviando el correo de confirmación. Por favor intenta de nuevo más tarde."
-msgstr ""
+msgid "##FINAL:ERROR:CONFIRMATION##"
+msgstr "There was an error sending the confirmation e-mail. Please try again later."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:614
-msgid "Ocurrió un error generando tu nueva contraseña. Por favor intenta de nuevo más tarde."
-msgstr ""
+msgid "##FINAL:ERROR:RESETPASSWORD##"
+msgstr "There was an error generating your new password. Please try again later."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:617
-msgid "Ocurrió un error eliminando tu cuenta. Por favor intenta de nuevo más tarde."
-msgstr ""
+msgid "##FINAL:ERROR:DELETEUSER##"
+msgstr "There was an error deleting your account. Please try again later."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:620
-msgid "Ocurrió un error creando tu cuenta. Por favor intenta de nuevo más tarde."
-msgstr ""
+msgid "##FINAL:ERROR:NEWUSER##"
+msgstr "There was an error creating your account. Please try again later."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:639
-msgid "¡Éxito! Tu contraseña ha sido cambiada."
-msgstr ""
+msgid "##FINAL:SUCCESS:RESETPASSWORD##"
+msgstr "¡Success! Your password has been changed."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:642
-msgid "La solicitud de una nueva contraseña ha sido procesada correctamente. Revisa tu correo electrónico para finalizar el proceso."
-msgstr ""
+msgid "##FINAL:CONFIRM:RESETPASSWORD##"
+msgstr "Your new password request has been correctly processed. Please check your e-mail to finish the process."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:645
-msgid "¡Éxito! Hemos generado una nueva contraseña para ti. Revisa tu correo electrónico para encontrar más información."
-msgstr ""
+msgid "##FINAL:SUCCESS:RESETPASSWORD:EMAIL##"
+msgstr "¡Success! We have generated a new password for you. Please check your e-mail to find it."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:648
-msgid "Tu cuenta ha sido eliminada satisfactoriamente."
-msgstr ""
+msgid "##FINAL:SUCCESS:DELETE##"
+msgstr "Your account has been successfully deleted."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:651
-msgid "¡Éxito! Tu cuenta ha sido creada satisfactoriamente."
-msgstr ""
+msgid "##FINAL:SUCCESS:NEWUSER##"
+msgstr "¡Success! Your account has been successfully created."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:655
-msgid "La solicitud de la nueva cuenta ha sido procesada correctamente. Revisa tu correo electrónico para finalizar el proceso."
-msgstr ""
+msgid "##FINAL:CONFIRM:NEWUSER##"
+msgstr "The new user account has been processed correctly. Please check your e-mail to finish the process."
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:662
-msgid "Portada"
-msgstr ""
+msgid "##START##"
+msgstr "Starr"
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:674
-msgid "ID"
-msgstr ""
+msgid "##ID##"
+msgstr "ID"
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:677
-msgid "Nombre de Usuario"
-msgstr ""
+msgid "##USERNAME##"
+msgstr "Username"
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:680
-msgid "Nombre Real"
-msgstr ""
+msgid "##REALNAME##"
+msgstr "Real Name"
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:683
-msgid "Grupo"
-msgstr ""
+msgid "##GROUP##"
+msgstr "Group"
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:709
-msgid "pulse sobre el campo para editarlo"
-msgstr ""
+msgid "##CLICKTOEDIT##"
+msgstr "click the field to edit"
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:711
-msgid "este campo no puede editarse"
-msgstr ""
+msgid "##CANNOTEDIT##"
+msgstr "this field cannot be edited"
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:737
-msgid "Guardar"
-msgstr ""
+msgid "##SAVE##"
+msgstr "Save"
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:738
-msgid "Cancelar"
-msgstr ""
+msgid "##CANCEL##"
+msgstr "Cancel"
 
 #: /home/huntingbears/desarrollo/aguilas/ForgotUsernameDo.php:15
 #: /home/huntingbears/desarrollo/aguilas/Search.php:13
-msgid "Resultados de la Búsqueda"
-msgstr ""
+msgid "##SEARCHRESULTS##"
+msgstr "Search Results"
 
 #: /home/huntingbears/desarrollo/aguilas/ForgotUsernameDo.php:72
-msgid "Los siguientes usuarios están asociados a la cuenta de correo "
-msgstr ""
+msgid "##ASSOCIATEDUSERS##"
+msgstr "The following users are associated to the email account "
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordDo.php:15
 #: /home/huntingbears/desarrollo/aguilas/NewUserDo.php:14
 #: /home/huntingbears/desarrollo/aguilas/ResetPasswordDo.php:14
-msgid "Estado de la Solicitud"
-msgstr ""
+msgid "##REQUESTSTATUS##"
+msgstr "Request Status"
 
 #: /home/huntingbears/desarrollo/aguilas/install.php:7
-msgid "Creando base de datos "
-msgstr ""
+msgid "##CREATING:DATABASE##"
+msgstr "Creating database "
 
 #: /home/huntingbears/desarrollo/aguilas/install.php:10
-msgid "Creando tabla para las peticiones de reestablecimiento de contraseña ..."
-msgstr ""
+msgid "##CREATING:TABLE:RESETPASSWORD##"
+msgstr "Creating table for storing the reset password requests ..."
 
 #: /home/huntingbears/desarrollo/aguilas/install.php:13
-msgid "Creando tabla para las peticiones de nuevos usuarios ..."
-msgstr ""
+msgid "##CREATING:TABLE:NEWUSER##"
+msgstr "Creating table for storing the new user requests ..."
 
 #: /home/huntingbears/desarrollo/aguilas/install.php:16
-msgid "Creando entrada MaxUID en el LDAP ..."
-msgstr ""
+msgid "##CREATING:LDAP:MAXUID##"
+msgstr "Creating LDAP maxUID entry ..."
 
 #: /home/huntingbears/desarrollo/aguilas/install.php:19
-msgid "¡HECHO!"
-msgstr ""
+msgid "##DONE##"
+msgstr "¡DONE!"
 
 #: /home/huntingbears/desarrollo/aguilas/Browse.php:13
-msgid "Usuarios de "
-msgstr ""
+msgid "##USERSFROM##"
+msgstr "Users from "
 
 #: /home/huntingbears/desarrollo/aguilas/Browse.php:31
-msgid "Letra inválida."
-msgstr ""
+msgid "##INVALIDLETTER##"
+msgstr "Invalid letter."
 
 #: /home/huntingbears/desarrollo/aguilas/Browse.php:74
-msgid " Usuarios encontrados cuyo nombre real comienza por la letra "
-msgstr ""
+msgid "##XUSERSFOUND##"
+msgstr " Users found whose real name starts with letter "
 
 #: /home/huntingbears/desarrollo/aguilas/Search.php:51
-msgid " Usuarios encontrados con la descripción provista."
-msgstr ""
+msgid "##XXUSERSFOUND##"
+msgstr " Users found matching the given criteria."
 
 #: /home/huntingbears/desarrollo/aguilas/LDAPConnection.php:8
-msgid "Ocurrió un error en la conexión con el LDAP"
-msgstr ""
+msgid "##LDAP:CONNECT:ERROR##"
+msgstr "An error ucrred while trying to connecto to the LDAP"
 
 #: /home/huntingbears/desarrollo/aguilas/LDAPConnection.php:18
-msgid "Ocurrió un error durante la configuración del LDAP: "
-msgstr ""
+msgid "##LDAP:CONFIG:ERROR##"
+msgstr "An error ocurred while trying to configure LDAP: "
 
 #: /home/huntingbears/desarrollo/aguilas/LDAPConnection.php:29
-msgid "Hubo un error en la configuración del LDAP: "
-msgstr ""
+msgid "##LDAP:CONFIG:ERROR##"
+msgstr "An error ocurred while trying to configure LDAP: "
 
 #: /home/huntingbears/desarrollo/aguilas/LDAPConnection.php:41
-msgid "Hubo un error iniciando una conexión segura con el LDAP: "
-msgstr ""
+msgid "##LDAP:TLS:ERROR##"
+msgstr "An error ocurred while trying to start a secure connection with LDAP: "
 
 #: /home/huntingbears/desarrollo/aguilas/LDAPConnection.php:53
-msgid "Hubo un error en la asociación con el LDAP: "
-msgstr ""
+msgid "##LDAP:BIND:ERROR##"
+msgstr "An error ocurred while trying to bind with LDAP: "
 
 #: /home/huntingbears/desarrollo/aguilas/Ajax.php:23
-msgid "¡EPA! ¿Por donde estás tratando de entrar, muchachito o muchachita? Usa los canales regulares."
-msgstr ""
+msgid "##INTRUSION:WARNING##"
+msgstr "Hey! What are you trying to do?"
 
 #: /home/huntingbears/desarrollo/aguilas/Ajax.php:28
-msgid "No puedes dejar campos vacíos."
-msgstr ""
+msgid "##EMPTY:WARNING##"
+msgstr "You cannot leave empty fields."
 
 #: /home/huntingbears/desarrollo/aguilas/Ajax.php:53
-msgid "El Correo Electrónico proporcionado no es válido. Verifica que lo hayas escrito correctamente."
-msgstr ""
+msgid "##EMAIL:INVALID##"
+msgstr "The e-mail you provided is not valid. Please go back and verify that you have entered it correctly."
 
 #: /home/huntingbears/desarrollo/aguilas/Ajax.php:75
-msgid "Se ha modificado el atributo "
-msgstr ""
+msgid "##MODATTRIBUTE##"
+msgstr "We have modified the attribute "
 
 #: /home/huntingbears/desarrollo/aguilas/Ajax.php:76
-msgid " del usuario "
-msgstr ""
+msgid "##OFTHEUSER##"
+msgstr " of the user "
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:6
-msgid "Cambiar Contraseña"
-msgstr ""
+msgid "##CHANGEPASSWORD:TITLE##"
+msgstr "Change Password"
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:8
-msgid "Por favor completa el siguiente formulario para cambiar tu contraseña."
-msgstr ""
+msgid "##FORM:CHANGEPASSWORD:GREETINGS##"
+msgstr "Please complete the following form to change your password."
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:14
 #: /home/huntingbears/desarrollo/aguilas/DeleteUserForm.php:14
 #: /home/huntingbears/desarrollo/aguilas/EditProfileForm.php:14
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:52
 #: /home/huntingbears/desarrollo/aguilas/ResetPasswordForm.php:16
-msgid "Nombre de usuario"
-msgstr ""
+msgid "##USERNAME##"
+msgstr "Username"
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:17
 #: /home/huntingbears/desarrollo/aguilas/DeleteUserForm.php:17
 #: /home/huntingbears/desarrollo/aguilas/EditProfileForm.php:17
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:55
 #: /home/huntingbears/desarrollo/aguilas/ResetPasswordForm.php:19
-msgid "p. ej., emeteri0"
-msgstr ""
+msgid "##USER:EXAMPLE##"
+msgstr "e.g., Us3r"
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:23
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:45
@@ -488,8 +488,8 @@ msgstr ""
 #: /home/huntingbears/desarrollo/aguilas/ResetPasswordForm.php:25
 #: /home/huntingbears/desarrollo/aguilas/ResetPasswordForm.php:47
 #: /home/huntingbears/desarrollo/aguilas/ResetPasswordForm.php:69
-msgid "No puedes dejar éste campo en blanco."
-msgstr ""
+msgid "##EMPTY:WARNING##"
+msgstr "You cannot leave empty fields."
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:26
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:70
@@ -502,16 +502,16 @@ msgstr ""
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:64
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:108
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:133
-msgid "Excediste el número máximo de 30 Caracteres."
-msgstr ""
+msgid "##LONGERTHAN30##"
+msgstr "You exceeded the limit of 30 characters."
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:29
 #: /home/huntingbears/desarrollo/aguilas/DeleteUserForm.php:29
 #: /home/huntingbears/desarrollo/aguilas/EditProfileForm.php:29
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:67
 #: /home/huntingbears/desarrollo/aguilas/ResetPasswordForm.php:31
-msgid "El nombre de usuario debe tener al menos 3 Caracteres."
-msgstr ""
+msgid "##ATLEAST3##"
+msgstr "Username must have at least 3 characters."
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:36
 #: /home/huntingbears/desarrollo/aguilas/DeleteUserForm.php:36
@@ -519,8 +519,8 @@ msgstr ""
 #: /home/huntingbears/desarrollo/aguilas/ResendMailForm.php:14
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:74
 #: /home/huntingbears/desarrollo/aguilas/ResetPasswordForm.php:38
-msgid "Correo electrónico"
-msgstr ""
+msgid "##EMAIL##"
+msgstr "E-Mail"
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:39
 #: /home/huntingbears/desarrollo/aguilas/DeleteUserForm.php:39
@@ -528,8 +528,8 @@ msgstr ""
 #: /home/huntingbears/desarrollo/aguilas/ResendMailForm.php:17
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:77
 #: /home/huntingbears/desarrollo/aguilas/ResetPasswordForm.php:41
-msgid "p. ej., eme@terio.org.ve"
-msgstr ""
+msgid "##EMAIL:EXAMPLE##"
+msgstr "e.g., user@email.com"
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:48
 #: /home/huntingbears/desarrollo/aguilas/DeleteUserForm.php:48
@@ -540,8 +540,8 @@ msgstr ""
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:86
 #: /home/huntingbears/desarrollo/aguilas/ResetPasswordForm.php:28
 #: /home/huntingbears/desarrollo/aguilas/ResetPasswordForm.php:50
-msgid "Excediste el número máximo de 60 Caracteres."
-msgstr ""
+msgid "##LONGERTHAN60##"
+msgstr "You exceeded the limit of 60 characters."
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:51
 #: /home/huntingbears/desarrollo/aguilas/DeleteUserForm.php:51
@@ -549,16 +549,16 @@ msgstr ""
 #: /home/huntingbears/desarrollo/aguilas/ResendMailForm.php:29
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:89
 #: /home/huntingbears/desarrollo/aguilas/ResetPasswordForm.php:53
-msgid "Formato Inválido."
-msgstr ""
+msgid "##INVALIDFORMAT##"
+msgstr "Invalid Format."
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:58
-msgid "Contraseña Actual"
-msgstr ""
+msgid "##YOURPASSWORD##"
+msgstr "Your Password"
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:61
-msgid "introduce tu contraseña actual"
-msgstr ""
+msgid "##PRESENTPASSWORD##"
+msgstr "enter your present password"
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:73
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:95
@@ -567,24 +567,24 @@ msgstr ""
 #: /home/huntingbears/desarrollo/aguilas/EditProfileForm.php:51
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:111
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:136
-msgid "La contraseña debe tener al menos 8 Caracteres."
-msgstr ""
+msgid "##ATLEAST8##"
+msgstr "Password must have at least 8 characters."
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:80
-msgid "Contraseña Nueva"
-msgstr ""
+msgid "##NEWPASSWORD##"
+msgstr "New Password"
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:83
-msgid "introduce la nueva contraseña"
-msgstr ""
+msgid "##NEWPASSWORDDESC##"
+msgstr "enter your new password"
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:102
-msgid "Contraseña Nueva (repítela)"
-msgstr ""
+msgid "##NEWPASSWORDREPEAT##"
+msgstr "New Password (repeat)"
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:105
-msgid "repite la nueva contraseña"
-msgstr ""
+msgid "##NEWPASSWORDREPEATDESC##"
+msgstr "repeat your new password"
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:127
 #: /home/huntingbears/desarrollo/aguilas/DeleteUserForm.php:80
@@ -592,8 +592,8 @@ msgstr ""
 #: /home/huntingbears/desarrollo/aguilas/ResendMailForm.php:36
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:143
 #: /home/huntingbears/desarrollo/aguilas/ResetPasswordForm.php:60
-msgid "Verificación"
-msgstr ""
+msgid "##CAPTCHA##"
+msgstr "Captcha"
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:139
 #: /home/huntingbears/desarrollo/aguilas/DeleteUserForm.php:92
@@ -602,8 +602,8 @@ msgstr ""
 #: /home/huntingbears/desarrollo/aguilas/ResendMailForm.php:48
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:155
 #: /home/huntingbears/desarrollo/aguilas/ResetPasswordForm.php:72
-msgid "Excediste el número máximo de 8 Caracteres."
-msgstr ""
+msgid "##LONGERTHAN8##"
+msgstr "You exceeded the limit of 8 characters."
 
 #: /home/huntingbears/desarrollo/aguilas/ChangePasswordForm.php:145
 #: /home/huntingbears/desarrollo/aguilas/DeleteUserForm.php:98
@@ -612,217 +612,219 @@ msgstr ""
 #: /home/huntingbears/desarrollo/aguilas/ResendMailForm.php:54
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:161
 #: /home/huntingbears/desarrollo/aguilas/ResetPasswordForm.php:78
-msgid "ENVIAR"
-msgstr ""
+msgid "##SEND##"
+msgstr "SEND"
 
 #: /home/huntingbears/desarrollo/aguilas/EditProfileDo.php:15
-msgid "Perfil de Usuario"
-msgstr ""
+msgid "##USERPROFILE##"
+msgstr "User Profile"
 
 #: /home/huntingbears/desarrollo/aguilas/EditProfileDo.php:100
-msgid "Número de Usuario (ID)"
-msgstr ""
+msgid "##ID##"
+msgstr "ID"
 
 #: /home/huntingbears/desarrollo/aguilas/EditProfileDo.php:101
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:14
-msgid "Nombres"
-msgstr ""
+msgid "##FIRSTNAME:FORM##"
+msgstr "First Name"
 
 #: /home/huntingbears/desarrollo/aguilas/EditProfileDo.php:102
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:33
-msgid "Apellidos"
-msgstr ""
+msgid "##LASTNAME:FORM##"
+msgstr "Last Name"
 
 #: /home/huntingbears/desarrollo/aguilas/EditProfileDo.php:103
-msgid "Nombre Completo"
-msgstr ""
+msgid "##COMPLETENAME:FORM##"
+msgstr "Complete Name"
 
 #: /home/huntingbears/desarrollo/aguilas/EditProfileDo.php:104
-msgid "Correo Electrónico"
-msgstr ""
+msgid "##EMAIL##"
+msgstr "E-Mail"
 
 #: /home/huntingbears/desarrollo/aguilas/EditProfileDo.php:105
 #: /home/huntingbears/desarrollo/aguilas/DeleteUserForm.php:58
 #: /home/huntingbears/desarrollo/aguilas/EditProfileForm.php:36
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:96
-msgid "Contraseña"
-msgstr ""
+msgid "##PASSWORD##"
+msgstr "Password"
 
 #: /home/huntingbears/desarrollo/aguilas/DeleteUserForm.php:6
-msgid "Eliminación de Usuario"
-msgstr ""
+msgid "##DELETEUSER:TITLE##"
+msgstr "Delete User"
 
 #: /home/huntingbears/desarrollo/aguilas/DeleteUserForm.php:8
-msgid "Por favor complete el siguiente formulario para borrar DEFINITIVAMENTE tu usuario de la "
-msgstr ""
+msgid "##DELETEUSER:GREETINGS##"
+msgstr "Please complete the following form to erase DEFINITELY your user from "
 
 #: /home/huntingbears/desarrollo/aguilas/DeleteUserForm.php:61
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:99
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:121
-msgid "al menos ocho caracteres"
-msgstr ""
+msgid "##ATLEAST8CHARS##"
+msgstr "at least 8 characters"
 
 #: /home/huntingbears/desarrollo/aguilas/EditProfileForm.php:6
-msgid "Editar Perfil de Usuario"
-msgstr ""
+msgid "##EDITUSERPROFILE##"
+msgstr "Edit User Profile"
 
 #: /home/huntingbears/desarrollo/aguilas/EditProfileForm.php:8
-msgid "Luego de introducir los datos que se solicitan en el formulario, podrás editar de manera interactiva los datos de tu perfil de usuario en "
-msgstr ""
+msgid "##EDITUSERPROFILE:GREETINGS##"
+msgstr "After introducing your user data, you will be able to edit your profile information."
 
 #: /home/huntingbears/desarrollo/aguilas/EditProfileForm.php:39
-msgid "introduzca su contraseña"
-msgstr ""
+msgid "##ENTERYOURPASSWORD:FORM##"
+msgstr "enter your password"
 
 #: /home/huntingbears/desarrollo/aguilas/ForgotUsernameForm.php:6
-msgid "Recordar Nombre de Usuario"
-msgstr ""
+msgid "##REMINDUSERNAME:TITLE##"
+msgstr "Remind Username"
 
 #: /home/huntingbears/desarrollo/aguilas/ForgotUsernameForm.php:8
-msgid "Por favor introduce a continuación la dirección de correo electrónico que utilizaste para registrar tu usuario."
-msgstr ""
+msgid "##REMINDUSERNAME:GREETINGS##"
+msgstr "Please enter the e-mail you used to register your user account."
 
 #: /home/huntingbears/desarrollo/aguilas/MYSQLConnection.php:6
-msgid "Ocurrió un error de conexión con la Base de Datos MYSQL."
-msgstr ""
+msgid "##MYSQL:CONNECT:ERROR##"
+msgstr "An error has ocurred trying to connect to the MYSQL database."
 
 #: /home/huntingbears/desarrollo/aguilas/MYSQLConnection.php:21
-msgid "Imposible selecionar la base de datos "
-msgstr ""
+msgid "##MYSQL:SELECTDB:ERROR##"
+msgstr "An error has ocurred trying to select database "
 
 #: /home/huntingbears/desarrollo/aguilas/ResendMailForm.php:6
-msgid "Reenviar Correo"
-msgstr ""
+msgid "##RESENDEMAIL:TITLE##"
+msgstr "Resend E-Mail"
 
 #: /home/huntingbears/desarrollo/aguilas/ResendMailForm.php:8
-msgid "Por favor introduce a continuación la dirección de correo electrónico con la que hiciste la petición de Nuevo Usuario para reenviar el correo de confirmación."
-msgstr ""
+msgid "##RESENDEMAIL:GREETINGS##"
+msgstr "Pleas enter the e-mail you used to register your new user account, so we can resend the confirmation e-mail."
 
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:6
-msgid "Solicitar una Cuenta de Usuario"
+msgid "##REQUESTNEWUSERACCOUNT:TITLE##"
+msgstr "Request a User Account"
 msgstr "Solicitar una Cuenta de Usuario"
 
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:8
-msgid "Por favor completa el siguiente formulario para solicitar una cuenta de usuario en "
-msgstr ""
+msgid "##REQUESTNEWUSERACCOUNT:GREETINGS##"
+msgstr "Please complete the following form to reques a new user account in "
 
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:8
-msgid ". Con esta cuenta podrás autenticarte en la mayoría de los Servicios. En la segunda columna del formulario hemos colocado algunos ejemplos para ayudarte en el llenado del formulario. Por favor, sigue las indicaciones del sistema para culminar el proceso exitosamente."
-msgstr ""
+msgid "##REQUESTNEWUSERACCOUNT:INTRO##"
+msgstr ". With this account your will be able to authenticate in the platform services. In the second column of the form we have placed some examples to help you with the process. Pleas follow the instructions to finish the process."
 
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:17
-msgid "p. ej., Emeterio Ildefonso"
-msgstr ""
+msgid "##FIRSTNAME:EXAMPLE##"
+msgstr "e.g., Jonathan Richard"
 
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:36
-msgid "p. ej., Alcántara Carrasco"
-msgstr ""
+msgid "##LASTNAME:EXAMPLE##"
+msgstr "e.g., Guy Greenwood"
 
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:118
-msgid "Contraseña (repítela)"
-msgstr ""
+msgid "##PASSWORDREPEAT##"
+msgstr "Password (repeat)"
 
 #: /home/huntingbears/desarrollo/aguilas/ResetPasswordForm.php:6
-msgid "Generar Contraseña"
-msgstr ""
+msgid "##RESETPASSWORD##"
+msgstr "Reset Password"
 
 #: /home/huntingbears/desarrollo/aguilas/ResetPasswordForm.php:9
-msgid "Por favor completa el siguiente formulario para generar de forma automática una nueva contraseña para tu usuario."
-msgstr ""
+msgid "##RESETPASSWORD:GREETINGS##"
+msgstr "Please complete the following form to automatically generate a new password for your user."
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/footer.php:6
-msgid "Nuevo usuario"
-msgstr ""
+msgid "##NEWUSER##"
+msgstr "New User"
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/footer.php:9
-msgid "Cambiar contraseña"
-msgstr ""
+msgid "##CHANGEPASSWORD##"
+msgstr "Change Password"
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/footer.php:12
-msgid "Generar contraseña"
-msgstr ""
+msgid "##RESETPASSWORD##"
+msgstr "Reset Password"
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/footer.php:15
-msgid "Recordar usuario"
-msgstr ""
+msgid "##REMINDUSER##"
+msgstr "Remind User"
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/footer.php:18
-msgid "Eliminar usuario"
-msgstr ""
+msgid "##DELETEUSER##"
+msgstr "Delete User"
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/footer.php:21
-msgid "Editar Perfil"
-msgstr ""
+msgid "##EDITPROFILE##"
+msgstr "Edit Profile"
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/footer.php:24
-msgid "Listar usuarios"
-msgstr ""
+msgid "##BROWSEUSERS##"
+msgstr "Browse Users"
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/footer.php:29
-msgid " está potenciado por la aplicación "
-msgstr ""
+msgid "##POWEREDBY##"
+msgstr " is powered by "
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/footer.php:35
-msgid " es una aplicación en PHP desarrollada por "
-msgstr ""
+msgid "##DEVELOPEDBY##"
+msgstr " is a PHP application developed by "
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/header.php:65
 #: /home/huntingbears/desarrollo/aguilas/themes/debian/header.php:65
-msgid "Introduce un término de búsqueda y presiona enter."
-msgstr ""
+msgid "##SEARCH:FIELD:DESCRIPTION##"
+msgstr "Type a search term and press enter"
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/header.php:67
 #: /home/huntingbears/desarrollo/aguilas/themes/debian/header.php:67
-msgid "Buscar Usuario"
-msgstr ""
+msgid "##SEARCHUSER##"
+msgstr "Search User"
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/index.php:2
 #: /home/huntingbears/desarrollo/aguilas/themes/debian/index.php:2
-msgid "Bienvenidos a"
-msgstr ""
+msgid "##WELCOMETO##"
+msgstr "Welcome to "
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/index.php:4
 #: /home/huntingbears/desarrollo/aguilas/themes/debian/index.php:4
-msgid "Desde acá podrás gestionar directamente tus datos de usuario en "
-msgstr ""
+msgid "##INDEX:GREETINGS##"
+msgstr "From here you will be able to manage directly your users in "
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/index.php:5
 #: /home/huntingbears/desarrollo/aguilas/themes/debian/index.php:5
-msgid ". Creando una cuenta estarás conectado a los siguientes servicios:"
-msgstr ""
+msgid "##INDEX:GREETINGS2##"
+msgstr ". Creating an account will allow you to connect to the following services:"
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/index.php:20
 #: /home/huntingbears/desarrollo/aguilas/themes/debian/index.php:20
-msgid "Solicitar una nueva cuenta de usuario"
-msgstr ""
+msgid "##INDEX:NEWUSER##"
+msgstr "Request a new user account"
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/index.php:24
 #: /home/huntingbears/desarrollo/aguilas/themes/debian/index.php:24
-msgid "No me llegó el correo de confirmación cuando solicité una nueva cuenta"
-msgstr ""
+msgid "##INDEX:DIDNTGETTHEEMAIL##"
+msgstr "I did not get the confirmation e-mail when i requested an account"
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/index.php:30
 #: /home/huntingbears/desarrollo/aguilas/themes/debian/index.php:30
-msgid "Cambiar contraseña de usuario"
-msgstr ""
+msgid "##INDEX:CHANGEPASSWORD##"
+msgstr "Change user password"
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/index.php:34
 #: /home/huntingbears/desarrollo/aguilas/themes/debian/index.php:34
-msgid "Generar una nueva contraseña"
-msgstr ""
+msgid "##INDEX:RESETPASSWORD##"
+msgstr "Reset user password"
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/index.php:40
 #: /home/huntingbears/desarrollo/aguilas/themes/debian/index.php:40
-msgid "Olvidé mi nombre de usuario"
-msgstr ""
+msgid "##INDEX:FORGOTUSERNAME##"
+msgstr "I forgot my username"
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/index.php:50
 #: /home/huntingbears/desarrollo/aguilas/themes/debian/index.php:50
-msgid "Ver/Editar perfil de usuario"
-msgstr ""
+msgid "##INDEX:EDITPROFILE##"
+msgstr "Edit user profile"
 
 #: /home/huntingbears/desarrollo/aguilas/themes/canaima/index.php:55
 #: /home/huntingbears/desarrollo/aguilas/themes/debian/index.php:55
-msgid "Listar todos los usuarios"
-msgstr ""
+msgid "##INDEX:BROWSEUSERS##"
+msgstr "Browse users"
+
 

@@ -10,7 +10,7 @@ include "Functions.php";
 
 ?>
 
-<h2><?= _("Resultados de la Búsqueda") ?></h2>
+<h2><?= _("##SEARCHRESULTS##") ?></h2>
 
 <?php
 
@@ -48,7 +48,7 @@ if(!isset($searchInput)){
     // How much did we get?
     $result_count = $search_entries['count'];
 
-    echo $result_count . _(" Usuarios encontrados con la descripción provista.");
+    echo $result_count . _("##XXUSERSFOUND##");
 
     // Parsing the user table with the result entries
     ParseUserTable($search_entries, $result_count);

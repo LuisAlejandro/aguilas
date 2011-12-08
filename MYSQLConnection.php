@@ -3,9 +3,9 @@
 $mysqlc = mysql_connect($mysql_host, $mysql_user, $mysql_pass)
         or die (
         '<div class="error">'
-        . _("Ocurrió un error de conexión con la Base de Datos MYSQL.")
+        . _("##MYSQL:CONNECT:ERROR##")
         . '.<br /><br /><a href="javascript:history.back(1);">'
-        . _("Atrás")
+        . _("##BACK##")
         . '</a></div>'
         . file_get_contents("themes/$app_theme/footer.php")
         );
@@ -18,11 +18,11 @@ if (!$mysqls) {
     
     $mysqls = mysql_select_db($mysql_dbname)
         or die (
-        _("Imposible selecionar la base de datos ")
+        _("##MYSQL:SELECTDB:ERROR##")
         . '"' . $mysql_dbname . '": '
         . mysql_error($mysqlc)
         . '.<br /><br /><a href="javascript:history.back(1);">'
-        . _("Atrás")
+        . _("##BACK##")
         . '</a></div>'
         . file_get_contents("themes/$app_theme/footer.php")
         );
