@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AGUILAS\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-12-06 00:48-0400\n"
-"PO-Revision-Date: 2011-12-06 00:49-0400\n"
+"PO-Revision-Date: 2011-12-09 14:30-0400\n"
 "Last-Translator: Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-Language: Spanish\n"
+"X-Poedit-Language: English\n"
 "X-Poedit-Country: VENEZUELA\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: /home/huntingbears/desarrollo/aguilas\n"
@@ -312,7 +312,7 @@ msgstr "The new user account has been processed correctly. Please check your e-m
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:662
 msgid "##START##"
-msgstr "Starr"
+msgstr "Start"
 
 #: /home/huntingbears/desarrollo/aguilas/Functions.php:674
 msgid "##ID##"
@@ -402,9 +402,6 @@ msgid "##LDAP:CONNECT:ERROR##"
 msgstr "An error ucrred while trying to connecto to the LDAP"
 
 #: /home/huntingbears/desarrollo/aguilas/LDAPConnection.php:18
-msgid "##LDAP:CONFIG:ERROR##"
-msgstr "An error ocurred while trying to configure LDAP: "
-
 #: /home/huntingbears/desarrollo/aguilas/LDAPConnection.php:29
 msgid "##LDAP:CONFIG:ERROR##"
 msgstr "An error ocurred while trying to configure LDAP: "
@@ -701,7 +698,6 @@ msgstr "Pleas enter the e-mail you used to register your new user account, so we
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:6
 msgid "##REQUESTNEWUSERACCOUNT:TITLE##"
 msgstr "Request a User Account"
-msgstr "Solicitar una Cuenta de Usuario"
 
 #: /home/huntingbears/desarrollo/aguilas/NewUserForm.php:8
 msgid "##REQUESTNEWUSERACCOUNT:GREETINGS##"
@@ -826,5 +822,4 @@ msgstr "Edit user profile"
 #: /home/huntingbears/desarrollo/aguilas/themes/debian/index.php:55
 msgid "##INDEX:BROWSEUSERS##"
 msgstr "Browse users"
-
 
