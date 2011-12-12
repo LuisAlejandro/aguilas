@@ -1,72 +1,53 @@
-# Makefile
 
-SHELL := sh -e
+INSTALL=install -m 0644
+INSTALL_DIR=install -d
+IMAGES=$(wildcard themes/canaima/images/*.svg)
+THEMES=$(wildcard themes/*)
+PHP=$(wildcard *.php)
+LOGS=$(wildcard logs/*.log)
 
-IMAGES :=	"captcha" \
-		"editar" \
-		"eliminar" \
-		"favicon" \
-		"fondoforma" \
-		"listar" \
-		"logo" \
-		"nuevo" \
-		"olvidar" \
-		"password"
 
-THEMES :=	"debian" \
-		"canaima"
+all: gen-img data
 
-LOGS :=		"ChangePasswordDo" \
-		"ResetPasswordMail" \
-		"ResetPasswordDo" \
-		"ResendMailDo" \
-		"NewUserMail" \
-		"DeleteUserDo" \
-		"NewUserDo"
+gen-img:
 
-all: build pre-config
-
-build:
-
-	@for THEME in $(THEMES); \
-	do \
-		@for IMAGE in $(IMAGES); \
-		do \
+	$(MAKE) clean-img
+	@for THEME in $(THEMES); do \
+		@for IMAGE in $(IMAGES); do \
 			@convert themes/$${THEME}/images/$${IMAGE}.svg themes/$${THEME}/images/$${IMAGE}.png; \
-		done \
-	done \
-
-	@for THEME in $(THEMES); \
-	do \
+			@echo "Generating images from source [SVG > PNG]"; \
+			@printf "."; \
+		done; \
 		icotool -c -o themes/$${THEME}/images/favicon.ico themes/$${THEME}/images/favicon.png; \
-		convert themes/$${THEME}/images/banner.png themes/$${THEME}/images/banner.jpg; \
 	done
 
-pre-config:
+doc:
 
+	$(MAKE) clean-doc
+        rst2man --language="en" --title="AGUILAS" docs/man-aguilas.rst docs/aguilas.1
+	$(MAKE) -C docs latex
+	$(MAKE) -C docs html
+	$(MAKE) -C docs/_build/latex all-pdf
+
+data:
+
+	$(MAKE) clean-data
 	@bash scripts/pre-config.sh
 
 install:
 
 	mkdir -p $(DESTDIR)/usr/share/aguilas/
 	mkdir -p $(DESTDIR)/var/log/aguilas/
-	cp -r locale themes $(DESTDIR)/usr/share/aguilas/
-	cp -r *.php $(DESTDIR)/usr/share/aguilas/
-	
-	for LOG in $(LOGS); \
-	do \
-		touch $(DESTDIR)/var/log/aguilas/$${LOG}.log; \
-	done \
-
+	$(INSTALL_DIR) locale themes $(DESTDIR)/usr/share/aguilas/
+	$(INSTALL) $(PHP) $(DESTDIR)/usr/share/aguilas/
+	$(INSTALL) $(LOGS) $(DESTDIR)/var/log/aguilas/
 	chown -R www-data:www-data $(DESTDIR)/var/log/aguilas/
 
 config:
 
 	mkdir $(DESTDIR)/var/www/
 	ln -s $(DESTDIR)/usr/share/aguilas /var/www/aguilas
-
-	bash scripts/mysql-config.sh
-	bash scripts/ldap-config.sh
+	php -f install.php
 
 uninstall:
 
@@ -74,7 +55,7 @@ uninstall:
 	rm -rf $(DESTDIR)/var/log/aguilas/
 	rm -rf $(DESTDIR)/var/www/aguilas/
 
-clean:
+clean-img:
 
 	for THEME in $(THEMES); \
 	do \
@@ -83,6 +64,14 @@ clean:
 		rm -rf themes/$${THEME}/images/*.ico; \
 	done \
 
+clean-data:
+
 	rm -rf config.php var com
 
+clean-doc:
+
+	$(MAKE) -C docs clean
+	rm -rf docs/_build
+	rm -rf docs/aguilas.1
+	
 reinstall: uninstall install

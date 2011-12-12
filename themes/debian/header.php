@@ -69,9 +69,7 @@
                     </form>
                 </div>
             </div>
-            
-            <img alt="banner" src="images/banner.jpg" />
-            
+
             <div id="menu">
                 <ul id="portal-globalnav">
                     <?php
