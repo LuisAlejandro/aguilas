@@ -24,40 +24,34 @@ LOGS :=		"ChangePasswordDo" \
 		"DeleteUserDo" \
 		"NewUserDo"
 
-all: build
-
-test:
-
-	@echo "Nada para hacer"
-
-config:
-
-	bash config.sh       
+all: build pre-config
 
 build:
 
-	for THEME in $(THEMES); \
+	@for THEME in $(THEMES); \
 	do \
-		for IMAGE in $(IMAGES); \
+		@for IMAGE in $(IMAGES); \
 		do \
-			convert themes/$${THEME}/images/$${IMAGE}.svg themes/$${THEME}/images/$${IMAGE}.png; \
+			@convert themes/$${THEME}/images/$${IMAGE}.svg themes/$${THEME}/images/$${IMAGE}.png; \
 		done \
 	done \
 
-	for THEME in $(THEMES); \
+	@for THEME in $(THEMES); \
 	do \
 		icotool -c -o themes/$${THEME}/images/favicon.ico themes/$${THEME}/images/favicon.png; \
 		convert themes/$${THEME}/images/banner.png themes/$${THEME}/images/banner.jpg; \
 	done
 
+pre-config:
+
+	@bash scripts/pre-config.sh
+
 install:
 
 	mkdir -p $(DESTDIR)/usr/share/aguilas/
 	mkdir -p $(DESTDIR)/var/log/aguilas/
-	mkdir -p $(DESTDIR)/var/www/
 	cp -r locale themes $(DESTDIR)/usr/share/aguilas/
 	cp -r *.php $(DESTDIR)/usr/share/aguilas/
-	ln -s $(DESTDIR)/usr/share/aguilas /var/www/aguilas
 	
 	for LOG in $(LOGS); \
 	do \
@@ -65,6 +59,14 @@ install:
 	done \
 
 	chown -R www-data:www-data $(DESTDIR)/var/log/aguilas/
+
+config:
+
+	mkdir $(DESTDIR)/var/www/
+	ln -s $(DESTDIR)/usr/share/aguilas /var/www/aguilas
+
+	bash scripts/mysql-config.sh
+	bash scripts/ldap-config.sh
 
 uninstall:
 
@@ -79,8 +81,8 @@ clean:
 		rm -rf themes/$${THEME}/images/*.png; \
 		rm -rf themes/$${THEME}/images/*.jpg; \
 		rm -rf themes/$${THEME}/images/*.ico; \
-	done
+	done \
 
-distclean:
+	rm -rf config.php var com
 
 reinstall: uninstall install

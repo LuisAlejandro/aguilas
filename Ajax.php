@@ -70,7 +70,7 @@ if (!isset($obj_a) || !isset($val_a) || !isset($who_a) || !isset($cn_a)) {
     // If the modification was a success
     if ($mod) {
         // We log the event
-        $log_location = __DIR__ . "/logs/Ajax.log";
+        $log_location = "/var/log/aguilas/Ajax.log";
         $log_string = "[" . $time_today . "]: "
                     . _("Se ha modificado el atributo ") . $obj_a
                     . _(" del usuario ") . $who_a . ".\n";
