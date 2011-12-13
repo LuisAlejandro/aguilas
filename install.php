@@ -1,23 +1,23 @@
 <?php
 
-include "config.php";
-include "themes/$app_theme/header.php";
-include "Functions.php";
+include_once "config.php";
+include_once "themes/$app_theme/header.php";
+include_once "Functions.php";
 
 echo _("##CREATING:DATABASE##") . $mysql_dbname . " ...";
-include "CreateDatabase.php";
+include_once "CreateDatabase.php";
 
 echo _("##CREATING:TABLE:RESETPASSWORD##");
-include "CreatePasswordTable.php";
+include_once "CreatePasswordTable.php";
 
 echo _("##CREATING:TABLE:NEWUSER##");
-include "CreateUserTable.php";
+include_once "CreateUserTable.php";
 
 echo _("##CREATING:LDAP:MAXUID##");
-include "CreateMaxUIDEntry.php";
+include_once "CreateMaxUIDEntry.php";
 
 echo _("##DONE##");
 
-include "themes/$app_theme/footer.php";
+include_once "themes/$app_theme/footer.php";
 
 ?>

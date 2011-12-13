@@ -1,6 +1,6 @@
 <?php
-include "config.php";
-include "themes/$app_theme/header.php";
+include_once "config.php";
+include_once "themes/$app_theme/header.php";
 ?>
 
 <h2><?= _("##EDITUSERPROFILE##") ?></h2>
@@ -82,5 +82,5 @@ include "themes/$app_theme/header.php";
     var image_captcha_var = new Spry.Widget.ValidationTextField("image_captcha_js", "none", {validateOn:["blur"], maxChars:8});
 </script>
 <?php
-include "themes/$app_theme/footer.php";
+include_once "themes/$app_theme/footer.php";
 ?>

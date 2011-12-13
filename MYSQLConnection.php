@@ -14,7 +14,7 @@ $mysqls = mysql_select_db($mysql_dbname);
 
 if (!$mysqls) {
 
-    include "CreateDatabase.php";
+    include_once "CreateDatabase.php";
     
     $mysqls = mysql_select_db($mysql_dbname)
         or die (

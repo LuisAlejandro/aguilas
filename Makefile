@@ -46,7 +46,7 @@ gen-doc: clean-doc
 
 gen-conf: clean-conf
 
-	@bash scripts/pre-config.sh
+	@bash scripts/gen-conf.sh
 	@mkdir $(DESTDIR)/var/www/
 	@ln -s $(DESTDIR)/usr/share/aguilas /var/www/aguilas
 	@php -f install.php

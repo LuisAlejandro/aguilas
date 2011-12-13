@@ -2,11 +2,11 @@
 
 $allowed_ops = array("searchInput");
 
-include "config.php";
-include "themes/$app_theme/header.php";
-include "Parameters.php";
-include "LDAPConnection.php";
-include "Functions.php";
+include_once "config.php";
+include_once "themes/$app_theme/header.php";
+include_once "Parameters.php";
+include_once "LDAPConnection.php";
+include_once "Functions.php";
 
 ?>
 
@@ -58,6 +58,6 @@ if(!isset($searchInput)){
 // Closing the connection
 $ldapx = AssistedLDAPClose($ldapc);
 
-include "themes/$app_theme/footer.php";
+include_once "themes/$app_theme/footer.php";
 
 ?>

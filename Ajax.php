@@ -2,8 +2,8 @@
 
 $allowed_ops = array("obj_a", "val_a", "who_a", "cn_a");
 
-include "config.php";
-include "LDAPConnection.php";
+include_once "config.php";
+include_once "LDAPConnection.php";
 
 foreach( $_GET as $key => $value ){
     $asign = "\$" . $key . "='" . $value . "';";

@@ -2,12 +2,12 @@
 
 $allowed_ops = array("uid", "mail", "token");
 
-include "config.php";
-include "themes/$app_theme/header.php";
-include "Functions.php";
-include "Parameters.php";
-include "LDAPConnection.php";
-include "MYSQLConnection.php";
+include_once "config.php";
+include_once "themes/$app_theme/header.php";
+include_once "Functions.php";
+include_once "Parameters.php";
+include_once "LDAPConnection.php";
+include_once "MYSQLConnection.php";
 
 ?>
 
@@ -170,6 +170,6 @@ $ldapx = AssistedLDAPClose($ldapc);
 // Closing the connection
 $mysqlx = AssistedMYSQLClose($mysqlc);
 
-include "themes/$app_theme/footer.php";
+include_once "themes/$app_theme/footer.php";
 
 ?>

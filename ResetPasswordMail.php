@@ -2,12 +2,12 @@
 
 $allowed_ops = array("uid", "mail", "image_captcha");
 
-include "config.php";
-include "themes/$app_theme/header.php";
-include "Functions.php";
-include "Parameters.php";
-include "LDAPConnection.php";
-include "MYSQLConnection.php";
+include_once "config.php";
+include_once "themes/$app_theme/header.php";
+include_once "Functions.php";
+include_once "Parameters.php";
+include_once "LDAPConnection.php";
+include_once "MYSQLConnection.php";
 
 InitCaptcha();
 
@@ -92,7 +92,7 @@ if (!isset($uid) || !isset($mail) || !isset($token) || !isset($image_captcha)) {
 
         // Create the table if we don't have it
         if (!$val_r) {
-            include "CreatePasswordTable.php";
+            include_once "CreatePasswordTable.php";
         }
 
         // We build up our query to insert the user data into a temporary MYSQL Database
@@ -132,6 +132,6 @@ $ldapx = AssistedLDAPClose($ldapc);
 // Closing the connection
 $mysqlx = AssistedMYSQLClose($mysqlc);
 
-include "themes/$app_theme/footer.php";
+include_once "themes/$app_theme/footer.php";
 
 ?>
