@@ -270,7 +270,7 @@ function AssistedEMail($what, $where) {
  ******************************************************************************/
 
 function WriteLog($data, $log_file, $time_today) {
-    $log_location = __DIR__ . "/logs/" . $log_file . ".log";
+    $log_location = "/var/log/aguilas/" . $log_file . ".log";
     switch ($log_file) {
         case "ChangePasswordDo":
             $log_string = "[" . $time_today . "]: "
