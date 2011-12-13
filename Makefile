@@ -1,77 +1,102 @@
-
 INSTALL=install -m 0644
-INSTALL_DIR=install -d
-IMAGES=$(wildcard themes/canaima/images/*.svg)
-THEMES=$(wildcard themes/*)
-PHP=$(wildcard *.php)
+INSTALLDIR=install -d
+IMAGES=$(shell ls themes/canaima/images/ | grep ".svg" | sed 's/.svg//g')
+THEMES=$(shell ls themes/)
+PHPS=$(wildcard *.php)
 LOGS=$(wildcard logs/*.log)
+CONVERT=$(shell which convert)
+RST2MAN=$(shell which rst2man)
+ICOTOOL=$(shell which icotool)
+SPHINX=$(shell which sphinx-build)
 
+all: gen-img gen-config
 
-all: gen-img data
+build: gen-img gen-doc
 
-gen-img:
+build-all: gen-img gen-doc gen-config
 
-	$(MAKE) clean-img
+gen-img: clean-img
+
+	@if [ ! -e check-builddep ]; then \
+		$(MAKE) check-builddep; \
+	fi
+
+	@printf "Generating images from source [SVG > PNG,ICO] ["
 	@for THEME in $(THEMES); do \
-		@for IMAGE in $(IMAGES); do \
-			@convert themes/$${THEME}/images/$${IMAGE}.svg themes/$${THEME}/images/$${IMAGE}.png; \
-			@echo "Generating images from source [SVG > PNG]"; \
-			@printf "."; \
+		for IMAGE in $(IMAGES); do \
+			convert themes/$${THEME}/images/$${IMAGE}.svg themes/$${THEME}/images/$${IMAGE}.png; \
+			printf "."; \
 		done; \
 		icotool -c -o themes/$${THEME}/images/favicon.ico themes/$${THEME}/images/favicon.png; \
 	done
+	@printf "]\n"
 
-doc:
+	@touch gen-img
 
-	$(MAKE) clean-doc
-        rst2man --language="en" --title="AGUILAS" docs/man-aguilas.rst docs/aguilas.1
-	$(MAKE) -C docs latex
+gen-doc: clean-doc 
+
+	@if [ ! -e check-builddep ]; then \
+		$(MAKE) check-builddep; \
+	fi
+
 	$(MAKE) -C docs html
-	$(MAKE) -C docs/_build/latex all-pdf
+        @rst2man --language="en" --title="AGUILAS" docs/man-aguilas.rst docs/aguilas.1
 
-data:
+	@touch doc
 
-	$(MAKE) clean-data
+gen-conf: clean-conf
+
 	@bash scripts/pre-config.sh
+	@mkdir $(DESTDIR)/var/www/
+	@ln -s $(DESTDIR)/usr/share/aguilas /var/www/aguilas
+	@php -f install.php
 
-install:
+	@touch data
 
-	mkdir -p $(DESTDIR)/usr/share/aguilas/
-	mkdir -p $(DESTDIR)/var/log/aguilas/
-	$(INSTALL_DIR) locale themes $(DESTDIR)/usr/share/aguilas/
-	$(INSTALL) $(PHP) $(DESTDIR)/usr/share/aguilas/
-	$(INSTALL) $(LOGS) $(DESTDIR)/var/log/aguilas/
-	chown -R www-data:www-data $(DESTDIR)/var/log/aguilas/
+clean: clean-img clean-doc clean-conf
 
-config:
-
-	mkdir $(DESTDIR)/var/www/
-	ln -s $(DESTDIR)/usr/share/aguilas /var/www/aguilas
-	php -f install.php
-
-uninstall:
-
-	rm -rf $(DESTDIR)/usr/share/aguilas/
-	rm -rf $(DESTDIR)/var/log/aguilas/
-	rm -rf $(DESTDIR)/var/www/aguilas/
+clean-all: clean-img clean-doc clean-conf
 
 clean-img:
 
-	for THEME in $(THEMES); \
-	do \
-		rm -rf themes/$${THEME}/images/*.png; \
-		rm -rf themes/$${THEME}/images/*.jpg; \
-		rm -rf themes/$${THEME}/images/*.ico; \
-	done \
-
-clean-data:
-
-	rm -rf config.php var com
+	@printf "Cleaning generated images [PNG,ICO] ["
+	@for THEME in $(THEMES); do \
+		for IMAGE in $(IMAGES); do \
+			rm -rf themes/$${THEME}/images/$${IMAGE}.png; \
+			printf "."; \
+		done; \
+		rm -rf themes/$${THEME}/images/favicon.ico; \
+	done
+	@printf "]\n"
 
 clean-doc:
 
 	$(MAKE) -C docs clean
-	rm -rf docs/_build
-	rm -rf docs/aguilas.1
-	
+	@rm -rf docs/_build
+	@rm -rf docs/aguilas.1
+
+clean-conf:
+
+	@rm -rf config.php var com
+
+install:
+
+	@if [ -e gen-img ] && [ -e gen-config ]; then \
+		mkdir -p $(DESTDIR)/usr/share/aguilas/; \
+		mkdir -p $(DESTDIR)/var/log/aguilas/; \
+		$(INSTALLDIR) locale themes $(DESTDIR)/usr/share/aguilas/; \
+		$(INSTALL) $(PHPS) $(DESTDIR)/usr/share/aguilas/; \
+		$(INSTALL) $(LOGS) $(DESTDIR)/var/log/aguilas/; \
+		chown -R www-data:www-data $(DESTDIR)/var/log/aguilas/; \
+	else
+		@echo "You must run 'make gen-img' and 'make data' before you can install."
+	fi
+
+uninstall:
+
+	@rm -rf $(DESTDIR)/usr/share/aguilas/
+	@rm -rf $(DESTDIR)/var/log/aguilas/
+	@rm -rf $(DESTDIR)/var/www/aguilas/
+	@echo "Uninstalled"
+
 reinstall: uninstall install
