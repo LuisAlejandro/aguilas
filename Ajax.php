@@ -3,6 +3,7 @@
 $allowed_ops = array("obj_a", "val_a", "who_a", "cn_a");
 
 include_once "config.php";
+include_once "Locale.php";
 include_once "LDAPConnection.php";
 
 foreach( $_GET as $key => $value ){

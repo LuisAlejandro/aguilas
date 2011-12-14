@@ -3,6 +3,7 @@
 $allowed_ops = array("uid", "mail", "token");
 
 include_once "config.php";
+include_once "Locale.php";
 include_once "themes/$app_theme/header.php";
 include_once "Functions.php";
 include_once "Parameters.php";
