@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: ../../../\n"
 
 #: ../../../EditProfileDo.php:15
-msgid "##USERPROFILE##"
+msgid "USERPROFILE"
 msgstr ""
 
 #: ../../../EditProfileDo.php:99
@@ -26,40 +26,40 @@ msgstr ""
 #: ../../../EditProfileForm.php:14
 #: ../../../ResetPasswordForm.php:16
 #: ../../../ChangePasswordForm.php:14
-msgid "##USERNAME##"
+msgid "USERNAME"
 msgstr ""
 
 #: ../../../EditProfileDo.php:100
-msgid "##ID##"
+msgid "ID"
 msgstr ""
 
 #: ../../../EditProfileDo.php:101
-msgid "##FIRSTNAME:FORM##"
+msgid "FIRSTNAME:FORM"
 msgstr ""
 
 #: ../../../EditProfileDo.php:102
-msgid "##LASTNAME:FORM##"
+msgid "LASTNAME:FORM"
 msgstr ""
 
 #: ../../../EditProfileDo.php:103
-msgid "##COMPLETENAME:FORM##"
+msgid "COMPLETENAME:FORM"
 msgstr ""
 
 #: ../../../EditProfileDo.php:104
 #: ../../../DeleteUserForm.php:36
 #: ../../../ResetPasswordForm.php:38
 #: ../../../ChangePasswordForm.php:36
-msgid "##EMAIL##"
+msgid "EMAIL"
 msgstr ""
 
 #: ../../../EditProfileDo.php:105
 #: ../../../DeleteUserForm.php:58
 #: ../../../EditProfileForm.php:36
-msgid "##PASSWORD##"
+msgid "PASSWORD"
 msgstr ""
 
 #: ../../../EditProfileDo.php:106
-msgid "##GROUP##"
+msgid "GROUP"
 msgstr ""
 
 #: ../../../ChangePasswordDo.php:15
@@ -67,35 +67,35 @@ msgstr ""
 #: ../../../ResendMailDo.php:15
 #: ../../../ResetPasswordMail.php:16
 #: ../../../ResetPasswordDo.php:14
-msgid "##REQUESTSTATUS##"
+msgid "REQUESTSTATUS"
 msgstr ""
 
 #: ../../../MYSQLConnection.php:6
-msgid "##MYSQL:CONNECT:ERROR##"
+msgid "MYSQL:CONNECT:ERROR"
 msgstr ""
 
 #: ../../../MYSQLConnection.php:8
 #: ../../../MYSQLConnection.php:25
-msgid "##BACK##"
+msgid "BACK"
 msgstr ""
 
 #: ../../../MYSQLConnection.php:21
-msgid "##MYSQL:SELECTDB:ERROR##"
+msgid "MYSQL:SELECTDB:ERROR"
 msgstr ""
 
 #: ../../../DeleteUserForm.php:6
-msgid "##DELETEUSER:TITLE##"
+msgid "DELETEUSER:TITLE"
 msgstr ""
 
 #: ../../../DeleteUserForm.php:8
-msgid "##DELETEUSER:GREETINGS##"
+msgid "DELETEUSER:GREETINGS"
 msgstr ""
 
 #: ../../../DeleteUserForm.php:17
 #: ../../../EditProfileForm.php:17
 #: ../../../ResetPasswordForm.php:19
 #: ../../../ChangePasswordForm.php:17
-msgid "##USER:EXAMPLE##"
+msgid "USER:EXAMPLE"
 msgstr ""
 
 #: ../../../DeleteUserForm.php:23
@@ -115,7 +115,7 @@ msgstr ""
 #: ../../../ChangePasswordForm.php:89
 #: ../../../ChangePasswordForm.php:111
 #: ../../../ChangePasswordForm.php:136
-msgid "##EMPTY:WARNING##"
+msgid "EMPTY:WARNING"
 msgstr ""
 
 #: ../../../DeleteUserForm.php:26
@@ -126,37 +126,37 @@ msgstr ""
 #: ../../../ChangePasswordForm.php:70
 #: ../../../ChangePasswordForm.php:92
 #: ../../../ChangePasswordForm.php:117
-msgid "##LONGERTHAN30##"
+msgid "LONGERTHAN30"
 msgstr ""
 
 #: ../../../DeleteUserForm.php:29
 #: ../../../EditProfileForm.php:29
 #: ../../../ResetPasswordForm.php:31
 #: ../../../ChangePasswordForm.php:29
-msgid "##ATLEAST3##"
+msgid "ATLEAST3"
 msgstr ""
 
 #: ../../../DeleteUserForm.php:39
 #: ../../../ResetPasswordForm.php:41
 #: ../../../ChangePasswordForm.php:39
-msgid "##EMAIL:EXAMPLE##"
+msgid "EMAIL:EXAMPLE"
 msgstr ""
 
 #: ../../../DeleteUserForm.php:48
 #: ../../../ResetPasswordForm.php:28
 #: ../../../ResetPasswordForm.php:50
 #: ../../../ChangePasswordForm.php:48
-msgid "##LONGERTHAN60##"
+msgid "LONGERTHAN60"
 msgstr ""
 
 #: ../../../DeleteUserForm.php:51
 #: ../../../ResetPasswordForm.php:53
 #: ../../../ChangePasswordForm.php:51
-msgid "##INVALIDFORMAT##"
+msgid "INVALIDFORMAT"
 msgstr ""
 
 #: ../../../DeleteUserForm.php:61
-msgid "##ATLEAST8CHARS##"
+msgid "ATLEAST8CHARS"
 msgstr ""
 
 #: ../../../DeleteUserForm.php:73
@@ -164,1101 +164,1101 @@ msgstr ""
 #: ../../../ChangePasswordForm.php:73
 #: ../../../ChangePasswordForm.php:95
 #: ../../../ChangePasswordForm.php:120
-msgid "##ATLEAST8##"
+msgid "ATLEAST8"
 msgstr ""
 
 #: ../../../DeleteUserForm.php:80
 #: ../../../ResetPasswordForm.php:60
 #: ../../../ChangePasswordForm.php:127
-msgid "##CAPTCHA##"
+msgid "CAPTCHA"
 msgstr ""
 
 #: ../../../DeleteUserForm.php:92
 #: ../../../EditProfileForm.php:70
 #: ../../../ResetPasswordForm.php:72
 #: ../../../ChangePasswordForm.php:139
-msgid "##LONGERTHAN8##"
+msgid "LONGERTHAN8"
 msgstr ""
 
 #: ../../../DeleteUserForm.php:98
 #: ../../../EditProfileForm.php:76
 #: ../../../ResetPasswordForm.php:78
 #: ../../../ChangePasswordForm.php:145
-msgid "##SEND##"
+msgid "SEND"
 msgstr ""
 
 #: ../../../Ajax.php:23
-msgid "##INTRUSION:WARNING##"
+msgid "INTRUSION:WARNING"
 msgstr ""
 
 #: ../../../Ajax.php:33
-msgid "##FIRSTNAME:INVALID##"
+msgid "FIRSTNAME:INVALID"
 msgstr ""
 
 #: ../../../Ajax.php:38
-msgid "##FIRSTNAME:INVALID:LENGTH##"
+msgid "FIRSTNAME:INVALID:LENGTH"
 msgstr ""
 
 #: ../../../Ajax.php:43
-msgid "##LASTNAME:INVALID##"
+msgid "LASTNAME:INVALID"
 msgstr ""
 
 #: ../../../Ajax.php:48
-msgid "##LASTNAME:INVALID:LENGTH##"
+msgid "LASTNAME:INVALID:LENGTH"
 msgstr ""
 
 #: ../../../Ajax.php:53
-msgid "##EMAIL:INVALID##"
+msgid "EMAIL:INVALID"
 msgstr ""
 
 #: ../../../Ajax.php:75
-msgid "##MODATTRIBUTE##"
+msgid "MODATTRIBUTE"
 msgstr ""
 
 #: ../../../Ajax.php:76
-msgid "##OFTHEUSER##"
+msgid "OFTHEUSER"
 msgstr ""
 
 #: ../../../Ajax.php:87
-msgid "##LDAP:CLOSE:ERROR##"
+msgid "LDAP:CLOSE:ERROR"
 msgstr "Hubo un error cerrando la conexión con el LDAP: "
 
 #: ../../../install.php:7
-msgid "##CREATING:DATABASE##"
+msgid "CREATING:DATABASE"
 msgstr ""
 
 #: ../../../install.php:10
-msgid "##CREATING:TABLE:RESETPASSWORD##"
+msgid "CREATING:TABLE:RESETPASSWORD"
 msgstr ""
 
 #: ../../../install.php:13
-msgid "##CREATING:TABLE:NEWUSER##"
+msgid "CREATING:TABLE:NEWUSER"
 msgstr ""
 
 #: ../../../install.php:16
-msgid "##CREATING:LDAP:MAXUID##"
+msgid "CREATING:LDAP:MAXUID"
 msgstr ""
 
 #: ../../../install.php:19
-msgid "##DONE##"
+msgid "DONE"
 msgstr ""
 
 #: ../../../EditProfileForm.php:6
-msgid "##EDITUSERPROFILE##"
+msgid "EDITUSERPROFILE"
 msgstr ""
 
 #: ../../../EditProfileForm.php:8
-msgid "##EDITUSERPROFILE:GREETINGS##"
+msgid "EDITUSERPROFILE:GREETINGS"
 msgstr ""
 
 #: ../../../EditProfileForm.php:39
-msgid "##ENTERYOURPASSWORD:FORM##"
+msgid "ENTERYOURPASSWORD:FORM"
 msgstr ""
 
 #: ../../../ResetPasswordForm.php:6
-msgid "##RESETPASSWORD##"
+msgid "RESETPASSWORD"
 msgstr ""
 
 #: ../../../ResetPasswordForm.php:9
-msgid "##RESETPASSWORD:GREETINGS##"
+msgid "RESETPASSWORD:GREETINGS"
 msgstr ""
 
 #: ../../../Parameters.php:11
-msgid "##PETITION##"
+msgid "PETITION"
 msgstr ", a petición de "
 
 #: ../../../ChangePasswordForm.php:6
-msgid "##CHANGEPASSWORD:TITLE##"
+msgid "CHANGEPASSWORD:TITLE"
 msgstr ""
 
 #: ../../../ChangePasswordForm.php:8
-msgid "##FORM:CHANGEPASSWORD:GREETINGS##"
+msgid "FORM:CHANGEPASSWORD:GREETINGS"
 msgstr ""
 
 #: ../../../ChangePasswordForm.php:58
-msgid "##YOURPASSWORD##"
+msgid "YOURPASSWORD"
 msgstr ""
 
 #: ../../../ChangePasswordForm.php:61
-msgid "##PRESENTPASSWORD##"
+msgid "PRESENTPASSWORD"
 msgstr ""
 
 #: ../../../ChangePasswordForm.php:80
-msgid "##NEWPASSWORD##"
+msgid "NEWPASSWORD"
 msgstr ""
 
 #: ../../../ChangePasswordForm.php:83
-msgid "##NEWPASSWORDDESC##"
+msgid "NEWPASSWORDDESC"
 msgstr ""
 
 #: ../../../ChangePasswordForm.php:102
-msgid "##NEWPASSWORDREPEAT##"
+msgid "NEWPASSWORDREPEAT"
 msgstr ""
 
 #: ../../../ChangePasswordForm.php:105
-msgid "##NEWPASSWORDREPEATDESC##"
+msgid "NEWPASSWORDREPEATDESC"
 msgstr ""
 
 #: ../../../ChangePasswordForm.php:114
-msgid "##PASSWORD:DIFFERENT##"
+msgid "PASSWORD:DIFFERENT"
 msgstr ""
 
 #: ../../../ForgotUsernameDo.php:15
 #: ../../../Search.php:13
-msgid "##SEARCHRESULTS##"
+msgid "SEARCHRESULTS"
 msgstr ""
 
 #: ../../../ForgotUsernameDo.php:72
-msgid "##ASSOCIATEDUSERS##"
+msgid "ASSOCIATEDUSERS"
 msgstr ""
 
 #: ../../../Functions.php:11
-msgid "##LDAP:INSERT:ERROR##"
+msgid "LDAP:INSERT:ERROR"
 msgstr "Hubo un error agregando entradas del LDAP: "
 
 #: ../../../Functions.php:25
-msgid "##LDAP:MODIFY:ERROR##"
+msgid "LDAP:MODIFY:ERROR"
 msgstr "Hubo un error modificando entradas del LDAP: "
 
 #: ../../../Functions.php:39
-msgid "##LDAP:DELETE:ERROR##"
+msgid "LDAP:DELETE:ERROR"
 msgstr "Hubo un error eliminando entradas del LDAP: "
 
 #: ../../../Functions.php:69
-msgid "##LDAP:SEARCH:ERROR##"
+msgid "LDAP:SEARCH:ERROR"
 msgstr ""
 
 #: ../../../Functions.php:81
-msgid "##LDAP:SORT:ERROR##"
+msgid "LDAP:SORT:ERROR"
 msgstr ""
 
 #: ../../../Functions.php:93
-msgid "##LDAP:GET:ERROR##"
+msgid "LDAP:GET:ERROR"
 msgstr ""
 
 #: ../../../Functions.php:107
-msgid "##MYSQL:QUERY:ERROR##"
+msgid "MYSQL:QUERY:ERROR"
 msgstr ""
 
 #: ../../../Functions.php:121
-msgid "##MYSQL:CLOSE:ERROR##"
+msgid "MYSQL:CLOSE:ERROR"
 msgstr ""
 
 #: ../../../Functions.php:143
-msgid "##EMAIL:PASSWORD:CHANGE##"
+msgid "EMAIL:PASSWORD:CHANGE"
 msgstr ""
 
 #: ../../../Functions.php:154
-msgid "##EMAIL:PASSWORD:GREETINGS##"
+msgid "EMAIL:PASSWORD:GREETINGS"
 msgstr ""
 
 #: ../../../Functions.php:154
-msgid "##EMAIL:PASSWORD:HASBEENCHANGED##"
+msgid "EMAIL:PASSWORD:HASBEENCHANGED"
 msgstr ""
 
 #: ../../../Functions.php:163
-msgid "##EMAIL:PASSWORD:NEW##"
+msgid "EMAIL:PASSWORD:NEW"
 msgstr ""
 
 #: ../../../Functions.php:178
-msgid "##EMAIL:PASSWORD:WHY##"
+msgid "EMAIL:PASSWORD:WHY"
 msgstr ""
 
 #: ../../../Functions.php:180
-msgid "##IN##"
+msgid "IN"
 msgstr ""
 
 #: ../../../Functions.php:182
 #: ../../../Functions.php:233
-msgid "##EMAIL:CLICK:CONFIRM##"
+msgid "EMAIL:CLICK:CONFIRM"
 msgstr ""
 
 #: ../../../Functions.php:192
-msgid "##EMAIL:PASSWORD:NEW2##"
+msgid "EMAIL:PASSWORD:NEW2"
 msgstr ""
 
 #: ../../../Functions.php:203
-msgid "##EMAIL:PASSWORD:GREETINGS2##"
+msgid "EMAIL:PASSWORD:GREETINGS2"
 msgstr ""
 
 #: ../../../Functions.php:214
-msgid "##EMAIL:NEWUSER:ACTIVATION##"
+msgid "EMAIL:NEWUSER:ACTIVATION"
 msgstr ""
 
 #: ../../../Functions.php:228
-msgid "##HI##"
+msgid "HI"
 msgstr ""
 
 #: ../../../Functions.php:230
-msgid "##EMAIL:NEWUSER:REQUEST##"
+msgid "EMAIL:NEWUSER:REQUEST"
 msgstr ""
 
 #: ../../../Functions.php:243
-msgid "##EMAIL:DELETEDUSER:TITLE##"
+msgid "EMAIL:DELETEDUSER:TITLE"
 msgstr ""
 
 #: ../../../Functions.php:253
-msgid "##EMAIL:DELETEDUSER:GREETINGS##"
+msgid "EMAIL:DELETEDUSER:GREETINGS"
 msgstr ""
 
 #: ../../../Functions.php:255
-msgid "##EMAIL:DELETEDUSER:SUCCESS##"
+msgid "EMAIL:DELETEDUSER:SUCCESS"
 msgstr ""
 
 #: ../../../Functions.php:277
-msgid "##LOG:CHANGEPASSWORD:DONE##"
+msgid "LOG:CHANGEPASSWORD:DONE"
 msgstr ""
 
 #: ../../../Functions.php:282
-msgid "##LOG:RESETPASSWORD:CONFIRM##"
+msgid "LOG:RESETPASSWORD:CONFIRM"
 msgstr ""
 
 #: ../../../Functions.php:289
-msgid "##LOG:RESETPASSWORD:DONE##"
+msgid "LOG:RESETPASSWORD:DONE"
 msgstr ""
 
 #: ../../../Functions.php:296
-msgid "##LOG:NEWUSER:CONFIRM:AGAIN##"
+msgid "LOG:NEWUSER:CONFIRM:AGAIN"
 msgstr ""
 
 #: ../../../Functions.php:303
-msgid "##LOG:NEWUSER:CONFIRM##"
+msgid "LOG:NEWUSER:CONFIRM"
 msgstr ""
 
 #: ../../../Functions.php:310
-msgid "##LOG:DELETEUSER:DONE##"
+msgid "LOG:DELETEUSER:DONE"
 msgstr ""
 
 #: ../../../Functions.php:316
-msgid "##LOG:NEWUSER:DONE##"
+msgid "LOG:NEWUSER:DONE"
 msgstr ""
 
 #: ../../../Functions.php:394
 #: ../../../Functions.php:404
-msgid "##FORM:ERROR##"
+msgid "FORM:ERROR"
 msgstr ""
 
 #: ../../../Functions.php:414
-msgid "##SEARCH:INVALID##"
+msgid "SEARCH:INVALID"
 msgstr ""
 
 #: ../../../Functions.php:434
-msgid "##TOKEN:INVALID##"
+msgid "TOKEN:INVALID"
 msgstr ""
 
 #: ../../../Functions.php:444
-msgid "##USERNAME:INVALID##"
+msgid "USERNAME:INVALID"
 msgstr ""
 
 #: ../../../Functions.php:454
-msgid "##PASSWORD:INVALID##"
+msgid "PASSWORD:INVALID"
 msgstr ""
 
 #: ../../../Functions.php:464
-msgid "##OLDPASSWORD:INVALID##"
+msgid "OLDPASSWORD:INVALID"
 msgstr ""
 
 #: ../../../Functions.php:484
-msgid "##PASSWORD:INVALID:LENGTH##"
+msgid "PASSWORD:INVALID:LENGTH"
 msgstr ""
 
 #: ../../../Functions.php:494
-msgid "##USERNAME:INVALID:LENGTH##"
+msgid "USERNAME:INVALID:LENGTH"
 msgstr ""
 
 #: ../../../Functions.php:524
-msgid "##OLDPASSWORD:INVALID:LENGTH##"
+msgid "OLDPASSWORD:INVALID:LENGTH"
 msgstr ""
 
 #: ../../../Functions.php:554
-msgid "##USERNAME:EXISTS##"
+msgid "USERNAME:EXISTS"
 msgstr ""
 
 #: ../../../Functions.php:564
-msgid "##EMAIL:EXISTS##"
+msgid "EMAIL:EXISTS"
 msgstr ""
 
 #: ../../../Functions.php:578
-msgid "##NOMATCH##"
+msgid "NOMATCH"
 msgstr ""
 
 #: ../../../Functions.php:588
-msgid "##DATABASE:CORRUPTION##"
+msgid "DATABASE:CORRUPTION"
 msgstr ""
 
 #: ../../../Functions.php:598
-msgid "##NOMATCH:ACCOUNT##"
+msgid "NOMATCH:ACCOUNT"
 msgstr ""
 
 #: ../../../Functions.php:608
-msgid "##FINAL:ERROR:CHANGEPASSWORD##"
+msgid "FINAL:ERROR:CHANGEPASSWORD"
 msgstr ""
 
 #: ../../../Functions.php:611
 #: ../../../Functions.php:624
-msgid "##FINAL:ERROR:CONFIRMATION##"
+msgid "FINAL:ERROR:CONFIRMATION"
 msgstr ""
 
 #: ../../../Functions.php:614
-msgid "##FINAL:ERROR:RESETPASSWORD##"
+msgid "FINAL:ERROR:RESETPASSWORD"
 msgstr ""
 
 #: ../../../Functions.php:617
-msgid "##FINAL:ERROR:DELETEUSER##"
+msgid "FINAL:ERROR:DELETEUSER"
 msgstr ""
 
 #: ../../../Functions.php:620
-msgid "##FINAL:ERROR:NEWUSER##"
+msgid "FINAL:ERROR:NEWUSER"
 msgstr ""
 
 #: ../../../Functions.php:639
-msgid "##FINAL:SUCCESS:RESETPASSWORD##"
+msgid "FINAL:SUCCESS:RESETPASSWORD"
 msgstr ""
 
 #: ../../../Functions.php:642
-msgid "##FINAL:CONFIRM:RESETPASSWORD##"
+msgid "FINAL:CONFIRM:RESETPASSWORD"
 msgstr ""
 
 #: ../../../Functions.php:645
-msgid "##FINAL:SUCCESS:RESETPASSWORD:EMAIL##"
+msgid "FINAL:SUCCESS:RESETPASSWORD:EMAIL"
 msgstr ""
 
 #: ../../../Functions.php:648
-msgid "##FINAL:SUCCESS:DELETE##"
+msgid "FINAL:SUCCESS:DELETE"
 msgstr ""
 
 #: ../../../Functions.php:651
-msgid "##FINAL:SUCCESS:NEWUSER##"
+msgid "FINAL:SUCCESS:NEWUSER"
 msgstr ""
 
 #: ../../../Functions.php:655
-msgid "##FINAL:CONFIRM:NEWUSER##"
+msgid "FINAL:CONFIRM:NEWUSER"
 msgstr ""
 
 #: ../../../Functions.php:662
-msgid "##START##"
+msgid "START"
 msgstr ""
 
 #: ../../../Functions.php:680
-msgid "##REALNAME##"
+msgid "REALNAME"
 msgstr ""
 
 #: ../../../Functions.php:709
-msgid "##CLICKTOEDIT##"
+msgid "CLICKTOEDIT"
 msgstr ""
 
 #: ../../../Functions.php:711
-msgid "##CANNOTEDIT##"
+msgid "CANNOTEDIT"
 msgstr ""
 
 #: ../../../Functions.php:737
-msgid "##SAVE##"
+msgid "SAVE"
 msgstr ""
 
 #: ../../../Functions.php:738
-msgid "##CANCEL##"
+msgid "CANCEL"
 msgstr ""
 
 #: ../../../Search.php:51
-msgid "##XXUSERSFOUND##"
+msgid "XXUSERSFOUND"
 msgstr ""
 
 #: ../../../ForgotUsernameForm.php:6
-msgid "##REMINDUSERNAME:TITLE##"
+msgid "REMINDUSERNAME:TITLE"
 msgstr ""
 
 #: ../../../ForgotUsernameForm.php:8
-msgid "##REMINDUSERNAME:GREETINGS##"
+msgid "REMINDUSERNAME:GREETINGS"
 msgstr ""
 
 #: ../../../LDAPConnection.php:8
-msgid "##LDAP:CONNECT:ERROR##"
+msgid "LDAP:CONNECT:ERROR"
 msgstr ""
 
 #: ../../../LDAPConnection.php:18
 #: ../../../LDAPConnection.php:29
-msgid "##LDAP:CONFIG:ERROR##"
+msgid "LDAP:CONFIG:ERROR"
 msgstr ""
 
 #: ../../../LDAPConnection.php:41
-msgid "##LDAP:TLS:ERROR##"
+msgid "LDAP:TLS:ERROR"
 msgstr ""
 
 #: ../../../LDAPConnection.php:53
-msgid "##LDAP:BIND:ERROR##"
+msgid "LDAP:BIND:ERROR"
 msgstr ""
 
 #: ../../../ResendMailForm.php:6
-msgid "##RESENDEMAIL:TITLE##"
+msgid "RESENDEMAIL:TITLE"
 msgstr ""
 
 #: ../../../ResendMailForm.php:8
-msgid "##RESENDEMAIL:GREETINGS##"
+msgid "RESENDEMAIL:GREETINGS"
 msgstr ""
 
 #: ../../../Browse.php:13
-msgid "##USERSFROM##"
+msgid "USERSFROM"
 msgstr ""
 
 #: ../../../Browse.php:31
-msgid "##INVALIDLETTER##"
+msgid "INVALIDLETTER"
 msgstr ""
 
 #: ../../../Browse.php:74
-msgid "##XUSERSFOUND##"
+msgid "XUSERSFOUND"
 msgstr ""
 
 #: ../../../NewUserForm.php:6
-msgid "##REQUESTNEWUSERACCOUNT:TITLE##"
+msgid "REQUESTNEWUSERACCOUNT:TITLE"
 msgstr ""
 
 #: ../../../NewUserForm.php:8
-msgid "##REQUESTNEWUSERACCOUNT:GREETINGS##"
+msgid "REQUESTNEWUSERACCOUNT:GREETINGS"
 msgstr ""
 
 #: ../../../NewUserForm.php:8
-msgid "##REQUESTNEWUSERACCOUNT:INTRO##"
+msgid "REQUESTNEWUSERACCOUNT:INTRO"
 msgstr ""
 
 #: ../../../NewUserForm.php:17
-msgid "##FIRSTNAME:EXAMPLE##"
+msgid "FIRSTNAME:EXAMPLE"
 msgstr ""
 
 #: ../../../NewUserForm.php:36
-msgid "##LASTNAME:EXAMPLE##"
+msgid "LASTNAME:EXAMPLE"
 msgstr ""
 
 #: ../../../NewUserForm.php:118
-msgid "##PASSWORDREPEAT##"
+msgid "PASSWORDREPEAT"
 msgstr ""
 
 #: ../../../themes/debian/index.php:2
-msgid "##WELCOMETO##"
+msgid "WELCOMETO"
 msgstr ""
 
 #: ../../../themes/debian/index.php:4
-msgid "##INDEX:GREETINGS##"
+msgid "INDEX:GREETINGS"
 msgstr ""
 
 #: ../../../themes/debian/index.php:5
-msgid "##INDEX:GREETINGS2##"
+msgid "INDEX:GREETINGS2"
 msgstr ""
 
 #: ../../../themes/debian/index.php:20
-msgid "##INDEX:NEWUSER##"
+msgid "INDEX:NEWUSER"
 msgstr ""
 
 #: ../../../themes/debian/index.php:24
-msgid "##INDEX:DIDNTGETTHEEMAIL##"
+msgid "INDEX:DIDNTGETTHEEMAIL"
 msgstr ""
 
 #: ../../../themes/debian/index.php:30
-msgid "##INDEX:CHANGEPASSWORD##"
+msgid "INDEX:CHANGEPASSWORD"
 msgstr ""
 
 #: ../../../themes/debian/index.php:34
-msgid "##INDEX:RESETPASSWORD##"
+msgid "INDEX:RESETPASSWORD"
 msgstr ""
 
 #: ../../../themes/debian/index.php:40
-msgid "##INDEX:FORGOTUSERNAME##"
+msgid "INDEX:FORGOTUSERNAME"
 msgstr ""
 
 #: ../../../themes/debian/index.php:45
 #: ../../../themes/debian/footer.php:18
-msgid "##DELETEUSER##"
+msgid "DELETEUSER"
 msgstr ""
 
 #: ../../../themes/debian/index.php:50
-msgid "##INDEX:EDITPROFILE##"
+msgid "INDEX:EDITPROFILE"
 msgstr ""
 
 #: ../../../themes/debian/index.php:55
-msgid "##INDEX:BROWSEUSERS##"
+msgid "INDEX:BROWSEUSERS"
 msgstr ""
 
 #: ../../../themes/debian/footer.php:6
-msgid "##NEWUSER##"
+msgid "NEWUSER"
 msgstr ""
 
 #: ../../../themes/debian/footer.php:9
-msgid "##CHANGEPASSWORD##"
+msgid "CHANGEPASSWORD"
 msgstr ""
 
 #: ../../../themes/debian/footer.php:15
-msgid "##REMINDUSER##"
+msgid "REMINDUSER"
 msgstr ""
 
 #: ../../../themes/debian/footer.php:21
-msgid "##EDITPROFILE##"
+msgid "EDITPROFILE"
 msgstr ""
 
 #: ../../../themes/debian/footer.php:24
-msgid "##BROWSEUSERS##"
+msgid "BROWSEUSERS"
 msgstr ""
 
 #: ../../../themes/debian/footer.php:29
-msgid "##POWEREDBY##"
+msgid "POWEREDBY"
 msgstr ""
 
 #: ../../../themes/debian/footer.php:35
-msgid "##DEVELOPEDBY##"
+msgid "DEVELOPEDBY"
 msgstr ""
 
 #: ../../../themes/debian/header.php:65
 #: ../../../themes/canaima/header.php:65
-msgid "##SEARCH:FIELD:DESCRIPTION##"
+msgid "SEARCH:FIELD:DESCRIPTION"
 msgstr ""
 
 #: ../../../themes/debian/header.php:67
 #: ../../../themes/canaima/header.php:67
-msgid "##SEARCHUSER##"
+msgid "SEARCHUSER"
 msgstr ""
 
-#~ msgid "##A##"
+#~ msgid "A"
 #~ msgstr ", a petición de "
 
-#~ msgid "##B##"
+#~ msgid "B"
 #~ msgstr "Hubo un error agregando entradas del LDAP: "
 
-#~ msgid "##C##"
+#~ msgid "C"
 #~ msgstr "Atrás"
 
-#~ msgid "##D##"
+#~ msgid "D"
 #~ msgstr "Hubo un error modificando entradas del LDAP: "
 
-#~ msgid "##E##"
+#~ msgid "E"
 #~ msgstr "Hubo un error eliminando entradas del LDAP: "
 
-#~ msgid "##F##"
+#~ msgid "F"
 #~ msgstr "Hubo un error cerrando la conexión con el LDAP: "
 
-#~ msgid "##G##"
+#~ msgid "G"
 #~ msgstr "Hubo un error en la buśqueda con el LDAP: "
 
-#~ msgid "##H##"
+#~ msgid "H"
 #~ msgstr "Hubo un error ordenando los resultados del LDAP: "
 
-#~ msgid "##I##"
+#~ msgid "I"
 #~ msgstr "Hubo un error retirando los resultados del LDAP: "
 
-#~ msgid "##J##"
+#~ msgid "J"
 #~ msgstr "Hubo un error en la consulta a la Base de Datos MYSQL: "
 
-#~ msgid "##k##"
+#~ msgid "k"
 #~ msgstr "Hubo un error cerrando la conexión con la Base de Datos MYSQL: "
 
-#~ msgid "##l##"
+#~ msgid "l"
 #~ msgstr "Cambio de Contraseña en "
 
-#~ msgid "#lkñk##"
+#~ msgid "#lkñk"
 #~ msgstr "Hola! Tu contraseña en "
 
-#~ msgid "##o##"
+#~ msgid "o"
 #~ msgstr " ha sido cambiada."
 
-#~ msgid "##n##"
+#~ msgid "n"
 #~ msgstr "Petición de Nueva Contraseña en "
 
-#~ msgid "#klñ##"
+#~ msgid "#klñ"
 #~ msgstr ""
 #~ "Has recibido éste correo porque alguien solicitó una nueva contraseña "
 #~ "para el usuario "
 
-#~ msgid "##m##"
+#~ msgid "m"
 #~ msgstr " en "
 
-#~ msgid "##p##"
+#~ msgid "p"
 #~ msgstr "Haz click en el siguiente enlace para confirmar tu petición."
 
-#~ msgid "##1##"
+#~ msgid "1"
 #~ msgstr "Nueva Contraseña en "
 
-#~ msgid "##2##"
+#~ msgid "2"
 #~ msgstr "Hola, tu nueva contraseña es: "
 
-#~ msgid "##3#"
+#~ msgid "3#"
 #~ msgstr "Activación de Nuevo Usuario en "
 
-#~ msgid "##4#"
+#~ msgid "4#"
 #~ msgstr "Hola, "
 
-#~ msgid "##5#"
+#~ msgid "5#"
 #~ msgstr ""
 #~ "Has recibido éste correo electrónico porque hiciste una petición de Nuevo "
 #~ "Usuario en "
 
-#~ msgid "##Aewrwtgef##"
+#~ msgid "Aewrwtgef"
 #~ msgstr "Usuario Eliminado en "
 
-#~ msgid "##6##"
+#~ msgid "6"
 #~ msgstr "Estimado usuario "
 
-#~ msgid "##Asdsdfg##"
+#~ msgid "Asdsdfg"
 #~ msgstr "Tu cuenta ha sido eliminada satisfactoriamente de "
 
-#~ msgid "##Agfhjfgh##"
+#~ msgid "Agfhjfgh"
 #~ msgstr "Se ha enviado un correo de éxito (Cambiar Contraseña) a "
 
-#~ msgid "##1A1##"
+#~ msgid "1A1"
 #~ msgstr "Se ha enviado un correo de confirmación (Generar Contraseña) a "
 
-#~ msgid "##1A11asssdssssss111111111111s11111111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss111111111111s11111111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "Se ha enviado un correo de éxito (Generar Contraseña) a "
 
-#~ msgid "##Afghfhfg##"
+#~ msgid "Afghfhfg"
 #~ msgstr "Se ha re-enviado un correo de confirmación (Nuevo Usuario) a "
 
-#~ msgid "##A#fhjfghjf#"
+#~ msgid "A#fhjfghjf#"
 #~ msgstr "Se ha enviado un correo de confirmación (Nuevo Usuario) a "
 
-#~ msgid "##A#esfrsfsdaf#"
+#~ msgid "A#esfrsfsdaf#"
 #~ msgstr "Se ha enviado un correo de éxito (Eliminar Usuario) a "
 
-#~ msgid "##Axcvxcv##"
+#~ msgid "Axcvxcv"
 #~ msgstr "Se ha enviado un correo de éxito (Nuevo Usuario) a "
 
-#~ msgid "##1A1#1#"
+#~ msgid "1A1#1#"
 #~ msgstr ""
 #~ "Hubo un error en el llenado del Formulario. Por favor vuelve atrás y "
 #~ "verifica que hayas rellenado todos los datos."
 
-#~ msgid "##1A11#1#"
+#~ msgid "1A11#1#"
 #~ msgstr ""
 #~ "Tu búsqueda contiene caracteres inválidos. Sólo se permiten letras "
 #~ "(mayúsculas, minúsculas, ñ, guión inferior (_) y palabras acentuadas o "
 #~ "con diéresis)."
 
-#~ msgid "##Axcvxcvx##"
+#~ msgid "Axcvxcvx"
 #~ msgstr ""
 #~ "El token de confirmación es inválido. Por favor realiza la solicitud de "
 #~ "nuevo."
 
-#~ msgid "##Axcvxcvsad##"
+#~ msgid "Axcvxcvsad"
 #~ msgstr ""
 #~ "El nombre de usuario es inválido. Sólo se permiten letras (mayúsculas y "
 #~ "minúsculas), números, guiones (-) y guiones bajos (_)."
 
-#~ msgid "##Aasdajkljk##"
+#~ msgid "Aasdajkljk"
 #~ msgstr ""
 #~ "La contraseña contiene caracteres inválidos. Sólo se permiten letras "
 #~ "(mayúsculas y minúsculas), números y los siguientes símbolos: . ! @ # $ % "
 #~ "^ & + = - _"
 
-#~ msgid "##23##"
+#~ msgid "23"
 #~ msgstr ""
 #~ "La contraseña antigua contiene caracteres inválidos, lo cual es muy "
 #~ "extraño. Utiliza el formulario de generar nueva contraseña para poder "
 #~ "cambiarla."
 
-#~ msgid "##89##"
+#~ msgid "89"
 #~ msgstr "Las contraseñas no coinciden."
 
-#~ msgid "##90yui##"
+#~ msgid "90yui"
 #~ msgstr ""
 #~ "La longitud de la contraseña debe ser de 8 caracteres mínimo y 30 "
 #~ "caracteres máximo."
 
-#~ msgid "##456##"
+#~ msgid "456"
 #~ msgstr ""
 #~ "La longitud del nombre de usuario debe ser de 3 caracteres mínimo y 30 "
 #~ "caracteres máximo."
 
-#~ msgid "##rtyr##"
+#~ msgid "rtyr"
 #~ msgstr "Tu nombre tiene una longitud mayor a 60 caracteres."
 
-#~ msgid "##2423##"
+#~ msgid "2423"
 #~ msgstr "Tu apellido tiene una longitud mayor a 60 caracteres."
 
-#~ msgid "##tytrytry##"
+#~ msgid "tytrytry"
 #~ msgstr ""
 #~ "La longitud de la contraseña antigua es muy larga o muy corta, lo cual es "
 #~ "muy extraño. Utiliza el formulario de generar nueva contraseña para poder "
 #~ "cambiarla."
 
-#~ msgid "##tryrty ##"
+#~ msgid "tryrty "
 #~ msgstr ""
 #~ "Tu nombre contiene caracteres inválidos. Sólo se permiten letras "
 #~ "(mayúsculas, minúsculas, ñ y palabras acentuadas o con diéresis)."
 
-#~ msgid "##gfhfggfh##"
+#~ msgid "gfhfggfh"
 #~ msgstr ""
 #~ "Tu apellido contiene caracteres inválidos. Sólo se permiten letras "
 #~ "(mayúsculas, minúsculas, ñ y palabras acentuadas o con diéresis)."
 
-#~ msgid "##gfhfghfgh##"
+#~ msgid "gfhfghfgh"
 #~ msgstr "El nombre de usuario escogido ya existe."
 
-#~ msgid "##fghfhesdertywety234234234##"
+#~ msgid "fghfhesdertywety234234234"
 #~ msgstr "El correo indicado ya está asociado a un usuario."
 
-#~ msgid "##fghfh##"
+#~ msgid "fghfh"
 #~ msgstr ""
 #~ "No se han encontrado peticiones que coincidan con los datos "
 #~ "proporcionados."
 
-#~ msgid "##1234435##"
+#~ msgid "1234435"
 #~ msgstr ""
 #~ "Existe una inconsistencia en la Base de Datos. Existen dos o más cuentas "
 #~ "que comparten algunos de los datos de usuario (nombre, correo, etc..), lo "
 #~ "cual genera errores e imprecisiones en el sistema. Este error ha sido "
 #~ "informado a los administradores para que realicen una correción manual."
 
-#~ msgid "##767##"
+#~ msgid "767"
 #~ msgstr ""
 #~ "La información proporcionada no coincide con alguna cuenta existente. Por "
 #~ "favor revisa los datos introducidos."
 
-#~ msgid "##2312312##"
+#~ msgid "2312312"
 #~ msgstr ""
 #~ "Ocurrió un error cambiando tu contraseña. Por favor intenta de nuevo más "
 #~ "tarde."
 
-#~ msgid "##12312##"
+#~ msgid "12312"
 #~ msgstr ""
 #~ "Ocurrió un error enviando el correo de confirmación. Por favor intenta de "
 #~ "nuevo más tarde."
 
-#~ msgid "##123123##"
+#~ msgid "123123"
 #~ msgstr ""
 #~ "Ocurrió un error generando tu nueva contraseña. Por favor intenta de "
 #~ "nuevo más tarde."
 
-#~ msgid "##54678##"
+#~ msgid "54678"
 #~ msgstr ""
 #~ "Ocurrió un error eliminando tu cuenta. Por favor intenta de nuevo más "
 #~ "tarde."
 
-#~ msgid "##32##"
+#~ msgid "32"
 #~ msgstr ""
 #~ "Ocurrió un error creando tu cuenta. Por favor intenta de nuevo más tarde."
 
-#~ msgid "##10##"
+#~ msgid "10"
 #~ msgstr "¡Éxito! Tu contraseña ha sido cambiada."
 
-#~ msgid "##14##"
+#~ msgid "14"
 #~ msgstr ""
 #~ "La solicitud de una nueva contraseña ha sido procesada correctamente. "
 #~ "Revisa tu correo electrónico para finalizar el proceso."
 
-#~ msgid "##4757##"
+#~ msgid "4757"
 #~ msgstr ""
 #~ "¡Éxito! Hemos generado una nueva contraseña para ti. Revisa tu correo "
 #~ "electrónico para encontrar más información."
 
-#~ msgid "##78987##"
+#~ msgid "78987"
 #~ msgstr "Tu cuenta ha sido eliminada satisfactoriamente."
 
-#~ msgid "##789872##"
+#~ msgid "789872"
 #~ msgstr "¡Éxito! Tu cuenta ha sido creada satisfactoriamente."
 
-#~ msgid "##4455##"
+#~ msgid "4455"
 #~ msgstr ""
 #~ "La solicitud de la nueva cuenta ha sido procesada correctamente. Revisa "
 #~ "tu correo electrónico para finalizar el proceso."
 
-#~ msgid "##7777777##"
+#~ msgid "7777777"
 #~ msgstr "Portada"
 
-#~ msgid "##55555555555##"
+#~ msgid "55555555555"
 #~ msgstr "ID"
 
-#~ msgid "##4545#"
+#~ msgid "4545#"
 #~ msgstr "Nombre Real"
 
-#~ msgid "##wersdf##"
+#~ msgid "wersdf"
 #~ msgstr "Grupo"
 
-#~ msgid "##sdfsdf##"
+#~ msgid "sdfsdf"
 #~ msgstr "pulse sobre el campo para editarlo"
 
-#~ msgid "##dfsfsdfsdf##"
+#~ msgid "dfsfsdfsdf"
 #~ msgstr "este campo no puede editarse"
 
-#~ msgid "##ert4564##"
+#~ msgid "ert4564"
 #~ msgstr "Guardar"
 
-#~ msgid "##2352345A##"
+#~ msgid "2352345A"
 #~ msgstr "Cancelar"
 
-#~ msgid "##sdf43534##"
+#~ msgid "sdf43534"
 #~ msgstr "Resultados de la Búsqueda"
 
-#~ msgid "##A4576756756#"
+#~ msgid "A4576756756#"
 #~ msgstr "Los siguientes usuarios están asociados a la cuenta de correo "
 
-#~ msgid "##575656##"
+#~ msgid "575656"
 #~ msgstr "Estado de la Solicitud"
 
-#~ msgid "##5wrrswfs##"
+#~ msgid "5wrrswfs"
 #~ msgstr "Creando base de datos "
 
-#~ msgid "##13113##"
+#~ msgid "13113"
 #~ msgstr ""
 #~ "Creando tabla para las peticiones de reestablecimiento de contraseña ..."
 
-#~ msgid "##989089##"
+#~ msgid "989089"
 #~ msgstr "Creando tabla para las peticiones de nuevos usuarios ..."
 
-#~ msgid "##87ukhjk##"
+#~ msgid "87ukhjk"
 #~ msgstr "Creando entrada MaxUID en el LDAP ..."
 
-#~ msgid "##hjkhjkh##"
+#~ msgid "hjkhjkh"
 #~ msgstr "¡HECHO!"
 
-#~ msgid "##tytu776##"
+#~ msgid "tytu776"
 #~ msgstr "Usuarios de "
 
-#~ msgid "##tr3453453##"
+#~ msgid "tr3453453"
 #~ msgstr "Letra inválida."
 
-#~ msgid "##tryrty##"
+#~ msgid "tryrty"
 #~ msgstr " Usuarios encontrados cuyo nombre real comienza por la letra "
 
-#~ msgid "##hgjghj##"
+#~ msgid "hgjghj"
 #~ msgstr " Usuarios encontrados con la descripción provista."
 
-#~ msgid "##ghjgh##"
+#~ msgid "ghjgh"
 #~ msgstr "Ocurrió un error en la conexión con el LDAP"
 
-#~ msgid "##1A11#1#1"
+#~ msgid "1A11#1#1"
 #~ msgstr "Ocurrió un error durante la configuración del LDAP: "
 
-#~ msgid "##1A11#1#11"
+#~ msgid "1A11#1#11"
 #~ msgstr "Hubo un error iniciando una conexión segura con el LDAP: "
 
-#~ msgid "##1A11#1#111"
+#~ msgid "1A11#1#111"
 #~ msgstr "Hubo un error en la asociación con el LDAP: "
 
-#~ msgid "##1A11#1#1111"
+#~ msgid "1A11#1#1111"
 #~ msgstr ""
 #~ "¡EPA! ¿Por donde estás tratando de entrar, muchachito o muchachita? Usa "
 #~ "los canales regulares."
 
-#~ msgid "##1A11#1#11111"
+#~ msgid "1A11#1#11111"
 #~ msgstr ""
 #~ "El Correo Electrónico proporcionado no es válido. Verifica que lo hayas "
 #~ "escrito correctamente."
 
-#~ msgid "##1A11#1#11111asdas"
+#~ msgid "1A11#1#11111asdas"
 #~ msgstr "Se ha modificado el atributo "
 
-#~ msgid "##1A1asdasd1#1#11111asdas"
+#~ msgid "1A1asdasd1#1#11111asdas"
 #~ msgstr " del usuario "
 
-#~ msgid "##1A1asdasd1#1#11111asdas2"
+#~ msgid "1A1asdasd1#1#11111asdas2"
 #~ msgstr "Cambiar Contraseña"
 
-#~ msgid "##1A1asdasd1#1#11111asdas22"
+#~ msgid "1A1asdasd1#1#11111asdas22"
 #~ msgstr ""
 #~ "Por favor completa el siguiente formulario para cambiar tu contraseña."
 
-#~ msgid "##1A1asdasd1#1#11111asdas222"
+#~ msgid "1A1asdasd1#1#11111asdas222"
 #~ msgstr "Nombre de usuario"
 
-#~ msgid "##1A1asdasd1#1#11111asdas2222"
+#~ msgid "1A1asdasd1#1#11111asdas2222"
 #~ msgstr "p. ej., emeteri0"
 
-#~ msgid "##1A1asdasd1#1#11111asd2as2222"
+#~ msgid "1A1asdasd1#1#11111asd2as2222"
 #~ msgstr "No puedes dejar éste campo en blanco."
 
-#~ msgid "##1A11asssdsssssqs111111111111s11111111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdsssssqs111111111111s11111111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "Excediste el número máximo de 30 Caracteres."
 
-#~ msgid "##1A1asdasd1#1#11111asd2as22222"
+#~ msgid "1A1asdasd1#1#11111asd2as22222"
 #~ msgstr "El nombre de usuario debe tener al menos 3 Caracteres."
 
-#~ msgid "##1A1asdasd1#1#11111asd2as2222sdf2"
+#~ msgid "1A1asdasd1#1#11111asd2as2222sdf2"
 #~ msgstr "Correo electrónico"
 
-#~ msgid "##1A1asdasd1#1#11111asd2as2222sdf21"
+#~ msgid "1A1asdasd1#1#11111asd2as2222sdf21"
 #~ msgstr "p. ej., eme@terio.org.ve"
 
-#~ msgid "##1A1asdasd1#1#11111asd2as22212sdf21"
+#~ msgid "1A1asdasd1#1#11111asd2as22212sdf21"
 #~ msgstr "Excediste el número máximo de 60 Caracteres."
 
-#~ msgid "##1A1asdasd1#1#111111asd2as22212sdf21"
+#~ msgid "1A1asdasd1#1#111111asd2as22212sdf21"
 #~ msgstr "Formato Inválido."
 
-#~ msgid "##1A1asdasd1#11#111111asd2as22212sdf21"
+#~ msgid "1A1asdasd1#11#111111asd2as22212sdf21"
 #~ msgstr "Contraseña Actual"
 
-#~ msgid "##1A1asdasd1#111#111111asd2as22212sdf21"
+#~ msgid "1A1asdasd1#111#111111asd2as22212sdf21"
 #~ msgstr "introduce tu contraseña actual"
 
-#~ msgid "##1A1asda1sd1#111#111111asd2as22212sdf21"
+#~ msgid "1A1asda1sd1#111#111111asd2as22212sdf21"
 #~ msgstr "La contraseña debe tener al menos 8 Caracteres."
 
-#~ msgid "##1A1asd1a1sd1#111#111111asd2as22212sdf21"
+#~ msgid "1A1asd1a1sd1#111#111111asd2as22212sdf21"
 #~ msgstr "Contraseña Nueva"
 
-#~ msgid "##1A11asd1a1sd1#111#111111asd2as22212sdf21"
+#~ msgid "1A11asd1a1sd1#111#111111asd2as22212sdf21"
 #~ msgstr "introduce la nueva contraseña"
 
-#~ msgid "##1A11asd11a1sd1#111#111111asd2as22212sdf21"
+#~ msgid "1A11asd11a1sd1#111#111111asd2as22212sdf21"
 #~ msgstr "Contraseña Nueva (repítela)"
 
-#~ msgid "##1A11asd111a1sd1#111#111111asd2as22212sdf21"
+#~ msgid "1A11asd111a1sd1#111#111111asd2as22212sdf21"
 #~ msgstr "repite la nueva contraseña"
 
-#~ msgid "##1A11asd111a1sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asd111a1sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "Verificación"
 
-#~ msgid "##1A11asds111a1sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asds111a1sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "Excediste el número máximo de 8 Caracteres."
 
-#~ msgid "##1A11asdss111a1sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asdss111a1sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "ENVIAR"
 
-#~ msgid "##1A11asdsss111a1sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asdsss111a1sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "Perfil de Usuario"
 
-#~ msgid "##1A11asdssss111a1sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asdssss111a1sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "Nombres"
 
-#~ msgid "##1A11assdssss111a1sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11assdssss111a1sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "Apellidos"
 
-#~ msgid "##1A11assdsssss111a1sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11assdsssss111a1sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "Nombre Completo"
 
-#~ msgid "##1A11asssdsssss111a1sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdsssss111a1sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "Contraseña"
 
-#~ msgid "##1A11asssdssssss111a1sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss111a1sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "Eliminación de Usuario"
 
-#~ msgid "##1A11asssdssssss111a11sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss111a11sd1#s111#111111asd2as22212sdf21"
 #~ msgstr ""
 #~ "Por favor complete el siguiente formulario para borrar DEFINITIVAMENTE tu "
 #~ "usuario de la "
 
-#~ msgid "##1A11asssdssssss111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "al menos ocho caracteres"
 
-#~ msgid "##1A11asssdssssss1111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss1111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "Editar Perfil de Usuario"
 
-#~ msgid "##1A11asssdssssss11111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss11111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr ""
 #~ "Luego de introducir los datos que se solicitan en el formulario, podrás "
 #~ "editar de manera interactiva los datos de tu perfil de usuario en "
 
-#~ msgid "##1A11asssdssssss111111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss111111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "introduzca su contraseña"
 
-#~ msgid "##1A11asssdssssss1111111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss1111111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "Recordar Nombre de Usuario"
 
-#~ msgid "##1A11asssdssssss11111111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss11111111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr ""
 #~ "Por favor introduce a continuación la dirección de correo electrónico que "
 #~ "utilizaste para registrar tu usuario."
 
-#~ msgid "##1A11asssdssssss111111111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss111111111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "Ocurrió un error de conexión con la Base de Datos MYSQL."
 
-#~ msgid "##1A11asssdssssss1111111111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss1111111111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "Imposible selecionar la base de datos "
 
-#~ msgid "##1A11asssdssssss11111111111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss11111111111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "Reenviar Correo"
 
-#~ msgid "##1A11asssdssssss111111111111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss111111111111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr ""
 #~ "Por favor introduce a continuación la dirección de correo electrónico con "
 #~ "la que hiciste la petición de Nuevo Usuario para reenviar el correo de "
 #~ "confirmación."
 
-#~ msgid "##1A11asssdssssss1111111111111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss1111111111111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "Solicitar una Cuenta de Usuario"
 
-#~ msgid "##1A11asssdssssss11111111111111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss11111111111111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr ""
 #~ "Por favor completa el siguiente formulario para solicitar una cuenta de "
 #~ "usuario en "
 
-#~ msgid "##1A11asssdssssss111111111111111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss111111111111111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr ""
 #~ ". Con esta cuenta podrás autenticarte en la mayoría de los Servicios. En "
 #~ "la segunda columna del formulario hemos colocado algunos ejemplos para "
 #~ "ayudarte en el llenado del formulario. Por favor, sigue las indicaciones "
 #~ "del sistema para culminar el proceso exitosamente."
 
-#~ msgid "##1A11asssdssssss1111111111111111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss1111111111111111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "p. ej., Emeterio Ildefonso"
 
-#~ msgid "##1A11asssdssssss11111111111111111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss11111111111111111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "p. ej., Alcántara Carrasco"
 
-#~ msgid "##1A11asssdssssss111111111111111111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss111111111111111111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "Contraseña (repítela)"
 
-#~ msgid "##1A11asssdssssss1111111111111111111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss1111111111111111111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr "Generar Contraseña"
 
-#~ msgid "##1A11asssdssssss11111111111111111111a111sd1#s111#111111asd2as22212sdf21"
+#~ msgid "1A11asssdssssss11111111111111111111a111sd1#s111#111111asd2as22212sdf21"
 #~ msgstr ""
 #~ "Por favor completa el siguiente formulario para generar de forma "
 #~ "automática una nueva contraseña para tu usuario."
 
-#~ msgid "##Aetert3464675656757567524234234##"
+#~ msgid "Aetert3464675656757567524234234"
 #~ msgstr "Nuevo usuario"
 
-#~ msgid "##A#ertertwerwrh657567567#"
+#~ msgid "A#ertertwerwrh657567567#"
 #~ msgstr "Cambiar contraseña"
 
-#~ msgid "##Aetert##"
+#~ msgid "Aetert"
 #~ msgstr "Recordar usuario"
 
-#~ msgid "##Aertert##"
+#~ msgid "Aertert"
 #~ msgstr "Eliminar usuario"
 
-#~ msgid "##A#ertert#"
+#~ msgid "A#ertert#"
 #~ msgstr "Editar Perfil"
 
-#~ msgid "##Aretete##"
+#~ msgid "Aretete"
 #~ msgstr "Listar usuarios"
 
-#~ msgid "##Atryrtyr##"
+#~ msgid "Atryrtyr"
 #~ msgstr " está potenciado por la aplicación "
 
-#~ msgid "##rtytryA##"
+#~ msgid "rtytryA"
 #~ msgstr " es una aplicación en PHP desarrollada por "
 
-#~ msgid "##A#yrtytry#"
+#~ msgid "A#yrtytry#"
 #~ msgstr "Introduce un término de búsqueda y presiona enter."
 
-#~ msgid "##Atrytytr##"
+#~ msgid "Atrytytr"
 #~ msgstr "Buscar Usuario"
 
-#~ msgid "##A#rtytry#"
+#~ msgid "A#rtytry#"
 #~ msgstr "Bienvenidos a"
 
-#~ msgid "##1A##"
+#~ msgid "1A"
 #~ msgstr "Desde acá podrás gestionar directamente tus datos de usuario en "
 
-#~ msgid "##5345345A##"
+#~ msgid "5345345A"
 #~ msgstr ". Creando una cuenta estarás conectado a los siguientes servicios:"
 
-#~ msgid "##534534534##"
+#~ msgid "534534534"
 #~ msgstr "Solicitar una nueva cuenta de usuario"
 
-#~ msgid "##A53453453#"
+#~ msgid "A53453453#"
 #~ msgstr ""
 #~ "No me llegó el correo de confirmación cuando solicité una nueva cuenta"
 
-#~ msgid "#sserw43345##"
+#~ msgid "#sserw43345"
 #~ msgstr "Cambiar contraseña de usuario"
 
-#~ msgid "##ghjghjgjghj##"
+#~ msgid "ghjghjgjghj"
 #~ msgstr "Generar una nueva contraseña"
 
-#~ msgid "##werweghkhjk##"
+#~ msgid "werweghkhjk"
 #~ msgstr "Olvidé mi nombre de usuario"
 
-#~ msgid "##rwewerwe##"
+#~ msgid "rwewerwe"
 #~ msgstr "Ver/Editar perfil de usuario"
 
-#~ msgid "##awerwer##"
+#~ msgid "awerwer"
 #~ msgstr "Listar todos los usuarios"

@@ -12,7 +12,7 @@ include_once "MYSQLConnection.php";
 
 ?>
 
-<h2><?= _("##REQUESTSTATUS##") ?></h2>
+<h2><?= _("REQUESTSTATUS") ?></h2>
 
 <?php
 

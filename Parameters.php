@@ -8,7 +8,7 @@ $token = md5(mt_rand() . "-" . time() . "-" . $_SERVER['REMOTE_ADDR'] . "-" . mt
 
 // A little description
 $description = _("Entrada creada por $app_name a las " )
-                    . $time_today . _("##PETITION##")
+                    . $time_today . _("PETITION")
                     . $_SERVER['REMOTE_ADDR'];
 
 foreach( $_POST as $key => $value ){

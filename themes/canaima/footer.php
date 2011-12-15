@@ -3,36 +3,36 @@
 <div id="portal-footer">
     <div id="footer">
         <a href="NewUserForm.php">
-            <?= _("##NEWUSER##") ?>
+            <?= _("NEWUSER") ?>
         </a>
         <a href="ChangePasswordForm.php">
-            <?= _("##CHANGEPASSWORD##") ?>
+            <?= _("CHANGEPASSWORD") ?>
         </a>
         <a href="ResetPasswordForm.php">
-            <?= _("##RESETPASSWORD##") ?>
+            <?= _("RESETPASSWORD") ?>
         </a>
         <a href="ForgotUsernameForm.php">
-            <?= _("##REMINDUSER##") ?>
+            <?= _("REMINDUSER") ?>
         </a>
         <a href="DeleteUserForm.php">
-            <?= _("##DELETEUSER##") ?>
+            <?= _("DELETEUSER") ?>
         </a>
         <a href="EditProfileForm.php">
-            <?= _("##EDITPROFILE##") ?>
+            <?= _("EDITPROFILE") ?>
         </a>
         <a href="Browse.php">
-            <?= _("##BROWSEUSERS##") ?>
+            <?= _("BROWSEUSERS") ?>
         </a>
     </div>
     
     <div>
-        <?= $app_name . _("##POWEREDBY##") ?>
+        <?= $app_name . _("POWEREDBY") ?>
         <strong>AGUILAS</strong>.
     </div>
     
     <div>
         <strong>AGUILAS</strong>
-        <?= _("##DEVELOPEDBY##") ?>
+        <?= _("DEVELOPEDBY") ?>
         <a href="http://www.huntingbears.com.ve/">
             Luis Alejandro Martínez Faneyth
         </a>.
@@ -54,9 +54,3 @@
 </script>
 </body>
 </html>
-
-<?php
-
-header("Content-type: text/html; charset=utf-8");
-
-?>

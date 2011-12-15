@@ -4,144 +4,144 @@ include_once "Locale.php";
 include_once "themes/$app_theme/header.php";
 ?>
 
-<h2><?= _("##REQUESTNEWUSERACCOUNT:TITLE##") ?></h2>
+<h2><?= _("REQUESTNEWUSERACCOUNT:TITLE") ?></h2>
 
-<p><?= _("##REQUESTNEWUSERACCOUNT:GREETINGS##") . $app_name . _("##REQUESTNEWUSERACCOUNT:INTRO##") ?></p>
+<p><?= _("REQUESTNEWUSERACCOUNT:GREETINGS") . $app_name . _("REQUESTNEWUSERACCOUNT:INTRO") ?></p>
 
 <form method="post" action="NewUserMail.php">
     <table>
         <tr>
             <td class="px160">
-                <?= _("##FIRSTNAME:FORM##") ?>
+                <?= _("FIRSTNAME:FORM") ?>
             </td>
             <td class="px120">
-                <?= _("##FIRSTNAME:EXAMPLE##") ?>
+                <?= _("FIRSTNAME:EXAMPLE") ?>
             </td>
             <td class="px640">
                 <span id="givenName_js">
                     <input type="text" name="givenName" id="givenName" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("##EMPTY:WARNING##") ?>
+                        <?= _("EMPTY:WARNING") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("##LONGERTHAN60##") ?>
+                        <?= _("LONGERTHAN60") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("##LASTNAME:FORM##") ?>
+                <?= _("LASTNAME:FORM") ?>
             </td>
             <td class="px120">
-                <?= _("##LASTNAME:EXAMPLE##") ?>
+                <?= _("LASTNAME:EXAMPLE") ?>
             </td>
             <td class="px640">
                 <span id="sn_js">
                     <input type="text" name="sn" id="sn" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("##EMPTY:WARNING##") ?>
+                        <?= _("EMPTY:WARNING") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("##LONGERTHAN60##") ?>
+                        <?= _("LONGERTHAN60") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("##USERNAME##") ?>
+                <?= _("USERNAME") ?>
             </td>
             <td class="px120">
-                <?= _("##USER:EXAMPLE##") ?>
+                <?= _("USER:EXAMPLE") ?>
             </td>
             <td class="px640">
                 <span id="uid_js">
                     <input type="text" name="uid" id="uid" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("##EMPTY:WARNING##") ?>
+                        <?= _("EMPTY:WARNING") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("##LONGERTHAN30##") ?>
+                        <?= _("LONGERTHAN30") ?>
                     </span>
                     <span class="textfieldMinCharsMsg">
-                        <?= _("##ATLEAST3##") ?>
+                        <?= _("ATLEAST3") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("##EMAIL##") ?>
+                <?= _("EMAIL") ?>
             </td>
             <td class="px120">
-                <?= _("##EMAIL:EXAMPLE##") ?>
+                <?= _("EMAIL:EXAMPLE") ?>
             </td>
             <td class="px640">
                 <span id="mail_js">
                     <input type="text" name="mail" id="mail" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("##EMPTY:WARNING##") ?>
+                        <?= _("EMPTY:WARNING") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("##LONGERTHAN60##") ?>
+                        <?= _("LONGERTHAN60") ?>
                     </span>
                     <span class="textfieldInvalidFormatMsg">
-                        <?= _("##INVALIDFORMAT##") ?>
+                        <?= _("INVALIDFORMAT") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("##PASSWORD##") ?>
+                <?= _("PASSWORD") ?>
             </td>
             <td class="px120">
-                <?= _("##ATLEAST8CHARS##") ?>
+                <?= _("ATLEAST8CHARS") ?>
             </td>
             <td class="px640">
                 <span id="userPassword_js">
                     <input type="password" name="userPassword" id="userPassword" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("##EMPTY:WARNING##") ?>
+                        <?= _("EMPTY:WARNING") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("##LONGERTHAN30##") ?>
+                        <?= _("LONGERTHAN30") ?>
                     </span>
                     <span class="textfieldMinCharsMsg">
-                        <?= _("##ATLEAST8##") ?>
+                        <?= _("ATLEAST8") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("##PASSWORDREPEAT##") ?>
+                <?= _("PASSWORDREPEAT") ?>
             </td>
             <td class="px120">
-                <?= _("##ATLEAST8CHARS##") ?>
+                <?= _("ATLEAST8CHARS") ?>
             </td>
             <td class="px640">
                 <span id="userPasswordBis_js">
                     <input type="password" name="userPasswordBis" id="userPasswordBis" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("##EMPTY:WARNING##") ?>
+                        <?= _("EMPTY:WARNING") ?>
                     </span>
                     <span class="textfieldInvalidFormatMsg">
-                        <?= _("##PASSWORD:DIFFERENT##") ?>
+                        <?= _("PASSWORD:DIFFERENT") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("##LONGERTHAN30##") ?>
+                        <?= _("LONGERTHAN30") ?>
                     </span>
                     <span class="textfieldMinCharsMsg">
-                        <?= _("##ATLEAST8##") ?>
+                        <?= _("ATLEAST8") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("##CAPTCHA##") ?>
+                <?= _("CAPTCHA") ?>
             </td>
             <td class="px120">
                 <img alt="captcha" src="captcha.php" border="0">
@@ -150,16 +150,16 @@ include_once "themes/$app_theme/header.php";
                 <span id="image_captcha_js">
                     <input name="image_captcha" id="image_captcha" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("##EMPTY:WARNING##") ?>
+                        <?= _("EMPTY:WARNING") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("##LONGERTHAN8##") ?>
+                        <?= _("LONGERTHAN8") ?>
                     </span>
                 </span>
             </td>
         </tr>
     </table>
-    <input type="submit" value="<?= _("##SEND##") ?>" class="boton" />
+    <input type="submit" value="<?= _("SEND") ?>" class="boton" />
 </form>
 <script type="text/javascript">
     var passwordIgual = function(value, options){
