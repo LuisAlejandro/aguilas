@@ -4,13 +4,13 @@
         <title><?= $app_name ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="robots" content="noindex,nofollow" />
-        <link rel="shortcut icon" href="images/favicon.ico" />
-        <link rel='stylesheet' type='text/css' href='css/style.css' media='screen' />
-        <script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/easing.js"></script>
-        <script type="text/javascript" src="js/lavalamp.js"></script>
-        <script type="text/javascript" src="js/validation.js"></script>
-        <script type="text/javascript" src="js/ajax.js"></script>
+        <link rel="shortcut icon" href="themes/<?= $app_theme ?>/images/favicon.ico" />
+        <link rel='stylesheet' type='text/css' href='themes/<?= $app_theme ?>/css/style.css' media='screen' />
+        <script type="text/javascript" src="themes/<?= $app_theme ?>/js/jquery.js"></script>
+        <script type="text/javascript" src="themes/<?= $app_theme ?>/js/easing.js"></script>
+        <script type="text/javascript" src="themes/<?= $app_theme ?>/js/lavalamp.js"></script>
+        <script type="text/javascript" src="themes/<?= $app_theme ?>/js/validation.js"></script>
+        <script type="text/javascript" src="themes/<?= $app_theme ?>/js/ajax.js"></script>
     </head>
     <body>
         <div id="globalWrapper">
