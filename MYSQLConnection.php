@@ -14,6 +14,7 @@ $mysqls = mysql_select_db($mysql_dbname);
 
 if (!$mysqls) {
 
+    include_once "Functions.php";
     include_once "CreateDatabase.php";
     
     $mysqls = mysql_select_db($mysql_dbname)
@@ -26,6 +27,7 @@ if (!$mysqls) {
         . '</a></div>'
         . file_get_contents("themes/$app_theme/footer.php")
         );
+
 }
 
 ?>
