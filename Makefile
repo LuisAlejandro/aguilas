@@ -117,6 +117,8 @@ gen-conf: check-builddep clean-conf
 
 	@echo "Filling up configuration"
 	@cd scripts && bash gen-conf.sh
+	@echo
+	@echo "Configuration file generated!"
 	@touch gen-conf
 
 clean: clean-all

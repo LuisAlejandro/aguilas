@@ -36,7 +36,7 @@ if [ "${CONTINUE}" == "Y" ]; then
 		echo ${DESCRIPTION}
 		read -p "${VARONLY} = "
 		VALUE="${REPLY}"
-		sed -i "s/\\${VARONLY}.*/\\${VARONLY} = \"${VALUE}\"\;/g" ${FILE}
+		sed -i "s|\\${VARONLY} =.*|\\${VARONLY} = \"${VALUE}\"\;|g" ${FILE}
 		echo
 	done
 

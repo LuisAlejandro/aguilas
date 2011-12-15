@@ -37,7 +37,7 @@ $app_links = array("APP1" => "http://$app_url", "APP2" => "http://$app_url", "AP
 
 /// IP or Domain of the server where the MYSQL database is located
 $mysql_host = "@@MYSQL_HOST@@";
-/// Database name
+/// Database name (will be created if it does not exist)
 $mysql_dbname = "@@MYSQL_DBNAME@@";
 /// User with permissions to read and create tables on the database
 $mysql_user = "@@MYSQL_USER@@";
