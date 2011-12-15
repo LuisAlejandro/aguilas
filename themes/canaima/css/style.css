@@ -335,7 +335,7 @@ border-radius:5px;
 	border-bottom:4px solid #ccba91;
 	border-top-left-radius:5px;
 	border-top-right-radius:5px;
-	height:50px;
+	height:80px;
 	padding:5px;
 	text-align:left
 }
@@ -463,17 +463,17 @@ input.searchButton,.searchSection
 #p-logo
 {
 	float:left;
-	height:50px;
-	width:182px
+	height:80px;
+	width:160px
 }
 
 #p-logo a,#p-logo a:hover
 {
-	background:url(images/canaima.png) no-repeat;
+	background:url(../images/logo.png) no-repeat;
 	display:block;
-	height:50px;
+	height:80px;
 	text-decoration:none;
-	width:182px
+	width:160px
 }
 
 #p-search
