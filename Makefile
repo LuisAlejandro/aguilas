@@ -116,7 +116,7 @@ gen-doc: check-builddep clean-doc
 gen-conf: check-builddep clean-conf
 
 	@echo "Filling up configuration"
-	@bash scripts/gen-conf.sh
+	@cd scripts && bash gen-conf.sh
 	@touch gen-conf
 
 clean: clean-all
@@ -163,13 +163,15 @@ clean-conf:
 	@rm -rf config.php var com
 	@rm -rf gen-conf
 
+install: copy config
+
 config: install
 
 	@mkdir -p $(DESTDIR)/var/www/
 	@ln -s $(DESTDIR)/usr/share/aguilas /var/www/aguilas
 	@php -f install.php
 
-install: gen-img gen-mo
+copy: gen-img gen-mo
 
 	@install -D locale themes $(DESTDIR)/usr/share/aguilas/
 	@install -D -m 644 $(PHPS) $(DESTDIR)/usr/share/aguilas/
