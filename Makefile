@@ -4,6 +4,7 @@ SHELL = sh -e
 
 IMAGES = $(shell ls themes/canaima/images/ | grep ".svg" | sed 's/.svg//g')
 THEMES = $(shell ls themes/)
+LOCALES = $(shell ls locale/)
 PHPS = $(wildcard *.php)
 LOGS = $(wildcard logs/*.log)
 
@@ -82,7 +83,7 @@ check-builddep:
 
 	@touch check-builddep
 
-gen-img: clean-img check-builddep
+gen-img: check-builddep clean-img
 
 	@printf "Generating images from source [SVG > PNG,ICO] ["
 	@for THEME in $(THEMES); do \
@@ -95,7 +96,7 @@ gen-img: clean-img check-builddep
 	@printf "]\n"
 	@touch gen-img
 
-gen-mo: clean-mo check-builddep
+gen-mo: check-builddep clean-mo
 
 	@printf "Generating translation messages from source [PO > MO] ["
 	@for LOCALE in $(LOCALES); do \
@@ -105,22 +106,26 @@ gen-mo: clean-mo check-builddep
 	@printf "]\n"
 	@touch gen-mo
 
-gen-doc: clean-doc check-builddep
+gen-doc: check-builddep clean-doc
 
-	@echo "Generating documentation from source [RST > HTML,MAN] ..."
+	@echo "Generating documentation from source [RST > HTML,MAN]"
 	@make -C docs html
 	@rst2man --language="en" --title="AGUILAS" docs/man-aguilas.rst docs/aguilas.1
 	@touch gen-doc
 
-gen-conf: clean-conf check-builddep
+gen-conf: check-builddep clean-conf
 
-	@echo "Filling up configuration..."
+	@echo "Filling up configuration"
 	@bash scripts/gen-conf.sh
 	@touch gen-conf
 
 clean: clean-all
 
-clean-all: clean-img clean-doc clean-conf
+clean-all: clean-img clean-mo clean-doc clean-conf
+
+distclean: clean
+
+	@rm -rf check-builddep
 
 clean-img:
 
@@ -135,17 +140,26 @@ clean-img:
 	@printf "]\n"
 	@rm -rf gen-img
 
+clean-mo:
+
+	@printf "Cleaning generated localization ["
+	@for LOCALE in $(LOCALES); do \
+		rm -rf locale/$${LOCALE}/LC_MESSAGES/messages.mo; \
+		printf "."; \
+	done
+	@printf "]\n"
+	@rm -rf gen-mo
+
 clean-doc:
 
-	@echo "Cleaning generated documentation..."
-	@make -C docs clean
+	@echo "Cleaning generated documentation"
 	@rm -rf docs/_build
 	@rm -rf docs/aguilas.1
 	@rm -rf gen-doc
 
 clean-conf:
 
-	@echo "Cleaning generated configuration..."
+	@echo "Cleaning generated configuration"
 	@rm -rf config.php var com
 	@rm -rf gen-conf
 
