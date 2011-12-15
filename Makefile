@@ -88,7 +88,7 @@ gen-img: check-builddep clean-img
 	@printf "Generating images from source [SVG > PNG,ICO] ["
 	@for THEME in $(THEMES); do \
 		for IMAGE in $(IMAGES); do \
-			convert themes/$${THEME}/images/$${IMAGE}.svg themes/$${THEME}/images/$${IMAGE}.png; \
+			convert -background None themes/$${THEME}/images/$${IMAGE}.svg themes/$${THEME}/images/$${IMAGE}.png; \
 			printf "."; \
 		done; \
 		icotool -c -o themes/$${THEME}/images/favicon.ico themes/$${THEME}/images/favicon.png; \
@@ -189,6 +189,7 @@ uninstall:
 	@rm -rf $(DESTDIR)/usr/share/aguilas/
 	@rm -rf $(DESTDIR)/var/log/aguilas/
 	@rm -rf $(DESTDIR)/var/www/aguilas/
+	@php -f uninstall.php
 	@echo "Uninstalled"
 	
 release:
