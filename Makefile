@@ -17,11 +17,11 @@ MSGFMT = $(shell which msgfmt)
 IMVERSION = $(shell ls /usr/lib/ | grep -i "imagemagick" | sed -n 1p)
 LIBSVG = /usr/lib/$(IMVERSION)/modules-Q16/coders/svg.so
 
-all: gen-img gen-mo gen-conf
+all: gen-img gen-mo gen-conf clean-stamps
 
-build: gen-img gen-mo gen-doc
+build: gen-img gen-mo gen-doc clean-stamps
 
-build-all: gen-img gen-mo gen-doc gen-conf
+build-all: gen-img gen-mo gen-doc gen-conf clean-stamps
 
 check-builddep:
 
@@ -121,11 +121,11 @@ gen-conf: check-builddep clean-conf
 
 clean: clean-all
 
-clean-all: clean-img clean-mo clean-doc clean-conf
+clean-all: clean-img clean-mo clean-doc clean-conf clean-stamps
 
-distclean: clean
+clean-stamps:
 
-	@rm -rf check-builddep
+	@rm -rf gen-img gen-doc gen-mo gen-conf check-builddep
 
 clean-img:
 
@@ -165,19 +165,22 @@ clean-conf:
 
 install: copy config
 
-config: install
+config: 
 
 	@mkdir -p $(DESTDIR)/var/www/
 	@ln -s $(DESTDIR)/usr/share/aguilas /var/www/aguilas
 	@php -f install.php
+	@echo "AGUILAS configured and running!"
 
-copy: gen-img gen-mo
+copy:
 
-	@install -D locale themes $(DESTDIR)/usr/share/aguilas/
+	@mkdir -p $(DESTDIR)/usr/share/aguilas/
+	@mkdir -p $(DESTDIR)/var/log/aguilas/
+	@cp -r locale themes $(DESTDIR)/usr/share/aguilas/
 	@install -D -m 644 $(PHPS) $(DESTDIR)/usr/share/aguilas/
 	@install -D -m 644 $(LOGS) $(DESTDIR)/var/log/aguilas/
 	@chown -R www-data:www-data $(DESTDIR)/var/log/aguilas/
-	@touch install
+	@echo "Files copied"
 
 uninstall:
 
