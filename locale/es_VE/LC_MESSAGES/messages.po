@@ -102,7 +102,7 @@ msgstr "Se excedió el límite de 30 caracteres."
 #: ../../../NewUserForm.php:68
 #: ../../../DeleteUserForm.php:30
 msgid "ATLEAST3"
-msgstr "El nombre de usuario debe tener al menos 3 caracteres".
+msgstr "El nombre de usuario debe tener al menos 3 caracteres."
 
 #: ../../../ChangePasswordForm.php:37
 #: ../../../NewUserForm.php:75
@@ -282,7 +282,7 @@ msgstr "¡Hola! Su contraseña"
 
 #: ../../../Functions.php:154
 msgid "EMAIL:PASSWORD:HASBEENCHANGED"
-msgstr "ha cambiado".
+msgstr "ha cambiado."
 
 #: ../../../Functions.php:163
 msgid "EMAIL:PASSWORD:NEW"
