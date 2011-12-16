@@ -1,3 +1,9 @@
+DEVELOPMENT RELEASE v1.0.0+20111216103827 (12/16/11)
+    Improving es_VE translation
+    Adding README.rst documentation
+    Correcting some password encoding mistakes
+    New development release 1.0.0~20111216030223
+
 DEVELOPMENT RELEASE v1.0.0+20111216030223 (12/16/11)
     * Automating the generation of stable and development releases.
     * Starting development of release script
