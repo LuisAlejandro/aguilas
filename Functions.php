@@ -343,32 +343,6 @@ function EncodePassword($password, $type) {
     }
     return $hash;
 }
-        
-function DecodePassword($password, $hash, $type) {
-    switch ($type) {
-        case "PLAIN":
-            $depass = $hash;
-            $encpass = $password;
-            break;
-        case "SSHA":
-            $decode = base64_decode(str_replace("{SSHA}", "", $hash));
-            $desalt = substr($decode, 20);
-            $depass = substr($decode, 0, 20);
-            $encpass = pack("H*", sha1($password . $desalt));
-            break;
-        case "MD5":
-            $decode = base64_decode(str_replace("{MD5}", "", $hash));
-            $depass = $decode;
-            $encpass = pack("H*", md5($password));
-            break;
-    }
-    
-    if ( $encpass == $depass ) {
-        return true;
-    } else {
-        return false;
-    }
-}
 
 function InitCaptcha() {
     // CAPTCHA -----------------------------------------------------------------

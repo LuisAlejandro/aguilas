@@ -17,7 +17,7 @@ OLDCOMMITLINE=$( cat ${CHANGES}  | grep -n "${OLDCOMMIT}" | awk -F: '{print $1}'
 NEWVERSION=$( cat ${DEVERSION} | grep "VERSION" | sed 's/VERSION = //g;s/~.*//g' )
 
 echo "STABLE RELEASE v${NEWVERSION} (${DATE})" > ${NEWCHANGES}
-cat ${CHANGES} | sed -n 1,${OLDCOMMITLINE}p | sed 's/commit.*//g;s/Author:.*//g;s/Date:.*//g;/^$/d;' >> ${NEWCHANGES}
+cat ${CHANGES} | sed -n 1,${OLDCOMMITLINE}p | sed 's/commit.*//g;s/Author:.*//g;s/Date:.*//g;s/Merge.*//g;/^$/d;' >> ${NEWCHANGES}
 echo "" >> ${NEWCHANGES}
 cat ${CHANGELOG} >> ${NEWCHANGES}
 

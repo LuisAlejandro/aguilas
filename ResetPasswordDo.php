@@ -127,8 +127,8 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
                 $genPassword = substr(md5(md5(mt_rand()."+".time())), 0, 8);
                 
                 // We encode the password
-                $encPassword = "{MD5}" . base64_encode(pack("H*",md5($genPassword)));
-                
+                $encPassword = EncodePassword($genPassword, $ldap_enc);
+
                 // We construct the modificator array
                 $in['userPassword'] = $encPassword;
                 

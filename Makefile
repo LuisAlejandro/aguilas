@@ -194,10 +194,10 @@ uninstall:
 
 release:
 
-	@bash scripts/release.sh
+	@cd scripts && bash release.sh
 
 snapshot:
 
-	@bash scripts/snapshot.sh
+	@cd scripts && bash snapshot.sh
 
 reinstall: uninstall install
