@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2006 Google Inc. All Rights Reserved.
+# Copyright 2006, 2007 Google Inc. All Rights Reserved.
 # Author: danderson@google.com (David Anderson)
 #
 # Script for uploading files to a Google Code project.
@@ -23,7 +23,10 @@
 # This is the password you use on googlecode.com for committing to
 # Subversion and uploading files.  You can find your password by going
 # to http://code.google.com/hosting/settings when logged in with your
-# Gmail account.
+# Gmail account. If you have already committed to your project's
+# Subversion repository, the script will automatically retrieve your
+# credentials from there (unless disabled, see the output of '--help'
+# for details).
 #
 # If you are looking at this script as a reference for implementing
 # your own Google Code file uploader, then you should take a look at
@@ -38,7 +41,7 @@
 #
 # Questions, comments, feature requests and patches are most welcome.
 # Please direct all of these to the Google Code users group:
-#  http://groups-beta.google.com/group/google-code-hosting
+#  http://groups.google.com/group/google-code-hosting
 
 """Google Code file uploader script.
 """
@@ -50,7 +53,15 @@ import os.path
 import optparse
 import getpass
 import base64
+import sys
 
+def get_usr_data(config_file):
+  """Return (username, password) from config_file."""
+
+  f = open(config_file, 'r')
+  usr_data = f.read().split(":")
+  f.close()
+  return (usr_data[0], usr_data[1][:-1])
 
 def upload(file, project_name, user_name, password, summary, labels=None):
   """Upload a file to a Google Code project's file server.
@@ -73,8 +84,8 @@ def upload(file, project_name, user_name, password, summary, labels=None):
   """
   # The login is the user part of user@gmail.com. If the login provided
   # is in the full user@domain form, strip it down.
-  if '@' in user_name:
-    user_name = user_name[:user_name.index('@')]
+  if user_name.endswith('@gmail.com'):
+    user_name = user_name[:user_name.index('@gmail.com')]
 
   form_fields = [('summary', summary)]
   if labels is not None:
@@ -128,7 +139,7 @@ def encode_upload_request(fields, file_path):
 
   # Now add the file itself
   file_name = os.path.basename(file_path)
-  f = open(file_path)
+  f = open(file_path, 'rb')
   file_content = f.read()
   f.close()
 
@@ -148,17 +159,62 @@ def encode_upload_request(fields, file_path):
   return 'multipart/form-data; boundary=%s' % BOUNDARY, CRLF.join(body)
 
 
+def upload_find_auth(file_path, project_name, summary, labels=None,
+                     user_name=None, password=None, tries=3):
+  """Find credentials and upload a file to a Google Code project's file server.
+
+  file_path, project_name, summary, and labels are passed as-is to upload.
+
+  Args:
+    file_path: The local path to the file.
+    project_name: The name of your project on Google Code.
+    summary: A small description for the file.
+    labels: an optional list of label strings with which to tag the file.
+    config_dir: Path to Subversion configuration directory, 'none', or None.
+    user_name: Your Google account name.
+    tries: How many attempts to make.
+  """
+
+  while tries > 0:
+    if user_name is None:
+      # Read username if not specified or loaded from svn config, or on
+      # subsequent tries.
+      sys.stdout.write('Please enter your googlecode.com username: ')
+      sys.stdout.flush()
+      user_name = sys.stdin.readline().rstrip()
+    if password is None:
+      # Read password if not loaded from svn config, or on subsequent tries.
+      print 'Please enter your googlecode.com password.'
+      print '** Note that this is NOT your Gmail account password! **'
+      print 'It is the password you use to access Subversion repositories,'
+      print 'and can be found here: http://code.google.com/hosting/settings'
+      password = getpass.getpass()
+
+    status, reason, url = upload(file_path, project_name, user_name, password,
+                                 summary, labels)
+    # Returns 403 Forbidden instead of 401 Unauthorized for bad
+    # credentials as of 2007-07-17.
+    if status in [httplib.FORBIDDEN, httplib.UNAUTHORIZED]:
+      # Rest for another try.
+      user_name = password = None
+      tries = tries - 1
+    else:
+      # We're done.
+      break
+
+  return status, reason, url
+
+
 def main():
   parser = optparse.OptionParser(usage='googlecode-upload.py -s SUMMARY '
-                                 '-p PROJECT -u USERNAME FILE')
+                                 '-p PROJECT [options] FILE')
   parser.add_option('-s', '--summary', dest='summary',
                     help='Short description of the file')
   parser.add_option('-p', '--project', dest='project',
                     help='Google Code project name')
-  parser.add_option('-u', '--user', dest='user',
-                    help='Your Google Code username')
   parser.add_option('-l', '--labels', dest='labels',
-                    help='An optional list of labels to attach to the file')
+                    help='An optional list of comma-separated labels to attach '
+                    'to the file')
 
   options, args = parser.parse_args()
 
@@ -166,33 +222,32 @@ def main():
     parser.error('File summary is missing.')
   elif not options.project:
     parser.error('Project name is missing.')
-  elif not options.user:
-    parser.error('User name is missing.')
   elif len(args) < 1:
     parser.error('File to upload not provided.')
+  elif len(args) > 1:
+    parser.error('Only one file may be specified.')
 
-  print 'Please enter your googlecode.com password.'
-  print '** Note that this is NOT your Gmail account password! **'
-  print 'It is the password you use to access Subversion repositories,'
-  print 'and can be found here: http://code.google.com/hosting/settings'
-  password = getpass.getpass()
   file_path = args[0]
 
   if options.labels:
     labels = options.labels.split(',')
   else:
     labels = None
+ 
+  passwordfromfile, userfromfile = get_usr_data("~/.googlecode")
 
-  status, reason, url = upload(file_path, options.project,
-                               options.user, password,
-                               options.summary, labels)
+  status, reason, url = upload_find_auth(file_path, options.project,
+                                         options.summary, labels,
+                                         userfromfile, passwordfromfile)
   if url:
     print 'The file was uploaded successfully.'
     print 'URL: %s' % url
+    return 0
   else:
     print 'An error occurred. Your file was not uploaded.'
     print 'Google Code upload server said: %s (%s)' % (reason, status)
+    return 1
 
 
 if __name__ == '__main__':
-  main()
+  sys.exit(main())

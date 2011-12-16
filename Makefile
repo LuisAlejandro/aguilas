@@ -191,9 +191,13 @@ uninstall:
 	@rm -rf $(DESTDIR)/var/www/aguilas/
 	@php -f uninstall.php
 	@echo "Uninstalled"
-	
+
 release:
 
 	@bash scripts/release.sh
+
+snapshot:
+
+	@bash scripts/snapshot.sh
 
 reinstall: uninstall install
