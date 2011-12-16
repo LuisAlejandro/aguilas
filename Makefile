@@ -110,7 +110,7 @@ gen-doc: check-builddep clean-doc
 
 	@echo "Generating documentation from source [RST > HTML,MAN]"
 	@make -C docs html
-	@rst2man --language="en" --title="AGUILAS" docs/man-aguilas.rst docs/aguilas.1
+	@rst2man --language="en" --title="AGUILAS" docs/man/aguilas.rst docs/man/aguilas.1
 	@touch gen-doc
 
 gen-conf: check-builddep clean-conf
