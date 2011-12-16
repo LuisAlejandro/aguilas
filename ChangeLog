@@ -1,3 +1,72 @@
+DEVELOPMENT RELEASE v1.0.0~20111216030223 (12/16/11)
+    * Automating the generation of stable and development releases.
+    * Starting development of release script
+    * Correcting setting of localization.
+    * Minos style adjustments.
+    * Changing gettext strings.
+    * Updating localization
+    * Including Functions.php on MYSQLConnection.php
+    * Adding unnistall script
+    * Correcting location of media files (css, js, ...)
+    * Including MYSQL and LDAP Connection functions on install script
+    * Correcting more details on Makefile, scripts/gen-conf.sh, and config.php.example.
+    * Correcting details on Makefile
+    * Correcting error on pre-configuration.
+    * Adding RST manual.
+    * Adding gettext specification of language and including Locale.php in all files where needed.
+    * Improving Makefile
+    Improving locales
+Merge: 71e582f e7e5591
+    Merge branch 'development' of gitorious.org:huntingbears/aguilas
+    * Improving Makefile
+    * Introducing googlecode upload python script
+    * Removing NetBeans project folder
+    Various improvements:
+    	* Introducing sphinx documentation
+    	* Creating log files to simplify Makefile
+    	* Deleting xcf banners to simplify generation of images from source, and maintain images "patchable"
+    	* Creating aguilas logo
+    Improving the way users config AGUILAS at installation time.
+    Improving locales
+    New Script
+Merge: 3ba9037 f16752e
+    Merge branch 'master' of gitorious.org:huntingbears/aguilas
+    Translating to es_VE
+    Improving install methods
+    Generating locales
+    Estructural changes:
+    	* Better validation
+    	* Creating gettext *.po and *.mo files
+    	* Beauty of code improvements
+    	* Inclusion of TLS and secure passwords options
+    	* Install script
+    	* Automatization with Makefile
+Merge: 350eeab 61032bf
+    Merge branch 'master' of gitorious.org:huntingbears/aguilas
+    Adding install script
+Merge: 59577aa 36fd633
+    Merge branch 'master' of gitorious.org:huntingbears/aguilas
+    Upgrading the form that the images are represented. Leaving only the
+    source code (*.xcf, *.svg) and converting them to binary (*.jpg, *.png)
+    dinamically on the Makefile
+    Implementing function upgrades and automatization
+    New version 1.2:
+    	* Complete redoing of filenames and structure
+    	* Implementation of NetBeans IDE
+    	* Implementetion of multiple functions to atomatize various processes
+    	* Implementation of internationalization system through gettext
+    	* Added functionality of changing visual themes
+    	* Automatize the creation of the maxUID entry
+    	* New Debian and Canaima themes
+    Modificando index.php para manejar diferentes temas
+    Actualizando versión a 1.1
+    Mejoras varias:
+    
+    	* Cambio de permisos a *.php
+    	* Mejora de la lectura de la configuración
+    	* Auto-incremento del uidNumber
+    	* Perfeccionamiento del código
+
 commit 7f36e6e47bc9564f5466dfd2d5c0b0a5906a981c
 Author: Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>
 Date:   Fri Nov 25 10:08:36 2011 -0430
