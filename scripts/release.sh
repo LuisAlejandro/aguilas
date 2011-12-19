@@ -14,7 +14,7 @@ git checkout release
 
 OLDCOMMIT=$( cat ${VERSION} | grep "COMMIT" | sed 's/COMMIT = //g' )
 OLDCOMMITLINE=$( cat ${CHANGES}  | grep -n "${OLDCOMMIT}" | awk -F: '{print $1}')
-NEWVERSION=$( cat ${DEVERSION} | grep "VERSION" | sed 's/VERSION = //g;s/~.*//g' )
+NEWVERSION=$( cat ${DEVERSION} | grep "VERSION" | sed 's/VERSION = //g;s/+.*//g' )
 
 echo "STABLE RELEASE v${NEWVERSION} (${DATE})" > ${NEWCHANGES}
 cat ${CHANGES} | sed -n 1,${OLDCOMMITLINE}p | sed 's/commit.*//g;s/Author:.*//g;s/Date:.*//g;s/Merge.*//g;/^$/d;' >> ${NEWCHANGES}
@@ -33,7 +33,7 @@ echo "COMMIT = ${LASTCOMMIT}" >> ${VERSION}
 
 git add .
 git commit -a -m "New stable release ${NEWVERSION}"
-git tag stable/${NEWVERSION} -m "New stable release ${NEWVERSION}"
+git tag ${NEWVERSION} -m "New stable release ${NEWVERSION}"
 
 git push --tags git@github.com:HuntingBears/aguilas.git release
 git push --tags git@gitorious.org:huntingbears/aguilas.git release

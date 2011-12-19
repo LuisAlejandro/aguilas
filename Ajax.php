@@ -7,9 +7,11 @@ include_once "Locale.php";
 include_once "LDAPConnection.php";
 
 foreach( $_GET as $key => $value ){
-    $asign = "\$" . $key . "='" . $value . "';";
     if( in_array( $key, $allowed_ops )){
-        eval($asign);
+        $value = trim($value);
+        $value = htmlspecialchars($value, ENT_QUOTES);
+        $value = stripslashes($value);
+        $$key = "$value";
     }
 }
 

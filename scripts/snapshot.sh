@@ -33,8 +33,8 @@ echo "VERSION = ${NEWVERSION}+${SNAPSHOT}" > ${VERSION}
 echo "COMMIT = ${LASTCOMMIT}" >> ${VERSION}
 
 git add .
-git commit -a -m "New development release ${NEWVERSION}+${SNAPSHOT}"
-git tag development/${NEWVERSION}+${SNAPSHOT} -m "New development release ${NEWVERSION}+${SNAPSHOT}"
+git commit -a -m "New development snapshot ${NEWVERSION}+${SNAPSHOT}"
+git tag ${NEWVERSION}+${SNAPSHOT} -m "New development snapshot ${NEWVERSION}+${SNAPSHOT}"
 
 git push --tags git@github.com:HuntingBears/aguilas.git development
 git push --tags git@gitorious.org:huntingbears/aguilas.git development
