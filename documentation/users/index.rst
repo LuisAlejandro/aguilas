@@ -4,16 +4,13 @@
 
 **A web based LDAP user management system**
 
-
-
 ----------------------
 
 **Index**
 
 .. toctree::
    :maxdepth: 2
-   developers/index.rst
-   users/index.rst
+
 
 ----------------------
 

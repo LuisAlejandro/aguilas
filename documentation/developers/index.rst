@@ -12,8 +12,7 @@
 
 .. toctree::
    :maxdepth: 2
-   developers/index.rst
-   users/index.rst
+
 
 ----------------------
 

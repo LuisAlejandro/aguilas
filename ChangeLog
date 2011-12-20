@@ -10,21 +10,17 @@ DEVELOPMENT RELEASE v1.0.1+20111220154618 (12/20/11)
     	* Classifying setup scripts
     Improving release and snapshot scripts
     Improving security on parameters passed to modules
-    New development release 1.0.0+20111216175312
 
 DEVELOPMENT RELEASE v1.0.0+20111216175312 (12/16/11)
     Correcting errors in es_VE localization
-    New development release 1.0.0+20111216172924
 
 DEVELOPMENT RELEASE v1.0.0+20111216172924 (12/16/11)
     Improving documentation
-    New development release 1.0.0+20111216103827
 
 DEVELOPMENT RELEASE v1.0.0+20111216103827 (12/16/11)
     Improving es_VE translation
     Adding README.rst documentation
     Correcting some password encoding mistakes
-    New development release 1.0.0~20111216030223
 
 DEVELOPMENT RELEASE v1.0.0+20111216030223 (12/16/11)
     * Automating the generation of stable and development releases.
@@ -70,7 +66,7 @@ DEVELOPMENT RELEASE v1.0.0+20111216030223 (12/16/11)
     source code (*.xcf, *.svg) and converting them to binary (*.jpg, *.png)
     dinamically on the Makefile
     Implementing function upgrades and automatization
-    New version 1.2:
+    Various Improvements:
     	* Complete redoing of filenames and structure
     	* Implementation of NetBeans IDE
     	* Implementetion of multiple functions to atomatize various processes
@@ -78,10 +74,3 @@ DEVELOPMENT RELEASE v1.0.0+20111216030223 (12/16/11)
     	* Added functionality of changing visual themes
     	* Automatize the creation of the maxUID entry
     	* New Debian and Canaima themes
-    Modificando index.php para manejar diferentes temas
-    Actualizando versión a 1.1
-    Mejoras varias:  
-    	* Cambio de permisos a *.php
-    	* Mejora de la lectura de la configuración
-    	* Auto-incremento del uidNumber
-    	* Perfeccionamiento del código
