@@ -38,7 +38,7 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
     WrongUIDLength();
 
 // Invalid e-mail
-} elseif (preg_match("/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/", $mail) == 0) {
+} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
     InvalidEMail();
 
@@ -147,7 +147,7 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
                 if ($result_count == 0){
                     
                     // Creating maxUID entry ...
-                    require_once "CreateMaxUIDEntry.php";
+                    require_once "./libraries/CreateMaxUIDEntry.inc.php";
                     
                     // Setting last uidNumber to the first
                     $lastuidnumber = $maxuidstart;

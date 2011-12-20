@@ -40,7 +40,7 @@ if (!isset($mail) || !isset($image_captcha)) {
     WrongCaptcha();
 
 // Invalid e-mail
-} elseif (preg_match("/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/", $mail) == 0) {
+} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
     InvalidEMail();
 

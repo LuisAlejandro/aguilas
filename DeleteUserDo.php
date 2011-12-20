@@ -60,7 +60,7 @@ if (!isset($uid) || !isset($mail) || !isset($userPassword) || !isset($image_capt
     WrongPasswordLength();
 
 // Invalid e-mail
-} elseif (preg_match("/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/", $mail) == 0) {
+} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
     InvalidEMail();
 

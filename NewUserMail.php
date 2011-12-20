@@ -128,7 +128,7 @@ if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset
         Wrong2NameLength();
 
     // Invalid e-mail
-    } elseif (preg_match("/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/", $mail) == 0) {
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
         InvalidEMail();
 
@@ -141,7 +141,7 @@ if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset
 
         // Create the table if we don't have it
         if (!$val_r) {
-            require_once "CreateUserTable.php";
+            require_once "./libraries/CreateUserTable.inc.php";
         }
 
         // We build up our query to insert the user data into a temporary MYSQL Database

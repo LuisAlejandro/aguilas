@@ -6,7 +6,6 @@ IMAGES = $(shell ls themes/canaima/images/ | grep ".svg" | sed 's/.svg//g')
 THEMES = $(shell ls themes/)
 LOCALES = $(shell ls locale/)
 PHPS = $(wildcard *.php)
-LIBS = $(wildcard libraries/*.php)
 LOGS = $(wildcard events/*.log)
 
 CONVERT = $(shell which convert)
@@ -17,8 +16,6 @@ SPHINX = $(shell which sphinx-build)
 MSGFMT = $(shell which msgfmt)
 IMVERSION = $(shell ls /usr/lib/ | grep -i "imagemagick" | sed -n 1p)
 LIBSVG = /usr/lib/$(IMVERSION)/modules-Q16/coders/svg.so
-
-LOGDIR = /var/log/aguilas/
 
 all: gen-img gen-mo gen-conf clean-stamps
 
@@ -185,8 +182,8 @@ copy:
 	@install -D -m 644 $(PHPS) $(DESTDIR)/usr/share/aguilas/
 	@install -D -m 644 $(LOGS) $(DESTDIR)/var/log/aguilas/
 	@chown -R www-data:www-data $(DESTDIR)/var/log/aguilas/
-	@rm -rf $(DESTDIR)/usr/share/aguilas/install.php
-	@rm -rf $(DESTDIR)/usr/share/aguilas/uninstall.php
+	@rm -rf $(DESTDIR)/usr/share/aguilas/setup/install.php
+	@rm -rf $(DESTDIR)/usr/share/aguilas/setup/uninstall.php
 	@for THEME in $(THEMES); do \
 		for IMAGE in $(IMAGES); do \
 			rm -rf $(DESTDIR)/usr/share/aguilas/themes/$${THEME}/images/$${IMAGE}.svg; \
@@ -200,7 +197,7 @@ uninstall:
 	@rm -rf $(DESTDIR)/usr/share/aguilas/
 	@rm -rf $(DESTDIR)/var/log/aguilas/
 	@rm -rf $(DESTDIR)/var/www/aguilas/
-	@php -f uninstall.php
+	@php -f setup/uninstall.php
 	@echo "Uninstalled"
 
 release:

@@ -41,7 +41,7 @@ if (!isset($uid) || !isset($mail) || !isset($token) || !isset($image_captcha)) {
     WrongCaptcha();
 
 // Invalid e-mail
-} elseif (preg_match("/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/", $mail) == 0) {
+} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
     InvalidEMail();
 
@@ -93,7 +93,7 @@ if (!isset($uid) || !isset($mail) || !isset($token) || !isset($image_captcha)) {
 
         // Create the table if we don't have it
         if (!$val_r) {
-            require_once "CreatePasswordTable.php";
+            require_once "./libraries/CreatePasswordTable.inc.php";
         }
 
         // We build up our query to insert the user data into a temporary MYSQL Database
