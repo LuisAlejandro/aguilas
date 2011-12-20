@@ -1,3 +1,17 @@
+DEVELOPMENT RELEASE v1.0.1+20111220154618 (12/20/11)
+    Various improvements:
+    	* Changing the preg_match that validates the email for a filter_var approach.
+    	* Moving in-development scripts to a separate directory.
+    	* Begging to automate update POT files procedure.
+    Various modifications:
+    	* Changing the form that variables are passed to query strings
+    	* Avoiding direct load of libraries
+    	* Changing directory names to proper ones
+    	* Classifying setup scripts
+    Improving release and snapshot scripts
+    Improving security on parameters passed to modules
+    New development release 1.0.0+20111216175312
+
 DEVELOPMENT RELEASE v1.0.0+20111216175312 (12/16/11)
     Correcting errors in es_VE localization
     New development release 1.0.0+20111216172924
