@@ -6,7 +6,8 @@ IMAGES = $(shell ls themes/canaima/images/ | grep ".svg" | sed 's/.svg//g')
 THEMES = $(shell ls themes/)
 LOCALES = $(shell ls locale/)
 PHPS = $(wildcard *.php)
-LOGS = $(wildcard logs/*.log)
+LIBS = $(wildcard libraries/*.php)
+LOGS = $(wildcard events/*.log)
 
 CONVERT = $(shell which convert)
 BINBASH = $(shell which bash)
@@ -16,6 +17,8 @@ SPHINX = $(shell which sphinx-build)
 MSGFMT = $(shell which msgfmt)
 IMVERSION = $(shell ls /usr/lib/ | grep -i "imagemagick" | sed -n 1p)
 LIBSVG = /usr/lib/$(IMVERSION)/modules-Q16/coders/svg.so
+
+LOGDIR = /var/log/aguilas/
 
 all: gen-img gen-mo gen-conf clean-stamps
 
@@ -109,8 +112,8 @@ gen-mo: check-builddep clean-mo
 gen-doc: check-builddep clean-doc
 
 	@echo "Generating documentation from source [RST > HTML,MAN]"
-	@make -C docs html
-	@rst2man --language="en" --title="AGUILAS" docs/man/aguilas.rst docs/man/aguilas.1
+	@make -C documentation html
+	@rst2man --language="en" --title="AGUILAS" documentation/man/aguilas.rst documentation/man/aguilas.1
 	@touch gen-doc
 
 gen-conf: check-builddep clean-conf
@@ -155,14 +158,14 @@ clean-mo:
 clean-doc:
 
 	@echo "Cleaning generated documentation"
-	@rm -rf docs/_build
-	@rm -rf docs/aguilas.1
+	@rm -rf documentation/_build
+	@rm -rf documentation/aguilas.1
 	@rm -rf gen-doc
 
 clean-conf:
 
 	@echo "Cleaning generated configuration"
-	@rm -rf config.php var com
+	@rm -rf setup/config.php var com
 	@rm -rf gen-conf
 
 install: copy config
@@ -171,17 +174,25 @@ config:
 
 	@mkdir -p $(DESTDIR)/var/www/
 	@ln -s $(DESTDIR)/usr/share/aguilas /var/www/aguilas
-	@php -f install.php
+	@php -f setup/install.php
 	@echo "AGUILAS configured and running!"
 
 copy:
 
 	@mkdir -p $(DESTDIR)/usr/share/aguilas/
 	@mkdir -p $(DESTDIR)/var/log/aguilas/
-	@cp -r locale themes $(DESTDIR)/usr/share/aguilas/
+	@cp -r locale setup libraries themes $(DESTDIR)/usr/share/aguilas/
 	@install -D -m 644 $(PHPS) $(DESTDIR)/usr/share/aguilas/
 	@install -D -m 644 $(LOGS) $(DESTDIR)/var/log/aguilas/
 	@chown -R www-data:www-data $(DESTDIR)/var/log/aguilas/
+	@rm -rf $(DESTDIR)/usr/share/aguilas/install.php
+	@rm -rf $(DESTDIR)/usr/share/aguilas/uninstall.php
+	@for THEME in $(THEMES); do \
+		for IMAGE in $(IMAGES); do \
+			rm -rf $(DESTDIR)/usr/share/aguilas/themes/$${THEME}/images/$${IMAGE}.svg; \
+		done; \
+		rm -rf themes/$${THEME}/images/favicon.png; \
+	done
 	@echo "Files copied"
 
 uninstall:

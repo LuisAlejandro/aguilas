@@ -2,9 +2,9 @@
 
 $allowed_ops = array("obj_a", "val_a", "who_a", "cn_a");
 
-include_once "config.php";
-include_once "Locale.php";
-include_once "LDAPConnection.php";
+require_once "./setup/config.php";
+require_once "./libraries/Locale.inc.php";
+require_once "./libraries/LDAPConnection.inc.php";
 
 foreach( $_GET as $key => $value ){
     if( in_array( $key, $allowed_ops )){

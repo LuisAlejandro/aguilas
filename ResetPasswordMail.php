@@ -2,13 +2,13 @@
 
 $allowed_ops = array("uid", "mail", "image_captcha");
 
-include_once "config.php";
-include_once "Locale.php";
-include_once "themes/$app_theme/header.php";
-include_once "Functions.php";
-include_once "Parameters.php";
-include_once "LDAPConnection.php";
-include_once "MYSQLConnection.php";
+require_once "./setup/config.php";
+require_once "./libraries/Locale.inc.php";
+require_once "./themes/$app_theme/header.php";
+require_once "./libraries/Functions.inc.php";
+require_once "./libraries/Parameters.inc.php";
+require_once "./libraries/LDAPConnection.inc.php";
+require_once "./libraries/MYSQLConnection.inc.php";
 
 InitCaptcha();
 
@@ -93,18 +93,19 @@ if (!isset($uid) || !isset($mail) || !isset($token) || !isset($image_captcha)) {
 
         // Create the table if we don't have it
         if (!$val_r) {
-            include_once "CreatePasswordTable.php";
+            require_once "CreatePasswordTable.php";
         }
 
         // We build up our query to insert the user data into a temporary MYSQL Database
         // while the user gets the confirmation e-mail and clicks the link
-        $ins_q = "INSERT INTO ResetPassword "
+        $ins_q = sprintf("INSERT INTO ResetPassword "
                 . "(uid, mail, token, description) "
-                . "VALUES ('"
-                . $uid . "', '"
-                . $mail . "', '"
-                . $token . "', '"
-                . $description . "')";
+                . "VALUES ('%s', '%s', '%s', '%s')"
+                , mysql_real_escape_string($uid)
+                , mysql_real_escape_string($mail)
+                , mysql_real_escape_string($token)
+                , mysql_real_escape_string($description)
+                );
 
         // Inserting the row on the table ...
         $ins_r = AssistedMYSQLQuery($ins_q);
@@ -133,6 +134,6 @@ $ldapx = AssistedLDAPClose($ldapc);
 // Closing the connection
 $mysqlx = AssistedMYSQLClose($mysqlc);
 
-include_once "themes/$app_theme/footer.php";
+require_once "./themes/$app_theme/footer.php";
 
 ?>

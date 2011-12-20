@@ -1,5 +1,13 @@
 <?php
 
+// Prevent to be loaded directly
+if (!isset($allowed_ops)) {
+    die(_("FORM:ERROR"));
+}
+
+require_once "../setup/config.php";
+require_once "../libraries/Locale.inc.php";
+
 /******************************************************************************
  *                       DATABASE MANIPULATION FUNCTIONS                      *
  ******************************************************************************/
@@ -13,7 +21,7 @@ function AssistedLDAPAdd($ldapc, $newdn, $in) {
                     . '.<br /><br /><a href="javascript:history.back(1);">'
                     . _("BACK")
                     . '</a></div>'
-                    . file_get_contents("themes/$app_theme/footer.php")
+                    . file_get_contents("../themes/$app_theme/footer.php")
     );
     return($r_add);
 }
@@ -27,7 +35,7 @@ function AssistedLDAPModify($ldapc, $moddn, $in) {
                     . '.<br /><br /><a href="javascript:history.back(1);">'
                     . _("BACK")
                     . '</a></div>'
-                    . file_get_contents("themes/$app_theme/footer.php")
+                    . file_get_contents("../themes/$app_theme/footer.php")
     );
     return($r_mod);
 }
@@ -41,7 +49,7 @@ function AssistedLDAPDelete($ldapc, $dn) {
                     . '.<br /><br /><a href="javascript:history.back(1);">'
                     . _("BACK")
                     . '</a></div>'
-                    . file_get_contents("themes/$app_theme/footer.php")
+                    . file_get_contents("../themes/$app_theme/footer.php")
     );
     return($r_del);
 }
@@ -55,7 +63,7 @@ function AssistedLDAPClose($ldapc) {
                     . '.<br /><br /><a href="javascript:history.back(1);">'
                     . _("BACK")
                     . '</a></div>'
-                    . file_get_contents("themes/$app_theme/footer.php")
+                    . file_get_contents("../themes/$app_theme/footer.php")
     );
     return($ldapx);
 }
@@ -71,7 +79,7 @@ function AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $
                     . '.<br /><br /><a href="javascript:history.back(1);">'
                     . _("BACK")
                     . '</a></div>'
-                    . file_get_contents("themes/$app_theme/footer.php")
+                    . file_get_contents("../themes/$app_theme/footer.php")
     );
 
     // Sorting the result by cn
@@ -83,7 +91,7 @@ function AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $
                     . '.<br /><br /><a href="javascript:history.back(1);">'
                     . _("BACK")
                     . '</a></div>'
-                    . file_get_contents("themes/$app_theme/footer.php")
+                    . file_get_contents("../themes/$app_theme/footer.php")
     );
 
     // Getting the all the entries
@@ -95,7 +103,7 @@ function AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $
                     . '.<br /><br /><a href="javascript:history.back(1);">'
                     . _("BACK")
                     . '</a></div>'
-                    . file_get_contents("themes/$app_theme/footer.php")
+                    . file_get_contents("../themes/$app_theme/footer.php")
     );
     return($search_entries);
 }
@@ -109,7 +117,7 @@ function AssistedMYSQLQuery($query) {
                     . '.<br /><br /><a href="javascript:history.back(1);">'
                     . _("BACK")
                     . '</a></div>'
-                    . file_get_contents("themes/$app_theme/footer.php")
+                    . file_get_contents("../themes/$app_theme/footer.php")
     );
     return($result);
 }
@@ -123,7 +131,7 @@ function AssistedMYSQLClose($mysqlc) {
                     . '.<br /><br /><a href="javascript:history.back(1);">'
                     . _("BACK")
                     . '</a></div>'
-                    . file_get_contents("themes/$app_theme/footer.php")
+                    . file_get_contents("../themes/$app_theme/footer.php")
     );
     return($mysqlx);
 }
@@ -270,7 +278,7 @@ function AssistedEMail($what, $where) {
  ******************************************************************************/
 
 function WriteLog($data, $log_file, $time_today) {
-    $log_location = "/var/log/aguilas/" . $log_file . ".log";
+    $log_location = $log_dir . $log_file . ".log";
     switch ($log_file) {
         case "ChangePasswordDo":
             $log_string = "[" . $time_today . "]: "

@@ -2,13 +2,13 @@
 
 $allowed_ops = array("uid", "mail", "token");
 
-include_once "config.php";
-include_once "Locale.php";
-include_once "themes/$app_theme/header.php";
-include_once "Functions.php";
-include_once "Parameters.php";
-include_once "LDAPConnection.php";
-include_once "MYSQLConnection.php";
+require_once "./setup/config.php";
+require_once "./libraries/Locale.inc.php";
+require_once "./themes/$app_theme/header.php";
+require_once "./libraries/Functions.inc.php";
+require_once "./libraries/Parameters.inc.php";
+require_once "./libraries/LDAPConnection.inc.php";
+require_once "./libraries/MYSQLConnection.inc.php";
 
 ?>
 
@@ -57,11 +57,13 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
     // VALIDATION PASSED -------------------------------------------------------
     // Let's search in the temporary database for the mail, user and token that we
     // are getting from the e-mail we sent to the user
-    $sel_q = "SELECT * FROM ResetPassword"
-                    . " WHERE mail='" . $mail . "'"
-                    . " AND uid='" . $uid . "'"
-                    . " AND token='" . $token . "'"
-                    . " ORDER BY token DESC LIMIT 0,1";
+    $sel_q = sprintf("SELECT * FROM ResetPassword"
+                    . " WHERE mail='%s' AND uid='%s' AND token='%s'"
+                    . " ORDER BY token DESC LIMIT 0,1"
+                    , mysql_real_escape_string($mail)
+                    , mysql_real_escape_string($uid)
+                    , mysql_real_escape_string($token)
+                    );
 
     // Searching ...
     $sel_r = AssistedMYSQLQuery($sel_q);
@@ -144,10 +146,14 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
                 if ($send) {
 
                     // We need to get rid of the temporary entry
-                    $del_q = "DELETE FROM ResetPassword"
-                                    . " WHERE mail='" . $mail . "'"
-                                    . " AND uid='" . $uid . "'"
-                                    . " AND token='" . $token . "'";
+                    $del_q = sprintf("DELETE FROM ResetPassword"
+                                    . " WHERE mail='%s'"
+                                    . " AND uid='%s'"
+                                    . " AND token='%s'"
+                                    , mysql_real_escape_string($mail)
+                                    , mysql_real_escape_string($uid)
+                                    , mysql_real_escape_string($token)
+                    );
 
                     // Deleting the row from the table ...
                     $del_r = AssistedMYSQLQuery($del_q);
@@ -171,6 +177,6 @@ $ldapx = AssistedLDAPClose($ldapc);
 // Closing the connection
 $mysqlx = AssistedMYSQLClose($mysqlc);
 
-include_once "themes/$app_theme/footer.php";
+require_once "./themes/$app_theme/footer.php";
 
 ?>

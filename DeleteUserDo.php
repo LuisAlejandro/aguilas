@@ -2,12 +2,12 @@
 
 $allowed_ops = array("uid", "mail", "userPassword", "image_captcha");
 
-include_once "config.php";
-include_once "Locale.php";
-include_once "themes/$app_theme/header.php";
-include_once "Functions.php";
-include_once "Parameters.php";
-include_once "LDAPConnection.php";
+require_once "./setup/config.php";
+require_once "./libraries/Locale.inc.php";
+require_once "./themes/$app_theme/header.php";
+require_once "./libraries/Functions.inc.php";
+require_once "./libraries/Parameters.inc.php";
+require_once "./libraries/LDAPConnection.inc.php";
 
 InitCaptcha();
 
@@ -132,6 +132,6 @@ if (!isset($uid) || !isset($mail) || !isset($userPassword) || !isset($image_capt
 // Closing the connection
 $ldapx = AssistedLDAPClose($ldapc);
 
-include_once "themes/$app_theme/footer.php";
+require_once "./themes/$app_theme/footer.php";
 
 ?>

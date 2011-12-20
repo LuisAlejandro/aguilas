@@ -1,5 +1,13 @@
 <?php
 
+// Prevent to be loaded directly
+if (!isset($allowed_ops)) {
+    die(_("FORM:ERROR"));
+}
+
+require_once "../setup/config.php";
+require_once "../libraries/Locale.inc.php";
+
 $ldap_gid_flip = array_flip($ldap_gid);
 
 $ldapc = ldap_connect($ldap_server, $ldap_port)
@@ -9,7 +17,7 @@ $ldapc = ldap_connect($ldap_server, $ldap_port)
         . '.<br /><br /><a href="javascript:history.back(1);">'
         . _("BACK")
         . '</a></div>'
-        . file_get_contents("themes/$app_theme/footer.php")
+        . file_get_contents("../themes/$app_theme/footer.php")
         );
 
 $ldapo = ldap_set_option($ldapc, LDAP_OPT_PROTOCOL_VERSION, 3)
@@ -20,7 +28,7 @@ $ldapo = ldap_set_option($ldapc, LDAP_OPT_PROTOCOL_VERSION, 3)
         . '.<br /><br /><a href="javascript:history.back(1);">'
         . _("BACK")
         . '</a></div>'
-        . file_get_contents("themes/$app_theme/footer.php")
+        . file_get_contents("../themes/$app_theme/footer.php")
         );
 
 $ldapo2 = ldap_set_option($ldapc, LDAP_OPT_SIZELIMIT, 5000)
@@ -31,7 +39,7 @@ $ldapo2 = ldap_set_option($ldapc, LDAP_OPT_SIZELIMIT, 5000)
         . '.<br /><br /><a href="javascript:history.back(1);">'
         . _("BACK")
         . '</a></div>'
-        . file_get_contents("themes/$app_theme/footer.php")
+        . file_get_contents("../themes/$app_theme/footer.php")
         );
 
 if ($ldap_tls) {
@@ -43,7 +51,7 @@ if ($ldap_tls) {
             . '.<br /><br /><a href="javascript:history.back(1);">'
             . _("BACK")
             . '</a></div>'
-            . file_get_contents("themes/$app_theme/footer.php")
+            . file_get_contents("../themes/$app_theme/footer.php")
             );
 }
 
@@ -55,7 +63,7 @@ $ldapb = ldap_bind($ldapc,$ldap_dn,$ldap_pass)
         . '.<br /><br /><a href="javascript:history.back(1);">'
         . _("BACK")
         . '</a></div>'
-        . file_get_contents("themes/$app_theme/footer.php")
+        . file_get_contents("../themes/$app_theme/footer.php")
         );
 
 ?>

@@ -1,5 +1,15 @@
 <?php
 
+// Prevent to be loaded directly
+if (!isset($allowed_ops)) {
+    die(_("FORM:ERROR"));
+}
+
+require_once "../setup/config.php";
+require_once "../libraries/Locale.inc.php";
+require_once "../libraries/LDAPConnection.inc.php";
+require_once "../libraries/Functions.inc.php";
+
 // We construct the DN of our new entry
 $newdn = $maxuiddn;
 

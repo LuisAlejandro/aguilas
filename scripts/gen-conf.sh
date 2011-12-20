@@ -1,9 +1,9 @@
 #!/bin/bash
 
-SAMPLE="../config.php.example"
-FILE="../config.php"
-VARTMP="../var"
-COMTMP="../com"
+SAMPLE="../setup/config.php.example"
+FILE="../setup/config.php"
+VARTMP="../setup/var"
+COMTMP="../setup/com"
 
 echo
 echo "We are going to ask you a couple of questions regarding AGUILAS configuration."

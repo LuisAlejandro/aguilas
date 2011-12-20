@@ -32,6 +32,11 @@ $app_url = "@@APP_URL@@";
 // to the LDAP and whose registration process have been delegated to AGUILAS
 // this will appear on the main menu
 $app_links = array("APP1" => "http://$app_url", "APP2" => "http://$app_url", "APP3" => "http://$app_url", "APP4" => "http://$app_url");
+// Application log directory
+// the directory where the logs are going to be stored
+// has to be writable by www-data
+$log_dir = "/var/log/aguilas/";
+
 
 /* ========== MYSQL Database ========== */
 
@@ -43,6 +48,7 @@ $mysql_dbname = "@@MYSQL_DBNAME@@";
 $mysql_user = "@@MYSQL_USER@@";
 /// Password for the user
 $mysql_pass = "@@MYSQL_PASS@@";
+
 
 /* ========== LDAP Database ========== */
 

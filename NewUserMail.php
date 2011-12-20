@@ -2,13 +2,13 @@
 
 $allowed_ops = array("uid", "mail", "givenName", "sn", "userPassword", "userPasswordBis", "image_captcha");
 
-include_once "config.php";
-include_once "Locale.php";
-include_once "themes/$app_theme/header.php";
-include_once "Functions.php";
-include_once "Parameters.php";
-include_once "LDAPConnection.php";
-include_once "MYSQLConnection.php";
+require_once "./setup/config.php";
+require_once "./libraries/Locale.inc.php";
+require_once "./themes/$app_theme/header.php";
+require_once "./libraries/Functions.inc.php";
+require_once "./libraries/Parameters.inc.php";
+require_once "./libraries/LDAPConnection.inc.php";
+require_once "./libraries/MYSQLConnection.inc.php";
 
 InitCaptcha();
 
@@ -141,23 +141,22 @@ if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset
 
         // Create the table if we don't have it
         if (!$val_r) {
-            include_once "CreateUserTable.php";
+            require_once "CreateUserTable.php";
         }
 
         // We build up our query to insert the user data into a temporary MYSQL Database
         // while the user gets the confirmation e-mail and clicks the link
-        $ins_q = "INSERT INTO NewUser "
+        $ins_q = sprintf("INSERT INTO NewUser "
                 ."(uid, givenName, sn, mail, userPassword, description, token) "
-                . "VALUES "
-                . "('"
-                . $uid . "', '"
-                . $givenName . "', '"
-                . $sn . "', '"
-                . $mail . "', '"
-                . $userPassword . "', '"
-                . $description . "', '"
-                . $token
-                . "')";
+                . "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')"
+                , mysql_real_escape_string($uid)
+                , mysql_real_escape_string($givenName)
+                , mysql_real_escape_string($sn)
+                , mysql_real_escape_string($mail)
+                , mysql_real_escape_string($userPassword)
+                , mysql_real_escape_string($description)
+                , mysql_real_escape_string($token)
+                );
 
         // Inserting the row on the table ...
         $ins_r = AssistedMYSQLQuery($ins_q);
@@ -188,6 +187,6 @@ $ldapx = AssistedLDAPClose($ldapc);
 // Closing the connection
 $mysqlx = AssistedMYSQLClose($mysqlc);
 
-include_once "themes/$app_theme/footer.php";
+require_once "./themes/$app_theme/footer.php";
 
 ?>

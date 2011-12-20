@@ -1,7 +1,12 @@
 <?php
 
-include_once "config.php";
-include_once "Locale.php";
+// Prevent to be loaded directly
+if (!isset($allowed_ops)) {
+    die(_("FORM:ERROR"));
+}
+
+require_once "../setup/config.php";
+require_once "../libraries/Locale.inc.php";
 
 session_start();
 
