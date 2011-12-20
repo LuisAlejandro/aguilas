@@ -1,3 +1,9 @@
+DEVELOPMENT RELEASE v1.0.1+20111220191855 (12/20/11)
+    Structuring documentation.
+    Improving README and INSTALL files.
+    Correcting release and snapshot scripts.
+    
+
 DEVELOPMENT RELEASE v1.0.1+20111220154618 (12/20/11)
     Various improvements:
     	* Changing the preg_match that validates the email for a filter_var approach.
