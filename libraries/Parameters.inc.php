@@ -2,11 +2,11 @@
 
 // Prevent to be loaded directly
 if (!isset($allowed_ops)) {
-    die(_("FORM:ERROR"));
+    die("ERROR");
 }
 
-require_once "../setup/config.php";
-require_once "../libraries/Locale.inc.php";
+require_once "./setup/config.php";
+require_once "./libraries/Locale.inc.php";
 
 // For each $_POST parameter, check if it is an allowed operation
 // and remove unwanted characters

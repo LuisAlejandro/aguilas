@@ -9,13 +9,16 @@ PHPS = $(wildcard *.php)
 LOGS = $(wildcard events/*.log)
 
 CONVERT = $(shell which convert)
+PHP5 = $(shell which php5)
 BINBASH = $(shell which bash)
 RST2MAN = $(shell which rst2man)
 ICOTOOL = $(shell which icotool)
 SPHINX = $(shell which sphinx-build)
 MSGFMT = $(shell which msgfmt)
-IMVERSION = $(shell ls /usr/lib/ | grep -i "imagemagick" | sed -n 1p)
-LIBSVG = /usr/lib/$(IMVERSION)/modules-Q16/coders/svg.so
+LIBSVG = $(shell find /usr/lib/ -maxdepth 1 -type d -iname "imagemagick-*")/modules-Q16/coders/svg.so
+PHPLDAP = $(shell find /usr/lib/ -name "mysql.so" | grep "php5"); \
+PHPMYSQL = $(shell find /usr/lib/ -name "ldap.so" | grep "php5"); \
+
 
 all: gen-img gen-mo gen-conf clean-stamps
 
@@ -77,6 +80,30 @@ check-builddep:
 	@if [ -z $(LIBSVG) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"libmagickcore-extra\" package."; \
+		exit 1; \
+	fi
+	@echo
+
+	@printf "Checking if we have PHP... "
+	@if [ -z $(PHP) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"php5-cli\" package."; \
+		exit 1; \
+	fi
+	@echo
+
+	@printf "Checking if we have PHP LDAP support... "
+	@if [ -z $(PHPLDAP) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"php5-ldap\" package."; \
+		exit 1; \
+	fi
+	@echo
+
+	@printf "Checking if we have PHP MYSQL support... "
+	@if [ -z $(PHPMYSQL) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"php5-mysql\" package."; \
 		exit 1; \
 	fi
 	@echo
@@ -176,14 +203,13 @@ config:
 
 copy:
 
-	@mkdir -p $(DESTDIR)/usr/share/aguilas/
+	@mkdir -p $(DESTDIR)/usr/share/aguilas/setup/
 	@mkdir -p $(DESTDIR)/var/log/aguilas/
-	@cp -r locale setup libraries themes $(DESTDIR)/usr/share/aguilas/
+	@cp -r locale libraries themes $(DESTDIR)/usr/share/aguilas/
 	@install -D -m 644 $(PHPS) $(DESTDIR)/usr/share/aguilas/
+	@install -D -m 644 setup/config.php $(DESTDIR)/usr/share/aguilas/setup/
 	@install -D -m 644 $(LOGS) $(DESTDIR)/var/log/aguilas/
 	@chown -R www-data:www-data $(DESTDIR)/var/log/aguilas/
-	@rm -rf $(DESTDIR)/usr/share/aguilas/setup/install.php
-	@rm -rf $(DESTDIR)/usr/share/aguilas/setup/uninstall.php
 	@for THEME in $(THEMES); do \
 		for IMAGE in $(IMAGES); do \
 			rm -rf $(DESTDIR)/usr/share/aguilas/themes/$${THEME}/images/$${IMAGE}.svg; \

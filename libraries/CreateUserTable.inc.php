@@ -2,13 +2,13 @@
 
 // Prevent to be loaded directly
 if (!isset($allowed_ops)) {
-    die(_("FORM:ERROR"));
+    die("ERROR");
 }
 
-require_once "../setup/config.php";
-require_once "../libraries/Locale.inc.php";
-require_once "../libraries/MYSQLConnection.inc.php";
-require_once "../libraries/Functions.inc.php";
+require_once "./setup/config.php";
+require_once "./libraries/Locale.inc.php";
+require_once "./libraries/MYSQLConnection.inc.php";
+require_once "./libraries/Functions.inc.php";
 
 $create_q = 'CREATE TABLE NewUser ( '
         . 'main_id INT NOT NULL AUTO_INCREMENT, '
