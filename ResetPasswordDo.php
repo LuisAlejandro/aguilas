@@ -38,7 +38,7 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
     WrongUIDLength();
 
 // Invalid e-mail
-} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+} elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
 
     InvalidEMail();
 

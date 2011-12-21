@@ -27,7 +27,7 @@ foreach( $_GET as $key => $value ){
         $value = htmlspecialchars($value, ENT_QUOTES);
         $value = stripslashes($value);
         $$key = "$value";
-    }
+       }
 }
 
 // We store today's date
@@ -38,5 +38,17 @@ $token = md5(mt_rand() . "-" . time() . "-" . $_SERVER['REMOTE_ADDR'] . "-" . mt
 
 // A little description
 $description = _("POWEREDBY") . $app_name . _("AT") . $time_today . _("PETITION") . $_SERVER['REMOTE_ADDR'];
+
+// Starting session (cookies)
+session_start();
+// We get the md5 hash from the cookie
+// If it's not there, then the cookie expired
+if (isset($_SESSION['captcha'])) {
+    $session_captcha = $_SESSION['captcha'];
+}
+// We get the captcha code fom user input anf hash it
+if (isset($image_captcha)){
+    $image_captcha = md5($image_captcha);
+}
 
 ?>

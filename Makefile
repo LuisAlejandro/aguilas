@@ -9,15 +9,15 @@ PHPS = $(wildcard *.php)
 LOGS = $(wildcard events/*.log)
 
 CONVERT = $(shell which convert)
-PHP5 = $(shell which php5)
+PHP = $(shell which php5)
 BINBASH = $(shell which bash)
 RST2MAN = $(shell which rst2man)
 ICOTOOL = $(shell which icotool)
 SPHINX = $(shell which sphinx-build)
 MSGFMT = $(shell which msgfmt)
 LIBSVG = $(shell find /usr/lib/ -maxdepth 1 -type d -iname "imagemagick-*")/modules-Q16/coders/svg.so
-PHPLDAP = $(shell find /usr/lib/ -name "mysql.so" | grep "php5"); \
-PHPMYSQL = $(shell find /usr/lib/ -name "ldap.so" | grep "php5"); \
+PHPLDAP = $(shell find /usr/lib/ -name "mysql.so" | grep "php5")
+PHPMYSQL = $(shell find /usr/lib/ -name "ldap.so" | grep "php5")
 
 
 all: gen-img gen-mo gen-conf clean-stamps

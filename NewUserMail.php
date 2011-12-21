@@ -10,8 +10,6 @@ require_once "./libraries/Parameters.inc.php";
 require_once "./libraries/LDAPConnection.inc.php";
 require_once "./libraries/MYSQLConnection.inc.php";
 
-InitCaptcha();
-
 ?>
 
 <h2><?= _("REQUESTSTATUS") ?></h2>
@@ -28,6 +26,21 @@ if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset
 } elseif ($uid == '' || $givenName == '' || $sn == '' || $mail == '' || $userPassword == '' || $description == '' || $token == '' || $image_captcha == '') {
 
     EmptyVariable();
+
+// Invalid username
+} elseif (preg_match("/^[A-Za-z0-9_-]+$/", $uid) == 0) {
+
+    InvalidUsername();
+        
+// Username has less than 3 characters or more than 30
+} elseif ((strlen($uid) < 3) || (strlen($uid) > 30)) {
+
+    WrongUIDLength();
+
+// Invalid e-mail
+} elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+
+    InvalidEMail();
 
 } else {
 
@@ -128,7 +141,7 @@ if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset
         Wrong2NameLength();
 
     // Invalid e-mail
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    } elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
 
         InvalidEMail();
 

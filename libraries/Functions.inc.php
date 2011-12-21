@@ -352,22 +352,24 @@ function EncodePassword($password, $type) {
     return $hash;
 }
 
-function InitCaptcha() {
-    // CAPTCHA -----------------------------------------------------------------
-    // Starting session (cookies)
-    session_start();
-    // We get the hash from the cookie
-    // If it's not there, then the cookie expired
-    if (isset($_SESSION['captcha'])) {
-        $session_captcha = $_SESSION['captcha'];
-    }
+function ExpiredCaptcha() {
+    ?>
+    <div class="error">
+        <?= _("CAPTCHA:EXPIRED") ?>
+        <br /><br />
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
+    </div>
+    <?php
+}
 
-    if (isset($image_captcha)){
-        // Let's MD5 the user entry
-        $image_captcha = md5($image_captcha);
-    } else {
-        WrongCaptcha();
-    }
+function WrongCaptcha() {
+    ?>
+    <div class="error">
+        <?= _("CAPTCHA:WRONG") ?>
+        <br /><br />
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
+    </div>
+    <?php
 }
 
 function VariableNotSet() {

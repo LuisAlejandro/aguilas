@@ -9,8 +9,6 @@ require_once "./libraries/Functions.inc.php";
 require_once "./libraries/Parameters.inc.php";
 require_once "./libraries/LDAPConnection.inc.php";
 
-InitCaptcha();
-
 ?>
 
 <h2><?= _("USERPROFILE") ?></h2>

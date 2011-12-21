@@ -73,7 +73,7 @@ if (!isset($obj_a) || !isset($val_a) || !isset($who_a) || !isset($cn_a)) {
     // If the modification was a success
     if ($mod) {
         // We log the event
-        $log_location = "/var/log/aguilas/Ajax.log";
+        $log_location = $log_dir . "Ajax.log";
         $log_string = "[" . $time_today . "]: "
                     . _("MODATTRIBUTE") . $obj_a
                     . _("OFTHEUSER") . $who_a . ".\n";

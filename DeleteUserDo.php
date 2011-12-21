@@ -9,8 +9,6 @@ require_once "./libraries/Functions.inc.php";
 require_once "./libraries/Parameters.inc.php";
 require_once "./libraries/LDAPConnection.inc.php";
 
-InitCaptcha();
-
 ?>
 
 <h2><?= _("REQUESTSTATUS") ?></h2>
@@ -60,7 +58,7 @@ if (!isset($uid) || !isset($mail) || !isset($userPassword) || !isset($image_capt
     WrongPasswordLength();
 
 // Invalid e-mail
-} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+} elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
 
     InvalidEMail();
 

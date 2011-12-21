@@ -10,7 +10,6 @@ require_once "./libraries/Parameters.inc.php";
 require_once "./libraries/LDAPConnection.inc.php";
 require_once "./libraries/MYSQLConnection.inc.php";
 
-InitCaptcha();
 
 ?>
 
@@ -41,7 +40,7 @@ if (!isset($uid) || !isset($mail) || !isset($token) || !isset($image_captcha)) {
     WrongCaptcha();
 
 // Invalid e-mail
-} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+} elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
 
     InvalidEMail();
 

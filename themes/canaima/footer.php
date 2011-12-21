@@ -50,7 +50,14 @@
             speed: 700
         });
     });
-    
+   
 </script>
 </body>
 </html>
+<?php
+
+$ExpireTime = 60*60*24*365;
+header('Content-type: text/html; charset=utf-8');
+header('Expires: '.gmdate('D, d M Y H:i:s', time()-$ExpireTime).' GMT');
+
+?>
