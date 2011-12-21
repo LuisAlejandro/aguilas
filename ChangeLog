@@ -1,3 +1,9 @@
+DEVELOPMENT RELEASE v1.0.1+20111220205134 (12/20/11)
+    Correcting minor details on libraries location.
+    Adding PHP, PHP-LDAP and PHP-MYSQL checking support on Makefile.
+    Correcting minor detail with locale string.
+    
+
 DEVELOPMENT RELEASE v1.0.1+20111220191855 (12/20/11)
     Structuring documentation.
     Improving README and INSTALL files.
