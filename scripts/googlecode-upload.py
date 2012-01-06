@@ -159,8 +159,7 @@ def encode_upload_request(fields, file_path):
   return 'multipart/form-data; boundary=%s' % BOUNDARY, CRLF.join(body)
 
 
-def upload_find_auth(file_path, project_name, summary, labels=None,
-                     user_name=None, password=None, tries=3):
+def upload_find_auth(file_path, project_name, summary, labels=None, user_name=None, password=None, tries=3):
   """Find credentials and upload a file to a Google Code project's file server.
 
   file_path, project_name, summary, and labels are passed as-is to upload.
@@ -174,8 +173,9 @@ def upload_find_auth(file_path, project_name, summary, labels=None,
     user_name: Your Google account name.
     tries: How many attempts to make.
   """
-
+  print user_name
   while tries > 0:
+    print user_name
     if user_name is None:
       # Read username if not specified or loaded from svn config, or on
       # subsequent tries.
@@ -233,12 +233,10 @@ def main():
     labels = options.labels.split(',')
   else:
     labels = None
- 
-  passwordfromfile, userfromfile = get_usr_data("~/.googlecode")
 
-  status, reason, url = upload_find_auth(file_path, options.project,
-                                         options.summary, labels,
-                                         userfromfile, passwordfromfile)
+  userfromfile, passwordfromfile = get_usr_data(os.environ['HOME']+"/.googlecode")
+
+  status, reason, url = upload_find_auth(file_path, options.project, options.summary, labels, userfromfile, passwordfromfile, 3)
   if url:
     print 'The file was uploaded successfully.'
     print 'URL: %s' % url
