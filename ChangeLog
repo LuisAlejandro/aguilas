@@ -1,3 +1,11 @@
+DEVELOPMENT RELEASE v1.0.1+20120108185705 (01/08/12)
+    Passing AssistedEmail function parameters
+    Modifying googlecode script
+    Correcting filter_var e-mail validation.
+    Correcting Captcha initialization. Deprecating InitCaptcha function.
+    Correcting minor details on Makefile.
+    
+
 DEVELOPMENT RELEASE v1.0.1+20111220205134 (12/20/11)
     Correcting minor details on libraries location.
     Adding PHP, PHP-LDAP and PHP-MYSQL checking support on Makefile.
