@@ -67,7 +67,7 @@ INSTALLING AGUILAS
 	+ Base DN to perform searches and include new users
 
 5.- Obtain superuser priviledges, and install aguilas.
-	sudo make aguilas
+	sudo make install
 
 DONE!
 

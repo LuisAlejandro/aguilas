@@ -111,7 +111,14 @@ if (!isset($uid) || !isset($mail) || !isset($token) || !isset($image_captcha)) {
 
         // If the insert went OK, we send the notification e-mail to the user
         if ($ins_r) {
-            $send = AssistedEMail("ResetPasswordMail", $mail);
+            $whatdata['app_name'] = $app_name;
+            $whatdata['app_url'] = $app_url;
+            $whatdata['mail'] = $mail;
+            $whatdata['uid'] = $uid;
+            $whatdata['token'] = $token;
+            $whatdata['app_locale'] = $app_locale;
+            $whatdata['app_operator'] = $app_operator;
+            $send = AssistedEMail("ResetPasswordMail", $mail, $whatdata);
         }
 
         // If the mailing went OK ...

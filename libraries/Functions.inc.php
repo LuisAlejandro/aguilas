@@ -141,7 +141,12 @@ function AssistedMYSQLClose($mysqlc) {
  *                           COMMUNICATION FUNCTIONS                          *
  ******************************************************************************/
 
-function AssistedEMail($what, $where) {
+function AssistedEMail($what, $where, $whatdata) {
+    
+    // let's parse all the data passed through $whatdata
+    foreach( $whatdata as $key => $value ){
+        $$key = "$value";
+    }
     // What are the headers?
     $headers = "From: " . $app_mail . "\nContent-Type: text/html; charset=utf-8";
 
@@ -189,7 +194,7 @@ function AssistedEMail($what, $where) {
                     . '</p><p>'
                     . _("EMAIL:CLICK:CONFIRM")
                     . '</p>'
-                    . '<p><a href="' . $go_link . '">CONFIRMAR</a></p>'
+                    . '<p><a href="' . $go_link . '">' . _("CONFIRM") . '</a></p>'
                     . '<br /><br />'
                     . '<p>' . $app_operator . '</p>'
                     . '</BODY>'
@@ -240,7 +245,7 @@ function AssistedEMail($what, $where) {
                     . '</p><p>'
                     . _("EMAIL:CLICK:CONFIRM")
                     . '</p>'
-                    . '<p><a href="' . $go_link . '">CONFIRMAR</a></p>'
+                    . '<p><a href="' . $go_link . '">' . _("CONFIRM") . '</a></p>'
                     . '<br /><br />'
                     . '<p>' . $app_operator . '</p>'
                     . '</BODY>'

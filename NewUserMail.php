@@ -176,7 +176,15 @@ if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset
 
         // If the insert went OK, we send the notification e-mail to the user
         if ($ins_r) {
-            $send = AssistedEMail("NewUserMail", $mail);
+            $whatdata['app_name'] = $app_name;
+            $whatdata['app_url'] = $app_url;
+            $whatdata['givenName'] = $givenName;
+            $whatdata['mail'] = $mail;
+            $whatdata['uid'] = $uid;
+            $whatdata['token'] = $token;
+            $whatdata['app_locale'] = $app_locale;
+            $whatdata['app_operator'] = $app_operator;
+            $send = AssistedEMail("NewUserMail", $mail, $whatdata);
         }
 
         // If the mailing went OK ... 

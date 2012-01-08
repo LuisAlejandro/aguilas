@@ -130,7 +130,10 @@ if (!isset($uid) || !isset($mail) || !isset($userPasswordOld) || !isset($userPas
 
         // If the modifying went OK, we send the notification e-mail to the user
         if ($mod) {
-            $send = AssistedEMail("ChangePasswordDo", $mail);
+            $whatdata['app_name'] = $app_name;
+            $whatdata['app_locale'] = $app_locale;
+            $whatdata['app_operator'] = $app_operator;            
+            $send = AssistedEMail("ChangePasswordDo", $mail, $whatdata);
         }
 
         // If the mailing went OK ... 
