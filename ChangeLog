@@ -1,3 +1,9 @@
+DEVELOPMENT RELEASE v1.0.1+20120108210255 (01/08/12)
+    Correcting some minor localization bugs
+    Correcting uninstallation bug
+    Correcting token generation bug
+    
+
 DEVELOPMENT RELEASE v1.0.1+20120108185705 (01/08/12)
     Passing AssistedEmail function parameters
     Modifying googlecode script
