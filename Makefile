@@ -220,10 +220,10 @@ copy:
 
 uninstall:
 
+	@php -f setup/uninstall.php /usr/share/aguilas/setup/config.php
 	@rm -rf $(DESTDIR)/usr/share/aguilas/
 	@rm -rf $(DESTDIR)/var/log/aguilas/
 	@rm -rf $(DESTDIR)/var/www/aguilas/
-	@php -f setup/uninstall.php?config=/usr/share/aguilas/setup/config.php
 	@echo "Uninstalled"
 
 release:

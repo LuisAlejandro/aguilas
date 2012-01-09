@@ -1,7 +1,7 @@
 <?php
 
 $allowed_ops = "uninstall";
-$config_file = $_GET['config'];
+$config_file = "$argv[1]";
 
 require_once "$config_file";
 require_once "./libraries/Locale.inc.php";
