@@ -11,6 +11,11 @@ git checkout development
 
 git add .
 git commit -a
+
+if [ $? == 1 ]; then
+	exit 1
+fi
+
 git log > ${CHANGES}
 
 OLDVERSION=$( cat ${VERSION} | grep "VERSION" | sed 's/VERSION = //g' )

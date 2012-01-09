@@ -41,7 +41,7 @@ git push --tags git@github.com:HuntingBears/aguilas.git release
 git push --tags git@gitorious.org:huntingbears/aguilas.git release
 git push --tags https://code.google.com/p/aguilas/ release
 
-git archive -o aguilas-${NEWVERSION}.tar.gz v${NEWVERSION}
+git archive -o aguilas-${NEWVERSION}.tar.gz ${NEWVERSION}
 md5sum aguilas-${NEWVERSION}.tar.gz > aguilas-${NEWVERSION}.tar.gz.md5
 
 python googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION}" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Featured,Stable" aguilas-${NEWVERSION}.tar.gz

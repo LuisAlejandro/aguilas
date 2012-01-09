@@ -15,7 +15,12 @@ msgstr ""
 "X-Poedit-Language: English\n"
 "X-Poedit-Country: UNITED STATES\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-SearchPath-0: ../../../\n"
+"X-Poedit-SearchPath-0: ../../../themes/canaima\n"
+"X-Poedit-SearchPath-1: ../../../themes/debian\n"
+"X-Poedit-SearchPath-2: ../../../themes\n"
+"X-Poedit-SearchPath-3: ../../../libraries\n"
+"X-Poedit-SearchPath-4: ../../../setup\n"
+"X-Poedit-SearchPath-5: ../../..\n"
 
 #: ../../../install.php:8
 msgid "CREATING:DATABASE"
