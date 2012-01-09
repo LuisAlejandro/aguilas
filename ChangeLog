@@ -1,3 +1,10 @@
+DEVELOPMENT RELEASE v1.0.1+20120109153854 (01/09/12)
+    Updating locales
+    Correcting small bugs on release and snapshot scripts
+    Creating POT file
+    Correcting minor bugs on uninstallation
+    
+
 DEVELOPMENT RELEASE v1.0.1+20120108210255 (01/08/12)
     Correcting some minor localization bugs
     Correcting uninstallation bug
