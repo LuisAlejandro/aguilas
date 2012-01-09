@@ -19,12 +19,12 @@ require_once "./libraries/MYSQLConnection.inc.php";
 
 // USER INPUT VALIDATION ------------------------------------------------------- 
 // Some of the parameters were not set, the form was not used to get here
-if (!isset($uid) || !isset($mail) || !isset($token) || !isset($image_captcha)) {
+if (!isset($uid) || !isset($mail) || !isset($newtoken) || !isset($image_captcha)) {
 
     VariableNotSet();
 
 // Some of the parameters are empty
-} elseif ($uid == '' || $mail == '' || $token == '' || $image_captcha == '') {
+} elseif ($uid == '' || $mail == '' || $newtoken == '' || $image_captcha == '') {
 
     EmptyVariable();
     
@@ -102,7 +102,7 @@ if (!isset($uid) || !isset($mail) || !isset($token) || !isset($image_captcha)) {
                 . "VALUES ('%s', '%s', '%s', '%s')"
                 , mysql_real_escape_string($uid)
                 , mysql_real_escape_string($mail)
-                , mysql_real_escape_string($token)
+                , mysql_real_escape_string($newtoken)
                 , mysql_real_escape_string($description)
                 );
 
@@ -115,7 +115,7 @@ if (!isset($uid) || !isset($mail) || !isset($token) || !isset($image_captcha)) {
             $whatdata['app_url'] = $app_url;
             $whatdata['mail'] = $mail;
             $whatdata['uid'] = $uid;
-            $whatdata['token'] = $token;
+            $whatdata['token'] = $newtoken;
             $whatdata['app_locale'] = $app_locale;
             $whatdata['app_operator'] = $app_operator;
             $send = AssistedEMail("ResetPasswordMail", $mail, $whatdata);

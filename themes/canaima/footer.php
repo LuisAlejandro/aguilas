@@ -26,16 +26,12 @@
     </div>
     
     <div>
-        <?= $app_name . _("POWEREDBY") ?>
-        <strong>AGUILAS</strong>.
-    </div>
-    
-    <div>
-        <strong>AGUILAS</strong>
-        <?= _("DEVELOPEDBY") ?>
-        <a href="http://www.huntingbears.com.ve/">
-            Luis Alejandro Martínez Faneyth
-        </a>.
+        <?= $app_name . " " . _("POWEREDBY") ?>
+        <strong>
+            <a href="http://code.google.com/p/aguilas/">
+                AGUILAS
+            </a>
+        </strong>.
     </div>
 </div>
 </div>

@@ -34,7 +34,7 @@ foreach( $_GET as $key => $value ){
 $time_today = date("d-m-Y-H:i:s");
 
 // Generate confirmation token to send by e-mail
-$token = md5(mt_rand() . "-" . time() . "-" . $_SERVER['REMOTE_ADDR'] . "-" . mt_rand());
+$newtoken = md5(mt_rand() . "-" . time() . "-" . $_SERVER['REMOTE_ADDR'] . "-" . mt_rand());
 
 // A little description
 $description = _("POWEREDBY") . $app_name . _("AT") . $time_today . _("PETITION") . $_SERVER['REMOTE_ADDR'];

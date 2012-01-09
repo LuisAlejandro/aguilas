@@ -18,12 +18,12 @@ require_once "./libraries/MYSQLConnection.inc.php";
 
 // USER INPUT VALIDATION ------------------------------------------------------- 
 // Some of the parameters were not set, the form was not used to get here
-if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset($userPassword) || !isset($userPasswordBis) || !isset($description) || !isset($token) || !isset($image_captcha)) {
+if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset($userPassword) || !isset($userPasswordBis) || !isset($description) || !isset($newtoken) || !isset($image_captcha)) {
 
     VariableNotSet();
 
 // Some of the parameters are empty
-} elseif ($uid == '' || $givenName == '' || $sn == '' || $mail == '' || $userPassword == '' || $description == '' || $token == '' || $image_captcha == '') {
+} elseif ($uid == '' || $givenName == '' || $sn == '' || $mail == '' || $userPassword == '' || $description == '' || $newtoken == '' || $image_captcha == '') {
 
     EmptyVariable();
 
@@ -168,7 +168,7 @@ if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset
                 , mysql_real_escape_string($mail)
                 , mysql_real_escape_string($userPassword)
                 , mysql_real_escape_string($description)
-                , mysql_real_escape_string($token)
+                , mysql_real_escape_string($newtoken)
                 );
 
         // Inserting the row on the table ...
@@ -181,7 +181,7 @@ if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset
             $whatdata['givenName'] = $givenName;
             $whatdata['mail'] = $mail;
             $whatdata['uid'] = $uid;
-            $whatdata['token'] = $token;
+            $whatdata['token'] = $newtoken;
             $whatdata['app_locale'] = $app_locale;
             $whatdata['app_operator'] = $app_operator;
             $send = AssistedEMail("NewUserMail", $mail, $whatdata);

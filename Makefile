@@ -223,7 +223,7 @@ uninstall:
 	@rm -rf $(DESTDIR)/usr/share/aguilas/
 	@rm -rf $(DESTDIR)/var/log/aguilas/
 	@rm -rf $(DESTDIR)/var/www/aguilas/
-	@php -f setup/uninstall.php
+	@php -f setup/uninstall.php?config=/usr/share/aguilas/setup/config.php
 	@echo "Uninstalled"
 
 release:

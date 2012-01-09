@@ -13,7 +13,7 @@ if (array_key_exists('REMOTE_ADDR', $_SERVER)&&!isset($_SERVER['argc'])) {
 require_once "./libraries/MYSQLConnection.inc.php";
 require_once "./libraries/LDAPConnection.inc.php";
 
-echo _("CREATING:DATABASE") . $mysql_dbname . " ...\n";
+echo _("CREATING:DATABASE") . " \"" . $mysql_dbname . "\" ...\n";
 $create_q = sprintf('CREATE DATABASE IF NOT EXISTS %s', $mysql_dbname);
 $create_r = mysql_query($create_q);
 

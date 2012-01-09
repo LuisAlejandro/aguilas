@@ -1,5 +1,5 @@
 <div id="chiclet_left">
-    <p><?= _("WELCOMETO") . $app_name ?></p>
+    <p><?= _("WELCOMETO") . " " . $app_name ?>.</p>
     <p>
         <?= _("INDEX:GREETINGS") ?>
         <?= $app_name . _("INDEX:GREETINGS2") ?>

@@ -703,7 +703,7 @@ msgstr "Solicitar una nueva cuenta de usuario"
 #: ../../../themes/canaima/index.php:24
 #: ../../../themes/debian/index.php:24
 msgid "INDEX:DIDNTGETTHEEMAIL"
-msgstr "No recibí la confirmación por correo electrónico cuando solicité una nueva cuenta"
+msgstr "No recibí la confirmación por correo electrónico cuando solicité una cuenta"
 
 #: ../../../themes/canaima/index.php:30
 #: ../../../themes/debian/index.php:30

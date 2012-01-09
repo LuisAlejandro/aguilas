@@ -1,8 +1,9 @@
 <?php
 
 $allowed_ops = "uninstall";
+$config_file = $_GET['config'];
 
-require_once "./setup/config.php";
+require_once "$config_file";
 require_once "./libraries/Locale.inc.php";
 
 // Prevent to be loaded from the webserver
@@ -13,7 +14,7 @@ if (array_key_exists('REMOTE_ADDR', $_SERVER)&&!isset($_SERVER['argc'])) {
 require_once "./libraries/MYSQLConnection.inc.php";
 require_once "./libraries/LDAPConnection.inc.php";
 
-echo _("DROPPING:DATABASE") . $mysql_dbname . " ...\n";
+echo _("DROPPING:DATABASE") . " \"" . $mysql_dbname . "\" ...\n";
 $create_q = sprintf('DROP DATABASE IF EXISTS %s', $mysql_dbname);
 $create_r = mysql_query($create_q);
 
