@@ -164,9 +164,6 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
                     $lastuidnumber = $search_entries[0]['uidnumber'][0];
                 }
 
-                // Encoding the password
-                $userPassword = EncodePassword($row['userPassword'], $ldap_enc);
-
                 // We build up an array with all the attributes we want to insert into
                 // the new LDAP entry
                 $newdn = "uid=" . $row['uid'] . "," . $ldap_base;

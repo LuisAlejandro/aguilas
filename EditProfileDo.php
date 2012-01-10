@@ -61,6 +61,9 @@ if (!isset($uid) || !isset($userPassword) || !isset($image_captcha)) {
 
     // VALIDATION PASSED -------------------------------------------------------
 
+    // Encoding the password
+    $userPassword = EncodePassword($userPassword, $ldap_enc);
+        
     // We are going to search for a user matching the data entered 
 
     // We stablish what attributes are going to be retrieved from each entry

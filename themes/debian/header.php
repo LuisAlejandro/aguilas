@@ -65,7 +65,7 @@ if(extension_loaded('zlib') && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'g
                 </div>
                 <div id="portal-searchbox">
                     <div id="p-logo">
-                        <a href="<?= $app_url ?>"></a>
+                        <a href="http://<?= $app_url ?>"></a>
                     </div>
                     
                     <form action="Search.php" id="searchform">

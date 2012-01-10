@@ -178,7 +178,7 @@ function AssistedMYSQLClose($mysqlc) {
  ******************************************************************************/
 
 function AssistedEMail($what, $where) {
-    global $app_mail, $app_name, $app_locale, $app_operator, $mail, $uid, $token, $app_url, $genPassword;
+    global $app_mail, $app_name, $app_locale, $app_operator, $mail, $uid, $token, $newtoken, $app_url, $genPassword, $givenName;
     // What are the headers?
     $headers = "From: " . $app_mail . "\nContent-Type: text/html; charset=utf-8";
 
@@ -196,7 +196,7 @@ function AssistedEMail($what, $where) {
                     . '</HEAD>'
                     . '<BODY LANG="' . $app_locale . '" DIR="LTR">'
                     . '<p>'
-                    . _("EMAIL:PASSWORD:GREETINGS") . $app_name . _("EMAIL:PASSWORD:HASBEENCHANGED")
+                    . _("EMAIL:PASSWORD:GREETINGS") . $app_name . " " . _("EMAIL:PASSWORD:HASBEENCHANGED")
                     . '</p>'
                     . '<br /><br />'
                     . '<p>' . $app_operator . '</p>'
@@ -209,7 +209,7 @@ function AssistedEMail($what, $where) {
             $go_link = "http://" . $app_url . "/ResetPasswordDo.php"
                     . "?mail=" . $mail
                     . "&uid=" . $uid
-                    . "&token=" . $token;
+                    . "&token=" . $newtoken;
             $body = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">'
                     . '<HTML>'
                     . '<HEAD>'
@@ -254,7 +254,56 @@ function AssistedEMail($what, $where) {
                     . '</HTML>';
             break;
 
+        case "NewUserDo":
+            $subject = _("EMAIL:NEWUSER:DONE") . $app_name;
+            $body = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">'
+                    . '<HTML>'
+                    . '<HEAD>'
+                    . '<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">'
+                    . '<TITLE>' . $subject . '</TITLE>'
+                    . '<META NAME="GENERATOR" CONTENT="AGUILAS">'
+                    . '<META NAME="AUTHOR" CONTENT="AGUILAS">'
+                    . '</HEAD>'
+                    . '<BODY LANG="' . $app_locale . '" DIR="LTR">'
+                    . '<p>' . _("HI") . '<strong>' . $uid . '</strong>.</p>'
+                    . '<p>'
+                    . _("EMAIL:NEWUSER:SUCCESS")
+                    . '</p>'
+                    . '<br /><br />'
+                    . '<p>' . $app_operator . '</p>'
+                    . '</BODY>'
+                    . '</HTML>';
+            break;
+        
         case "NewUserMail":
+            $subject = _("EMAIL:NEWUSER:ACTIVATION") . $app_name;
+            $go_link = "http://" . $app_url . "/NewUserDo.php"
+                    . "?mail=" . $mail
+                    . "&uid=" . $uid
+                    . "&token=" . $newtoken;
+            $body = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">'
+                    . '<HTML>'
+                    . '<HEAD>'
+                    . '<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">'
+                    . '<TITLE>' . $subject . '</TITLE>'
+                    . '<META NAME="GENERATOR" CONTENT="AGUILAS">'
+                    . '<META NAME="AUTHOR" CONTENT="AGUILAS">'
+                    . '</HEAD>'
+                    . '<BODY LANG="' . $app_locale . '" DIR="LTR">'
+                    . '<p>' . _("HI") . '<strong>' . $givenName . '</strong>.</p>'
+                    . '<p>'
+                    . _("EMAIL:NEWUSER:REQUEST")
+                    . $app_name . '.'
+                    . '</p><p>'
+                    . _("EMAIL:CLICK:CONFIRM")
+                    . '</p>'
+                    . '<p><a href="' . $go_link . '">' . _("CONFIRM") . '</a></p>'
+                    . '<br /><br />'
+                    . '<p>' . $app_operator . '</p>'
+                    . '</BODY>'
+                    . '</HTML>';
+            break;
+
         case "ResendMailDo":
             $subject = _("EMAIL:NEWUSER:ACTIVATION") . $app_name;
             $go_link = "http://" . $app_url . "/NewUserDo.php"
@@ -364,15 +413,18 @@ function WriteLog($log_file) {
 
 function EncodePassword($password, $type) {
     switch ($type) {
-        case "PLAIN":
+        case "CLEAR":
             $hash = $password;
             break;
-        case "SSHA":
-            for ($i = 1; $i <= 10; $i++) {
-                $salt .= substr('0123456789abcdef', rand(0, 15), 1);
-            }
-            $hash = "{SSHA}" . base64_encode(pack("H*", sha1($password . $salt)) . $salt);
+        
+        case "CRYPT":
+            $hash = "{CRYPT}" . crypt($password);
             break;
+        
+        case "SHA":
+            $hash = "{SSHA}" . base64_encode(pack("H*", sha1($password)));
+            break;
+            
         case "MD5":
             $hash = "{MD5}" . base64_encode(pack("H*", md5($password)));
             break;

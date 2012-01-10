@@ -58,7 +58,7 @@ document.getElementById(obj+'_rg').style.display = '';
 document.getElementById(obj+'_hv').style.display = 'none';
 }
 
-function actualiza_cn(){
+function update_cn(){
 var givenname_ajax = document.getElementById("givenName").value;
 var sn_ajax = document.getElementById("sn").value;
 document.getElementById("cn_rg_display_section").innerHTML = givenname_ajax+" "+sn_ajax;

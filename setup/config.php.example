@@ -25,7 +25,7 @@ $app_locale = "@@APP_MAIL@@";
 /// The theme applied to the application. Must be available in the themes/ folder
 $app_theme = "@@APP_THEME@@";
 //  Application URL
-/// The public address of the aplication, *essential* for including the correct address on the confirmation e-mails
+/// The public address of the aplication, in the form of "example.org" (without http://)
 $app_url = "@@APP_URL@@";
 // Application links
 // an array of link_title => link of the applications connected
@@ -67,9 +67,10 @@ $ldap_pass = "@@LDAP_PASS@@";
 $ldap_base = "@@LDAP_BASE@@";
 // Encrypt algorithm used to save passwords on LDAP
 // Options:
-// PLAIN = no encryption (default) | MD5 = MD5 Encryption | SSHA = SSHA Encryption
-$ldap_enc = "PLAIN";
+// CLEAR | MD5 | SHA (default) | CRYPT
+$ldap_enc = "SHA";
 // Use secure tunnel connection (TLS)
+// Must have a valid certificate for autentication
 // Options:
 // FALSE = Don't use TLS (default) | TRUE = Use TLS
 $ldap_tls = FALSE;

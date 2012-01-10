@@ -157,6 +157,9 @@ if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset
             require_once "./libraries/CreateUserTable.inc.php";
         }
 
+        // Encoding the password
+        $userPassword = EncodePassword($userPassword, $ldap_enc);
+        
         // We build up our query to insert the user data into a temporary MYSQL Database
         // while the user gets the confirmation e-mail and clicks the link
         $ins_q = sprintf("INSERT INTO NewUser "
