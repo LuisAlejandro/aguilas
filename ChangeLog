@@ -1,3 +1,10 @@
+DEVELOPMENT RELEASE v1.0.1+20120110122441 (01/10/12)
+    Correcting major bugs on password encription
+    Correcting ajax errors
+    Adding new translation strings
+    Changing deafult configuration
+    
+
 DEVELOPMENT RELEASE v1.0.1+20120110015052 (01/10/12)
     Implementing the use of global variables inside functions
     Updating {po,pot} files
