@@ -57,7 +57,7 @@ require_once "./themes/$app_theme/header.php";
         </tr>
         <tr>
             <td class="px160">
-                Verificación") ?>
+                <?= _("CAPTCHA") ?>
             </td>
             <td class="px120">
                 <img alt="captcha" src="libraries/Captcha.inc.php" border="0">

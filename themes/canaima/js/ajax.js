@@ -42,7 +42,7 @@ var dame_valor = document.getElementById(obj).value;
 var cn_html = document.getElementById("cn_rg_display_section").innerHTML;
 valor=dame_valor.replace(" ","+");
 cn_listo=cn_html.replace(" ","+");
-var req = 'ajax.php?obj_a='+obj+'&val_a='+valor+'&quien_a='+quien+"&cn_a="+cn_listo;
+var req = 'Ajax.php?obj_a='+obj+'&val_a='+valor+'&who_a='+quien+"&cn_a="+cn_listo;
 sndReq(req,valor,obj);
 }
 

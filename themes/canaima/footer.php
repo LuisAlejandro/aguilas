@@ -27,11 +27,7 @@
     
     <div>
         <?= $app_name . " " . _("POWEREDBY") ?>
-        <strong>
-            <a href="http://code.google.com/p/aguilas/">
-                AGUILAS
-            </a>
-        </strong>.
+        <strong><a href="http://code.google.com/p/aguilas/">AGUILAS</a></strong>.
     </div>
 </div>
 </div>

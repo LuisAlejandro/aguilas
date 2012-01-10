@@ -13,126 +13,162 @@ require_once "./libraries/Locale.inc.php";
  ******************************************************************************/
 
 function AssistedLDAPAdd($ldapc, $newdn, $in) {
-    $r_add = ldap_add($ldapc, $newdn, $in)
-            or die(
-                    '<div class="error">'
-                    . _("LDAP:INSERT:ERROR")
-                    . ldap_error($ldapc)
-                    . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("BACK")
-                    . '</a></div>'
-                    . file_get_contents("../themes/$app_theme/footer.php")
-    );
+    // Use these variables that are outside the function
+    global $app_theme;
+    // Add the new entry
+    $r_add = ldap_add($ldapc, $newdn, $in);
+    // Let's see if you could make it
+    if(!$r_add){
+        echo    '<div class="error">'
+                . _("LDAP:INSERT:ERROR")
+                . ldap_error($ldapc)
+                . '.<br /><br /><a href="javascript:history.back(1);">'
+                . _("BACK")
+                . '</a></div>';
+        include "../themes/$app_theme/footer.php";
+        die();
+    }
     return($r_add);
 }
     
 function AssistedLDAPModify($ldapc, $moddn, $in) {
-    $r_mod = ldap_modify($ldapc, $moddn, $in)
-            or die(
-                    '<div class="error">'
-                    . _("LDAP:MODIFY:ERROR")
-                    . ldap_error($ldapc)
-                    . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("BACK")
-                    . '</a></div>'
-                    . file_get_contents("../themes/$app_theme/footer.php")
-    );
+    // Use these variables that are outside the function
+    global $app_theme;
+    // Modify the entry
+    $r_mod = ldap_modify($ldapc, $moddn, $in);
+    // Let's see if you could make it
+    if(!$r_mod){
+        echo    '<div class="error">'
+                . _("LDAP:MODIFY:ERROR")
+                . ldap_error($ldapc)
+                . '.<br /><br /><a href="javascript:history.back(1);">'
+                . _("BACK")
+                . '</a></div>';
+        include "../themes/$app_theme/footer.php";
+        die();
+    }
     return($r_mod);
 }
     
 function AssistedLDAPDelete($ldapc, $dn) {
-    $r_del = ldap_delete($ldapc, $dn)
-            or die(
-                    '<div class="error">'
-                    . _("LDAP:DELETE:ERROR")
-                    . ldap_error($ldapc)
-                    . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("BACK")
-                    . '</a></div>'
-                    . file_get_contents("../themes/$app_theme/footer.php")
-    );
+    // Use these variables that are outside the function
+    global $app_theme;
+    // Delete the entry
+    $r_del = ldap_delete($ldapc, $dn);
+    // Let's see if you could make it
+    if(!$r_del){
+        echo    '<div class="error">'
+                . _("LDAP:DELETE:ERROR")
+                . ldap_error($ldapc)
+                . '.<br /><br /><a href="javascript:history.back(1);">'
+                . _("BACK")
+                . '</a></div>';
+        include "../themes/$app_theme/footer.php";
+        die();
+    }
     return($r_del);
 }
 
 function AssistedLDAPClose($ldapc) {
-    $ldapx = ldap_close($ldapc)
-            or die(
-                    '<div class="error">'
-                    . _("LDAP:CLOSE:ERROR")
-                    . ldap_error($ldapc)
-                    . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("BACK")
-                    . '</a></div>'
-                    . file_get_contents("../themes/$app_theme/footer.php")
-    );
+    // Use these variables that are outside the function
+    global $app_theme;
+    // Close the connection
+    $ldapx = ldap_close($ldapc);
+    // Let's see if you could make it
+    if(!$ldapx){
+        echo    '<div class="error">'
+                . _("LDAP:CLOSE:ERROR")
+                . ldap_error($ldapc)
+                . '.<br /><br /><a href="javascript:history.back(1);">'
+                . _("BACK")
+                . '</a></div>';
+        include "../themes/$app_theme/footer.php";
+        die();
+    }
     return($ldapx);
 }
 
 function AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $sort_string) {
 
     // Searching...
-    $search_result = ldap_search($ldapc, $ldap_base, $search_string, $search_limit)
-            or die(
-                    '<div class="error">'
-                    . _("LDAP:SEARCH:ERROR")
-                    . ldap_error($ldapc)
-                    . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("BACK")
-                    . '</a></div>'
-                    . file_get_contents("../themes/$app_theme/footer.php")
-    );
+    $search_result = ldap_search($ldapc, $ldap_base, $search_string, $search_limit);
+    // Let's see if you could make it
+    if(!$search_result){
+        echo    '<div class="error">'
+                . _("LDAP:SEARCH:ERROR")
+                . ldap_error($ldapc)
+                . '.<br /><br /><a href="javascript:history.back(1);">'
+                . _("BACK")
+                . '</a></div>';
+        include "../themes/$app_theme/footer.php";
+        die();
+    }
 
     // Sorting the result by cn
-    $search_sort = ldap_sort($ldapc, $search_result, $sort_string)
-            or die(
-                    '<div class="error">'
-                    . _("LDAP:SORT:ERROR")
-                    . ldap_error($ldapc)
-                    . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("BACK")
-                    . '</a></div>'
-                    . file_get_contents("../themes/$app_theme/footer.php")
-    );
+    $search_sort = ldap_sort($ldapc, $search_result, $sort_string);
+    // Let's see if you could make it
+    if(!$search_sort){
+        echo    '<div class="error">'
+                . _("LDAP:SORT:ERROR")
+                . ldap_error($ldapc)
+                . '.<br /><br /><a href="javascript:history.back(1);">'
+                . _("BACK")
+                . '</a></div>';
+        include "../themes/$app_theme/footer.php";
+        die();
+    }
 
     // Getting the all the entries
-    $search_entries = ldap_get_entries($ldapc, $search_result)
-            or die(
-                    '<div class="error">'
-                    . _("LDAP:GET:ERROR")
-                    . ldap_error($ldapc)
-                    . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("BACK")
-                    . '</a></div>'
-                    . file_get_contents("../themes/$app_theme/footer.php")
-    );
+    $search_entries = ldap_get_entries($ldapc, $search_result);
+    // Let's see if you could make it
+    if(!$search_entries){
+        echo    '<div class="error">'
+                . _("LDAP:GET:ERROR")
+                . ldap_error($ldapc)
+                . '.<br /><br /><a href="javascript:history.back(1);">'
+                . _("BACK")
+                . '</a></div>';
+        include "../themes/$app_theme/footer.php";
+        die();
+    }
     return($search_entries);
 }
 
 function AssistedMYSQLQuery($query) {
-    $result = mysql_query($query)
-            or die(
-                    '<div class="error">'
-                    . _("MYSQL:QUERY:ERROR")
-                    . mysql_error($query)
-                    . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("BACK")
-                    . '</a></div>'
-                    . file_get_contents("../themes/$app_theme/footer.php")
-    );
+    // Use these variables that are outside the function
+    global $app_theme;
+    // Perform the query
+    $result = mysql_query($query);
+    // Let's see if you could make it
+    if(!$result){
+        echo    '<div class="error">'
+                . _("MYSQL:QUERY:ERROR")
+                . mysql_error($mysqlc)
+                . '.<br /><br /><a href="javascript:history.back(1);">'
+                . _("BACK")
+                . '</a></div>';
+        include "../themes/$app_theme/footer.php";
+        die();
+    }
     return($result);
 }
 
 function AssistedMYSQLClose($mysqlc) {
-    $mysqlx = mysql_close($mysqlc)
-            or die(
-                    '<div class="error">'
-                    . _("MYSQL:CLOSE:ERROR")
-                    . mysql_error($mysqlc)
-                    . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("BACK")
-                    . '</a></div>'
-                    . file_get_contents("../themes/$app_theme/footer.php")
-    );
+    // Use these variables that are outside the function
+    global $app_theme;
+    // Close the connection
+    $mysqlx = mysql_close($mysqlc);
+    // Let's see if you could make it
+    if(!$mysqlx){
+        echo    '<div class="error">'
+                . _("MYSQL:CLOSE:ERROR")
+                . mysql_error($mysqlc)
+                . '.<br /><br /><a href="javascript:history.back(1);">'
+                . _("BACK")
+                . '</a></div>';
+        include "../themes/$app_theme/footer.php";
+        die();
+    }
     return($mysqlx);
 }
 
@@ -143,10 +179,6 @@ function AssistedMYSQLClose($mysqlc) {
 
 function AssistedEMail($what, $where, $whatdata) {
     
-    // let's parse all the data passed through $whatdata
-    foreach( $whatdata as $key => $value ){
-        $$key = "$value";
-    }
     // What are the headers?
     $headers = "From: " . $app_mail . "\nContent-Type: text/html; charset=utf-8";
 
@@ -655,6 +687,7 @@ function Success($at) {
 
 // HTML writer Library
     function ParseUserTable($search_entries, $result_count) {
+        global $ldap_gid_flip;
         $result_count_1 = $result_count - 1;
         ?>
     <table>

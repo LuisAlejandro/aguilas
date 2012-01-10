@@ -46,8 +46,8 @@ if(!in_array($letter, $letters_array)){
     <?php
 
     // Creating the letter row with links
-    for ($j = 0; $j <= 25; $j++) {
-        echo "<td>&nbsp;&nbsp;<a href='Browse.php?letter=".$letters_array[$j]."'>".strtoupper($letters_array[$j])."</a>&nbsp;&nbsp;</td>";
+    for ($j = 0; $j <= count($letters_array)-1; $j++) {
+        echo "<td>&nbsp;&nbsp;<a href='Browse.php?letter=".$letters_array[$j]."'>".mb_strtoupper($letters_array[$j], "UTF-8")."</a>&nbsp;&nbsp;</td>";
         }
 
     ?>

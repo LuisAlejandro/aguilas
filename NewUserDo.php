@@ -179,7 +179,7 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
                 $in['mail'] = $row['mail'];
                 $mail = $in['mail'];
                 $in['uidNumber'] = $lastuidnumber + 1;
-                $in['gidNumber'] = $ldap_gid[$ldap_default_group];
+                $in['gidNumber'] = $ldap_gid["$ldap_default_group"];
                 $in['userPassword'] = $row['userPassword'];
                 $in['homeDirectory'] = "/home/" . $row['uid'];
                 $in['objectClass'][0] = "inetOrgPerson";
@@ -188,8 +188,6 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
                 $in['objectClass'][3] = "person";
                 $in['objectClass'][4] = "shadowAccount";
                 $in['objectClass'][5] = "organizationalPerson";
-                $in['objectClass'][6] = "tracUser";
-                $in['tracperm'] = "WIKI_VIEW";
                 $in['loginShell'] = "/bin/false";
                 $in['description'] = $row['description'];
 
