@@ -1,3 +1,11 @@
+DEVELOPMENT RELEASE v1.0.1+20120110010824 (01/10/12)
+    Correcting minor rendering and translation messages bugs
+    Correcting uninstallation bug
+    Correcting error messages bugs
+    Correcting errors on javascript
+    Moving pot to separate folder
+    
+
 DEVELOPMENT RELEASE v1.0.1+20120109153854 (01/09/12)
     Updating locales
     Correcting small bugs on release and snapshot scripts
