@@ -82,17 +82,8 @@ if (!isset($mail) || !isset($image_captcha)) {
             $token = $row['token'];
             $givenName = $row['givenName'];
 
-            $whatdata['app_name'] = $app_name;
-            $whatdata['app_url'] = $app_url;
-            $whatdata['givenName'] = $givenName;
-            $whatdata['mail'] = $mail;
-            $whatdata['uid'] = $uid;
-            $whatdata['token'] = $token;
-            $whatdata['app_locale'] = $app_locale;
-            $whatdata['app_operator'] = $app_operator;
-            
             // Sending e-mail ...
-            $send = AssistedEMail("ResendMailDo", $mail, $whatdata);
+            $send = AssistedEMail("ResendMailDo", $mail);
 
             // If the mailing went OK ... 
             if ($send) {

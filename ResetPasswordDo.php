@@ -139,11 +139,7 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
 
                 // If the modifying went OK, we send the notification e-mail to the user
                 if ($mod) {
-                    $whatdata['app_name'] = $app_name;
-                    $whatdata['app_locale'] = $app_locale;
-                    $whatdata['genPassword'] = $genPassword;
-                    $whatdata['app_operator'] = $app_operator;
-                    $send = AssistedEMail("ResetPasswordDo", $mail, $whatdata);
+                    $send = AssistedEMail("ResetPasswordDo", $mail);
                 }
 
                 // If the mailing went OK ... 

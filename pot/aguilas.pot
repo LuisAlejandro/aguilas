@@ -1,0 +1,775 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AGUILAS\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-01-10 01:47-0400\n"
+"PO-Revision-Date: 2012-01-10 01:47-0400\n"
+"Last-Translator: Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: ../themes/canaima\n"
+"X-Poedit-SearchPath-1: ../themes/debian\n"
+"X-Poedit-SearchPath-2: ../themes\n"
+"X-Poedit-SearchPath-3: ../libraries\n"
+"X-Poedit-SearchPath-4: ../setup\n"
+"X-Poedit-SearchPath-5: ..\n"
+
+#: ../themes/canaima/header.php:31
+#: ../themes/canaima/footer.php:6
+#: ../themes/debian/header.php:31
+#: ../themes/debian/footer.php:6
+msgid "NEWUSER"
+msgstr ""
+
+#: ../themes/canaima/header.php:36
+#: ../themes/canaima/footer.php:9
+#: ../themes/debian/header.php:36
+#: ../themes/debian/footer.php:9
+msgid "CHANGEPASSWORD"
+msgstr ""
+
+#: ../themes/canaima/header.php:41
+#: ../themes/canaima/footer.php:12
+#: ../themes/debian/header.php:41
+#: ../themes/debian/footer.php:12
+msgid "RESETPASSWORD"
+msgstr ""
+
+#: ../themes/canaima/header.php:46
+#: ../themes/canaima/footer.php:15
+#: ../themes/debian/header.php:46
+#: ../themes/debian/footer.php:15
+msgid "REMINDUSER"
+msgstr ""
+
+#: ../themes/canaima/header.php:51
+#: ../themes/canaima/index.php:45
+#: ../themes/canaima/footer.php:18
+#: ../themes/debian/header.php:51
+#: ../themes/debian/index.php:45
+#: ../themes/debian/footer.php:18
+msgid "DELETEUSER"
+msgstr ""
+
+#: ../themes/canaima/header.php:56
+#: ../themes/canaima/footer.php:21
+#: ../themes/debian/header.php:56
+#: ../themes/debian/footer.php:21
+msgid "EDITPROFILE"
+msgstr ""
+
+#: ../themes/canaima/header.php:61
+#: ../themes/canaima/footer.php:24
+#: ../themes/debian/header.php:61
+#: ../themes/debian/footer.php:24
+msgid "BROWSEUSERS"
+msgstr ""
+
+#: ../themes/canaima/header.php:74
+#: ../themes/debian/header.php:74
+msgid "SEARCH:FIELD:DESCRIPTION"
+msgstr ""
+
+#: ../themes/canaima/header.php:76
+#: ../themes/debian/header.php:76
+msgid "SEARCHUSER"
+msgstr ""
+
+#: ../themes/canaima/header.php:84
+#: ../themes/debian/header.php:84
+msgid "START"
+msgstr ""
+
+#: ../themes/canaima/index.php:2
+#: ../themes/debian/index.php:2
+msgid "WELCOMETO"
+msgstr ""
+
+#: ../themes/canaima/index.php:4
+#: ../themes/debian/index.php:4
+msgid "INDEX:GREETINGS"
+msgstr ""
+
+#: ../themes/canaima/index.php:5
+#: ../themes/debian/index.php:5
+msgid "INDEX:GREETINGS2"
+msgstr ""
+
+#: ../themes/canaima/index.php:20
+#: ../themes/debian/index.php:20
+msgid "INDEX:NEWUSER"
+msgstr ""
+
+#: ../themes/canaima/index.php:24
+#: ../themes/debian/index.php:24
+msgid "INDEX:DIDNTGETTHEEMAIL"
+msgstr ""
+
+#: ../themes/canaima/index.php:30
+#: ../themes/debian/index.php:30
+msgid "INDEX:CHANGEPASSWORD"
+msgstr ""
+
+#: ../themes/canaima/index.php:34
+#: ../themes/debian/index.php:34
+msgid "INDEX:RESETPASSWORD"
+msgstr ""
+
+#: ../themes/canaima/index.php:40
+#: ../themes/debian/index.php:40
+msgid "INDEX:FORGOTUSERNAME"
+msgstr ""
+
+#: ../themes/canaima/index.php:50
+#: ../themes/debian/index.php:50
+msgid "INDEX:EDITPROFILE"
+msgstr ""
+
+#: ../themes/canaima/index.php:55
+#: ../themes/debian/index.php:55
+msgid "INDEX:BROWSEUSERS"
+msgstr ""
+
+#: ../themes/canaima/footer.php:29
+#: ../themes/debian/footer.php:29
+msgid "POWEREDBY"
+msgstr ""
+
+#: ../libraries/MYSQLConnection.inc.php:15
+msgid "MYSQL:CONNECT:ERROR"
+msgstr ""
+
+#: ../libraries/MYSQLConnection.inc.php:17
+#: ../libraries/MYSQLConnection.inc.php:38
+#: ../libraries/LDAPConnection.inc.php:19
+#: ../libraries/LDAPConnection.inc.php:32
+#: ../libraries/LDAPConnection.inc.php:45
+#: ../libraries/LDAPConnection.inc.php:59
+#: ../libraries/LDAPConnection.inc.php:74
+#: ../libraries/Functions.inc.php:26
+#: ../libraries/Functions.inc.php:45
+#: ../libraries/Functions.inc.php:64
+#: ../libraries/Functions.inc.php:83
+#: ../libraries/Functions.inc.php:101
+#: ../libraries/Functions.inc.php:115
+#: ../libraries/Functions.inc.php:129
+#: ../libraries/Functions.inc.php:148
+#: ../libraries/Functions.inc.php:167
+#: ../libraries/Functions.inc.php:388
+#: ../libraries/Functions.inc.php:398
+#: ../libraries/Functions.inc.php:408
+#: ../libraries/Functions.inc.php:418
+#: ../libraries/Functions.inc.php:428
+#: ../libraries/Functions.inc.php:438
+#: ../libraries/Functions.inc.php:448
+#: ../libraries/Functions.inc.php:458
+#: ../libraries/Functions.inc.php:468
+#: ../libraries/Functions.inc.php:478
+#: ../libraries/Functions.inc.php:488
+#: ../libraries/Functions.inc.php:498
+#: ../libraries/Functions.inc.php:508
+#: ../libraries/Functions.inc.php:518
+#: ../libraries/Functions.inc.php:528
+#: ../libraries/Functions.inc.php:538
+#: ../libraries/Functions.inc.php:568
+#: ../libraries/Functions.inc.php:578
+#: ../libraries/Functions.inc.php:592
+#: ../libraries/Functions.inc.php:602
+#: ../libraries/Functions.inc.php:612
+#: ../libraries/Functions.inc.php:643
+msgid "BACK"
+msgstr ""
+
+#: ../libraries/MYSQLConnection.inc.php:34
+msgid "MYSQL:SELECTDB:ERROR"
+msgstr ""
+
+#: ../libraries/LDAPConnection.inc.php:17
+msgid "LDAP:CONNECT:ERROR"
+msgstr ""
+
+#: ../libraries/LDAPConnection.inc.php:29
+#: ../libraries/LDAPConnection.inc.php:42
+msgid "LDAP:CONFIG:ERROR"
+msgstr ""
+
+#: ../libraries/LDAPConnection.inc.php:56
+msgid "LDAP:TLS:ERROR"
+msgstr ""
+
+#: ../libraries/LDAPConnection.inc.php:71
+msgid "LDAP:BIND:ERROR"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:23
+msgid "LDAP:INSERT:ERROR"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:42
+msgid "LDAP:MODIFY:ERROR"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:61
+msgid "LDAP:DELETE:ERROR"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:80
+msgid "LDAP:CLOSE:ERROR"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:98
+msgid "LDAP:SEARCH:ERROR"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:112
+msgid "LDAP:SORT:ERROR"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:126
+msgid "LDAP:GET:ERROR"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:145
+msgid "MYSQL:QUERY:ERROR"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:164
+msgid "MYSQL:CLOSE:ERROR"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:188
+msgid "EMAIL:PASSWORD:CHANGE"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:199
+msgid "EMAIL:PASSWORD:GREETINGS"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:199
+msgid "EMAIL:PASSWORD:HASBEENCHANGED"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:208
+msgid "EMAIL:PASSWORD:NEW"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:223
+msgid "EMAIL:PASSWORD:WHY"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:225
+msgid "IN"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:227
+#: ../libraries/Functions.inc.php:278
+msgid "EMAIL:CLICK:CONFIRM"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:229
+#: ../libraries/Functions.inc.php:280
+msgid "CONFIRM"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:237
+msgid "EMAIL:PASSWORD:NEW2"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:248
+msgid "EMAIL:PASSWORD:GREETINGS2"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:259
+msgid "EMAIL:NEWUSER:ACTIVATION"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:273
+msgid "HI"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:275
+msgid "EMAIL:NEWUSER:REQUEST"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:288
+msgid "EMAIL:DELETEDUSER:TITLE"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:298
+msgid "EMAIL:DELETEDUSER:GREETINGS"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:300
+msgid "EMAIL:DELETEDUSER:SUCCESS"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:323
+msgid "LOG:CHANGEPASSWORD:DONE"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:328
+msgid "LOG:RESETPASSWORD:CONFIRM"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:333
+msgid "LOG:RESETPASSWORD:DONE"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:338
+msgid "LOG:NEWUSER:CONFIRM:AGAIN"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:343
+msgid "LOG:NEWUSER:CONFIRM"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:348
+msgid "LOG:DELETEUSER:DONE"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:353
+msgid "LOG:NEWUSER:DONE"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:386
+msgid "CAPTCHA:EXPIRED"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:396
+msgid "CAPTCHA:WRONG"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:406
+#: ../libraries/Functions.inc.php:416
+msgid "FORM:ERROR"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:426
+msgid "SEARCH:INVALID"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:436
+msgid "EMAIL:INVALID"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:446
+msgid "TOKEN:INVALID"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:456
+msgid "USERNAME:INVALID"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:466
+msgid "PASSWORD:INVALID"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:476
+msgid "OLDPASSWORD:INVALID"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:486
+#: ../ChangePasswordForm.php:116
+msgid "PASSWORD:DIFFERENT"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:496
+msgid "PASSWORD:INVALID:LENGTH"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:506
+msgid "USERNAME:INVALID:LENGTH"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:516
+msgid "FIRSTNAME:INVALID:LENGTH"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:526
+msgid "LASTNAME:INVALID:LENGTH"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:536
+msgid "OLDPASSWORD:INVALID:LENGTH"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:546
+msgid "FIRSTNAME:INVALID"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:556
+msgid "LASTNAME:INVALID"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:566
+msgid "USERNAME:EXISTS"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:576
+msgid "EMAIL:EXISTS"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:590
+msgid "NOMATCH"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:600
+msgid "DATABASE:CORRUPTION"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:610
+msgid "NOMATCH:ACCOUNT"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:620
+msgid "FINAL:ERROR:CHANGEPASSWORD"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:623
+#: ../libraries/Functions.inc.php:636
+msgid "FINAL:ERROR:CONFIRMATION"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:626
+msgid "FINAL:ERROR:RESETPASSWORD"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:629
+msgid "FINAL:ERROR:DELETEUSER"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:632
+msgid "FINAL:ERROR:NEWUSER"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:651
+msgid "FINAL:SUCCESS:RESETPASSWORD"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:654
+msgid "FINAL:CONFIRM:RESETPASSWORD"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:657
+msgid "FINAL:SUCCESS:RESETPASSWORD:EMAIL"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:660
+msgid "FINAL:SUCCESS:DELETE"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:663
+msgid "FINAL:SUCCESS:NEWUSER"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:667
+msgid "FINAL:CONFIRM:NEWUSER"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:687
+msgid "ID"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:690
+#: ../ChangePasswordForm.php:16
+msgid "USERNAME"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:693
+msgid "REALNAME"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:696
+msgid "GROUP"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:722
+msgid "CLICKTOEDIT"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:724
+msgid "CANNOTEDIT"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:750
+msgid "SAVE"
+msgstr ""
+
+#: ../libraries/Functions.inc.php:751
+msgid "CANCEL"
+msgstr ""
+
+#: ../setup/install.php:16
+msgid "CREATING:DATABASE"
+msgstr ""
+
+#: ../setup/install.php:20
+msgid "CREATING:TABLE:RESETPASSWORD"
+msgstr ""
+
+#: ../setup/install.php:30
+msgid "CREATING:TABLE:NEWUSER"
+msgstr ""
+
+#: ../setup/install.php:43
+msgid "CREATING:LDAP:MAXUID"
+msgstr ""
+
+#: ../setup/install.php:54
+#: ../setup/uninstall.php:23
+msgid "DONE"
+msgstr ""
+
+#: ../setup/uninstall.php:16
+msgid "DROPPING:DATABASE"
+msgstr ""
+
+#: ../setup/uninstall.php:20
+msgid "DELETING:LDAP:MAXUID"
+msgstr ""
+
+#: ../ResendMailForm.php:8
+msgid "RESENDEMAIL:TITLE"
+msgstr ""
+
+#: ../ResendMailForm.php:10
+msgid "RESENDEMAIL:GREETINGS"
+msgstr ""
+
+#: ../ResendMailForm.php:16
+#: ../ChangePasswordForm.php:38
+msgid "EMAIL"
+msgstr ""
+
+#: ../ResendMailForm.php:19
+#: ../ChangePasswordForm.php:41
+msgid "EMAIL:EXAMPLE"
+msgstr ""
+
+#: ../ResendMailForm.php:25
+#: ../ResendMailForm.php:47
+#: ../ChangePasswordForm.php:25
+#: ../ChangePasswordForm.php:47
+#: ../ChangePasswordForm.php:69
+#: ../ChangePasswordForm.php:91
+#: ../ChangePasswordForm.php:113
+#: ../ChangePasswordForm.php:138
+msgid "EMPTY:WARNING"
+msgstr ""
+
+#: ../ResendMailForm.php:28
+#: ../ChangePasswordForm.php:50
+msgid "LONGERTHAN60"
+msgstr ""
+
+#: ../ResendMailForm.php:31
+#: ../ChangePasswordForm.php:53
+msgid "INVALIDFORMAT"
+msgstr ""
+
+#: ../ResendMailForm.php:38
+#: ../ChangePasswordForm.php:129
+msgid "CAPTCHA"
+msgstr ""
+
+#: ../ResendMailForm.php:50
+#: ../ChangePasswordForm.php:141
+msgid "LONGERTHAN8"
+msgstr ""
+
+#: ../ResendMailForm.php:56
+#: ../ChangePasswordForm.php:147
+msgid "SEND"
+msgstr ""
+
+#: ../ForgotUsernameDo.php:14
+#: ../Search.php:14
+msgid "SEARCHRESULTS"
+msgstr ""
+
+#: ../ForgotUsernameDo.php:71
+msgid "ASSOCIATEDUSERS"
+msgstr ""
+
+#: ../ChangePasswordForm.php:8
+msgid "CHANGEPASSWORD:TITLE"
+msgstr ""
+
+#: ../ChangePasswordForm.php:10
+msgid "FORM:CHANGEPASSWORD:GREETINGS"
+msgstr ""
+
+#: ../ChangePasswordForm.php:19
+msgid "USER:EXAMPLE"
+msgstr ""
+
+#: ../ChangePasswordForm.php:28
+#: ../ChangePasswordForm.php:72
+#: ../ChangePasswordForm.php:94
+#: ../ChangePasswordForm.php:119
+msgid "LONGERTHAN30"
+msgstr ""
+
+#: ../ChangePasswordForm.php:31
+msgid "ATLEAST3"
+msgstr ""
+
+#: ../ChangePasswordForm.php:60
+msgid "YOURPASSWORD"
+msgstr ""
+
+#: ../ChangePasswordForm.php:63
+msgid "PRESENTPASSWORD"
+msgstr ""
+
+#: ../ChangePasswordForm.php:75
+#: ../ChangePasswordForm.php:97
+#: ../ChangePasswordForm.php:122
+msgid "ATLEAST8"
+msgstr ""
+
+#: ../ChangePasswordForm.php:82
+msgid "NEWPASSWORD"
+msgstr ""
+
+#: ../ChangePasswordForm.php:85
+msgid "NEWPASSWORDDESC"
+msgstr ""
+
+#: ../ChangePasswordForm.php:104
+msgid "NEWPASSWORDREPEAT"
+msgstr ""
+
+#: ../ChangePasswordForm.php:107
+msgid "NEWPASSWORDREPEATDESC"
+msgstr ""
+
+#: ../Search.php:52
+msgid "XXUSERSFOUND"
+msgstr ""
+
+#: ../NewUserDo.php:15
+#: ../ChangePasswordDo.php:14
+#: ../ResetPasswordMail.php:16
+msgid "REQUESTSTATUS"
+msgstr ""
+
+#: ../Browse.php:14
+msgid "USERSFROM"
+msgstr ""
+
+#: ../Browse.php:32
+msgid "INVALIDLETTER"
+msgstr ""
+
+#: ../Browse.php:75
+msgid "XUSERSFOUND"
+msgstr ""
+
+#: ../EditProfileForm.php:8
+msgid "EDITUSERPROFILE"
+msgstr ""
+
+#: ../EditProfileForm.php:10
+msgid "EDITUSERPROFILE:GREETINGS"
+msgstr ""
+
+#: ../EditProfileForm.php:38
+#: ../NewUserForm.php:98
+#: ../DeleteUserForm.php:60
+#: ../EditProfileDo.php:104
+msgid "PASSWORD"
+msgstr ""
+
+#: ../EditProfileForm.php:41
+msgid "ENTERYOURPASSWORD:FORM"
+msgstr ""
+
+#: ../NewUserForm.php:8
+msgid "REQUESTNEWUSERACCOUNT:TITLE"
+msgstr ""
+
+#: ../NewUserForm.php:10
+msgid "REQUESTNEWUSERACCOUNT:GREETINGS"
+msgstr ""
+
+#: ../NewUserForm.php:10
+msgid "REQUESTNEWUSERACCOUNT:INTRO"
+msgstr ""
+
+#: ../NewUserForm.php:16
+#: ../EditProfileDo.php:100
+msgid "FIRSTNAME:FORM"
+msgstr ""
+
+#: ../NewUserForm.php:19
+msgid "FIRSTNAME:EXAMPLE"
+msgstr ""
+
+#: ../NewUserForm.php:35
+#: ../EditProfileDo.php:101
+msgid "LASTNAME:FORM"
+msgstr ""
+
+#: ../NewUserForm.php:38
+msgid "LASTNAME:EXAMPLE"
+msgstr ""
+
+#: ../NewUserForm.php:101
+#: ../NewUserForm.php:123
+#: ../DeleteUserForm.php:63
+msgid "ATLEAST8CHARS"
+msgstr ""
+
+#: ../NewUserForm.php:120
+msgid "PASSWORDREPEAT"
+msgstr ""
+
+#: ../Ajax.php:26
+msgid "INTRUSION:WARNING"
+msgstr ""
+
+#: ../Ajax.php:78
+msgid "MODATTRIBUTE"
+msgstr ""
+
+#: ../Ajax.php:79
+msgid "OFTHEUSER"
+msgstr ""
+
+#: ../ForgotUsernameForm.php:8
+msgid "REMINDUSERNAME:TITLE"
+msgstr ""
+
+#: ../ForgotUsernameForm.php:10
+msgid "REMINDUSERNAME:GREETINGS"
+msgstr ""
+
+#: ../ResetPasswordForm.php:11
+msgid "RESETPASSWORD:GREETINGS"
+msgstr ""
+
+#: ../DeleteUserForm.php:8
+msgid "DELETEUSER:TITLE"
+msgstr ""
+
+#: ../DeleteUserForm.php:10
+msgid "DELETEUSER:GREETINGS"
+msgstr ""
+
+#: ../EditProfileDo.php:14
+msgid "USERPROFILE"
+msgstr ""
+
+#: ../EditProfileDo.php:102
+msgid "COMPLETENAME:FORM"
+msgstr ""
+

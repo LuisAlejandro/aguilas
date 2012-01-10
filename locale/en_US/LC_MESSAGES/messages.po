@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AGUILAS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-09 12:24-0400\n"
-"PO-Revision-Date: 2012-01-09 12:24-0400\n"
+"POT-Creation-Date: 2012-01-10 01:47-0400\n"
+"PO-Revision-Date: 2012-01-10 01:47-0400\n"
 "Last-Translator: Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>\n"
 "Language-Team: Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>\n"
 "Language: \n"
@@ -54,8 +54,8 @@ msgstr "Remind User"
 #: ../../../themes/canaima/index.php:45
 #: ../../../themes/canaima/footer.php:18
 #: ../../../themes/debian/header.php:51
-#: ../../../themes/debian/footer.php:18
 #: ../../../themes/debian/index.php:45
+#: ../../../themes/debian/footer.php:18
 msgid "DELETEUSER"
 msgstr "Delete User"
 
@@ -143,379 +143,369 @@ msgstr "Browse users"
 msgid "POWEREDBY"
 msgstr " is powered by "
 
-#: ../../../libraries/Parameters.inc.php:40
-msgid "AT"
-msgstr "at"
+#: ../../../libraries/MYSQLConnection.inc.php:15
+msgid "MYSQL:CONNECT:ERROR"
+msgstr "An error has ocurred trying to connect to the MYSQL database."
 
-#: ../../../libraries/Parameters.inc.php:40
-msgid "PETITION"
-msgstr ", in petition of "
-
-#: ../../../libraries/Functions.inc.php:19
-msgid "LDAP:INSERT:ERROR"
-msgstr "An error has ocurred trying to insert entries on the LDAP database: "
-
-#: ../../../libraries/Functions.inc.php:22
-#: ../../../libraries/Functions.inc.php:36
-#: ../../../libraries/Functions.inc.php:50
+#: ../../../libraries/MYSQLConnection.inc.php:17
+#: ../../../libraries/MYSQLConnection.inc.php:38
+#: ../../../libraries/LDAPConnection.inc.php:19
+#: ../../../libraries/LDAPConnection.inc.php:32
+#: ../../../libraries/LDAPConnection.inc.php:45
+#: ../../../libraries/LDAPConnection.inc.php:59
+#: ../../../libraries/LDAPConnection.inc.php:74
+#: ../../../libraries/Functions.inc.php:26
+#: ../../../libraries/Functions.inc.php:45
 #: ../../../libraries/Functions.inc.php:64
-#: ../../../libraries/Functions.inc.php:80
-#: ../../../libraries/Functions.inc.php:92
-#: ../../../libraries/Functions.inc.php:104
-#: ../../../libraries/Functions.inc.php:118
-#: ../../../libraries/Functions.inc.php:132
-#: ../../../libraries/Functions.inc.php:365
-#: ../../../libraries/Functions.inc.php:375
-#: ../../../libraries/Functions.inc.php:385
-#: ../../../libraries/Functions.inc.php:395
-#: ../../../libraries/Functions.inc.php:405
-#: ../../../libraries/Functions.inc.php:415
-#: ../../../libraries/Functions.inc.php:425
-#: ../../../libraries/Functions.inc.php:435
-#: ../../../libraries/Functions.inc.php:445
-#: ../../../libraries/Functions.inc.php:455
-#: ../../../libraries/Functions.inc.php:465
-#: ../../../libraries/Functions.inc.php:475
-#: ../../../libraries/Functions.inc.php:485
-#: ../../../libraries/Functions.inc.php:495
-#: ../../../libraries/Functions.inc.php:505
-#: ../../../libraries/Functions.inc.php:515
-#: ../../../libraries/Functions.inc.php:545
-#: ../../../libraries/Functions.inc.php:555
-#: ../../../libraries/Functions.inc.php:569
-#: ../../../libraries/Functions.inc.php:579
-#: ../../../libraries/Functions.inc.php:589
-#: ../../../libraries/Functions.inc.php:620
-#: ../../../libraries/MYSQLConnection.inc.php:16
-#: ../../../libraries/MYSQLConnection.inc.php:34
-#: ../../../libraries/LDAPConnection.inc.php:18
-#: ../../../libraries/LDAPConnection.inc.php:29
-#: ../../../libraries/LDAPConnection.inc.php:40
-#: ../../../libraries/LDAPConnection.inc.php:52
-#: ../../../libraries/LDAPConnection.inc.php:64
-#: ../../../Browse.php:34
+#: ../../../libraries/Functions.inc.php:83
+#: ../../../libraries/Functions.inc.php:101
+#: ../../../libraries/Functions.inc.php:115
+#: ../../../libraries/Functions.inc.php:129
+#: ../../../libraries/Functions.inc.php:148
+#: ../../../libraries/Functions.inc.php:167
+#: ../../../libraries/Functions.inc.php:388
+#: ../../../libraries/Functions.inc.php:398
+#: ../../../libraries/Functions.inc.php:408
+#: ../../../libraries/Functions.inc.php:418
+#: ../../../libraries/Functions.inc.php:428
+#: ../../../libraries/Functions.inc.php:438
+#: ../../../libraries/Functions.inc.php:448
+#: ../../../libraries/Functions.inc.php:458
+#: ../../../libraries/Functions.inc.php:468
+#: ../../../libraries/Functions.inc.php:478
+#: ../../../libraries/Functions.inc.php:488
+#: ../../../libraries/Functions.inc.php:498
+#: ../../../libraries/Functions.inc.php:508
+#: ../../../libraries/Functions.inc.php:518
+#: ../../../libraries/Functions.inc.php:528
+#: ../../../libraries/Functions.inc.php:538
+#: ../../../libraries/Functions.inc.php:568
+#: ../../../libraries/Functions.inc.php:578
+#: ../../../libraries/Functions.inc.php:592
+#: ../../../libraries/Functions.inc.php:602
+#: ../../../libraries/Functions.inc.php:612
+#: ../../../libraries/Functions.inc.php:643
 msgid "BACK"
 msgstr "Back"
 
-#: ../../../libraries/Functions.inc.php:33
+#: ../../../libraries/MYSQLConnection.inc.php:34
+msgid "MYSQL:SELECTDB:ERROR"
+msgstr "An error has ocurred trying to select database "
+
+#: ../../../libraries/LDAPConnection.inc.php:17
+msgid "LDAP:CONNECT:ERROR"
+msgstr "An error ucurred while trying to connect to the LDAP"
+
+#: ../../../libraries/LDAPConnection.inc.php:29
+#: ../../../libraries/LDAPConnection.inc.php:42
+msgid "LDAP:CONFIG:ERROR"
+msgstr "An error ocurred while trying to configure LDAP: "
+
+#: ../../../libraries/LDAPConnection.inc.php:56
+msgid "LDAP:TLS:ERROR"
+msgstr "An error ocurred while trying to start a secure connection with LDAP: "
+
+#: ../../../libraries/LDAPConnection.inc.php:71
+msgid "LDAP:BIND:ERROR"
+msgstr "An error ocurred while trying to bind with LDAP: "
+
+#: ../../../libraries/Functions.inc.php:23
+msgid "LDAP:INSERT:ERROR"
+msgstr "An error has ocurred trying to insert entries on the LDAP database: "
+
+#: ../../../libraries/Functions.inc.php:42
 msgid "LDAP:MODIFY:ERROR"
 msgstr "An error has ocurred trying to modify entries on the LDAP database: "
 
-#: ../../../libraries/Functions.inc.php:47
+#: ../../../libraries/Functions.inc.php:61
 msgid "LDAP:DELETE:ERROR"
 msgstr "An error has ocurred trying to delete entries on the LDAP database: "
 
-#: ../../../libraries/Functions.inc.php:61
+#: ../../../libraries/Functions.inc.php:80
 msgid "LDAP:CLOSE:ERROR"
 msgstr "An error has ocurred trying to close the connection to the LDAP database: "
 
-#: ../../../libraries/Functions.inc.php:77
+#: ../../../libraries/Functions.inc.php:98
 msgid "LDAP:SEARCH:ERROR"
 msgstr "An error has ocurred while the system was performing a search: "
 
-#: ../../../libraries/Functions.inc.php:89
+#: ../../../libraries/Functions.inc.php:112
 msgid "LDAP:SORT:ERROR"
 msgstr "There was an error organizing the LDAP search results: "
 
-#: ../../../libraries/Functions.inc.php:101
+#: ../../../libraries/Functions.inc.php:126
 msgid "LDAP:GET:ERROR"
 msgstr "There was an error retrieving the LDAP search results: "
 
-#: ../../../libraries/Functions.inc.php:115
+#: ../../../libraries/Functions.inc.php:145
 msgid "MYSQL:QUERY:ERROR"
 msgstr "An error has ocurred while the system was performing a MYSQL query on the database: "
 
-#: ../../../libraries/Functions.inc.php:129
+#: ../../../libraries/Functions.inc.php:164
 msgid "MYSQL:CLOSE:ERROR"
 msgstr "An error has ocurred trying to close the connection to the MYSQL database: "
 
-#: ../../../libraries/Functions.inc.php:156
+#: ../../../libraries/Functions.inc.php:188
 msgid "EMAIL:PASSWORD:CHANGE"
 msgstr "Password Change in "
 
-#: ../../../libraries/Functions.inc.php:167
+#: ../../../libraries/Functions.inc.php:199
 msgid "EMAIL:PASSWORD:GREETINGS"
 msgstr "Hi! Your password in "
 
-#: ../../../libraries/Functions.inc.php:167
+#: ../../../libraries/Functions.inc.php:199
 msgid "EMAIL:PASSWORD:HASBEENCHANGED"
 msgstr "has been changed."
 
-#: ../../../libraries/Functions.inc.php:176
+#: ../../../libraries/Functions.inc.php:208
 msgid "EMAIL:PASSWORD:NEW"
 msgstr "New Password petition in "
 
-#: ../../../libraries/Functions.inc.php:191
+#: ../../../libraries/Functions.inc.php:223
 msgid "EMAIL:PASSWORD:WHY"
 msgstr "You have received this e-mail because someone made a new password petition for the user "
 
-#: ../../../libraries/Functions.inc.php:193
+#: ../../../libraries/Functions.inc.php:225
 msgid "IN"
 msgstr " in "
 
-#: ../../../libraries/Functions.inc.php:195
-#: ../../../libraries/Functions.inc.php:246
+#: ../../../libraries/Functions.inc.php:227
+#: ../../../libraries/Functions.inc.php:278
 msgid "EMAIL:CLICK:CONFIRM"
 msgstr "Click the following link to confirm your petition."
 
-#: ../../../libraries/Functions.inc.php:197
-#: ../../../libraries/Functions.inc.php:248
+#: ../../../libraries/Functions.inc.php:229
+#: ../../../libraries/Functions.inc.php:280
 msgid "CONFIRM"
 msgstr "CONFIRM"
 
-#: ../../../libraries/Functions.inc.php:205
+#: ../../../libraries/Functions.inc.php:237
 msgid "EMAIL:PASSWORD:NEW2"
 msgstr "New Password in "
 
-#: ../../../libraries/Functions.inc.php:216
+#: ../../../libraries/Functions.inc.php:248
 msgid "EMAIL:PASSWORD:GREETINGS2"
 msgstr "Hi, your new password is: "
 
-#: ../../../libraries/Functions.inc.php:227
+#: ../../../libraries/Functions.inc.php:259
 msgid "EMAIL:NEWUSER:ACTIVATION"
 msgstr "New user activation in "
 
-#: ../../../libraries/Functions.inc.php:241
+#: ../../../libraries/Functions.inc.php:273
 msgid "HI"
 msgstr "Hi, "
 
-#: ../../../libraries/Functions.inc.php:243
+#: ../../../libraries/Functions.inc.php:275
 msgid "EMAIL:NEWUSER:REQUEST"
 msgstr "You have received this e-mail because you made a new user request in "
 
-#: ../../../libraries/Functions.inc.php:256
+#: ../../../libraries/Functions.inc.php:288
 msgid "EMAIL:DELETEDUSER:TITLE"
 msgstr "Deleted User in "
 
-#: ../../../libraries/Functions.inc.php:266
+#: ../../../libraries/Functions.inc.php:298
 msgid "EMAIL:DELETEDUSER:GREETINGS"
 msgstr "Dear user "
 
-#: ../../../libraries/Functions.inc.php:268
+#: ../../../libraries/Functions.inc.php:300
 msgid "EMAIL:DELETEDUSER:SUCCESS"
 msgstr "Your account has been successfully deleted from "
 
-#: ../../../libraries/Functions.inc.php:290
+#: ../../../libraries/Functions.inc.php:323
 msgid "LOG:CHANGEPASSWORD:DONE"
 msgstr "[ Change Password ] A success e-mail has been sent to "
 
-#: ../../../libraries/Functions.inc.php:295
+#: ../../../libraries/Functions.inc.php:328
 msgid "LOG:RESETPASSWORD:CONFIRM"
 msgstr "[ Reset Password ] A confirmation e-mail has been sent to "
 
-#: ../../../libraries/Functions.inc.php:302
+#: ../../../libraries/Functions.inc.php:333
 msgid "LOG:RESETPASSWORD:DONE"
 msgstr "[ Reset Password ] A success e-mail has been sent to "
 
-#: ../../../libraries/Functions.inc.php:309
+#: ../../../libraries/Functions.inc.php:338
 msgid "LOG:NEWUSER:CONFIRM:AGAIN"
 msgstr "[ New User ] A confirmation e-mail has been re-sent to "
 
-#: ../../../libraries/Functions.inc.php:316
+#: ../../../libraries/Functions.inc.php:343
 msgid "LOG:NEWUSER:CONFIRM"
 msgstr "[ New User ] A confirmation e-mail has been sent to "
 
-#: ../../../libraries/Functions.inc.php:323
+#: ../../../libraries/Functions.inc.php:348
 msgid "LOG:DELETEUSER:DONE"
 msgstr "[ Delete User ] A success e-mail has been sent to "
 
-#: ../../../libraries/Functions.inc.php:329
+#: ../../../libraries/Functions.inc.php:353
 msgid "LOG:NEWUSER:DONE"
 msgstr "[ New User ] A success e-mail has been sent to "
 
-#: ../../../libraries/Functions.inc.php:363
+#: ../../../libraries/Functions.inc.php:386
 msgid "CAPTCHA:EXPIRED"
 msgstr "The page has expired, please go back and try again."
 
-#: ../../../libraries/Functions.inc.php:373
+#: ../../../libraries/Functions.inc.php:396
 msgid "CAPTCHA:WRONG"
 msgstr "You have entered the verification code (captcha) incorrectly, please go back and try again."
 
-#: ../../../libraries/Functions.inc.php:383
-#: ../../../libraries/Functions.inc.php:393
+#: ../../../libraries/Functions.inc.php:406
+#: ../../../libraries/Functions.inc.php:416
 msgid "FORM:ERROR"
 msgstr "There was an error processing the form. Please go back and verify that you have entered the information correctly."
 
-#: ../../../libraries/Functions.inc.php:403
+#: ../../../libraries/Functions.inc.php:426
 msgid "SEARCH:INVALID"
 msgstr "Your search terms have invalid characters. You can only use letters (uppercase, lowercase), accented letters, umlaut and underscore."
 
-#: ../../../libraries/Functions.inc.php:413
+#: ../../../libraries/Functions.inc.php:436
 msgid "EMAIL:INVALID"
 msgstr "The e-mail you provided is not valid. Please go back and verify that you have entered it correctly."
 
-#: ../../../libraries/Functions.inc.php:423
+#: ../../../libraries/Functions.inc.php:446
 msgid "TOKEN:INVALID"
 msgstr "The confirmation token is invalid. Please make the request again."
 
-#: ../../../libraries/Functions.inc.php:433
+#: ../../../libraries/Functions.inc.php:456
 msgid "USERNAME:INVALID"
 msgstr "The username is invalid. You can only use letters (uppercase, lowercase), numbers, dashes and underscores."
 
-#: ../../../libraries/Functions.inc.php:443
+#: ../../../libraries/Functions.inc.php:466
 msgid "PASSWORD:INVALID"
 msgstr "The password has invalid characters. You can only use letters (uppercase, lowercase), numbers and these symbols: . ! @ # $ % ^ + = - _"
 
-#: ../../../libraries/Functions.inc.php:453
+#: ../../../libraries/Functions.inc.php:476
 msgid "OLDPASSWORD:INVALID"
 msgstr "The old password has invalid characters, which is very strange. Please use the Reset Password form to change your password, and then come back here."
 
-#: ../../../libraries/Functions.inc.php:463
+#: ../../../libraries/Functions.inc.php:486
 #: ../../../ChangePasswordForm.php:116
 msgid "PASSWORD:DIFFERENT"
 msgstr "Passwords do not match."
 
-#: ../../../libraries/Functions.inc.php:473
+#: ../../../libraries/Functions.inc.php:496
 msgid "PASSWORD:INVALID:LENGTH"
 msgstr "Password length must be shorter than 30 characters and longer than 8."
 
-#: ../../../libraries/Functions.inc.php:483
+#: ../../../libraries/Functions.inc.php:506
 msgid "USERNAME:INVALID:LENGTH"
 msgstr "Username length must be shorter than 30 characters and longer than 3."
 
-#: ../../../libraries/Functions.inc.php:493
+#: ../../../libraries/Functions.inc.php:516
 msgid "FIRSTNAME:INVALID:LENGTH"
 msgstr "Your first name is longer than 60 characters."
 
-#: ../../../libraries/Functions.inc.php:503
+#: ../../../libraries/Functions.inc.php:526
 msgid "LASTNAME:INVALID:LENGTH"
 msgstr "Your last name is longer than 60 characters."
 
-#: ../../../libraries/Functions.inc.php:513
+#: ../../../libraries/Functions.inc.php:536
 msgid "OLDPASSWORD:INVALID:LENGTH"
 msgstr "Your old password length is too short or too long, which is very strange. Please use the Reset Password form to change your password, and then come back here."
 
-#: ../../../libraries/Functions.inc.php:523
+#: ../../../libraries/Functions.inc.php:546
 msgid "FIRSTNAME:INVALID"
 msgstr "Your first name has invalid characters. You can only use letters (uppercase, lowercase), accented letters or with umlaut."
 
-#: ../../../libraries/Functions.inc.php:533
+#: ../../../libraries/Functions.inc.php:556
 msgid "LASTNAME:INVALID"
 msgstr "Your last name has invalid characters. You can only use letters (uppercase, lowercase), accented letters or with umlaut."
 
-#: ../../../libraries/Functions.inc.php:543
+#: ../../../libraries/Functions.inc.php:566
 msgid "USERNAME:EXISTS"
 msgstr "The username already exists."
 
-#: ../../../libraries/Functions.inc.php:553
+#: ../../../libraries/Functions.inc.php:576
 msgid "EMAIL:EXISTS"
 msgstr "The e-mail you provided is already asociated to an existing account."
 
-#: ../../../libraries/Functions.inc.php:567
+#: ../../../libraries/Functions.inc.php:590
 msgid "NOMATCH"
 msgstr "There are no petitions matching the data provided."
 
-#: ../../../libraries/Functions.inc.php:577
+#: ../../../libraries/Functions.inc.php:600
 msgid "DATABASE:CORRUPTION"
 msgstr "There is an inconsistency with the database. There are two or more accounts sharing some user data (username, e-mail, etc...), which generates errors and inaccuracies on the system. This error has been informed to system administrators."
 
-#: ../../../libraries/Functions.inc.php:587
+#: ../../../libraries/Functions.inc.php:610
 msgid "NOMATCH:ACCOUNT"
 msgstr "The data provided doesn't match any existing account. Please go back and check the information you gave us."
 
-#: ../../../libraries/Functions.inc.php:597
+#: ../../../libraries/Functions.inc.php:620
 msgid "FINAL:ERROR:CHANGEPASSWORD"
 msgstr "again later."
 
-#: ../../../libraries/Functions.inc.php:600
-#: ../../../libraries/Functions.inc.php:613
+#: ../../../libraries/Functions.inc.php:623
+#: ../../../libraries/Functions.inc.php:636
 msgid "FINAL:ERROR:CONFIRMATION"
 msgstr "There was an error sending the confirmation e-mail. Please try again later."
 
-#: ../../../libraries/Functions.inc.php:603
+#: ../../../libraries/Functions.inc.php:626
 msgid "FINAL:ERROR:RESETPASSWORD"
 msgstr "There was an error generating your new password. Please try again later."
 
-#: ../../../libraries/Functions.inc.php:606
+#: ../../../libraries/Functions.inc.php:629
 msgid "FINAL:ERROR:DELETEUSER"
 msgstr "There was an error deleting your account. Please try again later."
 
-#: ../../../libraries/Functions.inc.php:609
+#: ../../../libraries/Functions.inc.php:632
 msgid "FINAL:ERROR:NEWUSER"
 msgstr "There was an error creating your account. Please try again later."
 
-#: ../../../libraries/Functions.inc.php:628
+#: ../../../libraries/Functions.inc.php:651
 msgid "FINAL:SUCCESS:RESETPASSWORD"
 msgstr "¡Success! Your password has been changed."
 
-#: ../../../libraries/Functions.inc.php:631
+#: ../../../libraries/Functions.inc.php:654
 msgid "FINAL:CONFIRM:RESETPASSWORD"
 msgstr "Your new password request has been correctly processed. Please check your e-mail to finish the process."
 
-#: ../../../libraries/Functions.inc.php:634
+#: ../../../libraries/Functions.inc.php:657
 msgid "FINAL:SUCCESS:RESETPASSWORD:EMAIL"
 msgstr "¡Success! We have generated a new password for you. Please check your e-mail to find it."
 
-#: ../../../libraries/Functions.inc.php:637
+#: ../../../libraries/Functions.inc.php:660
 msgid "FINAL:SUCCESS:DELETE"
 msgstr "Your account has been successfully deleted."
 
-#: ../../../libraries/Functions.inc.php:640
+#: ../../../libraries/Functions.inc.php:663
 msgid "FINAL:SUCCESS:NEWUSER"
 msgstr "¡Success! Your account has been successfully created."
 
-#: ../../../libraries/Functions.inc.php:644
+#: ../../../libraries/Functions.inc.php:667
 msgid "FINAL:CONFIRM:NEWUSER"
 msgstr "The new user account has been processed correctly. Please check your e-mail to finish the process."
 
-#: ../../../libraries/Functions.inc.php:663
+#: ../../../libraries/Functions.inc.php:687
 msgid "ID"
 msgstr "ID"
 
-#: ../../../libraries/Functions.inc.php:666
+#: ../../../libraries/Functions.inc.php:690
 #: ../../../ChangePasswordForm.php:16
-#: ../../../EditProfileForm.php:16
 msgid "USERNAME"
 msgstr "Username"
 
-#: ../../../libraries/Functions.inc.php:669
+#: ../../../libraries/Functions.inc.php:693
 msgid "REALNAME"
 msgstr "Real Name"
 
-#: ../../../libraries/Functions.inc.php:672
+#: ../../../libraries/Functions.inc.php:696
 msgid "GROUP"
 msgstr "Group"
 
-#: ../../../libraries/Functions.inc.php:698
+#: ../../../libraries/Functions.inc.php:722
 msgid "CLICKTOEDIT"
 msgstr "click the field to edit"
 
-#: ../../../libraries/Functions.inc.php:700
+#: ../../../libraries/Functions.inc.php:724
 msgid "CANNOTEDIT"
 msgstr "this field cannot be edited"
 
-#: ../../../libraries/Functions.inc.php:726
+#: ../../../libraries/Functions.inc.php:750
 msgid "SAVE"
 msgstr "Save"
 
-#: ../../../libraries/Functions.inc.php:727
+#: ../../../libraries/Functions.inc.php:751
 msgid "CANCEL"
 msgstr "Cancel"
-
-#: ../../../libraries/MYSQLConnection.inc.php:14
-msgid "MYSQL:CONNECT:ERROR"
-msgstr "An error has ocurred trying to connect to the MYSQL database."
-
-#: ../../../libraries/MYSQLConnection.inc.php:30
-msgid "MYSQL:SELECTDB:ERROR"
-msgstr "An error has ocurred trying to select database "
-
-#: ../../../libraries/LDAPConnection.inc.php:16
-msgid "LDAP:CONNECT:ERROR"
-msgstr "An error ucurred while trying to connect to the LDAP"
-
-#: ../../../libraries/LDAPConnection.inc.php:26
-#: ../../../libraries/LDAPConnection.inc.php:37
-msgid "LDAP:CONFIG:ERROR"
-msgstr "An error ocurred while trying to configure LDAP: "
-
-#: ../../../libraries/LDAPConnection.inc.php:49
-msgid "LDAP:TLS:ERROR"
-msgstr "An error ocurred while trying to start a secure connection with LDAP: "
-
-#: ../../../libraries/LDAPConnection.inc.php:61
-msgid "LDAP:BIND:ERROR"
-msgstr "An error ocurred while trying to bind with LDAP: "
 
 #: ../../../setup/install.php:16
 msgid "CREATING:DATABASE"
@@ -534,15 +524,15 @@ msgid "CREATING:LDAP:MAXUID"
 msgstr "Creating LDAP maxUID entry ..."
 
 #: ../../../setup/install.php:54
-#: ../../../setup/uninstall.php:24
+#: ../../../setup/uninstall.php:23
 msgid "DONE"
 msgstr "¡DONE!"
 
-#: ../../../setup/uninstall.php:17
+#: ../../../setup/uninstall.php:16
 msgid "DROPPING:DATABASE"
 msgstr "Deleting database "
 
-#: ../../../setup/uninstall.php:21
+#: ../../../setup/uninstall.php:20
 msgid "DELETING:LDAP:MAXUID"
 msgstr "Deleting LDAP maxUID entry ..."
 
@@ -572,9 +562,6 @@ msgstr "e.g., user@email.com"
 #: ../../../ChangePasswordForm.php:91
 #: ../../../ChangePasswordForm.php:113
 #: ../../../ChangePasswordForm.php:138
-#: ../../../EditProfileForm.php:25
-#: ../../../EditProfileForm.php:47
-#: ../../../EditProfileForm.php:69
 msgid "EMPTY:WARNING"
 msgstr "You cannot leave empty fields."
 
@@ -595,13 +582,11 @@ msgstr "Captcha"
 
 #: ../../../ResendMailForm.php:50
 #: ../../../ChangePasswordForm.php:141
-#: ../../../EditProfileForm.php:72
 msgid "LONGERTHAN8"
 msgstr "You exceeded the limit of 8 characters."
 
 #: ../../../ResendMailForm.php:56
 #: ../../../ChangePasswordForm.php:147
-#: ../../../EditProfileForm.php:78
 msgid "SEND"
 msgstr "SEND"
 
@@ -623,7 +608,6 @@ msgid "FORM:CHANGEPASSWORD:GREETINGS"
 msgstr "Please complete the following form to change your password."
 
 #: ../../../ChangePasswordForm.php:19
-#: ../../../EditProfileForm.php:19
 msgid "USER:EXAMPLE"
 msgstr "e.g., Us3r"
 
@@ -631,13 +615,10 @@ msgstr "e.g., Us3r"
 #: ../../../ChangePasswordForm.php:72
 #: ../../../ChangePasswordForm.php:94
 #: ../../../ChangePasswordForm.php:119
-#: ../../../EditProfileForm.php:28
-#: ../../../EditProfileForm.php:50
 msgid "LONGERTHAN30"
 msgstr "You exceeded the limit of 30 characters."
 
 #: ../../../ChangePasswordForm.php:31
-#: ../../../EditProfileForm.php:31
 msgid "ATLEAST3"
 msgstr "Username must have at least 3 characters."
 
@@ -652,7 +633,6 @@ msgstr "enter your present password"
 #: ../../../ChangePasswordForm.php:75
 #: ../../../ChangePasswordForm.php:97
 #: ../../../ChangePasswordForm.php:122
-#: ../../../EditProfileForm.php:53
 msgid "ATLEAST8"
 msgstr "Password must have at least 8 characters."
 
@@ -676,8 +656,9 @@ msgstr "repeat your new password"
 msgid "XXUSERSFOUND"
 msgstr " Users found matching the given criteria."
 
-#: ../../../DeleteUserDo.php:14
-#: ../../../NewUserMail.php:15
+#: ../../../NewUserDo.php:15
+#: ../../../ChangePasswordDo.php:14
+#: ../../../ResetPasswordMail.php:16
 msgid "REQUESTSTATUS"
 msgstr "Request Status"
 
@@ -702,6 +683,9 @@ msgid "EDITUSERPROFILE:GREETINGS"
 msgstr "After introducing your user data, you will be able to edit your profile information."
 
 #: ../../../EditProfileForm.php:38
+#: ../../../NewUserForm.php:98
+#: ../../../DeleteUserForm.php:60
+#: ../../../EditProfileDo.php:104
 msgid "PASSWORD"
 msgstr "Password"
 
@@ -789,5 +773,3 @@ msgstr "User Profile"
 msgid "COMPLETENAME:FORM"
 msgstr "Complete Name"
 
-#~ msgid "DEVELOPEDBY"
-#~ msgstr " is a PHP application developed by "

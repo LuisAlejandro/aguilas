@@ -177,8 +177,8 @@ function AssistedMYSQLClose($mysqlc) {
  *                           COMMUNICATION FUNCTIONS                          *
  ******************************************************************************/
 
-function AssistedEMail($what, $where, $whatdata) {
-    
+function AssistedEMail($what, $where) {
+    global $app_mail, $app_name, $app_locale, $app_operator, $mail, $uid, $token, $app_url, $genPassword;
     // What are the headers?
     $headers = "From: " . $app_mail . "\nContent-Type: text/html; charset=utf-8";
 
@@ -314,53 +314,44 @@ function AssistedEMail($what, $where, $whatdata) {
  *                           EVENT LOGGING FUNCTIONS                          *
  ******************************************************************************/
 
-function WriteLog($data, $log_file, $time_today) {
+function WriteLog($log_file) {
+    global $uid, $mail, $token, $time_today;
     $log_location = $log_dir . $log_file . ".log";
     switch ($log_file) {
         case "ChangePasswordDo":
             $log_string = "[" . $time_today . "]: "
                     . _("LOG:CHANGEPASSWORD:DONE")
-                    . $data['mail'] . " (uid: " . $data['uid'] . ").\n";
+                    . $mail . " (uid: " . $uid . ").\n";
             break;
         case "ResetPasswordMail":
             $log_string = "[" . $time_today . "]: "
                     . _("LOG:RESETPASSWORD:CONFIRM")
-                    . $data['mail']
-                    . " (uid: " . $data['uid']
-                    . "; token: " . $data['token'] . ").\n";
+                    . $mail . " (uid: " . $uid . "; token: " . $token . ").\n";
             break;
         case "ResetPasswordDo":
             $log_string = "[" . $time_today . "]: "
                     . _("LOG:RESETPASSWORD:DONE")
-                    . $data['mail']
-                    . " (uid: " . $data['uid']
-                    . "; token: " . $data['token'] . ").\n";
+                    . $mail . " (uid: " . $uid . "; token: " . $token . ").\n";
             break;
         case "ResendMailDo":
             $log_string = "[" . $time_today . "]: "
                     . _("LOG:NEWUSER:CONFIRM:AGAIN")
-                    . $data['mail']
-                    . " (uid: " . $data['uid']
-                    . "; token: " . $data['token'] . ").\n";
+                    . $mail . " (uid: " . $uid . "; token: " . $token . ").\n";
             break;
         case "NewUserMail":
             $log_string = "[" . $time_today . "]: "
                     . _("LOG:NEWUSER:CONFIRM")
-                    . $data['mail']
-                    . " (uid: " . $data['uid']
-                    . "; token: " . $data['token'] . ").\n";
+                    . $mail . " (uid: " . $uid . "; token: " . $token . ").\n";
             break;
         case "DeleteUserDo":
             $log_string = "[" . $time_today . "]: "
                     . _("LOG:DELETEUSER:DONE")
-                    . $data['mail']
-                    . " (uid: " . $data['uid'] . ").\n";
+                    . $mail . " (uid: " . $uid . ").\n";
             break;
         case "NewUserDo":
             $log_string = "[" . $time_today . "]: "
                     . _("LOG:NEWUSER:DONE")
-                    . $data['mail']
-                    . " (uid: " . $data['uid'] . ").\n";
+                    . $mail . " (uid: " . $uid . ").\n";
             break;
     }
     $log_write = file_put_contents($log_location, $log_string, FILE_APPEND | LOCK_EX);

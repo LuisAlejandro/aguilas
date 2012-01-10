@@ -37,7 +37,7 @@ $time_today = date("d-m-Y-H:i:s");
 $newtoken = md5(mt_rand() . "-" . time() . "-" . $_SERVER['REMOTE_ADDR'] . "-" . mt_rand());
 
 // A little description
-$description = _("POWEREDBY") . $app_name . _("AT") . $time_today . _("PETITION") . $_SERVER['REMOTE_ADDR'];
+$description = "INSERTED BY AGUILAS";
 
 // Starting session (cookies)
 session_start();
