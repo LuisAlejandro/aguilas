@@ -1,3 +1,8 @@
+DEVELOPMENT RELEASE v1.0.1+20120110015052 (01/10/12)
+    Implementing the use of global variables inside functions
+    Updating {po,pot} files
+    
+
 DEVELOPMENT RELEASE v1.0.1+20120110010824 (01/10/12)
     Correcting minor rendering and translation messages bugs
     Correcting uninstallation bug
