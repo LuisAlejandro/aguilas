@@ -731,7 +731,7 @@ msgstr ". Con esta cuentapodrás autenticarte en la plataforma de servicios. En 
 #: ../../../NewUserForm.php:16
 #: ../../../EditProfileDo.php:103
 msgid "FIRSTNAME:FORM"
-msgstr "Nombre"
+msgstr "Nombres"
 
 #: ../../../NewUserForm.php:19
 msgid "FIRSTNAME:EXAMPLE"
@@ -740,7 +740,7 @@ msgstr "p. ej., Emeterio Idelfonso"
 #: ../../../NewUserForm.php:35
 #: ../../../EditProfileDo.php:104
 msgid "LASTNAME:FORM"
-msgstr "Last Name"
+msgstr "Apellidos"
 
 #: ../../../NewUserForm.php:38
 msgid "LASTNAME:EXAMPLE"

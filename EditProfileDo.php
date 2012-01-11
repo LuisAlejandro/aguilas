@@ -114,7 +114,7 @@ if (!isset($uid) || !isset($userPassword) || !isset($image_captcha)) {
                             $search_entries[0]['sn'][0],
                             $search_entries[0]['cn'][0],
                             $search_entries[0]['mail'][0],
-                            preg_replace("/[A-Za-z0-9@#$%^&+=!.-_]/", "*", $search_entries[0]['userpassword'][0]),
+                            substr(preg_replace("/[A-Za-z0-9{}@#$%^&+=!.-_]/", "*", $search_entries[0]['userpassword'][0]), 0, 8),
                             $ldap_gid_flip[$search_entries[0]['gidnumber'][0]]);
         
         // Tell me which ones you want to make editable and which don't

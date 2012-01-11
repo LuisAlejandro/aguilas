@@ -16,7 +16,7 @@ $create_q = 'CREATE TABLE NewUser ( '
         . 'givenName VARCHAR(256) NOT NULL, '
         . 'sn VARCHAR(256) NOT NULL, '
         . 'mail VARCHAR(256) NOT NULL, '
-        . 'userPassword VARCHAR(30) NOT NULL, '
+        . 'userPassword VARCHAR(256) NOT NULL, '
         . 'description VARCHAR(256) NOT NULL, '
         . 'token VARCHAR(256) NOT NULL, '
         . 'PRIMARY KEY(main_id))';

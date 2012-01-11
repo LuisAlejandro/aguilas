@@ -422,7 +422,7 @@ function EncodePassword($password, $type) {
             break;
         
         case "SHA":
-            $hash = "{SSHA}" . base64_encode(pack("H*", sha1($password)));
+            $hash = "{SHA}" . base64_encode(pack("H*", sha1($password)));
             break;
             
         case "MD5":

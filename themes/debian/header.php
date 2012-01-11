@@ -81,7 +81,7 @@ if(extension_loaded('zlib') && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'g
             
             <div id="menu">
                 <ul id="portal-globalnav">
-                    <li><a href="<?= $app_url ?>"><?= _("START") ?></a></li>
+                    <li><a href="http://<?= $app_url ?>"><?= _("START") ?></a></li>
                     <?php
                         foreach ( $app_links as $key => $value ) {
                             echo '<li><a href="' . $value . '">' . $key . '</a></li>';
