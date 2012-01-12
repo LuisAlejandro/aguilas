@@ -10,6 +10,7 @@ LOGS = $(wildcard events/*.log)
 
 CONVERT = $(shell which convert)
 PHP = $(shell which php5)
+PYTHON = $(shell which python)
 BINBASH = $(shell which bash)
 RST2MAN = $(shell which rst2man)
 ICOTOOL = $(shell which icotool)
@@ -84,6 +85,14 @@ check-builddep:
 	fi
 	@echo
 
+	@printf "Checking if we have python... "
+	@if [ -z $(PYTHON) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"python\" package."; \
+		exit 1; \
+	fi
+	@echo
+
 	@printf "Checking if we have PHP... "
 	@if [ -z $(PHP) ]; then \
 		echo "[ABSENT]"; \
@@ -133,12 +142,26 @@ gen-mo: check-builddep clean-mo
 	@printf "]\n"
 	@touch gen-mo
 
-gen-doc: check-builddep clean-doc
+gen-doc: gen-html gen-wiki gen-man
 
-	@echo "Generating documentation from source [RST > HTML,MAN,WIKI]"
-	@sphinx-build -b html -d documentation/html/doctrees documentation/rst documentation/html
+gen-html: check-builddep clean-html
+
+	@echo "Generating documentation from source [RST > HTML]"
+	@sphinx-build -a -E -Q -b html -d documentation/html/doctrees documentation/rst documentation/html
+	@touch gen-html
+
+gen-wiki: check-builddep clean-wiki
+
+	@echo "Generating documentation from source [RST > WIKI]"
+	@cd tools && python googlecode-wiki.py
+	@touch gen-wiki
+
+
+gen-man: check-builddep clean-man
+
+	@echo "Generating documentation from source [RST > MAN]"
 	@rst2man --language="en" --title="AGUILAS" documentation/man/aguilas.rst documentation/man/aguilas.1
-	@touch gen-doc
+	@touch gen-man
 
 gen-conf: check-builddep clean-conf
 
@@ -150,11 +173,11 @@ gen-conf: check-builddep clean-conf
 
 clean: clean-all
 
-clean-all: clean-img clean-mo clean-doc clean-conf clean-stamps
+clean-all: clean-img clean-mo clean-html clean-wiki clean-man clean-conf clean-stamps
 
 clean-stamps:
 
-	@rm -rf gen-img gen-doc gen-mo gen-conf check-builddep
+	@rm -rf gen-img gen-html gen-wiki gen-man gen-mo gen-conf check-builddep
 
 clean-img:
 
@@ -179,16 +202,27 @@ clean-mo:
 	@printf "]\n"
 	@rm -rf gen-mo
 
-clean-doc:
+clean-html:
 
-	@echo "Cleaning generated documentation"
-	@rm -rf documentation/_build
-	@rm -rf documentation/aguilas.1
-	@rm -rf gen-doc
+	@echo "Cleaning generated html ..."
+	@rm -rf documentation/html/*
+	@rm -rf gen-html
+
+clean-wiki:
+
+	@echo "Cleaning generated wiki pages ..."
+	@rm -rf documentation/wiki/*
+	@rm -rf gen-wiki
+
+clean-man:
+
+	@echo "Cleaning generated man pages ..."
+	@rm -rf documentation/man/aguilas.1
+	@rm -rf gen-man
 
 clean-conf:
 
-	@echo "Cleaning generated configuration"
+	@echo "Cleaning generated configuration ..."
 	@rm -rf setup/config.php var com
 	@rm -rf gen-conf
 
