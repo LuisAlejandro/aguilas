@@ -5,14 +5,14 @@
 A web-based LDAP user management system
 ---------------------------------------
 
-:Author: Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>
+:Author: @@AUTHOR@@
 :Date:   @@DATE@@
 :Copyright: GPL-3
 :Version: @@VERSION@@
 :Manual section: 1
 :Manual group: Web
 :Tags: ldap, aguilas, user management, ajax, php, mysql
-:Support: http://code.google.com/p/aguilas/
+:Support: @@URL@@
 :Summary: A web-based LDAP user management system
 
 **DESCRIPTION**

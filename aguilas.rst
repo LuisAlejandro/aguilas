@@ -141,3 +141,18 @@ AGUILAS tiene las siguientes funcionalidades:
 ===========
 
 Para obtener soporte respecto a la aplicación, puedes visitar la dirección de la aplicación (ver encabezado) y realizar tu pregunta en sección de comentarios.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

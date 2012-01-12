@@ -135,15 +135,15 @@ gen-mo: check-builddep clean-mo
 
 gen-doc: check-builddep clean-doc
 
-	@echo "Generating documentation from source [RST > HTML,MAN]"
-	@make -C documentation html
+	@echo "Generating documentation from source [RST > HTML,MAN,WIKI]"
+	@sphinx-build -b html -d documentation/html/doctrees documentation/rst documentation/html
 	@rst2man --language="en" --title="AGUILAS" documentation/man/aguilas.rst documentation/man/aguilas.1
 	@touch gen-doc
 
 gen-conf: check-builddep clean-conf
 
 	@echo "Filling up configuration"
-	@cd scripts && bash gen-conf.sh
+	@cd tools && bash gen-conf.sh
 	@echo
 	@echo "Configuration file generated!"
 	@touch gen-conf
@@ -228,10 +228,10 @@ uninstall:
 
 release:
 
-	@cd scripts && bash release.sh
+	@cd tools && bash release.sh
 
 snapshot:
 
-	@cd scripts && bash snapshot.sh
+	@cd tools && bash snapshot.sh
 
 reinstall: uninstall install
