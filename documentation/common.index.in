@@ -1,11 +1,3 @@
-===========
-**AGUILAS**
-===========
-
----------------------------------------
-A web based LDAP user management system
----------------------------------------
-
 AGUILAS is a centralized registration system that allows users to create and manage their accounts on an LDAP authentication platform and (in some cases) using MYSQL databases to store temporary records. It's mostly written in PHP, and depends heavily on the use of LDAP and MYSQL servers. It has the following features:
 
 * Creates user accounts based on determined LDAP attributes.
@@ -17,32 +9,3 @@ AGUILAS is a centralized registration system that allows users to create and man
 * Edits user profile (ajax enabled).
 * Lists all registered users.
 * Searches for a term in the user database.
-
-
-
-
-
-
-----------------------
-
-**Index**
-
-toctree::
-   :maxdepth: 5
-   :numbered:
-
-   installing.rst
-   contribute.rst
-
-
-----------------------
-
-:)
-
-
-
-
-
-
-
-

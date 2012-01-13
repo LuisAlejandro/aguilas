@@ -144,40 +144,52 @@ gen-mo: check-builddep clean-mo
 
 gen-doc: gen-html gen-wiki gen-man
 
-gen-html: check-builddep clean-html
+predoc: check-builddep clean-predoc
+
+	@cd tools && bash process.sh
+	@cd ..
+	@touch predoc
+
+gen-html: check-builddep predoc clean-html
 
 	@echo "Generating documentation from source [RST > HTML]"
-	@sphinx-build -a -E -Q -b html -d documentation/html/doctrees documentation/rst documentation/html
+	@sphinx-build -a -E -Q -b html -d documentation/html/doctrees documentation/rest documentation/html
 	@touch gen-html
 
-gen-wiki: check-builddep clean-wiki
+gen-wiki: check-builddep predoc clean-wiki
 
 	@echo "Generating documentation from source [RST > WIKI]"
 	@cd tools && python googlecode-wiki.py
+	@cd ..
 	@touch gen-wiki
 
 
-gen-man: check-builddep clean-man
+gen-man: check-builddep pre-doc clean-man
 
 	@echo "Generating documentation from source [RST > MAN]"
-	@rst2man --language="en" --title="AGUILAS" documentation/man/aguilas.rst documentation/man/aguilas.1
+	@rst2man --language="en" --title="AGUILAS" documentation/man/aguilas.rest documentation/man/aguilas.1
 	@touch gen-man
 
 gen-conf: check-builddep clean-conf
 
 	@echo "Filling up configuration"
 	@cd tools && bash gen-conf.sh
+	@cd ..
 	@echo
 	@echo "Configuration file generated!"
 	@touch gen-conf
 
 clean: clean-all
 
-clean-all: clean-img clean-mo clean-html clean-wiki clean-man clean-conf clean-stamps
+clean-all: clean-img clean-mo clean-html clean-wiki clean-man clean-conf clean-pyc clean-stamps
 
 clean-stamps:
 
 	@rm -rf gen-img gen-html gen-wiki gen-man gen-mo gen-conf check-builddep
+
+clean-pyc:
+
+	@rm -rf tools/*.pyc tools/wikir/*.pyc documentation/rest/*.pyc
 
 clean-img:
 
@@ -206,6 +218,7 @@ clean-html:
 
 	@echo "Cleaning generated html ..."
 	@rm -rf documentation/html/*
+	@rm -rf documentation/html/.buildinfo
 	@rm -rf gen-html
 
 clean-wiki:
@@ -260,12 +273,20 @@ uninstall:
 	@rm -rf $(DESTDIR)/var/www/aguilas/
 	@echo "Uninstalled"
 
-release:
+release-all: release buildpackage
+
+release: gen-html gen-wiki clean-stamps
 
 	@cd tools && bash release.sh
+	@cd ..
 
-snapshot:
+buildpackage:
+
+	@c-d empaquetar 
+
+snapshot: gen-html gen-wiki clean-stamps
 
 	@cd tools && bash snapshot.sh
+	@cd ..
 
 reinstall: uninstall install

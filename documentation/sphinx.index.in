@@ -1,0 +1,19 @@
+===========
+**AGUILAS**
+===========
+
+@@DESCRIPTIONLINES@@
+@@DESCRIPTION@@
+@@DESCRIPTIONLINES@@
+
+@@COMMONINTRO@@
+
+.. toctree::
+   :maxdepth: 5
+   :numbered:
+
+@@RSTLIST@@
+
+
+:)
+
