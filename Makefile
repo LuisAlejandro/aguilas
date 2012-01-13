@@ -144,7 +144,7 @@ gen-mo: check-builddep clean-mo
 
 gen-doc: gen-html gen-wiki gen-man
 
-predoc: check-builddep clean-predoc
+predoc: check-builddep
 
 	@cd tools && bash process.sh
 	@cd ..
