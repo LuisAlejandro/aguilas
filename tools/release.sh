@@ -1,10 +1,10 @@
 #!/bin/bash
 
-VERSION="../VERSION"
-CHANGELOG="../ChangeLog"
-CHANGES="../../CHANGES"
-DEVERSION="../../DEVERSION"
-NEWCHANGES="../../NEWCHANGES"
+VERSION="VERSION"
+CHANGELOG="ChangeLog"
+CHANGES="../CHANGES"
+DEVERSION="../DEVERSION"
+NEWCHANGES="../NEWCHANGES"
 DATE=$( date +%D )
 
 git checkout development

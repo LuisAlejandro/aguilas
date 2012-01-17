@@ -1,13 +1,20 @@
 #!/bin/bash
 
-VERSION="../VERSION"
-CHANGELOG="../ChangeLog"
-CHANGES="../CHANGES"
-NEWCHANGES="../NEWCHANGES"
+ROOTFLDR="$( pwd )"
+GITHUBWIKI="${ROOTFLDR}/documentation/githubwiki"
+GOOGLBWIKI="${ROOTFLDR}/documentation/googlewiki"
+VERSION="${ROOTFLDR}/VERSION"
+CHANGELOG="${ROOTFLDR}/ChangeLog"
+CHANGES="$( tempfile )"
+NEWCHANGES="$( tempfile )"
 DATE=$( date +%D )
 SNAPSHOT=$( date +%Y%m%d%H%M%S )
 
-git checkout development
+if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
+	echo "You are not on \"development\" branch."
+	echo "Make sure you made your changes on the appropiate branch."
+	exit 1
+fi
 
 git add .
 git commit -a
@@ -20,7 +27,7 @@ git log > ${CHANGES}
 
 OLDVERSION=$( cat ${VERSION} | grep "VERSION" | sed 's/VERSION = //g' )
 OLDCOMMIT=$( cat ${VERSION} | grep "COMMIT" | sed 's/COMMIT = //g' )
-OLDCOMMITLINE=$( cat ${CHANGES}  | grep -n "${OLDCOMMIT}" | awk -F: '{print $1}')
+OLDCOMMITLINE=$( cat ${CHANGES}  | grep -n "${OLDCOMMIT}" | awk -F: '{print $1}' )
 
 read -p "Enter new version (last version was ${OLDVERSION}): "
 NEWVERSION="${REPLY}"
@@ -37,6 +44,16 @@ LASTCOMMIT=$( git rev-parse HEAD )
 
 echo "VERSION = ${NEWVERSION}+${SNAPSHOT}" > ${VERSION}
 echo "COMMIT = ${LASTCOMMIT}" >> ${VERSION}
+
+cd ${GOOGLEWIKI}
+git add .
+git commit -a -m "Updating documentation"
+git push --tags https://code.google.com/p/aguilas.wiki/ development
+
+cd ${GITHUBWIKI}
+git add .
+git commit -a -m "Updating documentation"
+git push --tags git@github.com:HuntingBears/aguilas.wiki.git development
 
 git add .
 git commit -a -m "New development snapshot ${NEWVERSION}+${SNAPSHOT}"

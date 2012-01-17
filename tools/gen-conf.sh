@@ -1,9 +1,10 @@
 #!/bin/bash
 
-SAMPLE="../setup/config.php.example"
-FILE="../setup/config.php"
-VARTMP="../setup/var"
-COMTMP="../setup/com"
+ROOTFLDR="$( pwd )"
+SAMPLE="${ROOTFLDR}/setup/config.php.example"
+FILE="${ROOTFLDR}/setup/config.php"
+VARTMP="$( tempfile )"
+COMTMP="$( tempfile )"
 
 echo
 echo "We are going to ask you a couple of questions regarding AGUILAS configuration."
