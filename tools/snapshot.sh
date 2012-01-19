@@ -1,20 +1,43 @@
 #!/bin/bash
 
-ROOTFLDR="$( pwd )"
-GITHUBWIKI="${ROOTFLDR}/documentation/githubwiki"
-GOOGLBWIKI="${ROOTFLDR}/documentation/googlewiki"
-VERSION="${ROOTFLDR}/VERSION"
-CHANGELOG="${ROOTFLDR}/ChangeLog"
+ROOTDIR="$( pwd )"
+GITHUBWIKI="${ROOTDIR}/documentation/githubwiki"
+GOOGLEWIKI="${ROOTDIR}/documentation/googlewiki"
+VERSION="${ROOTDIR}/VERSION"
+CHANGELOG="${ROOTDIR}/ChangeLog"
 CHANGES="$( tempfile )"
 NEWCHANGES="$( tempfile )"
 DATE=$( date +%D )
 SNAPSHOT=$( date +%Y%m%d%H%M%S )
 
 if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
-	echo "You are not on \"development\" branch."
-	echo "Make sure you made your changes on the appropiate branch."
+	echo "[MAIN] You are not on \"development\" branch."
 	exit 1
 fi
+cd ${GITHUBWIKI}
+if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
+	echo "[GITHUBWIKI] You are not on \"development\" branch."
+	exit 1
+fi
+cd ${ROOTDIR}
+cd ${GOOGLEWIKI}
+if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
+	echo "[GOOGLEWIKI] You are not on \"development\" branch."
+	exit 1
+fi
+cd ${ROOTDIR}
+
+cd ${GOOGLEWIKI}
+git add .
+git commit -a -m "Updating documentation"
+git push --tags https://code.google.com/p/aguilas.wiki/ development
+cd ${ROOTDIR}
+
+cd ${GITHUBWIKI}
+git add .
+git commit -a -m "Updating documentation"
+git push --tags git@github.com:HuntingBears/aguilas.wiki.git development
+cd ${ROOTDIR}
 
 git add .
 git commit -a
@@ -44,16 +67,6 @@ LASTCOMMIT=$( git rev-parse HEAD )
 
 echo "VERSION = ${NEWVERSION}+${SNAPSHOT}" > ${VERSION}
 echo "COMMIT = ${LASTCOMMIT}" >> ${VERSION}
-
-cd ${GOOGLEWIKI}
-git add .
-git commit -a -m "Updating documentation"
-git push --tags https://code.google.com/p/aguilas.wiki/ development
-
-cd ${GITHUBWIKI}
-git add .
-git commit -a -m "Updating documentation"
-git push --tags git@github.com:HuntingBears/aguilas.wiki.git development
 
 git add .
 git commit -a -m "New development snapshot ${NEWVERSION}+${SNAPSHOT}"

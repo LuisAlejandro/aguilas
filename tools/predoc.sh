@@ -17,10 +17,11 @@ RSTLIST=$( ls ${RESTDIR}/*.rest | sed "s|${RESTDIR}/||g" )
 LINKLIST=$( ls ${RESTDIR}/*.rest | sed "s|${RESTDIR}/|[[|g;s|.rest|]]|g" )
 
 for INFILE in ${INFILES}; do
+
+	OUTFILE=$( echo ${INFILE} | sed 's|\.in$||g')
+	cp ${INFILE} ${OUTFILE}
+
 	for SUB in ${SUBS}; do
-		OUTFILE=$( echo ${INFILE} | sed 's|\.in||g')
-		cp ${INFILE} ${OUTFILE}
-		sed -i "s|@@${SUB}@@|$( eval "echo \"\$${SUB}\"" )|g" ${OUTFILE}
-		sed -i "s|_______|\n|g" ${OUTFILE}
+		sed -i "s|@@${SUB}@@|$( eval "echo \"\$${SUB}\"" )|g;s|_______|\n|g" ${OUTFILE}
 	done
 done

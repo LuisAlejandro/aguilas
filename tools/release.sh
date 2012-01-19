@@ -1,13 +1,44 @@
 #!/bin/bash
 
-VERSION="VERSION"
-CHANGELOG="ChangeLog"
-CHANGES="../CHANGES"
-DEVERSION="../DEVERSION"
-NEWCHANGES="../NEWCHANGES"
+ROOTDIR="$( pwd )"
+GITHUBWIKI="${ROOTDIR}/documentation/githubwiki"
+GOOGLBWIKI="${ROOTDIR}/documentation/googlewiki"
+VERSION="${ROOTDIR}/VERSION"
+CHANGELOG="${ROOTDIR}/ChangeLog"
+CHANGES="$( tempfile )"
+DEVERSION="$( tempfile )"
+NEWCHANGES="$( tempfile )"
 DATE=$( date +%D )
 
-git checkout development
+if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
+	echo "[MAIN] You are not on \"development\" branch."
+	exit 1
+fi
+if [ "$( git diff --exit-code 2> /dev/null )" != "0" ]; then
+	echo "[MAIN] You have uncommitted code on \"development\" branch."
+	exit 1
+fi
+cd ${GITHUBWIKI}
+if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
+	echo "[GITHUBWIKI] You are not on \"development\" branch."
+	exit 1
+fi
+if [ "$( git diff --exit-code 2> /dev/null )" != "0" ]; then
+	echo "[GITHUBWIKI] You have uncommitted code on \"development\" branch."
+	exit 1
+fi
+cd ${ROOTDIR}
+cd ${GOOGLEWIKI}
+if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
+	echo "[GOOGLEWIKI] You are not on \"development\" branch."
+	exit 1
+fi
+if [ "$( git diff --exit-code 2> /dev/null )" != "0" ]; then
+	echo "[GOOGLEWIKI] You have uncommitted code on \"development\" branch."
+	exit 1
+fi	
+cd ${ROOTDIR}
+
 git log > ${CHANGES}
 cp ${VERSION} ${DEVERSION}
 git checkout release
@@ -33,6 +64,20 @@ LASTCOMMIT=$( git rev-parse HEAD )
 echo "VERSION = ${NEWVERSION}" > ${VERSION}
 echo "COMMIT = ${LASTCOMMIT}" >> ${VERSION}
 
+cd ${GOOGLEWIKI}
+git checkout master
+git merge development
+git push --tags https://code.google.com/p/aguilas.wiki/ master
+git checkout development
+cd ${ROOTDIR}
+
+cd ${GITHUBWIKI}
+git checkout master
+git merge development
+git push --tags git@github.com:HuntingBears/aguilas.wiki.git master
+git checkout development
+cd ${ROOTDIR}
+
 git add .
 git commit -a -m "New stable release ${NEWVERSION}"
 git tag ${NEWVERSION} -m "New stable release ${NEWVERSION}"
@@ -49,3 +94,4 @@ python googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION} MD5SUM" -p "aguila
 
 mv aguilas-${NEWVERSION}.tar.gz aguilas-${NEWVERSION}.tar.gz.md5 ..
 
+git checkout development

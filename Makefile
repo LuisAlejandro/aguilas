@@ -2,7 +2,7 @@
 
 SHELL = sh -e
 
-IMAGES = $(shell ls themes/canaima/images/ | grep ".svg" | sed 's/.svg//g')
+IMAGES = $(shell ls themes/canaima/images/ | grep "\.svg" | sed 's/\.svg//g')
 THEMES = $(shell ls themes/)
 LOCALES = $(shell ls locale/)
 PHPS = $(wildcard *.php)
@@ -20,12 +20,11 @@ LIBSVG = $(shell find /usr/lib/ -maxdepth 1 -type d -iname "imagemagick-*")/modu
 PHPLDAP = $(shell find /usr/lib/ -name "mysql.so" | grep "php5")
 PHPMYSQL = $(shell find /usr/lib/ -name "ldap.so" | grep "php5")
 
+all: gen-img gen-mo gen-conf
 
-all: gen-img gen-mo gen-conf clean-stamps
+build: gen-img gen-mo gen-doc
 
-build: gen-img gen-mo gen-doc clean-stamps
-
-build-all: gen-img gen-mo gen-doc gen-conf clean-stamps
+build-all: gen-img gen-mo gen-doc gen-conf
 
 check-builddep:
 
@@ -117,8 +116,6 @@ check-builddep:
 	fi
 	@echo
 
-	@touch check-builddep
-
 gen-img: check-builddep clean-img
 
 	@printf "Generating images from source [SVG > PNG,ICO] ["
@@ -130,7 +127,6 @@ gen-img: check-builddep clean-img
 		icotool -c -o themes/$${THEME}/images/favicon.ico themes/$${THEME}/images/favicon.png; \
 	done
 	@printf "]\n"
-	@touch gen-img
 
 gen-mo: check-builddep clean-mo
 
@@ -140,14 +136,13 @@ gen-mo: check-builddep clean-mo
 		printf "."; \
 	done
 	@printf "]\n"
-	@touch gen-mo
 
 gen-doc: gen-wiki gen-html gen-man
 
-predoc: check-builddep clean-predoc
+predoc: clean-predoc
 
-	@bash tools/process.sh
-	@touch predoc
+	@echo "Preprocessing documentation ..."
+	@bash tools/predoc.sh
 
 gen-wiki: check-builddep predoc clean-wiki
 
@@ -156,37 +151,33 @@ gen-wiki: check-builddep predoc clean-wiki
 	@cp documentation/rest/*.rest documentation/githubwiki/
 	@cp documentation/googlewiki.index documentation/rest/index.rest
 	@python tools/googlecode-wiki.py
-	@touch gen-wiki
 
 gen-html: check-builddep predoc clean-html
 
 	@echo "Generating documentation from source [RST > HTML]"
+	@cp documentation/sphinx.index documentation/rest/index.rest
 	@sphinx-build -a -E -Q -b html -d documentation/html/doctrees documentation/rest documentation/html
-	@touch gen-html
 
 gen-man: check-builddep predoc clean-man
 
 	@echo "Generating documentation from source [RST > MAN]"
 	@rst2man --language="en" --title="AGUILAS" documentation/man/aguilas.rest documentation/man/aguilas.1
-	@touch gen-man
 
 gen-conf: check-builddep clean-conf
 
 	@echo "Filling up configuration"
 	@bash tools/gen-conf.sh
-	@echo
 	@echo "Configuration file generated!"
-	@touch gen-conf
 
 clean: clean-all
 
-clean-all: clean-img clean-mo clean-html clean-wiki clean-man clean-conf clean-pyc clean-stamps
+clean-all: clean-img clean-mo clean-html clean-wiki clean-man clean-conf clean-pyc clean-predoc
 
 clean-predoc:
 
-clean-stamps:
-
-	@rm -rf gen-img gen-html gen-wiki gen-man gen-mo gen-conf check-builddep
+	@echo "Cleaning preprocessed documentation files ..."
+	@bash tools/clean-predoc.sh
+	@rm -rf documentation/rest/index.rest
 
 clean-pyc:
 
@@ -203,7 +194,6 @@ clean-img:
 		rm -rf themes/$${THEME}/images/favicon.ico; \
 	done
 	@printf "]\n"
-	@rm -rf gen-img
 
 clean-mo:
 
@@ -213,33 +203,28 @@ clean-mo:
 		printf "."; \
 	done
 	@printf "]\n"
-	@rm -rf gen-mo
 
 clean-html:
 
 	@echo "Cleaning generated html ..."
 	@rm -rf documentation/html/*
 	@rm -rf documentation/html/.buildinfo
-	@rm -rf gen-html
 
 clean-wiki:
 
 	@echo "Cleaning generated wiki pages ..."
 	@rm -rf documentation/googlewiki/*
 	@rm -rf documentation/githubwiki/*
-	@rm -rf gen-wiki
 
 clean-man:
 
 	@echo "Cleaning generated man pages ..."
 	@rm -rf documentation/man/aguilas.1
-	@rm -rf gen-man
 
 clean-conf:
 
 	@echo "Cleaning generated configuration ..."
 	@rm -rf setup/config.php var com
-	@rm -rf gen-conf
 
 install: copy config
 
@@ -277,7 +262,7 @@ uninstall:
 
 release-all: release buildpackage
 
-release: gen-html gen-wiki clean-stamps
+release: gen-html gen-wiki
 
 	@bash tools/release.sh
 
@@ -285,7 +270,7 @@ buildpackage:
 
 	@c-d empaquetar 
 
-snapshot: gen-html gen-wiki clean-stamps
+snapshot: gen-html gen-wiki clean-pyc
 
 	@bash tools/snapshot.sh
 
