@@ -4,7 +4,7 @@ SHELL = sh -e
 
 IMAGES = $(shell ls themes/canaima/images/ | grep "\.svg" | sed 's/\.svg//g')
 THEMES = $(shell ls themes/)
-LOCALES = $(shell ls locale/)
+LOCALES = $(shell ls po/)
 PHPS = $(wildcard *.php)
 LOGS = $(wildcard events/*.log)
 
@@ -132,7 +132,8 @@ gen-mo: check-builddep clean-mo
 
 	@printf "Generating translation messages from source [PO > MO] ["
 	@for LOCALE in $(LOCALES); do \
-		msgfmt locale/$${LOCALE}/LC_MESSAGES/messages.po -o locale/$${LOCALE}/LC_MESSAGES/messages.mo; \
+		msgfmt po/$${LOCALE}/LC_MESSAGES/aguilas.po -o po/$${LOCALE}/LC_MESSAGES/aguilas.mo; \
+		rm -rf po/$${LOCALE}/LC_MESSAGES/aguilas.po; \
 		printf "."; \
 	done
 	@printf "]\n"
@@ -197,7 +198,7 @@ clean-mo:
 
 	@printf "Cleaning generated localization ["
 	@for LOCALE in $(LOCALES); do \
-		rm -rf locale/$${LOCALE}/LC_MESSAGES/messages.mo; \
+		rm -rf po/$${LOCALE}/LC_MESSAGES/aguilas.mo; \
 		printf "."; \
 	done
 	@printf "]\n"
@@ -241,7 +242,7 @@ copy: gen-man gen-html
 	@mkdir -p $(DESTDIR)/usr/share/doc/aguilas/
 
 	@# Installing application
-	@cp -r locale libraries themes $(DESTDIR)/usr/share/aguilas/
+	@cp -r po libraries themes $(DESTDIR)/usr/share/aguilas/
 	@install -D -m 644 $(PHPS) $(DESTDIR)/usr/share/aguilas/
 	@install -D -m 644 setup/config.* $(DESTDIR)/usr/share/aguilas/setup/
 

@@ -1,0 +1,12 @@
+Contributing to Aguilas
+=======================
+
+If you think using Aguilas is fun, wait until you start working on it. We're passionate about helping Django users make the jump to contributing members of the community, so there are many ways you can help aguilas development:
+
++ Report bugs and request features in our `ticket tracker <https://github.com/HuntingBears/aguilas/issues>`_. Please read `Reporting bugs`_, below, for the details on how we like our bug reports served up.
++ Submit patches for new and/or fixed behavior. Please read `Submitting patches`_, below, for details on how to submit a patch. If you're looking for an easy way to start contributing to aguilas have a look at the easy-pickings tickets.
++ Join the `aguilas mailing list <http://groups.google.com/group/aguilas-list>`_ and share your ideas for how to improve aguilas. We're always open to suggestions, although we're likely to be skeptical of large-scale suggestions without some code to back it up.
++ Write documentation.
++ Translate documentation.
+
+That's all you need to know if you'd like to join the Aguilas development community. The rest of this document describes the details of how our community works and how it handles bugs, mailing lists, and all the other minutiae of Aguilas development.

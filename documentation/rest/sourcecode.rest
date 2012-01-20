@@ -1,0 +1,33 @@
+Understanding Aguilas's Source Code
+===================================
+
+When deploying Aguilas into a real production environment, you will almost always want to use an `official packaged release <downloading.rest>`_ of Aguilas. However, if you'd like to try out in-development code from an upcoming release or contribute to the development of Aguilas, you'll need to obtain a copy from Aguilas's source code repository. This document covers the way the code repository is laid out and how to work with and find things in it.
+
+Repositories
+------------
+
+The Aguilas development model uses `git <git.rest>`_ to track changes to the code over time and manage collaboration. You'll need a copy of the git client program on your computer, and you'll want to familiarize yourself with the basics of `how git works <git.rest>`_.
+
+The Aguilas git repository is located online at various places, all syncronized with the last code from the authors. We host Aguilas on `Google Code <http://code.google.com/p/aguilas/>`_, `Github <https://github.com/HuntingBears/aguilas/>`_, and `Gitorious <https://gitorious.org/huntingbears/aguilas>`_. In terms of source code, all of them have the same information, so, you can choose the one you like the most. We use GitHub for tracking bugs and other project management stuff. If you want to contribute to Aguilas, please read our "`Contributing to Aguilas <contributing.rest>`_" page.
+
+Branches
+--------
+
+Inside the repository you will find that Aguilas development is divided into four branches: development, release, master and debian.
+
+``development branch``
+	This is where the development is actually made, and because of that, the code provided here might be experimental, unstable or broken. If you want to contribute to Aguilas, this is where you should start.
+
+``release branch``
+	This is where stable releases are obtained from. After a development cycle is finished
+``master branch``
+``master branch``
+	The master branch is 
+djangoproject.com/svn. A friendly Web-based interface for browsing the code is also available, though when using Subversion you’ll always want to use the repository address instead. At the top level of the repository are two directories: django contains the full source code for all Django releases, while djangoproject.com contains the source code and templates for the djangoproject.com Web site. For trying out in-development Django code, or contributing to Django, you’ll always want to check out code from some location in the django directory.
+
+Inside the django directory, Django’s source code is organized into three areas:
+
+    branches contains branched copies of Django’s code, which are (or were) maintained for various purposes. Some branches exist to provide a place to develop major or experimental new features without affecting the rest of Django’s code, while others serve to provide bug fixes or support for older Django releases.
+    tags contains snapshots of Django’s code at various important points in its history; mostly these are the exact revisions from which packaged Django releases were produced.
+
+

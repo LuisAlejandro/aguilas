@@ -13,7 +13,7 @@ URL="http://code.google.com/p/aguilas"
 DESCRIPTION="A web-based LDAP user management system"
 DESCRIPTIONLINES="---------------------------------------"
 COMMONINTRO=$( cat ${DOCDIR}/common.index.in | sed ':a;N;$!ba;s/\n/_______/g' )
-RSTLIST=$( ls ${RESTDIR}/*.rest | sed "s|${RESTDIR}/||g" )
+RSTLIST=$( ls ${RESTDIR}/*.rest | sed "s|${RESTDIR}/|   |g" )
 LINKLIST=$( ls ${RESTDIR}/*.rest | sed "s|${RESTDIR}/|[[|g;s|.rest|]]|g" )
 
 for INFILE in ${INFILES}; do

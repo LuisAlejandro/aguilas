@@ -19,7 +19,7 @@ $app_mail = "@@APP_MAIL@@";
 /// The e-mail address you wish to use for sending error reports
 $op_mail = "@@OP_MAIL@@";
 //  Application language
-/// The language that you wish to see in your application. Must be available in the locales/ folder
+/// The language that you wish to see in your application. Must be available in the po/ folder
 $app_locale = "@@APP_MAIL@@";
 //  Application theme
 /// The theme applied to the application. Must be available in the themes/ folder
