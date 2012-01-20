@@ -150,13 +150,15 @@ gen-wiki: check-builddep predoc clean-wiki
 	@cp documentation/githubwiki.index documentation/rest/index.rest
 	@cp documentation/rest/*.rest documentation/githubwiki/
 	@cp documentation/googlewiki.index documentation/rest/index.rest
-	@python tools/googlecode-wiki.py
+	@python -B tools/googlecode-wiki.py
+	@rm -rf documentation/rest/index.rest
 
 gen-html: check-builddep predoc clean-html
 
 	@echo "Generating documentation from source [RST > HTML]"
 	@cp documentation/sphinx.index documentation/rest/index.rest
 	@sphinx-build -a -E -Q -b html -d documentation/html/doctrees documentation/rest documentation/html
+	@rm -rf documentation/rest/index.rest
 
 gen-man: check-builddep predoc clean-man
 
@@ -169,19 +171,15 @@ gen-conf: check-builddep clean-conf
 	@bash tools/gen-conf.sh
 	@echo "Configuration file generated!"
 
-clean: clean-all
+clean: clean-img clean-mo clean-man clean-conf clean-predoc
 
-clean-all: clean-img clean-mo clean-html clean-wiki clean-man clean-conf clean-pyc clean-predoc
+clean-all: clean-img clean-mo clean-html clean-wiki clean-man clean-conf clean-predoc
 
 clean-predoc:
 
 	@echo "Cleaning preprocessed documentation files ..."
 	@bash tools/clean-predoc.sh
 	@rm -rf documentation/rest/index.rest
-
-clean-pyc:
-
-	@rm -rf tools/*.pyc tools/wikir/*.pyc documentation/rest/*.pyc
 
 clean-img:
 
@@ -224,7 +222,7 @@ clean-man:
 clean-conf:
 
 	@echo "Cleaning generated configuration ..."
-	@rm -rf setup/config.php var com
+	@rm -rf setup/config.php
 
 install: copy config
 
@@ -235,15 +233,29 @@ config:
 	@php -f setup/install.php
 	@echo "AGUILAS configured and running!"
 
-copy:
+copy: gen-man gen-html 
 
 	@mkdir -p $(DESTDIR)/usr/share/aguilas/setup/
 	@mkdir -p $(DESTDIR)/var/log/aguilas/
+	@mkdir -p $(DESTDIR)/usr/share/man/man1/
+	@mkdir -p $(DESTDIR)/usr/share/doc/aguilas/
+
+	@# Installing application
 	@cp -r locale libraries themes $(DESTDIR)/usr/share/aguilas/
 	@install -D -m 644 $(PHPS) $(DESTDIR)/usr/share/aguilas/
-	@install -D -m 644 setup/config.php $(DESTDIR)/usr/share/aguilas/setup/
+	@install -D -m 644 setup/config.* $(DESTDIR)/usr/share/aguilas/setup/
+
+	@# Installing logfiles
 	@install -D -m 644 $(LOGS) $(DESTDIR)/var/log/aguilas/
 	@chown -R www-data:www-data $(DESTDIR)/var/log/aguilas/
+
+	@# Installing manpage
+	@install -D -m 644 documentation/man/aguilas.1 $(DESTDIR)/usr/share/man/man1/
+
+	@# Installing documentation
+	@cp -r documentation/html/* $(DESTDIR)/usr/share/doc/aguilas/
+
+	@# Removing unnecesary 
 	@for THEME in $(THEMES); do \
 		for IMAGE in $(IMAGES); do \
 			rm -rf $(DESTDIR)/usr/share/aguilas/themes/$${THEME}/images/$${IMAGE}.svg; \
@@ -262,15 +274,15 @@ uninstall:
 
 release-all: release buildpackage
 
-release: gen-html gen-wiki
+release:
 
 	@bash tools/release.sh
 
 buildpackage:
 
-	@c-d empaquetar 
+	@bash tools/buildpackage.sh
 
-snapshot: gen-html gen-wiki clean-pyc
+snapshot: gen-html gen-wiki clean
 
 	@bash tools/snapshot.sh
 

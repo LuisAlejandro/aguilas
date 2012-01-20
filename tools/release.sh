@@ -89,8 +89,8 @@ git push --tags https://code.google.com/p/aguilas/ release
 git archive -o aguilas-${NEWVERSION}.tar.gz ${NEWVERSION}
 md5sum aguilas-${NEWVERSION}.tar.gz > aguilas-${NEWVERSION}.tar.gz.md5
 
-python googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION}" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Featured,Stable" aguilas-${NEWVERSION}.tar.gz
-python googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION} MD5SUM" -p "aguilas" -l "Featured,Stable" aguilas-${NEWVERSION}.tar.gz.md5
+python -B googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION}" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Featured,Stable" aguilas-${NEWVERSION}.tar.gz
+python -B googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION} MD5SUM" -p "aguilas" -l "Featured,Stable" aguilas-${NEWVERSION}.tar.gz.md5
 
 mv aguilas-${NEWVERSION}.tar.gz aguilas-${NEWVERSION}.tar.gz.md5 ..
 
