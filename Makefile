@@ -6,6 +6,7 @@ IMAGES = $(shell ls themes/canaima/images/ | grep "\.svg" | sed 's/\.svg//g')
 THEMES = $(shell ls themes/)
 LOCALES = $(shell ls po/)
 PHPS = $(wildcard *.php)
+ALLPHPS = $(shell find . -type f -iname "*.php")
 LOGS = $(wildcard events/*.log)
 
 CONVERT = $(shell which convert)
@@ -128,12 +129,31 @@ gen-img: check-builddep clean-img
 	done
 	@printf "]\n"
 
-gen-mo: check-builddep clean-mo
+gen-mo: check-builddep clean-mo gen-po
 
 	@printf "Generating translation messages from source [PO > MO] ["
 	@for LOCALE in $(LOCALES); do \
 		msgfmt po/$${LOCALE}/LC_MESSAGES/aguilas.po -o po/$${LOCALE}/LC_MESSAGES/aguilas.mo; \
 		rm -rf po/$${LOCALE}/LC_MESSAGES/aguilas.po; \
+		printf "."; \
+	done
+	@printf "]\n"
+
+gen-po: check-builddep gen-pot
+
+	@printf "Updating PO files ["
+	@for LOCALE in $(LOCALES); do \
+		msgmerge --no-wrap -s -U -o po/$${LOCALE}/LC_MESSAGES/aguilas.po \
+			po/$${LOCALE}/LC_MESSAGES/aguilas.po po/aguilas.pot; \
+		printf "."; \
+	done
+	@printf "]\n"
+
+gen-pot: check-builddep
+
+	@printf "Updating POT template ["
+	@for FILE in $(ALLPHPS); do \
+		xgettext --no-wrap --from-code=utf-8 -L PHP -k_ -j -s -o pot/aguilas.pot -f $${FILE}; \
 		printf "."; \
 	done
 	@printf "]\n"

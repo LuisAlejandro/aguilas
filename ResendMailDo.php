@@ -11,7 +11,7 @@ require_once "./libraries/MYSQLConnection.inc.php";
 
 ?>
 
-<h2><?= _("REQUESTSTATUS") ?></h2>
+<h2><?= _("Request Status") ?></h2>
 
 <?php
 

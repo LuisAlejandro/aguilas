@@ -2,14 +2,15 @@
 # Copyright (C) 2012 Aguilas
 # This file is distributed under the same license as the aguilas project
 #
+# Translators:
 # Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: aguilas\n"
-"Report-Msgid-Bugs-To: http://github.com/HuntingBears/aguilas/issues\n"
-"POT-Creation-Date: 2012-01-10 12:22-0400\n"
-"PO-Revision-Date: 2012-01-10 12:23-0400\n"
+"Report-Msgid-Bugs-To: https://github.com/HuntingBears/aguilas/issues\n"
+"POT-Creation-Date: 2012-01-20 19:38-0400\n"
+"PO-Revision-Date: 2012-01-20 19:38-0400\n"
 "Last-Translator: Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>\n"
 "Language-Team: Aguilas Translation Team <aguilas-list@googlegroups.com>\n"
 "Language: English\n"
@@ -63,6 +64,7 @@ msgstr ""
 #: ../../../themes/debian/index.php:45
 #: ../../../themes/debian/footer.php:18
 #: ../../../themes/debian/header.php:51
+#: ../../../DeleteUserForm.php:8
 msgid "Delete User"
 msgstr ""
 
@@ -87,6 +89,7 @@ msgstr ""
 #: ../../../themes/canaima/header.php:36
 #: ../../../themes/debian/footer.php:9
 #: ../../../themes/debian/header.php:36
+#: ../../../ChangePasswordForm.php:8
 msgid "Change Password"
 msgstr ""
 
@@ -616,10 +619,6 @@ msgstr ""
 msgid "The following users are associated to the email account "
 msgstr ""
 
-#: ../../../ChangePasswordForm.php:8
-msgid "Change Password"
-msgstr ""
-
 #: ../../../ChangePasswordForm.php:10
 msgid "Please complete the following form to change your password."
 msgstr ""
@@ -773,10 +772,6 @@ msgstr ""
 
 #: ../../../ResetPasswordForm.php:11
 msgid "Please complete the following form to automatically generate a new password for your user."
-msgstr ""
-
-#: ../../../DeleteUserForm.php:8
-msgid "Delete User"
 msgstr ""
 
 #: ../../../DeleteUserForm.php:10

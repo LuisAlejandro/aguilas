@@ -14,9 +14,9 @@ $ldapc = ldap_connect($ldap_server, $ldap_port);
 
 if(!$ldapc){
     echo    '<div class="error">'
-            . _("LDAP:CONNECT:ERROR")
+            . _("An error ucurred while trying to connect to the LDAP")
             . '.<br /><br /><a href="javascript:history.back(1);">'
-            . _("BACK")
+            . _("Back")
             . '</a></div>';
     include "../themes/$app_theme/footer.php";
     die();
@@ -26,10 +26,10 @@ $ldapo = ldap_set_option($ldapc, LDAP_OPT_PROTOCOL_VERSION, 3);
 
 if(!$ldapo){
     echo    '<div class="error">'
-            . _("LDAP:CONFIG:ERROR")
+            . _("An error ocurred while trying to configure LDAP: ")
             . ldap_error($ldapc)
             . '.<br /><br /><a href="javascript:history.back(1);">'
-            . _("BACK")
+            . _("Back")
             . '</a></div>';
     include "../themes/$app_theme/footer.php";
     die();
@@ -39,10 +39,10 @@ $ldapo2 = ldap_set_option($ldapc, LDAP_OPT_SIZELIMIT, 5000);
 
 if(!$ldapo2){
     echo    '<div class="error">'
-            . _("LDAP:CONFIG:ERROR")
+            . _("An error ocurred while trying to configure LDAP: ")
             . ldap_error($ldapc)
             . '.<br /><br /><a href="javascript:history.back(1);">'
-            . _("BACK")
+            . _("Back")
             . '</a></div>';
     include "../themes/$app_theme/footer.php";
     die();
@@ -53,10 +53,10 @@ if ($ldap_tls) {
 
     if(!$ldapo3){
         echo    '<div class="error">'
-                . _("LDAP:TLS:ERROR")
+                . _("An error ocurred while trying to start a secure connection with LDAP: ")
                 . ldap_error($ldapc)
                 . '.<br /><br /><a href="javascript:history.back(1);">'
-                . _("BACK")
+                . _("Back")
                 . '</a></div>';
         include "../themes/$app_theme/footer.php";
         die();
@@ -68,10 +68,10 @@ $ldapb = ldap_bind($ldapc,$ldap_dn,$ldap_pass);
 
 if(!$ldapb){
     echo    '<div class="error">'
-            . _("LDAP:BIND:ERROR")
+            . _("An error ocurred while trying to bind with LDAP: ")
             . ldap_error($ldapc)
             . '.<br /><br /><a href="javascript:history.back(1);">'
-            . _("BACK")
+            . _("Back")
             . '</a></div>';
     include "../themes/$app_theme/footer.php";
     die();

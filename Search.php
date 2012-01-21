@@ -11,7 +11,7 @@ require_once "./libraries/Functions.inc.php";
 
 ?>
 
-<h2><?= _("SEARCHRESULTS") ?></h2>
+<h2><?= _("Search Results") ?></h2>
 
 <?php
 
@@ -49,7 +49,7 @@ if(!isset($searchInput)){
     // How much did we get?
     $result_count = $search_entries['count'];
 
-    echo $result_count . _("XXUSERSFOUND");
+    echo $result_count . _(" Users found matching the given criteria.");
 
     // Parsing the user table with the result entries
     ParseUserTable($search_entries, $result_count);

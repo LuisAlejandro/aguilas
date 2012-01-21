@@ -5,37 +5,37 @@ require_once "./libraries/Locale.inc.php";
 require_once "./themes/$app_theme/header.php";
 ?>
 
-<h2><?= _("REMINDUSERNAME:TITLE") ?></h2>
+<h2><?= _("Remind Username") ?></h2>
 
-<p><?= _("REMINDUSERNAME:GREETINGS") ?></p>
+<p><?= _("Please enter the e-mail you used to register your user account.") ?></p>
 
 <form method="post" action="ForgotUsernameDo.php">
     <table>
         <tr>
             <td class="px160">
-                <?= _("EMAIL") ?>
+                <?= _("E-Mail") ?>
             </td>
             <td class="px120">
-                <?= _("EMAIL:EXAMPLE") ?>
+                <?= _("e.g., user@email.com") ?>
             </td>
             <td class="px640">
                 <span id="mail_js">
                     <input type="text" name="mail" id="mail" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("EMPTY:WARNING") ?>
+                        <?= _("You cannot leave empty fields.") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("LONGERTHAN60") ?>
+                        <?= _("You exceeded the limit of 60 characters.") ?>
                     </span>
                     <span class="textfieldInvalidFormatMsg">
-                        <?= _("INVALIDFORMAT") ?>
+                        <?= _("Invalid Format.") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("CAPTCHA") ?>
+                <?= _("Captcha") ?>
             </td>
             <td class="px120">
                 <img alt="captcha" src="libraries/Captcha.inc.php" border="0">
@@ -44,10 +44,10 @@ require_once "./themes/$app_theme/header.php";
                 <span id="image_captcha_js">
                     <input name="image_captcha" id="image_captcha" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("EMPTY:WARNING") ?>
+                        <?= _("You cannot leave empty fields.") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("LONGERTHAN8") ?>
+                        <?= _("You exceeded the limit of 8 characters.") ?>
                     </span>
                 </span>
             </td>

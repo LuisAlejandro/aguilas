@@ -28,37 +28,37 @@ if(extension_loaded('zlib') && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'g
                     <ul id="p-personal">
                         <li>
                             <a href="NewUserForm.php">
-                                <?= _("NEWUSER") ?>
+                                <?= _("New User") ?>
                             </a>
                         </li>
                         <li>
                             <a href="ChangePasswordForm.php">
-                                <?= _("CHANGEPASSWORD") ?>
+                                <?= _("Change Password") ?>
                             </a>
                         </li>
                         <li>
                             <a href="ResetPasswordForm.php">
-                                <?= _("RESETPASSWORD") ?>
+                                <?= _("Reset Password") ?>
                             </a>
                         </li>
                         <li>
                             <a href="ForgotUsernameForm.php">
-                                <?= _("REMINDUSER") ?>
+                                <?= _("Remind User") ?>
                             </a>
                         </li>
                         <li>
                             <a href="DeleteUserForm.php">
-                                <?= _("DELETEUSER") ?>
+                                <?= _("Delete User") ?>
                             </a>
                         </li>
                         <li>
                             <a href="EditProfileForm.php">
-                                <?= _("EDITPROFILE") ?>
+                                <?= _("Edit Profile") ?>
                             </a>
                         </li>
                         <li>
                             <a href="Browse.php">
-                                <?= _("BROWSEUSERS") ?>
+                                <?= _("Browse Users") ?>
                             </a>
                         </li>
                     </ul>
@@ -71,9 +71,9 @@ if(extension_loaded('zlib') && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'g
                     <form action="Search.php" id="searchform">
                         <div class="LSBox">
                             <div id="clock">
-                                <?= _("SEARCH:FIELD:DESCRIPTION") ?>
+                                <?= _("Type a search term and press enter") ?>
                             </div>
-                            <input id="searchInput" value="<?= _("SEARCHUSER") ?>" name="searchInput" type="text" onfocus="this.value=(this.value=='<?= _("SEARCHUSER") ?>') ? '' : this.value;" onblur="this.value=(this.value=='') ? '<?= _("SEARCHUSER") ?>' : this.value;"  />
+                            <input id="searchInput" value="<?= _("Search User") ?>" name="searchInput" type="text" onfocus="this.value=(this.value=='<?= _("Search User") ?>') ? '' : this.value;" onblur="this.value=(this.value=='') ? '<?= _("Search User") ?>' : this.value;"  />
                         </div>
                     </form>
                 </div>
@@ -81,7 +81,7 @@ if(extension_loaded('zlib') && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'g
             
             <div id="menu">
                 <ul id="portal-globalnav">
-                    <li><a href="http://<?= $app_url ?>"><?= _("START") ?></a></li>
+                    <li><a href="http://<?= $app_url ?>"><?= _("Start") ?></a></li>
                     <?php
                         foreach ( $app_links as $key => $value ) {
                             echo '<li><a href="' . $value . '">' . $key . '</a></li>';

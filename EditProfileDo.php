@@ -11,7 +11,7 @@ require_once "./libraries/LDAPConnection.inc.php";
 
 ?>
 
-<h2><?= _("USERPROFILE") ?></h2>
+<h2><?= _("User Profile") ?></h2>
 
 <?php
 
@@ -98,14 +98,14 @@ if (!isset($uid) || !isset($userPassword) || !isset($image_captcha)) {
         $objects = array("uid", "uidNumber", "givenName", "sn", "cn", "mail", "userPassword", "gidNumber");
         
         // ... and it's descriptive tags
-        $tags = array(  _("USERNAME"),
+        $tags = array(  _("Username"),
                         _("ID"),
-                        _("FIRSTNAME:FORM"),
-                        _("LASTNAME:FORM"),
-                        _("COMPLETENAME:FORM"),
-                        _("EMAIL"),
-                        _("PASSWORD"),
-                        _("GROUP"));
+                        _("First Name"),
+                        _("Last Name"),
+                        _("Complete Name"),
+                        _("E-Mail"),
+                        _("Password"),
+                        _("Group"));
         
         // We get their respective values in an array too
         $contents = array(  $search_entries[0]['uid'][0],

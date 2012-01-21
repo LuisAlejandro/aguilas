@@ -9,25 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aguilas\n"
 "Report-Msgid-Bugs-To: https://github.com/HuntingBears/aguilas/issues\n"
-"POT-Creation-Date: 2012-01-10 12:22-0400\n"
-"PO-Revision-Date: 2012-01-10 12:23-0400\n"
+"POT-Creation-Date: 2012-01-20 19:38-0400\n"
+"PO-Revision-Date: 2012-01-20 19:38-0400\n"
 "Last-Translator: Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>\n"
 "Language-Team: Aguilas Translation Team <aguilas-list@googlegroups.com>\n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-Language: English\n"
-"X-Poedit-Country: UNITED STATES\n"
-"X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-SearchPath-0: ../../../themes/canaima\n"
-"X-Poedit-SearchPath-1: ../../../themes/debian\n"
-"X-Poedit-SearchPath-2: ../../../themes\n"
-"X-Poedit-SearchPath-3: ../../../libraries\n"
-"X-Poedit-SearchPath-4: ../../../setup\n"
-"X-Poedit-SearchPath-5: ../../..\n"
 
 #: ../../../themes/canaima/index.php:2
 #: ../../../themes/debian/index.php:2
@@ -75,6 +64,7 @@ msgstr ""
 #: ../../../themes/debian/index.php:45
 #: ../../../themes/debian/footer.php:18
 #: ../../../themes/debian/header.php:51
+#: ../../../DeleteUserForm.php:8
 msgid "Delete User"
 msgstr ""
 
@@ -99,6 +89,7 @@ msgstr ""
 #: ../../../themes/canaima/header.php:36
 #: ../../../themes/debian/footer.php:9
 #: ../../../themes/debian/header.php:36
+#: ../../../ChangePasswordForm.php:8
 msgid "Change Password"
 msgstr ""
 
@@ -628,10 +619,6 @@ msgstr ""
 msgid "The following users are associated to the email account "
 msgstr ""
 
-#: ../../../ChangePasswordForm.php:8
-msgid "Change Password"
-msgstr ""
-
 #: ../../../ChangePasswordForm.php:10
 msgid "Please complete the following form to change your password."
 msgstr ""
@@ -785,10 +772,6 @@ msgstr ""
 
 #: ../../../ResetPasswordForm.php:11
 msgid "Please complete the following form to automatically generate a new password for your user."
-msgstr ""
-
-#: ../../../DeleteUserForm.php:8
-msgid "Delete User"
 msgstr ""
 
 #: ../../../DeleteUserForm.php:10

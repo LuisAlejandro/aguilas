@@ -12,9 +12,9 @@ $mysqlc = mysql_connect($mysql_host, $mysql_user, $mysql_pass);
 
 if(!$mysqlc){
     echo    '<div class="error">'
-            . _("MYSQL:CONNECT:ERROR")
+            . _("An error has ocurred trying to connect to the MYSQL database.")
             . '.<br /><br /><a href="javascript:history.back(1);">'
-            . _("BACK")
+            . _("Back")
             . '</a></div>';
     include "../themes/$app_theme/footer.php";
     die();
@@ -31,11 +31,11 @@ if (!$mysqls) {
     
     if(!$mysqls){
         echo    '<div class="error">'
-                . _("MYSQL:SELECTDB:ERROR")
+                . _("An error has ocurred trying to select database ")
                 . '"' . $mysql_dbname . '": '
                 . mysql_error($mysqlc)
                 . '.<br /><br /><a href="javascript:history.back(1);">'
-                . _("BACK")
+                . _("Back")
                 . '</a></div>';
         include "../themes/$app_theme/footer.php";
         die();

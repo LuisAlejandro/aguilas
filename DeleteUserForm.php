@@ -5,81 +5,81 @@ require_once "./libraries/Locale.inc.php";
 require_once "./themes/$app_theme/header.php";
 ?>
 
-<h2><?= _("DELETEUSER:TITLE") ?></h2>
+<h2><?= _("Delete User") ?></h2>
 
-<p><?= _("DELETEUSER:GREETINGS") . $app_name . "." ?></p>
+<p><?= _("Please complete the following form to erase DEFINITELY your user from ") . $app_name . "." ?></p>
 
 <form method="post" action="DeleteUserDo.php">
     <table>
         <tr>
             <td class="px160">
-                <?= _("USERNAME") ?>
+                <?= _("Username") ?>
             </td>
             <td class="px120">
-                <?= _("USER:EXAMPLE") ?>
+                <?= _("e.g., Us3r") ?>
             </td>
             <td class="px640">
                 <span id="uid_js">
                     <input type="text" name="uid" id="uid" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("EMPTY:WARNING") ?>
+                        <?= _("You cannot leave empty fields.") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("LONGERTHAN30") ?>
+                        <?= _("You exceeded the limit of 30 characters.") ?>
                     </span>
                     <span class="textfieldMinCharsMsg">
-                        <?= _("ATLEAST3") ?>
+                        <?= _("Username must have at least 3 characters.") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("EMAIL") ?>
+                <?= _("E-Mail") ?>
             </td>
             <td class="px120">
-                <?= _("EMAIL:EXAMPLE") ?>
+                <?= _("e.g., user@email.com") ?>
             </td>
             <td class="px640">
                 <span id="mail_js">
                     <input type="text" name="mail" id="mail" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("EMPTY:WARNING") ?>
+                        <?= _("You cannot leave empty fields.") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("LONGERTHAN60") ?>
+                        <?= _("You exceeded the limit of 60 characters.") ?>
                     </span>
                     <span class="textfieldInvalidFormatMsg">
-                        <?= _("INVALIDFORMAT") ?>
+                        <?= _("Invalid Format.") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("PASSWORD") ?>
+                <?= _("Password") ?>
             </td>
             <td class="px120">
-                <?= _("ATLEAST8CHARS") ?>
+                <?= _("at least 8 characters") ?>
             </td>
             <td class="px640">
                 <span id="userPassword_js">
                     <input type="password" name="userPassword" id="userPassword" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("EMPTY:WARNING") ?>
+                        <?= _("You cannot leave empty fields.") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("LONGERTHAN30") ?>
+                        <?= _("You exceeded the limit of 30 characters.") ?>
                     </span>
                     <span class="textfieldMinCharsMsg">
-                        <?= _("ATLEAST8") ?>
+                        <?= _("Password must have at least 8 characters.") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("CAPTCHA") ?>
+                <?= _("Captcha") ?>
             </td>
             <td class="px120">
                 <img alt="captcha" src="libraries/Captcha.inc.php" border="0">
@@ -88,10 +88,10 @@ require_once "./themes/$app_theme/header.php";
                 <span id="image_captcha_js">
                     <input name="image_captcha" id="image_captcha" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("EMPTY:WARNING") ?>
+                        <?= _("You cannot leave empty fields.") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("LONGERTHAN8") ?>
+                        <?= _("You exceeded the limit of 8 characters.") ?>
                     </span>
                 </span>
             </td>

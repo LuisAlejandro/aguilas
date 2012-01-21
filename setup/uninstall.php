@@ -13,13 +13,13 @@ if (array_key_exists('REMOTE_ADDR', $_SERVER)&&!isset($_SERVER['argc'])) {
 require_once "./libraries/MYSQLConnection.inc.php";
 require_once "./libraries/LDAPConnection.inc.php";
 
-echo _("DROPPING:DATABASE") . " \"" . $mysql_dbname . "\" ...\n";
+echo _("Deleting database ") . " \"" . $mysql_dbname . "\" ...\n";
 $create_q = sprintf('DROP DATABASE IF EXISTS %s', $mysql_dbname);
 $create_r = mysql_query($create_q);
 
-echo _("DELETING:LDAP:MAXUID")."\n";
+echo _("Deleting LDAP maxUID entry ...")."\n";
 $del = ldap_delete($ldapc, $maxuiddn);
 
-echo _("DONE")."\n";
+echo _("DONE!")."\n";
 
 ?>

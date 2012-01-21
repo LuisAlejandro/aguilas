@@ -3,30 +3,30 @@
 <div id="portal-footer">
     <div id="footer">
         <a href="NewUserForm.php">
-            <?= _("NEWUSER") ?>
+            <?= _("New User") ?>
         </a>
         <a href="ChangePasswordForm.php">
-            <?= _("CHANGEPASSWORD") ?>
+            <?= _("Change Password") ?>
         </a>
         <a href="ResetPasswordForm.php">
-            <?= _("RESETPASSWORD") ?>
+            <?= _("Reset Password") ?>
         </a>
         <a href="ForgotUsernameForm.php">
-            <?= _("REMINDUSER") ?>
+            <?= _("Remind User") ?>
         </a>
         <a href="DeleteUserForm.php">
-            <?= _("DELETEUSER") ?>
+            <?= _("Delete User") ?>
         </a>
         <a href="EditProfileForm.php">
-            <?= _("EDITPROFILE") ?>
+            <?= _("Edit Profile") ?>
         </a>
         <a href="Browse.php">
-            <?= _("BROWSEUSERS") ?>
+            <?= _("Browse Users") ?>
         </a>
     </div>
     
     <div>
-        <?= $app_name . " " . _("POWEREDBY") ?>
+        <?= $app_name . " " . _(" is powered by ") ?>
         <strong><a href="http://code.google.com/p/aguilas/">AGUILAS</a></strong>.
     </div>
 </div>

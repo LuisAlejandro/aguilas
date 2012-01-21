@@ -13,11 +13,11 @@ if (array_key_exists('REMOTE_ADDR', $_SERVER)&&!isset($_SERVER['argc'])) {
 require_once "./libraries/MYSQLConnection.inc.php";
 require_once "./libraries/LDAPConnection.inc.php";
 
-echo _("CREATING:DATABASE") . " \"" . $mysql_dbname . "\" ...\n";
+echo _("Creating database ") . " \"" . $mysql_dbname . "\" ...\n";
 $create_q = sprintf('CREATE DATABASE IF NOT EXISTS %s', $mysql_dbname);
 $create_r = mysql_query($create_q);
 
-echo _("CREATING:TABLE:RESETPASSWORD")."\n";
+echo _("Creating table for storing the reset password requests ...")."\n";
 $create_q = 'CREATE TABLE ResetPassword ( '
         . 'main_id INT NOT NULL AUTO_INCREMENT, '
         . 'uid VARCHAR(256) NOT NULL, '
@@ -27,7 +27,7 @@ $create_q = 'CREATE TABLE ResetPassword ( '
         . 'PRIMARY KEY(main_id))';
 $create_r = mysql_query($create_q);
 
-echo _("CREATING:TABLE:NEWUSER")."\n";
+echo _("Creating table for storing the new user requests ...")."\n";
 $create_q = 'CREATE TABLE NewUser ( '
         . 'main_id INT NOT NULL AUTO_INCREMENT, '
         . 'uid VARCHAR(256) NOT NULL, '
@@ -40,7 +40,7 @@ $create_q = 'CREATE TABLE NewUser ( '
         . 'PRIMARY KEY(main_id))';
 $create_r = mysql_query($create_q);
 
-echo _("CREATING:LDAP:MAXUID")."\n";
+echo _("Creating LDAP maxUID entry ...")."\n";
 $newdn = $maxuiddn;
 $in['sn'] = "maxUID";
 $in['cn'] = "maxUID";
@@ -51,6 +51,6 @@ $in['objectClass'][1] = "person";
 $in['objectClass'][2] = "top";
 $add = ldap_add($ldapc, $newdn, $in);
 
-echo _("DONE")."\n";
+echo _("DONE!")."\n";
 
 ?>
