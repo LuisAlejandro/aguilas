@@ -2,9 +2,23 @@
 
 SHELL = sh -e
 
+AUTHOR = Luis Alejandro Martínez Faneyth
+EMAIL = luis@huntingbears.com.ve
+MAILIST = aguilas-list@googlegroups.com
+PACKAGE = Aguilas
+CHARSET = UTF-8
+LANGUAGETEAM = Aguilas Translation Team <aguilas-list@googlegroups.com>
+VERSION = $(shell cat VERSION | grep "VERSION" | sed 's/VERSION = //g;s/+.*//g')
+PODATE = $(shell date +%F\ %R%z)
+YEAR = $(shell date +%Y)
+POTLIST = locale/pot/aguilas/POTFILES.in
+POTFILE = locale/pot/aguilas/messages.pot
+POTITLE = Aguilas Translation Template
+POTEAM = Aguilas Translation Team
+
 IMAGES = $(shell ls themes/canaima/images/ | grep "\.svg" | sed 's/\.svg//g')
 THEMES = $(shell ls themes/)
-LOCALES = $(shell ls po/)
+LOCALES = $(shell find locale -mindepth 2 -maxdepth 2 -type d | sed 's|locale/pot/aguilas||g')
 PHPS = $(wildcard *.php)
 ALLPHPS = $(shell find . -type f -iname "*.php")
 LOGS = $(wildcard events/*.log)
@@ -16,6 +30,8 @@ BINBASH = $(shell which bash)
 RST2MAN = $(shell which rst2man)
 ICOTOOL = $(shell which icotool)
 SPHINX = $(shell which sphinx-build)
+XGETTEXT = $(shell which xgettext)
+MSGMERGE = $(shell which msgmerge)
 MSGFMT = $(shell which msgfmt)
 LIBSVG = $(shell find /usr/lib/ -maxdepth 1 -type d -iname "imagemagick-*")/modules-Q16/coders/svg.so
 PHPLDAP = $(shell find /usr/lib/ -name "mysql.so" | grep "php5")
@@ -37,7 +53,7 @@ check-builddep:
 	fi
 	@echo
 
-	@printf "Checking if we have sphinx-build... "
+	@printf "Checking if we have sphinx-build ... "
 	@if [ -z $(SPHINX) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"python-sphinx\" package."; \
@@ -45,7 +61,7 @@ check-builddep:
 	fi
 	@echo
 
-	@printf "Checking if we have convert... "
+	@printf "Checking if we have convert ... "
 	@if [ -z $(CONVERT) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"imagemagick\" package."; \
@@ -53,7 +69,7 @@ check-builddep:
 	fi
 	@echo
 
-	@printf "Checking if we have rst2man... "
+	@printf "Checking if we have rst2man ... "
 	@if [ -z $(RST2MAN) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"python-docutils\" package."; \
@@ -61,7 +77,23 @@ check-builddep:
 	fi
 	@echo
 
-	@printf "Checking if we have msgfmt... "
+	@printf "Checking if we have xgettext ... "
+	@if [ -z $(XGETTEXT) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"gettext\" package."; \
+		exit 1; \
+	fi
+	@echo
+
+	@printf "Checking if we have msgmerge ... "
+	@if [ -z $(MSGMERGE) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"gettext\" package."; \
+		exit 1; \
+	fi
+	@echo
+
+	@printf "Checking if we have msgfmt ... "
 	@if [ -z $(MSGFMT) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"gettext\" package."; \
@@ -69,7 +101,7 @@ check-builddep:
 	fi
 	@echo
 
-	@printf "Checking if we have icotool... "
+	@printf "Checking if we have icotool ... "
 	@if [ -z $(ICOTOOL) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"icoutils\" package."; \
@@ -77,7 +109,7 @@ check-builddep:
 	fi
 	@echo
 
-	@printf "Checking if we have imagemagick svg support... "
+	@printf "Checking if we have imagemagick svg support ... "
 	@if [ -z $(LIBSVG) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"libmagickcore-extra\" package."; \
@@ -85,7 +117,7 @@ check-builddep:
 	fi
 	@echo
 
-	@printf "Checking if we have python... "
+	@printf "Checking if we have python ... "
 	@if [ -z $(PYTHON) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"python\" package."; \
@@ -93,7 +125,7 @@ check-builddep:
 	fi
 	@echo
 
-	@printf "Checking if we have PHP... "
+	@printf "Checking if we have PHP ... "
 	@if [ -z $(PHP) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"php5-cli\" package."; \
@@ -101,7 +133,7 @@ check-builddep:
 	fi
 	@echo
 
-	@printf "Checking if we have PHP LDAP support... "
+	@printf "Checking if we have PHP LDAP support ... "
 	@if [ -z $(PHPLDAP) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"php5-ldap\" package."; \
@@ -109,7 +141,7 @@ check-builddep:
 	fi
 	@echo
 
-	@printf "Checking if we have PHP MYSQL support... "
+	@printf "Checking if we have PHP MYSQL support ... "
 	@if [ -z $(PHPMYSQL) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"php5-mysql\" package."; \
@@ -133,30 +165,40 @@ gen-mo: check-builddep clean-mo gen-po
 
 	@printf "Generating translation messages from source [PO > MO] ["
 	@for LOCALE in $(LOCALES); do \
-		msgfmt po/$${LOCALE}/LC_MESSAGES/aguilas.po -o po/$${LOCALE}/LC_MESSAGES/aguilas.mo; \
-		rm -rf po/$${LOCALE}/LC_MESSAGES/aguilas.po; \
+		msgfmt $${LOCALE}/messages.po -o $${LOCALE}/messages.mo; \
+		rm -rf $${LOCALE}/messages.po; \
 		printf "."; \
 	done
 	@printf "]\n"
 
 gen-po: check-builddep gen-pot
 
-	@printf "Updating PO files ["
+	@echo "Updating PO files ["
 	@for LOCALE in $(LOCALES); do \
-		msgmerge --no-wrap -s -U -o po/$${LOCALE}/LC_MESSAGES/aguilas.po \
-			po/$${LOCALE}/LC_MESSAGES/aguilas.po po/aguilas.pot; \
-		printf "."; \
+		msgmerge --no-wrap -s -U $${LOCALE}/messages.po $(POTFILE); \
+		rm -rf $${LOCALE}/messages.po~; \
 	done
-	@printf "]\n"
+	@echo "]"
 
 gen-pot: check-builddep
 
-	@printf "Updating POT template ["
+	@echo "Updating POT template ..."
+	@rm $(POTLIST)
 	@for FILE in $(ALLPHPS); do \
-		xgettext --no-wrap --from-code=utf-8 -L PHP -k_ -j -s -o pot/aguilas.pot -f $${FILE}; \
-		printf "."; \
+		echo "../../.$${FILE}" >> $(POTLIST); \
 	done
-	@printf "]\n"
+	@cd locale/pot/aguilas/ && xgettext --msgid-bugs-address="$(MAILIST)" \
+		--package-version="$(VERSION)" --package-name="$(PACKAGE)" \
+		--copyright-holder="$(AUTHOR)" --no-wrap --from-code=utf-8 \
+		--language=php -k_ -s -o messages.pot -f POTFILES.in
+	@sed -i -e 's/# SOME DESCRIPTIVE TITLE./# $(POTITLE)./' \
+		-e 's/# Copyright (C) YEAR Luis Alejandro Martínez Faneyth/# Copyright (C) $(YEAR) $(AUTHOR)/' \
+		-e 's/same license as the PACKAGE package./same license as the $(PACKAGE) package./' \
+		-e 's/# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR./#\n# Translators:\n# $(AUTHOR) <$(EMAIL)>, $(YEAR)/' \
+		-e 's/"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\\n"/"PO-Revision-Date: $(PODATE)\\n"/' \
+		-e 's/"Last-Translator: FULL NAME <EMAIL@ADDRESS>\\n"/"Last-Translator: $(AUTHOR) <$(EMAIL)>\\n"/' \
+		-e 's/"Language-Team: LANGUAGE <LL@li.org>\\n"/"Language-Team: $(POTEAM) <$(MAILIST)>\\n"/' \
+		-e 's/"Language: \\n"/"Language: English\\n"/g' $(POTFILE)
 
 gen-doc: gen-wiki gen-html gen-man
 
@@ -218,7 +260,7 @@ clean-mo:
 
 	@printf "Cleaning generated localization ["
 	@for LOCALE in $(LOCALES); do \
-		rm -rf po/$${LOCALE}/LC_MESSAGES/aguilas.mo; \
+		rm -rf $${LOCALE}/messages.mo; \
 		printf "."; \
 	done
 	@printf "]\n"
@@ -262,7 +304,7 @@ copy: gen-man gen-html
 	@mkdir -p $(DESTDIR)/usr/share/doc/aguilas/
 
 	@# Installing application
-	@cp -r po libraries themes $(DESTDIR)/usr/share/aguilas/
+	@cp -r locale libraries themes $(DESTDIR)/usr/share/aguilas/
 	@install -D -m 644 $(PHPS) $(DESTDIR)/usr/share/aguilas/
 	@install -D -m 644 setup/config.* $(DESTDIR)/usr/share/aguilas/setup/
 
