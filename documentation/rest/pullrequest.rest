@@ -1,0 +1,48 @@
+Contributing code through pull requests
+=======================================
+
+Welcome to the Bricolage Git repository. We hope you enjoy your stay. In the bad old days, the Bricolage repository was hosted by SourceForge CVS. Later we migrated to Subversion, thanks to the generous hosting efforts of the Perl.org team. Today, we’re on GitHub, with all of the history we could put together from the old repositories intact and ready for you to get hacking. So what are you waiting for? Fork and push!
+
+The Bricolage project follows the standard GitHub model for contributions: fork a project, clone it to your local computer, hack on it there, push your finished changes to your forked repository, and send a “Pull Request” back upstream to the project. If you’re already familiar with this process, then congratulations! You’re done here, get hacking!
+Contributing to Bricolage
+
+Still with me? Okay then, let’s get you started hacking on Bricolage. The GitHub guide for the standard fork/clone/push/pull request model of contributing is a great place to start, but we’ll cover all the basics here, too, as well as various contribution scenarios (fixing bugs, adding features, updating documentation, etc.).
+Getting Started
+
+First, you’ll need a GitHub account. If you don’t have one, go and sign up now. I’ll wait here while you do that…
+
+Okay, done? Great, now you need to provide your SSH key. Go on, I’ll wait again, no big deal…
+
+Back? Excellent! One more thing to do: you need to download and install Git and then configure it. At a minimum, you’ll want to set up your name and email address. Git doesn’t rely on usernames like Subversion or CVS; you have to give it the whole cigar. Here’s how:
+
+git config --global user.name "Your Name Comes Here"
+git config --global user.email you@yourdomain.example.com
+
+Just for the hell of it, you might want to turn on pretty colors, too, so that diffs, statuses, and branches are colored in your terminal:
+
+git config --global color.ui auto
+
+If you’re familiar with Subversion, I highly recommend that you check out the Git-SVN Crash Course for more deets like this.
+
+Okay, now you’re ready to grab the Bricolage repository. Hit the Bricolage repository page and click the Fork button. This will create a complete copy of the Bricolage repository within your GitHub account. Yeah, it’s kind of like the old “scary idea” of forking, but GitHub has made it an okay thing. Really! Just trust me, okay? Okay, great.
+
+Now you’ve got your own fork. This is your own personal copy of the Bricolage source tree, and you can do anything you want with it. Sure, you could run with it in an entirely different direction, but the community would frown on that and baby kittens would cry. You’re much more likely to fix bugs, add features, and maintain hacks that only your personal installation requires. It’s all good.
+
+So let’s get started. Git is a distributed version control system. Whereas in Subversion there was a canonical repository living on a server somewhere, and you sent all your commits there, with Git, you clone a remote repository to your local computer, and work exclusively with your cloned copy. When you commit, you commit right on your hard disk (this is great for working on flights, BTW). When you’ve reached a spot where you’re ready to send it to your remote copy of the repository, you push it there.
+
+Okay, lecture over, let’s clone your fork of Bricolage. I’m assuming, of course, that you have Git installed. Just switch to a directory where you want to keep your repository and do this, replacing “username” with your actual GitHub username:
+
+git clone git@github.com:username/bricolage.git
+
+Congratulations! You now have your very own Bricolage repository. Now you’ll want to make sure that you can always pull down changes from the upstream canonical repository. To do so, do this:
+
+cd bricolage
+git remote add upstream git://github.com/bricoleurs/bricolage.git 
+git fetch upstream
+
+Anytime you want to merge in the latest changes from the upstream repository, just issue the command git pull upstream master to pull the latest from the master branch of the upstream repository and you’ll be good to go. You should also push it up to your fork:
+
+git pull upstream master
+git push
+
+

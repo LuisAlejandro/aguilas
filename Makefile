@@ -161,12 +161,11 @@ gen-img: check-builddep clean-img
 	done
 	@printf "]\n"
 
-gen-mo: check-builddep clean-mo gen-po
+gen-mo: check-builddep clean-mo
 
 	@printf "Generating translation messages from source [PO > MO] ["
 	@for LOCALE in $(LOCALES); do \
 		msgfmt $${LOCALE}/messages.po -o $${LOCALE}/messages.mo; \
-		rm -rf $${LOCALE}/messages.po; \
 		printf "."; \
 	done
 	@printf "]\n"
@@ -175,7 +174,7 @@ gen-po: check-builddep gen-pot
 
 	@echo "Updating PO files ["
 	@for LOCALE in $(LOCALES); do \
-		msgmerge --no-wrap -s -U $${LOCALE}/messages.po $(POTFILE); \
+		$(MSGMERGE) --no-wrap -s -U $${LOCALE}/messages.po $(POTFILE); \
 		rm -rf $${LOCALE}/messages.po~; \
 	done
 	@echo "]"
@@ -187,7 +186,7 @@ gen-pot: check-builddep
 	@for FILE in $(ALLPHPS); do \
 		echo "../../.$${FILE}" >> $(POTLIST); \
 	done
-	@cd locale/pot/aguilas/ && xgettext --msgid-bugs-address="$(MAILIST)" \
+	@cd locale/pot/aguilas/ && $(XGETTEXT) --msgid-bugs-address="$(MAILIST)" \
 		--package-version="$(VERSION)" --package-name="$(PACKAGE)" \
 		--copyright-holder="$(AUTHOR)" --no-wrap --from-code=utf-8 \
 		--language=php -k_ -s -o messages.pot -f POTFILES.in
@@ -296,7 +295,7 @@ config:
 	@php -f setup/install.php
 	@echo "AGUILAS configured and running!"
 
-copy: gen-man gen-html 
+copy:
 
 	@mkdir -p $(DESTDIR)/usr/share/aguilas/setup/
 	@mkdir -p $(DESTDIR)/var/log/aguilas/
@@ -318,7 +317,7 @@ copy: gen-man gen-html
 	@# Installing documentation
 	@cp -r documentation/html/* $(DESTDIR)/usr/share/doc/aguilas/
 
-	@# Removing unnecesary 
+	@# Removing unnecesary svg's
 	@for THEME in $(THEMES); do \
 		for IMAGE in $(IMAGES); do \
 			rm -rf $(DESTDIR)/usr/share/aguilas/themes/$${THEME}/images/$${IMAGE}.svg; \

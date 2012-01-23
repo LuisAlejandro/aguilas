@@ -1,7 +1,7 @@
 Understanding Aguilas's Source Code
 ===================================
 
-When deploying Aguilas into a real production environment, you will almost always want to use an `official packaged release <downloading.rest>`_ of Aguilas. However, if you'd like to try out in-development code from an upcoming release or contribute to the development of Aguilas, you'll need to obtain a copy from Aguilas's source code repository. This document covers the way the code repository is laid out and how to work with and find things in it.
+When deploying Aguilas into a real production environment, you will almost always want to use an `official packaged release <installing.rest>`_ of Aguilas. However, if you'd like to try out in-development code from an upcoming release or contribute to the development of Aguilas, you'll need to obtain a copy from Aguilas's source code repository. This document covers the way the code repository is laid out and how to work with and find things in it.
 
 Repositories
 ------------
