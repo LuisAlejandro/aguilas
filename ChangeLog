@@ -1,3 +1,18 @@
+DEVELOPMENT RELEASE v1.0.1+20120125152220 (01/25/12)
+    Updating HTML documentation
+    Writing more documentation on git, contributing and source code.
+    Organizing Makefile.
+    Improving documentation
+    Updating locales
+    Adding target on Makefile to automatize the generation and update of po, pot and mo files
+    Changing translation strings for a more intuitive i18n process
+    Introducing "es" and "en" localizations
+    Adding documentation for contributing, installing, understanding the source code.
+    Changing the localization model for a more intuitive process.
+    Removing garbage from previous 
+    Improving the automatic removal of *.pyc files
+    
+
 DEVELOPMENT RELEASE v1.0.1+20120119135126 (01/19/12)
     Improving Makefile
     Improving documentation system
