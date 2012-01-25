@@ -18,22 +18,18 @@ AGUILAS is a centralized registration system that allows users to create and man
 + Lists all registered users.
 + Searches for a term in the user database.
 
-.. toctree::
-   :maxdepth: 5
-   :numbered:
 
-
-   cheatgit.rest
-   contributing.rest
-   dependencies.rest
-   development.rest
-   git.rest
-   help.rest
-   installing.rest
-   patches.rest
-   pullrequest.rest
-   sourcecode.rest
-   translating.rest
+[[cheatgit]]
+[[contributing]]
+[[dependencies]]
+[[development]]
+[[git]]
+[[help]]
+[[installing]]
+[[patches]]
+[[pullrequest]]
+[[sourcecode]]
+[[translating]]
 
 
 :)

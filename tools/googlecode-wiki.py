@@ -10,6 +10,7 @@ for rstpath in files:
     if os.path.isfile(rstpath) and fnmatch.fnmatch(rstpath, '*.rest'):
         rstfile = open(rstpath, 'r')
         rstcontent = rstfile.read()
+        print 'Converting: '+rstpath
         wikicontent = publish_string(rstcontent)
         wikipath = 'documentation/googlewiki/'+rstfilename.split('.')[0]+'.wiki'
         wikifile = open(wikipath, 'w')

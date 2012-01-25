@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7. Contributing code through pull requests &mdash; AGUILAS Documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="AGUILAS Documentation" href="index.html" />
+    <link rel="next" title="8. Understanding Aguilas’s Source Code" href="sourcecode.html" />
+    <link rel="prev" title="6. Working with patches" href="patches.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="sourcecode.html" title="8. Understanding Aguilas’s Source Code"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="patches.html" title="6. Working with patches"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">AGUILAS Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="contributing-code-through-pull-requests">
+<h1>7. Contributing code through pull requests<a class="headerlink" href="#contributing-code-through-pull-requests" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="development.rest">Aguilas development model</a> follows the standard <em>GitHub model</em> for contributions: <a class="reference external" href="https://github.com/HuntingBears/aguilas/">fork a project</a>, clone it to your local computer, hack on it there, push your finished changes to your forked repository, and send a <em>Pull Request</em> back upstream to the project. If you&#8217;re already familiar with this process, then congratulations! You&#8217;re done here, <a class="reference external" href="https://github.com/HuntingBears/aguilas/">get hacking</a>!</p>
+<p>The GitHub guide for the standard <a class="reference external" href="http://help.github.com/fork-a-repo">fork</a>/clone/push/<a class="reference external" href="http://help.github.com/send-pull-requests/">pull request</a> model of contributing is a great place to start, but we&#8217;ll cover all the basics here, too, as well as various contribution scenarios (fixing bugs, adding features, updating documentation, etc.).</p>
+<div class="section" id="getting-started">
+<h2>7.1. Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>First, you&#8217;ll need a GitHub account. If you don&#8217;t have one, go and <a class="reference external" href="https://github.com/signup/free">sign up now</a>. After that, you&#8217;ll need to <a class="reference external" href="http://help.github.com/linux-set-up-git/">provide your SSH key</a> to authorize your computer to make pushes.</p>
+<p>You need to download and install Git and then configure it. You might want to take a look at our <a class="reference external" href="git.rest">Working with git guide</a>.</p>
+<p>Now you&#8217;re ready to grab the Aguilas repository. Hit the <a class="reference external" href="https://github.com/HuntingBears/aguilas/">Aguilas repository page</a> and click the <em>Fork</em> button. This will create a complete copy of the Aguilas repository within your GitHub account.</p>
+<p>Now you&#8217;ve got your own fork. This is your own personal copy of the Aguilas source tree, and you can do anything you want with it. Next, let&#8217;s clone your fork of Aguilas. Just switch to a directory where you want to keep your repository and do this, replacing <tt class="docutils literal"><span class="pre">[USERNAME]</span></tt> with your actual GitHub username:</p>
+<div class="highlight-python"><pre>git clone --branch development git@github.com:[USERNAME]/aguilas.git</pre>
+</div>
+<p>Congratulations! You now have your very own Aguilas repository. Now you&#8217;ll want to make sure that you can always pull down changes from the upstream canonical repository. To do so, do this:</p>
+<div class="highlight-python"><pre>cd aguilas
+git remote add upstream git://github.com/HuntingBears/aguilas.git
+git pull upstream development</pre>
+</div>
+<p>Anytime you want to merge in the latest changes from the upstream repository, just issue the command <tt class="docutils literal"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">upstream</span> <span class="pre">development</span></tt> to pull the latest from the development branch of the upstream repository and you&#8217;ll be good to go. You should also push it up to your fork:</p>
+<div class="highlight-python"><pre>git push origin development</pre>
+</div>
+</div>
+<div class="section" id="submitting-the-pull-request">
+<h2>7.2. Submitting the pull request<a class="headerlink" href="#submitting-the-pull-request" title="Permalink to this headline">¶</a></h2>
+<p>After you have pushed the changes to your fork, go to your fork page on github and hit the <em>pull request</em> button. After that, you are presented with a preview page where you can enter a title and optional description, see exactly what commits will be included when the pull request is sent, and also see who the pull request will be sent to (Aguilas upstream repository).</p>
+<p>More information on <a class="reference external" href="http://help.github.com/send-pull-requests/">pull requests</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">7. Contributing code through pull requests</a><ul>
+<li><a class="reference external" href="#getting-started">7.1. Getting Started</a></li>
+<li><a class="reference external" href="#submitting-the-pull-request">7.2. Submitting the pull request</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="patches.html"
+                                  title="previous chapter">6. Working with patches</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="sourcecode.html"
+                                  title="next chapter">8. Understanding Aguilas&#8217;s Source Code</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/pullrequest.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="sourcecode.html" title="8. Understanding Aguilas’s Source Code"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="patches.html" title="6. Working with patches"
+             >previous</a> |</li>
+        <li><a href="index.html">AGUILAS Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 25-01-2012, Luis Alejandro Martínez Faneyth.
+      Last updated on Jan 25, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+    </div>
+  </body>
+</html>

@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,22 +5,23 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Installation Methods &mdash; AGUILAS Documentation</title>
+    <title>5. Installation Methods &mdash; AGUILAS Documentation</title>
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
         VERSION:     '1.0.1',
-        COLLAPSE_INDEX: false,
+        COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="AGUILAS Documentation" href="index.html" /> 
+    <link rel="top" title="AGUILAS Documentation" href="index.html" />
+    <link rel="next" title="6. Working with patches" href="patches.html" />
+    <link rel="prev" title="<no title>" href="help.html" /> 
   </head>
   <body>
     <div class="related">
@@ -31,6 +30,12 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="patches.html" title="6. Working with patches"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="help.html" title="<no title>"
+             accesskey="P">previous</a> |</li>
         <li><a href="index.html">AGUILAS Documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -41,38 +46,15 @@
           <div class="body">
             
   <div class="section" id="installation-methods">
-<h1>Installation Methods<a class="headerlink" href="#installation-methods" title="Permalink to this headline">¶</a></h1>
-<p>You can install aguilas in various ways, depending on your requirements. Here you will find all the installation methods supported by aguilas. In any case, you will need to install some software dependencies before you can actually install aguilas.</p>
-<div class="section" id="installing-dependencies">
-<h2>Installing Dependencies<a class="headerlink" href="#installing-dependencies" title="Permalink to this headline">¶</a></h2>
-<p>You will need:</p>
-<ul class="simple">
-<li>A web server like apache2, lighttpd or nginx.</li>
-<li>php5, php5-ldap, php5-mysql, php5-cli, php5-mcrypt</li>
-<li>imagemagick</li>
-<li>libmagickcore-extra (libmagickcore3-extra or libmagickcore4-extra)</li>
-<li>python-docutils</li>
-<li>icoutils</li>
-<li>python-sphinx</li>
-<li>gettext</li>
-<li>bash</li>
-<li>make</li>
-</ul>
-<p>You will need also a working Mail Transport Agent (MTA) to allow AGUILAS to send mail on requests. If you are having problems configuring your MTA, you can read <a class="reference external" href="http://www.huntingbears.com.ve/en/utilizando-postfix-para-enviar-correos-a-traves-de-gmail.html">this tutorial</a> to use Gmail as a MTA.</p>
-<p>Optionally, you will have to install an LDAP and a MYSQL server, but it all depends on your setup. If you are going to connect to a remote server, then you don&#8217;t have to install them. If you are going to use your own computer as a server, then you will have to install and configure the following packages:</p>
-<ul class="simple">
-<li>mysql-server</li>
-<li>slapd</li>
-</ul>
-<p>Pay attention to the admin password for both applications, as you will be needing them when configuring AGUILAS.</p>
-<p>If you are running Debian, Ubuntu or Canaima, you may install the following packages to satisfy all dependencies (including installing LDAP and MYSQL servers locally):</p>
-<div class="highlight-python"><pre>aptitude install make bash gettext python-sphinx icoutils python-docutils libmagickcore-extra imagemagick php5 php5-ldap php5-mysql php5-cli php5-mcrypt apache2 mysql-server slapd</pre>
-</div>
-</div>
-<div class="section" id="makefile-style">
-<h2>Makefile Style<a class="headerlink" href="#makefile-style" title="Permalink to this headline">¶</a></h2>
+<h1>5. Installation Methods<a class="headerlink" href="#installation-methods" title="Permalink to this headline">¶</a></h1>
+<p>You can install Aguilas in various ways, depending on your requirements. Here you will find all the supported installation methods. In any case, you will need to <a class="reference external" href="dependencies.rest">install software dependencies</a> before you can actually install Aguilas.</p>
+<div class="section" id="using-the-makefile">
+<h2>5.1. Using the Makefile<a class="headerlink" href="#using-the-makefile" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p class="first">Download the source tarball from <a class="reference external" href="http://code.google.com/p/aguilas/downloads/list">aguilas download page</a>. Select the version of your preference, usually the last one will be more complete.</p>
+<p>You can also clone the code directly from the &#8220;release&#8221; (stable) branch of the git repository (if you do, you don&#8217;t need to decompress the source after):</p>
+<div class="highlight-python"><pre>git clone --branch release https://github.com/HuntingBears/aguilas.git</pre>
+</div>
 </li>
 <li><p class="first">Decompress the source with your favorite program:</p>
 <div class="highlight-python"><pre>e.g.: tar -xvf aguilas-1.0.0.tar.gz</pre>
@@ -89,7 +71,7 @@
 </li>
 </ol>
 <blockquote>
-<div><dl class="docutils">
+<dl class="docutils">
 <dt>You will be promted with the following questions to configure AGUILAS:</dt>
 <dd><ul class="first last simple">
 <li>Name of the Application</li>
@@ -111,13 +93,19 @@
 </dd>
 </dl>
 <p>If you need to modify these parameters, you can always edit <tt class="docutils literal"><span class="pre">/usr/share/aguilas/setup/config.php</span></tt> after installation.</p>
-</div></blockquote>
+</blockquote>
 <ol class="arabic">
 <li><p class="first">Obtain superuser priviledges, and install aguilas:</p>
 <div class="highlight-python"><pre>sudo make install</pre>
 </div>
 </li>
 </ol>
+</div>
+<div class="section" id="using-a-package-from-a-distribution">
+<h2>5.2. Using a package from a distribution<a class="headerlink" href="#using-a-package-from-a-distribution" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="installing-the-development-version">
+<h2>5.3. Installing the development version<a class="headerlink" href="#installing-the-development-version" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -127,33 +115,40 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Installation Methods</a><ul>
-<li><a class="reference internal" href="#installing-dependencies">Installing Dependencies</a></li>
-<li><a class="reference internal" href="#makefile-style">Makefile Style</a></li>
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">5. Installation Methods</a><ul>
+<li><a class="reference external" href="#using-the-makefile">5.1. Using the Makefile</a></li>
+<li><a class="reference external" href="#using-a-package-from-a-distribution">5.2. Using a package from a distribution</a></li>
+<li><a class="reference external" href="#installing-the-development-version">5.3. Installing the development version</a></li>
 </ul>
 </li>
 </ul>
 
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/installing.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="help.html"
+                                  title="previous chapter">&lt;no title&gt;</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="patches.html"
+                                  title="next chapter">6. Working with patches</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/installing.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -164,13 +159,19 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="patches.html" title="6. Working with patches"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="help.html" title="<no title>"
+             >previous</a> |</li>
         <li><a href="index.html">AGUILAS Documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 19-01-2012, Luis Alejandro Martínez Faneyth.
-      Last updated on Jan 19, 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.8.
+      &copy; Copyright 25-01-2012, Luis Alejandro Martínez Faneyth.
+      Last updated on Jan 25, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
     </div>
   </body>
 </html>

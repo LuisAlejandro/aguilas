@@ -130,27 +130,6 @@ gen-mo: check-buildep clean-mo
 	done
 	@printf "]\n"
 
-gen-wiki: check-buildep predoc clean-wiki
-
-	@echo "Generating documentation from source [RST > WIKI]"
-	@cp documentation/githubwiki.index documentation/rest/index.rest
-	@cp documentation/rest/*.rest documentation/githubwiki/
-	@cp documentation/googlewiki.index documentation/rest/index.rest
-	@$(PYTHON) -B tools/googlecode-wiki.py
-	@rm -rf documentation/rest/index.rest
-
-gen-html: check-buildep predoc clean-html
-
-	@echo "Generating documentation from source [RST > HTML]"
-	@cp documentation/sphinx.index documentation/rest/index.rest
-	@$(SPHINX) -a -E -Q -b html -d documentation/html/doctrees documentation/rest documentation/html
-	@rm -rf documentation/rest/index.rest
-
-gen-man: check-buildep predoc clean-man
-
-	@echo "Generating documentation from source [RST > MAN]"
-	@$(RST2MAN) --language="en" --title="AGUILAS" documentation/man/aguilas.rest documentation/man/aguilas.1
-
 gen-conf: check-buildep clean-conf
 
 	@echo "Filling up configuration"

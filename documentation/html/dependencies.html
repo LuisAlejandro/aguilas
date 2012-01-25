@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3. Installing Dependencies &mdash; AGUILAS Documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="AGUILAS Documentation" href="index.html" />
+    <link rel="next" title="<no title>" href="development.html" />
+    <link rel="prev" title="2. Contributing to Aguilas" href="contributing.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="development.html" title="<no title>"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="contributing.html" title="2. Contributing to Aguilas"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">AGUILAS Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="installing-dependencies">
+<h1>3. Installing Dependencies<a class="headerlink" href="#installing-dependencies" title="Permalink to this headline">¶</a></h1>
+<p>You will need:</p>
+<ul class="simple">
+<li>A web server like Apache, Lighttpd or Nginx.</li>
+<li>PHP 5 or higher (with LDAP, MYSQL and CLI support)</li>
+<li>Imagemagick image conversion utility with libmagickcore-extra support</li>
+<li>Sphinx and Docutils python libraries</li>
+<li>Icoutils</li>
+<li>gettext</li>
+<li>bash</li>
+<li>make</li>
+</ul>
+<p>You will need also a working Mail Transport Agent (MTA) to allow AGUILAS to send mail on requests. If you are having problems configuring your MTA, you can read <a class="reference external" href="http://www.huntingbears.com.ve/en/utilizando-postfix-para-enviar-correos-a-traves-de-gmail.html">this tutorial</a> to use Gmail as a MTA.</p>
+<p>Optionally, you will have to install an LDAP and a MYSQL server, but it all depends on your setup. If you are going to connect to a remote server, then you don&#8217;t have to install them. If you are going to use your own computer as a server, then you will have to install and configure the following software:</p>
+<ul class="simple">
+<li>mysql-server</li>
+<li>slapd</li>
+</ul>
+<p>Pay attention to the admin password for both applications, as you will be needing them when configuring AGUILAS.</p>
+<p>If you are running Debian, Ubuntu or Canaima, you may install the following packages to satisfy all dependencies (including installing LDAP and MYSQL servers locally):</p>
+<div class="highlight-python"><pre>aptitude install make bash gettext python-sphinx icoutils python-docutils libmagickcore-extra imagemagick php5 php5-ldap php5-mysql php5-cli php5-mcrypt apache2 mysql-server slapd</pre>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="contributing.html"
+                                  title="previous chapter">2. Contributing to Aguilas</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="development.html"
+                                  title="next chapter">&lt;no title&gt;</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/dependencies.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="development.html" title="<no title>"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="contributing.html" title="2. Contributing to Aguilas"
+             >previous</a> |</li>
+        <li><a href="index.html">AGUILAS Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 25-01-2012, Luis Alejandro Martínez Faneyth.
+      Last updated on Jan 25, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+    </div>
+  </body>
+</html>
