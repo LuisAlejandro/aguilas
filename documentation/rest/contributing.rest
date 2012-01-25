@@ -25,7 +25,9 @@ Well-written bug reports are incredibly helpful. However, there's a certain amou
 How to report a bug
 +++++++++++++++++++
 
-First of all, gather all the information you have about the bug you are going to report (*everything* could be useful). Go to the `new issue form <https://github.com/HuntingBears/aguilas/issues/new>`_ in our `ticket tracker <https://github.com/HuntingBears/aguilas/issues>`_ and fill in a descriptive title for the ticket and the content of the bug you are reporting.
+First of all, `create an account on GitHub <https://github.com/signup/free>`_, is very quick and easy.
+
+Next, gather all the information you have about the bug you are going to report (*everything* could be useful). Go to the `new issue form <https://github.com/HuntingBears/aguilas/issues/new>`_ in our `ticket tracker <https://github.com/HuntingBears/aguilas/issues>`_ and fill in a descriptive title for the ticket and the content of the bug you are reporting.
 
 If you need to attach a piece of code, error or patch, please use `the gist <https://gist.github.com/>`_. The gist is a special service from github to add pieces of code in a tiny repository publicly available. Add the code you need in a `public gist <https://gist.github.com/gists/new>`_, and then paste the resultant link in the bug report.
 
@@ -34,7 +36,7 @@ Submitting patches
 
 A patch is a structured file that consists of a list of differences between one set of files and another. All additions and deletions of **contributed code** to Aguilas are done through patches.
 
-A patch can be sent to Aguilas developers through the `ticket tracker <https://github.com/HuntingBears/aguilas/issues>`_ and `the gist <https://gist.github.com/>`_. Add the patch code in a `public gist <https://gist.github.com/gists/new>`_ and then `open a new ticket <https://github.com/HuntingBears/aguilas/issues/new>`_ describing the patch you made. Remember to add the link to the public gist so it can be referenced and checked out by developers.
+A patch can be sent to Aguilas developers through the `ticket tracker <https://github.com/HuntingBears/aguilas/issues>`_ and `the gist <https://gist.github.com/>`_. Add the patch code in a `public gist <https://gist.github.com/gists/new>`_ and then `open a new ticket <https://github.com/HuntingBears/aguilas/issues/new>`_ describing the patch you made. Remember to add the link to the public gist so it can be referenced and checked out by developers. Also, you will need to `open an account <https://github.com/signup/free>`_ on github to do all of this.
 
 If you want to know more about creating, applying and submitting patches, read our `patches guide <patches.rest>`_.
 
@@ -47,7 +49,7 @@ Submitting pull requests
 
 A pull request is a special service from code repositories that enable developers to manage contribution activities more easily. It allows a developer to clone or fork a repository of code, make changes to it and then request the addition of this modified code to the upstream developers of Aguilas.
 
-If you want to contribute to Aguilas using this method, you will have to fork Aguilas on github, download the forked code to your computer, make the changes you need to make in order to correct the bug or implement a new feature, push your changes and finally request your code to be pulled to Aguilas main repository.
+If you want to contribute to Aguilas using this method, you will have to fork Aguilas on github, download the forked code to your computer, make the changes you need to make in order to correct the bug or implement a new feature, push your changes and finally request your code to be pulled to Aguilas main repository. You will need to `open an account <https://github.com/signup/free>`_ on github to do all of this.
 
 If you want detailed information how to make a pull request, please read the `pull request guide <pullrequest.rest>`_.
 

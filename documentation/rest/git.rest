@@ -1,219 +1,335 @@
 Working with git
 ================
 
-Git is a free & open source, distributed version control system designed to handle everything from small to very large projects with speed and efficiency. If you want a list of common commands, see the `Git Cheat Sheet <http://zrusin.blogspot.com/2007/09/git-cheat-sheet.html>`_.
+Git is a free and open source, distributed version control system designed to handle everything from small to very large projects with speed and efficiency. If you want a list of common commands, see the `cheatsheet <cheatgit.rest>`_ or it's `graphical summary <http://zrusin.blogspot.com/2007/09/git-cheat-sheet.html>`_.
 
 For those too impatient to read, here's what you need to work with someone else's Git project::
 
 	git clone [URL]
+	git add .
+	git commit -a
+	git push
 	git pull
-	git commit -a && git push
 
-Before running any command the first time, it's recommended that you skim through its manual page. Many of the commands have very useful and interesting features (that we won't list here) and sometimes there are some extra notes you might want to know. You can also get help on any Git command by doing git command -h or git help command.
+Before running any command the first time, it's recommended that you skim through its manual page. Many of the commands have very useful and interesting features (that we won't list here) and sometimes there are some extra notes you might want to know. You can also get help on any Git command by doing ``git [COMMAND] -h`` or ``git help [COMMAND]``.
 
-Configuring Git
+Installing git
+--------------
 
-SVN includes your username in your commits, whereas Git includes your real name and your e-mail address. You should add these before you start using Git:
+If you are using Debian, Ubuntu, Canaima or other Debian derivative, you can install git easily with the following command (was an administrator user)::
 
-git config --global user.name "Your Name"
-git config --global user.email you@yourdomain.example.com
+	aptitude install git-core
 
-git config is the command to set configuration options. While you're configuring, here are some other things you might like to do:
+Configuring git
+---------------
 
-git config --global color.ui auto # colorised `git diff`, etc.
-git config --global alias.st status # make `git st` work
-git config -l # list all configuration options
+Git includes your real name and your e-mail address on every commit you make. You should add these before you start using Git::
 
-You might also want to look at some other SVN-like aliases.
-Things You Should Know
+	git config --global user.name "Your Complete Name"
+	git config --global user.email you@yourdomain.example.com
 
-Here are some concepts that will help you understand Git. If you are in a hurry, you can skip this section and come back when you get confused - you should be able to pick up a lot about Git with just your intuition.
+``git config`` is the command to set configuration options. While you're configuring, here are some other things you might like to do::
 
-Checkouts and Repositories. Each Subversion project has one central repository which stores all the history. Everyone has a checkout of the repository, which they update from and commit to. Each Git project gives everyone a personal repository, and lets them pull from and push to each other. Many Git projects use an "official" repository that they agree to treat like an SVN repository.
+	# colorized `git diff`, etc.
+	git config --global color.ui auto
 
-URLs and paths. In Subversion, a URL identifies the location of the repository, and the path inside the repository identifies the branch or tag. So svn://svn.example.com/trunk might be the URL for the trunk branch of your repository. In Git, the URL is still the location of a repository, but branches and tags are labels you access with Git commands. So git://git.example.com/ might be the URL for a whole Git repository.
+	# list all configuration options
+	git config -l
 
-Visualize. Git version history can get complicated, especially in big projects. You may like to look at your repository with the gitk viewer to understand what's going on.
-
-Revisions. Subversion identifies revisions with numbers starting at 1 and going up in each revision. That's fine when one central repository keeps track of all the numbers, but who decides the next revision number if everyone has their own repository? Git uses unique 40-character identifiers instead - SHA-1 hashes that you can think of as random strings. These numbers look kinda scary, but you don't actually use them that often. Git has nicknames for the commits you use most often, has relative names for other interesting commits, and lets you refer to the rest by the first half-dozen characters in their identifier. For example, your current commit is always called HEAD, the parent of the current commit is HEAD^ and the grandparent is HEAD^^ (you can go on adding carets). The commit abc123def456abc789def012abc345def678abc9 can be referred to as abc123 (and you can use abc123^, abc123^^ etc.). See the git-rev-parse manpage if you want to know which commit trunk@{'tea-time last Wednesday}~2 refers to.
 Creating a New Repository
+-------------------------
 
-Let's step through how you create and update a new project in Git and SVN.
+Let's step through how you create and update a new project:
 
-If you are creating a new project, you would:
-mkdir myproject; cd myproject
-git init
-	svnadmin create myproject_repo
-svn checkout file://myproject_repo myproject
+If you are creating a new project, you should::
 
-If you are putting an existing project under version control, you would cd to your project directory, then:
-git init
-git add .
-git commit 	svnadmin create myproject_repo
-svn import . myproject_repo
+	mkdir myproject; cd myproject
+	git init
 
-git init initializes the repository, git add . adds all the files under the current directory and git commit creates the initial import.
+If you are putting an existing project under git version control, you should::
 
-Remember - Git does not have separate places for a repository and your working copy - the working copy always already contains the repository as well, in the .git subdirectory. (Of course you can have special repositories that do not have a working copy attached - bare repositories. These are useful for having a repo over at some server where you don't do any actual work but which serves just for pushing and pulling.)
+	cd myproject
+	git init
+	git add .
+	git commit -a
 
-If you are downloading someone else's Git project, you would do this instead:
-git clone url myproject
-	svn checkout url
+``git init`` initializes the repository, ``git add .`` adds all the files under the current directory and ``git commit -a`` creates the initial import of files.
 
-Or to download an SVN project into Git:
-git svn clone --stdlayout url myproject
-	svn checkout url
+If you are downloading someone else's git project, you should do this instead::
 
-git clone and git svn clone download the complete contents of a remote repository and create a local copy of it. --stdlayout tells Git that it should look in the standard trunk/tags/branches directories for branches (see the git-svn manual if your project uses a different layout).
+	git clone [URL]
 
-Now your tree is officially tracked by Git. One nice thing to note - no matter how many subdirectories your project has, there's only one .git directory that contains all the version control information. Do some random changes to your tree now - poke around in a few files or something.
+Whichever the case, now your tree is officially tracked by git. One nice thing to note - no matter how many subdirectories your project has, there's only one .git directory that contains all the version control information. Do some random changes to your tree now - poke around in a few files or something.
+
 Making Changes
+--------------
 
-When you've edited some files, next you add them to version control. First you check what you've done:
-git diff 	svn diff | less
+When you've edited some files, next thing you have to do is add them to version control. First you check what you've done::
 
-That's it. This is one of the more powerful commands. To get a diff with a specific revision and path do:
-git diff rev path 	svn diff -rrev path
+	git diff
 
-There is a more concise representation of changes available:
-git status 	svn status
+That's it. This is one of the more powerful commands. To get a diff with a specific commit, do::
+
+	git diff [COMMIT]
+
+You can obtain the commit number by listing all commits with::
+
+	git log
+
+Also, there is a more concise representation of changes available::
+
+	git status
 
 This will show the concise changes summary as well as list any files that you haven't either ignored or told Git about. In addition, it will also show at the top which branch you are in.
 
-The status command also shows the "untracked files" that Git doesn't know what to do with. You can handle these by:
-git clean
-git add files
-$EDITOR .gitignore 	rm -rf files
-svn add files
-svn propedit svn:ignore .
+The status command also shows the "untracked files" that Git doesn't know what to do with. You can either include them in the registry (in the case these are new files)::
 
-In fact you need to tell Git when you add, move or remove any files, just like SVN:
-git add file
-git rm file
-git mv file 	svn add file
-svn rm file
-svn mv file
+	git add .
 
-You can also recursively add/remove whole directories and so on; Git's cool!
+Or delete them (in the case these are unwanted files from a build process, for example). *WARNING* this will delete all untracked files forever::
 
-If you made changes to a file that you want to undo, you can get back the last version you committed:
-git checkout path 	svn revert path
+	git clean -fd
 
-So, it's about time for us to commit our changes:
-git commit -a 	svn commit
+You could also list all files you want to ignore forever. These files will never be added to version control. What you need to do is create a file named ``.gitignore``, containing a list of the files, line by line.
 
-This looks the same, but there are two important differences:
+If you made changes to a file that you want to undo, you can get back the last version you committed::
 
-First, you have to specify -a if you want to commit all your files, instead of just those files you've recently done a git add or git rm on. This can be frustrating at first, but several important techniques are based on it (for example, git add -p lets you add part of a file - see the git-add manual page for details).
+	git checkout [PATH/TO/FILE]
 
-Second, Git commits are private by default - they aren't pushed to any central server. We'll talk about pushing changes later, but private commits have some important benefits. For example, when you realise you left some debugging in your last commit, or made a typo in the commit message, you can do git commit --amend to fix it, or even do git reset HEAD^ to toss the commit away completely without affecting your files.
+So after you have messed around with the project files, it's about time for us to commit our changes::
+
+	git commit -a
+
+There are two considerations to observe:
+
+First, you have to specify ``-a`` if you want to commit all your files, or ``git commit [PATH/TO/FILE]`` to commit file by file.
+
+Second, Git commits are private by default - they aren't pushed to any central server unless you specify it. We'll talk about pushing changes later, but private commits have some important benefits. For example, when you realise you left some debugging iformation in your last commit, or made a typo in the commit message, you can do ``git commit --amend`` to fix it, or even do ``git reset HEAD^`` to toss the commit away completely without affecting your files.
 
 A few words about the commit message: it is customary to have a short commit summary as the first line of the message, because many tools just show the first line of the message. You can specify the commit message using the -m parameter (extra -m arguments will create extra paragraphs in the commit message).
+
 Browsing
+--------
 
-Now that we have committed some stuff, you might want to review your history:
-git log
-git blame file 	svn log | less
-svn blame file
+Now that we have committed some stuff, you might want to review your history::
 
-The log command is more powerful than in SVN. For example, git log --oneline only shows the first few characters of each commit ID and the first line of each commit message. See the git-log manual page for more stuff git log can do.
+	git log
+	git blame [PATH/TO/FILE]
 
-The blame command is also more powerful than SVN, as it can track changes even across file copies and renames. But you probably want to do something different! When you used svn blame, you were probably only interested in the history of a few lines of code. git log -p will show the changes to the file in each revision (so you can search for the code you're interested in), and git log -Sstring will show just the commits which add or remove text matching string.
+The ``log`` command is very powerful, it shows you the complete history of the project, commit by commit, and also extra information like authors and dates. For example, ``git log --oneline`` will show you the first few characters of each commit ID and the first line of each commit message. See the *git-log manual page* for more stuff git log can do.
 
-You can see the contents of a file, the listing of a directory or a commit with:
-git show rev:path/to/file
-git show rev:path/to/directory
-git show -s rev
-git show rev 	svn cat url
-svn list url
-svn log -rrev url
-svn diff -crev url
+The ``blame`` command is also very useful, as it identifies the author of every line of every file registered by git.
+
+You can see the contents of a file, the listing of a directory or a commit with::
+
+	git show [COMMIT]:[PATH/TO/FILE]
+	git show [COMMIT]:[PATH/TO/DIRECTORY]
+	git show -s [COMMIT]
+	git show [COMMIT]
+
 Branching and Tagging
+---------------------
 
-Subversion marks certain checkpoints in history by copying directories. The copy is usually placed in a directory called tags (if it's a tag) or branches (if it's a branch). Git marks checkpoints in history by applying a label to a commit. For example, the file .git/HEAD is the label for the current commit, and .git/refs/heads/master is the label for the main development branch. Git branches and tags take some getting used to, but are more powerful when you do.
+Git marks checkpoints in history by applying a label to a commit. You can create a branch with the following commands:
 
-In Subversion, you create a branch by copying your project to a subdirectory. In Git, you tell it, well, to create a branch:
+	git branch [NEW] [OLD]
+	git checkout [NEW]
 
-git branch new_branch old_branch
+The first command creates a branch, the second command switches your tree to the new branch. You can pass an extra argument to ``git branch`` to base your new branch on a different revision than the latest one.
 
-git checkout new_branch
-	
+Running ``git branch`` without arguments lists your branches. The * in the output marks the current branch::
 
-svn copy svn://svn.example.com/old_branch \ svn://svn.example.com/branches/new_branch svn switch \ svn://svn.example.com/branches/new_branch
+	git branch
 
-The first command creates a branch, the second command switches your tree to a certain branch. You can pass an extra argument to git branch to base your new branch on a different revision than the latest one.
+To move your tree to some older revision, use::
 
-Running git branch without arguments lists your branches. The * in the output marks the current branch.
-git branch 	svn list svn://svn.example.com/branches/
+	git checkout [COMMIT]
 
-To move your tree to some older revision, use:
-git checkout rev
-git checkout branch 	svn update -r rev
-svn update
+Git tags are fairly similar to Git branches, but with some extra tricks. Git tags can have a date, committer, and message that act just like the equivalents for Git commits. They can also be signed with a PGP key if you really want to stamp them with your seal of approval. This is great if you want to release a public version of your work, because you can have one place to store your release announcement and your guarantee that the code hasn't been tampered with. So, let's do it::
 
-Git's behaviour when you check an older revision out can be a bit confusing, but also kinda cool. SVN would say you are now on an older revision of the same branch, because you have checked out older files in the same directory. But because a Git branch is just a label for a commit, Git would say you are not on any branch at all. SVN would also say that you can't commit until you update your branch to its rightful place. Git will let you commit as much as you like, although you can get in trouble if you don't know what you're doing.
+	git tag -a [NAME]
 
-When you are not on a branch, you are known as having a detached HEAD (i.e. your HEAD commit is not attached to any branch). This is one of the few things in Git that has earnt its scary name - if you make commits on a detached HEAD, then you do git checkout some_branch, what git checkout command would you use to get your commits back? You should almost always do git checkout -b new_branch before you make any commits, so you can get back easily later on. In other words, be careful and don't lose your HEAD.
+To list tags and to show a tag message::
 
-Git tags are fairly similar to Git branches, but with some extra tricks. Git tags can have a date, committer, and message that act just like the equivalents for Git commits. They can also be signed with a PGP key if you really want to stamp them with your seal of approval. This is great if you want to release a public version of your work, because you can have one place to store your release announcement and your guarantee that the code hasn't been tampered with. So, let's do it:
-git tag -a name 	
+	git tag -l
+	git show [NAME]
 
-svn copy svn://svn.example.com/trunk \ svn://svn.example.com/tags/name
-
-To list tags and to show a tag message:
-git tag -l
-git show tag 	
-
-svn list svn://svn.example.com/tags/ svn log --limit 1 \ svn://svn.example.com/tags/tag
 Merging
+-------
 
-Git supports merging much better than Subversion - both branches have their history preserved over the merges, and you don't have to keep track of which revision you were at last time when you merge again. Unfortunately, you lose much of this power if you use git-svn to share your work with an SVN server.
+Let's suppose you are on branch "release", and you want to bring the changes you've made on "development" branch, then you'll have to do::
 
-If you are not using git-svn, make sure you are on one of the to-be-merged branches and merge the other one now:
-git merge branch 	
+	git merge development
 
-(assuming you want to merge everything since revision 20)
-svn merge -r 20:HEAD \ svn://svn.example.com/branches/branch
+If changes were made on only one of the branches since the last merge, they are simply replayed on your other branch (a so-called fast-forward merge). If changes were made on both branches, they are merged intelligently (a so-called three-way merge). If the three-way merge doesn't have any merge conflicts, it makes a commit with a convenient log message (the ``--no-commit`` option disables this). If there are merge conflicts (when one ore more lines of a file being merged have different values in the previous state), ``git merge`` will report them and let you resolve them.
 
-If changes were made on only one of the branches since the last merge, they are simply replayed on your other branch (a so-called fast-forward merge). If changes were made on both branches, they are merged intelligently (a so-called three-way merge). If the three-way merge doesn't have any merge conflicts, it makes a commit with a convenient log message (the --no-commit option disables this). If there are merge conflicts, git merge will report them and let you resolve them.
+To resolve a conflict, you will have to look in the file being reported as conflict for the following pattern::
 
-When you have merge conflicts, you usually want to see a diff of just the conflicting changes. git diff doesn't normally show changes that have been marked with git add, so Git automatically adds all the files that didn't conflict, giving you a nice small diff. You can do git diff --cached if you just want to see the non-conflicting changes, or git diff HEAD if you want to see everything.
+	<<<<<<< HEAD:file.txt
+	Hello world
+	=======
+	Goodbye
+	>>>>>>> 77976da35a11db4580b80ae27e8d65caf5208086:file.txt
 
-Like with SVN, you need to tell Git when you have resolved your conflicts:
-git add file 	svn resolved file
+which can be explained like this::
 
-This has the nice side-effect that files disappear from git diff as you resolve them.
+	<<<<<<<
+	changes made on my branch
+	=======
+	changes made on the branch i'm merging
+	>>>>>>>
 
-Aside from merging, sometimes you want to just pluck one commit out of a different branch. To apply the changes in revision rev and commit them to the current branch use:
-git cherry-pick rev 	svn merge -c rev url
-Going Remote
+You will have to erase manually which part are you going to leave. After editing all conflicts, you have to commit your changes::
 
-So far, we haven't talked much about how Git is a distributed version control system. It is time for us to set the record straight.
+	git commit -a
 
-If you created your repository with one of the clone commands, Git will have already set up a remote repository for you called origin. If you created your repository from scratch, you might want to skip this section and come back to it later.
+Aside from merging, sometimes you want to just pluck one commit out of a different branch. To apply the changes in revision rev and commit them to the current branch use::
 
-When you cloned your repository, Git downloaded all the branches and tags in that repository, and created your master branch based on the master branch in that repository (or the trunk branch if you used git svn clone). Even though it only used the master branch, it kept copies of all the others in case you needed them. Copies of branches from a remote repository are called remote branches, and don't behave quite like the local branches you've used before.
+	git cherry-pick [COMMIT]
 
-For starters, remote branches don't show up in a normal git branch. Instead, you list remote branches with git branch -r. You can log these branches, diff them and merge them, but you can't commit to them, or they would stop being copies of the branch on the remote repository. If you want to work with a remote branch, you need to create a local branch that "tracks" it:
-git checkout -t origin/branch 	svn switch url
+Working with remote servers
+---------------------------
 
-Now, how do you download new changes from a remote repository? You fetch them with git fetch (or git svn fetch). But usually you don't just want to fetch, you also want to merge any changes into your local branch:
-git pull 	svn update
+If you created your repository with one of the ``clone`` commands, Git will have already set up a remote repository for you called *origin*. If you created your repository from scratch, you will have to set it up.
 
-Again, git-svn does this a bit differently:
-git svn rebase 	svn update
+To see which remote servers you have configured, you can run the ``git remote`` command. It lists the shortnames of each remote handle you've specified. If you've cloned your repository, you should at least see *origin* — that is the default name Git gives to the server you cloned from::
+
+	git remote -v
+
+To add a new remote Git repository as a shortname you can reference easily, run::
+
+	git remote add [SHORTNAME] [URL]
+
+When you cloned your repository, Git downloaded all the branches and tags in that repository, and created your master branch based on the master branch in that repository. Even though it only used the master branch, it kept copies of all the others in case you needed them. Copies of branches from a remote repository are called remote branches, and don't behave quite like the local branches you've used before.
+
+For starters, remote branches don't show up in a normal git branch. Instead, you list remote branches with ``git branch -r``. You can log these branches, diff them and merge them, but you can't commit to them, or they would stop being copies of the branch on the remote repository. If you want to work with a remote branch, you need to create a local branch that "tracks" it, like this::
+
+	git checkout -t origin/branch
+
+Now, how do you download new changes from a remote repository? You fetch them with ``git fetch``. But usually you don't just want to fetch, you also want to merge any changes into your local branch::
+
+	git pull
 
 A pull is technically a bit different to a rebase. As always, see the relevant manual pages for details.
 
-An illustrated example on branching and merging may help you as well.
 Sharing your Work
+-----------------
 
-We saw in the previous section that you can pull other people's work into your repository, but how do your changes get back out? Well, your Git repository is as good as any other repository, so you could just ask people to git pull from you the same way you git pulled from them. This is fine as far as Git's concerned, but what if you have a slow Internet connection, or you are behind a firewall, or you like to amend your commits before letting people see them? Most people get around this by having two repositories: a private repository they work on, and a public repository for people to pull from. Some people prefer to share one public repository between the whole team, which is basically the same as having one central SVN repository.
+We saw in the previous section that you can pull other people's work into your repository, but how do your changes get back out? Well, your Git repository is as good as any other repository, so you could just ask people to git pull from you the same way you git pulled from them.
 
-So how do you get your work onto your public repository? Well, it's the opposite of git pull, so you git push! Of course, git-svn is different as usual: git svn dcommit.
+This is fine as far as Git's concerned, but what if you have a slow Internet connection, or you are behind a firewall, or you like to amend your commits before letting people see them? Most people get around this by having two repositories: a private repository they work on, and a public repository for people to pull from.
 
-Public repositories are generally accessible over SSH or HTTP. SSH is more secure, and it's highly recommended to put your SSH key into an SSH agent (such as ssh-agent or PuTTY's pageant) so you don't have to type it in all the time.
+So how do you get your work onto your public repository? Well, it's the opposite of ``git pull``, so you ``git push``!
 
-If you need to create your own public repository, you should read the section on public repositories in the Git User's Manual. It's worth emphasising that the manual will get you to make a bare repository - this is effectively just a .git directory with no files checked out. Bare repositories save space and remove the temptation to work directly on repositories that get pushed to (what would you expect to happen if someone pushed changes into a branch while you're working on it?).
+When you have your project at a point that you want to share, you have to push it upstream. The command for this is simple::
 
-Finally, some projects hardly bother with public repositories at all - they just e-mail their commits to each other! In fact development for Git itself is done largely by people sending commits to the mailing list. You can create patches with git format-patch and apply them with git am. To maintain a set of patches, you can use StGIT (see the StGIT Crash Course for details). 
+	git push [REMOTE-NAME] [BRANCH-NAME]
+
+If you want to push your master branch to your origin server, then you can run this to push your work back up to the server::
+
+	git push origin master
+
+This command works only if you cloned from a server to which you have write access and if nobody has pushed in the meantime. If you and someone else clone at the same time and they push upstream and then you push upstream, your push will rightly be rejected. You’ll have to pull down their work first and incorporate it into yours before you’ll be allowed to push.
+
+Working with submodules
+-----------------------
+
+Git submodules allows you to attach or include an external repository inside another repository at a specific path. It basically permits to handle various "subprojects" inside one big project. For example, Aguilas has two subprojects inside: the `Google code Wiki <http://code.google.com/p/aguilas/w/list>`_ (``documentation/googlewiki``) and the `GitHub Wiki <https://github.com/HuntingBears/aguilas/wiki>`_ (``documentation/githubwiki``), which both update through the command ``make gen-wiki`` on the main project.
+
+There are four main functions you will need to understand in order to work with Git submodules. In order, you will need to know how to add, make use of, remove, and update submodules.
+
+Adding Submodules to a Git Repository
++++++++++++++++++++++++++++++++++++++
+
+Adding a submodule to a git repository is actually quite simple. For example, let's suppose we want to add support for another (fictionary) wiki: the mediawiki format wiki, on the ``documentation/mediawiki`` folder. You can do so with the following command::
+
+	git submodule add git@github.com:mediawiki/wiki.git documentation/mediawiki
+
+There are three main parts to this command:
+
+	+ **git submodule add**:  This simply tells Git that we are adding a submodule. This syntax will always remain the same.
+	+ **git@github.com:mediawiki/wiki.git**:  This is the external repository that is to be added as a submodule. The exact syntax will vary depending on the setup of the Git repository you are connecting to. You need to ensure that you have the ability to clone the given repository.
+	+ **documentation/mediawiki**:  This is the path where the submodule repository will be added to the main repository.
+
+If you make ``git status``, you will notice how the supplied path was created and added to the changes to be committed. In addition, a new file called ``.gitmodules`` was created. This new file contains the details we supplied about the new submodule. Out of curiosity, if you check out the contents of that new file::
+
+	cat .gitmodules
+
+::
+
+	[submodule "documentation/mediawiki"]
+	path = documentation/mediawiki
+	url = git@github.com:mediawiki/wiki.git
+
+Being able to modify this file later will come in handy later.
+
+All that is left to do now is to commit the changes and then push the commit to a remote system if necessary.
+
+Using Submodules
+++++++++++++++++
+
+Having submodules in a repository is great and all, but if you look inside, all you will have is an empty folder rather than the actual contents of the submodule's repository. In order to fill in the submodule's path with the files from the external repository, you must first initialize the submodules and then update them.
+
+First, you need to initialize the submodule(s). You can do that with the following command on the root folder of the main project::
+
+	git submodule init
+
+Then you need to run the update in order to pull down the files:
+
+	git submodule update
+
+Looking in the ``documentation/mediawiki`` directory now shows a nice listing of the needed files.
+
+Removing Submodules
++++++++++++++++++++
+
+What happens if we need to remove a submodule? Maybe I made a mistake. It could also be that the design of the project has changed, and the submodules need to change with it. Unfortunately, Git does not have a built in way to remove submodules. we have to do it manually.
+
+Sticking with the example, we'll remove the ``documentation/mediawiki`` module from Aguilas. All the instructions will be run from the working directory of the Aguilas repository. In order, we need to do the following:
+
++ **Remove the submodule's entry in the .gitmodules file**: Open it up in vim, or your favorite text editor, and remove the three lines relevant to the submodule being removed. In this case, these lines will be removed::
+
+	[submodule "documentation/mediawiki"]
+	path = documentation/mediawiki
+	url = git@github.com:mediawiki/wiki.git
+
++ **Remove the submodule's entry in the .git/config file**: Open it up in vim, or your favorite text editor, and remove the two lines relevant to the submodule being removed. In this case, these lines will be removed::
+
+	[submodule "documentation/mediawiki"]
+	url = git@github.com:mediawiki/wiki.git
+
++ **Remove the path created for the submodule**: Run the following command to finish removing the submodule::
+
+	git rm --cached documentation/mediawiki
+
+Updating Submodules
++++++++++++++++++++
+
+Unfortunately, like removing submodules, Git does not make it clear how to update a submodule to a later commit. Fortunately though, it's not that tough.
+
+Initialize the repository's submodules by running ``git submodule init`` followed by ``git submodule update``::
+
+	git submodule init
+	git submodule update
+
+Change into the submodule's directory. In this example, ``documentation/mediawiki``::
+
+	cd documentation/mediawiki
+
+The submodule repositories added by ``git submodule update`` are "headless". This means that they aren't on a current branch.To fix this, we simply need to switch to a branch. In this example, that would be the development branch::
+
+	git checkout development
+
+Next, we simply need to update the repository to ensure that we have the latest updates::
+
+	git pull
+
+Now switch back to the root working directory of the repository::
+
+	cd ../..
+
+Everything is now ready to be committed and pushed back in. If you run ``git status``, you'll notice that the path to the submodule is listed as modified. This is what you should expect to see. Simply add the path to be committed and do a commit. When you do the commit, the index will update the commit string for the submodule.
+
+	git add .
+	git commit -a
+
