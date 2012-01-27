@@ -23,17 +23,7 @@ AGUILAS is a centralized registration system that allows users to create and man
    :numbered:
 
 
-   cheatgit.rest
-   contributing.rest
-   dependencies.rest
-   development.rest
-   git.rest
-   help.rest
-   installing.rest
-   patches.rest
-   pullrequest.rest
-   sourcecode.rest
-   translating.rest
+   contents.rest
 
 
 :)
