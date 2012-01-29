@@ -1,3 +1,10 @@
+DEVELOPMENT RELEASE v1.0.1+20120129135542 (01/29/12)
+    Finishing Documentation
+    Organizing Makefile
+    Improving and finishing Maintainer Scripts
+    Reestructuring REST sources to one file
+    
+
 DEVELOPMENT RELEASE v1.0.1+20120125152220 (01/25/12)
     Updating HTML documentation
     Writing more documentation on git, contributing and source code.
