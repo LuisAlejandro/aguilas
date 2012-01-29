@@ -1,12 +1,11 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#!/bin/bash
 #
 # ====================================================================
 # PACKAGE: aguilas
-# FILE: tools/googlecode-wiki.py
-# DESCRIPTION:	Converts all REST sources in documentation/rest/ to
-#		Google Code Wiki format using the wikir module.
-# USAGE: ./tools/googlecode-wiki.py
+# FILE: tools/maint/l10n-chmsgid-global.sh
+# DESCRIPTION:  Changes each MSGID string from all sources and POT
+#		template if the user provides an alternative.
+# USAGE: ./tools/maint/l10n-chmsgid-global.sh
 # COPYRIGHT:
 # (C) 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
 # LICENCE: GPL3
@@ -27,23 +26,33 @@
 #
 # CODE IS POETRY
 
-import os
-import fnmatch
-from wikir import publish_string
+ROOTDIR="$( pwd )"
+POT="${ROOTDIR}/locale/pot/aguilas/messages.pot"
+TMP="$( tempfile )"
+FILES=$( find ../.. -name *.php )
 
-files = os.listdir('documentation/rest/')
+cp ${POT} ${TMP}
 
-for rstpath in files:
-    rstpath = 'documentation/rest/'+rstpath
-    rstfilename = os.path.basename(rstpath)
-    if os.path.isfile(rstpath) and fnmatch.fnmatch(rstpath, '*.rest'):
-        rstfile = open(rstpath, 'r')
-        rstcontent = rstfile.read()
-        print 'Converting: '+rstpath
-        wikicontent = publish_string(rstcontent)
-        wikipath = 'documentation/googlewiki/'+rstfilename.split('.')[0]+'.wiki'
-        wikifile = open(wikipath, 'w')
-        wikiput = wikifile.write(wikicontent)
-        wikifile.close()
-        rstfile.close()
+LINEID=$( cat ${TMP} | grep -n 'msgid "' | grep -v 'msgid ""' | awk -F: '{print $1}' )
 
+for ID in ${LINEID}; do
+	SENTENCE=$( sed -n ${ID}p ${TMP} | sed 's/msgid //g;s/"//g' )
+
+	read -p "Previous: \"${SENTENCE}\"; New = "
+
+	NEW='msgid "'${REPLY}'"'
+        OLD='msgid "'${SENTENCE}'"'
+
+	if [ "${NEW}" != 'msgid ""' ]; then
+		sed -i "s|${OLD}|${NEW}|g" ${TMP}
+		for FILE in ${FILES}; do
+			sed -i "s|_(\"${OLD}\")|_(\"${NEW}\")|g" ${FILE}
+		done
+	fi
+done
+
+cp ${TMP} ${POT}
+
+echo
+echo "FINISHED!"
+echo

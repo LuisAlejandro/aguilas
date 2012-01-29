@@ -1,12 +1,10 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#!/bin/bash
 #
 # ====================================================================
 # PACKAGE: aguilas
-# FILE: tools/googlecode-wiki.py
-# DESCRIPTION:	Converts all REST sources in documentation/rest/ to
-#		Google Code Wiki format using the wikir module.
-# USAGE: ./tools/googlecode-wiki.py
+# FILE: tools/maint/mysql-debugging.sh
+# DESCRIPTION:  Prints debugging information for a MYSQL server
+# USAGE: ./mysql-debugging.sh [ADMIN] [PASS] [HOST]
 # COPYRIGHT:
 # (C) 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
 # LICENCE: GPL3
@@ -27,23 +25,13 @@
 #
 # CODE IS POETRY
 
-import os
-import fnmatch
-from wikir import publish_string
+TMP="$( tempfile )"
+MYSQLADMIN="${1}"
+MYSQLPASS="${2}"
+MYSQLHOST="${3}"
 
-files = os.listdir('documentation/rest/')
+mysqlreport --user ${MYSQLADMIN} --password ${MYSQLPASS} --host ${MYSQLHOST} | tee ${TMP}
 
-for rstpath in files:
-    rstpath = 'documentation/rest/'+rstpath
-    rstfilename = os.path.basename(rstpath)
-    if os.path.isfile(rstpath) and fnmatch.fnmatch(rstpath, '*.rest'):
-        rstfile = open(rstpath, 'r')
-        rstcontent = rstfile.read()
-        print 'Converting: '+rstpath
-        wikicontent = publish_string(rstcontent)
-        wikipath = 'documentation/googlewiki/'+rstfilename.split('.')[0]+'.wiki'
-        wikifile = open(wikipath, 'w')
-        wikiput = wikifile.write(wikicontent)
-        wikifile.close()
-        rstfile.close()
-
+echo
+echo "Log saved at ${TMP}"
+echo

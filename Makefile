@@ -83,7 +83,7 @@ gen-doc: gen-wiki gen-html gen-man
 gen-predoc: clean-predoc
 
 	@echo "Preprocessing documentation ..."
-	@$(BASH) tools/predoc.sh
+	@$(BASH) tools/predoc.sh build
 
 gen-wiki: check-buildep gen-predoc clean-wiki
 
@@ -237,7 +237,7 @@ clean-all: clean-img clean-mo clean-html clean-wiki clean-man clean-conf clean-p
 clean-predoc:
 
 	@echo "Cleaning preprocessed documentation files ..."
-	@$(BASH) tools/clean-predoc.sh
+	@$(BASH) tools/predoc.sh clean
 	@rm -rf documentation/rest/index.rest
 
 clean-img:

@@ -20,12 +20,8 @@ Aguilas is a centralized registration system that allows users to create and man
 
 The following topics will certainly help you to know more about Aguilas:
 
-.. toctree::
-   :maxdepth: 5
-   :numbered:
 
-
-   contents.rest
+[[contents]]
 
 
 :)

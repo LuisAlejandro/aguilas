@@ -1,16 +1,215 @@
+.. LINK LIST
+.. _Google Mail: http://gmail.com
+.. _Google Code: https://code.google.com/p/aguilas
+.. _GitHub: https://github.com/HuntingBears/aguilas
+.. _Gitorious: https://gitorious.org/huntingbears/aguilas 
+.. _Aguilas download page: http://code.google.com/p/aguilas/downloads/list
+.. _Aguilas IRC Channel: irc://irc.freenode.net/aguilas
+.. _Aguilas Mailing List: http://groups.google.com/group/aguilas-list
+.. _Ticket Tracker: https://github.com/HuntingBears/aguilas/issues
+.. _open an account:
+.. _Signup at GitHub: https://github.com/signup/free
+.. _open a new ticket:
+.. _New Issue Form: https://github.com/HuntingBears/aguilas/issues/new
+.. _Gist: https://gist.github.com/
+.. _New public Gist: https://gist.github.com/gists/new
+.. _Sphinx Documentation System: http://sphinx.pocoo.org
+.. _reStructuredText basics: http://docutils.sourceforge.net/docs/user/rst/quickref.html
+.. _Aguilas Project Page:
+.. _Transifex: https://www.transifex.net/projects/p/aguilas/
+.. _Signup at Transifex: https://www.transifex.net/plans/signup/free/
+.. _Translation Teams Page: https://www.transifex.net/projects/p/aguilas/teams/
+.. _get hacking:
+.. _Aguilas Repository Page:
+.. _fork a project: https://github.com/HuntingBears/aguilas/ 
+.. _fork: http://help.github.com/fork-a-repo
+.. _pull request: http://help.github.com/send-pull-requests/
+.. _provide your SSH key: http://help.github.com/linux-set-up-git/
+.. _graphical summary: http://zrusin.blogspot.com/2007/09/git-cheat-sheet.html
+.. _Google Code Wiki: http://code.google.com/p/aguilas/w/list
+.. _GitHub Wiki: https://github.com/HuntingBears/aguilas/wiki
+
+.. _installation methods:
+
 Installation Methods
 ====================
 
-You can install Aguilas in various ways, depending on your requirements. Here you will find all the supported installation methods. In any case, you will need to `install software dependencies`_ before you can actually install Aguilas.
+You can install Aguilas in various ways, depending on your requirements. Here you will find all the supported installation methods. Generally, the best and easier way to install Aguilas on Debian based distributions is to use a Debian package, see more on `installing from a debian package`_. In any case, you will need to read `installing software dependencies`_ before you can actually install Aguilas.
 
-Using the Makefile
-------------------
+.. _installing software dependencies:
 
-#. Download the source tarball from `aguilas download page <http://code.google.com/p/aguilas/downloads/list>`_. Select the version of your preference, usually the last one will be more complete.
+Installing software dependencies
+--------------------------------
 
-   You can also clone the code directly from the "release" (stable) branch of the git repository (if you do, you don't need to decompress the source after)::
+Aguilas requires the installation of certain software applications so that specific funcionality is available to it's internal processes. As of this documentation, we will be covering the installation of these dependencies on *Debian based distributions* like Ubuntu, Canaima, Linux Mint and Debian (of course). If you use another type of GNU/Linux distribution (or Windows), you might need to investigate which packages or executables you need to install in order to satisfy these dependencies. In any case, you can always take a look at `getting help`_.
 
-	git clone --branch release https://github.com/HuntingBears/aguilas.git
+Basically, You will need:
+
++ A web server like Apache, Lighttpd or Nginx.
++ A Mail Transport Agent (MTA) like Exim, Pastfix or Sendmail.
++ PHP 5 or higher (with LDAP, MYSQL and CLI support).
++ Imagemagick image conversion utility with SVG support.
++ Python with Sphinx and Docutils support.
++ Icoutils.
++ Gettext.
++ Bash.
++ Make.
+
+Optionally, you will have to install an LDAP and a MYSQL server depending on where is located the computer you are going to use as a server. If you are going to use a local computer as a server (e.g. your personal computer), then you will have to install and configure both on that computer. If you are going to use a remote computer as a server (e.g. a shared hosting server), then you will have to install and configure LDAP and MYSQL on that remote machine.
+
+If you are impatient, you can install all dependencies at once with the following command::
+
+	aptitude install apache2 php5 php5-gd php5-ldap php5-mcrypt php5-mysql php5-suhosin php5-cli make bash gettext python-sphinx icoutils python-docutils libmagickcore-extra imagemagick apache2 mysql-server slapd postfix
+
+If you want to keep reading, We will now explain how to install and configure each one of these dependencies. If you already have them installed in your working environment, please ignore it and proceed to the next step.
+
+.. _installing apache and php:
+
+Installing Apache and PHP
++++++++++++++++++++++++++
+
+Run the following command as superuser::
+
+	aptitude install apache2 php5 php5-gd php5-ldap php5-mcrypt php5-mysql php5-suhosin php5-cli
+
+.. _installing the mysql server:
+
+Installing the MYSQL server
++++++++++++++++++++++++++++
+
+Run the following command as superuser::
+
+	aptitude install mysql-server
+
+You will be asked for a password for the "root" account for MYSQL. Remember this password as you will be asked for it later.
+
+.. _installing the ldap server:
+
+Installing the LDAP server
++++++++++++++++++++++++++++
+
+Run the following command as superuser::
+
+	aptitude install slapd
+
+You will be asked for a password for the Distinguished Name (DN) of the administrator entry for LDAP; normally, the admin DN is *cn=admin,dc=nodomain*. Remember this password as you will be asked for it later.
+
+.. _installing python modules and other applications:
+
+Installing Python modules and other applications
+++++++++++++++++++++++++++++++++++++++++++++++++
+
+Run the following command as superuser::
+
+	aptitude install make bash gettext python-sphinx icoutils python-docutils libmagickcore-extra imagemagick
+
+.. _installing the mta:
+
+Installing the Mail Transport Agent
++++++++++++++++++++++++++++++++++++
+
+If you already have a working Mail Transport Agent, please proceed to the next step.
+
+Normally you can install a *Mail Transport Agent (MTA)* like ``postfix`` or ``exim`` to serve as a mail server on any computer connected to the internet with a public IP address assigned. However, due to the problem of SPAM, many Internet mail servers block mail from unauthenticated dynamic IP addresses, which are common in domestic connections.
+
+One of the existing solutions is to install a mail server to not send mail directly to the destination server, but to use `Google Mail`_ (or other SMTP) to retransmit the messages.
+
+To send email using GMail SMTP server (``smtp.gmail.com``) the connection must be encrypted with TLS. To do this we need three elements:
+
++ A certificate authenticated by a valid certificate authority for *GMail*.
++ A *GMail* email account.
++ A local MTA.
+
+Installation
+~~~~~~~~~~~~
+
+First install *Postfix*, a fairly complete and configurable MTA. Open a root terminal and type the following command::
+
+	aptitude install postfix
+
+Note: Postfix conflicts with Exim, but it is safe to remove exim in favor of postfix.
+
+The process will make us some questions:
+
++ *Configuration type*: you will select "Web Site".
++ *Mail System Name*: you will enter the domain name of your local mail server. For this case, we can enter the same domain name of your PC. e.g. "OKComputer". 
+
+Done, the installation is completed.
+
+Configuration
+~~~~~~~~~~~~~
+
+Then we have to edit the file ``/etc/postfix/main.cf`` and add the following lines at the end of the file::
+
+	relayhost = [smtp.gmail.com]:587
+	smtp_sasl_auth_enable = yes
+	smtp_sasl_password_maps = hash:/etc/postfix/sasl/passwd
+	smtp_sasl_security_options = noanonymous
+	smtp_use_tls = yes
+	smtp_tls_CAfile = /etc/postfix/cacert.pem 
+
+There we are telling ``postfix`` to use ``relayhost`` to connect to the Gmail server, which uses ``smtp_sasl_password_maps`` to extract the SASL data connection and use ``smtp_tls_CAfile`` as a certificate for the secure connection.
+
+We must create the file ``/etc/postfix/sasl/passwd`` with the following contents::
+
+	[smtp.gmail.com]:587    [ACCOUNT]@gmail.com:[PASSWORD]
+
+Where ``[ACCOUNT]`` is the gmail account name and ``[PASSWORD]``, the password of ``[ACCOUNT]``.
+
+For example, we could use this command::
+
+	echo "[smtp.gmail.com]:587    luis@gmail.com:123456" > /etc/postfix/sasl/passwd 
+
+Then we must restrict it's access::
+
+	chmod 600 /etc/postfix/sasl/passwd 
+
+Next, we must transform the file into a postfix indexed hash file with the command::
+
+	postmap /etc/postfix/sasl/passwd
+
+That will create the file ``/etc/postfix/sasl/passwd.db``
+
+Certification
+~~~~~~~~~~~~~
+
+We have to install the SSL certificates of certification authorities to perform this step. We can install them like this::
+
+	aptitude install ca-certificates
+
+To add the *Equifax certificate authority* (which certifies emails from Gmail) to authorized certificates that use postfix, run the following command in a root console::
+
+	cat /etc/ssl/certs/Equifax_Secure_CA.pem > /etc/postfix/cacert.pem 
+
+Testing
+~~~~~~~
+
+Finally, restart postfix to apply the changes, as follows::
+
+	/etc/init.d/postfix restart
+
+You can check it's proper functioning by opening two consoles. In one execute the following command to monitor it's behavior (as root)::
+
+	tail -f /var/log/mail.log 
+
+And in the other send a mail::
+
+	echo "This is a test mail" | mail test@gmail.com 
+
+If you did things right, on the other console you should see something like this::
+
+	Dec 18 18:33:40 OKComputer postfix/pickup[10945]: 75D4A243BD: uid=0 from=
+	Dec 18 18:33:40 OKComputer postfix/cleanup[10951]: 75D4A243BD: message-id=
+	Dec 18 18:33:40 OKComputer postfix/qmgr[10946]: 75D4A243BD: from=, size=403, nrcpt=1 (queue active)
+	Dec 18 18:33:44 OKComputer postfix/smtp[10953]: 75D4A243BD: to=<test@gmail.com>, relay=smtp.gmail.com[74.125.93.109]:587, delay=3.7, delays=0.15/0.14/1.8/1.6, dsn=2.0.0, status=sent (250 2.0.0 OK 1324249500 eb5sm36008464qab.10)
+	Dec 18 18:33:44 OKComputer postfix/qmgr[10946]: 75D4A243BD: removed
+
+.. _installing the stable version:
+
+Installing the stable version
+-----------------------------
+
+#. Download the source tarball from `Aguilas download page`_. Select the version of your preference, usually the last one will be more complete.
 
 #. Decompress the source with your favorite program::
 
@@ -26,21 +225,21 @@ Using the Makefile
 
 
   You will be promted with the following questions to configure AGUILAS:
-    + Name of the Application
-    + The person or group responsible for managing the application
-    + The e-mail address that will appear as sender in all operation e-mails to registered users
-    + The e-mail address you wish to use for sending error reports
-    + The language that you wish to see in your application
-    + The theme applied to the application
-    + The public address of the aplication
-    + IP or Domain of the server where the MYSQL database is located
-    + MYSQL database name
-    + User with permissions to read and create tables on the database
-    + Password for the MYSQL user
-    + IP or Domain of the server where the LDAP service is located
-    + DN with read-write priviledges on the LDAP server
-    + Password for the writer DN
-    + Base DN to perform searches and include new users
+    + Name of the Application, e.g.: Aguilas for Debian User Management
+    + The person or group responsible for managing the application, e.g.: Debian Admins
+    + The e-mail address that will appear as sender in all operation e-mails to registered users, e.g.: aguilas@debian.org
+    + The e-mail address you wish to use for sending error reports, e.g.: admins@debian.org
+    + The language that you wish to see in your application (must be available on *locale* folder), e.g.: en_US
+    + The theme applied to the application (must be available in *themes* folder), e.g.: debian
+    + The public address of the aplication, e.g.: aguilas.debian.org
+    + IP or Domain of the server where the MYSQL database is located, e.g.: localhost
+    + MYSQL database name (will be created if it doesn't exist), e.g.: aguilas
+    + User with permissions to read and create tables on the database, e.g.: root
+    + Password for the MYSQL user, e.g.: 123456
+    + IP or Domain of the server where the LDAP service is located, e.g.: localhost
+    + DN with read-write priviledges on the LDAP server, e.g.: cn=admin,dc=nodomain
+    + Password for the writer DN, e.g.: 123456
+    + Base DN to perform searches and include new users, e.g.: dc=nodomain
 
   If you need to modify these parameters, you can always edit ``/usr/share/aguilas/setup/config.php`` after installation.
 
@@ -48,49 +247,51 @@ Using the Makefile
 
 	sudo make install
 
-Using a package from a distribution
------------------------------------
+.. _installing from a debian package:
 
+Installing the stable version using a debian package
+----------------------------------------------------
 
+Aguilas is distributed in various Debian derivatives. Grab the latest debian package from the `Aguilas download page`_ and install it with the following command::
 
-Installing the development version
-----------------------------------
+	dpkg -i [PATH/TO/FILE]
 
+.. _downloading the development version:
 
-.. _installing software dependencies:
+Download the development version
+--------------------------------
 
-Installing Dependencies
------------------------
+If you want to download the development version of Aguilas, which has the lastest changes and new features, you can follow the procedure described below. You should install this version if you are planning to contribute in Aguilas development or try some hard-on new features. You should also know that a development version is likely to be unstable or even broken, as it is being developed actively.
 
-You will need:
+That being said:
 
-* A web server like Apache, Lighttpd or Nginx.
-* PHP 5 or higher (with LDAP, MYSQL and CLI support)
-* Imagemagick image conversion utility with libmagickcore-extra support
-* Sphinx and Docutils python libraries
-* Icoutils
-* gettext
-* bash
-* make
+#. Start cloning the development branch from Aguilas (you will need to install the ``git-core`` package first)::
 
-You will need also a working Mail Transport Agent (MTA) to allow AGUILAS to send mail on requests. If you are having problems configuring your MTA, you can read `this tutorial <http://www.huntingbears.com.ve/en/utilizando-postfix-para-enviar-correos-a-traves-de-gmail.html>`_ to use Gmail as a MTA.
+	git clone --branch development https://github.com/HuntingBears/aguilas.git
 
-Optionally, you will have to install an LDAP and a MYSQL server, but it all depends on your setup. If you are going to connect to a remote server, then you don't have to install them. If you are going to use your own computer as a server, then you will have to install and configure the following software:
+#. Access the folder that has just been created::
 
-* mysql-server
-* slapd
+	cd aguilas
 
-Pay attention to the admin password for both applications, as you will be needing them when configuring AGUILAS.
+#. Initialize the git submodules (*githubwiki* and *googlewiki*)::
 
-If you are running Debian, Ubuntu or Canaima, you may install the following packages to satisfy all dependencies (including installing LDAP and MYSQL servers locally)::
+	git submodule init
 
-        aptitude install make bash gettext python-sphinx icoutils python-docutils libmagickcore-extra imagemagick php5 php5-ldap php5-mysql php5-cli php5-mcrypt apache2 mysql-server slapd
+#. Pull the latest code from the submodules::
 
-Development
-===========
+	git submodule update
 
-Help
-====
+That's it. You have the latest code from Aguilas. If you want to install it, you can follow the same procedure described at `installing the stable version`_.
+
+.. _getting help:
+
+Getting help
+============
+
+If you are in trouble, you can alwas ask for help here:
+
++ `Aguilas IRC Channel`_.
++ `Aguilas Mailing List`_.
 
 .. _contributing to aguilas:
 
@@ -99,9 +300,9 @@ Contributing to Aguilas
 
 We're passionate about helping Aguilas users make the jump to contributing members of the community, so there are many ways you can help aguilas development:
 
-+ Report bugs and request features in our `ticket tracker <https://github.com/HuntingBears/aguilas/issues>`_. Please read `reporting bugs`_, below, for the details on how you sould do this.
++ Report bugs and request features in our `ticket tracker`_. Please read `reporting bugs`_, below, for the details on how you sould do this.
 + Submit patches or pull requests for new and/or fixed behavior. Please read `submitting patches`_, below, for details on how to submit a patch. If you're looking for an easy way to start contributing to Aguilas have a look at the easy-pickings tickets.
-+ Join the `Aguilas mailing list <http://groups.google.com/group/aguilas-list>`_ and share your ideas for how to improve Aguilas. We're always open to suggestions.
++ Join the `Aguilas Mailing List`_ and share your ideas for how to improve Aguilas. We're always open to suggestions.
 + Improve Aguilas documentation by reading, writing new articles or correcting existing ones. You can find more information on how we do this at `writing documentation`_.
 + Translate Aguilas into your local language, by joining our translation team. Read more on `translating aguilas`_.
 
@@ -114,17 +315,16 @@ Reporting bugs
 
 Well-written bug reports are incredibly helpful. However, there's a certain amount of overhead involved in working with any bug tracking system so your help in keeping our ticket tracker as useful as possible is appreciated. In particular:
 
-+ Check that someone hasn't already filed the bug or feature request by searching in the `ticket tracker <https://github.com/HuntingBears/aguilas/issues>`_.
-+ If you are not sure if what you are seeing is a bug, ask first on the `mailing list <http://groups.google.com/group/aguilas-list>`_ or the `#aguilas IRC channel <irc://irc.freenode.net/aguilas>`_.
-+ Don't use the ticket system to ask support questions. Use the `aguilas mailing list <http://groups.google.com/group/aguilas-list>`_ or the `#aguilas IRC channel <irc://irc.freenode.net/aguilas>`_ for that.
-+ Read the `frequently asked questions`_ to see if your issue might be a well-known question.
++ Check that someone hasn't already filed the bug or feature request by searching in the `Ticket Tracker`_.
++ If you are not sure if what you are seeing is a bug, ask first on the `Aguilas Mailing List`_ or the `Aguilas IRC Channel`_.
++ Don't use the ticket system to ask support questions. Use the `Aguilas Mailing List`_ or the `Aguilas IRC Channel`_ for that.
 + Write complete, reproducible, specific bug reports. You must include a clear, concise description of the problem, and a set of instructions for replicating it. Add as much debug information as you can: code snippets, test cases, error messages, screenshots, etc. A nice small test case is the best way to report a bug, as it gives us an easy way to confirm the bug quickly.
 
-First of all, `create an account on GitHub <https://github.com/signup/free>`_, is very quick and easy.
+First of all, `Signup at GitHub`_, is very quick and easy.
 
-Next, gather all the information you have about the bug you are going to report (*everything* could be useful). Go to the `new issue form <https://github.com/HuntingBears/aguilas/issues/new>`_ in our `ticket tracker <https://github.com/HuntingBears/aguilas/issues>`_ and fill in a descriptive title for the ticket and the content of the bug you are reporting.
+Next, gather all the information you have about the bug you are going to report (*everything* could be useful). Go to the `New Issue Form`_ in our `Ticket Tracker`_ and fill in a descriptive title for the ticket and the content of the bug you are reporting.
 
-If you need to attach a piece of code, error or patch, please use `the gist <https://gist.github.com/>`_. The gist is a special service from github to add pieces of code in a tiny repository publicly available. Add the code you need in a `public gist <https://gist.github.com/gists/new>`_, and then paste the resultant link in the bug report.
+If you need to attach a piece of code, error or patch, please use the Gist_. The gist is a special service from github to add pieces of code in a tiny repository publicly available. Add the code you need in a `New public Gist`_, and then paste the resultant link in the bug report.
 
 .. _submitting patches:
 
@@ -133,11 +333,11 @@ Submitting patches
 
 A patch is a structured file that consists of a list of differences between one set of files and another. All additions and deletions of **contributed code** to Aguilas are done through patches.
 
-A patch can be sent to Aguilas developers through the `ticket tracker <https://github.com/HuntingBears/aguilas/issues>`_ and `the gist <https://gist.github.com/>`_. Add the patch code in a `public gist <https://gist.github.com/gists/new>`_ and then `open a new ticket <https://github.com/HuntingBears/aguilas/issues/new>`_ describing the patch you made. Remember to add the link to the public gist so it can be referenced and checked out by developers. Also, you will need to `open an account <https://github.com/signup/free>`_ on github to do all of this.
+A patch can be sent to Aguilas developers through the `Ticket Tracker`_ and the Gist_. Add the patch code in a `New public Gist`_ and then `open a new ticket`_ describing the patch you made. Remember to add the link to the public gist so it can be referenced and checked out by developers. Also, you will need to `open an account`_ on github to do all of this.
 
-If you want to know more about creating, applying and submitting patches, read our `patches guide`_.
+If you want to know more about creating, applying and submitting patches, see `working with patches`_.
 
-If you want to install the development version of Aguilas to start reviewing, understanding and improving the code, read the "*Installing the development version*" section on the `installation guide`_.
+If you want to install the development version of Aguilas to start reviewing, understanding and improving the code, read `downloading the development version`_.
 
 You might also want to start `understanding aguilas source code`_.
 
@@ -148,13 +348,15 @@ Submitting pull requests
 
 A pull request is a special service from code repositories that enable developers to manage contribution activities more easily. It allows a developer to clone or fork a repository of code, make changes to it and then request the addition of this modified code to the upstream developers of Aguilas.
 
-If you want to contribute to Aguilas using this method, you will have to fork Aguilas on github, download the forked code to your computer, make the changes you need to make in order to correct the bug or implement a new feature, push your changes and finally request your code to be pulled to Aguilas main repository. You will need to `open an account <https://github.com/signup/free>`_ on github to do all of this.
+If you want to contribute to Aguilas using this method, you will have to fork Aguilas on github, download the forked code to your computer, make the changes you need to make in order to correct the bug or implement a new feature, push your changes and finally request your code to be pulled to Aguilas main repository. You will need to `open an account`_ on github to do all of this.
 
 If you want detailed information how to make a pull request, please read the `pull request guide`_.
 
-You might also want to start `understanding Aguilas's source code <sourcecode.rest>`_.
+You might also want to start reading `understanding aguilas source code`_.
 
-There's also more information about `working with git <git.rest>`_ available.
+There's also more information about `working with git`_ available.
+
+.. _writing documentation:
 
 Writing documentation
 ---------------------
@@ -166,46 +368,370 @@ Documentation changes generally come in two forms:
 + **General improvements:** typo corrections, error fixes and better explanations through clearer writing and more examples.
 + **New features:** documentation of features that have been added to the core since the last release.
 
-Aguilas's documentation uses the `Sphinx documentation system <http://sphinx.pocoo.org>`_, which in turn is based on reStructuredText (reST or RST). The basic idea is that lightly-formatted plain-text documentation is transformed into HTML, WIKI, and MAN pages with minor efforts. We always modify the documentation in the development stage/branch.
+Aguilas's documentation uses the `Sphinx Documentation System`_, which in turn is based on reStructuredText (reST or RST). The basic idea is that lightly-formatted plain-text documentation is transformed into HTML, WIKI, and MAN pages with minor efforts. We always modify the documentation in the development stage/branch.
 
-If you want to obtain a copy of the development version of Aguilas to start reviewing, understanding and improving documentation, read the `installation guide <installing.rest>`_ on the "*Installing the development version*" section.
+If you want to obtain a copy of the development version of Aguilas to start reviewing, understanding and improving documentation, read `downloading the development version`_.
 
-To actually build the documentation locally, you'll currently need to install sphinx and other applications. Read the document on `build dependencies <dependencies.rest>`_ for the complete list of dependencies and how to install them.
+To actually build the documentation locally, you'll currently need to install sphinx and other applications. Read the document on `installing software dependencies`_ for the complete list of dependencies and how to install them.
 
 Once downloaded, you will find the documentation sources (rest format) on ``documentation/rest``. You will also notice other folders (described below). These are autogenerated documentation formats, **DO NOT** edit them directly, edit the sources instead.
 
-``documentation/html``:  Contains the generated HTML using sphinx. These HTML pages are updated using the rest sources located at ``documentation/rest`` through the command ``make gen-html``.
-``documentation/man``:  Contains the rest source to produce a manual page (man) through the ``rst2man`` application. ``make gen-man`` on the top level directory will produce the file ``documentation/man/aguilas.1``.
-``documentation/githubwiki``:  This directory contains a git submodule for the GitHub Wiki. The generated wiki format is copied here and uploaded to GitHub to keep all documentation in sync. ``make gen-wiki`` will update the files on this folder using the rest sources on ``documentation/rest``.
-``documentation/googlewiki``:  This directory also contains a git submodule but for the Google Code Wiki. The generated wiki format is copied here and uploaded to Google Code to keep all documentation in sync. ``make gen-wiki`` will update the files on this folder using the rest sources on ``documentation/rest``.
++ ``documentation/html``:  Contains the generated HTML using sphinx. These HTML pages are updated using the rest sources located at ``documentation/rest`` through the command ``make gen-html``.
++ ``documentation/man``:  Contains the rest source to produce a manual page (man) through the ``rst2man`` application. ``make gen-man`` on the top level directory will produce the file ``documentation/man/aguilas.1``.
++ ``documentation/githubwiki``:  This directory contains a git submodule for the GitHub Wiki. The generated wiki format is copied here and uploaded to GitHub to keep all documentation in sync. ``make gen-wiki`` will update the files on this folder using the rest sources on ``documentation/rest``.
++ ``documentation/googlewiki``:  This directory also contains a git submodule but for the Google Code Wiki. The generated wiki format is copied here and uploaded to Google Code to keep all documentation in sync. ``make gen-wiki`` will update the files on this folder using the rest sources on ``documentation/rest``.
 
 If you want to modify or add new documents, feel free to inspect the ``documentation/rest`` folder. If you add a new rest file in the sources folder, don't worry about it not being referenced on the index or the table of contents, this is done automatically at build time.
 
-To get started contributing, you'll want to read the `reStructuredText basics <http://docutils.sourceforge.net/docs/user/rst/quickref.html>`_. After that, you'll want to read `understanding the Aguilas source code <sourcecode.rest>`_ to know how and where you are going to make the changes.
+To get started contributing, you'll want to read the `reStructuredText basics`_. After that, you'll want to read `understanding aguilas source code`_ to know how and where you are going to make the changes.
 
 If you want your contributions to be added on official documentation, please read `submitting patches`_ and `submitting pull requests`_.
+
+.. _translating aguilas:
 
 Translating Aguilas
 -------------------
 
-Translations are contributed by Aguilas users everywhere. The translation work is coordinated at Transifex and the mailing lists.
+Translations are contributed by Aguilas users everywhere. The translation work is coordinated at Transifex_ and the `Aguilas Mailing List`_.
 
-If you find an incorrect translation or want to discuss specific translations, go to the translation team page for that language. If you would like to help out with translating or add a language that isn’t yet translated, here’s what to do:
+If you find an incorrect translation or want to discuss specific translations, go to the translation team page for that language. If you would like to help out with translating or add a language that isn't yet translated, here's what to do:
 
-#. Join the Aguilas mailing list and introduce yourself, explaining what you want to do.
+#. Join the `Aguilas Mailing List`_ and introduce yourself, explaining what you want to do.
 
-#. Signup at Transifex and visit the Aguilas project page.
+#. `Signup at Transifex`_ and visit the `Aguilas Project Page`_.
 
-#. On the translation teams page, choose the language team you want to work with, or – in case the language team doesn’t exist yet – request a new team by clicking on the “Request a new team” button and select the appropriate language.
+#. On the `Translation Teams Page`_, choose the language team you want to work with, or – in case the language team doesn't exist yet – request a new team by clicking on the "Request a new team" button and select the appropriate language.
 
-    Then, click the “Join this Team” button to become a member of this team. Every team has at least one coordinator who is responsible to review your membership request. You can of course also contact the team coordinator to clarify procedural problems and handle the actual translation process.
+Then, click the "Join this Team" button to become a member of this team. Every team has at least one coordinator who is responsible to review your membership request. You can of course also contact the team coordinator to clarify procedural problems and handle the actual translation process.
 
-    Once you are a member of a team choose the translation resource you want to update on the team page. For example the “core” resource refers to the translation catalogue that contains all non-contrib translations. Each of the contrib apps also have a resource (prefixed with “contrib”).
+Once you are a member of a team choose the translation resource you want to update on the team page. For example the "core" resource refers to the main translation catalogue.
+
+Generating POT templates
+++++++++++++++++++++++++
+
+A POT template is a file which contains all translatable strings contained in the PHP sources; these strings are translated in a PO file for each language. You will need Aguilas POT template (which is located in ``locale/pot/aguilas/messages.pot``) to update the PO file of the language you are working on.
+
+To update or generate Aguilas POT template, enter the following command in the root folder of Aguilas development version (see `downloading the development version`_)::
+
+	make gen-pot
+
+Updating PO files from POT template
++++++++++++++++++++++++++++++++++++
+
+To update all PO files in the *locale* folder using Aguilas POT template (``locale/pot/aguilas/messages.pot``), enter the following command in the root folder of Aguilas development version (see `downloading the development version`_)::
+
+	make gen-po
+
+Generate a new PO with Aguilas translation assistant
+++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+If you want to create a new PO for a new language, you can use the Aguilas translation assistant which is located at ``tools/maint/l10n-newpo.sh``. Enter the following command, passing as argument a valid l10n code according to the language you wish to translate to::
+
+	./tools/maint/l10n-newpo.sh [L10N CODE]
+
+For example::
+
+	./tools/maint/l10n-newpo.sh en_GB
+
+Basically, it will copy the POT template to the proper folder, depending on what l10n code you specify; then, it will start asking you to translate each string to generate the new PO.
+
+.. _pull request guide:
+
+Contributing code through pull requests
+=======================================
+
+The Aguilas development model follows the standard *GitHub model* for contributions: `fork a project`_, clone it to your local computer, hack on it there, push your finished changes to your forked repository, and send a *Pull Request* back upstream to the project. If you're already familiar with this process, then congratulations! You're done here, `get hacking`_!
+
+The GitHub guide for the standard fork_/clone/push/`pull request`_ model of contributing is a great place to start, but we'll cover all the basics here, too, as well as various contribution scenarios (fixing bugs, adding features, updating documentation, etc.).
+
+.. _getting started:
+
+Getting Started
+---------------
+
+First, you'll need a GitHub account. If you don't have one, go and `Signup at GitHub`_. After that, you'll need to `provide your SSH key`_ to authorize your computer to make pushes.
+
+You need to download and install Git and then configure it. You might want to take a look at our `working with git`_.
+
+Now you're ready to grab the Aguilas repository. Hit the `Aguilas Repository Page`_ and click the *Fork* button. This will create a complete copy of the Aguilas repository within your GitHub account.
+
+Now you've got your own fork. This is your own personal copy of the Aguilas source tree, and you can do anything you want with it. Next, let's clone your fork of Aguilas. Just switch to a directory where you want to keep your repository and do this, replacing ``[USERNAME]`` with your actual GitHub username::
+
+	git clone --branch development git@github.com:[USERNAME]/aguilas.git
+
+Congratulations! You now have your very own Aguilas repository. Now you'll want to make sure that you can always pull down changes from the upstream canonical repository. To do so, do this::
+
+	cd aguilas
+	git remote add upstream git://github.com/HuntingBears/aguilas.git 
+	git pull upstream development
+
+Anytime you want to merge in the latest changes from the upstream repository, just issue the command ``git pull upstream development`` to pull the latest from the development branch of the upstream repository and you'll be good to go. You should also push it up to your fork::
+
+	git push origin development
+
+.. _submitting the pull request:
+
+Submitting the pull request
+---------------------------
+
+After you have pushed the changes to your fork, go to your fork page on github and hit the *pull request* button. After that, you are presented with a preview page where you can enter a title and optional description, see exactly what commits will be included when the pull request is sent, and also see who the pull request will be sent to (Aguilas upstream repository).
+
+More information on `pull request`_.
+
+.. _working with patches:
+
+Working with patches
+====================
+
+.. _whats a patch:
+
+What's a patch?
+---------------
+
+A patch is a structured file that consists of a list of differences between one set of files and another. All additions and deletions of **contributed code** to Aguilas are done through patches.
+
+**Patches make development easier**, because instead of supplying a replacement file, possibly consisting of thousands of lines of code, the patch includes only the exact changes that were made. In effect, a patch is a list of all the changes made to a file, which can be used to re-create those changes on another copy of that file.
+
+Here is an example of what a patch looks like::
+
+	diff --git a/token_example/token_example.tokens.inc b/token_example/token_example.tokens.inc
+	index 585dcea..b06d9d6 100644
+	--- a/token_example/token_example.tokens.inc
+	+++ b/token_example/token_example.tokens.inc
+	@@ -13,8 +13,8 @@ function token_example_token_info() {
+	   // second is the user's default text format, which is itself a 'format' token
+	   // type so it can be used directly.
+	
+	-  // This is a comment in the original file. It will be removed when the patch is applied.
+	+ // And here are lines we added when we were editing the file.
+	+ // They will replace the line above when the patch is applied.
+	$info['types']['format'] = array(
+	     'name' => t('Text formats'),
+	     'description' => t('Tokens related to text formats.'),
+
+At the top it says which file is being affected. Changes to several files can be included in one patch. Lines added are shown with a '+', lines removed are shown with a '-', lines changed are shown as the old line being removed and the new one added.
+
+Patch files are good because they only show the changed parts of the file. This has two advantages: it's easy to understand the change; and if other parts of the same files change between the patch being made an being used, there is no problem, the patch will still apply.
+
+Note that there are several slight variants of the patch format. The example above is a 'unified' patch, which is now the standard.
+
+If you want to create a patch, the first thing you will have to do is to download the latest snapshot (development stage) of Aguilas to your computer. Use git to clone the project and obtain a copy from github (you only need to do this once)::
+
+        git clone --branch development https://github.com/HuntingBears/aguilas.git
+
+Aguilas code is also mirrored on `Google Code`_ and Gitorious_.
+
+If you already have cloned the code, then pull the latest changes down to ensure you're working with the latest snapshot::
+
+	git checkout development
+	git pull origin development
+
+.. _creating a patch using diff:
+
+Creating a patch using diff
+---------------------------
+
+#. Make a copy of the entire folder that contains the code::
+
+	cp -r aguilas/ aguilas.changes/
+
+#. Start making the necessary changes to implement the feature or bug correction you have in mind::
+
+	cd aguilas.changes/
+	# Edit file in your favorite editor:
+	<your_editor_here> [filename]
+	# Make more edits in other files and save theme:
+	<your_editor_here> [other-filename]
+
+#. To create the patch "my_changes.patch", issue the following command at folder containing the original and the changed folder::
+
+	diff -Naur aguilas.orig aguilas.changes > my_changes.patch
+
+.. _creating a patch using git:
+
+Creating a patch using git
+--------------------------
+
+#. Create and checkout a *local branch* (with the name of your preference) for the issue/feature/bug you're working on::
+
+	git branch [NEWBRANCH]
+	git checkout [NEWBRANCH]
+
+#. Make whatever changes are necessary to complete what you're doing::
+
+	# Edit file in your favorite editor:
+	<your_editor_here> [filename]
+	# After making your edits and saving the file, confirm your changes are present:
+	git status
+	# Make more edits in other files and save theme:
+	<your_editor_here> [other-filename]
+	# Confirm changes again:
+	git status
+
+#. When you are satisfied, make one single commit with all your changes using the -a option::
+
+	git commit -a -m "Descriptive message here."
+
+#. Now, create your patch file. The following command will output the difference between the current branch (where your changes are) and the *development* branch that you cloned from the code repository to a file named "my_changes.patch"::
+
+	git diff development > my_changes.patch 
+
+.. _submitting the patch:
+
+Submitting the patch
+--------------------
+
+A patch can be sent to Aguilas developers through the `Ticket Tracker`_ and the Gist_. Add the patch code in a `New Public Gist`_ and then `open a new ticket`_ describing the patch you made. Remember to add the link to the public gist so it can be referenced and checked out by developers. Also, you will need to `open an account`_ on github to do all of this.
+
+.. _development cycle:
+
+Describing Aguilas's develpment cycle
+=====================================
+
+Aguilas's stable release version numbering works as follows:
+
++ Stable versions are numbered in the form ``X.Y.Z``.
+	* **X** is the major version number, which is only incremented for major changes to Aguilas.
+	* **Y** is the minor version number, which is incremented for large yet backwards compatible changes.
+	* **Z** is the micro version number, which is incremented for bug and security fixes.
+	* In some cases, we'll make alpha, beta, or release candidate releases. These are of the form ``X.Y.Z+{alpha,beta,rc}N``, which means the Nth alpha, beta or release candidate of version X.Y.Z.
+
++ Development versions are numbered in the form ``X.Y.Z+[YEAR][MONTH][DAY][HOUR][MINUTE][SECONDS]``.
+
+.. _understanding aguilas source code:
+
+Understanding Aguilas's Source Code
+===================================
+
+When deploying Aguilas into a real production environment, you will almost always want to use an official packaged release (see `installation methods`_) of Aguilas. However, if you'd like to try out in-development code from an upcoming release or contribute to the development of Aguilas, you'll need to obtain a copy from Aguilas's source code repository. This document covers the way the code repository is laid out and how to work with and find things in it.
+
+.. _aguilas repositories:
+
+Aguilas repositories
+--------------------
+
+The Aguilas development model uses *git* (see `working with git`_) to track changes to the code over time and manage collaboration. You'll need a copy of the git client program on your computer, and you'll want to familiarize yourself with the basics of `working with git`_.
+
+The Aguilas git repository is located online at various places, all syncronized with the last code from the authors. We host Aguilas on `Google Code`_, GitHub_, and Gitorious_. In terms of source code, all of them have the same information, so, you can choose the one you like the most. We use GitHub for tracking bugs and other project management stuff. If you want to contribute to Aguilas, please read our `contributing to aguilas`_ section.
+
+.. _branches and tags:
+
+Branches and Tags
+-----------------
+
+Inside the repository you will find that Aguilas development is divided into four branches: development, release, master and debian.
+
+``development branch``
+	This is where the development is actually made, and because of that, the code provided here might be experimental, unstable or broken. If you want to contribute to Aguilas (see `contributing to aguilas`_), *this is where you should start*.
+
+``release branch``
+	This is where stable releases are obtained from. After a development cycle is finished, all changes are merged here, plus other *tactical movements* (see `development cycle`_).
+
+``debian branch``
+	**Only** contains the debian folder that generates the Aguilas Debian package.
+
+``master branch``
+	The purpose of the master branch is to serve as a *merging hub* in the process of making the Aguilas debian package. This branch receives it content from the ``release`` (upstream code) and ``debian`` (debian folder) branches before building the debian package.
+
+Tags in aguilas are done each time a new (development or release) version is made. The difference is that development (*snapshots*) versions are numbered in the form of ``X.Y.Z+[YEAR][MONTH][DAY][HOUR][MINUTE][SECONDS]`` and stable (*releases*) versions are numbered in the form ``X.Y.Z``.
+
+.. _common tasks and procedures:
+
+Common tasks and procedures
+---------------------------
+
+Every common task for the Aguilas maintainers, developers, contributors and users are automatized using the Makefile. Here they are listed:
+
+.. _checking dependencies:
+
+Checking dependencies
++++++++++++++++++++++
+
++ ``make check-buildep``:  Checking build tasks dependencies. It allows the user/developer to check if all software dependencies requiered to build documentation, themes, tranlations and cofigurations are met.
++ ``make check-maintdep``:  Checking maintainer tasks dependencies. It allows the developer to check if all software dependencies requiered to exacute common maintainer (update PO and POT files, make a snapshot, make a release) tasks are met.
++ ``make check-instdep``:  Checking install dependencies. It allows the user to check if all software dependencies for installation are met.
+
+.. _maintainer tasks:
+
+Maintainer tasks
+++++++++++++++++
+
++ ``make gen-po``:  Generates PO files from POT templates. It generates the PO files for every language listed in the ``locale`` folder, using the POT file located at ``locale/pot/aguilas/messages.pot``.
++ ``make gen-pot``:  Generates POT template from PHP sources. It generates the POT template from every traslatable string in the PHP sources passed through.
++ ``make snapshot``:  Generates a development snapshot. 
++ ``make release``:  Generates a stable realease.
+
+.. _build tasks:
+
+Build tasks
++++++++++++
+
++ ``make gen-img``:  Generates PNG images and ICO icons for each theme, based on the SVG sources.  
++ ``make gen-mo``:  Generates MO files from PO sources.
++ ``make gen-man``:  Generates the MAN page from REST sources.
++ ``make gen-wiki``:  Generates the wiki pages for Google Code Wiki and GitHub Wiki from REST sources
++ ``make gen-html``:  Generates HTML pages from REST sources.
++ ``make gen-doc``:  Executes gen-man, gen-wiki and gen-html.
++ ``make gen-conf``:  Asks the user for the configuration data and builds config.php.
+
+.. _clean tasks:
+
+Clean tasks
++++++++++++
+
++ ``make clean-img``:  Cleans generated PNG and ICO files.
++ ``make clean-mo``:  Cleans generated MO files.
++ ``make clean-html``:  Cleans generated HTML files.
++ ``make clean-wiki``:  Cleans generated WIKI files.
++ ``make clean-man``:  Cleans generated MAN
++ ``make clean-conf``:  Cleans generated config.php.
+
+.. _installs tasks:
+
+Install tasks
++++++++++++++
+
++ ``make copy``:  Copies application files to it's destination.
++ ``make config``:  Configures Aguilas using the generated config.php.
++ ``make install``:  Does ``make copy`` and ``make config``.
++ ``make uninstall``:  Deconfigures and removes Aguilas data.
++ ``make reinstall``:  Does ``make uninstall`` and ``make install``.
+
+.. _files and directories:
+
+Files and Directories
+----------------------
+
+Aguilas directory structure is distributed in the following form::
+
+	.
+	├── [PHP FILES]
+	├── [PHP FILES]
+	├── [...]
+	├── [DOCUMENTATION FOLDER]
+	│   ├── [GITHUBWIKI FOLDER]
+	│   ├── [GOOGLEWIKI FOLDER]
+	│   ├── [HTML FOLDER]
+	│   ├── [MAN FOLDER]
+	│   └── [REST FOLDER]
+	├── [EVENTS FOLDER]
+	├── [LIBRARIES FOLDER]
+	├── [LOCALE FOLDER]
+	│   ├── [LOCALE A]
+	│   ├── [LOCALE B]
+	│   ├── [...]
+	│   └── [POT FOLDER]
+	├── [SETUP FOLDER]
+	├── [THEMES FOLDER]
+	├── [TOOLS FOLDER]
+	└── Makefile
+
+.. _working with git:
 
 Working with git
 ================
 
-Git is a free and open source, distributed version control system designed to handle everything from small to very large projects with speed and efficiency. If you want a list of common commands, see the `cheatsheet <cheatgit.rest>`_ or it's `graphical summary <http://zrusin.blogspot.com/2007/09/git-cheat-sheet.html>`_.
+Git is a free and open source, distributed version control system designed to handle everything from small to very large projects with speed and efficiency. If you want a list of common commands, see the `git cheat sheet`_ or it's `graphical summary`_.
 
 For those too impatient to read, here's what you need to work with someone else's Git project::
 
@@ -217,12 +743,16 @@ For those too impatient to read, here's what you need to work with someone else'
 
 Before running any command the first time, it's recommended that you skim through its manual page. Many of the commands have very useful and interesting features (that we won't list here) and sometimes there are some extra notes you might want to know. You can also get help on any Git command by doing ``git [COMMAND] -h`` or ``git help [COMMAND]``.
 
+.. _installing git:
+
 Installing git
 --------------
 
-If you are using Debian, Ubuntu, Canaima or other Debian derivative, you can install git easily with the following command (was an administrator user)::
+If you are using Debian, Ubuntu, Canaima or other Debian derivative, you can install git easily with the following command (as an administrator user)::
 
 	aptitude install git-core
+
+.. _configuring git:
 
 Configuring git
 ---------------
@@ -239,6 +769,8 @@ Git includes your real name and your e-mail address on every commit you make. Yo
 
 	# list all configuration options
 	git config -l
+
+.. _create new repository:
 
 Creating a New Repository
 -------------------------
@@ -264,6 +796,8 @@ If you are downloading someone else's git project, you should do this instead::
 	git clone [URL]
 
 Whichever the case, now your tree is officially tracked by git. One nice thing to note - no matter how many subdirectories your project has, there's only one .git directory that contains all the version control information. Do some random changes to your tree now - poke around in a few files or something.
+
+.. _making changes:
 
 Making Changes
 --------------
@@ -312,8 +846,10 @@ Second, Git commits are private by default - they aren't pushed to any central s
 
 A few words about the commit message: it is customary to have a short commit summary as the first line of the message, because many tools just show the first line of the message. You can specify the commit message using the -m parameter (extra -m arguments will create extra paragraphs in the commit message).
 
-Browsing
---------
+.. _browsing the repository:
+
+Browsing the repository
+-----------------------
 
 Now that we have committed some stuff, you might want to review your history::
 
@@ -331,6 +867,8 @@ You can see the contents of a file, the listing of a directory or a commit with:
 	git show -s [COMMIT]
 	git show [COMMIT]
 
+.. _branching and tagging:
+
 Branching and Tagging
 ---------------------
 
@@ -341,7 +879,7 @@ Git marks checkpoints in history by applying a label to a commit. You can create
 
 The first command creates a branch, the second command switches your tree to the new branch. You can pass an extra argument to ``git branch`` to base your new branch on a different revision than the latest one.
 
-Running ``git branch`` without arguments lists your branches. The * in the output marks the current branch::
+Running ``git branch`` without arguments lists your branches. The \* in the output marks the current branch::
 
 	git branch
 
@@ -358,8 +896,10 @@ To list tags and to show a tag message::
 	git tag -l
 	git show [NAME]
 
-Merging
--------
+.. _merging branches:
+
+Merging branches
+----------------
 
 Let's suppose you are on branch "release", and you want to bring the changes you've made on "development" branch, then you'll have to do::
 
@@ -391,6 +931,8 @@ Aside from merging, sometimes you want to just pluck one commit out of a differe
 
 	git cherry-pick [COMMIT]
 
+.. _working with remote servers:
+
 Working with remote servers
 ---------------------------
 
@@ -416,6 +958,8 @@ Now, how do you download new changes from a remote repository? You fetch them wi
 
 A pull is technically a bit different to a rebase. As always, see the relevant manual pages for details.
 
+.. _sharing your work:
+
 Sharing your Work
 -----------------
 
@@ -435,12 +979,16 @@ If you want to push your master branch to your origin server, then you can run t
 
 This command works only if you cloned from a server to which you have write access and if nobody has pushed in the meantime. If you and someone else clone at the same time and they push upstream and then you push upstream, your push will rightly be rejected. You’ll have to pull down their work first and incorporate it into yours before you’ll be allowed to push.
 
+.. _working with submodules:
+
 Working with submodules
 -----------------------
 
-Git submodules allows you to attach or include an external repository inside another repository at a specific path. It basically permits to handle various "subprojects" inside one big project. For example, Aguilas has two subprojects inside: the `Google code Wiki <http://code.google.com/p/aguilas/w/list>`_ (``documentation/googlewiki``) and the `GitHub Wiki <https://github.com/HuntingBears/aguilas/wiki>`_ (``documentation/githubwiki``), which both update through the command ``make gen-wiki`` on the main project.
+Git submodules allows you to attach or include an external repository inside another repository at a specific path. It basically permits to handle various "subprojects" inside one big project. For example, Aguilas has two subprojects inside: the `Google code Wiki`_ (``documentation/googlewiki``) and the `GitHub Wiki`_ (``documentation/githubwiki``), which both update through the command ``make gen-wiki`` on the main project.
 
 There are four main functions you will need to understand in order to work with Git submodules. In order, you will need to know how to add, make use of, remove, and update submodules.
+
+.. _adding submodules to a git repository:
 
 Adding Submodules to a Git Repository
 +++++++++++++++++++++++++++++++++++++
@@ -451,9 +999,9 @@ Adding a submodule to a git repository is actually quite simple. For example, le
 
 There are three main parts to this command:
 
-	+ **git submodule add**:  This simply tells Git that we are adding a submodule. This syntax will always remain the same.
-	+ **git@github.com:mediawiki/wiki.git**:  This is the external repository that is to be added as a submodule. The exact syntax will vary depending on the setup of the Git repository you are connecting to. You need to ensure that you have the ability to clone the given repository.
-	+ **documentation/mediawiki**:  This is the path where the submodule repository will be added to the main repository.
++ **git submodule add**:  This simply tells Git that we are adding a submodule. This syntax will always remain the same.
++ **git@github.com:mediawiki/wiki.git**:  This is the external repository that is to be added as a submodule. The exact syntax will vary depending on the setup of the Git repository you are connecting to. You need to ensure that you have the ability to clone the given repository.
++ **documentation/mediawiki**:  This is the path where the submodule repository will be added to the main repository.
 
 If you make ``git status``, you will notice how the supplied path was created and added to the changes to be committed. In addition, a new file called ``.gitmodules`` was created. This new file contains the details we supplied about the new submodule. Out of curiosity, if you check out the contents of that new file::
 
@@ -469,6 +1017,8 @@ Being able to modify this file later will come in handy later.
 
 All that is left to do now is to commit the changes and then push the commit to a remote system if necessary.
 
+.. _using submodules:
+
 Using Submodules
 ++++++++++++++++
 
@@ -478,11 +1028,13 @@ First, you need to initialize the submodule(s). You can do that with the followi
 
 	git submodule init
 
-Then you need to run the update in order to pull down the files:
+Then you need to run the update in order to pull down the files::
 
 	git submodule update
 
 Looking in the ``documentation/mediawiki`` directory now shows a nice listing of the needed files.
+
+.. _removing submodules:
 
 Removing Submodules
 +++++++++++++++++++
@@ -505,6 +1057,8 @@ Sticking with the example, we'll remove the ``documentation/mediawiki`` module f
 + **Remove the path created for the submodule**: Run the following command to finish removing the submodule::
 
 	git rm --cached documentation/mediawiki
+
+.. _updating submodules:
 
 Updating Submodules
 +++++++++++++++++++
@@ -532,234 +1086,13 @@ Now switch back to the root working directory of the repository::
 
 	cd ../..
 
-Everything is now ready to be committed and pushed back in. If you run ``git status``, you'll notice that the path to the submodule is listed as modified. This is what you should expect to see. Simply add the path to be committed and do a commit. When you do the commit, the index will update the commit string for the submodule.
+Everything is now ready to be committed and pushed back in. If you run ``git status``, you'll notice that the path to the submodule is listed as modified. This is what you should expect to see. Simply add the path to be committed and do a commit. When you do the commit, the index will update the commit string for the submodule::
 
 	git add .
 	git commit -a
 
-.. _:
+.. _git cheat sheet:
 
-Working with patches
-====================
-
-What's a patch?
----------------
-
-A patch is a structured file that consists of a list of differences between one set of files and another. All additions and deletions of **contributed code** to Aguilas are done through patches.
-
-**Patches make development easier**, because instead of supplying a replacement file, possibly consisting of thousands of lines of code, the patch includes only the exact changes that were made. In effect, a patch is a list of all the changes made to a file, which can be used to re-create those changes on another copy of that file.
-
-Here is an example of what a patch looks like::
-
-	diff --git a/token_example/token_example.tokens.inc b/token_example/token_example.tokens.inc
-	index 585dcea..b06d9d6 100644
-	--- a/token_example/token_example.tokens.inc
-	+++ b/token_example/token_example.tokens.inc
-	@@ -13,8 +13,8 @@ function token_example_token_info() {
-	   // second is the user's default text format, which is itself a 'format' token
-	   // type so it can be used directly.
-	
-	-  // This is a comment in the original file. It will be removed when the patch is applied.
-	+ // And here are lines we added when we were editing the file.
-	+ // They will replace the line above when the patch is applied.
-	$info['types']['format'] = array(
-	     'name' => t('Text formats'),
-	     'description' => t('Tokens related to text formats.'),
-
-At the top it says which file is being affected. Changes to several files can be included in one patch. Lines added are shown with a '+', lines removed are shown with a '-', lines changed are shown as the old line being removed and the new one added.
-
-Patch files are good because they only show the changed parts of the file. This has two advantages: it's easy to understand the change; and if other parts of the same files change between the patch being made an being used, there is no problem, the patch will still apply.
-
-Note that there are several slight variants of the patch format. The example above is a 'unified' patch, which is now the standard.
-
-If you want to create a patch, the first thing you will have to do is to download the latest snapshot (development stage) of Aguilas to your computer. Use `git <git.rest>`_ to clone the project and obtain a copy from github (you only need to do this once)::
-
-        git clone --branch development https://github.com/HuntingBears/aguilas.git
-
-Aguilas code is also mirrored on `Google Code <https://code.google.com/p/aguilas/>`_ and `Gitorious <https://git.gitorious.org/huntingbears/aguilas.git>`_.
-
-If you already have cloned the code, then pull the latest changes down to ensure you're working with the latest snapshot::
-
-	git checkout development
-	git pull origin development
-
-Creating a patch using diff
----------------------------
-
-#. Make a copy of the entire folder that contains the code::
-
-	cp -r aguilas/ aguilas.changes/
-
-#. Start making the necessary changes to implement the feature or bug correction you have in mind::
-
-	cd aguilas.changes/
-	# Edit file in your favorite editor:
-	<your_editor_here> [filename]
-	# Make more edits in other files and save theme:
-	<your_editor_here> [other-filename]
-
-#. To create the patch "my_changes.patch", issue the following command at folder containing the original and the changed folder::
-
-	diff -Naur aguilas.orig aguilas.changes > my_changes.patch
-
-Creating a patch using git
---------------------------
-
-#. Create and checkout a *local branch* (with the name of your preference) for the issue/feature/bug you're working on::
-
-	git branch [NEWBRANCH]
-	git checkout [NEWBRANCH]
-
-#. Make whatever changes are necessary to complete what you're doing::
-
-	# Edit file in your favorite editor:
-	<your_editor_here> [filename]
-	# After making your edits and saving the file, confirm your changes are present:
-	git status
-	# Make more edits in other files and save theme:
-	<your_editor_here> [other-filename]
-	# Confirm changes again:
-	git status
-
-#. When you are satisfied, make one single commit with all your changes using the -a option::
-
-	git commit -a -m "Descriptive message here."
-
-#. Now, create your patch file. The following command will output the difference between the current branch (where your changes are) and the *development* branch that you cloned from the code repository to a file named "my_changes.patch"::
-
-	git diff development > my_changes.patch 
-
-Submitting the patch
---------------------
-
-.. _pull request guide:
-.. _submitting pull requests:
-
-Contributing code through pull requests
-=======================================
-
-The `Aguilas development model <development.rest>`_ follows the standard *GitHub model* for contributions: `fork a project <https://github.com/HuntingBears/aguilas/>`_, clone it to your local computer, hack on it there, push your finished changes to your forked repository, and send a *Pull Request* back upstream to the project. If you're already familiar with this process, then congratulations! You're done here, `get hacking <https://github.com/HuntingBears/aguilas/>`_!
-
-The GitHub guide for the standard `fork <http://help.github.com/fork-a-repo>`_/clone/push/`pull request <http://help.github.com/send-pull-requests/>`_ model of contributing is a great place to start, but we'll cover all the basics here, too, as well as various contribution scenarios (fixing bugs, adding features, updating documentation, etc.).
-
-Getting Started
----------------
-
-First, you'll need a GitHub account. If you don't have one, go and `sign up now <https://github.com/signup/free>`_. After that, you'll need to `provide your SSH key <http://help.github.com/linux-set-up-git/>`_ to authorize your computer to make pushes.
-
-You need to download and install Git and then configure it. You might want to take a look at our `Working with git guide <git.rest>`_.
-
-Now you're ready to grab the Aguilas repository. Hit the `Aguilas repository page <https://github.com/HuntingBears/aguilas/>`_ and click the *Fork* button. This will create a complete copy of the Aguilas repository within your GitHub account.
-
-Now you've got your own fork. This is your own personal copy of the Aguilas source tree, and you can do anything you want with it. Next, let's clone your fork of Aguilas. Just switch to a directory where you want to keep your repository and do this, replacing ``[USERNAME]`` with your actual GitHub username::
-
-	git clone --branch development git@github.com:[USERNAME]/aguilas.git
-
-Congratulations! You now have your very own Aguilas repository. Now you'll want to make sure that you can always pull down changes from the upstream canonical repository. To do so, do this::
-
-	cd aguilas
-	git remote add upstream git://github.com/HuntingBears/aguilas.git 
-	git pull upstream development
-
-Anytime you want to merge in the latest changes from the upstream repository, just issue the command ``git pull upstream development`` to pull the latest from the development branch of the upstream repository and you'll be good to go. You should also push it up to your fork::
-
-	git push origin development
-
-Submitting the pull request
----------------------------
-
-After you have pushed the changes to your fork, go to your fork page on github and hit the *pull request* button. After that, you are presented with a preview page where you can enter a title and optional description, see exactly what commits will be included when the pull request is sent, and also see who the pull request will be sent to (Aguilas upstream repository).
-
-More information on `pull requests <http://help.github.com/send-pull-requests/>`_.
-Understanding Aguilas's Source Code
-===================================
-
-When deploying Aguilas into a real production environment, you will almost always want to use an `official packaged release <installing.rest>`_ of Aguilas. However, if you'd like to try out in-development code from an upcoming release or contribute to the development of Aguilas, you'll need to obtain a copy from Aguilas's source code repository. This document covers the way the code repository is laid out and how to work with and find things in it.
-
-Repositories
-------------
-
-The Aguilas development model uses `git <git.rest>`_ to track changes to the code over time and manage collaboration. You'll need a copy of the git client program on your computer, and you'll want to familiarize yourself with the basics of `how git works <git.rest>`_.
-
-The Aguilas git repository is located online at various places, all syncronized with the last code from the authors. We host Aguilas on `Google Code <http://code.google.com/p/aguilas/>`_, `Github <https://github.com/HuntingBears/aguilas/>`_, and `Gitorious <https://gitorious.org/huntingbears/aguilas>`_. In terms of source code, all of them have the same information, so, you can choose the one you like the most. We use GitHub for tracking bugs and other project management stuff. If you want to contribute to Aguilas, please read our "`Contributing to Aguilas <contributing.rest>`_" page.
-
-Branches and Tags
------------------
-
-Inside the repository you will find that Aguilas development is divided into four branches: development, release, master and debian.
-
-``development branch``
-	This is where the development is actually made, and because of that, the code provided here might be experimental, unstable or broken. If you want to `contribute <contributing.rest>`_ to Aguilas, *this is where you should start*.
-
-``release branch``
-	This is where stable releases are obtained from. After a development cycle is finished, all changes are merged here, plus other *`tactical movements <development.rest>`_*.
-
-``debian branch``
-	**Only** contains the debian folder that generates the Aguilas Debian package.
-
-``master branch``
-	The purpose of the master branch is to serve as a *merging hub* in the process of making the Aguilas debian package. This branch receives it content from the ``release`` (upstream code) and ``debian`` (debian folder) branches before building the debian package.
-
-Tags in aguilas are done each time a new (development or release) version is made. The difference is that development (*snapshots*) versions are numbered in the form of ``X.Y.Z+[YEAR][MONTH][DAY][HOUR][MINUTE][SECONDS]`` and stable (*releases*) versions are numbered in the form ``X.Y.Z``.
-
-Common tasks and procedures
----------------------------
-
-Every common task for the Aguilas maintainers, developers, contributors and users are automatized using the Makefile. Here they are listed:
-
-Checking dependencies
-+++++++++++++++++++++
-
-+ ``make check-buildep``:  Checking build tasks dependencies. It allows the user/developer to check if all software dependencies requiered to build documentation, themes, tranlations and cofigurations are met.
-+ ``make check-maintdep``:  Checking maintainer tasks dependencies. It allows the developer to check if all software dependencies requiered to exacute common maintainer (update PO and POT files, make a snapshot, make a release) tasks are met.
-+ ``make check-instdep``:  Checking install dependencies. It allows the user to check if all software dependencies for installation are met.
-
-Maintainer tasks
-++++++++++++++++
-
-+ ``make gen-po``:  Generates PO files from POT templates. It generates the PO files for every language listed in the ``locale`` folder, using the POT file located at ``locale/pot/aguilas/messages.pot``.
-+ ``make gen-pot``:  Generates POT template from PHP sources. It generates the POT template from every traslatable string in the PHP sources passed through.
-+ ``make snapshot``:  Generates a development snapshot. 
-+ ``make release``:  
-
-Build tasks
-+++++++++++
-
-Clean tasks
-+++++++++++
-
-Install tasks
-+++++++++++++
-
-Files and Directories
-----------------------
-
-Aguilas directory structure is distributed in the following form::
-
-	.
-	├── [PHP FILES]
-	├── [PHP FILES]
-	├── [...]
-	├── [DOCUMENTATION FOLDER]
-	│   ├── [GITHUBWIKI FOLDER]
-	│   ├── [GOOGLEWIKI FOLDER]
-	│   ├── [HTML FOLDER]
-	│   ├── [MAN FOLDER]
-	│   └── [REST FOLDER]
-	├── [EVENTS FOLDER]
-	├── [LIBRARIES FOLDER]
-	├── [LOCALE FOLDER]
-	│   ├── [LOCALE A]
-	│   ├── [LOCALE B]
-	│   ├── [...]
-	│   └── [POT FOLDER]
-	├── [SETUP FOLDER]
-	├── [THEMES FOLDER]
-	├── [TOOLS FOLDER]
-	└── Makefile
-
-We 
-s
 Git Cheat Sheet
 ===============
 
