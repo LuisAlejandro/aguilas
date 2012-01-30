@@ -85,6 +85,15 @@ if [ ! -f $CONFFILE ] || [ $( md5sum $CONFFILE | awk '{print $1}' ) = "FIXME" ];
 		db_set aguilas/ldap-server ${LDAPSERVER} || true
 	fi
 
+	if [ -z ${ENC} ]; then
+		db_input medium aguilas/ldap-enc || true
+		db_go || true
+		db_get aguilas/ldap-enc || true
+		ENC="${RET}"
+	else
+		db_set aguilas/ldap-enc ${ENC} || true
+	fi
+
 	if [ -z ${BASEDN} ]; then
 		db_input medium aguilas/ldap-basedn || true
 		db_go || true
