@@ -222,6 +222,7 @@ gen-pot: check-maintdep
 
 snapshot: check-maintdep gen-html gen-wiki gen-po clean
 
+	@$(MAKE) clean
 	@$(BASH) tools/snapshot.sh
 
 release: check-maintdep
