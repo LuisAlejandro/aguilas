@@ -1,0 +1,72 @@
+Template: phpldapadmin/ldap-server
+Type: string
+Default: 127.0.0.1
+_Description: LDAP server host address
+ Please enter the host name or the address of the LDAP server you want to
+ connect to.
+
+Template: phpldapadmin/ldap-tls
+Type: boolean
+Default: false
+_Description: Support for ldaps protocol
+ If your LDAP server supports TLS (Transport Security Layer), you can use
+ the ldaps protocol to connect to it.
+
+Template: phpldapadmin/ldap-basedn
+Type: string
+Default: dc=example,dc=com
+_Description: Distinguished name of the search base
+ Please enter the distinguished name of the LDAP search base. Many sites
+ use the components of their domain names for this purpose. For example,
+ the domain "example.com" would use "dc=example,dc=com" as the
+ distinguished name of the search base.
+
+Template: phpldapadmin/ldap-authtype
+Type: select
+_Choices: session, cookie, config
+Default: session
+_Description: Type of authentication
+ session : You will be prompted for a login dn and a password everytime
+           you connect to phpLDAPadmin, and a session variable on the 
+           web server will store them. It is more secure so this is the
+           default.
+ .
+ cookie :  You will be prompted for a login dn and a password everytime
+           you connect to phpLDAPadmin, and a cookie on your client will
+           store them.
+ .
+ config  : login dn and password are stored in the configuration file,
+           so you have not to specify them when you connect to 
+           phpLDAPadmin.
+
+Template: phpldapadmin/ldap-binddn
+Type: string
+Default: cn=admin,dc=example,dc=com
+_Description: Login dn for the LDAP server
+ Enter the name of the account that will be used to log in to the LDAP
+ server. If you chose a form based authentication this will be the
+ default login dn. In this case you can also leave it empty, if you do 
+ not want a default one.
+
+Template: phpldapadmin/ldap-bindpw
+Type: string
+Default: secret
+_Description: Login password for the LDAP server
+ Enter the password that will be used to log in to the LDAP server. Note:
+ the password will be stored in clear text in config.php, which is not
+ world-readable.
+
+Template: phpldapadmin/reconfigure-webserver
+Type: multiselect
+_Choices: apache, apache-ssl, apache-perl, apache2
+Default: apache, apache-ssl, apache-perl, apache2
+_Description: Web server which will be reconfigured automatically
+ phpLDAPadmin supports any web server that PHP does, but this automatic
+ configuration process only supports Apache.
+
+Template: phpldapadmin/restart-webserver
+Type: boolean
+Default: true
+_Description: Restart of your webserver(s)
+ Remember that in order to apply the changes your webserver(s) has/have to
+ be restarted. 

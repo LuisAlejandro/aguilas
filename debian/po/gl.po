@@ -1,0 +1,192 @@
+# Galician translation of phpldapadmin's debconf templates
+# This file is distributed under the same license as the phpldapadmin package.
+# Jacobo Tarrio <jtarrio@debian.org>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: phpldapadmin\n"
+"Report-Msgid-Bugs-To: kobold@debian.org\n"
+"POT-Creation-Date: 2006-07-19 09:42+0200\n"
+"PO-Revision-Date: 2008-06-02 18:30+0100\n"
+"Last-Translator: Jacobo Tarrio <jtarrio@debian.org>\n"
+"Language-Team: Galician <proxecto@trasno.net>\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: string
+#. Description
+#: ../phpldapadmin.templates:1001
+msgid "LDAP server host address"
+msgstr "Enderezo do servidor LDAP"
+
+#. Type: string
+#. Description
+#: ../phpldapadmin.templates:1001
+msgid ""
+"Please enter the host name or the address of the LDAP server you want to "
+"connect to."
+msgstr ""
+"Introduza o nome ou enderezo do servidor LDAP ao que se quere conectar."
+
+#. Type: boolean
+#. Description
+#: ../phpldapadmin.templates:2001
+msgid "Support for ldaps protocol"
+msgstr "Soporte para o protocolo ldaps"
+
+#. Type: boolean
+#. Description
+#: ../phpldapadmin.templates:2001
+msgid ""
+"If your LDAP server supports TLS (Transport Security Layer), you can use the "
+"ldaps protocol to connect to it."
+msgstr ""
+"Se o servidor LDAP soporta TLS, pode empregar o protocolo ldaps para se "
+"conectar a el."
+
+#. Type: string
+#. Description
+#: ../phpldapadmin.templates:3001
+msgid "Distinguished name of the search base"
+msgstr "Nome distinguido da base de busca"
+
+#. Type: string
+#. Description
+#: ../phpldapadmin.templates:3001
+msgid ""
+"Please enter the distinguished name of the LDAP search base. Many sites use "
+"the components of their domain names for this purpose. For example, the "
+"domain \"example.com\" would use \"dc=example,dc=com\" as the distinguished "
+"name of the search base."
+msgstr ""
+"Introduza o nome distinguido da base de busca LDAP. Moitos sitios empregan "
+"os compoñentes dos seus nomes de dominio para esta finalidade. Por exemplo, "
+"o dominio \"exemplo.com\" había empregar \"dc=exemplo,dc=com\" coma nome "
+"distinguido da base de busca."
+
+#. Type: select
+#. Choices
+#: ../phpldapadmin.templates:4001
+msgid "session, cookie, config"
+msgstr "sesión, cookie, config"
+
+#. Type: select
+#. Description
+#: ../phpldapadmin.templates:4002
+msgid "Type of authentication"
+msgstr "Tipo de autenticación"
+
+#. Type: select
+#. Description
+#: ../phpldapadmin.templates:4002
+msgid ""
+"session : You will be prompted for a login dn and a password everytime\n"
+"          you connect to phpLDAPadmin, and a session variable on the\n"
+"          web server will store them. It is more secure so this is the\n"
+"          default."
+msgstr ""
+"sesión : háselle pedir un dn de identificación e un contrasinal cada vez\n"
+"         que se conecte a phpLDAPadmin, e hanse armacenar nunha variable\n"
+"         de sesión no servidor web. É máis seguro, así que este é\n"
+"         o valor por defecto."
+
+#. Type: select
+#. Description
+#: ../phpldapadmin.templates:4002
+msgid ""
+"cookie :  You will be prompted for a login dn and a password everytime\n"
+"          you connect to phpLDAPadmin, and a cookie on your client will\n"
+"          store them."
+msgstr ""
+"cookie : háselle pedir un dn de identificación e un contrasinal cada vez\n"
+"         que se conecte a phpLDAPadmin, e hanse gardar nunha cookie\n"
+"         armacenada no seu cliente."
+
+#. Type: select
+#. Description
+#: ../phpldapadmin.templates:4002
+msgid ""
+"config  : login dn and password are stored in the configuration file,\n"
+"          so you have not to specify them when you connect to\n"
+"          phpLDAPadmin."
+msgstr ""
+"config : o dn de identificación e o contrasinal armacénanse no ficheiro\n"
+"         de configuración, para que non teña que indicalos cada vez\n"
+"         que se conecte a phpLDAPadmin."
+
+#. Type: string
+#. Description
+#: ../phpldapadmin.templates:5001
+msgid "Login dn for the LDAP server"
+msgstr "DN para se identificar ao servidor LDAP"
+
+#. Type: string
+#. Description
+#: ../phpldapadmin.templates:5001
+msgid ""
+"Enter the name of the account that will be used to log in to the LDAP "
+"server. If you chose a form based authentication this will be the default "
+"login dn. In this case you can also leave it empty, if you do  not want a "
+"default one."
+msgstr ""
+"Introduza o nome da conta que se ha empregar para se conectar ao servidor "
+"LDAP. Se emprega autenticación baseada en formularios ha ser o DN de "
+"identificación por defecto. Neste caso tamén o pode deixar baleiro se non "
+"quere ter un por defecto."
+
+#. Type: string
+#. Description
+#: ../phpldapadmin.templates:6001
+msgid "Login password for the LDAP server"
+msgstr "Contrasinal para se conectar ao servidor LDAP"
+
+#. Type: string
+#. Description
+#: ../phpldapadmin.templates:6001
+msgid ""
+"Enter the password that will be used to log in to the LDAP server. Note: the "
+"password will be stored in clear text in config.php, which is not world-"
+"readable."
+msgstr ""
+"Introduza o contrasinal que se ha empregar para se conectar ao servidor "
+"LDAP. Nota: o contrasinal hase armacenar en texto claro no ficheiro config."
+"php, que non é lexible por todo o mundo."
+
+#. Type: multiselect
+#. Choices
+#: ../phpldapadmin.templates:7001
+msgid "apache, apache-ssl, apache-perl, apache2"
+msgstr "apache, apache-ssl, apache-perl, apache2"
+
+#. Type: multiselect
+#. Description
+#: ../phpldapadmin.templates:7002
+msgid "Web server which will be reconfigured automatically"
+msgstr "Servidor(es) web que se han reconfigurar automaticamente"
+
+#. Type: multiselect
+#. Description
+#: ../phpldapadmin.templates:7002
+msgid ""
+"phpLDAPadmin supports any web server that PHP does, but this automatic "
+"configuration process only supports Apache."
+msgstr ""
+"phpLDAPadmin soporta os mesmos servidores web que PHP, pero este proceso "
+"automático de configuración só soporta Apache."
+
+#. Type: boolean
+#. Description
+#: ../phpldapadmin.templates:8001
+msgid "Restart of your webserver(s)"
+msgstr "Reinicii do(s) servidor(es) web"
+
+#. Type: boolean
+#. Description
+#: ../phpldapadmin.templates:8001
+msgid ""
+"Remember that in order to apply the changes your webserver(s) has/have to be "
+"restarted."
+msgstr ""
+"Lembre que para aplicar os cambios hai que reiniciar o(s) servidor(es) web."

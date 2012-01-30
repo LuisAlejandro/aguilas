@@ -1,0 +1,209 @@
+# translation of fr.po to French
+#
+#    Translators, if you are not familiar with the PO format, gettext
+#    documentation is worth reading, especially sections dedicated to
+#    this format, e.g. by running:
+#         info -n '(gettext)PO Files'
+#         info -n '(gettext)Header Entry'
+#
+#    Some information specific to po-debconf are available at
+#            /usr/share/doc/po-debconf/README-trans
+#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
+#
+#    Developers do not need to manually edit POT or PO files.
+#
+# Christian Perrier <bubulle@debian.org>, 2006.
+msgid ""
+msgstr ""
+"Project-Id-Version: fr\n"
+"Report-Msgid-Bugs-To: kobold@debian.org\n"
+"POT-Creation-Date: 2006-07-19 09:42+0200\n"
+"PO-Revision-Date: 2006-05-31 15:36+0200\n"
+"Last-Translator: Christian Perrier <bubulle@debian.org>\n"
+"Language-Team: French <debian-l10n-french@lists.debian.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.2\n"
+
+#. Type: string
+#. Description
+#: ../phpldapadmin.templates:1001
+msgid "LDAP server host address"
+msgstr "Adresse du serveur LDAP :"
+
+#. Type: string
+#. Description
+#: ../phpldapadmin.templates:1001
+msgid ""
+"Please enter the host name or the address of the LDAP server you want to "
+"connect to."
+msgstr ""
+"Veuillez indiquer le nom d'hôte ou l'adresse du serveur LDAP auquel vous "
+"souhaitez vous connecter."
+
+#. Type: boolean
+#. Description
+#: ../phpldapadmin.templates:2001
+msgid "Support for ldaps protocol"
+msgstr "Faut-il gérer le protocole LDAPS ?"
+
+#. Type: boolean
+#. Description
+#: ../phpldapadmin.templates:2001
+msgid ""
+"If your LDAP server supports TLS (Transport Security Layer), you can use the "
+"ldaps protocol to connect to it."
+msgstr ""
+"Si votre serveur LDAP gère la couche de sécurité de transport (TLS : "
+"« Transport Security Layer »), vous pouvez utiliser le protocole ldaps pour "
+"vous y connecter."
+
+#. Type: string
+#. Description
+#: ../phpldapadmin.templates:3001
+msgid "Distinguished name of the search base"
+msgstr "Nom distinctif de la base de recherche :"
+
+#. Type: string
+#. Description
+#: ../phpldapadmin.templates:3001
+msgid ""
+"Please enter the distinguished name of the LDAP search base. Many sites use "
+"the components of their domain names for this purpose. For example, the "
+"domain \"example.com\" would use \"dc=example,dc=com\" as the distinguished "
+"name of the search base."
+msgstr ""
+"Veuillez indiquer le nom distinctif de la base de recherche LDAP. De "
+"nombreux sites utilisent les parties de leur nom de domaine pour cela. Par "
+"exemple, le domaine « exemple.com » pourra utiliser « dc=exemple,dc=com » "
+"comme nom distinctif de la base de recherche."
+
+#. Type: select
+#. Choices
+#: ../phpldapadmin.templates:4001
+msgid "session, cookie, config"
+msgstr "session, cookie, config"
+
+#. Type: select
+#. Description
+#: ../phpldapadmin.templates:4002
+msgid "Type of authentication"
+msgstr "Type d'authentification :"
+
+#. Type: select
+#. Description
+#: ../phpldapadmin.templates:4002
+msgid ""
+"session : You will be prompted for a login dn and a password everytime\n"
+"          you connect to phpLDAPadmin, and a session variable on the\n"
+"          web server will store them. It is more secure so this is the\n"
+"          default."
+msgstr ""
+"session : un identifiant dn de connexion et un mot de passe vous seront\n"
+"          demandés à chaque connexion à phpLDAPadmin et une variable de\n"
+"          session sera utilisée pour les conserver sur le serveur web.\n"
+"          Ce choix est le plus sûr et sera donc utilisé par défaut ;"
+
+#. Type: select
+#. Description
+#: ../phpldapadmin.templates:4002
+msgid ""
+"cookie :  You will be prompted for a login dn and a password everytime\n"
+"          you connect to phpLDAPadmin, and a cookie on your client will\n"
+"          store them."
+msgstr ""
+"cookie  : un identifiant dn de connexion et un mot de passe vous\n"
+"          seront demandés à chaque connexion à phpLDAPadmin. Ils\n"
+"          seront conservés dans un cookie sur votre navigateur client ;"
+
+#. Type: select
+#. Description
+#: ../phpldapadmin.templates:4002
+msgid ""
+"config  : login dn and password are stored in the configuration file,\n"
+"          so you have not to specify them when you connect to\n"
+"          phpLDAPadmin."
+msgstr ""
+"config  : l'identifiant dn de connexion et le mot de passe seront\n"
+"          conservés dans le fichier de configuration afin de ne pas\n"
+"          avoir à les indiquer pour chaque connexion à phpLDAPadmin."
+
+#. Type: string
+#. Description
+#: ../phpldapadmin.templates:5001
+msgid "Login dn for the LDAP server"
+msgstr "Identifiant dn de connexion au serveur LDAP :"
+
+#. Type: string
+#. Description
+#: ../phpldapadmin.templates:5001
+msgid ""
+"Enter the name of the account that will be used to log in to the LDAP "
+"server. If you chose a form based authentication this will be the default "
+"login dn. In this case you can also leave it empty, if you do  not want a "
+"default one."
+msgstr ""
+"Veuillez indiquer l'identifiant que sera utilisé pour la connexion au "
+"serveur LDAP. Si vous choisissez une authentification par formulaires, cet "
+"identifiant sera alors la valeur par défaut. Vous pouvez, dans ce cas, "
+"également laisser ce champ vide afin qu'aucune valeur par défaut ne soit "
+"utilisée."
+
+#. Type: string
+#. Description
+#: ../phpldapadmin.templates:6001
+msgid "Login password for the LDAP server"
+msgstr "Mot de passe pour la connexion au serveur LDAP :"
+
+#. Type: string
+#. Description
+#: ../phpldapadmin.templates:6001
+msgid ""
+"Enter the password that will be used to log in to the LDAP server. Note: the "
+"password will be stored in clear text in config.php, which is not world-"
+"readable."
+msgstr ""
+"Veuillez indiquer le mot de passe qui sera utilisé pour la connexion au "
+"serveur LDAP. Veuillez noter que ce mot de passe sera conservé en clair dans "
+"le fichier config.php, qui ne peut pas être lu par les utilisateurs non "
+"privilégiés."
+
+#. Type: multiselect
+#. Choices
+#: ../phpldapadmin.templates:7001
+msgid "apache, apache-ssl, apache-perl, apache2"
+msgstr "Apache, Apache-ssl, Apache-perl, Apache2"
+
+#. Type: multiselect
+#. Description
+#: ../phpldapadmin.templates:7002
+msgid "Web server which will be reconfigured automatically"
+msgstr "Serveur web à reconfigurer automatiquement :"
+
+#. Type: multiselect
+#. Description
+#: ../phpldapadmin.templates:7002
+msgid ""
+"phpLDAPadmin supports any web server that PHP does, but this automatic "
+"configuration process only supports Apache."
+msgstr ""
+"PhpLDAPadmin gère tout serveur web géré par PHP4, mais cette procédure de "
+"configuration automatique ne gère actuellement qu'Apache."
+
+#. Type: boolean
+#. Description
+#: ../phpldapadmin.templates:8001
+msgid "Restart of your webserver(s)"
+msgstr "Faut-il redémarrer le serveur web ?"
+
+#. Type: boolean
+#. Description
+#: ../phpldapadmin.templates:8001
+msgid ""
+"Remember that in order to apply the changes your webserver(s) has/have to be "
+"restarted."
+msgstr ""
+"Veuillez noter que pour que les modifications soient prises en compte, votre"
+"(vos) serveur(s) web doi(ven)t être redémarré(s)."

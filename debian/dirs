@@ -1,0 +1,7 @@
+usr/share/phpldapadmin
+usr/share/phpldapadmin/lang
+usr/share/doc/phpldapadmin
+etc/phpldapadmin
+etc/phpldapadmin/templates
+etc/phpldapadmin/templates/creation
+etc/phpldapadmin/templates/modification

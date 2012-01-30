@@ -1,0 +1,122 @@
+#!/bin/sh -e
+
+CONFFILE="/etc/phpldapadmin/config.php"
+
+. /usr/share/debconf/confmodule
+db_version 2.0 || [ $? -lt 30 ]
+
+# Autoconfiguration for phpldapadmin
+if [ ! -f $CONFFILE ] || [ `md5sum $CONFFILE | awk '{print $1}'` = "49dc066603a3a22a24eb482181912c57" ]; then
+
+	# Let's try to read default from slapd.conf, libnss-ldap.conf or libpam_ldap.conf
+	if [ -f /etc/ldap/slapd.conf ]; then
+		ldapserver="localhost"
+		if grep "^TLS" /etc/ldap/slapd.conf > /dev/null 2>&1; then
+			tls="true"
+		else
+			tls="false"
+		fi
+		basedn=`grep ^suffix /etc/ldap/slapd.conf | awk '{print $2}' | sed -e s/\"//g`
+		binddn=`grep -e "by dn=.* write" /etc/ldap/slapd.conf | cut -d"\"" -f2 | head -n1`
+	elif [ -f /etc/libnss-ldap.conf ]; then
+		if grep "^host" /etc/libnss-ldap.conf > /dev/null 2>&1; then
+			ldapserver=`grep ^host /etc/libnss-ldap.conf | awk '{print $2}'`
+		elif grep "^uri" /etc/libnss-ldap.conf > /dev/null 2>&1; then
+			ldapserver=`grep ^uri /etc/libnss-ldap.conf | sed -e s@/@@g | awk -F : '{print $2}'`
+		fi
+		if grep "^TLS" /etc/libnss-ldap.conf > /dev/null 2>&1; then
+			tls="true"
+		else
+			tls="false"
+		fi
+		basedn=`grep -e "^base" /etc/libnss-ldap.conf | awk '{print $2}' | sed -e s/\"//g`
+		binddn=`grep -e "^rootbinddn" /etc/libnss-ldap.conf | awk '{print $2}'`
+	elif [ -f /etc/pam_ldap.conf ]; then
+		if grep "^host" /etc/pam_ldap.conf > /dev/null 2>&1; then
+			ldapserver=`grep ^host /etc/pam_ldap.conf | awk '{print $2}'`
+		elif grep "^uri" /etc/pam_ldap.conf > /dev/null 2>&1; then
+			ldapserver=`grep ^uri /etc/pam_ldap.conf | sed -e s@/@@g | awk -F : '{print $2}'`
+		fi
+		if grep "^TLS" /etc/pam_ldap.conf > /dev/null 2>&1; then
+			tls="true"
+		else
+			tls="false"
+		fi
+		basedn=`grep -e "^base" /etc/pam_ldap.conf | awk '{print $2}' | sed -e s/\"//g`
+		binddn=`grep -e "^rootbinddn" /etc/pam_ldap.conf | head -n1 | awk '{print $2}'`
+	fi
+
+	if [ -f /etc/ldap.secret ]; then
+		bindpw=`head -n1 /etc/ldap.secret`
+	fi
+
+	if [ "$ldapserver" = "" ]; then
+		db_input medium phpldapadmin/ldap-server || true
+		db_go || true
+		db_get phpldapadmin/ldap-server || true
+		ldapserver="$RET"
+	else
+		db_set phpldapadmin/ldap-server $ldapserver || true
+	fi
+
+	if [ "$tls" = "" ]; then
+		db_input medium phpldapadmin/ldap-tls || true
+		db_go || true
+		db_get phpldapadmin/ldap-tls || true
+		tls="$RET"
+	else
+		db_set phpldapadmin/ldap-tls $tls || true
+	fi
+
+	if [ "$tls" = "true" ]; then
+		ldapserver="ldaps:\\/\\/$ldapserver"
+		db_set phpldapadmin/ldap-server $ldapserver || true
+	fi
+
+	if [ "$basedn" = "" ]; then
+		db_input medium phpldapadmin/ldap-basedn || true
+		db_go || true
+		db_get phpldapadmin/ldap-basedn || true
+		basedn="$RET"
+	else
+		db_set phpldapadmin/ldap-basedn $basedn || true
+	fi
+	
+	db_input medium phpldapadmin/ldap-authtype || true
+	db_go || true
+	db_get phpldapadmin/ldap-authtype || true
+	authtype="$RET"
+
+	if [ "$binddn" = "" ]; then
+		db_set phpldapadmin/ldap-binddn "cn=admin,$basedn"
+		db_input medium phpldapadmin/ldap-binddn || true
+		db_go || true
+	else
+		db_set phpldapadmin/ldap-binddn $binddn || true
+	fi
+
+	if [ "$authtype" = "config" ]; then
+		if [ "$bindpw" = "" ]; then
+			db_input medium phpldapadmin/ldap-bindpw || true
+			db_go || true
+		else
+			db_set phpldapadmin/ldap-bindpw $bindpw || true
+		fi
+	fi
+
+	# Apache* autoconfiguration
+	db_input medium phpldapadmin/reconfigure-webserver || true
+	db_go || true
+	db_get phpldapadmin/reconfigure-webserver || true
+	webservers="$RET"
+	
+	if [ ! "$webservers" = "" ]; then
+		db_input medium phpldapadmin/restart-webserver || true
+		db_go || true
+	fi
+
+fi
+
+#DEBHELPER#
+
+exit 0

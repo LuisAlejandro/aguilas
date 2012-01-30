@@ -1,0 +1,435 @@
+phpldapadmin (1.2.0.5-2.1) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * CVE-2011-4074 Fix XSS vulnerability in debug code (Closes: #646769)
+  * CVE-2011-4075 Fix arbitrary code execution by unauthenticated users
+    (Closes: #646754)
+
+ -- Jonathan Wiltshire <jmw@debian.org>  Thu, 27 Oct 2011 17:51:24 +0100
+
+phpldapadmin (1.2.0.5-2) unstable; urgency=low
+
+  [ Julien Valroff ]
+  * Handle /etc/phpldapadmin/config.php as a conffile using ucf and ensure
+    user changes are preserved on package uprgade (Closes: #578981) 
+
+  [ Fabio Tranchitella ]
+  * Ack previous Non-maintainer upload.
+
+ -- Fabio Tranchitella <kobold@debian.org>  Tue, 19 Oct 2010 10:17:29 +0200
+
+phpldapadmin (1.2.0.5-1.1) unstable; urgency=high
+
+  * Non-maintainer upload by the Security Team.
+  * Switch off register_globals in debian apache configuration, looking
+    at the phpldapadmin changelog entries that contain fixes for bugs that
+    appeared with register_globals off it seems it is intended to be able
+    to work with that. Since this is a security problem and not supported
+    by PHP since years this setting will now be changed (Closes: #587536).
+
+ -- Nico Golde <nion@debian.org>  Tue, 27 Jul 2010 13:00:52 +0200
+
+phpldapadmin (1.2.0.5-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #571672, #549464)
+  * debian/po/ru.po: added. (Closes: #536402)
+  * applied patch to fix lintian warnings. (Closes: #531649)
+  * Removed debian/patches that have been merged upstream.
+  * Do not build-depend anymore on dpatch.
+
+ -- Fabio Tranchitella <kobold@debian.org>  Sat, 10 Apr 2010 10:12:22 +0200
+
+phpldapadmin (1.1.0.7-1.2) unstable; urgency=high
+
+  * Non-maintainer upload by the Security Team.
+  * Fixed a regression in the previous NMU: use a proper regexp to discover
+    malicious commands. 
+
+ -- Giuseppe Iuculano <iuculano@debian.org>  Mon, 04 Jan 2010 21:08:46 +0100
+
+phpldapadmin (1.1.0.7-1.1) unstable; urgency=high
+
+  * Non-maintainer upload by the Security Team.
+  * Fixed CVE-2009-4427 (Closes: #561975)
+
+ -- Giuseppe Iuculano <iuculano@debian.org>  Sun, 03 Jan 2010 11:47:29 +0100
+
+phpldapadmin (1.1.0.7-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/po/es.po: added. (Closes: #520504)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Fri, 27 Mar 2009 15:04:09 +0100
+
+phpldapadmin (1.1.0.6-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #518578)
+  * debian/rules: removed "-m 644" from the dh_install call. (Closes: #518847)
+  * debian/postrm: remove config.php at purge time. (Closes: #519086)
+  * debian/patches/hungarian.dpatch: fixed a hungarian translation.
+    (Closes: #505559)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Mon, 16 Mar 2009 14:54:15 +0100
+
+phpldapadmin (1.1.0.5-6) unstable; urgency=low
+
+  * debian/po/pt_BR.po: added, thanks Herbert P Fortes Neto. (Closes: #494442)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Sat, 09 Aug 2008 20:22:42 +0200
+
+phpldapadmin (1.1.0.5-5) unstable; urgency=low
+
+  * debian/patches/add_attr_form.dpatch: added, thanks Grzegorz Marszałek.
+    (Closes: #489887)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Sun, 03 Aug 2008 09:14:48 +0200
+
+phpldapadmin (1.1.0.5-4) unstable; urgency=low
+
+  * debian/po/sv.po: added, thanks Martin Bagge. (Closes: #493014)
+  * Bumped Standards-Version to 3.8.0, no changes required.
+
+ -- Fabio Tranchitella <kobold@debian.org>  Thu, 31 Jul 2008 08:25:04 +0200
+
+phpldapadmin (1.1.0.5-3) unstable; urgency=low
+
+  * debian/conf/apache.conf: use php5 instead of php4. (Closes: #487617)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Mon, 23 Jun 2008 07:14:57 +0200
+
+phpldapadmin (1.1.0.5-2) unstable; urgency=low
+
+  * debian/rules: ship tools/po/*. (Closes: #466204)
+  * debian/po/gl.po: added Galician debconf translation, thanks Jacobo Tarrio.
+    (Closes: #484141)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Tue, 03 Jun 2008 09:57:56 +0200
+
+phpldapadmin (1.1.0.5-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Fabio Tranchitella <kobold@debian.org>  Sun, 03 Feb 2008 12:34:37 +0100
+
+phpldapadmin (1.1.0.4-2) unstable; urgency=low
+
+  * debian/rules: some of the upstream gettext message catalogs are corrupted,
+    let's rebuild all of them at build time. (Closes: #460306)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Sun, 13 Jan 2008 17:04:35 +0100
+
+phpldapadmin (1.1.0.4-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Fabio Tranchitella <kobold@debian.org>  Fri, 11 Jan 2008 10:09:10 +0100
+
+phpldapadmin (1.1.0.3-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Fabio Tranchitella <kobold@debian.org>  Mon, 31 Dec 2007 10:53:28 +0100
+
+phpldapadmin (1.1.0-1) unstable; urgency=low
+
+  * New upstream release, dropped support for php4. (Closes: #447862)
+  * This release includes a fix for the "invalid argument supplied for
+    foreach()" bug. (Closes: #370435)
+  * debian/README.Debian: added a note about how to reconfigure the package
+    after the installation. (Closes: #419517)
+  * debian/rules: some of the upstream gettext message catalogs are corrupted,
+    let's rebuild all of them at build time.
+
+ -- Fabio Tranchitella <kobold@debian.org>  Sun, 16 Dec 2007 10:01:44 +0100
+
+phpldapadmin (0.9.8.4-2) unstable; urgency=low
+
+  * debian/control: fix dependencies on php. (Closes: #444354)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Thu, 11 Oct 2007 13:31:51 +0200
+
+phpldapadmin (0.9.8.4-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/watch: updated.
+  * debian/po/pt.po: added, thanks Rui Branco. (Closes: #414837)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Fri, 23 Mar 2007 11:23:04 +0100
+
+phpldapadmin (0.9.8.3-8) unstable; urgency=medium
+
+  * Applied upstream patch to fix vCard exports. Thanks to Jamin W. Collins
+    for providing the exact url of the patch. (Closes: #405964)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Sat, 13 Jan 2007 22:42:54 +0100
+
+phpldapadmin (0.9.8.3-7) unstable; urgency=low
+
+  * debian/po/de.po: added, thanks Matthias Julius. (Closes: #397661)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Thu,  9 Nov 2006 11:22:07 +0100
+
+phpldapadmin (0.9.8.3-6) unstable; urgency=low
+
+  * debian/po/nl.po: really added.
+
+ -- Fabio Tranchitella <kobold@debian.org>  Wed, 13 Sep 2006 14:00:14 +0200
+
+phpldapadmin (0.9.8.3-5) unstable; urgency=low
+
+  * debian/po/nl.po: added. (Closes: #385683)
+  * debian/po/ja.po: updated.
+  * debian/control: install apache2 by default, and remove useless php{4,5}
+    alternatives; thanks KE Liew for pointing this out.
+
+ -- Fabio Tranchitella <kobold@debian.org>  Wed, 13 Sep 2006 13:18:17 +0200
+
+phpldapadmin (0.9.8.3-4) unstable; urgency=low
+
+  * debian/conf/apache.conf: modified alias to /usr/share/phpldapadmin/htdocs,
+    as suggested by upstream. (Closes: #378808)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Wed, 19 Jul 2006 09:42:38 +0200
+
+phpldapadmin (0.9.8.3-3) unstable; urgency=low
+
+  * lib/server_functions.php: patched to fix the upstream URLs for
+    documentation. (Closes: #370444)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Fri, 30 Jun 2006 12:12:59 +0200
+
+phpldapadmin (0.9.8.3-2) unstable; urgency=low
+
+  * lib/server_functions.php: patched to fix an upstream bug.
+    (Closes: #368236)
+  * debian/po/cs.po: updated. (Closes: #370039)
+  * debian/control: modified dependencies to install php5 as default if no
+    version of php is already installed.
+
+ -- Fabio Tranchitella <kobold@debian.org>  Tue, 13 Jun 2006 16:02:31 +0200
+
+phpldapadmin (0.9.8.3-1) unstable; urgency=high
+
+  * New upstream release.
+  * Fixes multiple xss vulnerabilities. (Closes: #365313)
+  * pla_error: now the bug report button is really below the message.
+    (Closes: #357220)
+  * The bug report form is not inside phpldapadmin: it is just a link
+    to sourceforge. This is not a real bug, let's close it. (Closes: #357219)
+  * Standards-Version: 3.7.2, no changes necessary.
+
+ -- Fabio Tranchitella <kobold@debian.org>  Sat, 13 May 2006 22:04:36 +0200
+
+phpldapadmin (0.9.8.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Fabio Tranchitella <kobold@debian.org>  Tue, 14 Mar 2006 09:40:04 +0000
+
+phpldapadmin (0.9.8.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * config/config.php.example: upstream modified comments to be sorter
+    than 80 columns. (Closes: #334706)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Sun, 26 Feb 2006 08:08:37 +0000
+
+phpldapadmin (0.9.8-2) unstable; urgency=low
+
+  * debian/postinst: use PHP5 if available while auto-configuring apache.
+    (Closes: #354049)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Thu, 23 Feb 2006 08:38:32 +0000
+
+phpldapadmin (0.9.8-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/README.Debian: added a note about dpkg-reconfigure and debconf
+    questions. (Closes: #342206)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Tue, 17 Jan 2006 20:25:18 +0000
+
+phpldapadmin (0.9.7.2-1) unstable; urgency=low
+
+  * New upstream release.
+    - Added a note about config.php.example and default values.
+      (Closes: #338097)
+  * Updated NEWS.Debian to inform the users about a change in
+    the meaning of some values within the configuration file.
+    (Closes: #338126)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Tue, 15 Nov 2005 16:11:42 +0100
+
+phpldapadmin (0.9.7.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Fabio Tranchitella <kobold@debian.org>  Wed,  2 Nov 2005 09:37:24 +0000
+
+phpldapadmin (0.9.7-2) unstable; urgency=low
+
+  * debian/conf/apache.conf: use Directory directive instead of
+    DirectoryMatch. (Closes: #334529)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Thu, 20 Oct 2005 16:19:19 +0200
+
+phpldapadmin (0.9.7-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #330477)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Wed, 28 Sep 2005 13:26:51 +0000
+
+phpldapadmin (0.9.6c-8) unstable; urgency=high
+
+  * Urgency high, the security fix hasn't reached testing yet.
+  * debian/control: use ${misc:Depends} instead of hard-coded debconf
+    dependency. This will add an alternate of debconf-2.0, unblocking
+    the entering of cdebconf to testing.
+
+ -- Fabio Tranchitella <kobold@debian.org>  Thu,  1 Sep 2005 08:18:15 +0000
+
+phpldapadmin (0.9.6c-7) unstable; urgency=high
+
+  * Urgency high, fixing a security bug.
+  * debian/patches/welcome.dpatch: prevent a malicious user to see files on
+    filesystem or to include a remote PHP script passing extra parameters 
+    to welcome.php. (Closes: #325785)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Wed, 31 Aug 2005 11:34:22 +0200
+
+phpldapadmin (0.9.6c-6) unstable; urgency=low
+
+  * debian/control: depends on php4-ldap | php5-ldap. (Closes: #322660)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Sun, 14 Aug 2005 07:06:47 +0000
+
+phpldapadmin (0.9.6c-5) unstable; urgency=high
+
+  * debian/control: added build-deps on dpatch.
+  * debian/patches/login.dpatch: really block anonymous login when disabled
+    by config files. (Closes: #322423)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Wed, 10 Aug 2005 17:14:01 +0000
+
+phpldapadmin (0.9.6c-4) unstable; urgency=low
+
+  * debian/phpldapadmin.templates: fixed a typo. (Closes: #318399)
+  * debian/control: depends on php5. (Closes: #305497)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Fri, 15 Jul 2005 09:03:34 +0000
+
+phpldapadmin (0.9.6c-3) unstable; urgency=low
+
+  * debian/po/vi.po: added, thanks to Clytie Siddall. (Closes: #316840)
+  * debian/control: upgraded Standards-Version to 3.6.2 (no changes).
+
+ -- Fabio Tranchitella <kobold@debian.org>  Mon,  4 Jul 2005 09:43:18 +0000
+
+phpldapadmin (0.9.6c-2) unstable; urgency=low
+
+  * debian/po/fr.po: updated, thanks to Christian Perrier. (Closes: #314659)
+
+ -- Fabio Tranchitella <kobold@debian.org>  Sat, 18 Jun 2005 09:11:04 +0200
+
+phpldapadmin (0.9.6c-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #307452)
+  * debian/control: changed maintainer's email to kobold@debian.org.
+  * debian/watch: added.
+
+ -- Fabio Tranchitella <kobold@debian.org>  Thu,  9 Jun 2005 12:06:58 +0200
+
+phpldapadmin (0.9.5-3) unstable; urgency=medium
+
+  * urgency is medium because we are close to the freeze of sarge.
+  * debian/postinst, debian/postrm: modified to call db_stop before trying
+    to restart webservers, many thanks to Stephen Gran <sgran@debian.org>
+    to handle this bug report. (Closes: #299492)
+
+ -- Fabio Tranchitella <kobold@kobold.it>  Wed,  6 Apr 2005 15:48:41 +0200
+
+phpldapadmin (0.9.5-2) unstable; urgency=low
+
+  * debian/po/cs.po: added, thanks to Miroslav Kure. (Closes: #293599)
+
+ -- Fabio Tranchitella <kobold@kobold.it>  Mon, 21 Feb 2005 14:55:55 +0100
+
+phpldapadmin (0.9.5-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Fabio Tranchitella <kobold@kobold.it>  Thu,  6 Jan 2005 20:41:27 +0100
+
+phpldapadmin (0.9.4-10) unstable; urgency=low
+
+  * Updated Japanase po-debconf translation, thanks again to
+    Hideki Yamane <henrich@samba.gr.jp>. (Closes: #273766)
+  * Modified debian/config to reuse previously queried LDAP
+    base. (Closes: #275987)
+
+ -- Fabio Tranchitella <kobold@kobold.it>  Fri, 22 Oct 2004 14:44:48 +0200
+
+phpldapadmin (0.9.4-9) unstable; urgency=low
+
+  * Added Japanese po-debconf translation thanks to
+    Hideki Yamane <henrich@samba.gr.jp>. (Closes: #271756)
+
+ -- Fabio Tranchitella <kobold@kobold.it>  Thu, 16 Sep 2004 10:50:32 +0200
+
+phpldapadmin (0.9.4-8) unstable; urgency=low
+
+  * Modified php4 dependency adding support for libapache2-mod-php4 and
+    php4-cgi. (Closes: #261248)
+
+ -- Fabio Tranchitella <kobold@kobold.it>  Sat, 24 Jul 2004 20:28:29 +0200
+
+phpldapadmin (0.9.4-7) unstable; urgency=low
+
+  * Made lintian report clean.
+
+ -- Fabio Tranchitella <kobold@kobold.it>  Mon, 21 Jun 2004 09:33:32 +0200
+
+phpldapadmin (0.9.4-6) unstable; urgency=low
+
+  * Fixed some mistakes in debconf template. (Closes: #252473)
+  * Added italian and french debconf template translations.
+
+ -- Fabio Tranchitella <kobold@kobold.it>  Sat,  5 Jun 2004 20:23:23 +0200
+
+phpldapadmin (0.9.4-5) unstable; urgency=low
+
+  * Modified lang/* removing an unnecessary bug report link.
+  * Modified debian/config and debian/postinst script to respect the
+    policy (see 10.7.3). (Closes: #251438)
+
+ -- Fabio Tranchitella <kobold@kobold.it>  Fri, 28 May 2004 19:37:45 +0200
+
+phpldapadmin (0.9.4-4) unstable; urgency=low
+
+  * Added link to /usr/share/doc/phpldapadmin/ to fix documentation.php
+  * Patched documentation.php to read from a gzipped file.
+
+ -- Fabio Tranchitella <kobold@kobold.it>  Thu, 20 May 2004 08:55:20 +0200
+
+phpldapadmin (0.9.4-3) unstable; urgency=low
+
+  * New upstream bug fixes.
+
+ -- Fabio Tranchitella <kobold@kobold.it>  Fri, 14 May 2004 13:39:04 +0200
+
+phpldapadmin (0.9.4-2) unstable; urgency=low
+
+  * Fixed permission on /etc/phpldapadmin/templates.
+  * Fixed some typos in debian/postinst.
+
+ -- Fabio Tranchitella <kobold@kobold.it>  Mon, 10 May 2004 14:00:43 +0200
+
+phpldapadmin (0.9.4-1) unstable; urgency=low
+
+  * Initial Release
+  * Automatic configuration for Apache, Apache-SSL, Apache-Perl and Apache2.
+  * Automatic configuration for config.php with default from slapd.conf,
+    libnss-ldap.conf or pam_ldap.conf.
+
+ -- Fabio Tranchitella <kobold@kobold.it>  Fri,  7 May 2004 11:00:03 +0200
+

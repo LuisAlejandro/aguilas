@@ -1,0 +1,4 @@
+# watch control file for uscan
+version=2
+# Site                                      Version Script
+http://sf.net/phpldapadmin/phpldapadmin-([0-9\.]*)\.tgz debian uupdate

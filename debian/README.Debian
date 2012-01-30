@@ -1,0 +1,16 @@
+phpldapadmin for Debian
+-----------------------
+
+NOTE: If you chose to use a config-based login, I highly 
+suggest using an .htpasswd file, or allow,deny rules, or both.
+
+Edit /etc/phpldapadmin/config.php for your server(s).
+phpLDAPadmin configuration is stored in /etc/phpldapadmin/config.php. You
+can change it with any text editor, and remember that after this you do
+not need to restart the webserver.
+
+If you want to go through debconf questions again after the package has been
+installed, please remove the configuration file /etc/phpldapadmin/config.php
+before running `dpkg-reconfigure phpldapadmin'.
+
+ -- Fabio Tranchitella <kobold@debian.org>, Thu, 05 May 2004 17:23:58 -0400

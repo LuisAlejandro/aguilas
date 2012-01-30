@@ -1,0 +1,67 @@
+#! /bin/sh -e
+
+set -e
+
+case "$1" in
+  remove)
+
+    . /usr/share/debconf/confmodule
+    db_version 2.0 || [ $? -lt 30 ]
+
+    rm -f /usr/share/phpldapadmin/config.php
+
+    db_get phpldapadmin/reconfigure-webserver
+    webservers="$RET"
+    restart=""
+
+    for webserver in $webservers; do
+        webserver=${webserver%,}
+
+        case "$webserver" in
+            apache|apache-perl|apache-ssl|apache2)
+                rm -f /etc/$webserver/conf.d/phpldapadmin
+                test -x /usr/sbin/$webserver || continue
+                restart="$restart $webserver"
+                ;;
+			*)
+				;;
+        esac
+    done
+
+    db_get phpldapadmin/restart-webserver
+	res="$RET"
+	db_stop || true
+    if [ "$res" = "true" ]; then
+        for webserver in $restart; do
+            webserver=${webserver%,}
+            if [ -x /usr/sbin/invoke-rc.d ]; then
+                invoke-rc.d $webserver restart
+            else
+                /etc/init.d/$webserver restart
+            fi
+        done
+    fi
+	;;
+
+  purge)
+	rm -f /usr/share/phpldapadmin/config/config.php
+
+	for ext in '~' '%' .bak .ucf-new .ucf-old .ucf-dist;  do
+		rm -f /etc/phpldapadmin/config.php$ext
+	done
+
+	rm -f /etc/phpldapadmin/config.php
+
+	if which ucf >/dev/null; then
+		ucf --purge /etc/phpldapadmin/config.php
+	fi
+	if which ucfr >/dev/null; then
+		ucfr --purge phpldapadmin /etc/phpldapadmin/config.php
+	fi
+
+	rmdir --ignore-fail-on-non-empty /etc/phpldapadmin || true
+	;;
+
+esac
+
+#DEBHELPER#

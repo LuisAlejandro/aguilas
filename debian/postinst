@@ -1,0 +1,152 @@
+#!/bin/sh -e
+
+CONFFILE="/etc/phpldapadmin/config.php"
+TEMPLATES="/etc/phpldapadmin/templates"
+
+chown -R root:www-data $TEMPLATES
+chown -R root:www-data $TEMPLATES
+chmod -R 0640 $TEMPLATES
+chmod 0750 $TEMPLATES $TEMPLATES/creation $TEMPLATES/modification
+
+. /usr/share/debconf/confmodule
+db_version 2.0 || [ $? -lt 30 ]
+
+if [ "$1" = "configure" ]; then
+
+	tempfile=`mktemp`
+	cp  /usr/share/phpldapadmin/config/config.php.example ${tempfile}
+
+	db_get phpldapadmin/ldap-server || true
+	ldapserver="$RET"
+	sed -i -e "s#// \$servers->setValue('server','host','127.0.0.1');#\$servers->setValue('server','host','$ldapserver');#g" ${tempfile}
+
+	db_get phpldapadmin/ldap-tls || true
+	tls="$RET"
+	if [ "$tls" = "true" ]; then
+		sed -i -e "s#// \$servers->setValue('server','port',389);#\$servers->setValue('server','port',636);#g" ${tempfile}
+		sed -i -e "s#// \$servers->setValue('server','tls',false);#\$servers->setValue('server','tls',true);#g" ${tempfile}
+	fi
+
+	db_get phpldapadmin/ldap-basedn || true
+	basedn="$RET"
+	sed -i -e "s#// \$servers->setValue('server','base',array(''));#\$servers->setValue('server','base',array('$basedn'));#g" ${tempfile}
+
+	db_get phpldapadmin/ldap-authtype || true
+	authtype="$RET"
+	sed -i -e "s#// \$servers->setValue('login','auth_type','session');#\$servers->setValue('login','auth_type','$authtype');#g" ${tempfile}
+
+	db_get phpldapadmin/ldap-binddn || true
+	binddn="$RET"
+	sed -i -e "s#// \$servers->setValue('login','bind_id','');#\$servers->setValue('login','bind_id','$binddn');#g" ${tempfile}
+
+	if [ "$authtype" = "config" ]; then
+		db_get phpldapadmin/ldap-bindpw || true
+		bindpw="$RET"
+		sed -i -e "s#// \$servers->setValue('login','bind_pass','');#\$servers->setValue('login','bind_pass','$bindpw');#g" ${tempfile}
+	fi
+
+	chown root:www-data ${tempfile}
+	chmod 0640 ${tempfile}
+
+	ucf --debconf-ok ${tempfile} $CONFFILE
+	ucfr phpldapadmin $CONFFILE
+
+	if [ ! -e /usr/share/phpldapadmin/config/config.php ]; then
+		ln -s $CONFFILE /usr/share/phpldapadmin/config/config.php
+	fi
+
+	rm -f ${tempfile}
+
+    # Autoconfiguration for apache*
+    db_get phpldapadmin/reconfigure-webserver || true
+    webservers="$RET"
+    restart=""
+
+    for webserver in $webservers; do
+        webserver=${webserver%,}
+        test -x /usr/sbin/$webserver || continue
+
+        case "$webserver" in
+            apache|apache-perl|apache-ssl)
+                if [ -x /usr/sbin/modules-config ]; then
+                    if [ -f /usr/lib/apache/1.3/libphp5.so ]; then
+                        if ! grep "^LoadModule php5_module " /etc/$webserver/modules.conf > /dev/null 2>&1; then
+                            modules-config $webserver enable mod_php5
+                        fi
+                    elif [ -f /usr/lib/apache/1.3/libphp4.so ]; then
+                        if ! grep "^LoadModule php4_module " /etc/$webserver/modules.conf > /dev/null 2>&1; then
+                            modules-config $webserver enable mod_php4
+                        fi
+                    else
+                        if [ -f /usr/lib/apache/1.3/mod_actions.so ]; then
+                            if ! grep "^LoadModule action_module " /etc/$webserver/modules.conf > /dev/null 2>&1; then
+                                modules-config $webserver enable mod_actions
+                            fi
+                        fi
+                        if [ -f /usr/lib/apache/1.3/mod_cgi.so ]; then
+                            if ! grep "^LoadModule cgi_module " /etc/$webserver/modules.conf > /dev/null 2>&1; then
+                                modules-config $webserver enable mod_cgi
+                            fi
+                        fi
+                    fi
+                fi
+                if grep "^Include /etc/phpldapadmin/apache.conf" /etc/$webserver/httpd.conf > /dev/null 2>&1; then
+                    mv -f /etc/$webserver/httpd.conf /etc/$webserver/httpd.conf.old.phpldapadmin
+                    grep -v "^Include /etc/phpldapadmin/apache.conf" /etc/$webserver/httpd.conf.old.phpldapadmin \
+                        > /etc/$webserver/httpd.conf
+                fi
+                if ! grep "^Include /etc/$webserver/conf.d" /etc/$webserver/httpd.conf > /dev/null 2>&1; then
+                    cp -f /etc/$webserver/httpd.conf /etc/$webserver/httpd.conf.old.phpldapadmin
+                    echo "Include /etc/$webserver/conf.d" >> /etc/$webserver/httpd.conf
+                fi
+                if [ -f /etc/$webserver/httpd.conf.old.phpldapadmin ] && [ ! -f /etc/$webserver/httpd.conf.old ]; then
+                    mv -f /etc/$webserver/httpd.conf.old.phpldapadmin /etc/$webserver/httpd.conf.old
+                fi
+                mkdir -p /etc/$webserver/conf.d
+                ;;
+            apache2)
+                if [ -d /etc/$webserver/mods-enabled ]; then
+                    if [ ! -f /etc/$webserver/mods-enabled/actions.load ] && [ ! -h /etc/$webserver/mods-enabled/actions.load ]; then
+                        ln -s /etc/$webserver/mods-available/actions.load /etc/$webserver/mods-enabled/actions.load
+                    fi
+                    if [ -f /etc/apache2/mods-available/php5.load ]; then
+                        if [ ! -f /etc/$webserver/mods-enabled/php5.load ] && [ ! -h /etc/$webserver/mods-enabled/php5.load ]; then
+                            ln -s /etc/$webserver/mods-available/php5.load /etc/$webserver/mods-enabled/php5.load
+                        fi
+                    elif [ -f /etc/apache2/mods-available/php4.load ]; then
+                        if [ ! -f /etc/$webserver/mods-enabled/php4.load ] && [ ! -h /etc/$webserver/mods-enabled/php4.load ]; then
+                            ln -s /etc/$webserver/mods-available/php4.load /etc/$webserver/mods-enabled/php4.load
+                        fi
+                    else
+                        if [ ! -f /etc/$webserver/mods-enabled/cgi.load ] && [ ! -h /etc/$webserver/mods-enabled/cgi.load ]; then
+                            ln -s /etc/$webserver/mods-available/cgi.load /etc/$webserver/mods-enabled/cgi.load
+                        fi
+                    fi
+                fi
+                ;;
+        esac
+
+        if [ ! -f /etc/$webserver/conf.d/phpldapadmin ] && [ ! -h /etc/$webserver/conf.d/phpldapadmin ]; then
+            ln -s /etc/phpldapadmin/apache.conf /etc/$webserver/conf.d/phpldapadmin
+	    restart="$restart $webserver"
+        fi
+    done
+
+    db_get phpldapadmin/restart-webserver || true
+	res="$RET"
+	db_stop || true
+    if [ "$res" = "true" ]; then
+        for webserver in $restart; do
+            webserver=${webserver%,}
+            if [ -x /usr/sbin/invoke-rc.d ]; then
+                invoke-rc.d $webserver restart
+            else
+                /etc/init.d/$webserver restart
+            fi
+        done
+    fi
+fi
+
+#DEBHELPER#
+
+exit 0
