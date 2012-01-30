@@ -1,0 +1,91 @@
+#!/bin/sh
+# postrm script for phpmyadmin
+
+set -e
+
+lighttpd_remove() {
+	if [ -f /etc/lighttpd/conf-available/50-phpmyadmin.conf ] ; then
+		rm -f /etc/lighttpd/conf-available/50-phpmyadmin.conf
+		if which lighty-enable-mod >/dev/null 2>&1 ; then
+			lighty-disable-mod phpmyadmin
+			# We also enabled auth in postinst, but I think it's safer to keep it there
+		else
+			echo "Lighttpd not installed, skipping"
+		fi
+		# See bug #448682
+		if [ -h /etc/lighttpd/conf-enabled/50-phpmyadmin.conf ] ; then
+		    echo 'Manually deleting lighttpd/phpMyAdmin configuration link'
+		    rm /etc/lighttpd/conf-enabled/50-phpmyadmin.conf
+		fi
+	fi
+}
+
+apache_remove() {
+	if [ -d /etc/$webserver/conf.d ] && [ -L /etc/$webserver/conf.d/phpmyadmin.conf ]; then
+		rm -f /etc/$webserver/conf.d/phpmyadmin.conf
+	fi
+}
+if [ -f /usr/share/debconf/confmodule ]; then
+    . /usr/share/debconf/confmodule
+fi
+if [ -f /usr/share/dbconfig-common/dpkg/postrm.mysql ]; then
+    . /usr/share/dbconfig-common/dpkg/postrm.mysql
+    if ! dbc_go phpmyadmin $@ ; then
+        echo 'Automatic configuration using dbconfig-common failed!'
+    fi
+fi
+
+if [ "$1" = "purge" ]; then
+    rm -f /etc/phpmyadmin/config-db.php
+    if which ucf >/dev/null 2>&1; then
+	ucf --debconf-ok --purge /etc/phpmyadmin/config-db.php
+    fi
+fi
+
+if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
+
+	if [ -f /usr/share/debconf/confmodule ]; then
+		db_version 2.0
+
+		db_get phpmyadmin/reconfigure-webserver
+
+		webservers="$RET"
+
+		for webserver in $webservers; do
+			webserver=${webserver%,}
+			if [ "$webserver" = "lighttpd" ] ; then
+				lighttpd_remove
+			else
+				apache_remove $webserver
+			fi
+			# Redirection of 3 is needed because Debconf uses it and it might 
+			# be inherited by webserver. See bug #446324.
+			if [ -f /etc/init.d/$webserver ] ; then
+				if [ -x /usr/sbin/invoke-rc.d ]; then
+					invoke-rc.d $webserver reload 3>/dev/null || true
+				else
+					/etc/init.d/$webserver reload 3>/dev/null || true
+				fi
+			fi
+		done
+	fi
+
+
+	if [ "$1" = "purge" ]; then
+        # Possibly installed desktop file
+        if [ -h /usr/share/applications/phpmyadmin.desktop ] ; then
+            rm -f /usr/share/applications/phpmyadmin.desktop
+        fi
+        if [ -h /etc/avahi/services/phpmyadmin.service ] ; then
+            rm -f /etc/avahi/services/phpmyadmin.service
+        fi
+		rm -rf /etc/phpmyadmin /var/lib/phpmyadmin
+	fi
+fi
+
+
+#DEBHELPER#
+
+exit 0
+
+

@@ -1,0 +1,100 @@
+# Slovak translations for phpmyadmin package
+# Slovenské preklady pre balík phpmyadmin.
+# Copyright (C) 2011 THE phpmyadmin'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the phpmyadmin package.
+# Automatically generated, 2011.
+# Slavko <linux@slavino.sk>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: phpmyadmin 3.3.7-3\n"
+"Report-Msgid-Bugs-To: phpmyadmin@packages.debian.org\n"
+"POT-Creation-Date: 2009-11-16 14:57+0100\n"
+"PO-Revision-Date: 2011-01-02 21:11+0100\n"
+"Last-Translator: Slavko <linux@slavino.sk>\n"
+"Language-Team: Slovak <nomail>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid "Web server to reconfigure automatically:"
+msgstr "Webový server, ktorý bude automaticky nastavený:"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid ""
+"Please choose the web server that should be automatically configured to run "
+"phpMyAdmin."
+msgstr ""
+"Vyberte prosím webový server, ktorý bude automaticky nastavený na spustenie "
+"phpMyAdmin."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid "Username for web-based setup system:"
+msgstr "Používateľské meno webového konfiguračného rozhrania:"
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"The setup system for phpMyAdmin may be used, after installation, from http://"
+"localhost/phpmyadmin/setup/index.php."
+msgstr ""
+"Konfiguračné rozhranie phpMyAdmin bude po inštalácii dostupné na adrese "
+"http://localhost/phpmyadmin/setup/index.php."
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"Access to this system requires identification with a username and a password."
+msgstr ""
+"Prístup do tohoto systému vyžaduje identifikáciu pomocou používateľského "
+"mena a hesla."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid ""
+"If you leave this field empty, the default username ('admin') will be used."
+msgstr ""
+"Ak necháte toto pole prázdne, bude použité predvolené používateľské meno "
+"„admin“."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid "Password for web-based setup system:"
+msgstr "Heslo webového konfiguračného rozhrania:"
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"Usernames and passwords may be managed with the `htpasswd' command and are "
+"stored in /etc/phpmyadmin/htpasswd.setup."
+msgstr ""
+"Používateľské mená a heslá sú uložené v súbore /etc/phpmyadmin/htpasswd."
+"setup a môžete ich spravovať pomocou nástroja „htpasswd“."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"If you leave this field empty, access to the web-based setup will be "
+"disabled."
+msgstr ""
+"Ak ponecháte toto pole prázdne, prístup k webovému konfiguračnému rozhraniu "
+"bude zakázaný."

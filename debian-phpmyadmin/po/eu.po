@@ -1,0 +1,96 @@
+# translation of phpMyAdmin-eu.po to Euskara
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Piarres Beobide <pi@beobide.net>, 2006, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: phpMyAdmin-eu\n"
+"Report-Msgid-Bugs-To: phpmyadmin@packages.debian.org\n"
+"POT-Creation-Date: 2009-11-16 14:57+0100\n"
+"PO-Revision-Date: 2007-12-04 10:03+0100\n"
+"Last-Translator: Piarres Beobide <pi@beobide.net>\n"
+"Language-Team: Euskara <Librezale@librezale.org>\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid "Web server to reconfigure automatically:"
+msgstr "Automatikoki birkonfiguratu behar den web zerbitzaria:"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid ""
+"Please choose the web server that should be automatically configured to run "
+"phpMyAdmin."
+msgstr ""
+"Mesedez hautatu phpMyAdmin exekutatzeko automatikoki konfiguratu behar den "
+"web zerbitzaria."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid "Username for web-based setup system:"
+msgstr "Web bidezko konfigurazio sistemaren erabiltzaile izena:"
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"The setup system for phpMyAdmin may be used, after installation, from http://"
+"localhost/phpmyadmin/setup/index.php."
+msgstr ""
+"phpMyAdmin konfigurazio sistema erabili daiteke instalazioa amaitu ondoren, "
+"http://localhost/phpmyadmin/setup/index.php orrialdean."
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"Access to this system requires identification with a username and a password."
+msgstr ""
+"Sistemako sarrerarako erabiltzaile izen eta pasahitz identifikazio sistema "
+"beharrezkoa da."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid ""
+"If you leave this field empty, the default username ('admin') will be used."
+msgstr "Hau hutsik utziaz lehenetsiriko 'admin' erabiltzaile erabiliko da."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid "Password for web-based setup system:"
+msgstr "Web bidezko konfigurazio sistemaren pasahitza:"
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"Usernames and passwords may be managed with the `htpasswd' command and are "
+"stored in /etc/phpmyadmin/htpasswd.setup."
+msgstr ""
+"Erabiltzaile izen eta pasahitzak `htpasswd' komandoaz kudea daitezke eta /"
+"etc/phpmyadmin/htpasswd.setup fitxategian gordetzen dira."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"If you leave this field empty, access to the web-based setup will be "
+"disabled."
+msgstr ""
+"Hau hutsik utziaz web bidezko konfiguraziora sarrera ezgaitu egingo da."

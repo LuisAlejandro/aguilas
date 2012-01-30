@@ -1,0 +1,85 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: phpmyadmin@packages.debian.org\n"
+"POT-Creation-Date: 2009-11-16 14:57+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid "Web server to reconfigure automatically:"
+msgstr ""
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid ""
+"Please choose the web server that should be automatically configured to run "
+"phpMyAdmin."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid "Username for web-based setup system:"
+msgstr ""
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"The setup system for phpMyAdmin may be used, after installation, from http://"
+"localhost/phpmyadmin/setup/index.php."
+msgstr ""
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"Access to this system requires identification with a username and a password."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid ""
+"If you leave this field empty, the default username ('admin') will be used."
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid "Password for web-based setup system:"
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"Usernames and passwords may be managed with the `htpasswd' command and are "
+"stored in /etc/phpmyadmin/htpasswd.setup."
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"If you leave this field empty, access to the web-based setup will be "
+"disabled."
+msgstr ""

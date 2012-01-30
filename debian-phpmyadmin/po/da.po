@@ -1,0 +1,98 @@
+# Danish translation for phpmyadmin.
+# Copyright (C) 2011 phpmyadmin og nedenstående oversættere.
+# This file is distributed under the same license as the phpmyadmin package.
+# Claus Hindsgaul <claus.hindsgaul@gmail.com>, 2004, 2006, 2007
+# Joe Hansen (joedalton2@yahoo.dk), 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: phpmyadmin\n"
+"Report-Msgid-Bugs-To: phpmyadmin@packages.debian.org\n"
+"POT-Creation-Date: 2009-11-16 14:57+0100\n"
+"PO-Revision-Date: 2011-01-04 19:25+0200\n"
+"Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
+"Language-Team: Danish <debian-l10n-danish@lists.debian.org>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid "Web server to reconfigure automatically:"
+msgstr "Internetserver der skal sættes op automatisk:"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid ""
+"Please choose the web server that should be automatically configured to run "
+"phpMyAdmin."
+msgstr ""
+"Vælg venligst den internetserver som skal konfigureres til automatisk at "
+"køre phpMyAdmin."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid "Username for web-based setup system:"
+msgstr "Brugernavn på internetbaseret opsætningssystem:"
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"The setup system for phpMyAdmin may be used, after installation, from http://"
+"localhost/phpmyadmin/setup/index.php."
+msgstr ""
+"Opsætningssystemet for phpMyAdmin kan bruges efter installation fra http://"
+"localhost/phpmyadmin/setup/index.php."
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"Access to this system requires identification with a username and a password."
+msgstr ""
+"Adgang til dette system kræver identifikation med et brugernavn og en "
+"adgangskode."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid ""
+"If you leave this field empty, the default username ('admin') will be used."
+msgstr ""
+"Hvis dette felt bliver efterladt tomt, vil standardbrugernavnet (»admin«) "
+"blive brugt."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid "Password for web-based setup system:"
+msgstr "Adgangskode for det internetbaseret opsætningssystem:"
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"Usernames and passwords may be managed with the `htpasswd' command and are "
+"stored in /etc/phpmyadmin/htpasswd.setup."
+msgstr ""
+"Brugernavne og adgangskoder kan håndteres med kommandoen »htpasswd« og "
+"gemmes i /etc/phpmyadmin/htpasswd.setup."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"If you leave this field empty, access to the web-based setup will be "
+"disabled."
+msgstr ""
+"Hvis feltet efterlades tomt, vil adgang til den internetbaserede opsætning "
+"være deaktiveret."

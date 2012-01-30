@@ -1,0 +1,45 @@
+Subject: Adjust phpMyAdmin documentation to match our changes
+ Document how to enable setup script. 
+From: Michal Čihař <nijel@debian.org>
+Forwarded: not-needed
+--- a/Documentation.html
++++ b/Documentation.html
+@@ -251,20 +251,10 @@
+                 <a href="setup/">Setup Script</a>. First you must
+                 manually create a folder <tt>config</tt> in the phpMyAdmin
+                 directory. This is a security measure. On a Linux/Unix system you
+-                can use the following commands:
++                can use the following command:
+ <pre>
+-cd phpMyAdmin
+-mkdir config                        # create directory for saving
+-chmod o+rw config                   # give it world writable permissions
++/usr/sbin/pma-configure
+ </pre>
+-                And to edit an existing configuration, copy it over first:
+-<pre>
+-cp config.inc.php config/           # copy current configuration for editing
+-chmod o+w config/config.inc.php     # give it world writable permissions
+-</pre>
+-                On other platforms, simply create the folder and ensure that your
+-                web server has read and write access to it. <a href="#faq1_26">FAQ
+-                1.26</a> can help with this.<br /><br />
+ 
+                 Next, open <tt><a href="setup/">setup/</a>
+                 </tt>in your browser. Note that <strong>changes are not saved to
+@@ -277,13 +267,10 @@
+                 or use the <tt>Download</tt> link to save the config file locally
+                 and upload (via FTP or some similar means) to the proper location.<br /><br />
+ 
+-                Once the file has been saved, it must be moved out of the <tt>
+-                config/</tt> directory and the permissions must be reset, again
++                Once the file has been saved, the permissions must be reset, again
+                 as a security measure:
+ <pre>
+-mv config/config.inc.php .         # move file to current directory
+-chmod o-rw config.inc.php          # remove world read and write permissions
+-rm -rf config                      # remove not needed directory
++/usr/sbin/pma-secure
+ </pre>
+                 Now the file is ready to be used. You can choose to review or edit
+                 the file with your favorite editor, if you prefer to set some

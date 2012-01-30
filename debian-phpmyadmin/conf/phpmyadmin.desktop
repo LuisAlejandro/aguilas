@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=phpMyAdmin
+Comment=MySQL management over web
+Exec=sensible-browser http://localhost/phpmyadmin/
+Terminal=false
+Type=Application
+Icon=phpmyadmin
+Categories=Development;Database;

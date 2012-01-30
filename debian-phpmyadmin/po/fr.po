@@ -1,0 +1,97 @@
+# Translation of phpmyadmin debconf templates to French
+# Copyright (C) 2007 Christian Perrier <bubulle@debian.org>
+# This file is distributed under the same license as the phpmyadmin package.
+#
+# Christian Perrier <bubulle@debian.org>, 2005-2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: phpmyadmin@packages.debian.org\n"
+"POT-Creation-Date: 2009-11-16 14:57+0100\n"
+"PO-Revision-Date: 2007-12-03 12:02+0100\n"
+"Last-Translator: Christian Perrier <bubulle@debian.org>\n"
+"Language-Team: French <debian-l10n-french@lists.debian.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid "Web server to reconfigure automatically:"
+msgstr "Serveur web à reconfigurer automatiquement :"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid ""
+"Please choose the web server that should be automatically configured to run "
+"phpMyAdmin."
+msgstr ""
+"Veuillez choisir le serveur web à reconfigurer automatiquement pour exécuter "
+"phpMyAdmin."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid "Username for web-based setup system:"
+msgstr "Identifiant pour la configuration par le web :"
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"The setup system for phpMyAdmin may be used, after installation, from http://"
+"localhost/phpmyadmin/setup/index.php."
+msgstr ""
+"Le système de configuration de phpMyAdmin peut être utilisé, après "
+"l'installation, depuis l'adresse http://localhost/phpmyadmin/setup/index.php."
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"Access to this system requires identification with a username and a password."
+msgstr ""
+"L'accès à la configuration nécessite un identifiant et un mot de passe."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid ""
+"If you leave this field empty, the default username ('admin') will be used."
+msgstr ""
+"Si vous laissez ce champ vide, l'identifiant par défaut (« admin ») sera "
+"utilisé."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid "Password for web-based setup system:"
+msgstr "Mot de passe pour la configuration par le web :"
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"Usernames and passwords may be managed with the `htpasswd' command and are "
+"stored in /etc/phpmyadmin/htpasswd.setup."
+msgstr ""
+"Les identifiants et mots de passe peuvent être gérés avec la commande "
+"« htpasswd » et sont conservés dans le fichier /etc/phpmyadmin/htpasswd."
+"setup."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"If you leave this field empty, access to the web-based setup will be "
+"disabled."
+msgstr ""
+"Si vous laissez ce champ vide, la configuration par le web sera désactivée."

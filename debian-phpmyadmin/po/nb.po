@@ -1,0 +1,92 @@
+# translation of nb.po_[4suryb].po to Norwegian Bokmål
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Bjørn Steensrud <bjornst@powertech.no>, 2006.
+# Bjørn Steensrud <bjornst@skogkatt.homelinux.org>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: nb.po_[4suryb]\n"
+"Report-Msgid-Bugs-To: phpmyadmin@packages.debian.org\n"
+"POT-Creation-Date: 2009-11-16 14:57+0100\n"
+"PO-Revision-Date: 2007-12-03 20:32+0100\n"
+"Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
+"Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
+"Language: nb\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid "Web server to reconfigure automatically:"
+msgstr "Nett-tjener som du vil endre oppsett for, automatisk:"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid ""
+"Please choose the web server that should be automatically configured to run "
+"phpMyAdmin."
+msgstr ""
+"Velg den nett-tjeneren som skal settes opp automatisk til å kjøre phpMyAdmin."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid "Username for web-based setup system:"
+msgstr "Brukernavn for nettbasert oppsettssystem:"
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"The setup system for phpMyAdmin may be used, after installation, from http://"
+"localhost/phpmyadmin/setup/index.php."
+msgstr ""
+"Etter installasjonen kan oppsettssystemet for phpMyAdmin brukes fra adressen "
+"http://localhost/phpmyadmin/setup/index.php."
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"Access to this system requires identification with a username and a password."
+msgstr "Det kreves brukernavn og passord for å få tilgang til dette systemet."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid ""
+"If you leave this field empty, the default username ('admin') will be used."
+msgstr "La det være tomt hvis du vil bruke standardnavnet «admin»."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid "Password for web-based setup system:"
+msgstr "Passord for nettbasert oppsettssystem:"
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"Usernames and passwords may be managed with the `htpasswd' command and are "
+"stored in /etc/phpmyadmin/htpasswd.setup."
+msgstr ""
+"Du kan styre brukernavnene og passordene med kommandoen «htpasswd». De "
+"lagres i fila /etc/phpmyadmin/htpasswd.setup."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"If you leave this field empty, access to the web-based setup will be "
+"disabled."
+msgstr "La det være tomt hvis du vil stenge tilgang til nettbasert oppsett."

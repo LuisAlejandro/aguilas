@@ -1,0 +1,43 @@
+# These templates have been reviewed by the debian-l10n-english
+# team
+#
+# If modifications/additions/rewording are needed, please ask
+# debian-l10n-english@lists.debian.org for advice.
+#
+# Even minor modifications require translation updates and such
+# changes should be coordinated with translators and reviewers.
+
+Template: phpmyadmin/reconfigure-webserver
+Type: multiselect
+Choices: apache2, lighttpd
+_Description: Web server to reconfigure automatically:
+ Please choose the web server that should be automatically configured
+ to run phpMyAdmin.
+
+Template: phpmyadmin/setup-username
+Type: string
+Default: admin
+_Description: Username for web-based setup system:
+ The setup system for phpMyAdmin may be used, after installation, from
+ http://localhost/phpmyadmin/setup/index.php.
+ .
+ Access to this system requires identification with a username and a
+ password.
+ .
+ If you leave this field empty, the default username ('admin') will be used.
+
+Template: phpmyadmin/setup-password
+Type: password
+Default:
+_Description: Password for web-based setup system:
+ The setup system for phpMyAdmin may be used, after installation, from
+ http://localhost/phpmyadmin/setup/index.php.
+ .
+ Access to this system requires identification with a username and a
+ password.
+ .
+ Usernames and passwords may be managed with the `htpasswd' command and
+ are stored in /etc/phpmyadmin/htpasswd.setup.
+ .
+ If you leave this field empty, access to the web-based setup will be
+ disabled.

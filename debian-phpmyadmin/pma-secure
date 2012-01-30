@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "Securing phpMyAdmin installation..."
+echo "Setup script won't be able to write configuration."
+chmod 0640 /var/lib/phpmyadmin/config.inc.php

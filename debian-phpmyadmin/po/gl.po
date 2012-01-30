@@ -1,0 +1,121 @@
+# Galician translation of phpmyadmin's debconf templates
+# This file is distributed under the same license as the phpmyadmin package.
+# Jacobo Tarrio <jtarrio@debian.org>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: phpmyadmin\n"
+"Report-Msgid-Bugs-To: phpmyadmin@packages.debian.org\n"
+"POT-Creation-Date: 2009-11-16 14:57+0100\n"
+"PO-Revision-Date: 2007-12-03 19:11+0000\n"
+"Last-Translator: Jacobo Tarrio <jtarrio@debian.org>\n"
+"Language-Team: Galician <proxecto@trasno.net>\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid "Web server to reconfigure automatically:"
+msgstr "Servidor web a reconfigurar automaticamente:"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid ""
+"Please choose the web server that should be automatically configured to run "
+"phpMyAdmin."
+msgstr ""
+"Escolla o servidor web que se debería configurar automaticamente para "
+"executar phpMyAdmin."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid "Username for web-based setup system:"
+msgstr "Nome de usuario para o sistema de configuración en web:"
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"The setup system for phpMyAdmin may be used, after installation, from http://"
+"localhost/phpmyadmin/setup/index.php."
+msgstr ""
+"Pódese empregar o sistema de configuración de phpMyAdmin, trala execución, "
+"accedendo a http://localhost/phpmyadmin/setup/index.php."
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"Access to this system requires identification with a username and a password."
+msgstr "MediaWiki.<"
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid ""
+"If you leave this field empty, the default username ('admin') will be used."
+msgstr ""
+"Se deixa este campo en branco, hase empregar o nome de usuario por defecto "
+"(\"admin\")."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid "Password for web-based setup system:"
+msgstr "Contrasinal para o sistema de configuración en web:"
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"Usernames and passwords may be managed with the `htpasswd' command and are "
+"stored in /etc/phpmyadmin/htpasswd.setup."
+msgstr ""
+"Pódense xestionar os nomes de usuario e contrasinais coa orde \"htpasswd\", "
+"e están armacenados no ficheiro /etc/phpmyadmin/htpasswd.setup."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"If you leave this field empty, access to the web-based setup will be "
+"disabled."
+msgstr ""
+"Se deixa este campo baleiro, hase desactivar o acceso á configuración en web."
+
+#~ msgid ""
+#~ "phpMyAdmin supports any web server that PHP does, but this automatic "
+#~ "configuration process only supports Apache."
+#~ msgstr ""
+#~ "phpMyAdmin soporta os mesmos servidores web que PHP, pero este proceso "
+#~ "automático de configuración só soporta Apache."
+
+#~ msgid ""
+#~ "phpMyAdmin comes with a setup script that can help you with creating a "
+#~ "configuration. The script is located at http://localhost/phpmyadmin/setup/"
+#~ "index.php. For security reasons it requires authorization."
+#~ msgstr ""
+#~ "phpMyAdmin inclúe un script de configuración que o pode axudar a crear a "
+#~ "configuración. O script reside en http://localhost/phpmyadmin/scripts/"
+#~ "setup.php . Por motivos de seguridade, o script precisa de autorización."
+
+#~ msgid "Do you want me to restart ${webserver} now?"
+#~ msgstr "¿Quere que se reinice ${webserver} agora?"
+
+#~ msgid ""
+#~ "Remember that in order to activate the new configuration ${webserver} has "
+#~ "to be restarted. You can also restart ${webserver} by manually executing /"
+#~ "etc/init.d/${webserver} restart"
+#~ msgstr ""
+#~ "Lembre que para activar a nova configuración hai que reiniciar "
+#~ "${webserver}. Tamén pode reiniciar ${webserver} a man executando /etc/"
+#~ "init.d/${webserver} restart"

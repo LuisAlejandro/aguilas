@@ -1,0 +1,93 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: phpmyadmin 4:2.11.2-3\n"
+"Report-Msgid-Bugs-To: phpmyadmin@packages.debian.org\n"
+"POT-Creation-Date: 2009-11-16 14:57+0100\n"
+"PO-Revision-Date: 2007-12-06 17:25+0200\n"
+"Last-Translator: Esko Arajärvi <edu@iki.fi>\n"
+"Language-Team: Finnish <debian-l10n-finnish@lists.debian.org>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Finnish\n"
+"X-Poedit-Country: Finland\n"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid "Web server to reconfigure automatically:"
+msgstr "Verkkopalvelin, jonka asetuksia muutetaan automaattisesti:"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid ""
+"Please choose the web server that should be automatically configured to run "
+"phpMyAdmin."
+msgstr ""
+"Valitse verkkopalvelin, jolle tehdään automaattisesti asetukset phpMyAdminin "
+"ajamiseksi."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid "Username for web-based setup system:"
+msgstr "Verkkopohjaisen asetusjärjestelmän käyttäjätunnus:"
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"The setup system for phpMyAdmin may be used, after installation, from http://"
+"localhost/phpmyadmin/setup/index.php."
+msgstr ""
+"Asennuksen jälkeen phpMyAdminin asetusjärjestelmä on käytettävissä "
+"osoitteessa http://localhost/phpmyadmin/setup/index.php."
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"Access to this system requires identification with a username and a password."
+msgstr ""
+"Tähän järjestelmään pääsy vaatii tunnistuksen käyttäjätunnuksen ja salasanan "
+"avulla."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid ""
+"If you leave this field empty, the default username ('admin') will be used."
+msgstr ""
+"Jos jätät tämän kentän tyhjäksi, käytetään oletuskäyttäjätunnusta (”admin”)."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid "Password for web-based setup system:"
+msgstr "Verkkopohjaisen asetusjärjestelmän salasana:"
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"Usernames and passwords may be managed with the `htpasswd' command and are "
+"stored in /etc/phpmyadmin/htpasswd.setup."
+msgstr ""
+"Käyttäjätunnuksia ja salasanoja voidaan hallinnoida komennolla ”htpasswd” ja "
+"ne on tallennettu tiedostoon /etc/phpmyadmin/htpasswd.setup."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"If you leave this field empty, access to the web-based setup will be "
+"disabled."
+msgstr ""
+"Jos jätät tämän kentän tyhjäksi, verkkopohjainen asetusjärjestelmä "
+"passivoidaan."

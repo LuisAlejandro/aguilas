@@ -1,0 +1,97 @@
+# Italian (it) translation of debconf templates for phpmyadmin
+# Copyright (C) 2006 Software in the Public Interest
+# This file is distributed under the same license as the phpmyadmin package.
+# Luca Monducci <luca.mo@tiscali.it>, 2006, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: phpmyadmin 2.11.2 italian debconf templates\n"
+"Report-Msgid-Bugs-To: phpmyadmin@packages.debian.org\n"
+"POT-Creation-Date: 2009-11-16 14:57+0100\n"
+"PO-Revision-Date: 2007-12-05 21:12+0100\n"
+"Last-Translator: Luca Monducci <luca.mo@tiscali.it>\n"
+"Language-Team: Italian <debian-l10n-italian@lists.debian.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid "Web server to reconfigure automatically:"
+msgstr "Server web da riconfigurare automaticamente:"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid ""
+"Please choose the web server that should be automatically configured to run "
+"phpMyAdmin."
+msgstr ""
+"Scegliere il server web da configurare automaticamente per eseguire "
+"phpMyAdmin."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid "Username for web-based setup system:"
+msgstr "Nome utente per il sistema di configurazione via web:"
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"The setup system for phpMyAdmin may be used, after installation, from http://"
+"localhost/phpmyadmin/setup/index.php."
+msgstr ""
+"Al termine dell'installazione sarà possibile utilizzare il sistema di "
+"configurazione per phpMyAdmin da http://localhost/phpmyadmin/setup/index.php."
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"Access to this system requires identification with a username and a password."
+msgstr ""
+"Per accedere a questo sistema è necessario identificarsi con un nome utente "
+"e una password."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid ""
+"If you leave this field empty, the default username ('admin') will be used."
+msgstr ""
+"Se si lascia vuoto questo campo, verrà usato il nome utente predefinito "
+"(\"admin\")."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid "Password for web-based setup system:"
+msgstr "Password per il sistema di configurazione via web:"
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"Usernames and passwords may be managed with the `htpasswd' command and are "
+"stored in /etc/phpmyadmin/htpasswd.setup."
+msgstr ""
+"Nomi utente e password possono essere gestiti con il comando \"htpasswd\" e "
+"sono memorizzati nel file /etc/phpmyadmin/htpasswd.setup."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"If you leave this field empty, access to the web-based setup will be "
+"disabled."
+msgstr ""
+"Se si lascia vuoto questo campo, l'accesso alla configurazione via web verrà "
+"disabilitato."

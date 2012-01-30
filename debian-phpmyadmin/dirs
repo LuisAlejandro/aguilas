@@ -1,0 +1,5 @@
+etc/phpmyadmin
+usr/share/phpmyadmin
+usr/share/dbconfig-common/data/phpmyadmin/install/
+var/lib/phpmyadmin
+var/lib/phpmyadmin/tmp

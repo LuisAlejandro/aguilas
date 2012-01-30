@@ -1,0 +1,12 @@
+Document: phpmyadmin
+title: pyMyAdmin documentation
+Author: phpMyAdmin devel team <phpmyadmin-devel@lists.sourceforge.net>
+Abstract: This manual describes how to use phpMyAdmin.
+Section: Programming
+
+Format: HTML
+Index: /usr/share/doc/phpmyadmin/Documentation.html
+Files: /usr/share/doc/phpmyadmin/Documentation.html
+
+Format: text
+Files: /usr/share/doc/phpmyadmin/Documentation.txt.gz

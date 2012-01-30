@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS `pma_userconfig` (
+  `username` varchar(64) NOT NULL,
+  `timevalue` timestamp NOT NULL,
+  `config_data` text NOT NULL,
+  PRIMARY KEY  (`username`)
+)
+  ENGINE=MyISAM COMMENT='User preferences storage for phpMyAdmin'
+  DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;

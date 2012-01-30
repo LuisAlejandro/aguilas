@@ -1,0 +1,102 @@
+# translation of ar.po to Arabic
+# translation of ar.po to
+#
+#    Translators, if you are not familiar with the PO format, gettext
+#    documentation is worth reading, especially sections dedicated to
+#    this format, e.g. by running:
+#         info -n '(gettext)PO Files'
+#         info -n '(gettext)Header Entry'
+#    Some information specific to po-debconf are available at
+#            /usr/share/doc/po-debconf/README-trans
+#         or http://www.debian.org/intl/l10n/po-debconf/README-trans#
+#    Developers do not need to manually edit POT or PO files.
+#
+# Ossama M. Khayat, 2005.
+# Ossama M. Khayat <okhayat@yahoo.com>, 2007, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: ar\n"
+"Report-Msgid-Bugs-To: phpmyadmin@packages.debian.org\n"
+"POT-Creation-Date: 2009-11-16 14:57+0100\n"
+"PO-Revision-Date: 2008-03-21 03:37+0300\n"
+"Last-Translator: Ossama M. Khayat <okhayat@yahoo.com>\n"
+"Language-Team: Arabic <support@arabeyes.org>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=6; plural=n==1 ? 0 : n==0 ? 1 : n==2 ? 2: n%100>=3 && "
+"n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5\n"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid "Web server to reconfigure automatically:"
+msgstr "خادم الوب الذي تود إعادة تهيئته تلقائياً:"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid ""
+"Please choose the web server that should be automatically configured to run "
+"phpMyAdmin."
+msgstr "رجاءً اختر خادم الوب الذي يجب تهيئته آلياً لتشغيل phpMyAdmin."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid "Username for web-based setup system:"
+msgstr "اسم المستخدم لنظام الإعداد عبر الوب:"
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"The setup system for phpMyAdmin may be used, after installation, from http://"
+"localhost/phpmyadmin/setup/index.php."
+msgstr ""
+"يمكن استخدام نظام إعداد phpMyAdmin عقب التثبيت عبر العنوان http://localhost/"
+"phpmyadmin/setup/index.php"
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"Access to this system requires identification with a username and a password."
+msgstr "يتطلب الوصول إلى هذا النظام تعريف الهوية باسم مستخدم وكلمة مرور."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid ""
+"If you leave this field empty, the default username ('admin') will be used."
+msgstr "إن تركت هذا الحقل فارغاً، فسوف يستخدم اسم المستخدم الافتراضي 'admin'."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid "Password for web-based setup system:"
+msgstr "كلمة المرور لنظام الإعداد عبر الوب:"
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"Usernames and passwords may be managed with the `htpasswd' command and are "
+"stored in /etc/phpmyadmin/htpasswd.setup."
+msgstr ""
+"يمكنك إدارة أسماء المستخدمين وكلمات المرور باستخدام الأمر 'htpasswd' ويتم "
+"حفظها في الملف /etc/phpmyadmin/htpasswd.setup"
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"If you leave this field empty, access to the web-based setup will be "
+"disabled."
+msgstr "إن تركت هذا الحق فارغاً، فستعطّل الوصول للإعداد عبر الوب."

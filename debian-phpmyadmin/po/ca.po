@@ -1,0 +1,105 @@
+# phpmyadmin (debconf) translation to Catalan.
+# Copyright (C) 2004 Free Software Foundation, Inc.
+# Aleix Badia i Bosch <abadia@ica.es>, 2004
+# Steve Langasek <vorlon@debian.org>, 2004
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: phpmyadmin_2.5.5-pl1-1_templates\n"
+"Report-Msgid-Bugs-To: phpmyadmin@packages.debian.org\n"
+"POT-Creation-Date: 2009-11-16 14:57+0100\n"
+"PO-Revision-Date: 2004-01-31 19:57GMT\n"
+"Last-Translator: Aleix Badia i Bosch <abadia@ica.es>\n"
+"Language-Team: Debian L10n Catalan <debian-l10n-catalan@lists.debian.org>\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+#, fuzzy
+msgid "Web server to reconfigure automatically:"
+msgstr "Quin servidor de web voldríeu reconfigurar automàticament?"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid ""
+"Please choose the web server that should be automatically configured to run "
+"phpMyAdmin."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid "Username for web-based setup system:"
+msgstr ""
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"The setup system for phpMyAdmin may be used, after installation, from http://"
+"localhost/phpmyadmin/setup/index.php."
+msgstr ""
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"Access to this system requires identification with a username and a password."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid ""
+"If you leave this field empty, the default username ('admin') will be used."
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid "Password for web-based setup system:"
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"Usernames and passwords may be managed with the `htpasswd' command and are "
+"stored in /etc/phpmyadmin/htpasswd.setup."
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"If you leave this field empty, access to the web-based setup will be "
+"disabled."
+msgstr ""
+
+#~ msgid ""
+#~ "phpMyAdmin supports any web server that PHP does, but this automatic "
+#~ "configuration process only supports Apache."
+#~ msgstr ""
+#~ "El phpMyAdmin suporta qualsevol servidor web que suporti PHP, però el "
+#~ "procés de configuració automàtica només suporta l'Apache."
+
+#~ msgid "Do you want me to restart ${webserver} now?"
+#~ msgstr "Voleu que reiniciï el ${webserver}?"
+
+#~ msgid ""
+#~ "Remember that in order to activate the new configuration ${webserver} has "
+#~ "to be restarted. You can also restart ${webserver} by manually executing /"
+#~ "etc/init.d/${webserver} restart"
+#~ msgstr ""
+#~ "Recordeu que per activar la nova configuració s'ha de reiniciar el "
+#~ "${webserver}. També podeu reiniciar el ${webserver} manualment executant /"
+#~ "etc/init.d/${webserver} restart"

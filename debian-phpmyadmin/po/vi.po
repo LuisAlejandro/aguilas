@@ -1,0 +1,130 @@
+# Vietnamese translation for phpmyadmin.
+# Copyright © 2007 Free Software Foundation, Inc.
+# Clytie Siddall <clytie@riverland.net.au>, 2005-2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: phpmyadmin 4:2.11.2-3\n"
+"Report-Msgid-Bugs-To: phpmyadmin@packages.debian.org\n"
+"POT-Creation-Date: 2009-11-16 14:57+0100\n"
+"PO-Revision-Date: 2007-12-21 23:17+1030\n"
+"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: LocFactoryEditor 1.7b1\n"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid "Web server to reconfigure automatically:"
+msgstr "Trình phục vụ Web cần cấu hình tự động:"
+
+#. Type: multiselect
+#. Description
+#: ../templates:2001
+msgid ""
+"Please choose the web server that should be automatically configured to run "
+"phpMyAdmin."
+msgstr ""
+"Hãy chọn trình phục vụ Web nên được cấu hình tự động để chạy phpMyAdmin."
+
+# msgid "User name for web-based setup system:"
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid "Username for web-based setup system:"
+msgstr "Tên người dùng cho hệ thống thiết lập dựa vào Web:"
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"The setup system for phpMyAdmin may be used, after installation, from http://"
+"localhost/phpmyadmin/setup/index.php."
+msgstr ""
+"Hệ thống thiết lập cho phpMyAdmin có thể được dùng, sau khi cài đặt, từ địa "
+"chỉ « http://localhost/phpmyadmin/setup/index.php »."
+
+#. Type: string
+#. Description
+#. Type: password
+#. Description
+#: ../templates:3001 ../templates:4001
+msgid ""
+"Access to this system requires identification with a username and a password."
+msgstr ""
+"Truy cập đến hệ thống này thì cần thiết xác thực bằng tên người dùng và mật "
+"khẩu."
+
+# msgid "Leave empty if you want to use the default user name 'admin'."
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid ""
+"If you leave this field empty, the default username ('admin') will be used."
+msgstr ""
+"Bỏ trường này rỗng thì dùng tên người dùng mặc định « admin » (quản trị)."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid "Password for web-based setup system:"
+msgstr "Mật khẩu cho hệ thống thiết lập dựa vào Web:"
+
+# msgid ""
+# You can manage the usernames and passwords with the `htpasswd' command. 
+# They are stored in the file /etc/phpmyadmin/htpasswd.setup
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"Usernames and passwords may be managed with the `htpasswd' command and are "
+"stored in /etc/phpmyadmin/htpasswd.setup."
+msgstr ""
+"Các tên người dùng và mật khẩu đều có thể được quản lý bằng lệnh « htpasswd "
+"», và được cất giữ trong tập tin « /etc/phpmyadmin/htpasswd.setup »."
+
+# msgid "Leave empty if you want to disable access to the web-based setup."
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"If you leave this field empty, access to the web-based setup will be "
+"disabled."
+msgstr ""
+"Bỏ trường này rỗng thì khả năng truy cập đến thiết lập dựa vào Web sẽ bị tắt."
+
+#~ msgid ""
+#~ "phpMyAdmin supports any web server that PHP does, but this automatic "
+#~ "configuration process only supports Apache."
+#~ msgstr ""
+#~ "Trình phpMyAdmin có hỗ trợ cùng những trình phục vụ Mạng với PHP, nhưng "
+#~ "mà tiến trình tự động cấu hình này chỉ hỗ trợ Apache."
+
+#~ msgid ""
+#~ "phpMyAdmin comes with a setup script that can help you with creating a "
+#~ "configuration. The script is located at http://localhost/phpmyadmin/setup/"
+#~ "index.php. For security reasons it requires authorization."
+#~ msgstr ""
+#~ "Phần mềm phpMyAdmin có sẵn một văn lệnh thiết lập để hướng dẫn bạn tạo "
+#~ "cấu hình. Văn lệnh này nằm ở <http://localhost/phpmyadmin/setup/index."
+#~ "php>. Vì lý do bảo mật, nó cần thiết xác thực."
+
+#~ msgid "Do you want me to restart ${webserver} now?"
+#~ msgstr ""
+#~ "Bạn có muốn trình này khởi chạy lại «${webserver}» ngay bây giờ không?"
+
+#~ msgid ""
+#~ "Remember that in order to activate the new configuration ${webserver} has "
+#~ "to be restarted. You can also restart ${webserver} by manually executing /"
+#~ "etc/init.d/${webserver} restart"
+#~ msgstr ""
+#~ "Hãy ghi nhớ: để hoạt hóa cấu hình mới, cần phải khởi chạy lại trình phục "
+#~ "vụ Mạng «${webserver}». Cũng có thể tự khởi chạy lại «${webserver}» bằng "
+#~ "cách thực hiện lệnh «/etc/init.d/${webserver} restart»."

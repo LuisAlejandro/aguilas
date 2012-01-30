@@ -1,0 +1,1640 @@
+phpmyadmin (4:3.4.7.1-1) unstable; urgency=high
+
+  * New upstream security release.
+    + Fixes local file retrieval: CVE-2011-4107, PMASA-2011-17
+
+ -- Michal Čihař <nijel@debian.org>  Fri, 11 Nov 2011 10:20:04 +0100
+
+phpmyadmin (4:3.4.7-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Michal Čihař <nijel@debian.org>  Mon, 07 Nov 2011 13:29:30 +0100
+
+phpmyadmin (4:3.4.6-1) unstable; urgency=low
+
+  * New upstream security release.
+    + Addresses non-issues (for Debian): CVE-2011-3646 CVE-2011-4064
+  * Cleanup leftover mootools symlinks (closes: #642212).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Mon, 17 Oct 2011 11:40:19 +0000
+
+phpmyadmin (4:3.4.5-1) unstable; urgency=high
+
+  * New upstream release.
+  * Fixes XSS when in-place editing rows [PMASA-2011-14].
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Wed, 14 Sep 2011 14:59:46 +0000
+
+phpmyadmin (4:3.4.4-1) unstable; urgency=high
+
+  * New upstream release.
+  * Fixes XSS in Tracking [PMASA-2011-13, CVE-2011-3181].
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Sat, 27 Aug 2011 09:53:11 +0000
+
+phpmyadmin (4:3.4.3.2-1) unstable; urgency=high
+
+  * New upstream security release.
+    [PMASA-2011-9 PMASA-2011-10 PMASA-2011-11 PMASA-2011-12]
+    [CVE-2011-2642 CVE-2011-2643]
+  * Add alternate dependency to libapache2-mod-php5filter (LP: #774980).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Sat, 23 Jul 2011 14:24:57 +0000
+
+phpmyadmin (4:3.4.3.1-1) unstable; urgency=high
+
+  * New upstream security release:
+  * Fixed possible session manipulation in swekey authentication, see
+    PMASA-2011-5 (CVE-2011-2505).
+  * Fixed possible code injection incase session variables are compromised,
+    see PMASA-2011-6 (CVE-2011-2506).
+  * Fixed regexp quoting issue in Synchronize code, see PMASA-2011-7
+    (CVE-2011-2507).
+  * Fixed filtering of a file path, which allowed for directory traversal, see
+    PMASA-2011-8 (CVE-2011-2508).
+
+ -- Michal Čihař <nijel@debian.org>  Thu, 07 Jul 2011 08:53:41 +0200
+
+phpmyadmin (4:3.4.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * Add missing build-arch/indep targets in debian/rules.
+
+ -- Michal Čihař <nijel@debian.org>  Tue, 28 Jun 2011 11:11:37 +0200
+
+phpmyadmin (4:3.4.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Michal Čihař <nijel@debian.org>  Tue, 07 Jun 2011 14:30:15 +0200
+
+phpmyadmin (4:3.4.1-1) unstable; urgency=low
+
+  * New upstream release.
+    - Fixes XSS in tracking (PMASA-2011-3, CVE-2011-1940).
+    - Fixes URL redirection (PMASA-2011-4, CVE-2011-1941).
+  * Drop debian/rules hacks no longer needed.
+
+ -- Michal Čihař <nijel@debian.org>  Mon, 23 May 2011 13:34:36 +0200
+
+phpmyadmin (4:3.4.0-2) unstable; urgency=low
+
+  * Add upgrade SQL script to add userconfig table.
+  * Reinclude blowfish secret.
+
+ -- Michal Čihař <nijel@debian.org>  Fri, 13 May 2011 09:13:17 +0200
+
+phpmyadmin (4:3.4.0-1) unstable; urgency=low
+
+  * New upstream release.
+    - Use upstream method for relocating config.
+    - Drop mootools patch as it is not needed anymore.
+    - No longer depends on mootools as they are not used (jQuery is used
+      instead, but 1.5 available in Debian seems to cause problems).
+  * Use system Dejavu fonts.
+  * Bump standards to 3.9.2.
+  * Add lintian overrides for embedded PHP libraries which are not available.
+
+ -- Michal Čihař <nijel@debian.org>  Wed, 11 May 2011 14:55:30 +0200
+
+phpmyadmin (4:3.3.10-1) unstable; urgency=low
+
+  * New upstream release.
+    - Remove patches integrated upstream. 
+
+ -- Michal Čihař <nijel@debian.org>  Sun, 20 Mar 2011 09:29:59 +0100
+
+phpmyadmin (4:3.3.9.2-1) unstable; urgency=high
+
+  * New upstream security release.
+    - Fixes path disclossure (PMASA-2011-1, CVE-2011-0986).
+    - Fixes SQL injection (PMASA-2011-2, CVE-2011-0987).
+  * Fix path to example config files (Closes: #611311).
+
+ -- Michal Čihař <nijel@debian.org>  Sat, 12 Feb 2011 08:35:43 +0100
+
+phpmyadmin (4:3.3.9-3) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Michal Čihař <nijel@debian.org>  Sun, 06 Feb 2011 12:41:31 +0100
+
+phpmyadmin (4:3.3.9-2) experimental; urgency=low
+
+  * Add php5-fpm to list of PHP SAPIs (Closes: #609808, LP: #701997).
+  * Incorporate Ubuntu backported patches for security issue.
+
+ -- Michal Čihař <nijel@debian.org>  Tue, 18 Jan 2011 14:44:22 +0100
+
+phpmyadmin (4:3.3.9-1ubuntu1) natty; urgency=low
+
+  * SECURITY UPDATE: Unvalidated input on error page (Closes: #608290, LP: #696857)
+    - debian/patches/CVE-2010-4480.patch: Don't use a redirect to the error page
+    - CVE-2010-4480, PMASA-2010-9
+  * SECURITY UPDATE: Possible information disclosure of phpinfo (same bug) 
+    - debian/patches/CVE-2010-4481.patch: Don't skip authentication for
+      PMA_MINIMUM_COMMON
+    - CVE-2010-4481, PMASA-2010-10
+
+ -- Micah Gersten <micahg@ubuntu.com>  Wed, 05 Jan 2011 23:42:17 -0600
+
+phpmyadmin (4:3.3.9-1) experimental; urgency=low
+
+  * New upstream release.
+  * Fix connection settings when using dbconfig with remote MySQL server.
+  * Log when dbconfig generated settings are not accessible. 
+  * Add Slovak debconf translation (Closes: #608705).
+  * Update Danish debconf translation (Closes: #608941).
+
+ -- Michal Čihař <nijel@debian.org>  Wed, 05 Jan 2011 10:18:41 +0100
+
+phpmyadmin (4:3.3.8.1-1) experimental; urgency=low
+
+  * New upstream security release (PMASA-2010-8, CVE-2010-4329).
+  * Install desktop file for phpMyAdmin if web server was configured 
+    (LP: #667172).
+  * Remove avahi service symlink on purge.
+  * Suggest www-browser.
+
+ -- Michal Čihař <nijel@debian.org>  Wed, 01 Dec 2010 14:56:15 +0100
+
+phpmyadmin (4:3.3.8-1) experimental; urgency=low
+
+  * New upstream release.
+  * Upload to experimental for now due to excessive changes in packaging.
+  * Ignore errors from dbconfig in config script (LP: #618852).
+  * Ignore errors from dbconfig in {pre,post}rm scripts (LP: #621569).
+  * Set allow_url_fopen to Off and limit some function execution for
+    phpMyAdmin under Apache (Closes: #598903).
+  * Change default upload path to /var/lib/phpmyadmin/tmp and set open_basedir
+    to limit using anything else than phpMyAdmin code and this folder.
+
+ -- Michal Čihař <nijel@debian.org>  Tue, 26 Oct 2010 16:39:45 +0200
+
+phpmyadmin (4:3.3.7-1) unstable; urgency=low
+
+  * New upstream release (Closes: #595974).
+    - Fixes XSS in setup script (PMASA-2010-7, CVE-2010-3263).
+
+ -- Michal Čihař <nijel@debian.org>  Thu, 09 Sep 2010 08:31:57 +0200
+
+phpmyadmin (4:3.3.6-1) unstable; urgency=low
+  
+  [ Thijs Kinkhorst ]
+  * New upstream bugfix release (Closes: #594755).
+
+  [ Michal Čihař ]
+  * Include configuration for tracking (Closes: #594188).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Sun, 29 Aug 2010 10:48:09 +0200
+
+phpmyadmin (4:3.3.5.1-1) unstable; urgency=low
+
+  * New upstream security release (CVE-2010-3056).
+
+ -- Michal Čihař <nijel@debian.org>  Fri, 20 Aug 2010 14:24:31 +0200
+
+phpmyadmin (4:3.3.5-1) unstable; urgency=low
+
+  * New upstream version.
+  * Bump standards to 3.9.1.
+
+ -- Michal Čihař <nijel@debian.org>  Tue, 27 Jul 2010 10:05:24 +0200
+
+phpmyadmin (4:3.3.4-1) unstable; urgency=low
+
+  * New upstream version.
+  * Do not try to restart webserver if it is not installed (LP:  #573847),
+  * Bump standards to 3.9.0.
+
+ -- Michal Čihař <nijel@debian.org>  Mon, 28 Jun 2010 21:45:43 +0200
+
+phpmyadmin (4:3.3.3-1) unstable; urgency=low
+
+  * New upstream version (Closes: #581585).
+
+ -- Michal Čihař <nijel@debian.org>  Fri, 14 May 2010 13:57:37 +0200
+
+phpmyadmin (4:3.3.2-2) unstable; urgency=low
+
+  * Add SQL to create tracking table on upgrade (LP:  #565627).
+  * Include SQL script to create table with fixed SQL comments (LP: #563256).
+
+ -- Michal Čihař <nijel@debian.org>  Mon, 26 Apr 2010 14:23:37 +0200
+
+phpmyadmin (4:3.3.2-1) unstable; urgency=medium
+
+  * New upstream release (closes: #577753).
+  * Drop unneeded Indexes option from shipped apache.conf.
+  * Anchor regexp to prevent truncation of schema (closes: #577395).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Wed, 14 Apr 2010 10:55:42 +0200
+
+phpmyadmin (4:3.3.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Tue, 16 Mar 2010 21:52:33 +0100
+
+phpmyadmin (4:3.3.0-1) unstable; urgency=low
+
+  * New upstream version.
+  * Rediff debian/patches.
+  * Fix permissions on mediawiki export extension.
+
+ -- Michal Čihař <nijel@debian.org>  Mon, 08 Mar 2010 15:25:00 +0100
+
+phpmyadmin (4:3.2.5-2) unstable; urgency=low
+
+  * Add conflict with broken mootools versions (Closes: #566601).
+  * Fixup permissions only if file exists (LP: #481786).
+  * Enable fastcgi module in lighttpd on install (Closes: #567336) 
+    (LP: #283801).
+  * Do not try to create Avahi service symlink if it already exists 
+    (LP: #512246).
+  * Bump standards to 3.8.4.
+
+ -- Michal Čihař <nijel@debian.org>  Thu, 04 Feb 2010 13:21:28 +0100
+
+phpmyadmin (4:3.2.5-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Mon, 11 Jan 2010 21:42:18 +0100
+
+phpmyadmin (4:3.2.4-2) unstable; urgency=low
+
+  * Include also mootools extra which is required (Closes: #563211).
+
+ -- Michal Čihař <nijel@debian.org>  Mon, 04 Jan 2010 16:16:22 +0100
+
+phpmyadmin (4:3.2.4-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Tue, 08 Dec 2009 18:35:56 +0100
+
+phpmyadmin (4:3.2.3-4) unstable; urgency=low
+
+  * Add missing symlink to mootools (LP: #487241).
+  * Fix inverted logic of detecting dbconfig-common failure.
+
+ -- Michal Čihař <nijel@debian.org>  Tue, 24 Nov 2009 14:33:09 +0100
+
+phpmyadmin (4:3.2.3-3) unstable; urgency=low
+
+  * Add DEP-3 patch headers.
+  * Split documentation patch as it really should be separate.
+  * Use dbconfig configuration only if it exists (LP: #416183).
+
+ -- Michal Čihař <nijel@debian.org>  Mon, 16 Nov 2009 15:37:13 +0100
+
+phpmyadmin (4:3.2.3-2) unstable; urgency=low
+
+  * Do not hard fail if dbconfig configuration fails (LP: #456674).
+  * Document that migration from pre dbconfig version might need configuration
+    merge (Closes: #535058).
+  * Document order of processing configuration files (Closes: #532960).
+  * Convert to 3.0 (quilt) source format.
+
+ -- Michal Čihař <nijel@debian.org>  Mon, 16 Nov 2009 15:18:59 +0100
+
+phpmyadmin (4:3.2.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * Improve description a bit (administrator does not support mysqli) 
+    (Closes: #551788).
+
+ -- Michal Čihař <nijel@debian.org>  Wed, 04 Nov 2009 08:51:57 +0100
+
+phpmyadmin (4:3.2.2.1-1) unstable; urgency=low
+
+  * New upstream version.
+    - Fixes XSS (PMASA-2009-6, CVE-2009-3696, CVE-2009-3697).
+  * Register documentation on doc-base.
+  * Use mootools from Debian package rather than own copy.
+  * Allow saving of configuration from setup script only after explicit action
+    from administrator (Closes: #535044, #543460).
+
+ -- Michal Čihař <nijel@debian.org>  Wed, 14 Oct 2009 10:58:28 +0200
+
+phpmyadmin (4:3.2.2-1) unstable; urgency=low
+
+  * New upstream version.
+  * Bump policy to 3.8.3.
+
+ -- Michal Čihař <nijel@debian.org>  Mon, 21 Sep 2009 10:26:22 +0200
+
+phpmyadmin (4:3.2.1-1) unstable; urgency=high
+  
+  [ Thijs Kinkhorst ]
+  * New upstream release. Fixes a (rather unimportant) security
+    issue, bump urgency just to be sure.
+
+  [ Michal Čihař ]
+  * Fix path to setup script in README.Debian and debconf templates
+    (Closes: #539518).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Mon, 10 Aug 2009 21:14:19 +0200
+
+phpmyadmin (4:3.2.0.1-1) unstable; urgency=high
+
+  * New upstream version fixing XSS (PMASA-2009-5, CVE-2009-2284).
+  * Document no empty password in README.Debian and the shipped sample
+    configuration file (LP: #388703).
+  * Install service file for avahi (if web service enabled and if avahi is
+    installed) (LP: #369244).
+  * Mention protecting of setup if not using provided configuration snippets
+    for webservers.
+  * Call ucf with --debconf-ok in postrm (Closes: #534894).
+
+ -- Michal Čihař <nijel@debian.org>  Tue, 30 Jun 2009 14:05:13 +0200
+
+phpmyadmin (4:3.2.0-1) unstable; urgency=low
+
+  [ Thijs Kinkhorst ]
+  * New upstream release.
+    - Warns when gc_maxlifetime is less than cookie validity
+      (closes: #499399).
+
+  [ Michal Čihař ]
+  * Adjust patches to make use of new upstream vendor configuration.
+  * Switch to quilt from dpatch.
+  * Update to policy 3.8.2 (no changes needed).
+
+ -- Michal Čihař <nijel@debian.org>  Wed, 17 Jun 2009 16:37:11 +0200
+
+phpmyadmin (4:3.1.5-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Sun, 17 May 2009 12:55:15 +0200
+
+phpmyadmin (4:3.1.4-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Sat, 25 Apr 2009 19:03:00 +0200
+
+phpmyadmin (4:3.1.3.1-1) unstable; urgency=high
+
+  * New upstream security fix release.
+    [CVE-2009-1148 CVE-2009-1149 CVE-2009-1150 CVE-2009-1151]
+  * Checked package for policy 3.8.1, no changes necessary.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Wed, 25 Mar 2009 19:10:40 +0100
+
+phpmyadmin (4:3.1.3-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Sun, 01 Mar 2009 12:01:59 +0100
+
+phpmyadmin (4:3.1.2-2) unstable; urgency=low
+
+  * Upload to unstable.
+  * [INTL:es] Spanish debconf template update (Closes: #513690).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Mon, 16 Feb 2009 17:58:28 +0100
+
+phpmyadmin (4:3.1.2-1) experimental; urgency=low
+  
+  [ Thijs Kinkhorst ]
+  * New upstream release.
+  * Replace dh_clean -k by dh_prep.
+
+  [ Michal Čihař ]
+  * Better describe steps needed to access phpMyAdmin in README.Debian
+    (Closes: #508703).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Mon, 19 Jan 2009 20:59:17 +0100
+
+phpmyadmin (4:3.1.1-1) experimental; urgency=high
+
+  * New upstream release.
+    - Fixes security issue PMASA-2008-10 (SQL injection).
+      [CVE-2008-5621, CVE-2008-5622]
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Tue, 09 Dec 2008 21:08:00 +0100
+
+phpmyadmin (4:3.1.0-1) experimental; urgency=low
+
+  [ Thijs Kinkhorst ]
+  * New upstream release.
+    - Prevents logging in as root by default (Closes: #496442).
+
+  [ Michal Čihař ]
+  * New setup code in upstream.
+    - Patch for setup.php is obsolete.
+    - New patch for similar changes in new setup code.
+    - Adjusted paths in webserver configs to new setup
+    - Limit access to setup libraries in same way we do it for libraries.
+  * Use upstream code for displaying changelog with links.
+  * Use htpasswd backend for lighttpd.
+
+ -- Michal Čihař <nijel@debian.org>  Sun, 30 Nov 2008 13:44:20 +0100
+
+phpmyadmin (4:3.0.1.1-1) experimental; urgency=high
+
+  * New upstream release to fix a security issue.
+    [PMASA-2008-9, CVE-2008-4775]
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Fri, 31 Oct 2008 11:04:02 +0100
+
+phpmyadmin (4:3.0.1-1) experimental; urgency=low
+
+  * New upstream release.
+    - Updates French translation (Closes: #502520).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Tue, 28 Oct 2008 22:54:03 +0100
+
+phpmyadmin (4:3.0.0-1) experimental; urgency=low
+
+  * New upstream release.
+    Includes security fix [PMASA-2008-8, CVE-2008-4326]
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Sun, 28 Sep 2008 11:11:04 +0200
+
+phpmyadmin (4:3.0.0~rc2-1) experimental; urgency=high
+
+  * New upstream release candidate.
+    + Fixes code execution by authenticated users
+      [CVE-2008-4096, PMASA-2008-7]
+  * Make config-db.php owned by root:www-data and mode 0640.
+  * Add recommends on mysql-cient for dbconfig-common.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Tue, 16 Sep 2008 09:00:50 +0200
+
+phpmyadmin (4:3.0.0~rc1-2) experimental; urgency=low
+
+  * Create phpmyadmin databases by dbconfig-common.
+  * Default phpMyAdmin configuration now comes from dbconfig-common.
+  * Update README.Debian to match above changes.
+
+ -- Michal Čihař <nijel@debian.org>  Sun, 07 Sep 2008 23:33:13 +0200
+
+phpmyadmin (4:3.0.0~rc1-1) experimental; urgency=low
+
+  [ Thijs Kinkhorst ]
+  * New upstream release candidate.
+  
+  [ Michal Čihař ]
+  * Disallow access to libraries when using lighttpd.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Sun, 07 Sep 2008 18:34:18 +0200
+
+phpmyadmin (4:3.0.0~beta-1) experimental; urgency=low
+
+  * New upstream bèta release.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Fri, 22 Aug 2008 14:03:36 +0200
+
+phpmyadmin (4:3.0.0~alpha-1) experimental; urgency=low
+
+  * New upstream alpha release: 3.0.0.
+  * Don't install readme.php if we don't install README.
+  * Use debhelper level 7.
+  * Remove dependencies for PHP4 and Apache 1 (Closes: #431885),
+    and legacy upgrading code.
+  * Remove paths from lighty-{en,dis}able-mod.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Mon, 11 Aug 2008 17:06:26 +0200
+
+phpmyadmin (4:2.11.8.1-1) unstable; urgency=low
+
+  * New upstream release, only changes:
+    + Updates Norwegian translation.
+    + Fixes PHP notice on every page load.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Mon, 11 Aug 2008 12:44:44 +0200
+
+phpmyadmin (4:2.11.8~rc1-1) unstable; urgency=high
+
+  * New upstream release candidate fixing security issues.
+    [CVE-2008-3456, CVE-2008-3457]
+  * Update Swedish debconf translation, thanks
+    Martin Ågren (Closes: #492057).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Thu, 24 Jul 2008 22:08:21 +0200
+
+phpmyadmin (4:2.11.7.1-1) unstable; urgency=high
+
+  * New upstream release.
+  * Fixes security issue: XSRF/CSRF by manipulating the
+    db, convcharset and collation_connection parameters.
+    [CVE-2008-3197]
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Tue, 15 Jul 2008 20:41:25 +0200
+
+phpmyadmin (4:2.11.7-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Tue, 24 Jun 2008 21:43:28 +0200
+
+phpmyadmin (4:2.11.7~rc2-1) unstable; urgency=medium
+
+  * New upstream release candidate.
+    - Fixes an issue that is not relevant to Debian but flagged
+      as a security issue upstream: CVE-2008-2960. In Debian we
+      don't support setups with register_globals on.
+    - Fixes session hash_bits override (Closes: #474557).
+  * Checked for policy 3.8.0, add README.source.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Sat, 14 Jun 2008 15:24:31 +0200
+
+phpmyadmin (4:2.11.6-1) unstable; urgency=low
+
+  * New upstream bugfix release.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Wed, 30 Apr 2008 20:55:57 +0200
+
+phpmyadmin (4:2.11.5.2-1) unstable; urgency=medium
+
+  * New upstream release.
+    + Fixes security issue where user was able to access any files on
+      webserver by using crafted HTTP POST request
+      [PMASA-2008-3, CVE-2008-1924].
+
+ -- Michal Čihař <nijel@debian.org>  Wed, 23 Apr 2008 10:42:47 +0200
+
+phpmyadmin (4:2.11.5.1-1) unstable; urgency=medium
+
+  * New upstream release.
+    + Fixes a "security bug": saves sensitive data in the PHP session
+      data, which might be unprotected on a shared host. I do not believe
+      that this is a real issue, more a security precaution for situations
+      which are not secure anyway. Still, upload with medium urgency.
+      [PMASA-2008-2, CVE-2008-1567]
+  * Update Arabic translation by Ossama Khayat (Closes: #471908).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Sat, 29 Mar 2008 16:31:06 +0100
+
+phpmyadmin (4:2.11.5-1) unstable; urgency=medium
+
+  [ Thijs Kinkhorst ]
+  * New upstream release.
+    + Fixes low-risk SQL injection: PMASA-2008-1.
+  * Update Japanese translation by Hideki Yamane (Closes: #463169).
+  
+  [ Michal Čihař ]
+  * Actually install README.Debian (Closes: #460991).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Sat, 01 Mar 2008 18:09:37 +0100
+
+phpmyadmin (4:2.11.4-1) unstable; urgency=low
+
+  * New upstream release.
+  * Update to debhelper level 6.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Mon, 14 Jan 2008 12:24:38 +0100
+
+phpmyadmin (4:2.11.3-2) unstable; urgency=low
+
+  * Debconf templates and debian/control reviewed by the
+    debian-l10n-english team as part of the Smith review project.
+    Thanks Christian Perrier and friends. Closes: #453293
+  
+  [ Translations ]
+  * Polish
+  * Galician. Closes: #454182
+  * Norwegian Bokmål. Closes: #454185
+  * Basque. Closes: #454240
+  * German. Closes: #454507
+  * Finnish. Closes: #454606
+  * Italian. Closes: #454646
+  * Portuguese. Closes: #456426
+  * Czech. Closes: #456601
+  * Russian. Closes: #456761
+  * French. Closes: #456767
+  * Vietnamese. Closes: #457313
+  * Dutch.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Sun, 23 Dec 2007 21:09:59 +0100
+
+phpmyadmin (4:2.11.3-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Sun, 09 Dec 2007 11:10:28 +0100
+
+phpmyadmin (4:2.11.2.2-1) unstable; urgency=high
+
+  * New upstream release.
+  * Fixes cross site scripting issue (PMASA-2007-8, CVE-2007-6100).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Thu, 22 Nov 2007 07:51:22 +0100
+
+phpmyadmin (4:2.11.2.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Fixes unimportant "security" issue: XSS/SQL injection
+    through database names (PMASA-2007-7, CVE-2007-5976,
+    CVE-2007-5977).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Sun, 11 Nov 2007 22:21:14 +0100
+
+phpmyadmin (4:2.11.2-2) unstable; urgency=low
+
+  * Fixed typo in postrm script which broke removal (Closes: #448653).
+  * Added support for configuring lighttpd web server.
+  * Drop build dependency on perl and replace it by sed.
+
+ -- Michal Čihař <nijel@debian.org>  Wed, 31 Oct 2007 10:42:54 +0900
+
+phpmyadmin (4:2.11.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Mon, 29 Oct 2007 22:50:22 +0100
+
+phpmyadmin (4:2.11.1.2-1) unstable; urgency=high
+  
+  * New upstream release.
+  * Addresses two cross site scripting issues:
+    PMASA-2007-5, PMASA-2007-6
+    (CVE-2007-5386, CVE-2007-5589, closes: #446451)
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Wed, 17 Oct 2007 22:54:41 +0200
+
+phpmyadmin (4:2.11.1-1) unstable; urgency=low
+
+  * New upstream release.
+    - Rename database now keeps character set (Closes: #438129).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Fri, 21 Sep 2007 08:26:50 +0200
+
+phpmyadmin (4:2.11.0-1) unstable; urgency=low
+
+  * New upstream release (Closes: #409286).
+  * Also install create/update pmadb example SQL files for MySQL 4.1+.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Thu, 23 Aug 2007 13:01:53 +0200
+
+phpmyadmin (4:2.10.3-1) unstable; urgency=low
+
+  * New upstream bugfix release.
+
+  [ Translations ]
+  * German by Helge Kreutzmann (Closes: #432566).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Sat, 14 Jul 2007 18:07:05 +0200
+
+phpmyadmin (4:2.10.2-1) unstable; urgency=low
+  
+  [ Thijs Kinkhorst ]
+  * New upstream release.
+  * Welcome Michal Čihař as new co-maintainer.
+
+  [ Translations ]
+  * Vietnamese by Clytie Siddall (Closes: #427177).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Sun, 17 Jun 2007 17:52:03 +0200
+
+phpmyadmin (4:2.10.1-3) unstable; urgency=low
+
+  [ Thijs Kinkhorst ]
+  * php5-mcrypt is now a dependency on 64 bit platforms. Move it from
+    Recommends to Depends because it's not possible to specify per-arch
+    dependencies, and it's also very useful to have on 32 bit platforms
+    because of the speed increase (Closes: #425164).
+
+  [ Translations ]
+  * French by Chrisian Perrier (Closes: #423954).
+  * Danish by Claus Hindsgaul (Closes: #426786).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Thu, 31 May 2007 12:32:38 +0200
+
+phpmyadmin (4:2.10.1-2) unstable; urgency=low
+
+  * Make sure webserver configuration question is always asked
+    on install and reconfigure (Closes: #421535).
+  * Add example configuration for many identically configured
+    hosts, thanks to Matthew Hawkins (Closes: #285727).
+  * Tweak debconf translations for guidelines.
+
+  [ Translations ]
+  * Dutch by self.
+  * Norwegian by Bjørn Steensrud.
+  * Swedish by Daniel Nylander (Closes: #421083).
+  * Galician by Jacobo Tarrio (Closes: #421086).
+  * Portuguese by Miguel Figueiredo (Closes: #421259).
+  * Basque by Piarres Beobide (Closes: #421223).
+  * Italian by Luca Monducci (Closes: #421475).
+  * Czech by Miroslav Kure (Closes: #421486).
+  * Arabic by Ossama Khayat (Closes: #421754).
+  * Polish by Piotr Roszatycki.
+  * Russian by Yuriy Talakan' (Closes: #422042).
+  * Spanish by Nacho Barrientos Arias (Closes: #422136).
+  * Japanese by Hideki Yamane (Closes: #422268).
+  * Brazilian Portuguese by Eder L. Marques (Closes: #422282).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Sat, 05 May 2007 17:28:20 +0200
+
+phpmyadmin (4:2.10.1-1) unstable; urgency=high
+
+  * New upstream release.
+    - Security fix: PMASA-2007-4: Cross Site Scripting.
+  * Warn about obsolete /var/www/phpmyadmin symlink.
+  * Install translators.html as documentation for proper crediting.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Thu, 26 Apr 2007 11:17:13 +0200
+
+phpmyadmin (4:2.10.0.2-1) unstable; urgency=low
+
+  * Repackage using debhelper instead of yada (Closes: #417018).
+  * Does not reconfigure Apache without permission and does not
+    reset debconf variables (Closes: #335568, #377538).
+  * New upstream release.
+    - From now on we use the -utf-8-only tarballs, reducing installed
+      size by 25%.
+    - Fixes sessions for non-file-based handlers (Closes: #419484).
+    - Has configurable signout link (Closes: #257975).
+    - Addresses CVE-2007-1325 (workaround for PHP vulnerability).
+    - Addresses CVE-2007-1395 (incomplete blacklist).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Sat, 21 Apr 2007 14:52:09 +0200
+
+phpmyadmin (4:2.9.1.1-3) unstable; urgency=medium
+
+  * Added Galician debconf translation by Jacobo Tarrio (Closes: #412195).
+  * Actually install config.default.php example file (Closes: #412655).
+  * Add XS-Vcs-* fields to debian/control.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Wed, 28 Feb 2007 01:07:56 +0100
+
+phpmyadmin (4:2.9.1.1-2) unstable; urgency=high
+
+  * Backport security-related changes from 2.9.2-rc1:
+  * CVE-2007-0203: Multiple unspecified vulnerabilities;
+    this turns out to be (1) cross site scripting and
+    (2) the same as CVE-2006-6374. (Closes: #406332, #406486)
+  * CVE-2006-6374: the vulnerability only applies to
+    PHP < 5.1.2 and < 4.4.2, so strictly speaking current
+    Debian is not vulnerable. Include it anyway, to not expose
+    those using older PHP versions. (Closes: #404744)
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Fri, 12 Jan 2007 15:29:28 +0100
+
+phpmyadmin (4:2.9.1.1-1) unstable; urgency=high
+
+  * New upstream release.
+    - Addresses several security issues (Closes: #399329).
+      [CVE-2006-6944, CVE-2006-6942]
+
+  * In Depends, explicitly prefer the apache2/apache PHP module, to make
+    sure the correct one is selected upon installation.
+  * Drop 100-dutch_fixtypo.patch, integrated upstream.
+
+  * Add note to default config file about adding sensitive data
+    to that file (Closes: #321529).
+  * Update README.Debian with information about register_globals.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Wed, 22 Nov 2006 22:24:02 +0100
+
+phpmyadmin (4:2.9.0.3-1) unstable; urgency=medium
+
+  * New upstream bugfix release.
+    - Includes a fix for a XSS security issue.
+      (PMASA-2006-6, CVE-2006-5718, Closes: #396638)
+
+  * 100-dutch_fixtypo.patch: Add patch to fix typo in Dutch
+    translation which also caused a layout problem in the login
+    screen.
+  * 021-config.inc.php_no_check_mtime.patch: Add patch to Config
+    class to disable checking for the mtime of config.inc.php.
+    Since we include other files from it, those will otherwise
+    never be read (Closes: #392022).
+  * Add depends on perl since it's used in the maintainer scripts.
+  * Update shipped htaccess to make it compatible with Apache 2.2
+    (Closes: #396560).
+
+  * Updated translations:
+    - Bokmål by Bjørn Steensrud.
+    - Basque by Piarres Beobide.
+    - Dutch by self.
+    - Danish by Claus Hindsgaul (Closes: #393871).
+    - Japanese by Hideki Yamane (Closes: #396548).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Thu,  2 Nov 2006 15:45:29 +0100
+
+phpmyadmin (4:2.9.0.2-1) unstable; urgency=low
+
+  * New maintainer, thanks Piotr for your previous work!
+  * Acknowledge NMU's, thanks Steinar! (Closes: #378681)
+  * Fix typo in debconf templates and unfuzzy that.
+  * Tweak package description.
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Wed, 11 Oct 2006 14:46:37 +0200
+
+phpmyadmin (4:2.9.0.2-0.1) unstable; urgency=high
+
+  * Non-maintainer upload with maintainer consent.
+  * Upgrade to latest upstream version to battle cross-site
+    request forgery (PMASA-2006-5, CVE-2006-5116, CVE-2006-5117,
+    closes: 391090).
+  * New upstream also fixes broken database export functionality
+    (closes: 374918) and database/table copy (closes: 390484).
+  * Update translations:
+    - Danish by Claus Hindsgaul (Closes: 357972).
+    - Italian by Luca Monducci (Closes: 382139).
+    - Spanish by Nacho Barrientos Arias (Closes: 385365).
+
+ -- Thijs Kinkhorst <thijs@debian.org>  Tue, 10 Oct 2006 20:56:25 +0200
+
+phpmyadmin (4:2.8.2-0.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Fix issue with /var/www pointing to /usr/share/phpmyadmin.
+    (Closes: #385889)
+    * Make sure we install /var/www as a directory, since we make a symlink into
+      it and we can't rely on it being there.
+    * Explicitly link to /var/www/phpmyadmin instead of /var/www, to make sure
+      we don't make a new /var/www even if it should be removed for some
+      reason.
+
+ -- Steinar H. Gunderson <sesse@debian.org>  Mon, 11 Sep 2006 00:14:54 +0200
+
+phpmyadmin (4:2.8.2-0.1) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * New upstream release.
+    * Fixes cross-site-scripting issues. [CVE-2006-3388] (Closes: #377748)
+
+ -- Steinar H. Gunderson <sesse@debian.org>  Tue, 18 Jul 2006 12:52:19 +0200
+
+phpmyadmin (4:2.8.1-1) unstable; urgency=medium
+
+  * New upstream release. Closes: #373204.
+    - The French translation is correct. Closes: #362154.
+    - Generates correct dumps with UPDATE syntax. Closes: #364702.
+  * Security fix: XSRF vulnerability.
+    See: http://www.phpmyadmin.net/home_page/security.php?issue=PMASA-2006-3
+    See: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-1804
+    [CVE-2006-1803, CVE-2006-1804]
+  * Security fix: XSS vulnerabilities. It was not a problem for Debian with
+    the default settings.
+    See: http://www.phpmyadmin.net/home_page/security.php?issue=PMASA-2006-2
+    See: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-2031
+    [CVE-2006-2031, CVE-2006-2417, CVE-2006-2418]
+    Closes: #363519, #368082.
+  * Security fix: XSS with IE 6 [CVE-2007-0341].
+  * Updated Portuguese debconf templates translation, thanks Miguel Figueiredo.
+    Closes: #363597.
+  * Updated Russian debconf templates translation, thanks Yuriy Talakan.
+    Closes: #367146.
+  * Convert non-ISO-8859-1 debconf templates translation to UTF-8.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Sun, 25 Jun 2006 18:10:23 +0200
+
+phpmyadmin (4:2.8.0.3-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Security fix: XSS vulnerability (calling directly css files under themes)
+    See: http://www.phpmyadmin.net/home_page/security.php?issue=PMASA-2006-1
+    See: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-1678
+    Closes: #362567.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Fri, 14 Apr 2006 14:47:28 +0200
+
+phpmyadmin (4:2.8.0.2-4) unstable; urgency=low
+
+  * Fixed typos in debconf template. Closes: #360059.
+  * Updated Czech debconf templates translation, thanks Miroslav Kure.
+    Closes: #359757.
+  * Updated German debconf templates translation, thanks Daniel Knabl.
+    Closes: #359752.
+  * Updated Swedish debconf templates translation, thanks Daniel Nylander.
+  * Updated Vietnamese debconf templates translation, thanks Clytie Siddall.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Fri, 31 Mar 2006 14:54:00 +0200
+
+phpmyadmin (4:2.8.0.2-3) unstable; urgency=low
+
+  * Add missing javascript files. Closes: #357743, #357579.
+  * Updated Brazilian Portuguese debconf templates translation, thanks Andre
+    Luis Lopes. Closes: #357840.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon, 20 Mar 2006 11:06:09 +0100
+
+phpmyadmin (4:2.8.0.2-2) unstable; urgency=low
+
+  * Do not use 822-date command in postinst script. Close: #357605.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Sat, 18 Mar 2006 15:02:47 +0100
+
+phpmyadmin (4:2.8.0.2-1) unstable; urgency=low
+
+  * New upstream release. Closes: #356013, #355931.
+    - Can work if DocumentRoot is set to phpMyAdmin's directory.
+      Closes: #352403, #349497.
+    - pma_* features work with PersistentConnection mode. Closes: #348489.
+    - Export of table works if __TABLE__ macro is used. Closes: #217364.
+    - Can navigate back to user after changing privileges on database.
+      Closes: #338758.
+    - Fixes XSS [CVE-2006-1258]
+  * Reedited package description.
+  * Tweaked dependencies. Prefer php5-cgi package and does not depend on
+    apache2, because the PHP can be started as FastCGI standalone server.
+    Closes: #340286, #307441.
+  * This release provides http://localhost/phpmyadmin/scripts/setup.php setup
+    script. This script requires authorization by default.
+  * Generate longer blowfish secret on install.
+  * Create symlink /var/www/phpmyadmin only at first install.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Fri, 17 Mar 2006 10:56:43 +0100
+
+phpmyadmin (4:2.7.0-pl2-1) unstable; urgency=low
+
+  * New upstream release. Closes: #342203.
+  * Tweak the dependencies and prefer PHP5 with Apache2.
+  * Support cgid.so module for threaded Apache2.
+  * Removed all Debian specific patches.
+  * Portuguese debconf templates translation, thanks Miguel Figueiredo.
+    Closes: #336444.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Wed,  4 Jan 2006 15:34:36 +0100
+
+phpmyadmin (4:2.6.4-pl4-2) unstable; urgency=high
+
+  * Security fix: Cross-site scripting by trusting potentially user-supplied
+    input.
+    See: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2005-3665
+    New 200-CVE-2005-3665.patch. Closes: #340438.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Wed, 23 Nov 2005 14:31:15 +0100
+
+phpmyadmin (4:2.6.4-pl4-1) unstable; urgency=high
+
+  * New upstream release.
+  * Security fix: HTTP Response Splitting vulnerability.
+    See: http://www.phpmyadmin.net/home_page/security.php?issue=PMASA-2005-6
+    See: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2005-3621
+    Closes: #339437.
+  * New 105-bug_debian_324318.patch:
+    - Always set the default configuration values, even if the config.inc.php
+      file seems to be up to date. This fix allows to utilise more than three
+      databases. Closes: #324318.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Wed, 16 Nov 2005 13:10:14 +0100
+
+phpmyadmin (4:2.6.4-pl3-1) unstable; urgency=high
+
+  * New upstream release.
+  * Security fix: (1) Local file inclusion vulnerability and (2) Cross-Site
+    Scripting vulnerability.
+    See http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2005-3300
+    See http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2005-3301
+    Closes: #335306, #335513.
+  * Assigned CVE number for 4:2.6.4-pl2-1 bug fix.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon, 24 Oct 2005 20:14:08 +0200
+
+phpmyadmin (4:2.6.4-pl2-1) unstable; urgency=high
+
+  * New upstream release.
+  * Security fix: local file inclusion vulnerability.
+    See http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2005-3299
+    Closes: #333433.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Wed, 12 Oct 2005 15:07:42 +0200
+
+phpmyadmin (4:2.6.4-pl1-2) unstable; urgency=low
+
+  * Rebuilt with new YADA. Depends: debconf (>= 0.2.26) | debconf-2.0
+  * Swedish debconf templates translation, thanks Daniel Nylander.
+    Closes: #330645.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Tue,  4 Oct 2005 13:01:25 +0200
+
+phpmyadmin (4:2.6.4-pl1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Security fix: Two Cross-Site Scripting vulnerabilities.
+    See http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2005-2869
+    Closes: #327345.
+  * Append the Debian package revision number to the upstream version number.
+    Marks that this phpMyAdmin package has additional Debian modifications so
+    the bugreports won't confuse phpMyAdmin's coders.
+  * Create minimal /usr/share/phpmyadmin/config.inc.php file with proper
+    comment. Closes: #321270.
+  * Reintroduced /etc/phpmyadmin/apache.conf. Closes: #307181, #308460,
+    #312611, #312668.
+  * Removed all Debian patches as are obsoleted now.
+  * Depends: apache2 | httpd
+  * Recommends: php4-mcrypt | php5-mcrypt. Closes: #321259.
+  * Arabic debconf templates translation. Closes: #320773.
+  * Vietnamese debconf templates translation. Closes: #316841.
+  * Updated Brazilian Portuguese debconf templates translation. Closes: #310875.
+  * Updated German debconf templates translation. Closes: #326141.
+  * New yada fixes postrm script fail when ucf is missing. Closes: #322139.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Fri, 16 Sep 2005 16:21:21 +0200
+
+phpmyadmin (4:2.6.2-3) unstable; urgency=high
+
+  * Fix apache2.conf only for 4:2.6.2-1 release. Closes: #307901 (critical),
+    #307275 (critical), #304786 (critical).
+  * Clean up old 'Include /etc/phpmyadmin/apache.conf' from httpd.conf in safe
+    way.
+  * Removed old code which modified httpd.conf if 'Include /etc/apache/conf.d'
+    was missing.
+  * Note for release manager: cleaning up config.inc.php doesn't change the
+    application logic. The autoloading of the PHP extensions is already
+    implemented in the upstream's code.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Sat,  7 May 2005 14:49:49 +0200
+
+phpmyadmin (4:2.6.2-2) unstable; urgency=high
+
+  * Doesn't modify apache2.conf. Try to revert the changes.
+    Closes: #307275 (critical).
+  * Remove obsoleted conffiles and symlinks on purge. Closes: #307415.
+  * The default behaviour is not to autoconfigurate webservers.
+  * Doesn't load the PHP extensions automatically in config.inc.php script.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Thu,  5 May 2005 11:40:46 +0200
+
+phpmyadmin (4:2.6.2-1) unstable; urgency=low
+
+  * New upstream release
+  * NEWS and README.Debian file are documented about problem with logging
+    in with cookie based authentication.
+  * Removed suPHP directive from apache.conf file. Closes: #304018.
+  * Configuration in .htaccess doesn't override global access settings.
+    Closes: #303535.
+  * Updated Brazilian Portuguese debconf templates translation.
+    Closes: #304566.
+  * Apache configuration is installed separately, not through symlinks.
+  * Convert httpd.conf and apache.conf. They have to contain
+    "Include /etc/apache2/conf.d/*.conf" directive.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Tue, 19 Apr 2005 11:51:21 +0200
+
+phpmyadmin (3:2.6.2-rc1-1) unstable; urgency=high
+
+  * New upstream release.
+  * Security fix: Cross-Site Scripting vulnerability.
+    See http://www.phpmyadmin.net/home_page/security.php?issue=PMASA-2005-3
+    Closes: #303142.
+  * Don't enable PHP if mod_fcgid is loaded in Apache 2.x.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Tue,  5 Apr 2005 15:17:25 +0200
+
+phpmyadmin (3:2.6.1-pl3-2) unstable; urgency=high
+
+  * Fixed the bug in postinst introduced in last upload. Closes: #299034.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Fri, 11 Mar 2005 11:14:05 +0100
+
+phpmyadmin (3:2.6.1-pl3-1) unstable; urgency=high
+
+  * New upstream release.
+  * Fixed annoying bug that a user called 'xx@%' could be created but
+    not removed. Closes: #208539.
+  * Fixed critical bug introduced by php4 compiled with ZTS option. Added
+    003-dl_with_zts.patch. Closes: #297725.
+  * Renamed debian/patches/*.diff to *.patch.
+  * Depends also on php5-fcgi.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon,  7 Mar 2005 12:21:00 +0100
+
+phpmyadmin (3:2.6.1-pl2-2) unstable; urgency=low
+
+  * Fixed converting /etc/apache/conf.d/phpmyadmin to phpmyadmin.conf at
+    upgrade time.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Wed,  2 Mar 2005 20:30:29 +0100
+
+phpmyadmin (3:2.6.1-pl2-1) unstable; urgency=high
+
+  * New upsteam release.
+  * Security fix: A variable injection vulnerability was found in phpMyAdmin,
+    that may allow an attacker to conduct Cross-site scripting (XSS) attacks
+    and / or perform remote file inclusion.
+    See http://www.phpmyadmin.net/home_page/security.php?issue=PMASA-2005-1
+    Closes: #296845.
+  * Switched off register_globals in .htaccess.
+  * Does not recommend versioned apache, as far as it works wrongly with
+    aptitude. Closes: #295786.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Sat, 26 Feb 2005 17:39:31 +0100
+
+phpmyadmin (3:2.6.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Czech debconf templates translation. Closes: #293611.
+  * Woody backward compatibility. See bug 1117907 on Sourceforge.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon,  7 Feb 2005 15:20:09 +0100
+
+phpmyadmin (2:2.6.1-rc2-2) unstable; urgency=low
+
+  * Configuration for suPHP can't be in .htaccess. Closes: #287897.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Tue, 18 Jan 2005 19:13:12 +0100
+
+phpmyadmin (2:2.6.1-rc2-1) unstable; urgency=low
+
+  * New upstream release.
+  * Rename the symlink /etc/$APACHE/conf.d and add .conf suffix.
+    Closes: #286100.
+  * Disable suPHP for security reasons. Closes: #287897.
+  * Use /cgi-bin/php if CGI mode is used.
+  * Depends on php4 | php4-cgi | php5 | php5-cgi.
+  * Modified Description field to make lintian happy.
+  * Fixed postinst script for better php5 support.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Wed, 12 Jan 2005 21:37:02 +0100
+
+phpmyadmin (2:2.6.1-rc1-1) unstable; urgency=high
+
+  * New upstream release.
+  * Security fix: Command execution and file disclosure was found.
+    See http://www.phpmyadmin.net/home_page/security.php?issue=PMASA-2004-4
+    Closes: #285488.
+  * Remove 003.non_standard_port_fix.diff applied to upstream.
+  * Add commented out options 'extension' and 'AllowRoot' to default config
+    file.
+  * Support mysqli.so extension. Autodetect modules from 'extension' option.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon, 13 Dec 2004 19:23:57 +0100
+
+phpmyadmin (2:2.6.0-pl3-2) unstable; urgency=high
+
+  * Security fix is broken if non-standard HTTP(S) port is used.
+    Closes: #283044.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Fri, 26 Nov 2004 09:55:29 +0100
+
+phpmyadmin (2:2.6.0-pl3-1) unstable; urgency=high
+
+  * New upstream release.
+  * Security fix: Multiple XSS vulnerability were found.
+    See http://www.phpmyadmin.net/home_page/security.php?issue=PMASA-2004-3
+  * Tweaks dependencies: depends php4 | php4-cgi; don't suggests
+    non-free mysql-doc.
+  * Supports unofficial php5 packages.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon, 22 Nov 2004 10:22:41 +0100
+
+phpmyadmin (2:2.6.0-pl2-2) unstable; urgency=low
+
+  * Updated German translation of the debconf templates. Closes: #280998.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Thu, 18 Nov 2004 14:08:27 +0100
+
+phpmyadmin (2:2.6.0-pl2-1) unstable; urgency=high
+
+  * New upstream release.
+  * Security fix: If PHP is not running in safe mode, a problem in the
+    MIME-based transformation system (with an "external" transformation)
+    allows to execute any command with the privileges of the web server's
+    user. 
+
+ -- Piotr Roszatycki <dexter@debian.org>  Thu, 14 Oct 2004 11:33:56 +0200
+
+phpmyadmin (2:2.6.0-pl1-1) unstable; urgency=low
+
+  * New upstream release.
+  * This release fixes patch 003.woody_compatibility.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Wed, 29 Sep 2004 09:39:38 +0200
+
+phpmyadmin (2:2.6.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Depends: php4-cgi (>= 4.1.0) | libapache-mod-php4. The php4-cgi package
+    is recommended as easier for installation. Closes: #267878.
+  * Depends: apache | apache-perl | apache-ssl | apache2 | httpd.
+  * Added patch for woody with MySQL from backports.org compatibility.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Tue, 28 Sep 2004 09:42:06 +0200
+
+phpmyadmin (1:2.6.0-rc1-1) experimental; urgency=low
+
+  * New upstream release.
+  * Disable the default warning that is displayed on the DB Details Structure
+    page if any of the required Tables for the relation features could not be
+    found.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon,  9 Aug 2004 10:21:07 +0200
+
+phpmyadmin (1:2.5.7-pl1-2) unstable; urgency=medium
+
+  * blowfish_secret.inc.php must not be world readable. Closes: #257968.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Thu,  5 Aug 2004 17:37:46 +0200
+
+phpmyadmin (1:2.5.7-pl1-1) unstable; urgency=high
+
+  * New upstream release
+  * Fixes security problems. See
+    http://securityfocus.com/archive/1/367486/2004-06-26/2004-07-02/0
+    and the Documentation.html, FAQ 8.2.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Thu,  1 Jul 2004 09:51:54 +0200
+
+phpmyadmin (1:2.5.7-1) unstable; urgency=low
+
+  * New upstream release
+  * Add /var/www/phpmyadmin to the apache.conf, closes: #246367.
+  * Suggests: php4-gd, closes: #243714.
+  * Should work with E_ALL, closes: #244672.
+  * Remove php3 from dependencies and DebConf templates, closes: #246002.
+  * Fixed typo in DebConf template, closes: #250841.
+  * Dutch debconf templates translation (unfinished...), closes: #216936.
+  * Split configuration to the /etc/phpmyadmin/config.inc.php and
+    /usr/share/phpmyadmin/config.inc.php, closes: #225766.
+  * Ask for restart only if required, closes: #249940.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Fri, 25 Jun 2004 10:27:26 +0200
+
+phpmyadmin (1:2.5.6-2) unstable; urgency=low
+
+  * Supports PHP for Apache2, closes: #242797.
+  * apache.conf uses <Directory> than <DirectoryMatch>, closes: #236978.
+  * Remove /etc/*/conf.d/phpmyadmin on purge, closes: #239080.
+  * Fixed DebConf scripts. Should not ask again about webservers,
+    closes: #239480.
+  * Install /var/www/phpmyadmin symlink than Alias, closes: #238598.
+  * Catalan debconf templates translation, closes: #236636.
+  * DebConf templates:
+    * Removed phpmyadmin/changed-extension
+    * Renamed phpmyadmin/webserver to phpmyadmin/reconfigure-webserver
+    * Renamed phpmyadmin/restart to phpmyadmin/restart-webserver
+
+ -- Piotr Roszatycki <dexter@debian.org>  Sat, 27 Mar 2004 13:16:26 +0100
+
+phpmyadmin (1:2.5.6-1) unstable; urgency=low
+
+  * New upstream release.
+  * Ignore missing /etc/phpmyadmin directory for postrm purge, close: #235696.
+  * Danish debconf templates translation, closes: #234948.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Thu,  4 Mar 2004 17:16:56 +0100
+
+phpmyadmin (2.5.6-rc2-1) unstable; urgency=low
+
+  * New upstream release.
+  * Removed conffiles /etc/phpmyadmin/{header,footer}.inc.php. They are
+    not conffiles for a long time. Closes: #232557, #231880.
+  * Brazilian Portuguese debconf templates translation, closes: #231713.
+  * French debconf templates translation, closes: #220804.
+  * Japanese po-debconf template translation, closes: #222282.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Sun, 22 Feb 2004 13:14:00 +0100
+
+phpmyadmin (2.5.6-rc1-1) unstable; urgency=high
+
+  * New upstream release.
+  * Security fix: possible attack against export.php, see
+    http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0129,
+    closes: #231050.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Wed,  4 Feb 2004 12:34:11 +0100
+
+phpmyadmin (2.5.5-pl1-2) unstable; urgency=low
+
+  * Restored upstream release notes.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Tue,  3 Feb 2004 15:33:54 +0100
+
+phpmyadmin (2.5.5-pl1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Depends php4 or php4-cgi (>= 4.1.0) and suggests mysql-server (>= 3.23.36).
+
+ -- Piotr Roszatycki <dexter@debian.org>  Wed, 28 Jan 2004 11:17:25 +0100
+
+phpmyadmin (2.5.4-2) unstable; urgency=low
+
+  * Call modules-config rather than writing directly to modules.conf.
+  * Recommends: apache (>= 1.3.29.0.1-1), php4, php4-mysql
+  * Update Russian translation, closes: #221827.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Fri, 19 Dec 2003 18:58:27 +0100
+
+phpmyadmin (2.5.4-1) unstable; urgency=low
+
+  * New official unstable release.
+  * Fixed apache.conf with IfModule directive.
+  * Closes bugs with pending tag:
+    o Fixed problem with password changes, closes: #216467
+    o Fixed print view for one table, closes: #149172
+    o Fixed grants for table contained backslash in its name, closes: #149416
+    o Can login with empty password, closes: #171784
+    o apache.conf includes DirectoryIndex directive, closes: #217100
+    o Can copy user grants/permissions to other user, closes: #152807
+    o Backs to browse listing after edting, closes: #168980
+
+ -- Piotr Roszatycki <dexter@debian.org>  Fri,  7 Nov 2003 11:42:44 +0100
+
+phpmyadmin (2.5.4-0.4) experimental; urgency=low
+
+  * Fixed another ucf bug.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Thu,  6 Nov 2003 19:45:31 +0100
+
+phpmyadmin (2.5.4-0.3) experimental; urgency=low
+
+  * ucf should be called on "configure" action. YADA relative problem.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Tue,  4 Nov 2003 13:21:29 +0100
+
+phpmyadmin (2.5.4-0.2) experimental; urgency=low
+
+  * modules-config hangs up if postinst uses debconf. Write to modules.conf
+    directly.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Fri, 31 Oct 2003 17:21:10 +0100
+
+phpmyadmin (2.5.4-0.1) experimental; urgency=low
+
+  * New upstream release.
+  * ucf handles configuration files.
+  * Don't use wwwconfig-common.
+  * Handle Apache2 webserver.
+  * Works with new DebConfized Apache package.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Tue, 28 Oct 2003 15:45:34 +0100
+
+phpmyadmin (2.5.3-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon,  8 Sep 2003 10:37:07 +0200
+
+phpmyadmin (2.5.2-pl1-1) unstable; urgency=low
+
+  * New upstrem release.
+  * NEWS.Debian renamed to NEWS, closes: #204901.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon, 11 Aug 2003 22:21:18 +0200
+
+phpmyadmin (2.5.2-2) unstable; urgency=high
+
+  * The upstream also fixes XSS vulnerabilities, information
+    encoding weakness and transversal directory attack. This was
+    mentioned in Debian.NEWS file only, not changelog.Debian file.
+    See http://www.securityfocus.com/archive/1/325641. Closes: #203092.
+  * CVS fix: another patch for path disclosure problem.
+  * CVS fix: a user could not edit his own global privileges.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon, 28 Jul 2003 09:39:11 +0200
+
+phpmyadmin (2.5.2-1) unstable; urgency=low
+
+  * New upstream release
+  * French debconf translation, closes: #200724
+  * Generates /etc/phpmyadmin/blowfish_secret.inc.php in postinst script.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Thu, 24 Jul 2003 10:50:01 +0200
+
+phpmyadmin (2.5.1-1) unstable; urgency=high
+
+  * New upstream release
+  * Fixes security problem. Prevent transversal directory attacks and remote
+    local directory listing with discovering directory content.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Sat, 28 Jun 2003 21:57:23 +0200
+
+phpmyadmin (2.4.0-2) unstable; urgency=high
+
+  * Fixes bug introduced by previous fix. I don't know how I could upload
+    this crap. Sorry. Closes: #184214, #184544
+
+ -- Piotr Roszatycki <dexter@debian.org>  Thu, 13 Mar 2003 02:14:05 +0100
+
+phpmyadmin (2.4.0-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon, 10 Mar 2003 19:29:09 +0100
+
+phpmyadmin (2.3.3pl1-1) unstable; urgency=low
+
+  * New upstream release
+  * phpMyAdmin can login without password and shows connection errors.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Thu,  5 Dec 2002 12:01:54 +0100
+
+phpmyadmin (2.3.2-4) unstable; urgency=low
+
+  * Don't insert NULL value if textarea is not empty. Fix from CVS snapshot,
+    closes: #168979
+    
+ -- Piotr Roszatycki <dexter@debian.org>  Mon, 18 Nov 2002 19:17:14 +0100
+
+phpmyadmin (2.3.2-3) unstable; urgency=low
+
+  * Missing libraries, closes: #166698
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon,  4 Nov 2002 15:43:58 +0100
+
+phpmyadmin (2.3.2-2) unstable; urgency=low
+
+  * Missing translators.html
+
+ -- Piotr Roszatycki <dexter@debian.org>  Thu, 17 Oct 2002 10:32:49 +0200
+
+phpmyadmin (2.3.2-1) unstable; urgency=low
+
+  * New upstream release, closes: #157915
+    + phpMyAdmin showed that the one field is PRIMARY key even if no field
+      was PRIMARY, closes: #144362
+    + Can dump table and field names with backquotes, closes: #144513
+    + Fixed Russian translation, closes: #144617
+    + Cookie path is autodetected, closes: #155108
+  * Now the absolute URI is autodetected, closes: #147714
+  * Spanish DebConf template, closes: #153071
+
+ -- Piotr Roszatycki <dexter@debian.org>  Fri, 11 Oct 2002 12:46:29 +0200
+
+phpmyadmin (2.2.6-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon, 22 Apr 2002 17:01:39 +0200
+
+phpmyadmin (2.2.5-2.2.6-rc2-1) unstable; urgency=low
+
+  * New upstream release
+  * Fixed wwwconfig-common stuff, closes: #139986
+
+ -- Piotr Roszatycki <dexter@debian.org>  Thu, 18 Apr 2002 11:44:44 +0200
+
+phpmyadmin (2.2.5-2.2.6-rc1-2) unstable; urgency=low
+
+  * Fixed postrm for debconf if package is not configured yet.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Fri, 12 Apr 2002 12:12:22 +0200
+
+phpmyadmin (2.2.5-2.2.6-rc1-1) unstable; urgency=low
+
+  * New upstream release
+  * Russian debconf template, closes: #137674
+
+ -- Piotr Roszatycki <dexter@debian.org>  Thu, 11 Apr 2002 16:48:00 +0200
+
+phpmyadmin (2.2.3-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Piotr Roszatycki <dexter@debian.org>  Tue,  8 Jan 2002 13:02:45 +0100
+
+phpmyadmin (2.2.2-2.2.3-dev-20011218-1) unstable; urgency=low
+
+  * New upstream release (CVS snapshot)
+  * This upstream release implements cookie based authentication. Finally :)
+  * Fixes 'Query empty' bug when ordering by a column, closes: #123459
+  * Fixes spelling error in description, closes: #125243
+  * Removed invalid command for PHP3 from apache.conf, closes: #122941
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon, 17 Dec 2001 16:17:11 +0100
+
+phpmyadmin (2.2.1-2.2.2-rc1-2) unstable; urgency=low
+
+  * Works with error_reporting=E_ALL, closes: #121328
+  * Turn on register_globals in apache.conf
+
+ -- Piotr Roszatycki <dexter@debian.org>  Tue, 27 Nov 2001 11:10:59 +0100
+
+phpmyadmin (2.2.1-2.2.2-rc1-1) unstable; urgency=medium
+
+  * New upstream release, closes: #118716
+  * New upstream fixes several security problems.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Wed, 21 Nov 2001 12:13:07 +0100
+
+phpmyadmin (2.2.0-4) unstable; urgency=low
+
+  * Missing select_box() function added, required for multiserver config.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon,  1 Oct 2001 12:38:08 +0200
+
+phpmyadmin (2.2.0-3) unstable; urgency=low
+
+  * User can login even if (s)he doesn't have priviliges to mysql
+    database, really closes: #112099
+  * New yada, package should build from source.
+  * Remove CVS directories.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Tue, 18 Sep 2001 15:57:25 +0200
+
+phpmyadmin (2.2.0-2) unstable; urgency=low
+
+  * Fixed typo in lib.inc.php, closes: #112099
+  * Compatibility with potato's mysql server
+  * Frameset is now resizable, applied patch from CVS
+
+ -- Piotr Roszatycki <dexter@debian.org>  Tue, 18 Sep 2001 14:07:59 +0200
+
+phpmyadmin (2.2.0-1) unstable; urgency=high
+
+  * New upstream release, closes: #70086, #104515
+  * Upstream changed to SourceForge project (http://phpmyadmin.sf.net).
+  * Security update, see SecurityFocus.
+  * Suggests: mysql-server, closes: #67547
+  * DebConf and wwwconfig-common for automatic webserver reconfiguration.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Fri, 31 Aug 2001 12:23:04 +0200
+
+phpmyadmin (2.1.0.1-5) unstable; urgency=low
+
+  * Fixed edit after select action, thanks Werner Ammon.
+  * Fixed german translation.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon,  9 Jul 2001 17:37:46 +0200
+
+phpmyadmin (2.1.0.1-4) unstable; urgency=high
+
+  * Security update, see: http://securityfocus.com/vdb/bottom.html?vid=2966
+  * Compiled with phpMyAdmin-SecureReality.diff patch from
+    http://www.securereality.com.au/srpre00001.html
+  * Added charset info to left.php
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon,  9 Jul 2001 12:51:00 +0200
+
+phpmyadmin (2.1.0.1-3) unstable; urgency=low
+
+  * German template file, closes: #99332
+
+ -- Piotr Roszatycki <dexter@debian.org>  Thu, 31 May 2001 08:59:43 +0200
+
+phpmyadmin (2.1.0.1-2) unstable; urgency=low
+
+  * Clean up debian/packages
+  * Renamed .php3 to .php, see Debconf note.
+  * Purging /etc/phpmyadmin in postrm
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon, 21 May 2001 12:45:34 +0200
+
+phpmyadmin (2.1.0.1-1) unstable; urgency=low
+
+  * New upstream release from unofficial source, see copyright info,
+    closes: #82506
+  * New yada
+  * Removed dependency on libmysqlclient
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon, 29 Jan 2001 17:12:30 +0000
+
+phpmyadmin (2.1.0-1) unstable; urgency=low
+
+  * php4-cgi added to Depends
+  * Standards-Version: 3.1.0
+  * New upstream release
+
+ -- Piotr Roszatycki <dexter@debian.org>  Tue, 10 Oct 2000 18:17:07 +0200
+
+phpmyadmin (2.0.5-2) unstable; urgency=low
+
+  * Suggests: mysql-doc
+  * Load mysql.so module if not loaded
+  * Set charset in META tag
+  * Minor changes in debian/ directory
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon, 10 Jul 2000 12:43:41 +0200
+
+phpmyadmin (2.0.5-1) frozen unstable; urgency=medium
+
+  * This upstream source allows creating tables, closes: #53751
+  * New upstream release
+
+ -- Piotr Roszatycki <dexter@debian.org>  Thu, 10 Feb 2000 19:09:11 +0100
+
+phpmyadmin (2.0.4-3) unstable; urgency=low
+
+  * Polish translation in polish.inc.php3
+  * Slightly modified README.Debian
+  * New feature: logout.php3; required by Netscape browser.
+  * Suggests: mysql-doc; modified default conffile and sources.
+  * Depends: php4, php4-mysql; a minor changes in debian/*.dpatch files.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Sat, 27 Nov 1999 14:32:24 +0100
+
+phpmyadmin (2.0.4-2) unstable; urgency=low
+
+  * yada 0.8
+  * moved to main archive
+
+ -- Piotr Roszatycki <dexter@debian.org>  Sat,  6 Nov 1999 23:33:59 +0100
+
+phpmyadmin (2.0.4-1) unstable; urgency=low
+
+  * /usr/doc/... symlink.
+  * Removed some debhelper's constructions
+  * README.Debian in dpatch file.
+  * New option in config file: verbose.
+  * New language: Portuguese.
+  * New upstream release.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Mon, 18 Oct 1999 19:09:48 +0200
+
+phpmyadmin (2.0.3-1) unstable; urgency=low
+
+  * Initial Debian version.
+
+ -- Piotr Roszatycki <dexter@debian.org>  Wed, 25 Aug 1999 21:32:14 +0200
+

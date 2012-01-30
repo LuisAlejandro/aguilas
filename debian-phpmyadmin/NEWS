@@ -1,0 +1,16 @@
+phpmyadmin (4:3.2.2.1-1) unstable; urgency=low
+
+  phpMyAdmin setup script now does not allow to write configuration by
+  default. See README.Debian for information how to enable writing
+  configuration.
+
+ -- Michal Čihař <nijel@debian.org>  Wed, 14 Oct 2009 10:32:31 +0200
+
+phpmyadmin (4:3.0.0-1) unstable; urgency=low
+
+  phpMyAdmin now uses dbconfig-common for configuring control user and
+  phpmyadmin auxiliary databases. If you have used custom configuration, you
+  might need to merge it with the one shipped in package or at least use
+  generated password from /etc/phpmyadmin/config-db.php.
+
+ -- Michal Čihař <nijel@debian.org>  Sun, 07 Sep 2008 23:33:13 +0200

@@ -1,23 +1,18 @@
 #!/bin/sh -e
 
-CONFFILE="/etc/phpldapadmin/config.php"
-TEMPLATES="/etc/phpldapadmin/templates"
-
-chown -R root:www-data $TEMPLATES
-chown -R root:www-data $TEMPLATES
-chmod -R 0640 $TEMPLATES
-chmod 0750 $TEMPLATES $TEMPLATES/creation $TEMPLATES/modification
+CONFFILE="/etc/aguilas/config.php"
 
 . /usr/share/debconf/confmodule
 db_version 2.0 || [ $? -lt 30 ]
 
-if [ "$1" = "configure" ]; then
+if [ "${1}" = "configure" ]; then
 
-	tempfile=`mktemp`
-	cp  /usr/share/phpldapadmin/config/config.php.example ${tempfile}
+	TEMPFILE="$( tempfile )"
+	cp /usr/share/aguilas/setup/config.php.example ${TEMPFILE}
 
-	db_get phpldapadmin/ldap-server || true
-	ldapserver="$RET"
+	db_get aguilas/ldap-server || true
+	LDAPSERVER="${RET}"
+
 	sed -i -e "s#// \$servers->setValue('server','host','127.0.0.1');#\$servers->setValue('server','host','$ldapserver');#g" ${tempfile}
 
 	db_get phpldapadmin/ldap-tls || true
