@@ -1,23 +1,20 @@
-This package was debianized by Fabio Tranchitella <kobold@kobold.it> on
-Mon, 26 Apr 2004 09:42:41 +0200.
+This package was debianized by Luis Martínez <luis@huntingbears.com.ve>
+on Sun, 29 Jan 2012 09:42:41 -0430.
 
-It was downloaded from http://phpldapadmin.sourceforge.net/download.php
+It was downloaded from http://code.google.com/p/aguilas/downloads/list
 
-Upstream Authors: - David Smith         Maintainer
-                  - Xavier Renard       LDIF master
-                  - Marius Rieder       Schema master
-                  - Nate Rotschafer     Release manager
+Upstream Authors: Luis Alejandro Martínez Faneyth
 
 Copyright:
 
-  Copyright (C) 2004-2008 David Smith <DavidSmith@byu.net>
+  Copyright (C) 20012 Luis Martínez <luis@huntingbears.com.ve>
 
 License:
 
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License version 2 as
+  it under the terms of the GNU General Public License version 3 as
   published by the Free Software Foundation.
                                                                                                                             
   On Debian GNU/Linux systems, the complete text of the GNU General
-  Public License can be found in `/usr/share/common-licenses/GPL-2'.
+  Public License can be found in `/usr/share/common-licenses/GPL-3'.
 
