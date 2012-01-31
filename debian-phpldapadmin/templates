@@ -1,5 +1,6 @@
 Template: aguilas/app-mail
 Type: string
+Default: root@localhost
 _Description: Enter a valid e-mail account:
  Please enter the e-mail account that will appear as sender in the
  "From: " field of every Aguilas e-mail. e.g.: aguilas@jhondoe.com
@@ -8,6 +9,7 @@ _Description: Enter a valid e-mail account:
 
 Template: aguilas/app-url
 Type: string
+Default: localhost
 _Description: Enter a valid domain name:
  Please enter the domain name or the address of the server where Aguilas
  is hosted. e.g.: jhondoe.com/aguilas
@@ -25,13 +27,15 @@ Template: aguilas/mysql-user
 Type: string
 Default: root
 _Description: Enter a valid MYSQL user:
- Please enter a user that has write permissions on the database.
+ Please enter the name of a user that has adminstrative permissions on the
+ database.
 
 Template: aguilas/mysql-pass
-Type: string
+Type: password
 Default: secret
 _Description: Enter the password for the admin user:
- Enter the password that will be used to access the MYSQL server.
+ Enter the password of the administrative user that will be used to access
+ the MYSQL server.
  .
  Note: the password will be stored in clear text in
  /etc/aguilas/config.php, which is not world-readable.
@@ -60,10 +64,11 @@ _Description: Login dn for the LDAP server
  server.
 
 Template: aguilas/ldap-bindpw
-Type: string
+Type: password
 Default: secret
 _Description: Login password for the LDAP server
- Enter the password that will be used to log in to the LDAP server.
+ Enter the password of the account that will be used to log in to the
+ LDAP server.
  .
  Note: the password will be stored in clear text in
  /etc/aguilas/config.php, which is not world-readable.
@@ -76,17 +81,20 @@ _Description: Support for ldaps protocol
  the ldaps protocol to connect to it.
 
 Template: aguilas/ldap-enc
-Type: multiselect
+Type: select
 Choices: clear, md5, sha, crypt
-Default: clear, md5, sha, crypt
+Default: clear
 _Description: Password encryption type
- 
+ Specify which encryption type you want to use for reading and writing
+ passwords on each LDAP entry.
 
 Template: aguilas/reconfigure-webserver
-Type: multiselect
+Type: select
 Choices: apache2, lighttpd, nginx
-Default: apache2, lighttpd, nginx
+Default: apache2
 _Description: Web server which will be reconfigured automatically
+ Aguilas can reconfigure your webserver so that it can be accessed
+ through "yourhostname.com/aguilas".
 
 Template: aguilas/restart-webserver
 Type: boolean
