@@ -1,0 +1,86 @@
+#! /bin/bash -e
+
+ACTION="${1}"
+VERSION="${2}"
+
+if [ "${ACTION}" == "remove" ] || [ "${ACTION}" == "purge" ]; then
+
+	. /usr/share/debconf/confmodule
+	db_version 2.0 || [ $? -lt 30 ]
+
+	. /usr/share/dbconfig-common/dpkg/postrm.mysql
+
+	if ! dbc_go aguilas $@ ; then
+		echo 'Automatic configuration using dbconfig-common failed!'
+	fi
+
+	db_get aguilas/reconfigure-webserver || true
+	WEBSERVER="${RET}"
+
+	db_get phpldapadmin/restart-webserver || true
+	RESTART="${RET}"
+
+	db_stop || true
+
+	for WEBSERVER in ${WEBSERVERS}; do
+
+		WEBSERVER=${WEBSERVER%,}
+		test -x /usr/sbin/${WEBSERVER} || continue
+
+		case "${WEBSERVER}" in
+			lighttpd)
+				if [ -f /etc/lighttpd/conf-available/50-aguilas.conf ]; then
+					if which lighty-disable-mod >/dev/null 2>&1; then
+						lighty-disable-mod aguilas
+						rm -f /etc/lighttpd/conf-available/50-aguilas.conf
+					else
+						echo "Lighttpd not installed, skipping"
+					fi
+				fi
+
+				if [ -h /etc/lighttpd/conf-enabled/50-aguilas.conf ] ; then
+					rm /etc/lighttpd/conf-enabled/50-aguilas.conf
+				fi
+			;;
+
+			apache2)
+				if [ -d /etc/${WEBSERVER}/conf.d ] && [ -e /etc/${WEBSERVER}/conf.d/aguilas.conf ]; then
+					rm -rf /etc/${WEBSERVER}/conf.d/aguilas.conf
+				fi
+			;;
+		esac
+
+		if [ "${RESTART}" == "true" ]; then
+			if [ -x /usr/sbin/invoke-rc.d ]; then
+				invoke-rc.d ${WEBSERVER} restart 3>/dev/null || true
+			else
+				/etc/init.d/${WEBSERVER} restart 3>/dev/null || true
+			fi
+		fi
+	done
+fi
+
+if [ "${ACTION}" == "purge" ]; then
+
+	rm -f /usr/share/aguilas/setup/config.php
+
+	for ext in '~' '%' .bak .ucf-new .ucf-old .ucf-dist;  do
+		rm -f /etc/aguilas/config.php$ext
+	done
+
+	rm -f /etc/aguilas/config.php
+
+	if which ucf >/dev/null; then
+		ucf --debconf-ok --purge /etc/aguilas/config.php
+	fi
+	if which ucfr >/dev/null; then
+		ucfr --purge aguilas /etc/aguilas/config.php
+	fi
+
+	rm -rf /etc/aguilas
+	rm -rf /var/log/aguilas
+fi
+
+#DEBHELPER#
+
+exit 0

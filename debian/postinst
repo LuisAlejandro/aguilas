@@ -1,0 +1,137 @@
+#!/bin/bash -e
+
+ACTION="${1}"
+VERSION="${2}"
+
+if [ "${ACTION}" = "configure" ]; then
+
+	CONFFILE="/etc/aguilas/config.php"
+	APPNAME="Aguilas"
+	APPOPERATOR="Administrator"
+	APPTHEME="canaima"
+	MYSQLDB="aguilas"
+
+	if [ -z ${LC_ALL} ]; then
+		APPLOCALE="en_US"
+	else
+		APPLOCALE="$( echo ${LC_ALL} | sed "s|\..*||" )"
+	fi
+
+	. /usr/share/debconf/confmodule
+	db_version 2.0 || [ $? -lt 30 ]
+
+	. /usr/share/dbconfig-common/dpkg/postinst.mysql
+	dbc_generate_include_owner="root:www-data"
+	dbc_generate_include_perms="0640"
+	dbc_generate_include=php:/etc/aguilas/dbc.php
+
+	if ! dbc_go aguilas $@ ; then
+        	echo 'Automatic configuration using dbconfig-common failed!'
+	fi
+
+	TEMPFILE="$( tempfile )"
+	cp /usr/share/aguilas/setup/config.php.example ${TEMPFILE}
+
+	db_get aguilas/app-mail || true
+	APPMAIL="${RET}"
+	OPMAIL="${APPMAIL}"
+
+	db_get aguilas/app-url || true
+	APPURL="${RET}"
+
+	db_get aguilas/mysql-server || true
+	MYSQLSERVER="${RET}"
+
+	db_get aguilas/mysql-user || true
+	MYSQLUSER="${RET}"
+
+	db_get aguilas/mysql-pass || true
+	MYSQLPASS="${RET}"
+
+	db_get aguilas/ldap-server || true
+	LDAPSERVER="${RET}"
+
+	db_get aguilas/ldap-base || true
+	LDAPBASE="${RET}"
+
+	db_get aguilas/ldap-bind || true
+	LDAPBIND="${RET}"
+
+	db_get aguilas/ldap-pass || true
+	LDAPPASS="${RET}"
+
+	db_get aguilas/reconfigure-webserver || true
+	WEBSERVERS="${RET}"
+
+	db_get aguilas/restart-webserver || true
+	RESTART="${RET}"
+
+	db_stop || true
+
+	sed -i	-e "s|@@APP_NAME@@|${APPNAME}|g" \ 
+		-e "s|@@APP_OPERATOR@@|${APPOPERATOR}|g" \ 
+		-e "s|@@APP_MAIL@@|${APPMAIL}|g" \ 
+		-e "s|@@OP_MAIL@@|${OPMAIL}|g" \ 
+		-e "s|@@APP_LOCALE@@|${APPLOCALE}|g" \ 
+		-e "s|@@APP_THEME@@|${APPTHEME}|g" \ 
+		-e "s|@@APP_URL@@|${APPURL}|g" \ 
+		-e "s|@@MYSQL_SERVER@@|${MYSQLSERVER}|g" \ 
+		-e "s|@@MYSQL_DB@@|${MYSQLDB}|g" \ 
+		-e "s|@@MYSQL_USER@@|${MYSLQUSER}|g" \ 
+		-e "s|@@MYSQL_PASS@@|${MYSQLPASS}|g" \ 
+		-e "s|@@LDAP_SERVER@@|${LDAPSERVER}|g" \ 
+		-e "s|@@LDAP_BIND@@|${LDAPBIND}|g" \ 
+		-e "s|@@LDAP_PASS@@|${LDAPPASS}|g" \ 
+		-e "s|@@LDAP_BASE@@|${LDAPBASE}|g" ${TEMPFILE}
+
+	chown root:www-data ${TEMPFILE}
+	chmod 0640 ${TEMPFILE}
+
+	ucf --debconf-ok ${TEMPFILE} ${CONFFILE}
+	ucfr aguilas ${CONFFILE}
+
+	if [ ! -e /usr/share/aguilas/setup/config.php ]; then
+		ln -s ${CONFFILE} /usr/share/aguilas/setup/config.php
+	fi
+
+	rm -f ${TEMPFILE}
+
+	if [ -z ${VERSION} ]; then
+
+		for WEBSERVER in ${WEBSERVERS}; do
+
+		        WEBSERVER=${WEBSERVER%,}
+			test -x /usr/sbin/${WEBSERVER} || continue
+
+			case "${WEBSERVER}" in
+				lighttpd)
+					if [ ! -f /etc/lighttpd/conf-available/50-aguilas.conf ]; then
+						if which lighty-enable-mod >/dev/null 2>&1; then
+							ln -s /etc/aguilas/lighttpd.conf /etc/lighttpd/conf-available/50-aguilas.conf
+							lighty-enable-mod aguilas auth fastcgi
+						else
+							echo "Lighttpd not installed, skipping"
+						fi
+					fi
+				;;
+
+				apache2)
+					if [ -d /etc/${WEBSERVER}/conf.d ] && [ ! -e /etc/${WEBSERVER}/conf.d/aguilas.conf ]; then
+						ln -s /etc/aguilas/apache.conf /etc/${WEBSERVER}/conf.d/aguilas.conf
+					fi
+				;;
+			esac
+
+			if [ "${RESTART}" == "true" ]; then
+				if [ -x /usr/sbin/invoke-rc.d ]; then
+					invoke-rc.d ${WEBSERVER} restart 3>/dev/null || true
+				else
+					/etc/init.d/${WEBSERVER} restart 3>/dev/null || true
+				fi
+			fi
+		done
+	fi
+
+#DEBHELPER#
+
+exit 0

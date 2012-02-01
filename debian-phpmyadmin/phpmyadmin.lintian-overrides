@@ -1,2 +1,0 @@
-# embedded libraries, which don't seem to be available in Debian
-embedded-php-library usr/share/phpmyadmin/libraries/php-gettext/streams.php

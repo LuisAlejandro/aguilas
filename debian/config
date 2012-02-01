@@ -1,0 +1,84 @@
+#!/bin/bash -e
+
+CONFFILE="/etc/aguilas/config.php"
+
+. /usr/share/debconf/confmodule
+db_version 2.0 || [ $? -lt 30 ]
+
+if [ ! -f ${CONFFILE} ]; then
+
+	db_input medium aguilas/app-mail || true
+	db_go || true
+	db_get aguilas/app-mail || true
+	APPMAIL="${RET}"
+	db_set aguilas/app-mail ${APPMAIL} || true
+
+	db_input medium aguilas/app-url || true
+	db_go || true
+	db_get aguilas/app-url || true
+	APPURL="${RET}"
+	db_set aguilas/app-url ${APPURL} || true
+
+	db_input medium aguilas/mysql-server || true
+	db_input medium aguilas/mysql-user || true
+	db_input medium aguilas/mysql-pass || true
+	db_go || true
+	db_get aguilas/mysql-server || true
+	MYSQLSERVER="${RET}"
+	db_get aguilas/mysql-user || true
+	MYSQLUSER="${RET}"
+	db_get aguilas/mysql-pass || true
+	MYSQLPASS="${RET}"
+	db_set aguilas/mysql-server ${MYSQLSERVER} || true
+	db_set aguilas/mysql-server ${MYSQLUSER} || true
+	db_set aguilas/mysql-server ${MYSQLPASS} || true
+
+	db_input medium aguilas/ldap-server || true
+	db_go || true
+	db_get aguilas/ldap-server || true
+	LDAPSERVER="${RET}"
+	db_set aguilas/ldap-server ${LDAPSERVER} || true
+
+	db_input medium aguilas/ldap-base || true
+	db_go || true
+	db_get aguilas/ldap-base || true
+	LDAPBASE="${RET}"
+	db_set aguilas/ldap-base ${LDAPBASE} || true
+	
+	db_set aguilas/ldap-bind "cn=admin,${LDAPBASE}"
+	db_input medium aguilas/ldap-bind || true
+	db_go || true
+	db_get aguilas/ldap-bind || true
+	LDAPBIND="${RET}"
+	db_set aguilas/ldap-bind ${LDAPBIND} || true
+
+	db_input medium aguilas/ldap-pass || true
+	db_go || true
+	db_get aguilas/ldap-pass || true
+	LDAPPASS="${RET}"
+	db_set aguilas/ldap-pass ${LDAPPASS} || true
+
+	db_input medium aguilas/reconfigure-webserver || true
+	db_go || true
+	db_get aguilas/reconfigure-webserver || true
+	WEBSERVERS="${RET}"
+	db_set aguilas/reconfigure-webserver ${WEBSERVERS} || true
+
+	db_input medium aguilas/restart-webserver || true
+	db_go || true
+	db_get aguilas/restart-webserver || true
+	RESTART="${RET}"
+	db_set aguilas/restart-webserver ${RESTART} || true
+
+	if [ -f /usr/share/dbconfig-common/dpkg/config.mysql ]; then
+        	. /usr/share/dbconfig-common/dpkg/config.mysql
+		dbc_load_include="php:/etc/aguilas/dbc.php"
+	        if ! dbc_go aguilas $@ ; then
+        	    echo 'Automatic configuration using dbconfig-common failed!'
+        fi
+
+fi
+
+#DEBHELPER#
+
+exit 0

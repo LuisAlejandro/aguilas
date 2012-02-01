@@ -1,0 +1,96 @@
+Template: aguilas/app-mail
+Type: string
+Default: root@localhost
+_Description: Enter a valid e-mail account:
+ Please enter the e-mail account that will appear as sender in the
+ "From: " field of every Aguilas e-mail. e.g.: aguilas@jhondoe.com
+ .
+ This e-mail will also be used to send error reports.
+
+Template: aguilas/app-url
+Type: string
+Default: localhost
+_Description: Enter a valid domain name:
+ Please enter the domain name or the address of the server where Aguilas
+ is hosted. e.g.: jhondoe.com/aguilas
+ .
+ An improper value will cause a failure in the e-mail confirmation system.
+
+Template: aguilas/mysql-server
+Type: string
+Default: localhost
+_Description: Enter the MYSQL server host address:
+ Please enter the host name or the address of the MYSQL server you want to
+ connect to.
+
+Template: aguilas/mysql-user
+Type: string
+Default: root
+_Description: Enter a valid MYSQL user:
+ Please enter the name of a user that has adminstrative permissions on the
+ database.
+
+Template: aguilas/mysql-pass
+Type: password
+Default: secret
+_Description: Enter the password for the admin user:
+ Enter the password of the administrative user that will be used to access
+ the MYSQL server.
+ .
+ Note: the password will be stored in clear text in
+ /etc/aguilas/config.php, which is not world-readable.
+
+Template: aguilas/ldap-server
+Type: string
+Default: localhost
+_Description: Enter the LDAP server host address:
+ Please enter the host name or the address of the LDAP server you want to
+ connect to.
+
+Template: aguilas/ldap-base
+Type: string
+Default: dc=nodomain
+_Description: Distinguished name of the search base
+ Please enter the distinguished name of the LDAP search base. Many sites
+ use the components of their domain names for this purpose. For example,
+ the domain "example.com" would use "dc=example,dc=com" as the
+ distinguished name of the search base.
+
+Template: aguilas/ldap-bind
+Type: string
+Default: cn=admin,dc=nodomain
+_Description: Login dn for the LDAP server
+ Enter the name of the account that will be used to log in to the LDAP
+ server.
+
+Template: aguilas/ldap-pass
+Type: password
+Default: secret
+_Description: Login password for the LDAP server
+ Enter the password of the account that will be used to log in to the
+ LDAP server.
+ .
+ Note: the password will be stored in clear text in
+ /etc/aguilas/config.php, which is not world-readable.
+
+Template: aguilas/ldap-tls
+Type: boolean
+Default: false
+_Description: Support for ldaps protocol
+ If your LDAP server supports TLS (Transport Security Layer), you can use
+ the ldaps protocol to connect to it.
+
+Template: aguilas/reconfigure-webserver
+Type: select
+Choices: apache2, lighttpd, nginx
+Default: apache2
+_Description: Web server which will be reconfigured automatically
+ Aguilas can reconfigure your webserver so that it can be accessed
+ through "yourhostname.com/aguilas".
+
+Template: aguilas/restart-webserver
+Type: boolean
+Default: true
+_Description: Restart of your webserver(s)
+ Remember that in order to apply the changes your webserver(s) has/have to
+ be restarted. 
