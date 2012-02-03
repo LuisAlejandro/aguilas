@@ -34,6 +34,7 @@ CHANGES="$( tempfile )"
 DEVERSION="$( tempfile )"
 NEWCHANGES="$( tempfile )"
 DATE=$( date +%D )
+TYPE="${1}"
 
 if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
 	echo "[MAIN] You are not on \"development\" branch."
@@ -123,8 +124,20 @@ python -B googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION} MD5SUM" \
 mv aguilas*.tar.gz* ..
 
 git checkout master
-git merge debian
 
 git import-orig -v -u${NEWVERSION} --upstream-branch=release \
 		--debian-branch=master ../aguilas_${NEWVERSION}.orig.tar.gz
 
+git dch --release --auto --id-length=7 --full
+git add .
+git commit -a
+
+git buildpackage -kE78DAA2E -tc --git-tag
+git clean -fd
+git reset --hard
+
+git push --tags git@github.com:HuntingBears/aguilas.git master
+git push --tags git@gitorious.org:huntingbears/aguilas.git master
+git push --tags https://code.google.com/p/aguilas/ master
+
+git checkout development
