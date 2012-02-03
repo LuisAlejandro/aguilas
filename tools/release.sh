@@ -35,35 +35,6 @@ DEVERSION="$( tempfile )"
 NEWCHANGES="$( tempfile )"
 DATE=$( date +%D )
 
-if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
-	echo "[MAIN] You are not on \"development\" branch."
-	exit 1
-fi
-if [ -n "$( git diff --exit-code 2> /dev/null )" ]; then
-	echo "[MAIN] You have uncommitted code on \"development\" branch."
-	exit 1
-fi
-cd ${GITHUBWIKI}
-if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
-	echo "[GITHUBWIKI] You are not on \"development\" branch."
-	exit 1
-fi
-if [ -n "$( git diff --exit-code 2> /dev/null )" ]; then
-	echo "[GITHUBWIKI] You have uncommitted code on \"development\" branch."
-	exit 1
-fi
-cd ${ROOTDIR}
-cd ${GOOGLEWIKI}
-if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
-	echo "[GOOGLEWIKI] You are not on \"development\" branch."
-	exit 1
-fi
-if [ -n "$( git diff --exit-code 2> /dev/null )" ]; then
-	echo "[GOOGLEWIKI] You have uncommitted code on \"development\" branch."
-	exit 1
-fi	
-cd ${ROOTDIR}
-
 git log > ${CHANGES}
 cp ${VERSION} ${DEVERSION}
 git checkout release
@@ -103,6 +74,8 @@ git push --tags git@github.com:HuntingBears/aguilas.wiki.git master
 git checkout development
 cd ${ROOTDIR}
 
+git checkout release
+
 git add .
 git commit -a -m "New stable release ${NEWVERSION}"
 git tag ${NEWVERSION} -m "New stable release ${NEWVERSION}"
@@ -121,3 +94,5 @@ python -B googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION} MD5SUM" \
 	-p "aguilas" -l "Featured,Stable" aguilas_${NEWVERSION}.orig.tar.gz.md5
 
 mv aguilas*.tar.gz* ..
+
+git checkout development
