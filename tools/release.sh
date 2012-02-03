@@ -111,12 +111,20 @@ git push --tags git@github.com:HuntingBears/aguilas.git release
 git push --tags git@gitorious.org:huntingbears/aguilas.git release
 git push --tags https://code.google.com/p/aguilas/ release
 
-git archive -o aguilas-${NEWVERSION}.tar.gz ${NEWVERSION}
-md5sum aguilas-${NEWVERSION}.tar.gz > aguilas-${NEWVERSION}.tar.gz.md5
+git archive -o aguilas_${NEWVERSION}.orig.tar.gz ${NEWVERSION}
+md5sum aguilas_${NEWVERSION}.orig.tar.gz > aguilas_${NEWVERSION}.orig.tar.gz.md5
 
-python -B googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION}" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Featured,Stable" aguilas-${NEWVERSION}.tar.gz
-python -B googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION} MD5SUM" -p "aguilas" -l "Featured,Stable" aguilas-${NEWVERSION}.tar.gz.md5
+python -B googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION}" \
+	-p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Featured,Stable" \
+	aguilas_${NEWVERSION}.orig.tar.gz
+python -B googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION} MD5SUM" \
+	-p "aguilas" -l "Featured,Stable" aguilas_${NEWVERSION}.orig.tar.gz.md5
 
-mv aguilas-${NEWVERSION}.tar.gz aguilas-${NEWVERSION}.tar.gz.md5 ..
+mv aguilas*.tar.gz* ..
 
-git checkout development
+git checkout master
+git merge debian
+
+git import-orig -v -u${NEWVERSION} --upstream-branch=release \
+		--debian-branch=master ../aguilas_${NEWVERSION}.orig.tar.gz
+
