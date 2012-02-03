@@ -34,7 +34,6 @@ CHANGES="$( tempfile )"
 DEVERSION="$( tempfile )"
 NEWCHANGES="$( tempfile )"
 DATE=$( date +%D )
-TYPE="${1}"
 
 if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
 	echo "[MAIN] You are not on \"development\" branch."
@@ -69,11 +68,6 @@ git log > ${CHANGES}
 cp ${VERSION} ${DEVERSION}
 git checkout release
 
-if [ "${TYPE}" == "test"]; then
-	git branch test-release
-	git checkout test-release
-fi
-
 OLDCOMMIT="$( cat ${VERSION} | grep "COMMIT" | sed 's/COMMIT = //g' )"
 OLDCOMMITLINE="$( cat ${CHANGES}  | grep -n "${OLDCOMMIT}" | awk -F: '{print $1}' )"
 NEWVERSION="$( cat ${DEVERSION} | grep "VERSION" | sed 's/VERSION = //g;s/+.*//g' )"
@@ -85,7 +79,7 @@ sed -i 's/New development snapshot.*//g' ${NEWCHANGES}
 echo "" >> ${NEWCHANGES}
 cat ${CHANGELOG} >> ${NEWCHANGES}
 
-git merge development
+git merge -s recursive -X theirs development
 
 mv ${NEWCHANGES} ${CHANGELOG}
 rm ${CHANGES} ${DEVERSION}
@@ -97,23 +91,15 @@ echo "COMMIT = ${LASTCOMMIT}" >> ${VERSION}
 
 cd ${GOOGLEWIKI}
 git checkout master
-git merge development
-
-if [ "${TYPE}" == "release" ]; then
-	git push --tags https://code.google.com/p/aguilas.wiki/ master
-fi
-
+git merge -s recursive -X theirs development
+git push --tags https://code.google.com/p/aguilas.wiki/ master
 git checkout development
 cd ${ROOTDIR}
 
 cd ${GITHUBWIKI}
 git checkout master
-git merge development
-
-if [ "${TYPE}" == "release" ]; then
-	git push --tags git@github.com:HuntingBears/aguilas.wiki.git master
-fi
-
+git merge -s recursive -X theirs development
+git push --tags git@github.com:HuntingBears/aguilas.wiki.git master
 git checkout development
 cd ${ROOTDIR}
 
@@ -121,47 +107,17 @@ git add .
 git commit -a -m "New stable release ${NEWVERSION}"
 git tag ${NEWVERSION} -m "New stable release ${NEWVERSION}"
 
-if [ "${TYPE}" == "release" ]; then
-	git push --tags git@github.com:HuntingBears/aguilas.git release
-	git push --tags git@gitorious.org:huntingbears/aguilas.git release
-	git push --tags https://code.google.com/p/aguilas/ release
-fi
+git push --tags git@github.com:HuntingBears/aguilas.git release
+git push --tags git@gitorious.org:huntingbears/aguilas.git release
+git push --tags https://code.google.com/p/aguilas/ release
 
 git archive -o aguilas_${NEWVERSION}.orig.tar.gz ${NEWVERSION}
 md5sum aguilas_${NEWVERSION}.orig.tar.gz > aguilas_${NEWVERSION}.orig.tar.gz.md5
 
-if [ "${TYPE}" == "release" ]; then
-	python -B googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION}" \
+python -B googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION}" \
 	-p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Featured,Stable" \
 	aguilas_${NEWVERSION}.orig.tar.gz
-	python -B googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION} MD5SUM" \
+python -B googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION} MD5SUM" \
 	-p "aguilas" -l "Featured,Stable" aguilas_${NEWVERSION}.orig.tar.gz.md5
-fi
 
 mv aguilas*.tar.gz* ..
-
-git checkout master
-
-git import-orig -v -u${NEWVERSION} --upstream-branch=release \
-		--debian-branch=master ../aguilas_${NEWVERSION}.orig.tar.gz
-
-if [ "${TYPE}" == "release" ]; then
-	git dch --release --auto --id-length=7 --full
-if [ "${TYPE}" == "test" ]; then
-	git dch --snapshot --auto --id-length=7 --full
-fi
-
-git add .
-git commit -a
-
-git buildpackage -kE78DAA2E -tc --git-tag --git-retag
-git clean -fd
-git reset --hard
-
-if [ "${TYPE}" == "release" ]; then
-	git push --tags git@github.com:HuntingBears/aguilas.git master
-	git push --tags git@gitorious.org:huntingbears/aguilas.git master
-	git push --tags https://code.google.com/p/aguilas/ master
-fi
-
-git checkout development
