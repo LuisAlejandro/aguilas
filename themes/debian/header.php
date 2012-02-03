@@ -1,3 +1,12 @@
+<?php
+
+if(extension_loaded('zlib') && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
+    ob_start('ob_gzhandler');
+}else{
+    ob_start();
+}
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head profile="http://gmpg.org/xfn/11">
@@ -19,59 +28,60 @@
                     <ul id="p-personal">
                         <li>
                             <a href="NewUserForm.php">
-                                <?= _("NEWUSER") ?>
+                                <?= _("New User") ?>
                             </a>
                         </li>
                         <li>
                             <a href="ChangePasswordForm.php">
-                                <?= _("CHANGEPASSWORD") ?>
+                                <?= _("Change Password") ?>
                             </a>
                         </li>
                         <li>
                             <a href="ResetPasswordForm.php">
-                                <?= _("RESETPASSWORD") ?>
+                                <?= _("Reset Password") ?>
                             </a>
                         </li>
                         <li>
                             <a href="ForgotUsernameForm.php">
-                                <?= _("REMINDUSER") ?>
+                                <?= _("Remind User") ?>
                             </a>
                         </li>
                         <li>
                             <a href="DeleteUserForm.php">
-                                <?= _("DELETEUSER") ?>
+                                <?= _("Delete User") ?>
                             </a>
                         </li>
                         <li>
                             <a href="EditProfileForm.php">
-                                <?= _("EDITPROFILE") ?>
+                                <?= _("Edit Profile") ?>
                             </a>
                         </li>
                         <li>
                             <a href="Browse.php">
-                                <?= _("BROWSEUSERS") ?>
+                                <?= _("Browse Users") ?>
                             </a>
                         </li>
                     </ul>
                 </div>
                 <div id="portal-searchbox">
                     <div id="p-logo">
-                        <a href="<?= $app_url ?>"></a>
+                        <a href="http://<?= $app_url ?>"></a>
                     </div>
                     
                     <form action="Search.php" id="searchform">
                         <div class="LSBox">
                             <div id="clock">
-                                <?= _("SEARCH:FIELD:DESCRIPTION") ?>
+                                <?= _("Type a search term and press enter") ?>
                             </div>
-                            <input id="searchInput" value="<?= _("SEARCHUSER") ?>" name="searchInput" type="text" onfocus="this.value=(this.value=='<?= _("SEARCHUSER") ?>') ? '' : this.value;" onblur="this.value=(this.value=='') ? '<?= _("SEARCHUSER") ?>' : this.value;"  />
+                            <input id="searchInput" value="<?= _("Search User") ?>" name="searchInput" type="text" onfocus="this.value=(this.value=='<?= _("Search User") ?>') ? '' : this.value;" onblur="this.value=(this.value=='') ? '<?= _("Search User") ?>' : this.value;"  />
                         </div>
                     </form>
                 </div>
             </div>
-
+            
             <div id="menu">
                 <ul id="portal-globalnav">
+                    <li><a href="http://<?= $app_url ?>"><?= _("Start") ?></a></li>
                     <?php
                         foreach ( $app_links as $key => $value ) {
                             echo '<li><a href="' . $value . '">' . $key . '</a></li>';

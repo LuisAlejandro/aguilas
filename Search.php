@@ -2,16 +2,16 @@
 
 $allowed_ops = array("searchInput");
 
-include_once "config.php";
-include_once "Locale.php";
-include_once "themes/$app_theme/header.php";
-include_once "Parameters.php";
-include_once "LDAPConnection.php";
-include_once "Functions.php";
+require_once "./setup/config.php";
+require_once "./libraries/Locale.inc.php";
+require_once "./themes/$app_theme/header.php";
+require_once "./libraries/Parameters.inc.php";
+require_once "./libraries/LDAPConnection.inc.php";
+require_once "./libraries/Functions.inc.php";
 
 ?>
 
-<h2><?= _("SEARCHRESULTS") ?></h2>
+<h2><?= _("Search Results") ?></h2>
 
 <?php
 
@@ -49,7 +49,7 @@ if(!isset($searchInput)){
     // How much did we get?
     $result_count = $search_entries['count'];
 
-    echo $result_count . _("XXUSERSFOUND");
+    echo $result_count . _(" Users found matching the given criteria.");
 
     // Parsing the user table with the result entries
     ParseUserTable($search_entries, $result_count);
@@ -59,6 +59,6 @@ if(!isset($searchInput)){
 // Closing the connection
 $ldapx = AssistedLDAPClose($ldapc);
 
-include_once "themes/$app_theme/footer.php";
+require_once "./themes/$app_theme/footer.php";
 
 ?>

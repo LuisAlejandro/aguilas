@@ -2,18 +2,16 @@
 
 $allowed_ops = array("mail", "image_captcha");
 
-include_once "config.php";
-include_once "Locale.php";
-include_once "themes/$app_theme/header.php";
-include_once "Functions.php";
-include_once "Parameters.php";
-include_once "LDAPConnection.php";
-
-InitCaptcha();
+require_once "./setup/config.php";
+require_once "./libraries/Locale.inc.php";
+require_once "./themes/$app_theme/header.php";
+require_once "./libraries/Functions.inc.php";
+require_once "./libraries/Parameters.inc.php";
+require_once "./libraries/LDAPConnection.inc.php";
 
 ?>
 
-<h2><?= _("SEARCHRESULTS") ?></h2>
+<h2><?= _("Search Results") ?></h2>
 
 <?php
 
@@ -40,7 +38,7 @@ if (!isset($mail) || !isset($image_captcha)) {
     WrongCaptcha();
 
 // Invalid e-mail
-} elseif (preg_match("/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/", $mail) == 0) {
+} elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
 
     InvalidEMail();
 
@@ -70,7 +68,7 @@ if (!isset($mail) || !isset($image_captcha)) {
     // We can have more than one result
     } else {
         
-        echo _("ASSOCIATEDUSERS") . '"<strong>' . $mail . '<strong>".';
+        echo _("The following users are associated to the email account ") . '"<strong>' . $mail . '<strong>".';
 
         // Parsing the user table with the result entries
         ParseUserTable($search_entries, $result_count);
@@ -82,6 +80,6 @@ if (!isset($mail) || !isset($image_captcha)) {
 // Closing the connection
 $ldapx = AssistedLDAPClose($ldapc);
 
-include_once "themes/$app_theme/footer.php";
+require_once "./themes/$app_theme/footer.php";
 
 ?>

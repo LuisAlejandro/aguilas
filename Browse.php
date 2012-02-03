@@ -2,16 +2,16 @@
 
 $allowed_ops = array("letter");
 
-include_once "config.php";
-include_once "Locale.php";
-include_once "themes/$app_theme/header.php";
-include_once "Functions.php";
-include_once "Parameters.php";
-include_once "LDAPConnection.php";
+require_once "./setup/config.php";
+require_once "./libraries/Locale.inc.php";
+require_once "./themes/$app_theme/header.php";
+require_once "./libraries/Functions.inc.php";
+require_once "./libraries/Parameters.inc.php";
+require_once "./libraries/LDAPConnection.inc.php";
 
 ?>
 
-<h2><?= _("USERSFROM") . $app_name ?></h2>
+<h2><?= _("Users from ") . $app_name ?></h2>
 
 <?php
 
@@ -29,9 +29,9 @@ if(!isset($letter)){
 if(!in_array($letter, $letters_array)){
     ?>
     <div class="error">
-        <?= _("INVALIDLETTER") ?>
+        <?= _("Invalid letter.") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
+        <a href="javascript:history.back(1);"><?= _("Back") ?></a>
     </div>
     <?php
 }else{
@@ -46,8 +46,8 @@ if(!in_array($letter, $letters_array)){
     <?php
 
     // Creating the letter row with links
-    for ($j = 0; $j <= 25; $j++) {
-        echo "<td>&nbsp;&nbsp;<a href='Browse.php?letter=".$letters_array[$j]."'>".strtoupper($letters_array[$j])."</a>&nbsp;&nbsp;</td>";
+    for ($j = 0; $j <= count($letters_array)-1; $j++) {
+        echo "<td>&nbsp;&nbsp;<a href='Browse.php?letter=".$letters_array[$j]."'>".mb_strtoupper($letters_array[$j], "UTF-8")."</a>&nbsp;&nbsp;</td>";
         }
 
     ?>
@@ -72,7 +72,7 @@ if(!in_array($letter, $letters_array)){
     // How much did we get?
     $result_count = $search_entries['count'];
 
-    echo $result_count . _("XUSERSFOUND") . strtoupper($letter);
+    echo $result_count . _(" Users found whose real name starts with letter ") . strtoupper($letter);
 
     // Parsing the user table with the result entries
     ParseUserTable($search_entries, $result_count);
@@ -82,6 +82,6 @@ if(!in_array($letter, $letters_array)){
 // Closing the connection
 $ldapx = AssistedLDAPClose($ldapc);
 
-include_once "themes/$app_theme/footer.php";
+require_once "./themes/$app_theme/footer.php";
 
 ?>

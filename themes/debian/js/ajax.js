@@ -42,7 +42,7 @@ var dame_valor = document.getElementById(obj).value;
 var cn_html = document.getElementById("cn_rg_display_section").innerHTML;
 valor=dame_valor.replace(" ","+");
 cn_listo=cn_html.replace(" ","+");
-var req = 'ajax.php?obj_a='+obj+'&val_a='+valor+'&quien_a='+quien+"&cn_a="+cn_listo;
+var req = 'Ajax.php?obj_a='+obj+'&val_a='+valor+'&who_a='+quien+"&cn_a="+cn_listo;
 sndReq(req,valor,obj);
 }
 
@@ -58,7 +58,7 @@ document.getElementById(obj+'_rg').style.display = '';
 document.getElementById(obj+'_hv').style.display = 'none';
 }
 
-function actualiza_cn(){
+function update_cn(){
 var givenname_ajax = document.getElementById("givenName").value;
 var sn_ajax = document.getElementById("sn").value;
 document.getElementById("cn_rg_display_section").innerHTML = givenname_ajax+" "+sn_ajax;

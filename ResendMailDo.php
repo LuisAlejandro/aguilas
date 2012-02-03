@@ -2,18 +2,16 @@
 
 $allowed_ops = array("mail", "image_captcha");
 
-include_once "config.php";
-include_once "Locale.php";
-include_once "themes/$app_theme/header.php";
-include_once "Functions.php";
-include_once "Parameters.php";
-include_once "MYSQLConnection.php";
-
-InitCaptcha();
+require_once "./setup/config.php";
+require_once "./libraries/Locale.inc.php";
+require_once "./themes/$app_theme/header.php";
+require_once "./libraries/Functions.inc.php";
+require_once "./libraries/Parameters.inc.php";
+require_once "./libraries/MYSQLConnection.inc.php";
 
 ?>
 
-<h2><?= _("REQUESTSTATUS") ?></h2>
+<h2><?= _("Request Status") ?></h2>
 
 <?php
 
@@ -40,7 +38,7 @@ if (!isset($mail) || !isset($image_captcha)) {
     WrongCaptcha();
 
 // Invalid e-mail
-} elseif (preg_match("/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/", $mail) == 0) {
+} elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
 
     InvalidEMail();
 
@@ -48,9 +46,10 @@ if (!isset($mail) || !isset($image_captcha)) {
 
     // We query for a row in the NewUser table that matches with the
     // mail provided by the user
-    $sel_q = "SELECT * FROM NewUser"
-            . " WHERE mail='" . $mail . "'"
-            . " ORDER BY token DESC LIMIT 0,1";
+    $sel_q = sprintf("SELECT * FROM NewUser"
+            . " WHERE mail='%s' ORDER BY token DESC LIMIT 0,1"
+            , mysql_real_escape_string($mail)
+            );
 
     // Searching ...
     $sel_r = AssistedMYSQLQuery($sel_q);
@@ -103,6 +102,6 @@ if (!isset($mail) || !isset($image_captcha)) {
 // Closing the connection
 $mysqlx = AssistedMYSQLClose($mysqlc);
 
-include_once "themes/$app_theme/footer.php";
+require_once "./themes/$app_theme/footer.php";
 
 ?>

@@ -1,7 +1,8 @@
 <?php
-include_once "config.php";
-include_once "Locale.php";
-include_once "themes/$app_theme/header.php";
-include_once "themes/$app_theme/index.php";
-include_once "themes/$app_theme/footer.php";
+$allowed_ops = "index";
+require_once "./setup/config.php";
+require_once "./libraries/Locale.inc.php";
+require_once "./themes/$app_theme/header.php";
+require_once "./themes/$app_theme/index.php";
+require_once "./themes/$app_theme/footer.php";
 ?>

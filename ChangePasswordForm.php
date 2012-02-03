@@ -1,143 +1,144 @@
 <?php
-include_once "config.php";
-include_once "Locale.php";
-include_once "themes/$app_theme/header.php";
+$allowed_ops = "ChangePasswordForm";
+require_once "./setup/config.php";
+require_once "./libraries/Locale.inc.php";
+require_once "./themes/$app_theme/header.php";
 ?>
 
-<h2><?= _("CHANGEPASSWORD:TITLE") ?></h2>
+<h2><?= _("Change Password") ?></h2>
 
-<p><?= _("FORM:CHANGEPASSWORD:GREETINGS") ?></p>
+<p><?= _("Please complete the following form to change your password.") ?></p>
 
 <form method="post" action="ChangePasswordDo.php">
     <table>
         <tr>
             <td class="px160">
-                <?= _("USERNAME") ?>
+                <?= _("Username") ?>
             </td>
             <td class="px120">
-                <?= _("USER:EXAMPLE") ?>
+                <?= _("e.g., Us3r") ?>
             </td>
             <td class="px640">
                 <span id="uid_js">
                     <input type="text" name="uid" id="uid" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("EMPTY:WARNING") ?>
+                        <?= _("You cannot leave empty fields.") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("LONGERTHAN30") ?>
+                        <?= _("You exceeded the limit of 30 characters.") ?>
                     </span>
                     <span class="textfieldMinCharsMsg">
-                        <?= _("ATLEAST3") ?>
+                        <?= _("Username must have at least 3 characters.") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("EMAIL") ?>
+                <?= _("E-Mail") ?>
             </td>
             <td class="px120">
-                <?= _("EMAIL:EXAMPLE") ?>
+                <?= _("e.g., user@email.com") ?>
             </td>
             <td class="px640">
                 <span id="mail_js">
                     <input type="text" name="mail" id="mail" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("EMPTY:WARNING") ?>
+                        <?= _("You cannot leave empty fields.") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("LONGERTHAN60") ?>
+                        <?= _("You exceeded the limit of 60 characters.") ?>
                     </span>
                     <span class="textfieldInvalidFormatMsg">
-                        <?= _("INVALIDFORMAT") ?>
+                        <?= _("Invalid Format.") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("YOURPASSWORD") ?>
+                <?= _("Your Password") ?>
             </td>
             <td class="px120">
-                <?= _("PRESENTPASSWORD") ?>
+                <?= _("enter your present password") ?>
             </td>
             <td class="px640">
                 <span id="userPasswordOld_js">
                     <input type="password" name="userPasswordOld" id="userPasswordOld" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("EMPTY:WARNING") ?>
+                        <?= _("You cannot leave empty fields.") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("LONGERTHAN30") ?>
+                        <?= _("You exceeded the limit of 30 characters.") ?>
                     </span>
                     <span class="textfieldMinCharsMsg">
-                        <?= _("ATLEAST8") ?>
+                        <?= _("Password must have at least 8 characters.") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("NEWPASSWORD") ?>
+                <?= _("New Password") ?>
             </td>
             <td class="px120">
-                <?= _("NEWPASSWORDDESC") ?>
+                <?= _("enter your new password") ?>
             </td>
             <td class="px640">
                 <span id="userPassword_js">
                     <input type="password" name="userPassword" id="userPassword" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("EMPTY:WARNING") ?>
+                        <?= _("You cannot leave empty fields.") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("LONGERTHAN30") ?>
+                        <?= _("You exceeded the limit of 30 characters.") ?>
                     </span>
                     <span class="textfieldMinCharsMsg">
-                        <?= _("ATLEAST8") ?>
+                        <?= _("Password must have at least 8 characters.") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("NEWPASSWORDREPEAT") ?>
+                <?= _("New Password (repeat)") ?>
             </td>
             <td class="px120">
-                <?= _("NEWPASSWORDREPEATDESC") ?>
+                <?= _("repeat your new password") ?>
             </td>
             <td class="px640">
                 <span id="userPasswordBis_js">
                     <input type="password" name="userPasswordBis" id="userPasswordBis" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("EMPTY:WARNING") ?>
+                        <?= _("You cannot leave empty fields.") ?>
                     </span>
                     <span class="textfieldInvalidFormatMsg">
-                        <?= _("PASSWORD:DIFFERENT") ?>
+                        <?= _("Passwords do not match.") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("LONGERTHAN30") ?>
+                        <?= _("You exceeded the limit of 30 characters.") ?>
                     </span>
                     <span class="textfieldMinCharsMsg">
-                        <?= _("ATLEAST8") ?>
+                        <?= _("Password must have at least 8 characters.") ?>
                     </span>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="px160">
-                <?= _("CAPTCHA") ?>
+                <?= _("Captcha") ?>
             </td>
             <td class="px120">
-                <img alt="captcha" src="captcha.php" border="0" />
+                <img alt="captcha" src="libraries/Captcha.inc.php" border="0" />
             </td>
             <td class="px640">
                 <span id="image_captcha_js">
                     <input name="image_captcha" id="image_captcha" class="input5" />
                     <span class="textfieldRequiredMsg">
-                        <?= _("EMPTY:WARNING") ?>
+                        <?= _("You cannot leave empty fields.") ?>
                     </span>
                     <span class="textfieldMaxCharsMsg">
-                        <?= _("LONGERTHAN8") ?>
+                        <?= _("You exceeded the limit of 8 characters.") ?>
                     </span>
                 </span>
             </td>
@@ -159,5 +160,5 @@ include_once "themes/$app_theme/header.php";
     var image_captcha_var = new Spry.Widget.ValidationTextField("image_captcha_js", "none", {validateOn:["blur"], maxChars:8});
 </script>
 <?php
-include_once "themes/$app_theme/footer.php";
+require_once "./themes/$app_theme/footer.php";
 ?>

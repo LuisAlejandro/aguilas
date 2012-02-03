@@ -2,17 +2,17 @@
 
 $allowed_ops = array("uid", "mail", "token");
 
-include_once "config.php";
-include_once "Locale.php";
-include_once "themes/$app_theme/header.php";
-include_once "Functions.php";
-include_once "Parameters.php";
-include_once "LDAPConnection.php";
-include_once "MYSQLConnection.php";
+require_once "./setup/config.php";
+require_once "./libraries/Locale.inc.php";
+require_once "./themes/$app_theme/header.php";
+require_once "./libraries/Functions.inc.php";
+require_once "./libraries/Parameters.inc.php";
+require_once "./libraries/LDAPConnection.inc.php";
+require_once "./libraries/MYSQLConnection.inc.php";
 
 ?>
 
-<h2><?= _("REQUESTSTATUS") ?></h2>
+<h2><?= _("Request Status") ?></h2>
 
 <?php
 
@@ -38,7 +38,7 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
     WrongUIDLength();
 
 // Invalid e-mail
-} elseif (preg_match("/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/", $mail) == 0) {
+} elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
 
     InvalidEMail();
 
@@ -57,11 +57,15 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
     // VALIDATION PASSED -------------------------------------------------------
     // We build up our query to search for the uid and token previously inserted
     // in the temporary database
-    $sel_q = "SELECT * FROM NewUser"
-                    . " WHERE mail='" . $mail . "'"
-                    . " AND uid='" . $uid . "'"
-                    . " AND token='" . $token . "'"
-                    . " ORDER BY token DESC LIMIT 0,1";
+    $sel_q = sprintf("SELECT * FROM NewUser"
+                    . " WHERE mail='%s'"
+                    . " AND uid='%s'"
+                    . " AND token='%s'"
+                    . " ORDER BY token DESC LIMIT 0,1"
+                    , mysql_real_escape_string($mail)
+                    , mysql_real_escape_string($uid)
+                    , mysql_real_escape_string($token)
+                    );
 
     // Searching ...
     $sel_r = AssistedMYSQLQuery($sel_q);
@@ -143,7 +147,7 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
                 if ($result_count == 0){
                     
                     // Creating maxUID entry ...
-                    include_once "CreateMaxUIDEntry.php";
+                    require_once "./libraries/CreateMaxUIDEntry.inc.php";
                     
                     // Setting last uidNumber to the first
                     $lastuidnumber = $maxuidstart;
@@ -160,9 +164,6 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
                     $lastuidnumber = $search_entries[0]['uidnumber'][0];
                 }
 
-                // Encoding the password
-                $userPassword = EncodePassword($row['userPassword'], $ldap_enc);
-
                 // We build up an array with all the attributes we want to insert into
                 // the new LDAP entry
                 $newdn = "uid=" . $row['uid'] . "," . $ldap_base;
@@ -175,7 +176,7 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
                 $in['mail'] = $row['mail'];
                 $mail = $in['mail'];
                 $in['uidNumber'] = $lastuidnumber + 1;
-                $in['gidNumber'] = $ldap_gid[$ldap_default_group];
+                $in['gidNumber'] = $ldap_gid["$ldap_default_group"];
                 $in['userPassword'] = $row['userPassword'];
                 $in['homeDirectory'] = "/home/" . $row['uid'];
                 $in['objectClass'][0] = "inetOrgPerson";
@@ -184,8 +185,6 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
                 $in['objectClass'][3] = "person";
                 $in['objectClass'][4] = "shadowAccount";
                 $in['objectClass'][5] = "organizationalPerson";
-                $in['objectClass'][6] = "tracUser";
-                $in['tracperm'] = "WIKI_VIEW";
                 $in['loginShell'] = "/bin/false";
                 $in['description'] = $row['description'];
 
@@ -215,9 +214,12 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
                 if ($send) {
 
                     // We need to get rid of the temporary entry
-                    $del_q = "DELETE FROM NewUser"
-                                    . " WHERE uid='" . $uid . "'"
-                                    . " AND token='" . $token . "'";
+                    $del_q = sprintf("DELETE FROM NewUser"
+                                    . " WHERE uid='%s'"
+                                    . " AND token='%s'"
+                                    , mysql_real_escape_string($uid)
+                                    , mysql_real_escape_string($token)
+                                    );
 
                     // Deleting the row from the table ...
                     $del_r = AssistedMYSQLQuery($del_q);
@@ -247,6 +249,6 @@ $ldapx = AssistedLDAPClose($ldapc);
 // Closing the connection
 $mysqlx = AssistedMYSQLClose($mysqlc);
 
-include_once "themes/$app_theme/footer.php";
+require_once "./themes/$app_theme/footer.php";
 
 ?>

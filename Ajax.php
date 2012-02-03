@@ -2,14 +2,16 @@
 
 $allowed_ops = array("obj_a", "val_a", "who_a", "cn_a");
 
-include_once "config.php";
-include_once "Locale.php";
-include_once "LDAPConnection.php";
+require_once "./setup/config.php";
+require_once "./libraries/Locale.inc.php";
+require_once "./libraries/LDAPConnection.inc.php";
 
 foreach( $_GET as $key => $value ){
-    $asign = "\$" . $key . "='" . $value . "';";
     if( in_array( $key, $allowed_ops )){
-        eval($asign);
+        $value = trim($value);
+        $value = htmlspecialchars($value, ENT_QUOTES);
+        $value = stripslashes($value);
+        $$key = "$value";
     }
 }
 
@@ -21,37 +23,37 @@ $time_today = date("d-m-Y-H:i:s");
 // $who_a or $cn_a
 if (!isset($obj_a) || !isset($val_a) || !isset($who_a) || !isset($cn_a)) {
 
-    echo _("INTRUSION:WARNING");
+    echo _("Hey! What are you trying to do?");
 
 // One or more of the fields was left empty
 } elseif ($obj_a == '' || $val_a == '' || $who_a == '' || $cn_a == '') {
 
-    echo _("EMPTY:WARNING");
+    echo _("You cannot leave empty fields.");
 
 // The first name has improper characters
 } elseif ($obj_a == "givenName" && preg_match("/^[A-Za-záäéëíïóöúüñÁÄÉËÍÏÓÖÚÜÑ\s?]+$/", $val_a) == 0) {
 
-    echo _("FIRSTNAME:INVALID");
+    echo _("Your first name has invalid characters. You can only use letters (uppercase, lowercase), accented letters or with umlaut.");
 
 // The first name has more than 60 characters
 } elseif ($obj_a == "givenName" && (strlen($val_a) > 60)) {
 
-    echo _("FIRSTNAME:INVALID:LENGTH");
+    echo _("Your first name is longer than 60 characters.");
 
 // The last name has improper characters
 } elseif ($obj_a == "sn" && preg_match("/^[A-Za-záäéëíïóöúüñÁÄÉËÍÏÓÖÚÜÑ\s?]+$/", $val_a) == 0) {
 
-    echo _("LASTNAME:INVALID");
+    echo _("Your last name has invalid characters. You can only use letters (uppercase, lowercase), accented letters or with umlaut.");
 
 // The last name has more than 60 characters
 } elseif ($obj_a == "sn" && (strlen($val_a) > 60)) {
 
-    echo _("LASTNAME:INVALID:LENGTH");
+    echo _("Your last name is longer than 60 characters.");
 
 // Not a valid e-mail
 } elseif ($obj_a == "mail" && preg_match("/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/", $val_a) == 0) {
 
-    echo _("EMAIL:INVALID");
+    echo _("The e-mail you provided is not valid. Please go back and verify that you have entered it correctly.");
     
 } else {
 
@@ -71,10 +73,10 @@ if (!isset($obj_a) || !isset($val_a) || !isset($who_a) || !isset($cn_a)) {
     // If the modification was a success
     if ($mod) {
         // We log the event
-        $log_location = "/var/log/aguilas/Ajax.log";
+        $log_location = $log_dir . "Ajax.log";
         $log_string = "[" . $time_today . "]: "
-                    . _("MODATTRIBUTE") . $obj_a
-                    . _("OFTHEUSER") . $who_a . ".\n";
+                    . _("We have modified the attribute ") . $obj_a
+                    . _(" of the user ") . $who_a . ".\n";
         $log_write = file_put_contents($log_location, $log_string, FILE_APPEND | LOCK_EX);
         // We output the modified value so that the form updates through ajax
         echo $val_a;
@@ -85,7 +87,7 @@ if (!isset($obj_a) || !isset($val_a) || !isset($who_a) || !isset($cn_a)) {
 // Closing the connection
 $ldapx = ldap_close($ldapc)
         or die(
-        _("LDAP:CLOSE:ERROR")
+        _("An error has ocurred trying to close the connection to the LDAP database: ")
         . ldap_error($ldapc)
         . "."
     );

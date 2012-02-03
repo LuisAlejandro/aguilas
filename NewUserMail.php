@@ -2,32 +2,45 @@
 
 $allowed_ops = array("uid", "mail", "givenName", "sn", "userPassword", "userPasswordBis", "image_captcha");
 
-include_once "config.php";
-include_once "Locale.php";
-include_once "themes/$app_theme/header.php";
-include_once "Functions.php";
-include_once "Parameters.php";
-include_once "LDAPConnection.php";
-include_once "MYSQLConnection.php";
-
-InitCaptcha();
+require_once "./setup/config.php";
+require_once "./libraries/Locale.inc.php";
+require_once "./themes/$app_theme/header.php";
+require_once "./libraries/Functions.inc.php";
+require_once "./libraries/Parameters.inc.php";
+require_once "./libraries/LDAPConnection.inc.php";
+require_once "./libraries/MYSQLConnection.inc.php";
 
 ?>
 
-<h2><?= _("REQUESTSTATUS") ?></h2>
+<h2><?= _("Request Status") ?></h2>
 
 <?php
 
 // USER INPUT VALIDATION ------------------------------------------------------- 
 // Some of the parameters were not set, the form was not used to get here
-if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset($userPassword) || !isset($userPasswordBis) || !isset($description) || !isset($token) || !isset($image_captcha)) {
+if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset($userPassword) || !isset($userPasswordBis) || !isset($description) || !isset($newtoken) || !isset($image_captcha)) {
 
     VariableNotSet();
 
 // Some of the parameters are empty
-} elseif ($uid == '' || $givenName == '' || $sn == '' || $mail == '' || $userPassword == '' || $description == '' || $token == '' || $image_captcha == '') {
+} elseif ($uid == '' || $givenName == '' || $sn == '' || $mail == '' || $userPassword == '' || $description == '' || $newtoken == '' || $image_captcha == '') {
 
     EmptyVariable();
+
+// Invalid username
+} elseif (preg_match("/^[A-Za-z0-9_-]+$/", $uid) == 0) {
+
+    InvalidUsername();
+        
+// Username has less than 3 characters or more than 30
+} elseif ((strlen($uid) < 3) || (strlen($uid) > 30)) {
+
+    WrongUIDLength();
+
+// Invalid e-mail
+} elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+
+    InvalidEMail();
 
 } else {
 
@@ -128,7 +141,7 @@ if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset
         Wrong2NameLength();
 
     // Invalid e-mail
-    } elseif (preg_match("/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/", $mail) == 0) {
+    } elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
 
         InvalidEMail();
 
@@ -141,23 +154,25 @@ if (!isset($uid) || !isset($givenName) || !isset($sn) || !isset($mail) || !isset
 
         // Create the table if we don't have it
         if (!$val_r) {
-            include_once "CreateUserTable.php";
+            require_once "./libraries/CreateUserTable.inc.php";
         }
 
+        // Encoding the password
+        $userPassword = EncodePassword($userPassword, $ldap_enc);
+        
         // We build up our query to insert the user data into a temporary MYSQL Database
         // while the user gets the confirmation e-mail and clicks the link
-        $ins_q = "INSERT INTO NewUser "
+        $ins_q = sprintf("INSERT INTO NewUser "
                 ."(uid, givenName, sn, mail, userPassword, description, token) "
-                . "VALUES "
-                . "('"
-                . $uid . "', '"
-                . $givenName . "', '"
-                . $sn . "', '"
-                . $mail . "', '"
-                . $userPassword . "', '"
-                . $description . "', '"
-                . $token
-                . "')";
+                . "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')"
+                , mysql_real_escape_string($uid)
+                , mysql_real_escape_string($givenName)
+                , mysql_real_escape_string($sn)
+                , mysql_real_escape_string($mail)
+                , mysql_real_escape_string($userPassword)
+                , mysql_real_escape_string($description)
+                , mysql_real_escape_string($newtoken)
+                );
 
         // Inserting the row on the table ...
         $ins_r = AssistedMYSQLQuery($ins_q);
@@ -188,6 +203,6 @@ $ldapx = AssistedLDAPClose($ldapc);
 // Closing the connection
 $mysqlx = AssistedMYSQLClose($mysqlc);
 
-include_once "themes/$app_theme/footer.php";
+require_once "./themes/$app_theme/footer.php";
 
 ?>

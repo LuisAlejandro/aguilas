@@ -2,18 +2,16 @@
 
 $allowed_ops = array("uid", "userPassword", "image_captcha");
 
-include_once "config.php";
-include_once "Locale.php";
-include_once "themes/$app_theme/header.php";
-include_once "Functions.php";
-include_once "Parameters.php";
-include_once "LDAPConnection.php";
-
-InitCaptcha();
+require_once "./setup/config.php";
+require_once "./libraries/Locale.inc.php";
+require_once "./themes/$app_theme/header.php";
+require_once "./libraries/Functions.inc.php";
+require_once "./libraries/Parameters.inc.php";
+require_once "./libraries/LDAPConnection.inc.php";
 
 ?>
 
-<h2><?= _("USERPROFILE") ?></h2>
+<h2><?= _("User Profile") ?></h2>
 
 <?php
 
@@ -63,6 +61,9 @@ if (!isset($uid) || !isset($userPassword) || !isset($image_captcha)) {
 
     // VALIDATION PASSED -------------------------------------------------------
 
+    // Encoding the password
+    $userPassword = EncodePassword($userPassword, $ldap_enc);
+        
     // We are going to search for a user matching the data entered 
 
     // We stablish what attributes are going to be retrieved from each entry
@@ -97,14 +98,14 @@ if (!isset($uid) || !isset($userPassword) || !isset($image_captcha)) {
         $objects = array("uid", "uidNumber", "givenName", "sn", "cn", "mail", "userPassword", "gidNumber");
         
         // ... and it's descriptive tags
-        $tags = array(  _("USERNAME"),
+        $tags = array(  _("Username"),
                         _("ID"),
-                        _("FIRSTNAME:FORM"),
-                        _("LASTNAME:FORM"),
-                        _("COMPLETENAME:FORM"),
-                        _("EMAIL"),
-                        _("PASSWORD"),
-                        _("GROUP"));
+                        _("First Name"),
+                        _("Last Name"),
+                        _("Complete Name"),
+                        _("E-Mail"),
+                        _("Password"),
+                        _("Group"));
         
         // We get their respective values in an array too
         $contents = array(  $search_entries[0]['uid'][0],
@@ -113,7 +114,7 @@ if (!isset($uid) || !isset($userPassword) || !isset($image_captcha)) {
                             $search_entries[0]['sn'][0],
                             $search_entries[0]['cn'][0],
                             $search_entries[0]['mail'][0],
-                            preg_replace("/[A-Za-z0-9@#$%^&+=!.-_]/", "*", $search_entries[0]['userpassword'][0]),
+                            substr(preg_replace("/[A-Za-z0-9{}@#$%^&+=!.-_]/", "*", $search_entries[0]['userpassword'][0]), 0, 8),
                             $ldap_gid_flip[$search_entries[0]['gidnumber'][0]]);
         
         // Tell me which ones you want to make editable and which don't
@@ -141,6 +142,6 @@ if (!isset($uid) || !isset($userPassword) || !isset($image_captcha)) {
 // Closing the connection
 $ldapx = AssistedLDAPClose($ldapc);
 
-include_once "themes/$app_theme/footer.php";
+require_once "./themes/$app_theme/footer.php";
 
 ?>
