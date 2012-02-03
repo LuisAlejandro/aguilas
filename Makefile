@@ -85,7 +85,7 @@ gen-predoc: clean-predoc
 	@echo "Preprocessing documentation ..."
 	@$(BASH) tools/predoc.sh build
 
-gen-wiki: check-buildep gen-predoc clean-wiki
+gen-wiki: check-buildep prepare gen-predoc clean-wiki
 
 	@echo "Generating documentation from source [RST > WIKI]"
 	@cp documentation/githubwiki.index documentation/rest/index.rest
@@ -190,6 +190,13 @@ reinstall: uninstall install
 
 
 # MAINTAINER TASKS ---------------------------------------------------------------------------------
+
+prepare: check-maintdep
+
+	@git submodule init
+	@git submodule update
+	@cd documentation/githubwiki/ && git checkout development && git pull origin development
+	@cd documentation/googlewiki/ && git checkout development && git pull origin development
 
 gen-po: check-maintdep gen-pot
 

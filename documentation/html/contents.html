@@ -245,12 +245,8 @@ Dec 18 18:33:44 OKComputer postfix/qmgr[10946]: 75D4A243BD: removed</pre>
 <div class="highlight-python"><pre>cd aguilas</pre>
 </div>
 </li>
-<li><p class="first">Initialize the git submodules (<em>githubwiki</em> and <em>googlewiki</em>):</p>
-<div class="highlight-python"><pre>git submodule init</pre>
-</div>
-</li>
-<li><p class="first">Pull the latest code from the submodules:</p>
-<div class="highlight-python"><pre>git submodule update</pre>
+<li><p class="first">Prepare and update the sources:</p>
+<div class="highlight-python"><pre>make prepare</pre>
 </div>
 </li>
 </ol>
@@ -514,10 +510,8 @@ git status</pre>
 <dd>This is where the development is actually made, and because of that, the code provided here might be experimental, unstable or broken. If you want to contribute to Aguilas (see <a class="reference internal" href="#contributing-to-aguilas">contributing to aguilas</a>), <em>this is where you should start</em>.</dd>
 <dt><tt class="docutils literal"><span class="pre">release</span> <span class="pre">branch</span></tt></dt>
 <dd>This is where stable releases are obtained from. After a development cycle is finished, all changes are merged here, plus other <em>tactical movements</em> (see <a class="reference internal" href="#development-cycle">development cycle</a>).</dd>
-<dt><tt class="docutils literal"><span class="pre">debian</span> <span class="pre">branch</span></tt></dt>
-<dd><strong>Only</strong> contains the debian folder that generates the Aguilas Debian package.</dd>
 <dt><tt class="docutils literal"><span class="pre">master</span> <span class="pre">branch</span></tt></dt>
-<dd>The purpose of the master branch is to serve as a <em>merging hub</em> in the process of making the Aguilas debian package. This branch receives it content from the <tt class="docutils literal"><span class="pre">release</span></tt> (upstream code) and <tt class="docutils literal"><span class="pre">debian</span></tt> (debian folder) branches before building the debian package.</dd>
+<dd>The purpose of the master branch is to serve as a container to build the Aguilas debian package.</dd>
 </dl>
 <p>Tags in aguilas are done each time a new (development or release) version is made. The difference is that development (<em>snapshots</em>) versions are numbered in the form of <tt class="docutils literal"><span class="pre">X.Y.Z+[YEAR][MONTH][DAY][HOUR][MINUTE][SECONDS]</span></tt> and stable (<em>releases</em>) versions are numbered in the form <tt class="docutils literal"><span class="pre">X.Y.Z</span></tt>.</p>
 </div>
@@ -1587,8 +1581,8 @@ or to work without being in the working directory at all.</dd>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 29-01-2012, Luis Alejandro Martínez Faneyth.
-      Last updated on Jan 29, 2012.
+        &copy; Copyright 03-02-2012, Luis Alejandro Martínez Faneyth.
+      Last updated on Feb 03, 2012.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.8.
     </div>
   </body>

@@ -273,13 +273,9 @@ That being said:
 
 	cd aguilas
 
-#. Initialize the git submodules (*githubwiki* and *googlewiki*)::
+#. Prepare and update the sources::
 
-	git submodule init
-
-#. Pull the latest code from the submodules::
-
-	git submodule update
+	make prepare
 
 That's it. You have the latest code from Aguilas. If you want to install it, you can follow the same procedure described at `installing the stable version`_.
 
@@ -627,11 +623,8 @@ Inside the repository you will find that Aguilas development is divided into fou
 ``release branch``
 	This is where stable releases are obtained from. After a development cycle is finished, all changes are merged here, plus other *tactical movements* (see `development cycle`_).
 
-``debian branch``
-	**Only** contains the debian folder that generates the Aguilas Debian package.
-
 ``master branch``
-	The purpose of the master branch is to serve as a *merging hub* in the process of making the Aguilas debian package. This branch receives it content from the ``release`` (upstream code) and ``debian`` (debian folder) branches before building the debian package.
+	The purpose of the master branch is to serve as a container to build the Aguilas debian package.
 
 Tags in aguilas are done each time a new (development or release) version is made. The difference is that development (*snapshots*) versions are numbered in the form of ``X.Y.Z+[YEAR][MONTH][DAY][HOUR][MINUTE][SECONDS]`` and stable (*releases*) versions are numbered in the form ``X.Y.Z``.
 
