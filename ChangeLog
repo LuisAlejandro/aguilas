@@ -1,16 +1,79 @@
-commit 7f36e6e47bc9564f5466dfd2d5c0b0a5906a981c
-Author: Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>
-Date:   Fri Nov 25 10:08:36 2011 -0430
+STABLE RELEASE v1.0.0+20111216175312 (12/16/11)
+    New stable release 1.0.0+20111216175312
 
-    Mejoras varias:
-    
+STABLE RELEASE v1.0.0+20111216175312 (12/16/11)
+    New development release 1.0.0+20111216175312
+
+DEVELOPMENT RELEASE v1.0.0+20111216175312 (12/16/11)
+    Correcting errors in es_VE localization
+    New development release 1.0.0+20111216172924
+
+DEVELOPMENT RELEASE v1.0.0+20111216172924 (12/16/11)
+    Improving documentation
+    New development release 1.0.0+20111216103827
+
+DEVELOPMENT RELEASE v1.0.0+20111216103827 (12/16/11)
+    Improving es_VE translation
+    Adding README.rst documentation
+    Correcting some password encoding mistakes
+    New development release 1.0.0~20111216030223
+
+DEVELOPMENT RELEASE v1.0.0+20111216030223 (12/16/11)
+    * Automating the generation of stable and development releases.
+    * Starting development of release script
+    * Correcting setting of localization.
+    * Minos style adjustments.
+    * Changing gettext strings.
+    * Updating localization
+    * Including Functions.php on MYSQLConnection.php
+    * Adding unnistall script
+    * Correcting location of media files (css, js, ...)
+    * Including MYSQL and LDAP Connection functions on install script
+    * Correcting more details on Makefile, scripts/gen-conf.sh, and config.php.example.
+    * Correcting details on Makefile
+    * Correcting error on pre-configuration.
+    * Adding RST manual.
+    * Adding gettext specification of language and including Locale.php in all files where needed.
+    * Improving Makefile
+    Improving locales
+    * Improving Makefile
+    * Introducing googlecode upload python script
+    * Removing NetBeans project folder
+    Various improvements:
+    	* Introducing sphinx documentation
+    	* Creating log files to simplify Makefile
+    	* Deleting xcf banners to simplify generation of images from source, and maintain images "patchable"
+    	* Creating aguilas logo
+    Improving the way users config AGUILAS at installation time.
+    Improving locales
+    New Script
+    Translating to es_VE
+    Improving install methods
+    Generating locales
+    Estructural changes:
+    	* Better validation
+    	* Creating gettext *.po and *.mo files
+    	* Beauty of code improvements
+    	* Inclusion of TLS and secure passwords options
+    	* Install script
+    	* Automatization with Makefile
+    Adding install script
+    Upgrading the form that the images are represented. Leaving only the
+    source code (*.xcf, *.svg) and converting them to binary (*.jpg, *.png)
+    dinamically on the Makefile
+    Implementing function upgrades and automatization
+    New version 1.2:
+    	* Complete redoing of filenames and structure
+    	* Implementation of NetBeans IDE
+    	* Implementetion of multiple functions to atomatize various processes
+    	* Implementation of internationalization system through gettext
+    	* Added functionality of changing visual themes
+    	* Automatize the creation of the maxUID entry
+    	* New Debian and Canaima themes
+    Modificando index.php para manejar diferentes temas
+    Actualizando versión a 1.1
+    Mejoras varias:  
     	* Cambio de permisos a *.php
     	* Mejora de la lectura de la configuración
     	* Auto-incremento del uidNumber
     	* Perfeccionamiento del código
-
-commit 4ab39b74f67d9cb1d5354938d1656d17826bf097
-Author: Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>
-Date:   Sun May 8 09:18:28 2011 -0430
-
-    Versión inicial

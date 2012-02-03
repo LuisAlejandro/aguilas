@@ -2,17 +2,18 @@
 
 $allowed_ops = array("uid", "userPassword", "image_captcha");
 
-include "config.php";
-include "themes/$app_theme/header.php";
-include "Functions.php";
-include "Parameters.php";
-include "LDAPConnection.php";
+include_once "config.php";
+include_once "Locale.php";
+include_once "themes/$app_theme/header.php";
+include_once "Functions.php";
+include_once "Parameters.php";
+include_once "LDAPConnection.php";
 
 InitCaptcha();
 
 ?>
 
-<h2><?= _("##USERPROFILE##") ?></h2>
+<h2><?= _("USERPROFILE") ?></h2>
 
 <?php
 
@@ -96,14 +97,14 @@ if (!isset($uid) || !isset($userPassword) || !isset($image_captcha)) {
         $objects = array("uid", "uidNumber", "givenName", "sn", "cn", "mail", "userPassword", "gidNumber");
         
         // ... and it's descriptive tags
-        $tags = array(  _("##USERNAME##"),
-                        _("##ID##"),
-                        _("##FIRSTNAME:FORM##"),
-                        _("##LASTNAME:FORM##"),
-                        _("##COMPLETENAME:FORM##"),
-                        _("##EMAIL##"),
-                        _("##PASSWORD##"),
-                        _("##GROUP##"));
+        $tags = array(  _("USERNAME"),
+                        _("ID"),
+                        _("FIRSTNAME:FORM"),
+                        _("LASTNAME:FORM"),
+                        _("COMPLETENAME:FORM"),
+                        _("EMAIL"),
+                        _("PASSWORD"),
+                        _("GROUP"));
         
         // We get their respective values in an array too
         $contents = array(  $search_entries[0]['uid'][0],
@@ -140,6 +141,6 @@ if (!isset($uid) || !isset($userPassword) || !isset($image_captcha)) {
 // Closing the connection
 $ldapx = AssistedLDAPClose($ldapc);
 
-include "themes/$app_theme/footer.php";
+include_once "themes/$app_theme/footer.php";
 
 ?>

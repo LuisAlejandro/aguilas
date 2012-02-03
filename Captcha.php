@@ -1,6 +1,7 @@
 <?php
 
-include "config.php";
+include_once "config.php";
+include_once "Locale.php";
 
 session_start();
 

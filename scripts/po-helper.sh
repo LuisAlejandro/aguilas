@@ -1,9 +1,9 @@
 #!/bin/bash
 
 CODE="es_VE"
-PO="../locale/${CODE}/LS_MESSAGES/messages.po"
-POR="../locale/${CODE}/LS_MESSAGES/messages2.po"
-MSGID="../locale/${CODE}/LS_MESSAGES/msgid"
+PO="../locale/${CODE}/LC_MESSAGES/messages.po"
+POR="../locale/${CODE}/LC_MESSAGES/messages2.po"
+MSGID="../locale/${CODE}/LC_MESSAGES/msgid"
 
 cat ${PO} | grep 'msgid "' > ${MSGID}
 COUNT=$( cat ${MSGID} | wc -l )
@@ -21,7 +21,7 @@ for LINE in $( seq 1 ${COUNT} ); do
 		TRANSLATION='msgstr "'${REPLY}'"'
 
 		read -p "Escribe el código: "
-		STRING="##${REPLY}##"
+		STRING="${REPLY}"
 		CODESTRING='msgid "'${STRING}'"'
 
 		sed -i "s/msgid \"${SENTENCE}\"/${CODESTRING}\n${TRANSLATION}/g" ${POR}
@@ -34,3 +34,5 @@ for LINE in $( seq 1 ${COUNT} ); do
 	fi
 
 done
+
+rm ${MSGID}

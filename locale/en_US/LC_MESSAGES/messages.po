@@ -1,0 +1,796 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AGUILAS\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-12-14 23:24-0400\n"
+"PO-Revision-Date: 2011-12-14 23:25-0400\n"
+"Last-Translator: Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: ../../../\n"
+
+#: ../../../install.php:8
+msgid "CREATING:DATABASE"
+msgstr "Creating database "
+
+#: ../../../install.php:12
+msgid "CREATING:TABLE:RESETPASSWORD"
+msgstr "Creating table for storing the reset password requests ..."
+
+#: ../../../install.php:22
+msgid "CREATING:TABLE:NEWUSER"
+msgstr "Creating table for storing the new user requests ..."
+
+#: ../../../install.php:35
+msgid "CREATING:LDAP:MAXUID"
+msgstr "Creating LDAP maxUID entry ..."
+
+#: ../../../install.php:46
+#: ../../../uninstall.php:15
+msgid "DONE"
+msgstr "¡DONE!"
+
+#: ../../../ChangePasswordDo.php:16
+msgid "REQUESTSTATUS"
+msgstr "Request Status"
+
+#: ../../../ChangePasswordForm.php:7
+msgid "CHANGEPASSWORD:TITLE"
+msgstr "Change Password"
+
+#: ../../../ChangePasswordForm.php:9
+msgid "FORM:CHANGEPASSWORD:GREETINGS"
+msgstr "Please complete the following form to change your password."
+
+#: ../../../ChangePasswordForm.php:15
+#: ../../../Functions.php:677
+#: ../../../NewUserForm.php:53
+#: ../../../DeleteUserForm.php:15
+msgid "USERNAME"
+msgstr "Username"
+
+#: ../../../ChangePasswordForm.php:18
+#: ../../../NewUserForm.php:56
+#: ../../../DeleteUserForm.php:18
+msgid "USER:EXAMPLE"
+msgstr "e.g., Us3r"
+
+#: ../../../ChangePasswordForm.php:24
+#: ../../../ChangePasswordForm.php:46
+#: ../../../ChangePasswordForm.php:68
+#: ../../../ChangePasswordForm.php:90
+#: ../../../ChangePasswordForm.php:112
+#: ../../../ChangePasswordForm.php:137
+#: ../../../Ajax.php:29
+#: ../../../NewUserForm.php:24
+#: ../../../NewUserForm.php:43
+#: ../../../NewUserForm.php:62
+#: ../../../NewUserForm.php:84
+#: ../../../NewUserForm.php:106
+#: ../../../NewUserForm.php:128
+#: ../../../NewUserForm.php:153
+#: ../../../DeleteUserForm.php:24
+#: ../../../DeleteUserForm.php:46
+#: ../../../DeleteUserForm.php:68
+#: ../../../DeleteUserForm.php:90
+#: ../../../ResendMailForm.php:24
+#: ../../../ResendMailForm.php:46
+msgid "EMPTY:WARNING"
+msgstr "You cannot leave empty fields."
+
+#: ../../../ChangePasswordForm.php:27
+#: ../../../ChangePasswordForm.php:71
+#: ../../../ChangePasswordForm.php:93
+#: ../../../ChangePasswordForm.php:118
+#: ../../../NewUserForm.php:65
+#: ../../../NewUserForm.php:109
+#: ../../../NewUserForm.php:134
+#: ../../../DeleteUserForm.php:27
+#: ../../../DeleteUserForm.php:71
+msgid "LONGERTHAN30"
+msgstr "You exceeded the limit of 30 characters."
+
+#: ../../../ChangePasswordForm.php:30
+#: ../../../NewUserForm.php:68
+#: ../../../DeleteUserForm.php:30
+msgid "ATLEAST3"
+msgstr "Username must have at least 3 characters."
+
+#: ../../../ChangePasswordForm.php:37
+#: ../../../NewUserForm.php:75
+#: ../../../DeleteUserForm.php:37
+#: ../../../ResendMailForm.php:15
+msgid "EMAIL"
+msgstr "E-Mail"
+
+#: ../../../ChangePasswordForm.php:40
+#: ../../../NewUserForm.php:78
+#: ../../../DeleteUserForm.php:40
+#: ../../../ResendMailForm.php:18
+msgid "EMAIL:EXAMPLE"
+msgstr "e.g., user@email.com"
+
+#: ../../../ChangePasswordForm.php:49
+#: ../../../NewUserForm.php:27
+#: ../../../NewUserForm.php:46
+#: ../../../NewUserForm.php:87
+#: ../../../DeleteUserForm.php:49
+#: ../../../ResendMailForm.php:27
+msgid "LONGERTHAN60"
+msgstr "You exceeded the limit of 60 characters."
+
+#: ../../../ChangePasswordForm.php:52
+#: ../../../NewUserForm.php:90
+#: ../../../DeleteUserForm.php:52
+#: ../../../ResendMailForm.php:30
+msgid "INVALIDFORMAT"
+msgstr "Invalid Format."
+
+#: ../../../ChangePasswordForm.php:59
+msgid "YOURPASSWORD"
+msgstr "Your Password"
+
+#: ../../../ChangePasswordForm.php:62
+msgid "PRESENTPASSWORD"
+msgstr "enter your present password"
+
+#: ../../../ChangePasswordForm.php:74
+#: ../../../ChangePasswordForm.php:96
+#: ../../../ChangePasswordForm.php:121
+#: ../../../NewUserForm.php:112
+#: ../../../NewUserForm.php:137
+#: ../../../DeleteUserForm.php:74
+msgid "ATLEAST8"
+msgstr "Password must have at least 8 characters."
+
+#: ../../../ChangePasswordForm.php:81
+msgid "NEWPASSWORD"
+msgstr "New Password"
+
+#: ../../../ChangePasswordForm.php:84
+msgid "NEWPASSWORDDESC"
+msgstr "enter your new password"
+
+#: ../../../ChangePasswordForm.php:103
+msgid "NEWPASSWORDREPEAT"
+msgstr "New Password (repeat)"
+
+#: ../../../ChangePasswordForm.php:106
+msgid "NEWPASSWORDREPEATDESC"
+msgstr "repeat your new password"
+
+#: ../../../ChangePasswordForm.php:115
+#: ../../../Functions.php:474
+#: ../../../NewUserForm.php:131
+msgid "PASSWORD:DIFFERENT"
+msgstr "Passwords do not match."
+
+#: ../../../ChangePasswordForm.php:128
+#: ../../../NewUserForm.php:144
+#: ../../../DeleteUserForm.php:81
+#: ../../../ResendMailForm.php:37
+msgid "CAPTCHA"
+msgstr "Captcha"
+
+#: ../../../ChangePasswordForm.php:140
+#: ../../../NewUserForm.php:156
+#: ../../../DeleteUserForm.php:93
+#: ../../../ResendMailForm.php:49
+msgid "LONGERTHAN8"
+msgstr "You exceeded the limit of 8 characters."
+
+#: ../../../ChangePasswordForm.php:146
+#: ../../../NewUserForm.php:162
+#: ../../../DeleteUserForm.php:99
+#: ../../../ResendMailForm.php:55
+msgid "SEND"
+msgstr "SEND"
+
+#: ../../../Search.php:14
+msgid "SEARCHRESULTS"
+msgstr "Search Results"
+
+#: ../../../Search.php:52
+msgid "XXUSERSFOUND"
+msgstr " Users found matching the given criteria."
+
+#: ../../../Functions.php:11
+msgid "LDAP:INSERT:ERROR"
+msgstr "An error has ocurred trying to insert entries on the LDAP database: "
+
+#: ../../../Functions.php:14
+#: ../../../Functions.php:28
+#: ../../../Functions.php:42
+#: ../../../Functions.php:56
+#: ../../../Functions.php:72
+#: ../../../Functions.php:84
+#: ../../../Functions.php:96
+#: ../../../Functions.php:110
+#: ../../../Functions.php:124
+#: ../../../Functions.php:396
+#: ../../../Functions.php:406
+#: ../../../Functions.php:416
+#: ../../../Functions.php:426
+#: ../../../Functions.php:436
+#: ../../../Functions.php:446
+#: ../../../Functions.php:456
+#: ../../../Functions.php:466
+#: ../../../Functions.php:476
+#: ../../../Functions.php:486
+#: ../../../Functions.php:496
+#: ../../../Functions.php:506
+#: ../../../Functions.php:516
+#: ../../../Functions.php:526
+#: ../../../Functions.php:556
+#: ../../../Functions.php:566
+#: ../../../Functions.php:580
+#: ../../../Functions.php:590
+#: ../../../Functions.php:600
+#: ../../../Functions.php:631
+#: ../../../Browse.php:34
+msgid "BACK"
+msgstr "Back"
+
+#: ../../../Functions.php:25
+msgid "LDAP:MODIFY:ERROR"
+msgstr "An error has ocurred trying to modify entries on the LDAP database: "
+
+#: ../../../Functions.php:39
+msgid "LDAP:DELETE:ERROR"
+msgstr "An error has ocurred trying to delete entries on the LDAP database: "
+
+#: ../../../Functions.php:53
+#: ../../../Ajax.php:88
+msgid "LDAP:CLOSE:ERROR"
+msgstr "An error has ocurred trying to close the connection to the LDAP database: "
+
+#: ../../../Functions.php:69
+msgid "LDAP:SEARCH:ERROR"
+msgstr "An error has ocurred while the system was performing a search: "
+
+#: ../../../Functions.php:81
+msgid "LDAP:SORT:ERROR"
+msgstr "There was an error organizing the LDAP search results: "
+
+#: ../../../Functions.php:93
+msgid "LDAP:GET:ERROR"
+msgstr "There was an error retrieving the LDAP search results: "
+
+#: ../../../Functions.php:107
+msgid "MYSQL:QUERY:ERROR"
+msgstr "An error has ocurred while the system was performing a MYSQL query on the database: "
+
+#: ../../../Functions.php:121
+msgid "MYSQL:CLOSE:ERROR"
+msgstr "An error has ocurred trying to close the connection to the MYSQL database: "
+
+#: ../../../Functions.php:143
+msgid "EMAIL:PASSWORD:CHANGE"
+msgstr "Password Change in "
+
+#: ../../../Functions.php:154
+msgid "EMAIL:PASSWORD:GREETINGS"
+msgstr "Hi! Your password in "
+
+#: ../../../Functions.php:154
+msgid "EMAIL:PASSWORD:HASBEENCHANGED"
+msgstr "has been changed."
+
+#: ../../../Functions.php:163
+msgid "EMAIL:PASSWORD:NEW"
+msgstr "New Password petition in "
+
+#: ../../../Functions.php:178
+msgid "EMAIL:PASSWORD:WHY"
+msgstr "You have received this e-mail because someone made a new password petition for the user "
+
+#: ../../../Functions.php:180
+msgid "IN"
+msgstr " in "
+
+#: ../../../Functions.php:182
+#: ../../../Functions.php:233
+msgid "EMAIL:CLICK:CONFIRM"
+msgstr "Click the following link to confirm your petition."
+
+#: ../../../Functions.php:192
+msgid "EMAIL:PASSWORD:NEW2"
+msgstr "New Password in "
+
+#: ../../../Functions.php:203
+msgid "EMAIL:PASSWORD:GREETINGS2"
+msgstr "Hi, your new password is: "
+
+#: ../../../Functions.php:214
+msgid "EMAIL:NEWUSER:ACTIVATION"
+msgstr "New user activation in "
+
+#: ../../../Functions.php:228
+msgid "HI"
+msgstr "Hi, "
+
+#: ../../../Functions.php:230
+msgid "EMAIL:NEWUSER:REQUEST"
+msgstr "You have received this e-mail because you made a new user request in "
+
+#: ../../../Functions.php:243
+msgid "EMAIL:DELETEDUSER:TITLE"
+msgstr "Deleted User in "
+
+#: ../../../Functions.php:253
+msgid "EMAIL:DELETEDUSER:GREETINGS"
+msgstr "Dear user "
+
+#: ../../../Functions.php:255
+msgid "EMAIL:DELETEDUSER:SUCCESS"
+msgstr "Your account has been successfully deleted from "
+
+#: ../../../Functions.php:277
+msgid "LOG:CHANGEPASSWORD:DONE"
+msgstr "[ Change Password ] A success e-mail has been sent to "
+
+#: ../../../Functions.php:282
+msgid "LOG:RESETPASSWORD:CONFIRM"
+msgstr "[ Reset Password ] A confirmation e-mail has been sent to "
+
+#: ../../../Functions.php:289
+msgid "LOG:RESETPASSWORD:DONE"
+msgstr "[ Reset Password ] A success e-mail has been sent to "
+
+#: ../../../Functions.php:296
+msgid "LOG:NEWUSER:CONFIRM:AGAIN"
+msgstr "[ New User ] A confirmation e-mail has been re-sent to "
+
+#: ../../../Functions.php:303
+msgid "LOG:NEWUSER:CONFIRM"
+msgstr "[ New User ] A confirmation e-mail has been sent to "
+
+#: ../../../Functions.php:310
+msgid "LOG:DELETEUSER:DONE"
+msgstr "[ Delete User ] A success e-mail has been sent to "
+
+#: ../../../Functions.php:316
+msgid "LOG:NEWUSER:DONE"
+msgstr "[ New User ] A success e-mail has been sent to "
+
+#: ../../../Functions.php:394
+#: ../../../Functions.php:404
+msgid "FORM:ERROR"
+msgstr "There was an error processing the form. Please go back and verify that you have entered the information correctly."
+
+#: ../../../Functions.php:414
+msgid "SEARCH:INVALID"
+msgstr "Your search terms have invalid characters. You can only use letters (uppercase, lowercase), accented letters, umlaut and underscore."
+
+#: ../../../Functions.php:424
+#: ../../../Ajax.php:54
+msgid "EMAIL:INVALID"
+msgstr "The e-mail you provided is not valid. Please go back and verify that you have entered it correctly."
+
+#: ../../../Functions.php:434
+msgid "TOKEN:INVALID"
+msgstr "The confirmation token is invalid. Please make the request again."
+
+#: ../../../Functions.php:444
+msgid "USERNAME:INVALID"
+msgstr "The username is invalid. You can only use letters (uppercase, lowercase), numbers, dashes and underscores."
+
+#: ../../../Functions.php:454
+msgid "PASSWORD:INVALID"
+msgstr "The password has invalid characters. You can only use letters (uppercase, lowercase), numbers and these symbols: . ! @ # $ % ^ + = - _"
+
+#: ../../../Functions.php:464
+msgid "OLDPASSWORD:INVALID"
+msgstr "The old password has invalid characters, which is very strange. Please use the Reset Password form to change your password, and then come back here."
+
+#: ../../../Functions.php:484
+msgid "PASSWORD:INVALID:LENGTH"
+msgstr "Password length must be shorter than 30 characters and longer than 8."
+
+#: ../../../Functions.php:494
+msgid "USERNAME:INVALID:LENGTH"
+msgstr "Username length must be shorter than 30 characters and longer than 3."
+
+#: ../../../Functions.php:504
+#: ../../../Ajax.php:39
+msgid "FIRSTNAME:INVALID:LENGTH"
+msgstr "Your first name is longer than 60 characters."
+
+#: ../../../Functions.php:514
+#: ../../../Ajax.php:49
+msgid "LASTNAME:INVALID:LENGTH"
+msgstr "Your last name is longer than 60 characters."
+
+#: ../../../Functions.php:524
+msgid "OLDPASSWORD:INVALID:LENGTH"
+msgstr "Your old password length is too short or too long, which is very strange. Please use the Reset Password form to change your password, and then come back here."
+
+#: ../../../Functions.php:534
+#: ../../../Ajax.php:34
+msgid "FIRSTNAME:INVALID"
+msgstr "Your first name has invalid characters. You can only use letters (uppercase, lowercase), accented letters or with umlaut."
+
+#: ../../../Functions.php:544
+#: ../../../Ajax.php:44
+msgid "LASTNAME:INVALID"
+msgstr "Your last name has invalid characters. You can only use letters (uppercase, lowercase), accented letters or with umlaut."
+
+#: ../../../Functions.php:554
+msgid "USERNAME:EXISTS"
+msgstr "The username already exists."
+
+#: ../../../Functions.php:564
+msgid "EMAIL:EXISTS"
+msgstr "The e-mail you provided is already asociated to an existing account."
+
+#: ../../../Functions.php:578
+msgid "NOMATCH"
+msgstr "There are no petitions matching the data provided."
+
+#: ../../../Functions.php:588
+msgid "DATABASE:CORRUPTION"
+msgstr "There is an inconsistency with the database. There are two or more accounts sharing some user data (username, e-mail, etc...), which generates errors and inaccuracies on the system. This error has been informed to system administrators."
+
+#: ../../../Functions.php:598
+msgid "NOMATCH:ACCOUNT"
+msgstr "The data provided doesn't match any existing account. Please go back and check the information you gave us."
+
+#: ../../../Functions.php:608
+msgid "FINAL:ERROR:CHANGEPASSWORD"
+msgstr "again later."
+
+#: ../../../Functions.php:611
+#: ../../../Functions.php:624
+msgid "FINAL:ERROR:CONFIRMATION"
+msgstr "There was an error sending the confirmation e-mail. Please try again later."
+
+#: ../../../Functions.php:614
+msgid "FINAL:ERROR:RESETPASSWORD"
+msgstr "There was an error generating your new password. Please try again later."
+
+#: ../../../Functions.php:617
+msgid "FINAL:ERROR:DELETEUSER"
+msgstr "There was an error deleting your account. Please try again later."
+
+#: ../../../Functions.php:620
+msgid "FINAL:ERROR:NEWUSER"
+msgstr "There was an error creating your account. Please try again later."
+
+#: ../../../Functions.php:639
+msgid "FINAL:SUCCESS:RESETPASSWORD"
+msgstr "¡Success! Your password has been changed."
+
+#: ../../../Functions.php:642
+msgid "FINAL:CONFIRM:RESETPASSWORD"
+msgstr "Your new password request has been correctly processed. Please check your e-mail to finish the process."
+
+#: ../../../Functions.php:645
+msgid "FINAL:SUCCESS:RESETPASSWORD:EMAIL"
+msgstr "¡Success! We have generated a new password for you. Please check your e-mail to find it."
+
+#: ../../../Functions.php:648
+msgid "FINAL:SUCCESS:DELETE"
+msgstr "Your account has been successfully deleted."
+
+#: ../../../Functions.php:651
+msgid "FINAL:SUCCESS:NEWUSER"
+msgstr "¡Success! Your account has been successfully created."
+
+#: ../../../Functions.php:655
+msgid "FINAL:CONFIRM:NEWUSER"
+msgstr "The new user account has been processed correctly. Please check your e-mail to finish the process."
+
+#: ../../../Functions.php:662
+msgid "START"
+msgstr "Start"
+
+#: ../../../Functions.php:674
+msgid "ID"
+msgstr "ID"
+
+#: ../../../Functions.php:680
+msgid "REALNAME"
+msgstr "Real Name"
+
+#: ../../../Functions.php:683
+msgid "GROUP"
+msgstr "Group"
+
+#: ../../../Functions.php:709
+msgid "CLICKTOEDIT"
+msgstr "click the field to edit"
+
+#: ../../../Functions.php:711
+msgid "CANNOTEDIT"
+msgstr "this field cannot be edited"
+
+#: ../../../Functions.php:737
+msgid "SAVE"
+msgstr "Save"
+
+#: ../../../Functions.php:738
+msgid "CANCEL"
+msgstr "Cancel"
+
+#: ../../../uninstall.php:8
+msgid "DROPPING:DATABASE"
+msgstr "Deleting database "
+
+#: ../../../uninstall.php:12
+msgid "DELETING:LDAP:MAXUID"
+msgstr "Deleting LDAP maxUID entry ..."
+
+#: ../../../Ajax.php:24
+msgid "INTRUSION:WARNING"
+msgstr "Hey! What are you trying to do?"
+
+#: ../../../Ajax.php:76
+msgid "MODATTRIBUTE"
+msgstr "We have modified the attribute "
+
+#: ../../../Ajax.php:77
+msgid "OFTHEUSER"
+msgstr " of the user "
+
+#: ../../../Browse.php:14
+msgid "USERSFROM"
+msgstr "Users from "
+
+#: ../../../Browse.php:32
+msgid "INVALIDLETTER"
+msgstr "Invalid letter."
+
+#: ../../../Browse.php:75
+msgid "XUSERSFOUND"
+msgstr " Users found whose real name starts with letter "
+
+#: ../../../NewUserForm.php:7
+msgid "REQUESTNEWUSERACCOUNT:TITLE"
+msgstr "Request a User Account"
+
+#: ../../../NewUserForm.php:9
+msgid "REQUESTNEWUSERACCOUNT:GREETINGS"
+msgstr "Please complete the following form to request a new user account in "
+
+#: ../../../NewUserForm.php:9
+msgid "REQUESTNEWUSERACCOUNT:INTRO"
+msgstr ". With this account your will be able to authenticate in the platform services. In the second column of the form we have placed some examples to help you with the process. Please follow the instructions to finish the process."
+
+#: ../../../NewUserForm.php:15
+msgid "FIRSTNAME:FORM"
+msgstr "First Name"
+
+#: ../../../NewUserForm.php:18
+msgid "FIRSTNAME:EXAMPLE"
+msgstr "e.g., Jonathan Richard"
+
+#: ../../../NewUserForm.php:34
+msgid "LASTNAME:FORM"
+msgstr "Last Name"
+
+#: ../../../NewUserForm.php:37
+msgid "LASTNAME:EXAMPLE"
+msgstr "e.g., Guy Greenwood"
+
+#: ../../../NewUserForm.php:97
+#: ../../../DeleteUserForm.php:59
+msgid "PASSWORD"
+msgstr "Password"
+
+#: ../../../NewUserForm.php:100
+#: ../../../NewUserForm.php:122
+#: ../../../DeleteUserForm.php:62
+msgid "ATLEAST8CHARS"
+msgstr "at least 8 characters"
+
+#: ../../../NewUserForm.php:119
+msgid "PASSWORDREPEAT"
+msgstr "Password (repeat)"
+
+#: ../../../DeleteUserForm.php:7
+msgid "DELETEUSER:TITLE"
+msgstr "Delete User"
+
+#: ../../../DeleteUserForm.php:9
+msgid "DELETEUSER:GREETINGS"
+msgstr "Please complete the following form to erase DEFINITELY your user from "
+
+#: ../../../ResendMailForm.php:7
+msgid "RESENDEMAIL:TITLE"
+msgstr "Resend E-Mail"
+
+#: ../../../ResendMailForm.php:9
+msgid "RESENDEMAIL:GREETINGS"
+msgstr "Please enter the e-mail you used to register your new user account, so we can resend the confirmation e-mail."
+
+#: ../../../Parameters.php:11
+msgid "PETITION"
+msgstr ", in petition of "
+
+#: ../../../EditProfileDo.php:16
+msgid "USERPROFILE"
+msgstr "User Profile"
+
+#: ../../../EditProfileDo.php:104
+msgid "COMPLETENAME:FORM"
+msgstr "Complete Name"
+
+#: ../../../LDAPConnection.php:8
+msgid "LDAP:CONNECT:ERROR"
+msgstr "An error ucurred while trying to connect to the LDAP"
+
+#: ../../../LDAPConnection.php:18
+#: ../../../LDAPConnection.php:29
+msgid "LDAP:CONFIG:ERROR"
+msgstr "An error ocurred while trying to configure LDAP: "
+
+#: ../../../LDAPConnection.php:41
+msgid "LDAP:TLS:ERROR"
+msgstr "An error ocurred while trying to start a secure connection with LDAP: "
+
+#: ../../../LDAPConnection.php:53
+msgid "LDAP:BIND:ERROR"
+msgstr "An error ocurred while trying to bind with LDAP: "
+
+#: ../../../MYSQLConnection.php:6
+msgid "MYSQL:CONNECT:ERROR"
+msgstr "An error has ocurred trying to connect to the MYSQL database."
+
+#: ../../../MYSQLConnection.php:22
+msgid "MYSQL:SELECTDB:ERROR"
+msgstr "An error has ocurred trying to select database "
+
+#: ../../../ForgotUsernameForm.php:7
+msgid "REMINDUSERNAME:TITLE"
+msgstr "Remind Username"
+
+#: ../../../ForgotUsernameForm.php:9
+msgid "REMINDUSERNAME:GREETINGS"
+msgstr "Please enter the e-mail you used to register your user account."
+
+#: ../../../EditProfileForm.php:7
+msgid "EDITUSERPROFILE"
+msgstr "Edit User Profile"
+
+#: ../../../EditProfileForm.php:9
+msgid "EDITUSERPROFILE:GREETINGS"
+msgstr "After introducing your user data, you will be able to edit your profile information."
+
+#: ../../../EditProfileForm.php:40
+msgid "ENTERYOURPASSWORD:FORM"
+msgstr "enter your password"
+
+#: ../../../ResetPasswordForm.php:7
+msgid "RESETPASSWORD"
+msgstr "Reset Password"
+
+#: ../../../ResetPasswordForm.php:10
+msgid "RESETPASSWORD:GREETINGS"
+msgstr "Please complete the following form to automatically generate a new password for your user."
+
+#: ../../../ForgotUsernameDo.php:73
+msgid "ASSOCIATEDUSERS"
+msgstr "The following users are associated to the email account "
+
+#: ../../../themes/canaima/index.php:2
+#: ../../../themes/debian/index.php:2
+msgid "WELCOMETO"
+msgstr "Welcome to "
+
+#: ../../../themes/canaima/index.php:4
+#: ../../../themes/debian/index.php:4
+msgid "INDEX:GREETINGS"
+msgstr "From here you will be able to manage directly your users in "
+
+#: ../../../themes/canaima/index.php:5
+#: ../../../themes/debian/index.php:5
+msgid "INDEX:GREETINGS2"
+msgstr ". Creating an account will allow you to connect to the following services:"
+
+#: ../../../themes/canaima/index.php:20
+#: ../../../themes/debian/index.php:20
+msgid "INDEX:NEWUSER"
+msgstr "Request a new user account"
+
+#: ../../../themes/canaima/index.php:24
+#: ../../../themes/debian/index.php:24
+msgid "INDEX:DIDNTGETTHEEMAIL"
+msgstr "I did not get the confirmation e-mail when i requested an account"
+
+#: ../../../themes/canaima/index.php:30
+#: ../../../themes/debian/index.php:30
+msgid "INDEX:CHANGEPASSWORD"
+msgstr "Change user password"
+
+#: ../../../themes/canaima/index.php:34
+#: ../../../themes/debian/index.php:34
+msgid "INDEX:RESETPASSWORD"
+msgstr "Reset user password"
+
+#: ../../../themes/canaima/index.php:40
+#: ../../../themes/debian/index.php:40
+msgid "INDEX:FORGOTUSERNAME"
+msgstr "I forgot my username"
+
+#: ../../../themes/canaima/index.php:45
+#: ../../../themes/canaima/header.php:51
+#: ../../../themes/canaima/footer.php:18
+#: ../../../themes/debian/index.php:45
+#: ../../../themes/debian/header.php:51
+#: ../../../themes/debian/footer.php:18
+msgid "DELETEUSER"
+msgstr "Delete User"
+
+#: ../../../themes/canaima/index.php:50
+#: ../../../themes/debian/index.php:50
+msgid "INDEX:EDITPROFILE"
+msgstr "Edit user profile"
+
+#: ../../../themes/canaima/index.php:55
+#: ../../../themes/debian/index.php:55
+msgid "INDEX:BROWSEUSERS"
+msgstr "Browse users"
+
+#: ../../../themes/canaima/header.php:31
+#: ../../../themes/canaima/footer.php:6
+#: ../../../themes/debian/header.php:31
+#: ../../../themes/debian/footer.php:6
+msgid "NEWUSER"
+msgstr "New User"
+
+#: ../../../themes/canaima/header.php:36
+#: ../../../themes/canaima/footer.php:9
+#: ../../../themes/debian/header.php:36
+#: ../../../themes/debian/footer.php:9
+msgid "CHANGEPASSWORD"
+msgstr "Change Password"
+
+#: ../../../themes/canaima/header.php:46
+#: ../../../themes/canaima/footer.php:15
+#: ../../../themes/debian/header.php:46
+#: ../../../themes/debian/footer.php:15
+msgid "REMINDUSER"
+msgstr "Remind User"
+
+#: ../../../themes/canaima/header.php:56
+#: ../../../themes/canaima/footer.php:21
+#: ../../../themes/debian/header.php:56
+#: ../../../themes/debian/footer.php:21
+msgid "EDITPROFILE"
+msgstr "Edit Profile"
+
+#: ../../../themes/canaima/header.php:61
+#: ../../../themes/canaima/footer.php:24
+#: ../../../themes/debian/header.php:61
+#: ../../../themes/debian/footer.php:24
+msgid "BROWSEUSERS"
+msgstr "Browse Users"
+
+#: ../../../themes/canaima/header.php:74
+#: ../../../themes/debian/header.php:74
+msgid "SEARCH:FIELD:DESCRIPTION"
+msgstr "Type a search term and press enter"
+
+#: ../../../themes/canaima/header.php:76
+#: ../../../themes/debian/header.php:76
+msgid "SEARCHUSER"
+msgstr "Search User"
+
+#: ../../../themes/canaima/footer.php:29
+#: ../../../themes/debian/footer.php:29
+msgid "POWEREDBY"
+msgstr " is powered by "
+
+#: ../../../themes/canaima/footer.php:35
+#: ../../../themes/debian/footer.php:35
+msgid "DEVELOPEDBY"
+msgstr " is a PHP application developed by "
+

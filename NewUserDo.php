@@ -2,16 +2,17 @@
 
 $allowed_ops = array("uid", "mail", "token");
 
-include "config.php";
-include "themes/$app_theme/header.php";
-include "Functions.php";
-include "Parameters.php";
-include "LDAPConnection.php";
-include "MYSQLConnection.php";
+include_once "config.php";
+include_once "Locale.php";
+include_once "themes/$app_theme/header.php";
+include_once "Functions.php";
+include_once "Parameters.php";
+include_once "LDAPConnection.php";
+include_once "MYSQLConnection.php";
 
 ?>
 
-<h2><?= _("##REQUESTSTATUS##") ?></h2>
+<h2><?= _("REQUESTSTATUS") ?></h2>
 
 <?php
 
@@ -142,7 +143,7 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
                 if ($result_count == 0){
                     
                     // Creating maxUID entry ...
-                    include "CreateMaxUIDEntry.php";
+                    include_once "CreateMaxUIDEntry.php";
                     
                     // Setting last uidNumber to the first
                     $lastuidnumber = $maxuidstart;
@@ -158,6 +159,9 @@ if (!isset($uid) || !isset($mail) || !isset($token)) {
                 } elseif ($result_count == 1) {
                     $lastuidnumber = $search_entries[0]['uidnumber'][0];
                 }
+
+                // Encoding the password
+                $userPassword = EncodePassword($row['userPassword'], $ldap_enc);
 
                 // We build up an array with all the attributes we want to insert into
                 // the new LDAP entry
@@ -243,6 +247,6 @@ $ldapx = AssistedLDAPClose($ldapc);
 // Closing the connection
 $mysqlx = AssistedMYSQLClose($mysqlc);
 
-include "themes/$app_theme/footer.php";
+include_once "themes/$app_theme/footer.php";
 
 ?>

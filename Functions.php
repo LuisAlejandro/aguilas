@@ -8,10 +8,10 @@ function AssistedLDAPAdd($ldapc, $newdn, $in) {
     $r_add = ldap_add($ldapc, $newdn, $in)
             or die(
                     '<div class="error">'
-                    . _("##LDAP:INSERT:ERROR##")
+                    . _("LDAP:INSERT:ERROR")
                     . ldap_error($ldapc)
                     . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("##BACK##")
+                    . _("BACK")
                     . '</a></div>'
                     . file_get_contents("themes/$app_theme/footer.php")
     );
@@ -22,10 +22,10 @@ function AssistedLDAPModify($ldapc, $moddn, $in) {
     $r_mod = ldap_modify($ldapc, $moddn, $in)
             or die(
                     '<div class="error">'
-                    . _("##LDAP:MODIFY:ERROR##")
+                    . _("LDAP:MODIFY:ERROR")
                     . ldap_error($ldapc)
                     . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("##BACK##")
+                    . _("BACK")
                     . '</a></div>'
                     . file_get_contents("themes/$app_theme/footer.php")
     );
@@ -36,10 +36,10 @@ function AssistedLDAPDelete($ldapc, $dn) {
     $r_del = ldap_delete($ldapc, $dn)
             or die(
                     '<div class="error">'
-                    . _("##LDAP:DELETE:ERROR##")
+                    . _("LDAP:DELETE:ERROR")
                     . ldap_error($ldapc)
                     . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("##BACK##")
+                    . _("BACK")
                     . '</a></div>'
                     . file_get_contents("themes/$app_theme/footer.php")
     );
@@ -50,10 +50,10 @@ function AssistedLDAPClose($ldapc) {
     $ldapx = ldap_close($ldapc)
             or die(
                     '<div class="error">'
-                    . _("##LDAP:CLOSE:ERROR##")
+                    . _("LDAP:CLOSE:ERROR")
                     . ldap_error($ldapc)
                     . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("##BACK##")
+                    . _("BACK")
                     . '</a></div>'
                     . file_get_contents("themes/$app_theme/footer.php")
     );
@@ -66,10 +66,10 @@ function AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $
     $search_result = ldap_search($ldapc, $ldap_base, $search_string, $search_limit)
             or die(
                     '<div class="error">'
-                    . _("##LDAP:SEARCH:ERROR##")
+                    . _("LDAP:SEARCH:ERROR")
                     . ldap_error($ldapc)
                     . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("##BACK##")
+                    . _("BACK")
                     . '</a></div>'
                     . file_get_contents("themes/$app_theme/footer.php")
     );
@@ -78,10 +78,10 @@ function AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $
     $search_sort = ldap_sort($ldapc, $search_result, $sort_string)
             or die(
                     '<div class="error">'
-                    . _("##LDAP:SORT:ERROR##")
+                    . _("LDAP:SORT:ERROR")
                     . ldap_error($ldapc)
                     . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("##BACK##")
+                    . _("BACK")
                     . '</a></div>'
                     . file_get_contents("themes/$app_theme/footer.php")
     );
@@ -90,10 +90,10 @@ function AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $
     $search_entries = ldap_get_entries($ldapc, $search_result)
             or die(
                     '<div class="error">'
-                    . _("##LDAP:GET:ERROR##")
+                    . _("LDAP:GET:ERROR")
                     . ldap_error($ldapc)
                     . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("##BACK##")
+                    . _("BACK")
                     . '</a></div>'
                     . file_get_contents("themes/$app_theme/footer.php")
     );
@@ -104,10 +104,10 @@ function AssistedMYSQLQuery($query) {
     $result = mysql_query($query)
             or die(
                     '<div class="error">'
-                    . _("##MYSQL:QUERY:ERROR##")
+                    . _("MYSQL:QUERY:ERROR")
                     . mysql_error($query)
                     . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("##BACK##")
+                    . _("BACK")
                     . '</a></div>'
                     . file_get_contents("themes/$app_theme/footer.php")
     );
@@ -118,10 +118,10 @@ function AssistedMYSQLClose($mysqlc) {
     $mysqlx = mysql_close($mysqlc)
             or die(
                     '<div class="error">'
-                    . _("##MYSQL:CLOSE:ERROR##")
+                    . _("MYSQL:CLOSE:ERROR")
                     . mysql_error($mysqlc)
                     . '.<br /><br /><a href="javascript:history.back(1);">'
-                    . _("##BACK##")
+                    . _("BACK")
                     . '</a></div>'
                     . file_get_contents("themes/$app_theme/footer.php")
     );
@@ -140,7 +140,7 @@ function AssistedEMail($what, $where) {
     // What's the message?
     switch ($what) {
         case "ChangePasswordDo":
-            $subject = _("##EMAIL:PASSWORD:CHANGE##") . $app_name;
+            $subject = _("EMAIL:PASSWORD:CHANGE") . $app_name;
             $body = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">'
                     . '<HTML>'
                     . '<HEAD>'
@@ -151,7 +151,7 @@ function AssistedEMail($what, $where) {
                     . '</HEAD>'
                     . '<BODY LANG="' . $app_locale . '" DIR="LTR">'
                     . '<p>'
-                    . _("##EMAIL:PASSWORD:GREETINGS##") . $app_name . _("##EMAIL:PASSWORD:HASBEENCHANGED##")
+                    . _("EMAIL:PASSWORD:GREETINGS") . $app_name . _("EMAIL:PASSWORD:HASBEENCHANGED")
                     . '</p>'
                     . '<br /><br />'
                     . '<p>' . $app_operator . '</p>'
@@ -160,7 +160,7 @@ function AssistedEMail($what, $where) {
             break;
 
         case "ResetPasswordMail":
-            $subject = _("##EMAIL:PASSWORD:NEW##") . $app_name;
+            $subject = _("EMAIL:PASSWORD:NEW") . $app_name;
             $go_link = "http://" . $app_url . "/ResetPasswordDo.php"
                     . "?mail=" . $mail
                     . "&uid=" . $uid
@@ -175,11 +175,11 @@ function AssistedEMail($what, $where) {
                     . '</HEAD>'
                     . '<BODY LANG="' . $app_locale . '" DIR="LTR">'
                     . '<p>'
-                    . _("##EMAIL:PASSWORD:WHY##")
+                    . _("EMAIL:PASSWORD:WHY")
                     . '<strong>' . $uid . '</strong>'
-                    . _("##IN##") . $app_name . '.'
+                    . _("IN") . $app_name . '.'
                     . '</p><p>'
-                    . _("##EMAIL:CLICK:CONFIRM##")
+                    . _("EMAIL:CLICK:CONFIRM")
                     . '</p>'
                     . '<p><a href="' . $go_link . '">CONFIRMAR</a></p>'
                     . '<br /><br />'
@@ -189,7 +189,7 @@ function AssistedEMail($what, $where) {
             break;
 
         case "ResetPasswordDo":
-            $subject = _("##EMAIL:PASSWORD:NEW2##") . $app_name;
+            $subject = _("EMAIL:PASSWORD:NEW2") . $app_name;
             $body = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">'
                     . '<HTML>'
                     . '<HEAD>'
@@ -200,7 +200,7 @@ function AssistedEMail($what, $where) {
                     . '</HEAD>'
                     . '<BODY LANG="' . $app_locale . '" DIR="LTR">'
                     . '<p>'
-                    . _("##EMAIL:PASSWORD:GREETINGS2##")
+                    . _("EMAIL:PASSWORD:GREETINGS2")
                     . '</p>'
                     . '<p><strong>' . $genPassword . '</strong></p>'
                     . '<br /><br />'
@@ -211,7 +211,7 @@ function AssistedEMail($what, $where) {
 
         case "NewUserMail":
         case "ResendMailDo":
-            $subject = _("##EMAIL:NEWUSER:ACTIVATION##") . $app_name;
+            $subject = _("EMAIL:NEWUSER:ACTIVATION") . $app_name;
             $go_link = "http://" . $app_url . "/NewUserDo.php"
                     . "?mail=" . $mail
                     . "&uid=" . $uid
@@ -225,12 +225,12 @@ function AssistedEMail($what, $where) {
                     . '<META NAME="AUTHOR" CONTENT="AGUILAS">'
                     . '</HEAD>'
                     . '<BODY LANG="' . $app_locale . '" DIR="LTR">'
-                    . '<p>' . _("##HI##") . '<strong>' . $givenName . '</strong>.</p>'
+                    . '<p>' . _("HI") . '<strong>' . $givenName . '</strong>.</p>'
                     . '<p>'
-                    . _("##EMAIL:NEWUSER:REQUEST##")
+                    . _("EMAIL:NEWUSER:REQUEST")
                     . $app_name . '.'
                     . '</p><p>'
-                    . _("##EMAIL:CLICK:CONFIRM##")
+                    . _("EMAIL:CLICK:CONFIRM")
                     . '</p>'
                     . '<p><a href="' . $go_link . '">CONFIRMAR</a></p>'
                     . '<br /><br />'
@@ -240,7 +240,7 @@ function AssistedEMail($what, $where) {
             break;
 
         case "DeleteUserDo":
-            $subject = _("##EMAIL:DELETEDUSER:TITLE##") . $app_name;
+            $subject = _("EMAIL:DELETEDUSER:TITLE") . $app_name;
             $body = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">'
                     . '<HTML>'
                     . '<HEAD>'
@@ -250,9 +250,9 @@ function AssistedEMail($what, $where) {
                     . '<META NAME="AUTHOR" CONTENT="AGUILAS">'
                     . '</HEAD>'
                     . '<BODY LANG="' . $app_locale . '" DIR="LTR">'
-                    . '<p>' . _("##EMAIL:DELETEDUSER:GREETINGS##") . '"<strong>' . $uid . '</strong>".</p>'
+                    . '<p>' . _("EMAIL:DELETEDUSER:GREETINGS") . '"<strong>' . $uid . '</strong>".</p>'
                     . '<p>'
-                    . _("##EMAIL:DELETEDUSER:SUCCESS##")
+                    . _("EMAIL:DELETEDUSER:SUCCESS")
                     . $app_name . '.'
                     . '</p>'
                     . '<br /><br />'
@@ -274,46 +274,46 @@ function WriteLog($data, $log_file, $time_today) {
     switch ($log_file) {
         case "ChangePasswordDo":
             $log_string = "[" . $time_today . "]: "
-                    . _("##LOG:CHANGEPASSWORD:DONE##")
+                    . _("LOG:CHANGEPASSWORD:DONE")
                     . $data['mail'] . " (uid: " . $data['uid'] . ").\n";
             break;
         case "ResetPasswordMail":
             $log_string = "[" . $time_today . "]: "
-                    . _("##LOG:RESETPASSWORD:CONFIRM##")
+                    . _("LOG:RESETPASSWORD:CONFIRM")
                     . $data['mail']
                     . " (uid: " . $data['uid']
                     . "; token: " . $data['token'] . ").\n";
             break;
         case "ResetPasswordDo":
             $log_string = "[" . $time_today . "]: "
-                    . _("##LOG:RESETPASSWORD:DONE##")
+                    . _("LOG:RESETPASSWORD:DONE")
                     . $data['mail']
                     . " (uid: " . $data['uid']
                     . "; token: " . $data['token'] . ").\n";
             break;
         case "ResendMailDo":
             $log_string = "[" . $time_today . "]: "
-                    . _("##LOG:NEWUSER:CONFIRM:AGAIN##")
+                    . _("LOG:NEWUSER:CONFIRM:AGAIN")
                     . $data['mail']
                     . " (uid: " . $data['uid']
                     . "; token: " . $data['token'] . ").\n";
             break;
         case "NewUserMail":
             $log_string = "[" . $time_today . "]: "
-                    . _("##LOG:NEWUSER:CONFIRM##")
+                    . _("LOG:NEWUSER:CONFIRM")
                     . $data['mail']
                     . " (uid: " . $data['uid']
                     . "; token: " . $data['token'] . ").\n";
             break;
         case "DeleteUserDo":
             $log_string = "[" . $time_today . "]: "
-                    . _("##LOG:DELETEUSER:DONE##")
+                    . _("LOG:DELETEUSER:DONE")
                     . $data['mail']
                     . " (uid: " . $data['uid'] . ").\n";
             break;
         case "NewUserDo":
             $log_string = "[" . $time_today . "]: "
-                    . _("##LOG:NEWUSER:DONE##")
+                    . _("LOG:NEWUSER:DONE")
                     . $data['mail']
                     . " (uid: " . $data['uid'] . ").\n";
             break;
@@ -343,32 +343,6 @@ function EncodePassword($password, $type) {
     }
     return $hash;
 }
-        
-function DecodePassword($password, $hash, $type) {
-    switch ($type) {
-        case "PLAIN":
-            $depass = $hash;
-            $encpass = $password;
-            break;
-        case "SSHA":
-            $decode = base64_decode(str_replace("{SSHA}", "", $hash));
-            $desalt = substr($decode, 20);
-            $depass = substr($decode, 0, 20);
-            $encpass = pack("H*", sha1($password . $desalt));
-            break;
-        case "MD5":
-            $decode = base64_decode(str_replace("{MD5}", "", $hash));
-            $depass = $decode;
-            $encpass = pack("H*", md5($password));
-            break;
-    }
-    
-    if ( $encpass == $depass ) {
-        return true;
-    } else {
-        return false;
-    }
-}
 
 function InitCaptcha() {
     // CAPTCHA -----------------------------------------------------------------
@@ -391,9 +365,9 @@ function InitCaptcha() {
 function VariableNotSet() {
     ?>
     <div class="error">
-        <?= _("##FORM:ERROR##") ?>
+        <?= _("FORM:ERROR") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -401,9 +375,9 @@ function VariableNotSet() {
 function EmptyVariable() {
     ?>
     <div class="error">
-        <?= _("##FORM:ERROR##") ?>
+        <?= _("FORM:ERROR") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -411,9 +385,9 @@ function EmptyVariable() {
 function InvalidSearch() {
     ?>
     <div class="error">
-        <?= _("##SEARCH:INVALID##") ?>
+        <?= _("SEARCH:INVALID") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -421,9 +395,9 @@ function InvalidSearch() {
 function InvalidEMail() {
     ?>
     <div class="error">
-        <?= _("##EMAIL:INVALID##") ?>
+        <?= _("EMAIL:INVALID") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -431,9 +405,9 @@ function InvalidEMail() {
 function InvalidToken() {
     ?>
     <div class="error">
-        <?= _("##TOKEN:INVALID##") ?>
+        <?= _("TOKEN:INVALID") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -441,9 +415,9 @@ function InvalidToken() {
 function InvalidUsername() {
     ?>
     <div class="error">
-        <?= _("##USERNAME:INVALID##") ?>
+        <?= _("USERNAME:INVALID") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -451,9 +425,9 @@ function InvalidUsername() {
 function InvalidPassword() {
     ?>
     <div class="error">
-        <?= _("##PASSWORD:INVALID##") ?>
+        <?= _("PASSWORD:INVALID") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -461,9 +435,9 @@ function InvalidPassword() {
 function InvalidOldPassword() {
     ?>
     <div class="error">
-        <?= _("##OLDPASSWORD:INVALID##") ?>
+        <?= _("OLDPASSWORD:INVALID") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -471,9 +445,9 @@ function InvalidOldPassword() {
 function DifferentPasswords() {
     ?>
     <div class="error">
-        <?= _("##PASSWORD:DIFFERENT##") ?>
+        <?= _("PASSWORD:DIFFERENT") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -481,9 +455,9 @@ function DifferentPasswords() {
 function WrongPasswordLength() {
     ?>
     <div class="error">
-        <?= _("##PASSWORD:INVALID:LENGTH##") ?>
+        <?= _("PASSWORD:INVALID:LENGTH") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -491,9 +465,9 @@ function WrongPasswordLength() {
 function WrongUIDLength() {
     ?>
     <div class="error">
-        <?= _("##USERNAME:INVALID:LENGTH##") ?>
+        <?= _("USERNAME:INVALID:LENGTH") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -501,9 +475,9 @@ function WrongUIDLength() {
 function Wrong1NameLength() {
     ?>
     <div class="error">
-        <?= _("##FIRSTNAME:INVALID:LENGTH##") ?>
+        <?= _("FIRSTNAME:INVALID:LENGTH") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -511,9 +485,9 @@ function Wrong1NameLength() {
 function Wrong2NameLength() {
     ?>
     <div class="error">
-        <?= _("##LASTNAME:INVALID:LENGTH##") ?>
+        <?= _("LASTNAME:INVALID:LENGTH") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -521,9 +495,9 @@ function Wrong2NameLength() {
 function WrongOldPasswordLength() {
     ?>
     <div class="error">
-        <?= _("##OLDPASSWORD:INVALID:LENGTH##") ?>
+        <?= _("OLDPASSWORD:INVALID:LENGTH") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -531,7 +505,7 @@ function WrongOldPasswordLength() {
 function Invalid1Name() {
     ?>
     <div class="error">
-        <?= _("##FIRSTNAME:INVALID##") ?>
+        <?= _("FIRSTNAME:INVALID") ?>
         <br /><br />
         <a href="javascript:history.back(1);">Atrás</a>
     </div>
@@ -541,7 +515,7 @@ function Invalid1Name() {
 function Invalid2Name() {
     ?>
     <div class="error">
-        <?= _("##LASTNAME:INVALID##") ?>
+        <?= _("LASTNAME:INVALID") ?>
         <br /><br />
         <a href="javascript:history.back(1);">Atrás</a>
     </div>
@@ -551,9 +525,9 @@ function Invalid2Name() {
 function UserExists() {
     ?>
     <div class="error">
-        <?= _("##USERNAME:EXISTS##") ?>
+        <?= _("USERNAME:EXISTS") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -561,9 +535,9 @@ function UserExists() {
 function UsedEMail() {
     ?>	
     <div class="error">
-        <?= _("##EMAIL:EXISTS##") ?>
+        <?= _("EMAIL:EXISTS") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -575,9 +549,9 @@ function UsedEMail() {
 function NoRequests() {
     ?>
     <div class="error">
-        <?= _("##NOMATCH##") ?>
+        <?= _("NOMATCH") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -585,9 +559,9 @@ function NoRequests() {
 function MultipleResults() {
     ?>
     <div class="error">
-        <?= _("##DATABASE:CORRUPTION##") ?>
+        <?= _("DATABASE:CORRUPTION") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -595,9 +569,9 @@ function MultipleResults() {
 function NoResults() {
 ?>
     <div class="error">
-        <?= _("##NOMATCH:ACCOUNT##") ?>
+        <?= _("NOMATCH:ACCOUNT") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
 <?php
 }
@@ -605,30 +579,30 @@ function NoResults() {
 function Fail($at) {
     switch ($at) {
         case "ChangePasswordDo":
-            $fail_string = _("##FINAL:ERROR:CHANGEPASSWORD##");
+            $fail_string = _("FINAL:ERROR:CHANGEPASSWORD");
             break;
         case "ResetPasswordMail":
-            $fail_string = _("##FINAL:ERROR:CONFIRMATION##");
+            $fail_string = _("FINAL:ERROR:CONFIRMATION");
             break;
         case "ResetPasswordDo":
-            $fail_string = _("##FINAL:ERROR:RESETPASSWORD##");
+            $fail_string = _("FINAL:ERROR:RESETPASSWORD");
             break;
         case "DeleteUserDo":
-            $fail_string = _("##FINAL:ERROR:DELETEUSER##");
+            $fail_string = _("FINAL:ERROR:DELETEUSER");
             break;
         case "NewUserDo":
-            $fail_string = _("##FINAL:ERROR:NEWUSER##");
+            $fail_string = _("FINAL:ERROR:NEWUSER");
             break;
         case "NewUserMail":
         case "ResendMailDo":
-            $fail_string = _("##FINAL:ERROR:CONFIRMATION##");
+            $fail_string = _("FINAL:ERROR:CONFIRMATION");
             break;
     }
     ?>
     <div class="error">
         <?= $fail_string ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }
@@ -636,30 +610,30 @@ function Fail($at) {
 function Success($at) {
     switch ($at) {
         case "ChangePasswordDo":
-            $success_string = _("##FINAL:SUCCESS:RESETPASSWORD##");
+            $success_string = _("FINAL:SUCCESS:RESETPASSWORD");
             break;
         case "ResetPasswordMail":
-            $success_string = _("##FINAL:CONFIRM:RESETPASSWORD##");
+            $success_string = _("FINAL:CONFIRM:RESETPASSWORD");
             break;
         case "ResetPasswordDo":
-            $success_string = _("##FINAL:SUCCESS:RESETPASSWORD:EMAIL##");
+            $success_string = _("FINAL:SUCCESS:RESETPASSWORD:EMAIL");
             break;
         case "DeleteUserDo":
-            $success_string = _("##FINAL:SUCCESS:DELETE##");
+            $success_string = _("FINAL:SUCCESS:DELETE");
             break;
         case "NewUserDo":
-            $success_string = _("##FINAL:SUCCESS:NEWUSER##");
+            $success_string = _("FINAL:SUCCESS:NEWUSER");
             break;
         case "NewUserMail":
         case "ResendMailDo":
-            $success_string = _("##FINAL:CONFIRM:NEWUSER##");
+            $success_string = _("FINAL:CONFIRM:NEWUSER");
             break;
     }
     ?>
     <div class="exito">
         <?= $success_string ?>
         <br /><br />
-        <a href="index.php"><?= _("##START##") ?></a>
+        <a href="index.php"><?= _("START") ?></a>
     </div>
     <?php
 }
@@ -671,16 +645,16 @@ function Success($at) {
     <table>
         <tr>
             <td class="px70">
-                <strong><?= _("##ID##") ?></strong>
+                <strong><?= _("ID") ?></strong>
             </td>
             <td class="px300">
-                <strong><?= _("##USERNAME##") ?></strong>
+                <strong><?= _("USERNAME") ?></strong>
             </td>
             <td class="px360">
-                <strong><?= _("##REALNAME##") ?></strong>
+                <strong><?= _("REALNAME") ?></strong>
             </td>
             <td class="px70">
-                <strong><?= _("##GROUP##") ?></strong>
+                <strong><?= _("GROUP") ?></strong>
             </td>
         </tr>
     <?php
@@ -706,9 +680,9 @@ function AJAXAssistant($objects, $tags, $contents, $edit, $who) {
             <?php
             
             if ($edit) {
-                echo _("##CLICKTOEDIT##");
+                echo _("CLICKTOEDIT");
             } else {
-                echo _("##CANNOTEDIT##");
+                echo _("CANNOTEDIT");
             }
             
             ?>
@@ -734,8 +708,8 @@ function AJAXAssistant($objects, $tags, $contents, $edit, $who) {
                             <td id="<?= $objects ?>_hv">
                                 <div id="<?= $objects ?>_hv_editing_section">
                                     <input class="superBigSize editMode" id="<?= $objects ?>" name="<?= $objects ?>" value="<?= $contents ?>" <?php if ($objects == "givenName" || $objects == "sn") { ?>onkeyup="update_cn();"<?php } ?> />&nbsp;
-                                    <input class="AjaxButton" onclick="sendAjax('<?= $objects ?>','<?= $who ?>');" type="button" value="<?= _("##SAVE##") ?>" />&nbsp;
-                                    <input class="AjaxButton" onclick="cancelAjax('<?= $objects ?>');" type="button" value="<?= _("##CANCEL##") ?>" />
+                                    <input class="AjaxButton" onclick="sendAjax('<?= $objects ?>','<?= $who ?>');" type="button" value="<?= _("SAVE") ?>" />&nbsp;
+                                    <input class="AjaxButton" onclick="cancelAjax('<?= $objects ?>');" type="button" value="<?= _("CANCEL") ?>" />
                                 </div>
                                 <span class="savingAjaxWithBackground" id="<?= $objects ?>_hv_saving_section">
                                     &#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;

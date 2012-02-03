@@ -2,15 +2,16 @@
 
 $allowed_ops = array("letter");
 
-include "config.php";
-include "themes/$app_theme/header.php";
-include "Functions.php";
-include "Parameters.php";
-include "LDAPConnection.php";
+include_once "config.php";
+include_once "Locale.php";
+include_once "themes/$app_theme/header.php";
+include_once "Functions.php";
+include_once "Parameters.php";
+include_once "LDAPConnection.php";
 
 ?>
 
-<h2><?= _("##USERSFROM##") . $app_name ?></h2>
+<h2><?= _("USERSFROM") . $app_name ?></h2>
 
 <?php
 
@@ -28,9 +29,9 @@ if(!isset($letter)){
 if(!in_array($letter, $letters_array)){
     ?>
     <div class="error">
-        <?= _("##INVALIDLETTER##") ?>
+        <?= _("INVALIDLETTER") ?>
         <br /><br />
-        <a href="javascript:history.back(1);"><?= _("##BACK##") ?></a>
+        <a href="javascript:history.back(1);"><?= _("BACK") ?></a>
     </div>
     <?php
 }else{
@@ -71,7 +72,7 @@ if(!in_array($letter, $letters_array)){
     // How much did we get?
     $result_count = $search_entries['count'];
 
-    echo $result_count . _("##XUSERSFOUND##") . strtoupper($letter);
+    echo $result_count . _("XUSERSFOUND") . strtoupper($letter);
 
     // Parsing the user table with the result entries
     ParseUserTable($search_entries, $result_count);
@@ -81,6 +82,6 @@ if(!in_array($letter, $letters_array)){
 // Closing the connection
 $ldapx = AssistedLDAPClose($ldapc);
 
-include "themes/$app_theme/footer.php";
+include_once "themes/$app_theme/footer.php";
 
 ?>

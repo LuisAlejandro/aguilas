@@ -2,17 +2,18 @@
 
 $allowed_ops = array("uid", "mail", "userPasswordOld", "userPassword", "userPasswordBis", "image_captcha");
 
-include "config.php";
-include "themes/$app_theme/header.php";
-include "Functions.php";
-include "Parameters.php";
-include "LDAPConnection.php";
+include_once "config.php";
+include_once "Locale.php";
+include_once "themes/$app_theme/header.php";
+include_once "Functions.php";
+include_once "Parameters.php";
+include_once "LDAPConnection.php";
 
 InitCaptcha();
 
 ?>
 
-<h2><?= _("##REQUESTSTATUS##") ?></h2>
+<h2><?= _("REQUESTSTATUS") ?></h2>
 
 <?php
 
@@ -152,6 +153,6 @@ if (!isset($uid) || !isset($mail) || !isset($userPasswordOld) || !isset($userPas
 // Closing the connection
 $ldapx = AssistedLDAPClose($ldapc);
 
-include "themes/$app_theme/footer.php";
+include_once "themes/$app_theme/footer.php";
 
 ?>

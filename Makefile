@@ -1,61 +1,133 @@
-INSTALL=install -m 0644
-INSTALLDIR=install -d
-IMAGES=$(shell ls themes/canaima/images/ | grep ".svg" | sed 's/.svg//g')
-THEMES=$(shell ls themes/)
-PHPS=$(wildcard *.php)
-LOGS=$(wildcard logs/*.log)
-CONVERT=$(shell which convert)
-RST2MAN=$(shell which rst2man)
-ICOTOOL=$(shell which icotool)
-SPHINX=$(shell which sphinx-build)
+# Makefile
 
-all: gen-img gen-config
+SHELL = sh -e
 
-build: gen-img gen-doc
+IMAGES = $(shell ls themes/canaima/images/ | grep ".svg" | sed 's/.svg//g')
+THEMES = $(shell ls themes/)
+LOCALES = $(shell ls locale/)
+PHPS = $(wildcard *.php)
+LOGS = $(wildcard logs/*.log)
 
-build-all: gen-img gen-doc gen-config
+CONVERT = $(shell which convert)
+BINBASH = $(shell which bash)
+RST2MAN = $(shell which rst2man)
+ICOTOOL = $(shell which icotool)
+SPHINX = $(shell which sphinx-build)
+MSGFMT = $(shell which msgfmt)
+IMVERSION = $(shell ls /usr/lib/ | grep -i "imagemagick" | sed -n 1p)
+LIBSVG = /usr/lib/$(IMVERSION)/modules-Q16/coders/svg.so
 
-gen-img: clean-img
+all: gen-img gen-mo gen-conf clean-stamps
 
-	@if [ ! -e check-builddep ]; then \
-		$(MAKE) check-builddep; \
+build: gen-img gen-mo gen-doc clean-stamps
+
+build-all: gen-img gen-mo gen-doc gen-conf clean-stamps
+
+check-builddep:
+
+	@printf "Checking if we have bash... "
+	@if [ -z $(BINBASH) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"bash\" package."; \
+		exit 1; \
 	fi
+	@echo
+
+	@printf "Checking if we have sphinx-build... "
+	@if [ -z $(SPHINX) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"python-sphinx\" package."; \
+		exit 1; \
+	fi
+	@echo
+
+	@printf "Checking if we have convert... "
+	@if [ -z $(CONVERT) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"imagemagick\" package."; \
+		exit 1; \
+	fi
+	@echo
+
+	@printf "Checking if we have rst2man... "
+	@if [ -z $(RST2MAN) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"python-docutils\" package."; \
+		exit 1; \
+	fi
+	@echo
+
+	@printf "Checking if we have msgfmt... "
+	@if [ -z $(MSGFMT) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"gettext\" package."; \
+		exit 1; \
+	fi
+	@echo
+
+	@printf "Checking if we have icotool... "
+	@if [ -z $(ICOTOOL) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"icoutils\" package."; \
+		exit 1; \
+	fi
+	@echo
+
+	@printf "Checking if we have imagemagick svg support... "
+	@if [ -z $(LIBSVG) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"libmagickcore-extra\" package."; \
+		exit 1; \
+	fi
+	@echo
+
+	@touch check-builddep
+
+gen-img: check-builddep clean-img
 
 	@printf "Generating images from source [SVG > PNG,ICO] ["
 	@for THEME in $(THEMES); do \
 		for IMAGE in $(IMAGES); do \
-			convert themes/$${THEME}/images/$${IMAGE}.svg themes/$${THEME}/images/$${IMAGE}.png; \
+			convert -background None themes/$${THEME}/images/$${IMAGE}.svg themes/$${THEME}/images/$${IMAGE}.png; \
 			printf "."; \
 		done; \
 		icotool -c -o themes/$${THEME}/images/favicon.ico themes/$${THEME}/images/favicon.png; \
 	done
 	@printf "]\n"
-
 	@touch gen-img
 
-gen-doc: clean-doc 
+gen-mo: check-builddep clean-mo
 
-	@if [ ! -e check-builddep ]; then \
-		$(MAKE) check-builddep; \
-	fi
+	@printf "Generating translation messages from source [PO > MO] ["
+	@for LOCALE in $(LOCALES); do \
+		msgfmt locale/$${LOCALE}/LC_MESSAGES/messages.po -o locale/$${LOCALE}/LC_MESSAGES/messages.mo; \
+		printf "."; \
+	done
+	@printf "]\n"
+	@touch gen-mo
 
-	$(MAKE) -C docs html
-        @rst2man --language="en" --title="AGUILAS" docs/man-aguilas.rst docs/aguilas.1
+gen-doc: check-builddep clean-doc
 
-	@touch doc
+	@echo "Generating documentation from source [RST > HTML,MAN]"
+	@make -C docs html
+	@rst2man --language="en" --title="AGUILAS" docs/man/aguilas.rst docs/man/aguilas.1
+	@touch gen-doc
 
-gen-conf: clean-conf
+gen-conf: check-builddep clean-conf
 
-	@bash scripts/pre-config.sh
-	@mkdir $(DESTDIR)/var/www/
-	@ln -s $(DESTDIR)/usr/share/aguilas /var/www/aguilas
-	@php -f install.php
+	@echo "Filling up configuration"
+	@cd scripts && bash gen-conf.sh
+	@echo
+	@echo "Configuration file generated!"
+	@touch gen-conf
 
-	@touch data
+clean: clean-all
 
-clean: clean-img clean-doc clean-conf
+clean-all: clean-img clean-mo clean-doc clean-conf clean-stamps
 
-clean-all: clean-img clean-doc clean-conf
+clean-stamps:
+
+	@rm -rf gen-img gen-doc gen-mo gen-conf check-builddep
 
 clean-img:
 
@@ -68,35 +140,64 @@ clean-img:
 		rm -rf themes/$${THEME}/images/favicon.ico; \
 	done
 	@printf "]\n"
+	@rm -rf gen-img
+
+clean-mo:
+
+	@printf "Cleaning generated localization ["
+	@for LOCALE in $(LOCALES); do \
+		rm -rf locale/$${LOCALE}/LC_MESSAGES/messages.mo; \
+		printf "."; \
+	done
+	@printf "]\n"
+	@rm -rf gen-mo
 
 clean-doc:
 
-	$(MAKE) -C docs clean
+	@echo "Cleaning generated documentation"
 	@rm -rf docs/_build
 	@rm -rf docs/aguilas.1
+	@rm -rf gen-doc
 
 clean-conf:
 
+	@echo "Cleaning generated configuration"
 	@rm -rf config.php var com
+	@rm -rf gen-conf
 
-install:
+install: copy config
 
-	@if [ -e gen-img ] && [ -e gen-config ]; then \
-		mkdir -p $(DESTDIR)/usr/share/aguilas/; \
-		mkdir -p $(DESTDIR)/var/log/aguilas/; \
-		$(INSTALLDIR) locale themes $(DESTDIR)/usr/share/aguilas/; \
-		$(INSTALL) $(PHPS) $(DESTDIR)/usr/share/aguilas/; \
-		$(INSTALL) $(LOGS) $(DESTDIR)/var/log/aguilas/; \
-		chown -R www-data:www-data $(DESTDIR)/var/log/aguilas/; \
-	else
-		@echo "You must run 'make gen-img' and 'make data' before you can install."
-	fi
+config: 
+
+	@mkdir -p $(DESTDIR)/var/www/
+	@ln -s $(DESTDIR)/usr/share/aguilas /var/www/aguilas
+	@php -f install.php
+	@echo "AGUILAS configured and running!"
+
+copy:
+
+	@mkdir -p $(DESTDIR)/usr/share/aguilas/
+	@mkdir -p $(DESTDIR)/var/log/aguilas/
+	@cp -r locale themes $(DESTDIR)/usr/share/aguilas/
+	@install -D -m 644 $(PHPS) $(DESTDIR)/usr/share/aguilas/
+	@install -D -m 644 $(LOGS) $(DESTDIR)/var/log/aguilas/
+	@chown -R www-data:www-data $(DESTDIR)/var/log/aguilas/
+	@echo "Files copied"
 
 uninstall:
 
 	@rm -rf $(DESTDIR)/usr/share/aguilas/
 	@rm -rf $(DESTDIR)/var/log/aguilas/
 	@rm -rf $(DESTDIR)/var/www/aguilas/
+	@php -f uninstall.php
 	@echo "Uninstalled"
+
+release:
+
+	@cd scripts && bash release.sh
+
+snapshot:
+
+	@cd scripts && bash snapshot.sh
 
 reinstall: uninstall install
