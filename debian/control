@@ -1,0 +1,18 @@
+Source: aguilas
+Section: admin
+Priority: extra
+Maintainer: Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
+Build-Depends:	debhelper (>= 7),
+		po-debconf,
+		gettext
+Standards-Version: 3.9.2
+
+Package: aguilas
+Architecture: all
+Depends:	apache2 | httpd,
+		php5-ldap,
+		libapache2-mod-php5 | libapache-mod-php5 | php5-cgi | php5,
+		ucf (>= 0.28),
+		${misc:Depends}
+Description: web based interface for administering LDAP servers
+
