@@ -27,7 +27,7 @@
 
 ROOTDIR="$( pwd )"
 GITHUBWIKI="${ROOTDIR}/documentation/githubwiki"
-GOOGLBWIKI="${ROOTDIR}/documentation/googlewiki"
+GOOGLEWIKI="${ROOTDIR}/documentation/googlewiki"
 VERSION="${ROOTDIR}/VERSION"
 CHANGELOG="${ROOTDIR}/ChangeLog"
 CHANGES="$( tempfile )"
