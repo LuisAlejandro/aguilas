@@ -65,7 +65,7 @@ git merge -q -s recursive -X theirs --squash release
 
 NEWRELVERSION="$( cat ${VERSION} | grep "VERSION" | sed 's/VERSION = //g' )"
 
-if [ "${OLDRELVERSION}" == "${NEWRELVERSION}"]; then
+if [ "${OLDRELVERSION}" == "${NEWRELVERSION}" ]; then
 	NEWREV="$[ ${OLDREV}+1 ]"
 else
 	NEWREV="1"
@@ -98,13 +98,10 @@ if [ "${TYPE}" == "release" ]; then
 	git push -q --tags https://code.google.com/p/aguilas/ master
 
 	WARNING "Uploading Debian package to Google Code ..."
-	python -B tools/googlecode-upload.py -s "Aguilas debian package [${NEWDEBVERSION}]" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Featured,Stable" ../aguilas_${NEWDEBVERSION}_all.deb
-	python -B tools/googlecode-upload.py -s "Aguilas debian source (dsc) [${NEWDEBVERSION}]" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Featured,Stable" ../aguilas_${NEWDEBVERSION}.dsc
-	python -B tools/googlecode-upload.py -s "Aguilas debian source (debian.tar.gz) [${NEWDEBVERSION}]" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Featured,Stable" ../aguilas_${NEWDEBVERSION}.debian.tar.gz
-	python -B tools/googlecode-upload.py -s "Aguilas upstream source (orig.tar.gz) [${NEWRELVERSION}]" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Featured,Stable" ../aguilas_${NEWRELVERSION}.orig.tar.gz
-
-	md5sum ../aguilas_${NEWRELVERSION}.orig.tar.gz > ../aguilas_${NEWRELVERSION}.orig.tar.gz.md5
-	python -B tools/googlecode-upload.py -s "Aguilas upstream source md5sum [${NEWRELVERSION}]" -p "aguilas" -l "Featured,Stable" ../aguilas_${NEWRELVERSION}.orig.tar.gz.md5
+	python -B tools/googlecode-upload.py -s "Aguilas debian package [${NEWDEBVERSION}]" -p "aguilas" -l "Type-Package,Type-Installer,OpSys-Linux,Stable" ../aguilas_${NEWDEBVERSION}_all.deb
+	python -B tools/googlecode-upload.py -s "Aguilas debian source (dsc) [${NEWDEBVERSION}]" -p "aguilas" -l "Type-Source,OpSys-Linux,Stable" ../aguilas_${NEWDEBVERSION}.dsc
+	python -B tools/googlecode-upload.py -s "Aguilas debian source (debian.tar.gz) [${NEWDEBVERSION}]" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Stable" ../aguilas_${NEWDEBVERSION}.debian.tar.gz
+	python -B tools/googlecode-upload.py -s "Aguilas upstream source (orig.tar.gz) [${NEWRELVERSION}]" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Stable" ../aguilas_${NEWRELVERSION}.orig.tar.gz
 fi
 
 git checkout development
