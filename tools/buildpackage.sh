@@ -2,9 +2,9 @@
 #
 # ====================================================================
 # PACKAGE: aguilas
-# FILE: tools/release.sh
-# DESCRIPTION:  Makes a new stable release of Aguilas.
-# USAGE: ./tools/release.sh
+# FILE: tools/buildpackage.sh
+# DESCRIPTION:  Makes a new debian package of a stable release.
+# USAGE: ./tools/buildpackage.sh
 # COPYRIGHT:
 # (C) 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
 # LICENCE: GPL3
@@ -25,23 +25,35 @@
 #
 # CODE IS POETRY
 
+TYPE="${1}"
+
 git checkout master
-
-git import-orig -v -u${NEWVERSION} --upstream-branch=release \
-		--debian-branch=master ../aguilas_${NEWVERSION}.orig.tar.gz
-
-git dch --release --auto --id-length=7 --full
-git dch --snapshot --auto --id-length=7 --full
-
-git add .
-git commit -a
-
-git buildpackage -kE78DAA2E -tc --git-tag --git-retag
 git clean -fd
 git reset --hard
 
-git push --tags git@github.com:HuntingBears/aguilas.git master
-git push --tags git@gitorious.org:huntingbears/aguilas.git master
-git push --tags https://code.google.com/p/aguilas/ master
+git merge -s recursive -X theirs --squash release
+git add .
+git commit -a -m "Importing New Upstream Release"
+
+if [ "${TYPE}" == "release" ]; then
+	OPTIONS="-kE78DAA2E -tc --git-tag --git-retag"
+	git dch --release --auto --id-length=7 --full
+if [ "${TYPE}" == "test" ]; then
+	OPTIONS="-us -uc"
+	git dch --snapshot --auto --id-length=7 --full
+fi
+
+git add .
+git commit -a -m "Importing New Upstream Release"
+
+git buildpackage ${OPTIONS}
+git clean -fd
+git reset --hard
+
+if [ "${TYPE}" == "release" ]; then
+	git push --tags git@github.com:HuntingBears/aguilas.git master
+	git push --tags git@gitorious.org:huntingbears/aguilas.git master
+	git push --tags https://code.google.com/p/aguilas/ master
+fi
 
 git checkout development

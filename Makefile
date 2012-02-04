@@ -232,13 +232,22 @@ snapshot: check-maintdep gen-html gen-wiki gen-po clean
 	@$(MAKE) clean
 	@$(BASH) tools/snapshot.sh
 
-test-release: check-maintdep
-
-	@$(BASH) tools/release.sh test
-
 release: check-maintdep
 
-	@$(BASH) tools/release.sh release
+	@$(BASH) tools/release.sh
+
+fullrelease: check-maintdep
+
+	@$(BASH) tools/release.sh
+	@$(BASH) tools/buildpackage.sh release
+
+buildpackage: check-maintdep
+
+	@$(BASH) tools/buildpackage.sh release
+
+testpackage: check-maintdep
+
+	@$(BASH) tools/buildpackage.sh test
 
 # CLEAN TASKS ------------------------------------------------------------------------------
 

@@ -116,7 +116,7 @@ git checkout master
 git merge -s recursive -X theirs --squash development
 git add .
 git commit -a -m "Updating documentation"
-#git push --tags https://code.google.com/p/aguilas.wiki/ master
+git push --tags https://code.google.com/p/aguilas.wiki/ master
 git checkout development
 cd ${ROOTDIR}
 
@@ -125,18 +125,18 @@ git checkout master
 git merge -s recursive -X theirs --squash development
 git add .
 git commit -a -m "Updating documentation"
-#git push --tags git@github.com:HuntingBears/aguilas.wiki.git master
+git push --tags git@github.com:HuntingBears/aguilas.wiki.git master
 git checkout development
 cd ${ROOTDIR}
 
 WARNING "Committing changes"
 git add .
 git commit -a -m "New stable release ${NEWVERSION}"
-#git tag ${NEWVERSION} -m "New stable release ${NEWVERSION}"
+git tag ${NEWVERSION} -m "New stable release ${NEWVERSION}"
 
-#git push --tags git@github.com:HuntingBears/aguilas.git release
-#git push --tags git@gitorious.org:huntingbears/aguilas.git release
-#git push --tags https://code.google.com/p/aguilas/ release
+git push --tags git@github.com:HuntingBears/aguilas.git release
+git push --tags git@gitorious.org:huntingbears/aguilas.git release
+git push --tags https://code.google.com/p/aguilas/ release
 
 tar -cvzf aguilas_${NEWVERSION}.orig.tar.gz *
 md5sum aguilas_${NEWVERSION}.orig.tar.gz > aguilas_${NEWVERSION}.orig.tar.gz.md5
