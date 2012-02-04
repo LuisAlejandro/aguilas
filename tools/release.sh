@@ -40,7 +40,7 @@ if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development"
 	echo "[MAIN] You are not on \"development\" branch."
 	git checkout development
 fi
-if [ "$( git diff --exit-code 2> /dev/null )" != "0" ]; then
+if [ -n "$( git diff --exit-code 2> /dev/null )" ]; then
 	echo "[MAIN] You have uncommitted code on \"development\" branch."
 	exit 1
 fi
@@ -49,7 +49,7 @@ if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development"
 	echo "[GITHUBWIKI] You are not on \"development\" branch."
 	git checkout development
 fi
-if [ "$( git diff --exit-code 2> /dev/null )" != "0" ]; then
+if [ -n "$( git diff --exit-code 2> /dev/null )" ]; then
 	echo "[GITHUBWIKI] You have uncommitted code on \"development\" branch."
 	exit 1
 fi
@@ -59,7 +59,7 @@ if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development"
 	echo "[GOOGLEWIKI] You are not on \"development\" branch."
 	git checkout development
 fi
-if [ "$( git diff --exit-code 2> /dev/null )" != "0" ]; then
+if [ -n "$( git diff --exit-code 2> /dev/null )" ]; then
 	echo "[GOOGLEWIKI] You have uncommitted code on \"development\" branch."
 	exit 1
 fi
