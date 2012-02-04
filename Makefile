@@ -88,10 +88,15 @@ gen-predoc: clean-predoc
 gen-wiki: check-buildep prepare gen-predoc clean-wiki
 
 	@echo "Generating documentation from source [RST > WIKI]"
-	@cp documentation/githubwiki.index documentation/rest/index.rest
-	@cp documentation/rest/*.rest documentation/githubwiki/
+	@cp documentation/githubwiki.index documentation/rest/Home.md
+	@cp documentation/rest/*.md documentation/rest/*.rest documentation/githubwiki/
+	@rm -rf documentation/rest/Home.md
 	@cp documentation/googlewiki.index documentation/rest/index.rest
+	@echo "" >> documentation/rest/index.rest
+	@cat documentation/rest/contents.rest >> documentation/rest/index.rest
+	@mv documentation/rest/contents.rest documentation/rest/contents.tmp
 	@$(PYTHON) -B tools/googlecode-wiki.py
+	@mv documentation/rest/contents.tmp documentation/rest/contents.rest
 	@rm -rf documentation/rest/index.rest
 
 gen-html: check-buildep gen-predoc clean-html
