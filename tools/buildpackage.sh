@@ -38,7 +38,7 @@ git commit -a -m "Importing New Upstream Release"
 if [ "${TYPE}" == "release" ]; then
 	OPTIONS="-kE78DAA2E -tc --git-tag --git-retag"
 	git dch --release --auto --id-length=7 --full
-if [ "${TYPE}" == "test" ]; then
+elif [ "${TYPE}" == "test" ]; then
 	OPTIONS="-us -uc"
 	git dch --snapshot --auto --id-length=7 --full
 fi
@@ -57,3 +57,5 @@ if [ "${TYPE}" == "release" ]; then
 fi
 
 git checkout development
+
+exit 0
