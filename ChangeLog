@@ -1,3 +1,7 @@
+DEVELOPMENT RELEASE v1.0.1+20120204184209 (02/04/12)
+    Correcting small bug on scripts
+    New development snapshot 1.0.1+20120204182005
+
 DEVELOPMENT RELEASE v1.0.1+20120204182005 (02/04/12)
     Avoiding update of submodules in package building time
     New development snapshot 1.0.1+20120204175134
