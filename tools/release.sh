@@ -53,6 +53,11 @@ function SUCCESS() {
 echo -e ${VERDE}${1}${FIN}
 }
 
+git config --global user.name "Luis Alejandro Martínez Faneyth"
+git config --global user.email "luis@huntingbears.com.ve"
+export DEBFULLNAME="Luis Alejandro Martínez Faneyth"
+export DEBEMAIL="luis@huntingbears.com.ve"
+
 if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
 	ERROR "[MAIN] You are not on \"development\" branch."
 	git checkout development
@@ -99,7 +104,7 @@ sed -i 's/\nNew development snapshot.*//g' ${NEWCHANGES}
 echo "" >> ${NEWCHANGES}
 cat ${CHANGELOG} >> ${NEWCHANGES}
 
-WARNING "Merging development into release"
+WARNING "Merging development into release ..."
 git merge -q -s recursive -X theirs --squash development
 
 mv ${NEWCHANGES} ${CHANGELOG}
@@ -110,10 +115,10 @@ LASTCOMMIT="$( git rev-parse HEAD )"
 echo "VERSION = ${NEWVERSION}" > ${VERSION}
 echo "COMMIT = ${LASTCOMMIT}" >> ${VERSION}
 
-WARNING "Updating submodules"
+WARNING "Updating submodules ..."
 make prepare
 
-WARNING "Updating Google Code wiki"
+WARNING "Updating Google Code wiki ..."
 cd ${GOOGLEWIKI}
 git checkout master
 git merge -q -s recursive -X theirs --squash development
@@ -123,7 +128,7 @@ git push -q --tags https://code.google.com/p/aguilas.wiki/ master
 git checkout development
 cd ${ROOTDIR}
 
-WARNING "Updating GitHub wiki"
+WARNING "Updating GitHub wiki ..."
 cd ${GITHUBWIKI}
 git checkout master
 git merge -q -s recursive -X theirs --squash development
@@ -133,24 +138,21 @@ git push -q --tags git@github.com:HuntingBears/aguilas.wiki.git master
 git checkout development
 cd ${ROOTDIR}
 
-WARNING "Committing changes"
+WARNING "Committing changes ..."
 git add .
 git commit -q -a -m "New stable release ${NEWVERSION}"
 git tag ${NEWVERSION} -m "New stable release ${NEWVERSION}"
 
-WARNING "Pushing new version to remote repositories"
+WARNING "Pushing new version to remote repositories ..."
 git push -q --tags git@github.com:HuntingBears/aguilas.git release
 git push -q --tags git@gitorious.org:huntingbears/aguilas.git release
 git push -q --tags https://code.google.com/p/aguilas/ release
  
-WARNING "Creating tarball"
+WARNING "Creating tarball ..."
 tar -czf aguilas_${NEWVERSION}.orig.tar.gz *
-md5sum aguilas_${NEWVERSION}.orig.tar.gz > aguilas_${NEWVERSION}.orig.tar.gz.md5
-
-WARNING "Uploading tarball to Google Code"
-python -B tools/googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION}" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Featured,Stable" aguilas_${NEWVERSION}.orig.tar.gz
-python -B tools/googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION} MD5SUM" -p "aguilas" -l "Featured,Stable" aguilas_${NEWVERSION}.orig.tar.gz.md5
 
 mv aguilas*.tar.gz* ..
 
 git checkout development
+
+SUCCESS "Stable Release Published"

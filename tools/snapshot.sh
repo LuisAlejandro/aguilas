@@ -51,6 +51,11 @@ function SUCCESS() {
 echo -e ${VERDE}${1}${FIN}
 }
 
+git config --global user.name "Luis Alejandro Martínez Faneyth"
+git config --global user.email "luis@huntingbears.com.ve"
+export DEBFULLNAME="Luis Alejandro Martínez Faneyth"
+export DEBEMAIL="luis@huntingbears.com.ve"
+
 if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
 	ERROR "[MAIN] You are not on \"development\" branch."
 	git checkout development

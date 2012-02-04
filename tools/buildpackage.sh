@@ -25,33 +25,86 @@
 #
 # CODE IS POETRY
 
+ROOTDIR="$( pwd )"
+ROOTNAME="$( basename ${ROOTDIR} )"
+PROJDIR="$( dirname ${ROOTDIR} )"
+VERSION="${ROOTDIR}/VERSION"
 TYPE="${1}"
+VERDE="\e[1;32m"
+ROJO="\e[1;31m"
+AMARILLO="\e[1;33m"
+FIN="\e[0m"
+
+function ERROR() {
+echo -e ${ROJO}${1}${FIN}
+}
+
+function WARNING() {
+echo -e ${AMARILLO}${1}${FIN}
+}
+
+function SUCCESS() {
+echo -e ${VERDE}${1}${FIN}
+}
+
+git config --global user.name "Luis Alejandro Martínez Faneyth"
+git config --global user.email "luis@huntingbears.com.ve"
+export DEBFULLNAME="Luis Alejandro Martínez Faneyth"
+export DEBEMAIL="luis@huntingbears.com.ve"
 
 git checkout master
 git clean -fd
 git reset --hard
 
-git merge -s recursive -X theirs --squash release
+OLDDEBVERSION="$( dpkg-parsechangelog | grep "Version: " | awk '{print $2}' )"
+OLDREV="$( echo ${OLDDEBVERSION%?} )"
+OLDRELVERSION="$( echo ${OLDDEBVERSION} | sed -i 's/-.*//g')"
 
-if [ "${TYPE}" == "release" ]; then
-	OPTIONS="-kE78DAA2E -tc --git-tag --git-retag"
-	git dch --release --auto --id-length=7 --full
-elif [ "${TYPE}" == "test" ]; then
-	OPTIONS="-us -uc"
-	git dch --snapshot --auto --id-length=7 --full
+WARNING "Merging new upstream release ..."
+git merge -q -s recursive -X theirs --squash release
+
+NEWRELVERSION="$( cat ${VERSION} | grep "VERSION" | sed 's/VERSION = //g' )"
+
+if [ "${OLDRELVERSION}" == "${NEWRELVERSION}"]; then
+	NEWREV="$[ ${OLDREV}+1 ]"
+else
+	NEWREV="1"
 fi
 
-git add .
-git commit -a -m "Importing New Upstream Release"
+NEWDEBVERSION="${NEWRELVERSION}-${NEWREV}"
 
+WARNING "Generating Debian changelog ..."
+if [ "${TYPE}" == "release" ]; then
+	OPTIONS="-kE78DAA2E -tc --git-tag --git-retag"
+	git dch --new-version="${NEWDEBVERSION}" --release --auto --id-length=7 --full
+elif [ "${TYPE}" == "test" ]; then
+	OPTIONS="-us -uc"
+	git dch --new-version="${NEWDEBVERSION}" --snapshot --auto --id-length=7 --full
+fi
+
+WARNING "Committing changes ..."
+git add .
+git commit -q -a -m "Importing New Upstream Release"
+
+WARNING "Generating Debian package ..."
 git buildpackage ${OPTIONS}
 git clean -fd
 git reset --hard
 
 if [ "${TYPE}" == "release" ]; then
-	git push --tags git@github.com:HuntingBears/aguilas.git master
-	git push --tags git@gitorious.org:huntingbears/aguilas.git master
-	git push --tags https://code.google.com/p/aguilas/ master
+	WARNING "Uploading changes to remote servers ..."
+	git push -q --tags git@github.com:HuntingBears/aguilas.git master
+	git push -q --tags git@gitorious.org:huntingbears/aguilas.git master
+	git push -q --tags https://code.google.com/p/aguilas/ master
+
+	WARNING "Uploading Debian package to Google Code ..."
+	python -B tools/googlecode-upload.py -s "Aguilas debian package [${NEWDEBVERSION}]" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Featured,Stable" ../aguilas_${NEWDEBVERSION}_all.deb
+	python -B tools/googlecode-upload.py -s "Aguilas debian source (dsc) [${NEWDEBVERSION}]" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Featured,Stable" ../aguilas_${NEWDEBVERSION}.dsc
+	python -B tools/googlecode-upload.py -s "Aguilas debian source (debian.tar.gz) [${NEWDEBVERSION}]" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Featured,Stable" ../aguilas_${NEWDEBVERSION}.debian.tar.gz
+	python -B tools/googlecode-upload.py -s "Aguilas upstream source (orig.tar.gz) [${NEWRELVERSION}]" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Featured,Stable" ../aguilas_${NEWRELVERSION}.orig.tar.gz
+
+	md5sum ../aguilas_${NEWRELVERSION}.orig.tar.gz > ../aguilas_${NEWRELVERSION}.orig.tar.gz.md5
+	python -B tools/googlecode-upload.py -s "Aguilas upstream source md5sum [${NEWRELVERSION}]" -p "aguilas" -l "Featured,Stable" ../aguilas_${NEWRELVERSION}.orig.tar.gz.md5
 fi
 
 git checkout development
