@@ -26,6 +26,7 @@
 # CODE IS POETRY
 
 ROOTDIR="$( pwd )"
+ROOTNAME="$( basename ${ROOTDIR} )"
 PROJDIR="$( dirname ${ROOTDIR} )"
 GITHUBWIKI="${ROOTDIR}/documentation/githubwiki"
 GOOGLEWIKI="${ROOTDIR}/documentation/googlewiki"
@@ -35,6 +36,22 @@ CHANGES="$( tempfile )"
 DEVERSION="$( tempfile )"
 NEWCHANGES="$( tempfile )"
 DATE=$( date +%D )
+VERDE="\e[1;32m"
+ROJO="\e[1;31m"
+AMARILLO="\e[1;33m"
+FIN="\e[0m"
+
+function ERROR() {
+echo -e ${ROJO}${1}${FIN}
+}
+
+function WARNING() {
+echo -e ${AMARILLO}${1}${FIN}
+}
+
+function SUCCESS() {
+echo -e ${VERDE}${1}${FIN}
+}
 
 if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
 	echo "[MAIN] You are not on \"development\" branch."
@@ -80,6 +97,7 @@ sed -i 's/New development snapshot.*//g' ${NEWCHANGES}
 echo "" >> ${NEWCHANGES}
 cat ${CHANGELOG} >> ${NEWCHANGES}
 
+WARNING "Merging development into release"
 git merge -s recursive -X theirs --squash development
 
 mv ${NEWCHANGES} ${CHANGELOG}
@@ -90,6 +108,7 @@ LASTCOMMIT="$( git rev-parse HEAD )"
 echo "VERSION = ${NEWVERSION}" > ${VERSION}
 echo "COMMIT = ${LASTCOMMIT}" >> ${VERSION}
 
+WARNING "Updating submodules"
 make prepare
 
 cd ${GOOGLEWIKI}
@@ -110,6 +129,7 @@ git commit -a -m "Updating documentation"
 git checkout development
 cd ${ROOTDIR}
 
+WARNING "Committing changes"
 git add .
 git commit -a -m "New stable release ${NEWVERSION}"
 #git tag ${NEWVERSION} -m "New stable release ${NEWVERSION}"
@@ -118,15 +138,12 @@ git commit -a -m "New stable release ${NEWVERSION}"
 #git push --tags git@gitorious.org:huntingbears/aguilas.git release
 #git push --tags https://code.google.com/p/aguilas/ release
 
-#git archive -o aguilas_${NEWVERSION}.orig.tar.gz ${NEWVERSION}
-#md5sum aguilas_${NEWVERSION}.orig.tar.gz > aguilas_${NEWVERSION}.orig.tar.gz.md5
+tar -cvzf aguilas_${NEWVERSION}.orig.tar.gz *
+md5sum aguilas_${NEWVERSION}.orig.tar.gz > aguilas_${NEWVERSION}.orig.tar.gz.md5
 
-#python -B googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION}" \
-#	-p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Featured,Stable" \
-#	aguilas_${NEWVERSION}.orig.tar.gz
-#python -B googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION} MD5SUM" \
-#	-p "aguilas" -l "Featured,Stable" aguilas_${NEWVERSION}.orig.tar.gz.md5
+python -B tools/googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION}" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Featured,Stable" aguilas_${NEWVERSION}.orig.tar.gz
+python -B tools/googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION} MD5SUM" -p "aguilas" -l "Featured,Stable" aguilas_${NEWVERSION}.orig.tar.gz.md5
 
-#mv aguilas*.tar.gz* ..
+mv aguilas*.tar.gz* ..
 
 git checkout development
