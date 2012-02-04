@@ -85,7 +85,7 @@ gen-predoc: clean-predoc
 	@echo "Preprocessing documentation ..."
 	@$(BASH) tools/predoc.sh build
 
-gen-wiki: check-buildep prepare gen-predoc clean-wiki
+gen-wiki: check-buildep gen-predoc clean-wiki
 
 	@echo "Generating documentation from source [RST > WIKI]"
 	@cp documentation/githubwiki.index documentation/rest/Home.md
@@ -232,7 +232,7 @@ gen-pot: check-maintdep
 		-e 's/"Language-Team: LANGUAGE <LL@li.org>\\n"/"Language-Team: $(POTEAM) <$(MAILIST)>\\n"/' \
 		-e 's/"Language: \\n"/"Language: English\\n"/g' $(POTFILE)
 
-snapshot: check-maintdep gen-html gen-wiki gen-po clean
+snapshot: check-maintdep prepare gen-html gen-wiki gen-po clean
 
 	@$(MAKE) clean
 	@$(BASH) tools/snapshot.sh
