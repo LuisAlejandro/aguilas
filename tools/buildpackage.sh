@@ -32,8 +32,6 @@ git clean -fd
 git reset --hard
 
 git merge -s recursive -X theirs --squash release
-git add .
-git commit -a -m "Importing New Upstream Release"
 
 if [ "${TYPE}" == "release" ]; then
 	OPTIONS="-kE78DAA2E -tc --git-tag --git-retag"

@@ -174,9 +174,7 @@ def upload_find_auth(file_path, project_name, summary, labels=None, user_name=No
     user_name: Your Google account name.
     tries: How many attempts to make.
   """
-  print user_name
   while tries > 0:
-    print user_name
     if user_name is None:
       # Read username if not specified or loaded from svn config, or on
       # subsequent tries.

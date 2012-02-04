@@ -34,40 +34,60 @@ CHANGES="$( tempfile )"
 NEWCHANGES="$( tempfile )"
 DATE=$( date +%D )
 SNAPSHOT=$( date +%Y%m%d%H%M%S )
+VERDE="\e[1;32m"
+ROJO="\e[1;31m"
+AMARILLO="\e[1;33m"
+FIN="\e[0m"
+
+function ERROR() {
+echo -e ${ROJO}${1}${FIN}
+}
+
+function WARNING() {
+echo -e ${AMARILLO}${1}${FIN}
+}
+
+function SUCCESS() {
+echo -e ${VERDE}${1}${FIN}
+}
 
 if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
-	echo "[MAIN] You are not on \"development\" branch."
-	exit 1
+	ERROR "[MAIN] You are not on \"development\" branch."
+	git checkout development
 fi
 cd ${GITHUBWIKI}
 if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
-	echo "[GITHUBWIKI] You are not on \"development\" branch."
-	exit 1
+	ERROR "[GITHUBWIKI] You are not on \"development\" branch."
+	git checkout development
 fi
 cd ${ROOTDIR}
 cd ${GOOGLEWIKI}
 if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
-	echo "[GOOGLEWIKI] You are not on \"development\" branch."
-	exit 1
+	ERROR "[GOOGLEWIKI] You are not on \"development\" branch."
+	git checkout development
 fi
 cd ${ROOTDIR}
 
+WARNING "Updating Google Code wiki ..."
 cd ${GOOGLEWIKI}
 git add .
-git commit -a -m "Updating documentation"
-git push --tags https://code.google.com/p/aguilas.wiki/ development
+git commit -q -a -m "Updating documentation"
+git push -q --tags https://code.google.com/p/aguilas.wiki/ development
 cd ${ROOTDIR}
 
+WARNING "Updating Github wiki ..."
 cd ${GITHUBWIKI}
 git add .
-git commit -a -m "Updating documentation"
-git push --tags git@github.com:HuntingBears/aguilas.wiki.git development
+git commit -q -a -m "Updating documentation"
+git push -q --tags git@github.com:HuntingBears/aguilas.wiki.git development
 cd ${ROOTDIR}
 
+WARNING "Committing changes ..."
 git add .
 git commit -a
 
 if [ $? == 1 ]; then
+	ERROR "Empty commit message, aborting."
 	exit 1
 fi
 
@@ -82,7 +102,7 @@ NEWVERSION="${REPLY}"
 
 echo "DEVELOPMENT RELEASE v${NEWVERSION}+${SNAPSHOT} (${DATE})" > ${NEWCHANGES}
 cat ${CHANGES} | sed -n 1,${OLDCOMMITLINE}p | sed 's/commit.*//g;s/Author:.*//g;s/Date:.*//g;s/Merge.*//g;/^$/d;' >> ${NEWCHANGES}
-sed -i 's/New development snapshot.*//g' ${NEWCHANGES}
+sed -i 's/\nNew development snapshot.*//g' ${NEWCHANGES}
 echo "" >> ${NEWCHANGES}
 cat ${CHANGELOG} >> ${NEWCHANGES}
 mv ${NEWCHANGES} ${CHANGELOG}
@@ -93,11 +113,14 @@ LASTCOMMIT=$( git rev-parse HEAD )
 echo "VERSION = ${NEWVERSION}+${SNAPSHOT}" > ${VERSION}
 echo "COMMIT = ${LASTCOMMIT}" >> ${VERSION}
 
+WARNING "Commiting changes ..."
 git add .
-git commit -a -m "New development snapshot ${NEWVERSION}+${SNAPSHOT}"
+git commit -q -a -m "New development snapshot ${NEWVERSION}+${SNAPSHOT}"
 git tag ${NEWVERSION}+${SNAPSHOT} -m "New development snapshot ${NEWVERSION}+${SNAPSHOT}"
+ 
+WARNING "Pushing changes to remote repositories ..."
+git push -q --tags git@github.com:HuntingBears/aguilas.git development
+git push -q --tags git@gitorious.org:huntingbears/aguilas.git development
+git push -q --tags https://code.google.com/p/aguilas/ development
 
-git push --tags git@github.com:HuntingBears/aguilas.git development
-git push --tags git@gitorious.org:huntingbears/aguilas.git development
-git push --tags https://code.google.com/p/aguilas/ development
-
+SUCCESS "Snapshot Published"

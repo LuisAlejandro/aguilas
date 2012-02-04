@@ -98,7 +98,7 @@ gen-html: check-buildep gen-predoc clean-html
 
 	@echo "Generating documentation from source [RST > HTML]"
 	@cp documentation/sphinx.index documentation/rest/index.rest
-	@$(SPHINX) -a -E -Q -b html -d documentation/html/doctrees documentation/rest documentation/html
+	@$(SPHINX) -Q -b html -d documentation/html/doctrees documentation/rest documentation/html
 	@rm -rf documentation/rest/index.rest
 
 gen-man: check-buildep gen-predoc clean-man

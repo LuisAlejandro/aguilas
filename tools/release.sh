@@ -54,30 +54,30 @@ echo -e ${VERDE}${1}${FIN}
 }
 
 if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
-	echo "[MAIN] You are not on \"development\" branch."
+	ERROR "[MAIN] You are not on \"development\" branch."
 	git checkout development
 fi
 if [ -n "$( git diff --exit-code 2> /dev/null )" ]; then
-	echo "[MAIN] You have uncommitted code on \"development\" branch."
+	ERROR "[MAIN] You have uncommitted code on \"development\" branch."
 	exit 1
 fi
 cd ${GITHUBWIKI}
 if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
-	echo "[GITHUBWIKI] You are not on \"development\" branch."
+	ERROR "[GITHUBWIKI] You are not on \"development\" branch."
 	git checkout development
 fi
 if [ -n "$( git diff --exit-code 2> /dev/null )" ]; then
-	echo "[GITHUBWIKI] You have uncommitted code on \"development\" branch."
+	ERROR "[GITHUBWIKI] You have uncommitted code on \"development\" branch."
 	exit 1
 fi
 cd ${ROOTDIR}
 cd ${GOOGLEWIKI}
 if [ "$( git branch 2> /dev/null | sed -e '/^[^*]/d;s/\* //' )" != "development" ]; then
-	echo "[GOOGLEWIKI] You are not on \"development\" branch."
+	ERROR "[GOOGLEWIKI] You are not on \"development\" branch."
 	git checkout development
 fi
 if [ -n "$( git diff --exit-code 2> /dev/null )" ]; then
-	echo "[GOOGLEWIKI] You have uncommitted code on \"development\" branch."
+	ERROR "[GOOGLEWIKI] You have uncommitted code on \"development\" branch."
 	exit 1
 fi
 cd ${ROOTDIR}
@@ -85,6 +85,8 @@ cd ${ROOTDIR}
 git log > ${CHANGES}
 cp ${VERSION} ${DEVERSION}
 git checkout release
+git clean -fd
+git reset --hard
 
 OLDCOMMIT="$( cat ${VERSION} | grep "COMMIT" | sed 's/COMMIT = //g' )"
 OLDCOMMITLINE="$( cat ${CHANGES}  | grep -n "${OLDCOMMIT}" | awk -F: '{print $1}' )"
@@ -93,12 +95,12 @@ NEWVERSION="$( cat ${DEVERSION} | grep "VERSION" | sed 's/VERSION = //g;s/+.*//g
 echo "STABLE RELEASE v${NEWVERSION} (${DATE})" > ${NEWCHANGES}
 cat ${CHANGES} | sed -n 1,${OLDCOMMITLINE}p | sed 's/commit.*//g;s/Author:.*//g;s/Date:.*//g;s/Merge.*//g;/^$/d;' >> ${NEWCHANGES}
 sed -i 's/New stable release.*//g' ${NEWCHANGES}
-sed -i 's/New development snapshot.*//g' ${NEWCHANGES}
+sed -i 's/\nNew development snapshot.*//g' ${NEWCHANGES}
 echo "" >> ${NEWCHANGES}
 cat ${CHANGELOG} >> ${NEWCHANGES}
 
 WARNING "Merging development into release"
-git merge -s recursive -X theirs --squash development
+git merge -q -s recursive -X theirs --squash development
 
 mv ${NEWCHANGES} ${CHANGELOG}
 rm ${CHANGES} ${DEVERSION}
@@ -111,36 +113,41 @@ echo "COMMIT = ${LASTCOMMIT}" >> ${VERSION}
 WARNING "Updating submodules"
 make prepare
 
+WARNING "Updating Google Code wiki"
 cd ${GOOGLEWIKI}
 git checkout master
-git merge -s recursive -X theirs --squash development
+git merge -q -s recursive -X theirs --squash development
 git add .
-git commit -a -m "Updating documentation"
-git push --tags https://code.google.com/p/aguilas.wiki/ master
+git commit -q -a -m "Updating documentation"
+git push -q --tags https://code.google.com/p/aguilas.wiki/ master
 git checkout development
 cd ${ROOTDIR}
 
+WARNING "Updating GitHub wiki"
 cd ${GITHUBWIKI}
 git checkout master
-git merge -s recursive -X theirs --squash development
+git merge -q -s recursive -X theirs --squash development
 git add .
-git commit -a -m "Updating documentation"
-git push --tags git@github.com:HuntingBears/aguilas.wiki.git master
+git commit -q -a -m "Updating documentation"
+git push -q --tags git@github.com:HuntingBears/aguilas.wiki.git master
 git checkout development
 cd ${ROOTDIR}
 
 WARNING "Committing changes"
 git add .
-git commit -a -m "New stable release ${NEWVERSION}"
+git commit -q -a -m "New stable release ${NEWVERSION}"
 git tag ${NEWVERSION} -m "New stable release ${NEWVERSION}"
 
-git push --tags git@github.com:HuntingBears/aguilas.git release
-git push --tags git@gitorious.org:huntingbears/aguilas.git release
-git push --tags https://code.google.com/p/aguilas/ release
-
-tar -cvzf aguilas_${NEWVERSION}.orig.tar.gz *
+WARNING "Pushing new version to remote repositories"
+git push -q --tags git@github.com:HuntingBears/aguilas.git release
+git push -q --tags git@gitorious.org:huntingbears/aguilas.git release
+git push -q --tags https://code.google.com/p/aguilas/ release
+ 
+WARNING "Creating tarball"
+tar -czf aguilas_${NEWVERSION}.orig.tar.gz *
 md5sum aguilas_${NEWVERSION}.orig.tar.gz > aguilas_${NEWVERSION}.orig.tar.gz.md5
 
+WARNING "Uploading tarball to Google Code"
 python -B tools/googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION}" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Featured,Stable" aguilas_${NEWVERSION}.orig.tar.gz
 python -B tools/googlecode-upload.py -s "AGUILAS RELEASE ${NEWVERSION} MD5SUM" -p "aguilas" -l "Featured,Stable" aguilas_${NEWVERSION}.orig.tar.gz.md5
 
