@@ -1,3 +1,7 @@
+DEVELOPMENT RELEASE v1.0.1+20120204182005 (02/04/12)
+    Avoiding update of submodules in package building time
+    New development snapshot 1.0.1+20120204175134
+
 DEVELOPMENT RELEASE v1.0.1+20120204175134 (02/04/12)
     Improving generation of debian sources and package
     New development snapshot 1.0.1+20120204162201
