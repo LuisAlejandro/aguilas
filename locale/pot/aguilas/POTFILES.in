@@ -1,3 +1,6 @@
+../../../index.php
+../../../setup/install.php
+../../../setup/uninstall.php
 ../../../Ajax.php
 ../../../Browse.php
 ../../../ChangePasswordDo.php
@@ -17,7 +20,6 @@
 ../../../ResetPasswordForm.php
 ../../../ResetPasswordMail.php
 ../../../Search.php
-../../../index.php
 ../../../libraries/Captcha.inc.php
 ../../../libraries/CreateDatabase.inc.php
 ../../../libraries/CreateMaxUIDEntry.inc.php
@@ -28,8 +30,6 @@
 ../../../libraries/Locale.inc.php
 ../../../libraries/MYSQLConnection.inc.php
 ../../../libraries/Parameters.inc.php
-../../../setup/install.php
-../../../setup/uninstall.php
 ../../../themes/canaima/footer.php
 ../../../themes/canaima/header.php
 ../../../themes/canaima/index.php

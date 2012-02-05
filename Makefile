@@ -25,7 +25,6 @@ THEMES = $(shell ls themes/)
 LOCALES = $(shell find locale -mindepth 1 -maxdepth 1 -type d | sed 's|locale/pot||g;s|locale/||g')
 PHPS = $(wildcard *.php)
 ALLPHPS = $(shell find . -type f -iname "*.php")
-LOGS = $(wildcard events/*.log)
 
 # Build depends
 # User build tasks
@@ -148,6 +147,8 @@ install: copy config
 config: check-instdep
 
 	@mkdir -p $(DESTDIR)/var/www/
+	@mkdir -p $(DESTDIR)/usr/share/doc/aguilas/
+	@touch $(DESTDIR)/usr/share/doc/aguilas/{ChangePasswordDo.log,DeleteUserDo.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
 	@ln -s $(DESTDIR)/usr/share/aguilas /var/www/aguilas
 	@$(PHP) -f setup/install.php
 	@echo "AGUILAS configured and running!"
@@ -163,10 +164,6 @@ copy: check-instdep
 	@cp -r locale libraries themes $(DESTDIR)/usr/share/aguilas/
 	@install -D -m 644 $(PHPS) $(DESTDIR)/usr/share/aguilas/
 	@install -D -m 644 setup/config.* $(DESTDIR)/usr/share/aguilas/setup/
-
-	@# Installing logfiles
-	@install -D -m 644 $(LOGS) $(DESTDIR)/var/log/aguilas/
-	@chown -R www-data:www-data $(DESTDIR)/var/log/aguilas/
 
 	@# Installing manpage
 	@install -D -m 644 documentation/man/aguilas.1 $(DESTDIR)/usr/share/man/man1/
