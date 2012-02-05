@@ -1,3 +1,7 @@
+DEVELOPMENT RELEASE v1.0.1+20120205114622 (02/05/12)
+    Removing man and documentation installation from Makefile. Leave that to Debian package.
+    New development snapshot 1.0.1+20120205011532
+
 DEVELOPMENT RELEASE v1.0.1+20120205011532 (02/05/12)
     Modifying Makefile to avoid checking installation dependencies on copying
     New development snapshot 1.0.1+20120205010215
