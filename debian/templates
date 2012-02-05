@@ -50,7 +50,7 @@ _Description: Enter the LDAP server host address:
 Template: aguilas/ldap-base
 Type: string
 Default: dc=nodomain
-_Description: Distinguished name of the search base
+_Description: Enter the DN of the search base:
  Please enter the distinguished name of the LDAP search base. Many sites
  use the components of their domain names for this purpose. For example,
  the domain "example.com" would use "dc=example,dc=com" as the
@@ -59,30 +59,23 @@ _Description: Distinguished name of the search base
 Template: aguilas/ldap-bind
 Type: string
 Default: cn=admin,dc=nodomain
-_Description: Login dn for the LDAP server
+_Description: Enter the login DN for the LDAP server:
  Enter the name of the account that will be used to log in to the LDAP
  server.
 
 Template: aguilas/ldap-pass
 Type: password
 Default: secret
-_Description: Login password for the LDAP server
+_Description: Enter the login password for the LDAP server:
  Enter the password of the account that will be used to log in to the
  LDAP server.
  .
  Note: the password will be stored in clear text in
  /etc/aguilas/config.php, which is not world-readable.
 
-Template: aguilas/ldap-tls
-Type: boolean
-Default: false
-_Description: Support for ldaps protocol
- If your LDAP server supports TLS (Transport Security Layer), you can use
- the ldaps protocol to connect to it.
-
 Template: aguilas/reconfigure-webserver
 Type: select
-Choices: apache2, lighttpd, nginx
+Choices: apache2, lighttpd, nginx, none
 Default: apache2
 _Description: Web server which will be reconfigured automatically
  Aguilas can reconfigure your webserver so that it can be accessed
@@ -91,6 +84,6 @@ _Description: Web server which will be reconfigured automatically
 Template: aguilas/restart-webserver
 Type: boolean
 Default: true
-_Description: Restart of your webserver(s)
+_Description: Do you want to restart your webserver(s)?
  Remember that in order to apply the changes your webserver(s) has/have to
- be restarted. 
+ be restarted.

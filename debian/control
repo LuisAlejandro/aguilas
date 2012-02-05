@@ -1,18 +1,50 @@
 Source: aguilas
 Section: admin
-Priority: extra
+Priority: optional
 Maintainer: Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
-Build-Depends:	debhelper (>= 7),
-		po-debconf,
-		gettext
+Build-Depends: debhelper (>= 7.0.50~),
+               po-debconf,
+               make,
+               gettext,
+               imagemagick,
+               libmagickcore-extra,
+               python-sphinx,
+               python-docutils,
+               icoutils
 Standards-Version: 3.9.2
+Homepage: http://code.google.com/p/aguilas
+Vcs-Git: git://github.com/HuntingBears/aguilas.git
+Vcs-Browser: https://github.com/HuntingBears/aguilas
 
 Package: aguilas
 Architecture: all
-Depends:	apache2 | httpd,
-		php5-ldap,
-		libapache2-mod-php5 | libapache-mod-php5 | php5-cgi | php5,
-		ucf (>= 0.28),
-		${misc:Depends}
-Description: web based interface for administering LDAP servers
-
+Depends:  apache2 | nginx | lighttpd | httpd,
+          libapache2-mod-php5 | libapache-mod-php5 | php5-cgi | php5,
+          php5-ldap,
+          php5-mysql,
+          php5-mcrypt,
+          php5-gd,
+          dbconfig-common,
+          ucf,
+          ${misc:Depends},
+          ${shlibs:Depends},
+          ${sphinxdoc:Depends}
+Suggests: php5-suhosin,
+          postfix | sendmail | exim4 | mail-transport-agent,
+          slapd,
+          mysql-server
+Description: A web-based LDAP user management system
+ Aguilas is a centralized registration system that allows users to create and
+ manage their accounts on an LDAP authentication platform.
+ .
+ It has the following features:
+ .
+ * Creates user accounts based on determined LDAP attributes.
+ * Resends confirmation email in case it gets lost on spam folders.
+ * Changes user password, if the user knows it.
+ * Resets user password, using email as confirmation.
+ * Reminds username.
+ * Deletes user accounts.
+ * Edits user profile (ajax enabled).
+ * Lists all registered users.
+ * Searches for a term in the user database.

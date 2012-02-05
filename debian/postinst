@@ -131,6 +131,7 @@ if [ "${ACTION}" = "configure" ]; then
 			fi
 		done
 	fi
+fi
 
 #DEBHELPER#
 

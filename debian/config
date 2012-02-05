@@ -74,7 +74,8 @@ if [ ! -f ${CONFFILE} ]; then
         	. /usr/share/dbconfig-common/dpkg/config.mysql
 		dbc_load_include="php:/etc/aguilas/dbc.php"
 	        if ! dbc_go aguilas $@ ; then
-        	    echo 'Automatic configuration using dbconfig-common failed!'
+	       	    echo 'Automatic configuration using dbconfig-common failed!'
+		fi
         fi
 
 fi

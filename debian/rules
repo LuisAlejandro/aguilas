@@ -1,7 +1,8 @@
 #!/usr/bin/make -f
 
 %:
-	@dh ${@}
+
+	@dh --with sphinxdoc ${@}
 
 override_dh_auto_build:
 
@@ -13,4 +14,4 @@ override_dh_auto_install:
 	@dh_install debian/conf/apache.conf /etc/aguilas/
 	@dh_install debian/conf/lighttpd.conf /etc/aguilas/
 	@dh_install debian/conf/nginx.conf /etc/aguilas/
-	@dh_install debian/conf/aguilas.sql /usr/share/dbconfig-common/data/aguilas/install/mysql
+	@dh_install debian/conf/mysql /usr/share/dbconfig-common/data/aguilas/install/
