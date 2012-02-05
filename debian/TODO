@@ -1,0 +1,13 @@
+- Debian: Add template translation for the rest of languages.
+- Debian: Automatize POT generation and PO update.
+- Debian: Proper webserver(s) configuration.
+- Debian: Proper {Build-,}Depends.
+- Upstream: Translate documentation.
+- Upstream: Object-Oriented complete rewrite.
+- Upstream: Support for other databases (postgres, sqlite, etc).
+- Upstream: Customizable LDAP entries.
+- Upstream: Ajax user listing.
+- Upstream: Convert maintainer scripts to makefile.
+- Upstream: Divide into multiple makefiles.
+- Upstream: Improve themes.
+- Upstream: Write documentation about making themes.

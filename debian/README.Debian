@@ -1,0 +1,12 @@
+Aguilas for Debian
+------------------
+
+Aguilas configuration is stored in /etc/aguilas/config.php. You
+can change it with any text editor, and remember that after this you do
+not need to restart the webserver.
+
+If you want to go through debconf questions again after the package has been
+installed, please remove the configuration file /etc/aguilas/config.php
+before running `dpkg-reconfigure aguilas`.
+
+ -- Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>, Sat, 4 Feb 2012 18:06:28 -0430
