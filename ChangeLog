@@ -1,3 +1,7 @@
+DEVELOPMENT RELEASE v1.0.1+20120205143243 (02/05/12)
+    Correcting small bug un buildpackage script
+    New development snapshot 1.0.1+20120205114622
+
 DEVELOPMENT RELEASE v1.0.1+20120205114622 (02/05/12)
     Removing man and documentation installation from Makefile. Leave that to Debian package.
     New development snapshot 1.0.1+20120205011532
