@@ -147,8 +147,8 @@ install: copy config
 config: check-instdep
 
 	@mkdir -p $(DESTDIR)/var/www/
-	@mkdir -p $(DESTDIR)/usr/share/doc/aguilas/
-	@touch $(DESTDIR)/usr/share/doc/aguilas/{ChangePasswordDo.log,DeleteUserDo.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
+	@mkdir -p $(DESTDIR)/var/log/aguilas/
+	@touch $(DESTDIR)/var/log/aguilas/{ChangePasswordDo.log,DeleteUserDo.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
 	@ln -s $(DESTDIR)/usr/share/aguilas /var/www/aguilas
 	@$(PHP) -f setup/install.php
 	@echo "AGUILAS configured and running!"
@@ -156,20 +156,11 @@ config: check-instdep
 copy:
 
 	@mkdir -p $(DESTDIR)/usr/share/aguilas/setup/
-	@mkdir -p $(DESTDIR)/var/log/aguilas/
-	@mkdir -p $(DESTDIR)/usr/share/man/man1/
-	@mkdir -p $(DESTDIR)/usr/share/doc/aguilas/
 
 	@# Installing application
 	@cp -r locale libraries themes $(DESTDIR)/usr/share/aguilas/
 	@install -D -m 644 $(PHPS) $(DESTDIR)/usr/share/aguilas/
 	@install -D -m 644 setup/config.* $(DESTDIR)/usr/share/aguilas/setup/
-
-	@# Installing manpage
-	@install -D -m 644 documentation/man/aguilas.1 $(DESTDIR)/usr/share/man/man1/
-
-	@# Installing documentation
-	@cp -r documentation/html/* $(DESTDIR)/usr/share/doc/aguilas/
 
 	@# Removing unnecesary svg's
 	@for THEME in $(THEMES); do \
@@ -313,7 +304,7 @@ check-instdep:
 	@printf "Checking if we have PHP ... "
 	@if [ -z $(PHP) ]; then \
 		echo "[ABSENT]"; \
-		echo "If you are using Debian, Ubuntu or Canaima, please install the \"php5\" package."; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"php5-cli\" package."; \
 		exit 1; \
 	fi
 	@echo
