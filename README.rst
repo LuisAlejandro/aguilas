@@ -22,7 +22,7 @@ First, you have to install the software dependencies::
 
 	aptitude install apache2 php5 php5-gd php5-ldap php5-mcrypt php5-mysql php5-suhosin php5-cli make bash gettext python-sphinx icoutils python-docutils libmagickcore-extra imagemagick apache2 mysql-server slapd postfix
 
-Then, download and unpack the aguilas source, ussually a orig.tar.gz listed at `the aguilas download page <>`_.
+Then, download and unpack the aguilas source, ussually a orig.tar.gz listed at `the aguilas download page <http://code.google.com/p/aguilas/downloads/list>`_.
 
 To compile the sources, enter the folder you just unpacked and enter the following command::
 
