@@ -1,3 +1,7 @@
+DEVELOPMENT RELEASE v1.0.1+20120205010215 (02/05/12)
+    Correcting small bug on README.rst
+    New development snapshot 1.0.1+20120204201936
+
 DEVELOPMENT RELEASE v1.0.1+20120204201936 (02/04/12)
     Removing log files from /var/log to avoid lintian warnings
     New development snapshot 1.0.1+20120204184209
