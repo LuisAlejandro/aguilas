@@ -1,3 +1,7 @@
+DEVELOPMENT RELEASE v1.0.1+20120205011532 (02/05/12)
+    Modifying Makefile to avoid checking installation dependencies on copying
+    New development snapshot 1.0.1+20120205010215
+
 DEVELOPMENT RELEASE v1.0.1+20120205010215 (02/05/12)
     Correcting small bug on README.rst
     New development snapshot 1.0.1+20120204201936
