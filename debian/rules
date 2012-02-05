@@ -2,7 +2,7 @@
 
 %:
 
-	dh --with sphinxdoc ${@}
+	dh ${@} --with sphinxdoc
 
 override_dh_auto_build:
 
@@ -15,8 +15,7 @@ override_dh_auto_install:
 	dh_install debian/conf/lighttpd.conf /etc/aguilas/
 	dh_install debian/conf/nginx.conf /etc/aguilas/
 	dh_install debian/conf/mysql /usr/share/dbconfig-common/data/aguilas/install/
-
-override_dh_sphinxdoc:
-
-	dh_sphinxdoc /usr/share/doc/aguilas/
-	dh_sphinxdoc /usr/share/aguilas/themes/
+	rm -rf debian/aguilas/usr/share/aguilas/themes/canaima/js/jquery.js
+	rm -rf debian/aguilas/usr/share/aguilas/themes/debian/js/jquery.js
+	dh_link usr/share/javascript/sphinxdoc/1.0/jquery.js usr/share/aguilas/themes/canaima/js/jquery.js
+	dh_link usr/share/javascript/sphinxdoc/1.0/jquery.js usr/share/aguilas/themes/debian/js/jquery.js
