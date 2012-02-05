@@ -153,7 +153,7 @@ config: check-instdep
 	@$(PHP) -f setup/install.php
 	@echo "AGUILAS configured and running!"
 
-copy: check-instdep
+copy:
 
 	@mkdir -p $(DESTDIR)/usr/share/aguilas/setup/
 	@mkdir -p $(DESTDIR)/var/log/aguilas/
@@ -313,7 +313,7 @@ check-instdep:
 	@printf "Checking if we have PHP ... "
 	@if [ -z $(PHP) ]; then \
 		echo "[ABSENT]"; \
-		echo "If you are using Debian, Ubuntu or Canaima, please install the \"php5-cli\" package."; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"php5\" package."; \
 		exit 1; \
 	fi
 	@echo

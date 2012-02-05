@@ -58,7 +58,7 @@ git reset --hard
 
 OLDDEBVERSION="$( dpkg-parsechangelog | grep "Version: " | awk '{print $2}' )"
 OLDREV="$( echo ${OLDDEBVERSION%?} )"
-OLDRELVERSION="$( echo ${OLDDEBVERSION} | sed -i 's/-.*//g')"
+OLDRELVERSION="$( echo ${OLDDEBVERSION} | sed 's/-.*//g' )"
 
 WARNING "Merging new upstream release ..."
 git merge -q -s recursive -X theirs --squash release
