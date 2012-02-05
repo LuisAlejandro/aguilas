@@ -3,11 +3,11 @@ Section: admin
 Priority: optional
 Maintainer: Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
 Build-Depends: debhelper (>= 7.0.50~),
+               python-sphinx (>= 1.0.7+dfsg),
                po-debconf,
                gettext,
                imagemagick,
                libmagickcore-extra,
-               python-sphinx,
                python-docutils,
                icoutils
 Standards-Version: 3.9.2
