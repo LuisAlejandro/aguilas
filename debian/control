@@ -4,7 +4,6 @@ Priority: optional
 Maintainer: Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
 Build-Depends: debhelper (>= 7.0.50~),
                po-debconf,
-               make,
                gettext,
                imagemagick,
                libmagickcore-extra,
@@ -25,6 +24,7 @@ Depends:  apache2 | nginx | lighttpd | httpd,
           php5-mcrypt,
           php5-gd,
           dbconfig-common,
+          libjs-sphinxdoc,
           ucf,
           ${misc:Depends},
           ${shlibs:Depends},
@@ -33,18 +33,18 @@ Suggests: php5-suhosin,
           postfix | sendmail | exim4 | mail-transport-agent,
           slapd,
           mysql-server
-Description: A web-based LDAP user management system
+Description: web-based LDAP user management system
  Aguilas is a centralized registration system that allows users to create and
  manage their accounts on an LDAP authentication platform.
  .
  It has the following features:
  .
- * Creates user accounts based on determined LDAP attributes.
- * Resends confirmation email in case it gets lost on spam folders.
- * Changes user password, if the user knows it.
- * Resets user password, using email as confirmation.
- * Reminds username.
- * Deletes user accounts.
- * Edits user profile (ajax enabled).
- * Lists all registered users.
- * Searches for a term in the user database.
+   * Creates user accounts based on determined LDAP attributes.
+   * Resends confirmation email in case it gets lost on spam folders.
+   * Changes user password, if the user knows it.
+   * Resets user password, using email as confirmation.
+   * Reminds username.
+   * Deletes user accounts.
+   * Edits user profile (ajax enabled).
+   * Lists all registered users.
+   * Searches for a term in the user database.

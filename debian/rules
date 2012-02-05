@@ -2,16 +2,21 @@
 
 %:
 
-	@dh --with sphinxdoc ${@}
+	dh --with sphinxdoc ${@}
 
 override_dh_auto_build:
 
-	@$(MAKE) DESTDIR=$(CURDIR)/debian/aguilas build
+	$(MAKE) DESTDIR=$(CURDIR)/debian/aguilas build
 
 override_dh_auto_install:
 
-	@$(MAKE) DESTDIR=$(CURDIR)/debian/aguilas copy
-	@dh_install debian/conf/apache.conf /etc/aguilas/
-	@dh_install debian/conf/lighttpd.conf /etc/aguilas/
-	@dh_install debian/conf/nginx.conf /etc/aguilas/
-	@dh_install debian/conf/mysql /usr/share/dbconfig-common/data/aguilas/install/
+	$(MAKE) DESTDIR=$(CURDIR)/debian/aguilas copy
+	dh_install debian/conf/apache.conf /etc/aguilas/
+	dh_install debian/conf/lighttpd.conf /etc/aguilas/
+	dh_install debian/conf/nginx.conf /etc/aguilas/
+	dh_install debian/conf/mysql /usr/share/dbconfig-common/data/aguilas/install/
+
+override_dh_sphinxdoc:
+
+	dh_sphinxdoc /usr/share/doc/aguilas/
+	dh_sphinxdoc /usr/share/aguilas/themes/
