@@ -66,7 +66,7 @@ WARNING "Merging new upstream release ..."
 
 if [ "${TYPE}" == "final-release" ] || [ "${TYPE}" == "test-release" ]; then
 	git merge -q -s recursive -X theirs --squash release
-if [ "${TYPE}" == "test-snapshot" ]; then
+elif [ "${TYPE}" == "test-snapshot" ]; then
 	git merge -q -s recursive -X theirs --squash snapshot
 fi
 
