@@ -7,27 +7,32 @@
 -- 
 
 CREATE TABLE IF NOT EXISTS `ResetPassword` (
-	`main_id` INT NOT NULL AUTO_INCREMENT,
-	`uid` VARCHAR(255) NOT NULL,
-	`mail` VARCHAR(255) NOT NULL,
-	`token` VARCHAR(255) NOT NULL,
-	`description` VARCHAR(255) NOT NULL,
-	PRIMARY KEY (`main_id`)
+  `main_id` INT NOT NULL AUTO_INCREMENT,
+  `uid` VARCHAR(255) NOT NULL,
+  `mail` VARCHAR(255) NOT NULL,
+  `token` VARCHAR(255) NOT NULL,
+  `description` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`main_id`)
 )
+  ENGINE=MyISAM COMMENT='Aguilas reset password petition'
+  DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 
 -- 
 -- Table structure for table `NewUser`
 -- 
 
 CREATE TABLE IF NOT EXISTS `NewUser` (
-	`main_id` INT NOT NULL AUTO_INCREMENT,
-	`uid` VARCHAR(255) NOT NULL,
-	`givenName` VARCHAR(255) NOT NULL,
-	`sn` VARCHAR(255) NOT NULL,
-	`mail` VARCHAR(255) NOT NULL,
-	`userPassword` VARCHAR(255) NOT NULL,
-	`description` VARCHAR(255) NOT NULL,
-	`token` VARCHAR(255) NOT NULL,
-	PRIMARY KEY(`main_id`)
+  `main_id` INT NOT NULL AUTO_INCREMENT,
+  `uid` VARCHAR(255) NOT NULL,
+  `givenName` VARCHAR(255) NOT NULL,
+  `sn` VARCHAR(255) NOT NULL,
+  `mail` VARCHAR(255) NOT NULL,
+  `userPassword` VARCHAR(255) NOT NULL,
+  `description` VARCHAR(255) NOT NULL,
+  `token` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`main_id`)
 )
+  ENGINE=MyISAM COMMENT='Aguilas new user petition'
+  DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+
 
