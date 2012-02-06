@@ -67,7 +67,7 @@ WARNING "Merging new upstream release ..."
 if [ "${TYPE}" == "final-release" ] || [ "${TYPE}" == "test-release" ]; then
 	git merge -q -s recursive -X theirs --squash release
 elif [ "${TYPE}" == "test-snapshot" ]; then
-	git merge -q -s recursive -X theirs --squash snapshot
+	git merge -q -s recursive -X theirs --squash development
 fi
 
 NEWRELVERSION="$( cat ${VERSION} | grep "VERSION" | sed 's/VERSION = //g' )"
@@ -119,5 +119,7 @@ if [ "${TYPE}" != "final-release" ]; then
 	git reset --hard ${LASTCOMMIT}
 	git clean -fd
 fi
+
+git checkout development
 
 exit 0

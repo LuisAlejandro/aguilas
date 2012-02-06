@@ -123,6 +123,10 @@ git add .
 git commit -q -a -m "New development snapshot ${NEWVERSION}+${SNAPSHOT}"
 git tag ${NEWVERSION}+${SNAPSHOT} -m "New development snapshot ${NEWVERSION}+${SNAPSHOT}"
  
+WARNING "Creating tarball ..."
+tar -czf aguilas_${NEWVERSION}+${SNAPSHOT}.orig.tar.gz *
+mv aguilas*.tar.gz* ..
+
 WARNING "Pushing changes to remote repositories ..."
 git push -q --tags git@github.com:HuntingBears/aguilas.git development
 git push -q --tags git@gitorious.org:huntingbears/aguilas.git development
