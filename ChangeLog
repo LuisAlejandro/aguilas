@@ -1,3 +1,7 @@
+DEVELOPMENT RELEASE v1.0.1+20120206143338 (02/06/12)
+    Correcting small bug on buildpackage script
+    New development snapshot 1.0.1+20120206142933
+
 DEVELOPMENT RELEASE v1.0.1+20120206142933 (02/06/12)
     Improving buildpackage script
     New development snapshot 1.0.1+20120205143243
