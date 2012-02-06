@@ -56,17 +56,28 @@ git checkout master
 git clean -fd
 git reset --hard
 
+LASTCOMMIT="$( git rev-parse HEAD )"
 OLDDEBVERSION="$( dpkg-parsechangelog | grep "Version: " | awk '{print $2}' )"
-OLDREV="$( echo ${OLDDEBVERSION#${OLDDEBVERSION%?}} )"
+OLDDEBSTATUS="$( dpkg-parsechangelog | grep "Distribution: " | awk '{print $2}' )"
 OLDRELVERSION="$( echo ${OLDDEBVERSION} | sed 's/-.*//g' )"
+OLDREV="$( echo ${OLDDEBVERSION#${OLDRELVERSION}-} | sed 's/~.*//g' )"
 
 WARNING "Merging new upstream release ..."
-git merge -q -s recursive -X theirs --squash release
+
+if [ "${TYPE}" == "final-release" ] || [ "${TYPE}" == "test-release" ]; then
+	git merge -q -s recursive -X theirs --squash release
+if [ "${TYPE}" == "test-snapshot" ]; then
+	git merge -q -s recursive -X theirs --squash snapshot
+fi
 
 NEWRELVERSION="$( cat ${VERSION} | grep "VERSION" | sed 's/VERSION = //g' )"
 
 if [ "${OLDRELVERSION}" == "${NEWRELVERSION}" ]; then
-	NEWREV="$[ ${OLDREV}+1 ]"
+	if [ "${OLDDEBSTATUS}" == "UNRELEASED" ]; then
+		NEWREV="${OLDREV}"
+	else
+		NEWREV="$[ ${OLDREV}+1 ]"
+	fi
 else
 	NEWREV="1"
 fi
@@ -74,24 +85,24 @@ fi
 NEWDEBVERSION="${NEWRELVERSION}-${NEWREV}"
 
 WARNING "Generating Debian changelog ..."
-if [ "${TYPE}" == "release" ]; then
+if [ "${TYPE}" == "final-release" ]; then
 	OPTIONS="-kE78DAA2E -tc --git-tag --git-retag"
 	git dch --new-version="${NEWDEBVERSION}" --release --auto --id-length=7 --full
-elif [ "${TYPE}" == "test" ]; then
+elif [ "${TYPE}" == "test-snapshot" ] || [ "${TYPE}" == "test-release" ]; then
 	OPTIONS="-us -uc"
 	git dch --new-version="${NEWDEBVERSION}" --snapshot --auto --id-length=7 --full
 fi
 
 WARNING "Committing changes ..."
 git add .
-git commit -q -a -m "Importing New Upstream Release"
+git commit -q -a -m "Importing New Upstream Release (${NEWRELVERSION})"
 
 WARNING "Generating Debian package ..."
 git buildpackage ${OPTIONS}
 git clean -fd
 git reset --hard
 
-if [ "${TYPE}" == "release" ]; then
+if [ "${TYPE}" == "final-release" ]; then
 	WARNING "Uploading changes to remote servers ..."
 	git push -q --tags git@github.com:HuntingBears/aguilas.git master
 	git push -q --tags git@gitorious.org:huntingbears/aguilas.git master
@@ -104,6 +115,9 @@ if [ "${TYPE}" == "release" ]; then
 	python -B tools/googlecode-upload.py -s "Aguilas upstream source (orig.tar.gz) [${NEWRELVERSION}]" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Stable" ../aguilas_${NEWRELVERSION}.orig.tar.gz
 fi
 
-git checkout development
+if [ "${TYPE}" != "final-release" ]; then
+	git reset --hard ${LASTCOMMIT}
+	git clean -fd
+fi
 
 exit 0

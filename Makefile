@@ -229,18 +229,17 @@ release: check-maintdep
 
 	@$(BASH) tools/release.sh
 
-fullrelease: check-maintdep
+deb-test-snapshot: check-maintdep
 
-	@$(BASH) tools/release.sh
-	@$(BASH) tools/buildpackage.sh release
+	@$(BASH) tools/buildpackage.sh test-snapshot
 
-buildpackage: check-maintdep
+deb-test-release: check-maintdep
 
-	@$(BASH) tools/buildpackage.sh release
+	@$(BASH) tools/buildpackage.sh test-release
 
-testpackage: check-maintdep
+deb-final-release: check-maintdep
 
-	@$(BASH) tools/buildpackage.sh test
+	@$(BASH) tools/buildpackage.sh final-release
 
 # CLEAN TASKS ------------------------------------------------------------------------------
 
