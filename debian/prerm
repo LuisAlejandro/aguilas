@@ -1,0 +1,56 @@
+#!/bin/bash -e
+#
+# ====================================================================
+# PACKAGE: aguilas
+# FILE: debian/prerm
+# DESCRIPTION: Configures aguilas before package uninstallation
+# USAGE: Executes automatically before package uninstallation
+# COPYRIGHT:
+# (C) 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
+# LICENCE: GPL3
+# ====================================================================
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# COPYING file for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+# CODE IS POETRY
+
+ACTION="${1}"
+VERSION="${2}"
+
+if [ "${AGUILASDEBUG}" == "true" ]; then
+        set -x
+fi
+
+. /usr/share/debconf/confmodule
+db_version 2.0 || [ $? -lt 30 ]
+
+if [ -f /etc/dbconfig-common/aguilas.conf ] ; then
+        . /etc/dbconfig-common/aguilas.conf
+fi
+
+if [ -f /usr/share/dbconfig-common/dpkg/prerm.mysql ]; then
+	. /usr/share/dbconfig-common/dpkg/prerm.mysql
+
+	if [ "${AGUILASDEBUG}" == "true" ]; then
+		dbc_debug=1
+	fi
+
+	if ! dbc_go aguilas $@ ; then
+		echo 'Automatic configuration using dbconfig-common failed!'
+	fi
+fi
+
+#DEBHELPER#
+
+exit 0

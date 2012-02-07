@@ -1,23 +1,62 @@
 #! /bin/bash -e
+#
+# ====================================================================
+# PACKAGE: aguilas
+# FILE: debian/postrm
+# DESCRIPTION: Removes/purges conffiles after package uninstallation
+# USAGE: Executes automatically after package uninstallation
+# COPYRIGHT:
+# (C) 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
+# LICENCE: GPL3
+# ====================================================================
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# COPYING file for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+# CODE IS POETRY
 
 ACTION="${1}"
 VERSION="${2}"
 
+if [ "${AGUILASDEBUG}" == "true" ]; then
+	set -x
+fi
+
+. /usr/share/debconf/confmodule
+db_version 2.0 || [ $? -lt 30 ]
+
+if [ -f /etc/dbconfig-common/aguilas.conf ] ; then
+	. /etc/dbconfig-common/aguilas.conf
+fi
+
 if [ "${ACTION}" == "remove" ] || [ "${ACTION}" == "purge" ]; then
 
-	. /usr/share/debconf/confmodule
-	db_version 2.0 || [ $? -lt 30 ]
+	if [ -f /usr/share/dbconfig-common/dpkg/postrm.mysql ]; then
+		. /usr/share/dbconfig-common/dpkg/postrm.mysql
 
-	. /usr/share/dbconfig-common/dpkg/postrm.mysql
+		if [ "${AGUILASDEBUG}" == "true" ]; then
+			dbc_debug=1
+		fi
 
-	if ! dbc_go aguilas $@ ; then
-		echo 'Automatic configuration using dbconfig-common failed!'
+		if ! dbc_go aguilas $@ ; then
+			echo 'Automatic configuration using dbconfig-common failed!'
+		fi
 	fi
 
 	db_get aguilas/reconfigure-webserver || true
 	WEBSERVER="${RET}"
 
-	db_get phpldapadmin/restart-webserver || true
+	db_get aguilas/restart-webserver || true
 	RESTART="${RET}"
 
 	db_stop || true
@@ -32,14 +71,14 @@ if [ "${ACTION}" == "remove" ] || [ "${ACTION}" == "purge" ]; then
 				if [ -f /etc/lighttpd/conf-available/50-aguilas.conf ]; then
 					if which lighty-disable-mod >/dev/null 2>&1; then
 						lighty-disable-mod aguilas
-						rm -f /etc/lighttpd/conf-available/50-aguilas.conf
+						rm -rf /etc/lighttpd/conf-available/50-aguilas.conf
 					else
 						echo "Lighttpd not installed, skipping"
 					fi
 				fi
 
 				if [ -h /etc/lighttpd/conf-enabled/50-aguilas.conf ] ; then
-					rm /etc/lighttpd/conf-enabled/50-aguilas.conf
+					rm -rf /etc/lighttpd/conf-enabled/50-aguilas.conf
 				fi
 			;;
 
@@ -62,23 +101,25 @@ fi
 
 if [ "${ACTION}" == "purge" ]; then
 
-	rm -f /usr/share/aguilas/setup/config.php
-
 	for ext in '~' '%' .bak .ucf-new .ucf-old .ucf-dist;  do
-		rm -f /etc/aguilas/config.php$ext
+		rm -rf /etc/aguilas/config.php$ext
 	done
-
-	rm -f /etc/aguilas/config.php
-
-	if which ucf >/dev/null; then
-		ucf --debconf-ok --purge /etc/aguilas/config.php
-	fi
-	if which ucfr >/dev/null; then
-		ucfr --purge aguilas /etc/aguilas/config.php
-	fi
 
 	rm -rf /etc/aguilas
 	rm -rf /var/log/aguilas
+	rm -rf /usr/share/aguilas/setup/config.php
+
+	if which ucf >/dev/null; then
+		ucf --debconf-ok --purge /etc/aguilas/config.php
+		ucf --debconf-ok --purge /etc/aguilas/dbconfig-common.php
+	fi
+
+	if which ucfr >/dev/null; then
+		ucfr --purge aguilas /etc/aguilas/config.php
+		ucfr --purge aguilas /etc/aguilas/dbconfig-common.php
+	fi
+
+	db_purge
 fi
 
 #DEBHELPER#

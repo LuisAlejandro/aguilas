@@ -1,74 +1,31 @@
-# Translations template for aguilas
-# Copyright (C) 2012 Aguilas
-# This file is distributed under the same license as the aguilas project
-#
-# Translators:
-# Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: aguilas\n"
 "Report-Msgid-Bugs-To: aguilas@packages.debian.org\n"
-"POT-Creation-Date: 2012-02-04 23:38-0430\n"
-"PO-Revision-Date: 2012-02-04 23:38-0430\n"
-"Last-Translator: Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>\n"
-"Language-Team: Aguilas Translation Team <aguilas-list@googlegroups.com>\n"
-"Language: English\n"
+"POT-Creation-Date: 2012-02-07 13:34-0430\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Type: string
 #. Description
 #: ../templates:1001
-msgid "Enter a valid e-mail account:"
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../templates:1001
-msgid ""
-"Please enter the e-mail account that will appear as sender in the \"From: \" "
-"field of every Aguilas e-mail. e.g.: aguilas@jhondoe.com"
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../templates:1001
-msgid "This e-mail will also be used to send error reports."
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../templates:2001
-msgid "Enter a valid domain name:"
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../templates:2001
-msgid ""
-"Please enter the domain name or the address of the server where Aguilas is "
-"hosted. e.g.: jhondoe.com/aguilas"
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../templates:2001
-msgid ""
-"An improper value will cause a failure in the e-mail confirmation system."
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../templates:3001
 msgid "Enter the MYSQL server host address:"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:3001
+#: ../templates:1001
 msgid ""
 "Please enter the host name or the address of the MYSQL server you want to "
 "connect to."
@@ -76,13 +33,13 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:4001
+#: ../templates:2001
 msgid "Enter a valid MYSQL user:"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:4001
+#: ../templates:2001
 msgid ""
 "Please enter the name of a user that has adminstrative permissions on the "
 "database."
@@ -90,13 +47,13 @@ msgstr ""
 
 #. Type: password
 #. Description
-#: ../templates:5001
+#: ../templates:3001
 msgid "Enter the password for the admin user:"
 msgstr ""
 
 #. Type: password
 #. Description
-#: ../templates:5001
+#: ../templates:3001
 msgid ""
 "Enter the password of the administrative user that will be used to access "
 "the MYSQL server."
@@ -106,21 +63,21 @@ msgstr ""
 #. Description
 #. Type: password
 #. Description
-#: ../templates:5001 ../templates:9001
+#: ../templates:3001 ../templates:7001
 msgid ""
-"Note: the password will be stored in clear text in /etc/aguilas/config.php, "
-"which is not world-readable."
+"Note: the password will be stored in clear text in \"/etc/aguilas/config.php"
+"\", which is not world-readable."
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:6001
+#: ../templates:4001
 msgid "Enter the LDAP server host address:"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:6001
+#: ../templates:4001
 msgid ""
 "Please enter the host name or the address of the LDAP server you want to "
 "connect to."
@@ -128,13 +85,13 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:7001
+#: ../templates:5001
 msgid "Enter the DN of the search base:"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:7001
+#: ../templates:5001
 msgid ""
 "Please enter the distinguished name of the LDAP search base. Many sites use "
 "the components of their domain names for this purpose. For example, the "
@@ -144,26 +101,26 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:8001
+#: ../templates:6001
 msgid "Enter the login DN for the LDAP server:"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:8001
+#: ../templates:6001
 msgid ""
 "Enter the name of the account that will be used to log in to the LDAP server."
 msgstr ""
 
 #. Type: password
 #. Description
-#: ../templates:9001
+#: ../templates:7001
 msgid "Enter the login password for the LDAP server:"
 msgstr ""
 
 #. Type: password
 #. Description
-#: ../templates:9001
+#: ../templates:7001
 msgid ""
 "Enter the password of the account that will be used to log in to the LDAP "
 "server."
@@ -171,27 +128,34 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../templates:10001
+#: ../templates:8001
 msgid "Web server which will be reconfigured automatically"
 msgstr ""
 
 #. Type: select
 #. Description
-#: ../templates:10001
+#: ../templates:8001
 msgid ""
 "Aguilas can reconfigure your webserver so that it can be accessed through "
 "\"yourhostname.com/aguilas\"."
 msgstr ""
 
+#. Type: select
+#. Description
+#: ../templates:8001
+msgid ""
+"Choose \"none/other\" if you are going to configure your webserver manually."
+msgstr ""
+
 #. Type: boolean
 #. Description
-#: ../templates:11001
+#: ../templates:9001
 msgid "Do you want to restart your webserver(s)?"
 msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../templates:11001
+#: ../templates:9001
 msgid ""
 "Remember that in order to apply the changes your webserver(s) has/have to be "
 "restarted."
