@@ -32,8 +32,10 @@ if [ "${AGUILASDEBUG}" == "true" ]; then
 	set -x
 fi
 
-. /usr/share/debconf/confmodule
-db_version 2.0 || [ $? -lt 30 ]
+if [ -f /usr/share/debconf/confmodule ] ; then
+	. /usr/share/debconf/confmodule
+	db_version 2.0 || [ $? -lt 30 ]
+fi
 
 if [ -f /etc/dbconfig-common/aguilas.conf ] ; then
 	. /etc/dbconfig-common/aguilas.conf
@@ -58,8 +60,6 @@ if [ "${ACTION}" == "remove" ] || [ "${ACTION}" == "purge" ]; then
 
 	db_get aguilas/restart-webserver || true
 	RESTART="${RET}"
-
-	db_stop || true
 
 	for WEBSERVER in ${WEBSERVERS}; do
 
@@ -111,16 +111,22 @@ if [ "${ACTION}" == "purge" ]; then
 
 	if which ucf >/dev/null; then
 		ucf --debconf-ok --purge /etc/aguilas/config.php
+		ucf --debconf-ok --purge /etc/aguilas/apache.conf
+		ucf --debconf-ok --purge /etc/aguilas/lighttpd.conf
 		ucf --debconf-ok --purge /etc/aguilas/dbconfig-common.php
 	fi
 
 	if which ucfr >/dev/null; then
 		ucfr --purge aguilas /etc/aguilas/config.php
+		ucfr --purge aguilas /etc/aguilas/apache.conf
+		ucfr --purge aguilas /etc/aguilas/lighttpd.conf
 		ucfr --purge aguilas /etc/aguilas/dbconfig-common.php
 	fi
 
 	db_purge
 fi
+
+db_stop || true
 
 #DEBHELPER#
 

@@ -11,11 +11,10 @@ override_dh_auto_build:
 override_dh_auto_install:
 
 	$(MAKE) DESTDIR=$(CURDIR)/debian/aguilas copy
-	dh_install debian/conf/apache.conf /etc/aguilas/
-	dh_install debian/conf/lighttpd.conf /etc/aguilas/
-	dh_install debian/conf/nginx.conf /etc/aguilas/
+	dh_install debian/conf/apache.conf /usr/share/doc/aguilas/config-ex/
+	dh_install debian/conf/lighttpd.conf /usr/share/doc/aguilas/config-ex/
 	dh_install debian/conf/mysql /usr/share/dbconfig-common/data/aguilas/install/
 	rm -rf debian/aguilas/usr/share/aguilas/themes/canaima/js/jquery.js
 	rm -rf debian/aguilas/usr/share/aguilas/themes/debian/js/jquery.js
-	dh_link usr/share/javascript/sphinxdoc/1.0/jquery.js usr/share/aguilas/themes/canaima/js/jquery.js
-	dh_link usr/share/javascript/sphinxdoc/1.0/jquery.js usr/share/aguilas/themes/debian/js/jquery.js
+	dh_link usr/share/javascript/jquery/jquery.js usr/share/aguilas/themes/canaima/js/jquery.js
+	dh_link usr/share/javascript/jquery/jquery.js usr/share/aguilas/themes/debian/js/jquery.js

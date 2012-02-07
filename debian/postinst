@@ -27,7 +27,6 @@
 
 ACTION="${1}"
 VERSION="${2}"
-CONFFILE="/etc/aguilas/config.php"
 APPNAME="Aguilas"
 APPOPERATOR="Administrator"
 APPTHEME="canaima"
@@ -35,7 +34,9 @@ APPMAIL="root@localhost"
 OPMAIL="root@localhost"
 MYSQLDB="aguilas"
 MYSQLUSER="aguilas"
-TEMPFILE="$( tempfile )"
+TMPAGUILAS="$( tempfile )"
+TMPAPACHE="$( tempfile )"
+TMPLIGHT="$( tempfile )"
 
 if [ -z ${LC_ALL} ]; then
 	APPLOCALE="en_US"
@@ -47,8 +48,10 @@ if [ "${AGUILASDEBUG}" == "true" ]; then
 	set -x
 fi
 
-. /usr/share/debconf/confmodule
-db_version 2.0 || [ $? -lt 30 ]
+if [ -f /usr/share/debconf/confmodule ] ; then
+	. /usr/share/debconf/confmodule
+	db_version 2.0 || [ $? -lt 30 ]
+fi
 
 if [ -f /etc/dbconfig-common/aguilas.conf ] ; then
 	. /etc/dbconfig-common/aguilas.conf
@@ -74,7 +77,9 @@ fi
 
 if [ "${ACTION}" = "configure" ]; then
 
-	cp /usr/share/aguilas/setup/config.php.example ${TEMPFILE}
+	cp /usr/share/aguilas/setup/config.php.example ${TMPAGUILAS}
+	cp /usr/share/doc/aguilas/config-ex/apache.conf ${TMPAPACHE}
+	cp /usr/share/doc/aguilas/config-ex/lighttpd.conf ${TMPLIGHT}
 
 	MYSQLSERVER="${dbc_dbserver}"
 	MYSQLPASS="${dbc_dbpass}"
@@ -107,8 +112,6 @@ if [ "${ACTION}" = "configure" ]; then
 	db_get aguilas/restart-webserver || true
 	RESTART="${RET}"
 
-	db_stop || true
-
 	sed -i	-e "s|@@APP_NAME@@|${APPNAME}|g" \
 		-e "s|@@APP_OPERATOR@@|${APPOPERATOR}|g" \
 		-e "s|@@APP_MAIL@@|${APPMAIL}|g" \
@@ -123,24 +126,28 @@ if [ "${ACTION}" = "configure" ]; then
 		-e "s|@@LDAP_SERVER@@|${LDAPSERVER}|g" \
 		-e "s|@@LDAP_BIND@@|${LDAPBIND}|g" \
 		-e "s|@@LDAP_PASS@@|${LDAPPASS}|g" \
-		-e "s|@@LDAP_BASE@@|${LDAPBASE}|g" ${TEMPFILE}
-
-	chown root:www-data ${TEMPFILE}
-	chmod 0640 ${TEMPFILE}
+		-e "s|@@LDAP_BASE@@|${LDAPBASE}|g" ${TMPAGUILAS}
 
 	if which ucf >/dev/null; then
-		ucf --debconf-ok ${TEMPFILE} ${CONFFILE}
+		ucf --debconf-ok ${TMPAGUILAS} /etc/aguilas/config.php
+		ucf --debconf-ok ${TMPAPACHE} /etc/aguilas/apache.conf
+		ucf --debconf-ok ${TMPLIGHT} /etc/aguilas/lighttpd.conf
 	fi
 
 	if which ucfr >/dev/null; then
-		ucfr aguilas ${CONFFILE}
+		ucfr aguilas /etc/aguilas/config.php
+		ucfr aguilas /etc/aguilas/apache.conf
+		ucfr aguilas /etc/aguilas/lighttpd.conf
 	fi
 
-	if [ ! -e /usr/share/aguilas/setup/config.php ]; then
-		ln -s ${CONFFILE} /usr/share/aguilas/setup/config.php
+	chown root:www-data /etc/aguilas/config.php /etc/aguilas/apache.conf /etc/aguilas/lighttpd.conf
+	chmod 0640 /etc/aguilas/config.php /etc/aguilas/apache.conf /etc/aguilas/lighttpd.conf
+
+	if [ ! -e /usr/share/aguilas/setup/config.php ] && [ -e /etc/aguilas/config.php ]; then
+		ln -s  /etc/aguilas/config.php /usr/share/aguilas/setup/config.php
 	fi
 
-	rm -f ${TEMPFILE}
+	rm -rf ${TMPAGUILAS} ${TMPAPACHE} ${TMPLIGHT}
 
 	if [ -z ${VERSION} ]; then
 
@@ -158,7 +165,7 @@ if [ "${ACTION}" = "configure" ]; then
 					if [ ! -f /etc/lighttpd/conf-available/50-aguilas.conf ]; then
 						if which lighty-enable-mod >/dev/null 2>&1; then
 							ln -s /etc/aguilas/lighttpd.conf /etc/lighttpd/conf-available/50-aguilas.conf
-							lighty-enable-mod aguilas auth fastcgi
+							lighty-enable-mod aguilas
 						else
 							echo "Lighttpd not installed, skipping"
 						fi
@@ -182,6 +189,8 @@ if [ "${ACTION}" = "configure" ]; then
 		done
 	fi
 fi
+
+db_stop || true
 
 #DEBHELPER#
 

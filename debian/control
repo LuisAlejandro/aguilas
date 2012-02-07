@@ -4,11 +4,11 @@ Priority: optional
 Maintainer: Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
 Build-Depends: debhelper (>= 7.0.50~),
                python-sphinx (>= 1.0.7+dfsg),
+               python-docutils,
                po-debconf,
                gettext,
                imagemagick,
-               libmagickcore-extra,
-               python-docutils,
+               libmagickcore3-extra | libmagickcore4-extra | libmagickcore-extra,
                icoutils
 Standards-Version: 3.9.2
 Homepage: http://code.google.com/p/aguilas
@@ -23,12 +23,11 @@ Depends:  apache2 | nginx | lighttpd | httpd,
           php5-mysql,
           php5-mcrypt,
           php5-gd,
-          dbconfig-common,
-          libjs-sphinxdoc,
-          ucf,
+          libjs-jquery,
           ${misc:Depends},
           ${shlibs:Depends},
           ${sphinxdoc:Depends}
+Pre-Depends: dbconfig-common, ucf
 Suggests: php5-suhosin,
           postfix | sendmail | exim4 | mail-transport-agent,
           slapd,
