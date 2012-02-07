@@ -1,0 +1,35 @@
+Index: aguilas/setup/config.php.example
+===================================================================
+--- aguilas.orig/setup/config.php.example	2012-02-07 13:45:38.044334390 -0430
++++ aguilas/setup/config.php.example	2012-02-07 13:54:49.424361085 -0430
+@@ -44,15 +44,22 @@
+ 
+ /* ========== MYSQL Database ========== */
+ 
+-/// IP or Domain of the server where the MYSQL database is located
+-$mysql_host = "@@MYSQL_SERVER@@";
+-/// Database name (will be created if it does not exist)
+-$mysql_dbname = "@@MYSQL_DB@@";
+-/// User with permissions to read and create tables on the database
+-$mysql_user = "@@MYSQL_USER@@";
+-/// Password for the user
+-$mysql_pass = "@@MYSQL_PASS@@";
++## Included by Aguilas debian package ==============================================
++## Including automatic configuration of Aguilas by dbconfig-common
++require "/etc/aguilas/dbconfig-common.php";
+ 
++## If you want to override automatic configuration, uncomment the variables
++## below and edit at your convinience
++## /// IP or Domain of the server where the MYSQL database is located
++## $mysql_host = "@@MYSQL_SERVER@@";
++## /// Database name (will be created if it does not exist)
++## $mysql_dbname = "@@MYSQL_DB@@";
++## /// User with permissions to read and create tables on the database
++## $mysql_user = "@@MYSQL_USER@@";
++## /// Password for the user
++## $mysql_pass = "@@MYSQL_PASS@@";
++
++## Included by Aguilas debian package ==============================================
+ 
+ /* ========== LDAP Database ========== */
+ 
