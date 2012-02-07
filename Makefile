@@ -63,6 +63,9 @@ BASH = $(shell which bash)
 GIT = $(shell which git)
 MSGMERGE = $(shell which msgmerge)
 XGETTEXT = $(shell which xgettext)
+DEVSCRIPTS = $(shell which debuild)
+DPKGDEV = $(shell which dpkg-buildpackage)
+DEBHELPER = $(shell which dh)
 GBP = $(shell which git-buildpackage)
 LINTIAN = $(shell which lintian)
 GNUPG = $(shell which gpg)
@@ -362,6 +365,30 @@ check-maintdep:
 	@if [ -z $(MSGMERGE) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"gettext\" package."; \
+		exit 1; \
+	fi
+	@echo
+
+	@printf "Checking if we have debhelper ... "
+	@if [ -z $(DEBHELPER) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"debhelper\" package."; \
+		exit 1; \
+	fi
+	@echo
+
+	@printf "Checking if we have devscripts ... "
+	@if [ -z $(DEVSCRIPTS) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"devscripts\" package."; \
+		exit 1; \
+	fi
+	@echo
+
+	@printf "Checking if we have dpkg-dev ... "
+	@if [ -z $(DPKGDEV) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"dpkg-dev\" package."; \
 		exit 1; \
 	fi
 	@echo
