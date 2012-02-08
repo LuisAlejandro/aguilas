@@ -107,7 +107,7 @@ if [ "${ACTION}" == "purge" ]; then
 
 	rm -rf /etc/aguilas
 	rm -rf /var/log/aguilas
-	rm -rf /usr/share/aguilas/setup/config.php
+	rm -rf /usr/share/aguilas
 
 	if which ucf >/dev/null; then
 		ucf --debconf-ok --purge /etc/aguilas/config.php

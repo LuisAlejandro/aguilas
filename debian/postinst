@@ -64,6 +64,10 @@ if [ -f /usr/share/dbconfig-common/dpkg/postinst.mysql ]; then
 		dbc_debug=1
 	fi
 
+	if [ ! -f /etc/aguilas/dbconfig-common.php ]; then
+		touch /etc/aguilas/dbconfig-common.php
+	fi
+
 	dbc_first_version="1.0.1-1"
 	dbc_generate_include_owner="root:www-data"
 	dbc_generate_include_perms="0640"
@@ -127,6 +131,16 @@ if [ "${ACTION}" = "configure" ]; then
 		-e "s|@@LDAP_BIND@@|${LDAPBIND}|g" \
 		-e "s|@@LDAP_PASS@@|${LDAPPASS}|g" \
 		-e "s|@@LDAP_BASE@@|${LDAPBASE}|g" ${TMPAGUILAS}
+
+	if [ ! -f /etc/aguilas/config.php ]; then
+		touch /etc/aguilas/config.php
+	fi
+	if [ ! -f /etc/aguilas/apache.conf ]; then
+		touch /etc/aguilas/apache.conf
+	fi
+	if [ ! -f /etc/aguilas/lighttpd.conf ]; then
+		touch /etc/aguilas/lighttpd.conf
+	fi
 
 	if which ucf >/dev/null; then
 		ucf --debconf-ok ${TMPAGUILAS} /etc/aguilas/config.php
