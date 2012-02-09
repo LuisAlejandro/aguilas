@@ -1,3 +1,7 @@
+DEVELOPMENT RELEASE v1.0.1+20120209160751 (02/09/12)
+    Implementing autogeneration of orig source tarball before packaging
+    
+
 DEVELOPMENT RELEASE v1.0.1+20120207165923 (02/07/12)
     New version of python-sphinx, generating html docs
     Including extra Maintainer scripts dependencies
