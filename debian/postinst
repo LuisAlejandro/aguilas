@@ -204,8 +204,8 @@ if [ "${ACTION}" = "configure" ]; then
 	fi
 fi
 
-db_stop || true
-
 #DEBHELPER#
+
+db_stop || true
 
 exit 0

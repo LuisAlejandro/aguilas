@@ -55,4 +55,6 @@ fi
 
 #DEBHELPER#
 
+db_stop || true
+
 exit 0

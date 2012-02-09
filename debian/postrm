@@ -120,12 +120,10 @@ if [ "${ACTION}" == "purge" ]; then
 	rm -rf /etc/aguilas
 	rm -rf /var/log/aguilas
 	rm -rf /usr/share/aguilas
-
-	db_purge
 fi
 
-db_stop || true
-
 #DEBHELPER#
+
+db_stop || true
 
 exit 0
