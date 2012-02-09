@@ -98,7 +98,7 @@ git add .
 git commit -q -a -m "Importing New Upstream Release (${NEWRELVERSION})"
 
 WARNING "Generating tarball ..."
-tar --exclude="debian" -czf ../aguilas_${NEWRELVERSION}.orig.tar.gz *
+tar --anchored --exclude="debian" -czf ../aguilas_${NEWRELVERSION}.orig.tar.gz *
 
 WARNING "Generating Debian package ..."
 git buildpackage ${OPTIONS}
