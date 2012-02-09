@@ -144,8 +144,7 @@ git commit -q -a -m "New stable release ${NEWVERSION}"
 git tag ${NEWVERSION} -m "New stable release ${NEWVERSION}"
 
 WARNING "Creating tarball ..."
-tar -czf aguilas_${NEWVERSION}.orig.tar.gz *
-mv aguilas*.tar.gz* ..
+tar -czf ../aguilas_${NEWVERSION}.orig.tar.gz *
 
 WARNING "Pushing new version to remote repositories ..."
 git push -q --tags git@github.com:HuntingBears/aguilas.git release

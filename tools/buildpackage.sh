@@ -97,6 +97,9 @@ WARNING "Committing changes ..."
 git add .
 git commit -q -a -m "Importing New Upstream Release (${NEWRELVERSION})"
 
+WARNING "Generating tarball ..."
+tar --exclude="debian" -czf ../aguilas_${NEWRELVERSION}.orig.tar.gz *
+
 WARNING "Generating Debian package ..."
 git buildpackage ${OPTIONS}
 git clean -fd
@@ -109,10 +112,10 @@ if [ "${TYPE}" == "final-release" ]; then
 	git push -q --tags https://code.google.com/p/aguilas/ master
 
 	WARNING "Uploading Debian package to Google Code ..."
-	python -B tools/googlecode-upload.py -s "Aguilas debian package [${NEWDEBVERSION}]" -p "aguilas" -l "Type-Package,Type-Installer,OpSys-Linux,Stable" ../aguilas_${NEWDEBVERSION}_all.deb
+	python -B tools/googlecode-upload.py -s "Aguilas debian package [${NEWDEBVERSION}]" -p "aguilas" -l "Featured,Type-Package,Type-Installer,OpSys-Linux,Stable" ../aguilas_${NEWDEBVERSION}_all.deb
 	python -B tools/googlecode-upload.py -s "Aguilas debian source (dsc) [${NEWDEBVERSION}]" -p "aguilas" -l "Type-Source,OpSys-Linux,Stable" ../aguilas_${NEWDEBVERSION}.dsc
 	python -B tools/googlecode-upload.py -s "Aguilas debian source (debian.tar.gz) [${NEWDEBVERSION}]" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Stable" ../aguilas_${NEWDEBVERSION}.debian.tar.gz
-	python -B tools/googlecode-upload.py -s "Aguilas upstream source (orig.tar.gz) [${NEWRELVERSION}]" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Stable" ../aguilas_${NEWRELVERSION}.orig.tar.gz
+	python -B tools/googlecode-upload.py -s "Aguilas upstream source (orig.tar.gz) [${NEWRELVERSION}]" -p "aguilas" -l "Featured,Type-Archive,Type-Source,OpSys-Linux,Stable" ../aguilas_${NEWRELVERSION}.orig.tar.gz
 fi
 
 if [ "${TYPE}" != "final-release" ]; then

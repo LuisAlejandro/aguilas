@@ -420,7 +420,7 @@ check-maintdep:
 	@printf "Checking if we have md5sum... "
 	@if [ -z $(MD5SUM) ]; then \
 		echo "[ABSENT]"; \
-		echo "If you are using Debian, Ubuntu or Canaima, please install the \"bash\" package."; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"coreutils\" package."; \
 		exit 1; \
 	fi
 	@echo
@@ -428,7 +428,7 @@ check-maintdep:
 	@printf "Checking if we have tar ... "
 	@if [ -z $(TAR) ]; then \
 		echo "[ABSENT]"; \
-		echo "If you are using Debian, Ubuntu or Canaima, please install the \"python\" package."; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"tar\" package."; \
 		exit 1; \
 	fi
 	@echo
