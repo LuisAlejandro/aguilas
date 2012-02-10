@@ -67,7 +67,7 @@ if [ -f /usr/share/dbconfig-common/dpkg/postinst.mysql ]; then
 	if ! dbc_go aguilas $@ ; then
        		echo 'Automatic configuration using dbconfig-common failed!'
 	fi
-if
+fi
 
 if [ "${ACTION}" = "configure" ]; then
 
