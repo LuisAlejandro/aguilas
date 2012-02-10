@@ -48,24 +48,14 @@ if [ "${AGUILASDEBUG}" == "true" ]; then
 	set -x
 fi
 
-if [ -f /usr/share/debconf/confmodule ] ; then
-	. /usr/share/debconf/confmodule
-	db_version 2.0 || [ $? -lt 30 ]
-fi
-
-if [ -f /etc/dbconfig-common/aguilas.conf ] ; then
-	. /etc/dbconfig-common/aguilas.conf
-fi
+. /usr/share/debconf/confmodule
+db_version 2.0
 
 if [ -f /usr/share/dbconfig-common/dpkg/postinst.mysql ]; then
 	. /usr/share/dbconfig-common/dpkg/postinst.mysql
 
 	if [ "${AGUILASDEBUG}" == "true" ]; then
 		dbc_debug=1
-	fi
-
-	if [ ! -f /etc/aguilas/dbconfig-common.php ]; then
-		touch /etc/aguilas/dbconfig-common.php
 	fi
 
 	dbc_first_version="1.0.1-1"
@@ -75,9 +65,9 @@ if [ -f /usr/share/dbconfig-common/dpkg/postinst.mysql ]; then
 	dbc_generate_include_args="-dmysql_dbname -smysql_host -pmysql_pass -umysql_user"
 
 	if ! dbc_go aguilas $@ ; then
-        	echo 'Automatic configuration using dbconfig-common failed!'
+       		echo 'Automatic configuration using dbconfig-common failed!'
 	fi
-fi
+if
 
 if [ "${ACTION}" = "configure" ]; then
 
@@ -132,16 +122,6 @@ if [ "${ACTION}" = "configure" ]; then
 		-e "s|@@LDAP_PASS@@|${LDAPPASS}|g" \
 		-e "s|@@LDAP_BASE@@|${LDAPBASE}|g" ${TMPAGUILAS}
 
-	if [ ! -f /etc/aguilas/config.php ]; then
-		touch /etc/aguilas/config.php
-	fi
-	if [ ! -f /etc/aguilas/apache.conf ]; then
-		touch /etc/aguilas/apache.conf
-	fi
-	if [ ! -f /etc/aguilas/lighttpd.conf ]; then
-		touch /etc/aguilas/lighttpd.conf
-	fi
-
 	if which ucf >/dev/null; then
 		ucf --debconf-ok ${TMPAGUILAS} /etc/aguilas/config.php
 		ucf --debconf-ok ${TMPAPACHE} /etc/aguilas/apache.conf
@@ -163,45 +143,41 @@ if [ "${ACTION}" = "configure" ]; then
 
 	rm -rf ${TMPAGUILAS} ${TMPAPACHE} ${TMPLIGHT}
 
-	if [ -z ${VERSION} ]; then
+	touch /var/log/aguilas/{ChangePasswordDo.log,DeleteUserDo.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
+	chown -R www-data:www-data /var/log/aguilas/*
+	chmod 0640 /var/log/aguilas/*
 
-		touch /var/log/aguilas/{ChangePasswordDo.log,DeleteUserDo.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
-		chown -R www-data:www-data /var/log/aguilas/*
-		chmod 0640 /var/log/aguilas/*
+	for WEBSERVER in ${WEBSERVERS}; do
 
-		for WEBSERVER in ${WEBSERVERS}; do
+	        WEBSERVER=${WEBSERVER%,}
+		test -x /usr/sbin/${WEBSERVER} || continue
 
-		        WEBSERVER=${WEBSERVER%,}
-			test -x /usr/sbin/${WEBSERVER} || continue
-
-			case "${WEBSERVER}" in
-				lighttpd)
-					if [ ! -f /etc/lighttpd/conf-available/50-aguilas.conf ]; then
-						if which lighty-enable-mod >/dev/null 2>&1; then
-							ln -s /etc/aguilas/lighttpd.conf /etc/lighttpd/conf-available/50-aguilas.conf
-							lighty-enable-mod aguilas
-						else
-							echo "Lighttpd not installed, skipping"
-						fi
+		case "${WEBSERVER}" in
+			lighttpd)
+				if [ ! -f /etc/lighttpd/conf-available/50-aguilas.conf ]; then
+					if which lighty-enable-mod >/dev/null 2>&1; then
+						ln -s /etc/aguilas/lighttpd.conf /etc/lighttpd/conf-available/50-aguilas.conf
+						lighty-enable-mod aguilas
+					else
+						echo "Lighttpd not installed, skipping"
 					fi
-				;;
-
-				apache2)
-					if [ -d /etc/${WEBSERVER}/conf.d ] && [ ! -e /etc/${WEBSERVER}/conf.d/aguilas.conf ]; then
-						ln -s /etc/aguilas/apache.conf /etc/${WEBSERVER}/conf.d/aguilas.conf
-					fi
-				;;
-			esac
-
-			if [ "${RESTART}" == "true" ]; then
-				if [ -x /usr/sbin/invoke-rc.d ]; then
-					invoke-rc.d ${WEBSERVER} restart 3>/dev/null || true
-				else
-					/etc/init.d/${WEBSERVER} restart 3>/dev/null || true
 				fi
+			;;
+			apache2)
+				if [ -d /etc/${WEBSERVER}/conf.d ] && [ ! -e /etc/${WEBSERVER}/conf.d/aguilas.conf ]; then
+					ln -s /etc/aguilas/apache.conf /etc/${WEBSERVER}/conf.d/aguilas.conf
+				fi
+			;;
+		esac
+
+		if [ "${RESTART}" == "true" ]; then
+			if [ -x /usr/sbin/invoke-rc.d ]; then
+				invoke-rc.d ${WEBSERVER} restart 3>/dev/null || true
+			else
+				/etc/init.d/${WEBSERVER} restart 3>/dev/null || true
 			fi
-		done
-	fi
+		fi
+	done
 fi
 
 #DEBHELPER#

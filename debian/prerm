@@ -32,15 +32,6 @@ if [ "${AGUILASDEBUG}" == "true" ]; then
         set -x
 fi
 
-if [ -f /usr/share/debconf/confmodule ] ; then
-	. /usr/share/debconf/confmodule
-	db_version 2.0 || [ $? -lt 30 ]
-fi
-
-if [ -f /etc/dbconfig-common/aguilas.conf ] ; then
-        . /etc/dbconfig-common/aguilas.conf
-fi
-
 if [ -f /usr/share/dbconfig-common/dpkg/prerm.mysql ]; then
 	. /usr/share/dbconfig-common/dpkg/prerm.mysql
 
@@ -54,7 +45,5 @@ if [ -f /usr/share/dbconfig-common/dpkg/prerm.mysql ]; then
 fi
 
 #DEBHELPER#
-
-db_stop || true
 
 exit 0

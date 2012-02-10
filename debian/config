@@ -30,17 +30,11 @@ if [ "${AGUILASDEBUG}" == "true" ]; then
 	set -x
 fi
 
-if [ -f /usr/share/debconf/confmodule ] ; then
-	. /usr/share/debconf/confmodule
-	db_version 2.0 || [ $? -lt 30 ]
-fi
-
-if [ -f /etc/dbconfig-common/aguilas.conf ] ; then
-	. /etc/dbconfig-common/aguilas.conf
-fi
+. /usr/share/debconf/confmodule
+db_version 2.0
 
 if [ -f /usr/share/dbconfig-common/dpkg/config.mysql ]; then
-       	. /usr/share/dbconfig-common/dpkg/config.mysql
+	. /usr/share/dbconfig-common/dpkg/config.mysql
 
 	if [ "${AGUILASDEBUG}" == "true" ]; then
 		dbc_debug=1
@@ -53,8 +47,8 @@ if [ -f /usr/share/dbconfig-common/dpkg/config.mysql ]; then
 	dbc_dbname="aguilas"
 	dbc_dbuser="aguilas"
 
-        if ! dbc_go aguilas $@ ; then
-       	    echo 'Automatic configuration using dbconfig-common failed!'
+	if ! dbc_go aguilas $@ ; then
+		echo 'Automatic configuration using dbconfig-common failed!'
 	fi
 fi
 
