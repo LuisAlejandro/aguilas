@@ -25,6 +25,9 @@
 #
 # CODE IS POETRY
 
+. /usr/share/debconf/confmodule
+db_version 2.0
+
 ACTION="${1}"
 VERSION="${2}"
 
@@ -45,5 +48,7 @@ if [ -f /usr/share/dbconfig-common/dpkg/prerm.mysql ]; then
 fi
 
 #DEBHELPER#
+
+db_stop || true
 
 exit 0

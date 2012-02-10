@@ -25,15 +25,15 @@
 #
 # CODE IS POETRY
 
+. /usr/share/debconf/confmodule
+db_version 2.0
+
 ACTION="${1}"
 VERSION="${2}"
 
 if [ "${AGUILASDEBUG}" == "true" ]; then
 	set -x
 fi
-
-. /usr/share/debconf/confmodule
-db_version 2.0
 
 if [ "${ACTION}" == "remove" ] || [ "${ACTION}" == "purge" ]; then
 

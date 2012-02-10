@@ -25,6 +25,9 @@
 #
 # CODE IS POETRY
 
+. /usr/share/debconf/confmodule
+db_version 2.0
+
 ACTION="${1}"
 VERSION="${2}"
 APPNAME="Aguilas"
@@ -48,9 +51,6 @@ if [ "${AGUILASDEBUG}" == "true" ]; then
 	set -x
 fi
 
-. /usr/share/debconf/confmodule
-db_version 2.0
-
 if [ -f /usr/share/dbconfig-common/dpkg/postinst.mysql ]; then
 	. /usr/share/dbconfig-common/dpkg/postinst.mysql
 
@@ -62,7 +62,7 @@ if [ -f /usr/share/dbconfig-common/dpkg/postinst.mysql ]; then
 	dbc_generate_include_owner="root:www-data"
 	dbc_generate_include_perms="0640"
 	dbc_generate_include="php:/etc/aguilas/dbconfig-common.php"
-	dbc_generate_include_args="-dmysql_dbname -smysql_host -pmysql_pass -umysql_user"
+	dbc_generate_include_args="-dmysql_dbname -smysql_host -pmysql_pass -umysql_user -U"
 
 	if ! dbc_go aguilas $@ ; then
        		echo 'Automatic configuration using dbconfig-common failed!'
