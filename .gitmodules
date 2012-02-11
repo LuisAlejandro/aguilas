@@ -1,0 +1,6 @@
+[submodule "documentation/githubwiki"]
+	path = documentation/githubwiki
+	url = git@github.com:HuntingBears/aguilas.wiki.git
+[submodule "documentation/googlewiki"]
+	path = documentation/googlewiki
+	url = https://code.google.com/p/aguilas.wiki/

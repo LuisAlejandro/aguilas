@@ -1,0 +1,245 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>AGUILAS &mdash; AGUILAS Documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="AGUILAS Documentation" href="#" />
+    <link rel="next" title="1. CONTENTS" href="contents.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="contents.html" title="1. CONTENTS"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">AGUILAS Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="aguilas">
+<h1><strong>AGUILAS</strong><a class="headerlink" href="#aguilas" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="a-web-based-ldap-user-management-system">
+<h2>A web-based LDAP user management system<a class="headerlink" href="#a-web-based-ldap-user-management-system" title="Permalink to this headline">¶</a></h2>
+<p>Aguilas is a centralized registration system that allows users to create and manage their accounts on an LDAP authentication platform and (in some cases) using MYSQL databases to store temporary records. It&#8217;s mostly written in PHP, and depends heavily on the use of LDAP and MYSQL servers. It has the following features:</p>
+<ul class="simple">
+<li>Creates user accounts based on determined LDAP attributes.</li>
+<li>Resends confirmation email in case it gets lost on spam folders.</li>
+<li>Changes user password, if the user knows it.</li>
+<li>Resets user password, using email as confirmation.</li>
+<li>Reminds username.</li>
+<li>Deletes user accounts.</li>
+<li>Edits user profile (ajax enabled).</li>
+<li>Lists all registered users.</li>
+<li>Searches for a term in the user database.</li>
+</ul>
+<p>The following topics will certainly help you to know more about Aguilas:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents.html">1. <strong>CONTENTS</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contents.html#installation-methods">1.1. Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#installing-software-dependencies">1.1.1. Installing software dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="contents.html#installing-apache-and-php">1.1.1.1. Installing Apache and PHP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="contents.html#installing-the-mysql-server">1.1.1.2. Installing the MYSQL server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="contents.html#installing-the-ldap-server">1.1.1.3. Installing the LDAP server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="contents.html#installing-python-modules-and-other-applications">1.1.1.4. Installing Python modules and other applications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="contents.html#installing-the-mail-transport-agent">1.1.1.5. Installing the Mail Transport Agent</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="contents.html#installation">1.1.1.5.1. Installation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="contents.html#configuration">1.1.1.5.2. Configuration</a></li>
+<li class="toctree-l5"><a class="reference internal" href="contents.html#certification">1.1.1.5.3. Certification</a></li>
+<li class="toctree-l5"><a class="reference internal" href="contents.html#testing">1.1.1.5.4. Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#installing-the-stable-version">1.1.2. Installing the stable version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#installing-the-stable-version-using-a-debian-package">1.1.3. Installing the stable version using a debian package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#download-the-development-version">1.1.4. Download the development version</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contents.html#getting-help">1.2. Getting help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents.html#contributing-to-aguilas">1.3. Contributing to Aguilas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#reporting-bugs">1.3.1. Reporting bugs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#submitting-patches">1.3.2. Submitting patches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#submitting-pull-requests">1.3.3. Submitting pull requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#writing-documentation">1.3.4. Writing documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#translating-aguilas">1.3.5. Translating Aguilas</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="contents.html#generating-pot-templates">1.3.5.1. Generating POT templates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="contents.html#updating-po-files-from-pot-template">1.3.5.2. Updating PO files from POT template</a></li>
+<li class="toctree-l4"><a class="reference internal" href="contents.html#generate-a-new-po-with-aguilas-translation-assistant">1.3.5.3. Generate a new PO with Aguilas translation assistant</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contents.html#contributing-code-through-pull-requests">1.4. Contributing code through pull requests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#getting-started">1.4.1. Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#submitting-the-pull-request">1.4.2. Submitting the pull request</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contents.html#working-with-patches">1.5. Working with patches</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#what-s-a-patch">1.5.1. What&#8217;s a patch?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#creating-a-patch-using-diff">1.5.2. Creating a patch using diff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#creating-a-patch-using-git">1.5.3. Creating a patch using git</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#submitting-the-patch">1.5.4. Submitting the patch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contents.html#describing-aguilas-s-develpment-cycle">1.6. Describing Aguilas&#8217;s develpment cycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents.html#understanding-aguilas-s-source-code">1.7. Understanding Aguilas&#8217;s Source Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#aguilas-repositories">1.7.1. Aguilas repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#branches-and-tags">1.7.2. Branches and Tags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#common-tasks-and-procedures">1.7.3. Common tasks and procedures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="contents.html#checking-dependencies">1.7.3.1. Checking dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="contents.html#maintainer-tasks">1.7.3.2. Maintainer tasks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="contents.html#build-tasks">1.7.3.3. Build tasks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="contents.html#clean-tasks">1.7.3.4. Clean tasks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="contents.html#install-tasks">1.7.3.5. Install tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#files-and-directories">1.7.4. Files and Directories</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contents.html#working-with-git">1.8. Working with git</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#installing-git">1.8.1. Installing git</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#configuring-git">1.8.2. Configuring git</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#creating-a-new-repository">1.8.3. Creating a New Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#making-changes">1.8.4. Making Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#browsing-the-repository">1.8.5. Browsing the repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#branching-and-tagging">1.8.6. Branching and Tagging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#merging-branches">1.8.7. Merging branches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#working-with-remote-servers">1.8.8. Working with remote servers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#sharing-your-work">1.8.9. Sharing your Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#working-with-submodules">1.8.10. Working with submodules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="contents.html#adding-submodules-to-a-git-repository">1.8.10.1. Adding Submodules to a Git Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="contents.html#using-submodules">1.8.10.2. Using Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="contents.html#removing-submodules">1.8.10.3. Removing Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="contents.html#updating-submodules">1.8.10.4. Updating Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contents.html#git-cheat-sheet">1.9. Git Cheat Sheet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#setup">1.9.1. Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#id44">1.9.2. Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#info">1.9.3. Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#adding-deleting">1.9.4. Adding / Deleting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#ignoring">1.9.5. Ignoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#staging">1.9.6. Staging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#unstaging">1.9.7. Unstaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#committing">1.9.8. Committing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#branching">1.9.9. Branching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#merging">1.9.10. Merging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#cherry-picking">1.9.11. Cherry-Picking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#squashing">1.9.12. Squashing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#conflicts">1.9.13. Conflicts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#sharing">1.9.14. Sharing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#reverting">1.9.15. Reverting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#fix-mistakes-undo">1.9.16. Fix mistakes / Undo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#plumbing">1.9.17. Plumbing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#stashing">1.9.18. Stashing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#remotes">1.9.19. Remotes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#submodules">1.9.20. Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#patches">1.9.21. Patches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#tags">1.9.22. Tags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#archive">1.9.23. Archive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#git-instaweb">1.9.24. Git Instaweb</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents.html#environment-variables">1.9.25. Environment Variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>:)</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><strong>AGUILAS</strong></a><ul>
+<li><a class="reference internal" href="#a-web-based-ldap-user-management-system">A web-based LDAP user management system</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="contents.html"
+                        title="next chapter">1. <strong>CONTENTS</strong></a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="contents.html" title="1. CONTENTS"
+             >next</a> |</li>
+        <li><a href="#">AGUILAS Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 11-02-2012, Luis Alejandro Martínez Faneyth.
+      Last updated on Feb 11, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

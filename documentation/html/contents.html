@@ -1,0 +1,1598 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. CONTENTS &mdash; AGUILAS Documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="AGUILAS Documentation" href="index.html" />
+    <link rel="prev" title="AGUILAS" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="AGUILAS"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">AGUILAS Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="contents">
+<h1>1. <strong>CONTENTS</strong><a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installation-methods">
+<span id="id1"></span><h2>1.1. Installation Methods<a class="headerlink" href="#installation-methods" title="Permalink to this headline">¶</a></h2>
+<p>You can install Aguilas in various ways, depending on your requirements. Here you will find all the supported installation methods. Generally, the best and easier way to install Aguilas on Debian based distributions is to use a Debian package, see more on <a class="reference internal" href="#installing-from-a-debian-package">installing from a debian package</a>. In any case, you will need to read <a class="reference internal" href="#installing-software-dependencies">installing software dependencies</a> before you can actually install Aguilas.</p>
+<div class="section" id="installing-software-dependencies">
+<span id="id2"></span><h3>1.1.1. Installing software dependencies<a class="headerlink" href="#installing-software-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>Aguilas requires the installation of certain software applications so that specific funcionality is available to it&#8217;s internal processes. As of this documentation, we will be covering the installation of these dependencies on <em>Debian based distributions</em> like Ubuntu, Canaima, Linux Mint and Debian (of course). If you use another type of GNU/Linux distribution (or Windows), you might need to investigate which packages or executables you need to install in order to satisfy these dependencies. In any case, you can always take a look at <a class="reference internal" href="#getting-help">getting help</a>.</p>
+<p>Basically, You will need:</p>
+<ul class="simple">
+<li>A web server like Apache, Lighttpd or Nginx.</li>
+<li>A Mail Transport Agent (MTA) like Exim, Pastfix or Sendmail.</li>
+<li>PHP 5 or higher (with LDAP, MYSQL and CLI support).</li>
+<li>Imagemagick image conversion utility with SVG support.</li>
+<li>Python with Sphinx and Docutils support.</li>
+<li>Icoutils.</li>
+<li>Gettext.</li>
+<li>Bash.</li>
+<li>Make.</li>
+</ul>
+<p>Optionally, you will have to install an LDAP and a MYSQL server depending on where is located the computer you are going to use as a server. If you are going to use a local computer as a server (e.g. your personal computer), then you will have to install and configure both on that computer. If you are going to use a remote computer as a server (e.g. a shared hosting server), then you will have to install and configure LDAP and MYSQL on that remote machine.</p>
+<p>If you are impatient, you can install all dependencies at once with the following command:</p>
+<div class="highlight-python"><pre>aptitude install apache2 php5 php5-gd php5-ldap php5-mcrypt php5-mysql php5-suhosin php5-cli make bash gettext python-sphinx icoutils python-docutils libmagickcore-extra imagemagick apache2 mysql-server slapd postfix</pre>
+</div>
+<p>If you want to keep reading, We will now explain how to install and configure each one of these dependencies. If you already have them installed in your working environment, please ignore it and proceed to the next step.</p>
+<div class="section" id="installing-apache-and-php">
+<span id="id3"></span><h4>1.1.1.1. Installing Apache and PHP<a class="headerlink" href="#installing-apache-and-php" title="Permalink to this headline">¶</a></h4>
+<p>Run the following command as superuser:</p>
+<div class="highlight-python"><pre>aptitude install apache2 php5 php5-gd php5-ldap php5-mcrypt php5-mysql php5-suhosin php5-cli</pre>
+</div>
+</div>
+<div class="section" id="installing-the-mysql-server">
+<span id="id4"></span><h4>1.1.1.2. Installing the MYSQL server<a class="headerlink" href="#installing-the-mysql-server" title="Permalink to this headline">¶</a></h4>
+<p>Run the following command as superuser:</p>
+<div class="highlight-python"><pre>aptitude install mysql-server</pre>
+</div>
+<p>You will be asked for a password for the &#8220;root&#8221; account for MYSQL. Remember this password as you will be asked for it later.</p>
+</div>
+<div class="section" id="installing-the-ldap-server">
+<span id="id5"></span><h4>1.1.1.3. Installing the LDAP server<a class="headerlink" href="#installing-the-ldap-server" title="Permalink to this headline">¶</a></h4>
+<p>Run the following command as superuser:</p>
+<div class="highlight-python"><pre>aptitude install slapd</pre>
+</div>
+<p>You will be asked for a password for the Distinguished Name (DN) of the administrator entry for LDAP; normally, the admin DN is <em>cn=admin,dc=nodomain</em>. Remember this password as you will be asked for it later.</p>
+</div>
+<div class="section" id="installing-python-modules-and-other-applications">
+<span id="id6"></span><h4>1.1.1.4. Installing Python modules and other applications<a class="headerlink" href="#installing-python-modules-and-other-applications" title="Permalink to this headline">¶</a></h4>
+<p>Run the following command as superuser:</p>
+<div class="highlight-python"><pre>aptitude install make bash gettext python-sphinx icoutils python-docutils libmagickcore-extra imagemagick</pre>
+</div>
+</div>
+<div class="section" id="installing-the-mail-transport-agent">
+<span id="installing-the-mta"></span><h4>1.1.1.5. Installing the Mail Transport Agent<a class="headerlink" href="#installing-the-mail-transport-agent" title="Permalink to this headline">¶</a></h4>
+<p>If you already have a working Mail Transport Agent, please proceed to the next step.</p>
+<p>Normally you can install a <em>Mail Transport Agent (MTA)</em> like <tt class="docutils literal"><span class="pre">postfix</span></tt> or <tt class="docutils literal"><span class="pre">exim</span></tt> to serve as a mail server on any computer connected to the internet with a public IP address assigned. However, due to the problem of SPAM, many Internet mail servers block mail from unauthenticated dynamic IP addresses, which are common in domestic connections.</p>
+<p>One of the existing solutions is to install a mail server to not send mail directly to the destination server, but to use <a class="reference external" href="http://gmail.com">Google Mail</a> (or other SMTP) to retransmit the messages.</p>
+<p>To send email using GMail SMTP server (<tt class="docutils literal"><span class="pre">smtp.gmail.com</span></tt>) the connection must be encrypted with TLS. To do this we need three elements:</p>
+<ul class="simple">
+<li>A certificate authenticated by a valid certificate authority for <em>GMail</em>.</li>
+<li>A <em>GMail</em> email account.</li>
+<li>A local MTA.</li>
+</ul>
+<div class="section" id="installation">
+<h5>1.1.1.5.1. Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h5>
+<p>First install <em>Postfix</em>, a fairly complete and configurable MTA. Open a root terminal and type the following command:</p>
+<div class="highlight-python"><pre>aptitude install postfix</pre>
+</div>
+<p>Note: Postfix conflicts with Exim, but it is safe to remove exim in favor of postfix.</p>
+<p>The process will make us some questions:</p>
+<ul class="simple">
+<li><em>Configuration type</em>: you will select &#8220;Web Site&#8221;.</li>
+<li><em>Mail System Name</em>: you will enter the domain name of your local mail server. For this case, we can enter the same domain name of your PC. e.g. &#8220;OKComputer&#8221;.</li>
+</ul>
+<p>Done, the installation is completed.</p>
+</div>
+<div class="section" id="configuration">
+<h5>1.1.1.5.2. Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h5>
+<p>Then we have to edit the file <tt class="docutils literal"><span class="pre">/etc/postfix/main.cf</span></tt> and add the following lines at the end of the file:</p>
+<div class="highlight-python"><pre>relayhost = [smtp.gmail.com]:587
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps = hash:/etc/postfix/sasl/passwd
+smtp_sasl_security_options = noanonymous
+smtp_use_tls = yes
+smtp_tls_CAfile = /etc/postfix/cacert.pem</pre>
+</div>
+<p>There we are telling <tt class="docutils literal"><span class="pre">postfix</span></tt> to use <tt class="docutils literal"><span class="pre">relayhost</span></tt> to connect to the Gmail server, which uses <tt class="docutils literal"><span class="pre">smtp_sasl_password_maps</span></tt> to extract the SASL data connection and use <tt class="docutils literal"><span class="pre">smtp_tls_CAfile</span></tt> as a certificate for the secure connection.</p>
+<p>We must create the file <tt class="docutils literal"><span class="pre">/etc/postfix/sasl/passwd</span></tt> with the following contents:</p>
+<div class="highlight-python"><pre>[smtp.gmail.com]:587    [ACCOUNT]@gmail.com:[PASSWORD]</pre>
+</div>
+<p>Where <tt class="docutils literal"><span class="pre">[ACCOUNT]</span></tt> is the gmail account name and <tt class="docutils literal"><span class="pre">[PASSWORD]</span></tt>, the password of <tt class="docutils literal"><span class="pre">[ACCOUNT]</span></tt>.</p>
+<p>For example, we could use this command:</p>
+<div class="highlight-python"><pre>echo "[smtp.gmail.com]:587    luis@gmail.com:123456" &gt; /etc/postfix/sasl/passwd</pre>
+</div>
+<p>Then we must restrict it&#8217;s access:</p>
+<div class="highlight-python"><pre>chmod 600 /etc/postfix/sasl/passwd</pre>
+</div>
+<p>Next, we must transform the file into a postfix indexed hash file with the command:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">postmap</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">postfix</span><span class="o">/</span><span class="n">sasl</span><span class="o">/</span><span class="n">passwd</span>
+</pre></div>
+</div>
+<p>That will create the file <tt class="docutils literal"><span class="pre">/etc/postfix/sasl/passwd.db</span></tt></p>
+</div>
+<div class="section" id="certification">
+<h5>1.1.1.5.3. Certification<a class="headerlink" href="#certification" title="Permalink to this headline">¶</a></h5>
+<p>We have to install the SSL certificates of certification authorities to perform this step. We can install them like this:</p>
+<div class="highlight-python"><pre>aptitude install ca-certificates</pre>
+</div>
+<p>To add the <em>Equifax certificate authority</em> (which certifies emails from Gmail) to authorized certificates that use postfix, run the following command in a root console:</p>
+<div class="highlight-python"><pre>cat /etc/ssl/certs/Equifax_Secure_CA.pem &gt; /etc/postfix/cacert.pem</pre>
+</div>
+</div>
+<div class="section" id="testing">
+<h5>1.1.1.5.4. Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h5>
+<p>Finally, restart postfix to apply the changes, as follows:</p>
+<div class="highlight-python"><pre>/etc/init.d/postfix restart</pre>
+</div>
+<p>You can check it&#8217;s proper functioning by opening two consoles. In one execute the following command to monitor it&#8217;s behavior (as root):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">tail</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">mail</span><span class="o">.</span><span class="n">log</span>
+</pre></div>
+</div>
+<p>And in the other send a mail:</p>
+<div class="highlight-python"><pre>echo "This is a test mail" | mail test@gmail.com</pre>
+</div>
+<p>If you did things right, on the other console you should see something like this:</p>
+<div class="highlight-python"><pre>Dec 18 18:33:40 OKComputer postfix/pickup[10945]: 75D4A243BD: uid=0 from=
+Dec 18 18:33:40 OKComputer postfix/cleanup[10951]: 75D4A243BD: message-id=
+Dec 18 18:33:40 OKComputer postfix/qmgr[10946]: 75D4A243BD: from=, size=403, nrcpt=1 (queue active)
+Dec 18 18:33:44 OKComputer postfix/smtp[10953]: 75D4A243BD: to=&lt;test@gmail.com&gt;, relay=smtp.gmail.com[74.125.93.109]:587, delay=3.7, delays=0.15/0.14/1.8/1.6, dsn=2.0.0, status=sent (250 2.0.0 OK 1324249500 eb5sm36008464qab.10)
+Dec 18 18:33:44 OKComputer postfix/qmgr[10946]: 75D4A243BD: removed</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="installing-the-stable-version">
+<span id="id7"></span><h3>1.1.2. Installing the stable version<a class="headerlink" href="#installing-the-stable-version" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">Download the source tarball from <a class="reference external" href="http://code.google.com/p/aguilas/downloads/list">Aguilas download page</a>. Select the version of your preference, usually the last one will be more complete.</p>
+</li>
+<li><p class="first">Decompress the source with your favorite program:</p>
+<div class="highlight-python"><pre>e.g.: tar -xvf aguilas-1.0.0.tar.gz</pre>
+</div>
+</li>
+<li><p class="first">Access the uncompressed source:</p>
+<div class="highlight-python"><pre>e.g.: cd aguilas-1.0.0/</pre>
+</div>
+</li>
+<li><p class="first">Build the sources:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">make</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<blockquote>
+<div><dl class="docutils">
+<dt>You will be promted with the following questions to configure AGUILAS:</dt>
+<dd><ul class="first last simple">
+<li>Name of the Application, e.g.: Aguilas for Debian User Management</li>
+<li>The person or group responsible for managing the application, e.g.: Debian Admins</li>
+<li>The e-mail address that will appear as sender in all operation e-mails to registered users, e.g.: <a class="reference external" href="mailto:aguilas&#37;&#52;&#48;debian&#46;org">aguilas<span>&#64;</span>debian<span>&#46;</span>org</a></li>
+<li>The e-mail address you wish to use for sending error reports, e.g.: <a class="reference external" href="mailto:admins&#37;&#52;&#48;debian&#46;org">admins<span>&#64;</span>debian<span>&#46;</span>org</a></li>
+<li>The language that you wish to see in your application (must be available on <em>locale</em> folder), e.g.: en_US</li>
+<li>The theme applied to the application (must be available in <em>themes</em> folder), e.g.: debian</li>
+<li>The public address of the aplication, e.g.: aguilas.debian.org</li>
+<li>IP or Domain of the server where the MYSQL database is located, e.g.: localhost</li>
+<li>MYSQL database name (will be created if it doesn&#8217;t exist), e.g.: aguilas</li>
+<li>User with permissions to read and create tables on the database, e.g.: root</li>
+<li>Password for the MYSQL user, e.g.: 123456</li>
+<li>IP or Domain of the server where the LDAP service is located, e.g.: localhost</li>
+<li>DN with read-write priviledges on the LDAP server, e.g.: cn=admin,dc=nodomain</li>
+<li>Password for the writer DN, e.g.: 123456</li>
+<li>Base DN to perform searches and include new users, e.g.: dc=nodomain</li>
+</ul>
+</dd>
+</dl>
+<p>If you need to modify these parameters, you can always edit <tt class="docutils literal"><span class="pre">/usr/share/aguilas/setup/config.php</span></tt> after installation.</p>
+</div></blockquote>
+<ol class="arabic">
+<li><p class="first">Obtain superuser priviledges, and install aguilas:</p>
+<div class="highlight-python"><pre>sudo make install</pre>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="installing-the-stable-version-using-a-debian-package">
+<span id="installing-from-a-debian-package"></span><h3>1.1.3. Installing the stable version using a debian package<a class="headerlink" href="#installing-the-stable-version-using-a-debian-package" title="Permalink to this headline">¶</a></h3>
+<p>Aguilas is distributed in various Debian derivatives. Grab the latest debian package from the <a class="reference external" href="http://code.google.com/p/aguilas/downloads/list">Aguilas download page</a> and install it with the following command:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">dpkg</span> <span class="o">-</span><span class="n">i</span> <span class="p">[</span><span class="n">PATH</span><span class="o">/</span><span class="n">TO</span><span class="o">/</span><span class="n">FILE</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="download-the-development-version">
+<span id="downloading-the-development-version"></span><h3>1.1.4. Download the development version<a class="headerlink" href="#download-the-development-version" title="Permalink to this headline">¶</a></h3>
+<p>If you want to download the development version of Aguilas, which has the lastest changes and new features, you can follow the procedure described below. You should install this version if you are planning to contribute in Aguilas development or try some hard-on new features. You should also know that a development version is likely to be unstable or even broken, as it is being developed actively.</p>
+<p>That being said:</p>
+<ol class="arabic">
+<li><p class="first">Start cloning the development branch from Aguilas (you will need to install the <tt class="docutils literal"><span class="pre">git-core</span></tt> package first):</p>
+<div class="highlight-python"><pre>git clone --branch development https://github.com/HuntingBears/aguilas.git</pre>
+</div>
+</li>
+<li><p class="first">Access the folder that has just been created:</p>
+<div class="highlight-python"><pre>cd aguilas</pre>
+</div>
+</li>
+<li><p class="first">Prepare and update the sources:</p>
+<div class="highlight-python"><pre>make prepare</pre>
+</div>
+</li>
+</ol>
+<p>That&#8217;s it. You have the latest code from Aguilas. If you want to install it, you can follow the same procedure described at <a class="reference internal" href="#installing-the-stable-version">installing the stable version</a>.</p>
+</div>
+</div>
+<div class="section" id="getting-help">
+<span id="id8"></span><h2>1.2. Getting help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h2>
+<p>If you are in trouble, you can alwas ask for help here:</p>
+<ul class="simple">
+<li><a class="reference external" href="irc://irc.freenode.net/aguilas">Aguilas IRC Channel</a>.</li>
+<li><a class="reference external" href="http://groups.google.com/group/aguilas-list">Aguilas Mailing List</a>.</li>
+</ul>
+</div>
+<div class="section" id="contributing-to-aguilas">
+<span id="id9"></span><h2>1.3. Contributing to Aguilas<a class="headerlink" href="#contributing-to-aguilas" title="Permalink to this headline">¶</a></h2>
+<p>We&#8217;re passionate about helping Aguilas users make the jump to contributing members of the community, so there are many ways you can help aguilas development:</p>
+<ul class="simple">
+<li>Report bugs and request features in our <a class="reference external" href="https://github.com/HuntingBears/aguilas/issues">ticket tracker</a>. Please read <a class="reference internal" href="#reporting-bugs">reporting bugs</a>, below, for the details on how you sould do this.</li>
+<li>Submit patches or pull requests for new and/or fixed behavior. Please read <a class="reference internal" href="#submitting-patches">submitting patches</a>, below, for details on how to submit a patch. If you&#8217;re looking for an easy way to start contributing to Aguilas have a look at the easy-pickings tickets.</li>
+<li>Join the <a class="reference external" href="http://groups.google.com/group/aguilas-list">Aguilas Mailing List</a> and share your ideas for how to improve Aguilas. We&#8217;re always open to suggestions.</li>
+<li>Improve Aguilas documentation by reading, writing new articles or correcting existing ones. You can find more information on how we do this at <a class="reference internal" href="#writing-documentation">writing documentation</a>.</li>
+<li>Translate Aguilas into your local language, by joining our translation team. Read more on <a class="reference internal" href="#translating-aguilas">translating aguilas</a>.</li>
+</ul>
+<p>That&#8217;s all you need to know if you&#8217;d like to join the Aguilas development community. The rest of this document describes the details of how our community works and how it handles bugs, mailing lists, and all the other details of Aguilas development.</p>
+<div class="section" id="reporting-bugs">
+<span id="id10"></span><h3>1.3.1. Reporting bugs<a class="headerlink" href="#reporting-bugs" title="Permalink to this headline">¶</a></h3>
+<p>Well-written bug reports are incredibly helpful. However, there&#8217;s a certain amount of overhead involved in working with any bug tracking system so your help in keeping our ticket tracker as useful as possible is appreciated. In particular:</p>
+<ul class="simple">
+<li>Check that someone hasn&#8217;t already filed the bug or feature request by searching in the <a class="reference external" href="https://github.com/HuntingBears/aguilas/issues">Ticket Tracker</a>.</li>
+<li>If you are not sure if what you are seeing is a bug, ask first on the <a class="reference external" href="http://groups.google.com/group/aguilas-list">Aguilas Mailing List</a> or the <a class="reference external" href="irc://irc.freenode.net/aguilas">Aguilas IRC Channel</a>.</li>
+<li>Don&#8217;t use the ticket system to ask support questions. Use the <a class="reference external" href="http://groups.google.com/group/aguilas-list">Aguilas Mailing List</a> or the <a class="reference external" href="irc://irc.freenode.net/aguilas">Aguilas IRC Channel</a> for that.</li>
+<li>Write complete, reproducible, specific bug reports. You must include a clear, concise description of the problem, and a set of instructions for replicating it. Add as much debug information as you can: code snippets, test cases, error messages, screenshots, etc. A nice small test case is the best way to report a bug, as it gives us an easy way to confirm the bug quickly.</li>
+</ul>
+<p>First of all, <a class="reference external" href="https://github.com/signup/free">Signup at GitHub</a>, is very quick and easy.</p>
+<p>Next, gather all the information you have about the bug you are going to report (<em>everything</em> could be useful). Go to the <a class="reference external" href="https://github.com/HuntingBears/aguilas/issues/new">New Issue Form</a> in our <a class="reference external" href="https://github.com/HuntingBears/aguilas/issues">Ticket Tracker</a> and fill in a descriptive title for the ticket and the content of the bug you are reporting.</p>
+<p>If you need to attach a piece of code, error or patch, please use the <a class="reference external" href="https://gist.github.com/">Gist</a>. The gist is a special service from github to add pieces of code in a tiny repository publicly available. Add the code you need in a <a class="reference external" href="https://gist.github.com/gists/new">New public Gist</a>, and then paste the resultant link in the bug report.</p>
+</div>
+<div class="section" id="submitting-patches">
+<span id="id11"></span><h3>1.3.2. Submitting patches<a class="headerlink" href="#submitting-patches" title="Permalink to this headline">¶</a></h3>
+<p>A patch is a structured file that consists of a list of differences between one set of files and another. All additions and deletions of <strong>contributed code</strong> to Aguilas are done through patches.</p>
+<p>A patch can be sent to Aguilas developers through the <a class="reference external" href="https://github.com/HuntingBears/aguilas/issues">Ticket Tracker</a> and the <a class="reference external" href="https://gist.github.com/">Gist</a>. Add the patch code in a <a class="reference external" href="https://gist.github.com/gists/new">New public Gist</a> and then <a class="reference external" href="https://github.com/HuntingBears/aguilas/issues/new">open a new ticket</a> describing the patch you made. Remember to add the link to the public gist so it can be referenced and checked out by developers. Also, you will need to <a class="reference external" href="https://github.com/signup/free">open an account</a> on github to do all of this.</p>
+<p>If you want to know more about creating, applying and submitting patches, see <a class="reference internal" href="#working-with-patches">working with patches</a>.</p>
+<p>If you want to install the development version of Aguilas to start reviewing, understanding and improving the code, read <a class="reference internal" href="#downloading-the-development-version">downloading the development version</a>.</p>
+<p>You might also want to start <a class="reference internal" href="#understanding-aguilas-source-code">understanding aguilas source code</a>.</p>
+</div>
+<div class="section" id="submitting-pull-requests">
+<span id="id12"></span><h3>1.3.3. Submitting pull requests<a class="headerlink" href="#submitting-pull-requests" title="Permalink to this headline">¶</a></h3>
+<p>A pull request is a special service from code repositories that enable developers to manage contribution activities more easily. It allows a developer to clone or fork a repository of code, make changes to it and then request the addition of this modified code to the upstream developers of Aguilas.</p>
+<p>If you want to contribute to Aguilas using this method, you will have to fork Aguilas on github, download the forked code to your computer, make the changes you need to make in order to correct the bug or implement a new feature, push your changes and finally request your code to be pulled to Aguilas main repository. You will need to <a class="reference external" href="https://github.com/signup/free">open an account</a> on github to do all of this.</p>
+<p>If you want detailed information how to make a pull request, please read the <a class="reference internal" href="#pull-request-guide">pull request guide</a>.</p>
+<p>You might also want to start reading <a class="reference internal" href="#understanding-aguilas-source-code">understanding aguilas source code</a>.</p>
+<p>There&#8217;s also more information about <a class="reference internal" href="#working-with-git">working with git</a> available.</p>
+</div>
+<div class="section" id="writing-documentation">
+<span id="id13"></span><h3>1.3.4. Writing documentation<a class="headerlink" href="#writing-documentation" title="Permalink to this headline">¶</a></h3>
+<p>We place a high importance on consistency, readability, simplicity and portability of documentation. After all, great documentation is what makes great projects great.</p>
+<p>Documentation changes generally come in two forms:</p>
+<ul class="simple">
+<li><strong>General improvements:</strong> typo corrections, error fixes and better explanations through clearer writing and more examples.</li>
+<li><strong>New features:</strong> documentation of features that have been added to the core since the last release.</li>
+</ul>
+<p>Aguilas&#8217;s documentation uses the <a class="reference external" href="http://sphinx.pocoo.org">Sphinx Documentation System</a>, which in turn is based on reStructuredText (reST or RST). The basic idea is that lightly-formatted plain-text documentation is transformed into HTML, WIKI, and MAN pages with minor efforts. We always modify the documentation in the development stage/branch.</p>
+<p>If you want to obtain a copy of the development version of Aguilas to start reviewing, understanding and improving documentation, read <a class="reference internal" href="#downloading-the-development-version">downloading the development version</a>.</p>
+<p>To actually build the documentation locally, you&#8217;ll currently need to install sphinx and other applications. Read the document on <a class="reference internal" href="#installing-software-dependencies">installing software dependencies</a> for the complete list of dependencies and how to install them.</p>
+<p>Once downloaded, you will find the documentation sources (rest format) on <tt class="docutils literal"><span class="pre">documentation/rest</span></tt>. You will also notice other folders (described below). These are autogenerated documentation formats, <strong>DO NOT</strong> edit them directly, edit the sources instead.</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">documentation/html</span></tt>:  Contains the generated HTML using sphinx. These HTML pages are updated using the rest sources located at <tt class="docutils literal"><span class="pre">documentation/rest</span></tt> through the command <tt class="docutils literal"><span class="pre">make</span> <span class="pre">gen-html</span></tt>.</li>
+<li><tt class="docutils literal"><span class="pre">documentation/man</span></tt>:  Contains the rest source to produce a manual page (man) through the <tt class="docutils literal"><span class="pre">rst2man</span></tt> application. <tt class="docutils literal"><span class="pre">make</span> <span class="pre">gen-man</span></tt> on the top level directory will produce the file <tt class="docutils literal"><span class="pre">documentation/man/aguilas.1</span></tt>.</li>
+<li><tt class="docutils literal"><span class="pre">documentation/githubwiki</span></tt>:  This directory contains a git submodule for the GitHub Wiki. The generated wiki format is copied here and uploaded to GitHub to keep all documentation in sync. <tt class="docutils literal"><span class="pre">make</span> <span class="pre">gen-wiki</span></tt> will update the files on this folder using the rest sources on <tt class="docutils literal"><span class="pre">documentation/rest</span></tt>.</li>
+<li><tt class="docutils literal"><span class="pre">documentation/googlewiki</span></tt>:  This directory also contains a git submodule but for the Google Code Wiki. The generated wiki format is copied here and uploaded to Google Code to keep all documentation in sync. <tt class="docutils literal"><span class="pre">make</span> <span class="pre">gen-wiki</span></tt> will update the files on this folder using the rest sources on <tt class="docutils literal"><span class="pre">documentation/rest</span></tt>.</li>
+</ul>
+<p>If you want to modify or add new documents, feel free to inspect the <tt class="docutils literal"><span class="pre">documentation/rest</span></tt> folder. If you add a new rest file in the sources folder, don&#8217;t worry about it not being referenced on the index or the table of contents, this is done automatically at build time.</p>
+<p>To get started contributing, you&#8217;ll want to read the <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">reStructuredText basics</a>. After that, you&#8217;ll want to read <a class="reference internal" href="#understanding-aguilas-source-code">understanding aguilas source code</a> to know how and where you are going to make the changes.</p>
+<p>If you want your contributions to be added on official documentation, please read <a class="reference internal" href="#submitting-patches">submitting patches</a> and <a class="reference internal" href="#submitting-pull-requests">submitting pull requests</a>.</p>
+</div>
+<div class="section" id="translating-aguilas">
+<span id="id14"></span><h3>1.3.5. Translating Aguilas<a class="headerlink" href="#translating-aguilas" title="Permalink to this headline">¶</a></h3>
+<p>Translations are contributed by Aguilas users everywhere. The translation work is coordinated at <a class="reference external" href="https://www.transifex.net/projects/p/aguilas/">Transifex</a> and the <a class="reference external" href="http://groups.google.com/group/aguilas-list">Aguilas Mailing List</a>.</p>
+<p>If you find an incorrect translation or want to discuss specific translations, go to the translation team page for that language. If you would like to help out with translating or add a language that isn&#8217;t yet translated, here&#8217;s what to do:</p>
+<ol class="arabic simple">
+<li>Join the <a class="reference external" href="http://groups.google.com/group/aguilas-list">Aguilas Mailing List</a> and introduce yourself, explaining what you want to do.</li>
+<li><a class="reference external" href="https://www.transifex.net/plans/signup/free/">Signup at Transifex</a> and visit the <a class="reference external" href="https://www.transifex.net/projects/p/aguilas/">Aguilas Project Page</a>.</li>
+<li>On the <a class="reference external" href="https://www.transifex.net/projects/p/aguilas/teams/">Translation Teams Page</a>, choose the language team you want to work with, or – in case the language team doesn&#8217;t exist yet – request a new team by clicking on the &#8220;Request a new team&#8221; button and select the appropriate language.</li>
+</ol>
+<p>Then, click the &#8220;Join this Team&#8221; button to become a member of this team. Every team has at least one coordinator who is responsible to review your membership request. You can of course also contact the team coordinator to clarify procedural problems and handle the actual translation process.</p>
+<p>Once you are a member of a team choose the translation resource you want to update on the team page. For example the &#8220;core&#8221; resource refers to the main translation catalogue.</p>
+<div class="section" id="generating-pot-templates">
+<h4>1.3.5.1. Generating POT templates<a class="headerlink" href="#generating-pot-templates" title="Permalink to this headline">¶</a></h4>
+<p>A POT template is a file which contains all translatable strings contained in the PHP sources; these strings are translated in a PO file for each language. You will need Aguilas POT template (which is located in <tt class="docutils literal"><span class="pre">locale/pot/aguilas/messages.pot</span></tt>) to update the PO file of the language you are working on.</p>
+<p>To update or generate Aguilas POT template, enter the following command in the root folder of Aguilas development version (see <a class="reference internal" href="#downloading-the-development-version">downloading the development version</a>):</p>
+<div class="highlight-python"><pre>make gen-pot</pre>
+</div>
+</div>
+<div class="section" id="updating-po-files-from-pot-template">
+<h4>1.3.5.2. Updating PO files from POT template<a class="headerlink" href="#updating-po-files-from-pot-template" title="Permalink to this headline">¶</a></h4>
+<p>To update all PO files in the <em>locale</em> folder using Aguilas POT template (<tt class="docutils literal"><span class="pre">locale/pot/aguilas/messages.pot</span></tt>), enter the following command in the root folder of Aguilas development version (see <a class="reference internal" href="#downloading-the-development-version">downloading the development version</a>):</p>
+<div class="highlight-python"><pre>make gen-po</pre>
+</div>
+</div>
+<div class="section" id="generate-a-new-po-with-aguilas-translation-assistant">
+<h4>1.3.5.3. Generate a new PO with Aguilas translation assistant<a class="headerlink" href="#generate-a-new-po-with-aguilas-translation-assistant" title="Permalink to this headline">¶</a></h4>
+<p>If you want to create a new PO for a new language, you can use the Aguilas translation assistant which is located at <tt class="docutils literal"><span class="pre">tools/maint/l10n-newpo.sh</span></tt>. Enter the following command, passing as argument a valid l10n code according to the language you wish to translate to:</p>
+<div class="highlight-python"><pre>./tools/maint/l10n-newpo.sh [L10N CODE]</pre>
+</div>
+<p>For example:</p>
+<div class="highlight-python"><pre>./tools/maint/l10n-newpo.sh en_GB</pre>
+</div>
+<p>Basically, it will copy the POT template to the proper folder, depending on what l10n code you specify; then, it will start asking you to translate each string to generate the new PO.</p>
+</div>
+</div>
+</div>
+<div class="section" id="contributing-code-through-pull-requests">
+<span id="pull-request-guide"></span><h2>1.4. Contributing code through pull requests<a class="headerlink" href="#contributing-code-through-pull-requests" title="Permalink to this headline">¶</a></h2>
+<p>The Aguilas development model follows the standard <em>GitHub model</em> for contributions: <a class="reference external" href="https://github.com/HuntingBears/aguilas/">fork a project</a>, clone it to your local computer, hack on it there, push your finished changes to your forked repository, and send a <em>Pull Request</em> back upstream to the project. If you&#8217;re already familiar with this process, then congratulations! You&#8217;re done here, <a class="reference external" href="https://github.com/HuntingBears/aguilas/">get hacking</a>!</p>
+<p>The GitHub guide for the standard <a class="reference external" href="http://help.github.com/fork-a-repo">fork</a>/clone/push/<a class="reference external" href="http://help.github.com/send-pull-requests/">pull request</a> model of contributing is a great place to start, but we&#8217;ll cover all the basics here, too, as well as various contribution scenarios (fixing bugs, adding features, updating documentation, etc.).</p>
+<div class="section" id="getting-started">
+<span id="id15"></span><h3>1.4.1. Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h3>
+<p>First, you&#8217;ll need a GitHub account. If you don&#8217;t have one, go and <a class="reference external" href="https://github.com/signup/free">Signup at GitHub</a>. After that, you&#8217;ll need to <a class="reference external" href="http://help.github.com/linux-set-up-git/">provide your SSH key</a> to authorize your computer to make pushes.</p>
+<p>You need to download and install Git and then configure it. You might want to take a look at our <a class="reference internal" href="#working-with-git">working with git</a>.</p>
+<p>Now you&#8217;re ready to grab the Aguilas repository. Hit the <a class="reference external" href="https://github.com/HuntingBears/aguilas/">Aguilas Repository Page</a> and click the <em>Fork</em> button. This will create a complete copy of the Aguilas repository within your GitHub account.</p>
+<p>Now you&#8217;ve got your own fork. This is your own personal copy of the Aguilas source tree, and you can do anything you want with it. Next, let&#8217;s clone your fork of Aguilas. Just switch to a directory where you want to keep your repository and do this, replacing <tt class="docutils literal"><span class="pre">[USERNAME]</span></tt> with your actual GitHub username:</p>
+<div class="highlight-python"><pre>git clone --branch development git@github.com:[USERNAME]/aguilas.git</pre>
+</div>
+<p>Congratulations! You now have your very own Aguilas repository. Now you&#8217;ll want to make sure that you can always pull down changes from the upstream canonical repository. To do so, do this:</p>
+<div class="highlight-python"><pre>cd aguilas
+git remote add upstream git://github.com/HuntingBears/aguilas.git
+git pull upstream development</pre>
+</div>
+<p>Anytime you want to merge in the latest changes from the upstream repository, just issue the command <tt class="docutils literal"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">upstream</span> <span class="pre">development</span></tt> to pull the latest from the development branch of the upstream repository and you&#8217;ll be good to go. You should also push it up to your fork:</p>
+<div class="highlight-python"><pre>git push origin development</pre>
+</div>
+</div>
+<div class="section" id="submitting-the-pull-request">
+<span id="id16"></span><h3>1.4.2. Submitting the pull request<a class="headerlink" href="#submitting-the-pull-request" title="Permalink to this headline">¶</a></h3>
+<p>After you have pushed the changes to your fork, go to your fork page on github and hit the <em>pull request</em> button. After that, you are presented with a preview page where you can enter a title and optional description, see exactly what commits will be included when the pull request is sent, and also see who the pull request will be sent to (Aguilas upstream repository).</p>
+<p>More information on <a class="reference external" href="http://help.github.com/send-pull-requests/">pull request</a>.</p>
+</div>
+</div>
+<div class="section" id="working-with-patches">
+<span id="id17"></span><h2>1.5. Working with patches<a class="headerlink" href="#working-with-patches" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-s-a-patch">
+<span id="whats-a-patch"></span><h3>1.5.1. What&#8217;s a patch?<a class="headerlink" href="#what-s-a-patch" title="Permalink to this headline">¶</a></h3>
+<p>A patch is a structured file that consists of a list of differences between one set of files and another. All additions and deletions of <strong>contributed code</strong> to Aguilas are done through patches.</p>
+<p><strong>Patches make development easier</strong>, because instead of supplying a replacement file, possibly consisting of thousands of lines of code, the patch includes only the exact changes that were made. In effect, a patch is a list of all the changes made to a file, which can be used to re-create those changes on another copy of that file.</p>
+<p>Here is an example of what a patch looks like:</p>
+<div class="highlight-python"><pre>diff --git a/token_example/token_example.tokens.inc b/token_example/token_example.tokens.inc
+index 585dcea..b06d9d6 100644
+--- a/token_example/token_example.tokens.inc
++++ b/token_example/token_example.tokens.inc
+@@ -13,8 +13,8 @@ function token_example_token_info() {
+   // second is the user's default text format, which is itself a 'format' token
+   // type so it can be used directly.
+
+-  // This is a comment in the original file. It will be removed when the patch is applied.
++ // And here are lines we added when we were editing the file.
++ // They will replace the line above when the patch is applied.
+$info['types']['format'] = array(
+     'name' =&gt; t('Text formats'),
+     'description' =&gt; t('Tokens related to text formats.'),</pre>
+</div>
+<p>At the top it says which file is being affected. Changes to several files can be included in one patch. Lines added are shown with a &#8216;+&#8217;, lines removed are shown with a &#8216;-&#8216;, lines changed are shown as the old line being removed and the new one added.</p>
+<p>Patch files are good because they only show the changed parts of the file. This has two advantages: it&#8217;s easy to understand the change; and if other parts of the same files change between the patch being made an being used, there is no problem, the patch will still apply.</p>
+<p>Note that there are several slight variants of the patch format. The example above is a &#8216;unified&#8217; patch, which is now the standard.</p>
+<p>If you want to create a patch, the first thing you will have to do is to download the latest snapshot (development stage) of Aguilas to your computer. Use git to clone the project and obtain a copy from github (you only need to do this once):</p>
+<div class="highlight-python"><pre>git clone --branch development https://github.com/HuntingBears/aguilas.git</pre>
+</div>
+<p>Aguilas code is also mirrored on <a class="reference external" href="https://code.google.com/p/aguilas">Google Code</a> and <a class="reference external" href="https://gitorious.org/huntingbears/aguilas">Gitorious</a>.</p>
+<p>If you already have cloned the code, then pull the latest changes down to ensure you&#8217;re working with the latest snapshot:</p>
+<div class="highlight-python"><pre>git checkout development
+git pull origin development</pre>
+</div>
+</div>
+<div class="section" id="creating-a-patch-using-diff">
+<span id="id18"></span><h3>1.5.2. Creating a patch using diff<a class="headerlink" href="#creating-a-patch-using-diff" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">Make a copy of the entire folder that contains the code:</p>
+<div class="highlight-python"><pre>cp -r aguilas/ aguilas.changes/</pre>
+</div>
+</li>
+<li><p class="first">Start making the necessary changes to implement the feature or bug correction you have in mind:</p>
+<div class="highlight-python"><pre>cd aguilas.changes/
+# Edit file in your favorite editor:
+&lt;your_editor_here&gt; [filename]
+# Make more edits in other files and save theme:
+&lt;your_editor_here&gt; [other-filename]</pre>
+</div>
+</li>
+<li><p class="first">To create the patch &#8220;my_changes.patch&#8221;, issue the following command at folder containing the original and the changed folder:</p>
+<div class="highlight-python"><pre>diff -Naur aguilas.orig aguilas.changes &gt; my_changes.patch</pre>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="creating-a-patch-using-git">
+<span id="id19"></span><h3>1.5.3. Creating a patch using git<a class="headerlink" href="#creating-a-patch-using-git" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">Create and checkout a <em>local branch</em> (with the name of your preference) for the issue/feature/bug you&#8217;re working on:</p>
+<div class="highlight-python"><pre>git branch [NEWBRANCH]
+git checkout [NEWBRANCH]</pre>
+</div>
+</li>
+<li><p class="first">Make whatever changes are necessary to complete what you&#8217;re doing:</p>
+<div class="highlight-python"><pre># Edit file in your favorite editor:
+&lt;your_editor_here&gt; [filename]
+# After making your edits and saving the file, confirm your changes are present:
+git status
+# Make more edits in other files and save theme:
+&lt;your_editor_here&gt; [other-filename]
+# Confirm changes again:
+git status</pre>
+</div>
+</li>
+<li><p class="first">When you are satisfied, make one single commit with all your changes using the -a option:</p>
+<div class="highlight-python"><pre>git commit -a -m "Descriptive message here."</pre>
+</div>
+</li>
+<li><p class="first">Now, create your patch file. The following command will output the difference between the current branch (where your changes are) and the <em>development</em> branch that you cloned from the code repository to a file named &#8220;my_changes.patch&#8221;:</p>
+<div class="highlight-python"><pre>git diff development &gt; my_changes.patch</pre>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="submitting-the-patch">
+<span id="id20"></span><h3>1.5.4. Submitting the patch<a class="headerlink" href="#submitting-the-patch" title="Permalink to this headline">¶</a></h3>
+<p>A patch can be sent to Aguilas developers through the <a class="reference external" href="https://github.com/HuntingBears/aguilas/issues">Ticket Tracker</a> and the <a class="reference external" href="https://gist.github.com/">Gist</a>. Add the patch code in a <a class="reference external" href="https://gist.github.com/gists/new">New Public Gist</a> and then <a class="reference external" href="https://github.com/HuntingBears/aguilas/issues/new">open a new ticket</a> describing the patch you made. Remember to add the link to the public gist so it can be referenced and checked out by developers. Also, you will need to <a class="reference external" href="https://github.com/signup/free">open an account</a> on github to do all of this.</p>
+</div>
+</div>
+<div class="section" id="describing-aguilas-s-develpment-cycle">
+<span id="development-cycle"></span><h2>1.6. Describing Aguilas&#8217;s develpment cycle<a class="headerlink" href="#describing-aguilas-s-develpment-cycle" title="Permalink to this headline">¶</a></h2>
+<p>Aguilas&#8217;s stable release version numbering works as follows:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Stable versions are numbered in the form <tt class="docutils literal"><span class="pre">X.Y.Z</span></tt>.</dt>
+<dd><ul class="first last simple">
+<li><strong>X</strong> is the major version number, which is only incremented for major changes to Aguilas.</li>
+<li><strong>Y</strong> is the minor version number, which is incremented for large yet backwards compatible changes.</li>
+<li><strong>Z</strong> is the micro version number, which is incremented for bug and security fixes.</li>
+<li>In some cases, we&#8217;ll make alpha, beta, or release candidate releases. These are of the form <tt class="docutils literal"><span class="pre">X.Y.Z+{alpha,beta,rc}N</span></tt>, which means the Nth alpha, beta or release candidate of version X.Y.Z.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Development versions are numbered in the form <tt class="docutils literal"><span class="pre">X.Y.Z+[YEAR][MONTH][DAY][HOUR][MINUTE][SECONDS]</span></tt>.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="understanding-aguilas-s-source-code">
+<span id="understanding-aguilas-source-code"></span><h2>1.7. Understanding Aguilas&#8217;s Source Code<a class="headerlink" href="#understanding-aguilas-s-source-code" title="Permalink to this headline">¶</a></h2>
+<p>When deploying Aguilas into a real production environment, you will almost always want to use an official packaged release (see <a class="reference internal" href="#installation-methods">installation methods</a>) of Aguilas. However, if you&#8217;d like to try out in-development code from an upcoming release or contribute to the development of Aguilas, you&#8217;ll need to obtain a copy from Aguilas&#8217;s source code repository. This document covers the way the code repository is laid out and how to work with and find things in it.</p>
+<div class="section" id="aguilas-repositories">
+<span id="id21"></span><h3>1.7.1. Aguilas repositories<a class="headerlink" href="#aguilas-repositories" title="Permalink to this headline">¶</a></h3>
+<p>The Aguilas development model uses <em>git</em> (see <a class="reference internal" href="#working-with-git">working with git</a>) to track changes to the code over time and manage collaboration. You&#8217;ll need a copy of the git client program on your computer, and you&#8217;ll want to familiarize yourself with the basics of <a class="reference internal" href="#working-with-git">working with git</a>.</p>
+<p>The Aguilas git repository is located online at various places, all syncronized with the last code from the authors. We host Aguilas on <a class="reference external" href="https://code.google.com/p/aguilas">Google Code</a>, <a class="reference external" href="https://github.com/HuntingBears/aguilas">GitHub</a>, and <a class="reference external" href="https://gitorious.org/huntingbears/aguilas">Gitorious</a>. In terms of source code, all of them have the same information, so, you can choose the one you like the most. We use GitHub for tracking bugs and other project management stuff. If you want to contribute to Aguilas, please read our <a class="reference internal" href="#contributing-to-aguilas">contributing to aguilas</a> section.</p>
+</div>
+<div class="section" id="branches-and-tags">
+<span id="id22"></span><h3>1.7.2. Branches and Tags<a class="headerlink" href="#branches-and-tags" title="Permalink to this headline">¶</a></h3>
+<p>Inside the repository you will find that Aguilas development is divided into four branches: development, release, master and debian.</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">development</span> <span class="pre">branch</span></tt></dt>
+<dd>This is where the development is actually made, and because of that, the code provided here might be experimental, unstable or broken. If you want to contribute to Aguilas (see <a class="reference internal" href="#contributing-to-aguilas">contributing to aguilas</a>), <em>this is where you should start</em>.</dd>
+<dt><tt class="docutils literal"><span class="pre">release</span> <span class="pre">branch</span></tt></dt>
+<dd>This is where stable releases are obtained from. After a development cycle is finished, all changes are merged here, plus other <em>tactical movements</em> (see <a class="reference internal" href="#development-cycle">development cycle</a>).</dd>
+<dt><tt class="docutils literal"><span class="pre">master</span> <span class="pre">branch</span></tt></dt>
+<dd>The purpose of the master branch is to serve as a container to build the Aguilas debian package.</dd>
+</dl>
+<p>Tags in aguilas are done each time a new (development or release) version is made. The difference is that development (<em>snapshots</em>) versions are numbered in the form of <tt class="docutils literal"><span class="pre">X.Y.Z+[YEAR][MONTH][DAY][HOUR][MINUTE][SECONDS]</span></tt> and stable (<em>releases</em>) versions are numbered in the form <tt class="docutils literal"><span class="pre">X.Y.Z</span></tt>.</p>
+</div>
+<div class="section" id="common-tasks-and-procedures">
+<span id="id23"></span><h3>1.7.3. Common tasks and procedures<a class="headerlink" href="#common-tasks-and-procedures" title="Permalink to this headline">¶</a></h3>
+<p>Every common task for the Aguilas maintainers, developers, contributors and users are automatized using the Makefile. Here they are listed:</p>
+<div class="section" id="checking-dependencies">
+<span id="id24"></span><h4>1.7.3.1. Checking dependencies<a class="headerlink" href="#checking-dependencies" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">check-buildep</span></tt>:  Checking build tasks dependencies. It allows the user/developer to check if all software dependencies requiered to build documentation, themes, tranlations and cofigurations are met.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">check-maintdep</span></tt>:  Checking maintainer tasks dependencies. It allows the developer to check if all software dependencies requiered to exacute common maintainer (update PO and POT files, make a snapshot, make a release) tasks are met.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">check-instdep</span></tt>:  Checking install dependencies. It allows the user to check if all software dependencies for installation are met.</li>
+</ul>
+</div>
+<div class="section" id="maintainer-tasks">
+<span id="id25"></span><h4>1.7.3.2. Maintainer tasks<a class="headerlink" href="#maintainer-tasks" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">gen-po</span></tt>:  Generates PO files from POT templates. It generates the PO files for every language listed in the <tt class="docutils literal"><span class="pre">locale</span></tt> folder, using the POT file located at <tt class="docutils literal"><span class="pre">locale/pot/aguilas/messages.pot</span></tt>.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">gen-pot</span></tt>:  Generates POT template from PHP sources. It generates the POT template from every traslatable string in the PHP sources passed through.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">snapshot</span></tt>:  Generates a development snapshot.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">release</span></tt>:  Generates a stable realease.</li>
+</ul>
+</div>
+<div class="section" id="build-tasks">
+<span id="id26"></span><h4>1.7.3.3. Build tasks<a class="headerlink" href="#build-tasks" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">gen-img</span></tt>:  Generates PNG images and ICO icons for each theme, based on the SVG sources.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">gen-mo</span></tt>:  Generates MO files from PO sources.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">gen-man</span></tt>:  Generates the MAN page from REST sources.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">gen-wiki</span></tt>:  Generates the wiki pages for Google Code Wiki and GitHub Wiki from REST sources</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">gen-html</span></tt>:  Generates HTML pages from REST sources.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">gen-doc</span></tt>:  Executes gen-man, gen-wiki and gen-html.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">gen-conf</span></tt>:  Asks the user for the configuration data and builds config.php.</li>
+</ul>
+</div>
+<div class="section" id="clean-tasks">
+<span id="id27"></span><h4>1.7.3.4. Clean tasks<a class="headerlink" href="#clean-tasks" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">clean-img</span></tt>:  Cleans generated PNG and ICO files.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">clean-mo</span></tt>:  Cleans generated MO files.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">clean-html</span></tt>:  Cleans generated HTML files.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">clean-wiki</span></tt>:  Cleans generated WIKI files.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">clean-man</span></tt>:  Cleans generated MAN</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">clean-conf</span></tt>:  Cleans generated config.php.</li>
+</ul>
+</div>
+<div class="section" id="install-tasks">
+<span id="installs-tasks"></span><h4>1.7.3.5. Install tasks<a class="headerlink" href="#install-tasks" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">copy</span></tt>:  Copies application files to it&#8217;s destination.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">config</span></tt>:  Configures Aguilas using the generated config.php.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt>:  Does <tt class="docutils literal"><span class="pre">make</span> <span class="pre">copy</span></tt> and <tt class="docutils literal"><span class="pre">make</span> <span class="pre">config</span></tt>.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">uninstall</span></tt>:  Deconfigures and removes Aguilas data.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">reinstall</span></tt>:  Does <tt class="docutils literal"><span class="pre">make</span> <span class="pre">uninstall</span></tt> and <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt>.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="files-and-directories">
+<span id="id28"></span><h3>1.7.4. Files and Directories<a class="headerlink" href="#files-and-directories" title="Permalink to this headline">¶</a></h3>
+<p>Aguilas directory structure is distributed in the following form:</p>
+<div class="highlight-python"><pre>.
+├── [PHP FILES]
+├── [PHP FILES]
+├── [...]
+├── [DOCUMENTATION FOLDER]
+│   ├── [GITHUBWIKI FOLDER]
+│   ├── [GOOGLEWIKI FOLDER]
+│   ├── [HTML FOLDER]
+│   ├── [MAN FOLDER]
+│   └── [REST FOLDER]
+├── [EVENTS FOLDER]
+├── [LIBRARIES FOLDER]
+├── [LOCALE FOLDER]
+│   ├── [LOCALE A]
+│   ├── [LOCALE B]
+│   ├── [...]
+│   └── [POT FOLDER]
+├── [SETUP FOLDER]
+├── [THEMES FOLDER]
+├── [TOOLS FOLDER]
+└── Makefile</pre>
+</div>
+</div>
+</div>
+<div class="section" id="working-with-git">
+<span id="id29"></span><h2>1.8. Working with git<a class="headerlink" href="#working-with-git" title="Permalink to this headline">¶</a></h2>
+<p>Git is a free and open source, distributed version control system designed to handle everything from small to very large projects with speed and efficiency. If you want a list of common commands, see the <a class="reference internal" href="#git-cheat-sheet">git cheat sheet</a> or it&#8217;s <a class="reference external" href="http://zrusin.blogspot.com/2007/09/git-cheat-sheet.html">graphical summary</a>.</p>
+<p>For those too impatient to read, here&#8217;s what you need to work with someone else&#8217;s Git project:</p>
+<div class="highlight-python"><pre>git clone [URL]
+git add .
+git commit -a
+git push
+git pull</pre>
+</div>
+<p>Before running any command the first time, it&#8217;s recommended that you skim through its manual page. Many of the commands have very useful and interesting features (that we won&#8217;t list here) and sometimes there are some extra notes you might want to know. You can also get help on any Git command by doing <tt class="docutils literal"><span class="pre">git</span> <span class="pre">[COMMAND]</span> <span class="pre">-h</span></tt> or <tt class="docutils literal"><span class="pre">git</span> <span class="pre">help</span> <span class="pre">[COMMAND]</span></tt>.</p>
+<div class="section" id="installing-git">
+<span id="id30"></span><h3>1.8.1. Installing git<a class="headerlink" href="#installing-git" title="Permalink to this headline">¶</a></h3>
+<p>If you are using Debian, Ubuntu, Canaima or other Debian derivative, you can install git easily with the following command (as an administrator user):</p>
+<div class="highlight-python"><pre>aptitude install git-core</pre>
+</div>
+</div>
+<div class="section" id="configuring-git">
+<span id="id31"></span><h3>1.8.2. Configuring git<a class="headerlink" href="#configuring-git" title="Permalink to this headline">¶</a></h3>
+<p>Git includes your real name and your e-mail address on every commit you make. You should add these before you start using Git:</p>
+<div class="highlight-python"><pre>git config --global user.name "Your Complete Name"
+git config --global user.email you@yourdomain.example.com</pre>
+</div>
+<p><tt class="docutils literal"><span class="pre">git</span> <span class="pre">config</span></tt> is the command to set configuration options. While you&#8217;re configuring, here are some other things you might like to do:</p>
+<div class="highlight-python"><pre># colorized `git diff`, etc.
+git config --global color.ui auto
+
+# list all configuration options
+git config -l</pre>
+</div>
+</div>
+<div class="section" id="creating-a-new-repository">
+<span id="create-new-repository"></span><h3>1.8.3. Creating a New Repository<a class="headerlink" href="#creating-a-new-repository" title="Permalink to this headline">¶</a></h3>
+<p>Let&#8217;s step through how you create and update a new project:</p>
+<p>If you are creating a new project, you should:</p>
+<div class="highlight-python"><pre>mkdir myproject; cd myproject
+git init</pre>
+</div>
+<p>If you are putting an existing project under git version control, you should:</p>
+<div class="highlight-python"><pre>cd myproject
+git init
+git add .
+git commit -a</pre>
+</div>
+<p><tt class="docutils literal"><span class="pre">git</span> <span class="pre">init</span></tt> initializes the repository, <tt class="docutils literal"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></tt> adds all the files under the current directory and <tt class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-a</span></tt> creates the initial import of files.</p>
+<p>If you are downloading someone else&#8217;s git project, you should do this instead:</p>
+<div class="highlight-python"><pre>git clone [URL]</pre>
+</div>
+<p>Whichever the case, now your tree is officially tracked by git. One nice thing to note - no matter how many subdirectories your project has, there&#8217;s only one .git directory that contains all the version control information. Do some random changes to your tree now - poke around in a few files or something.</p>
+</div>
+<div class="section" id="making-changes">
+<span id="id32"></span><h3>1.8.4. Making Changes<a class="headerlink" href="#making-changes" title="Permalink to this headline">¶</a></h3>
+<p>When you&#8217;ve edited some files, next thing you have to do is add them to version control. First you check what you&#8217;ve done:</p>
+<div class="highlight-python"><pre>git diff</pre>
+</div>
+<p>That&#8217;s it. This is one of the more powerful commands. To get a diff with a specific commit, do:</p>
+<div class="highlight-python"><pre>git diff [COMMIT]</pre>
+</div>
+<p>You can obtain the commit number by listing all commits with:</p>
+<div class="highlight-python"><pre>git log</pre>
+</div>
+<p>Also, there is a more concise representation of changes available:</p>
+<div class="highlight-python"><pre>git status</pre>
+</div>
+<p>This will show the concise changes summary as well as list any files that you haven&#8217;t either ignored or told Git about. In addition, it will also show at the top which branch you are in.</p>
+<p>The status command also shows the &#8220;untracked files&#8221; that Git doesn&#8217;t know what to do with. You can either include them in the registry (in the case these are new files):</p>
+<div class="highlight-python"><pre>git add .</pre>
+</div>
+<p>Or delete them (in the case these are unwanted files from a build process, for example). <em>WARNING</em> this will delete all untracked files forever:</p>
+<div class="highlight-python"><pre>git clean -fd</pre>
+</div>
+<p>You could also list all files you want to ignore forever. These files will never be added to version control. What you need to do is create a file named <tt class="docutils literal"><span class="pre">.gitignore</span></tt>, containing a list of the files, line by line.</p>
+<p>If you made changes to a file that you want to undo, you can get back the last version you committed:</p>
+<div class="highlight-python"><pre>git checkout [PATH/TO/FILE]</pre>
+</div>
+<p>So after you have messed around with the project files, it&#8217;s about time for us to commit our changes:</p>
+<div class="highlight-python"><pre>git commit -a</pre>
+</div>
+<p>There are two considerations to observe:</p>
+<p>First, you have to specify <tt class="docutils literal"><span class="pre">-a</span></tt> if you want to commit all your files, or <tt class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">[PATH/TO/FILE]</span></tt> to commit file by file.</p>
+<p>Second, Git commits are private by default - they aren&#8217;t pushed to any central server unless you specify it. We&#8217;ll talk about pushing changes later, but private commits have some important benefits. For example, when you realise you left some debugging iformation in your last commit, or made a typo in the commit message, you can do <tt class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">--amend</span></tt> to fix it, or even do <tt class="docutils literal"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">HEAD^</span></tt> to toss the commit away completely without affecting your files.</p>
+<p>A few words about the commit message: it is customary to have a short commit summary as the first line of the message, because many tools just show the first line of the message. You can specify the commit message using the -m parameter (extra -m arguments will create extra paragraphs in the commit message).</p>
+</div>
+<div class="section" id="browsing-the-repository">
+<span id="id33"></span><h3>1.8.5. Browsing the repository<a class="headerlink" href="#browsing-the-repository" title="Permalink to this headline">¶</a></h3>
+<p>Now that we have committed some stuff, you might want to review your history:</p>
+<div class="highlight-python"><pre>git log
+git blame [PATH/TO/FILE]</pre>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">log</span></tt> command is very powerful, it shows you the complete history of the project, commit by commit, and also extra information like authors and dates. For example, <tt class="docutils literal"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></tt> will show you the first few characters of each commit ID and the first line of each commit message. See the <em>git-log manual page</em> for more stuff git log can do.</p>
+<p>The <tt class="docutils literal"><span class="pre">blame</span></tt> command is also very useful, as it identifies the author of every line of every file registered by git.</p>
+<p>You can see the contents of a file, the listing of a directory or a commit with:</p>
+<div class="highlight-python"><pre>git show [COMMIT]:[PATH/TO/FILE]
+git show [COMMIT]:[PATH/TO/DIRECTORY]
+git show -s [COMMIT]
+git show [COMMIT]</pre>
+</div>
+</div>
+<div class="section" id="branching-and-tagging">
+<span id="id34"></span><h3>1.8.6. Branching and Tagging<a class="headerlink" href="#branching-and-tagging" title="Permalink to this headline">¶</a></h3>
+<p>Git marks checkpoints in history by applying a label to a commit. You can create a branch with the following commands:</p>
+<blockquote>
+<div>git branch [NEW] [OLD]
+git checkout [NEW]</div></blockquote>
+<p>The first command creates a branch, the second command switches your tree to the new branch. You can pass an extra argument to <tt class="docutils literal"><span class="pre">git</span> <span class="pre">branch</span></tt> to base your new branch on a different revision than the latest one.</p>
+<p>Running <tt class="docutils literal"><span class="pre">git</span> <span class="pre">branch</span></tt> without arguments lists your branches. The * in the output marks the current branch:</p>
+<div class="highlight-python"><pre>git branch</pre>
+</div>
+<p>To move your tree to some older revision, use:</p>
+<div class="highlight-python"><pre>git checkout [COMMIT]</pre>
+</div>
+<p>Git tags are fairly similar to Git branches, but with some extra tricks. Git tags can have a date, committer, and message that act just like the equivalents for Git commits. They can also be signed with a PGP key if you really want to stamp them with your seal of approval. This is great if you want to release a public version of your work, because you can have one place to store your release announcement and your guarantee that the code hasn&#8217;t been tampered with. So, let&#8217;s do it:</p>
+<div class="highlight-python"><pre>git tag -a [NAME]</pre>
+</div>
+<p>To list tags and to show a tag message:</p>
+<div class="highlight-python"><pre>git tag -l
+git show [NAME]</pre>
+</div>
+</div>
+<div class="section" id="merging-branches">
+<span id="id35"></span><h3>1.8.7. Merging branches<a class="headerlink" href="#merging-branches" title="Permalink to this headline">¶</a></h3>
+<p>Let&#8217;s suppose you are on branch &#8220;release&#8221;, and you want to bring the changes you&#8217;ve made on &#8220;development&#8221; branch, then you&#8217;ll have to do:</p>
+<div class="highlight-python"><pre>git merge development</pre>
+</div>
+<p>If changes were made on only one of the branches since the last merge, they are simply replayed on your other branch (a so-called fast-forward merge). If changes were made on both branches, they are merged intelligently (a so-called three-way merge). If the three-way merge doesn&#8217;t have any merge conflicts, it makes a commit with a convenient log message (the <tt class="docutils literal"><span class="pre">--no-commit</span></tt> option disables this). If there are merge conflicts (when one ore more lines of a file being merged have different values in the previous state), <tt class="docutils literal"><span class="pre">git</span> <span class="pre">merge</span></tt> will report them and let you resolve them.</p>
+<p>To resolve a conflict, you will have to look in the file being reported as conflict for the following pattern:</p>
+<div class="highlight-python"><pre>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:file.txt
+Hello world
+=======
+Goodbye
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 77976da35a11db4580b80ae27e8d65caf5208086:file.txt</pre>
+</div>
+<p>which can be explained like this:</p>
+<div class="highlight-python"><pre>&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+changes made on my branch
+=======
+changes made on the branch i'm merging
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;</pre>
+</div>
+<p>You will have to erase manually which part are you going to leave. After editing all conflicts, you have to commit your changes:</p>
+<div class="highlight-python"><pre>git commit -a</pre>
+</div>
+<p>Aside from merging, sometimes you want to just pluck one commit out of a different branch. To apply the changes in revision rev and commit them to the current branch use:</p>
+<div class="highlight-python"><pre>git cherry-pick [COMMIT]</pre>
+</div>
+</div>
+<div class="section" id="working-with-remote-servers">
+<span id="id36"></span><h3>1.8.8. Working with remote servers<a class="headerlink" href="#working-with-remote-servers" title="Permalink to this headline">¶</a></h3>
+<p>If you created your repository with one of the <tt class="docutils literal"><span class="pre">clone</span></tt> commands, Git will have already set up a remote repository for you called <em>origin</em>. If you created your repository from scratch, you will have to set it up.</p>
+<p>To see which remote servers you have configured, you can run the <tt class="docutils literal"><span class="pre">git</span> <span class="pre">remote</span></tt> command. It lists the shortnames of each remote handle you&#8217;ve specified. If you&#8217;ve cloned your repository, you should at least see <em>origin</em> — that is the default name Git gives to the server you cloned from:</p>
+<div class="highlight-python"><pre>git remote -v</pre>
+</div>
+<p>To add a new remote Git repository as a shortname you can reference easily, run:</p>
+<div class="highlight-python"><pre>git remote add [SHORTNAME] [URL]</pre>
+</div>
+<p>When you cloned your repository, Git downloaded all the branches and tags in that repository, and created your master branch based on the master branch in that repository. Even though it only used the master branch, it kept copies of all the others in case you needed them. Copies of branches from a remote repository are called remote branches, and don&#8217;t behave quite like the local branches you&#8217;ve used before.</p>
+<p>For starters, remote branches don&#8217;t show up in a normal git branch. Instead, you list remote branches with <tt class="docutils literal"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-r</span></tt>. You can log these branches, diff them and merge them, but you can&#8217;t commit to them, or they would stop being copies of the branch on the remote repository. If you want to work with a remote branch, you need to create a local branch that &#8220;tracks&#8221; it, like this:</p>
+<div class="highlight-python"><pre>git checkout -t origin/branch</pre>
+</div>
+<p>Now, how do you download new changes from a remote repository? You fetch them with <tt class="docutils literal"><span class="pre">git</span> <span class="pre">fetch</span></tt>. But usually you don&#8217;t just want to fetch, you also want to merge any changes into your local branch:</p>
+<div class="highlight-python"><pre>git pull</pre>
+</div>
+<p>A pull is technically a bit different to a rebase. As always, see the relevant manual pages for details.</p>
+</div>
+<div class="section" id="sharing-your-work">
+<span id="id37"></span><h3>1.8.9. Sharing your Work<a class="headerlink" href="#sharing-your-work" title="Permalink to this headline">¶</a></h3>
+<p>We saw in the previous section that you can pull other people&#8217;s work into your repository, but how do your changes get back out? Well, your Git repository is as good as any other repository, so you could just ask people to git pull from you the same way you git pulled from them.</p>
+<p>This is fine as far as Git&#8217;s concerned, but what if you have a slow Internet connection, or you are behind a firewall, or you like to amend your commits before letting people see them? Most people get around this by having two repositories: a private repository they work on, and a public repository for people to pull from.</p>
+<p>So how do you get your work onto your public repository? Well, it&#8217;s the opposite of <tt class="docutils literal"><span class="pre">git</span> <span class="pre">pull</span></tt>, so you <tt class="docutils literal"><span class="pre">git</span> <span class="pre">push</span></tt>!</p>
+<p>When you have your project at a point that you want to share, you have to push it upstream. The command for this is simple:</p>
+<div class="highlight-python"><pre>git push [REMOTE-NAME] [BRANCH-NAME]</pre>
+</div>
+<p>If you want to push your master branch to your origin server, then you can run this to push your work back up to the server:</p>
+<div class="highlight-python"><pre>git push origin master</pre>
+</div>
+<p>This command works only if you cloned from a server to which you have write access and if nobody has pushed in the meantime. If you and someone else clone at the same time and they push upstream and then you push upstream, your push will rightly be rejected. You’ll have to pull down their work first and incorporate it into yours before you’ll be allowed to push.</p>
+</div>
+<div class="section" id="working-with-submodules">
+<span id="id38"></span><h3>1.8.10. Working with submodules<a class="headerlink" href="#working-with-submodules" title="Permalink to this headline">¶</a></h3>
+<p>Git submodules allows you to attach or include an external repository inside another repository at a specific path. It basically permits to handle various &#8220;subprojects&#8221; inside one big project. For example, Aguilas has two subprojects inside: the <a class="reference external" href="http://code.google.com/p/aguilas/w/list">Google code Wiki</a> (<tt class="docutils literal"><span class="pre">documentation/googlewiki</span></tt>) and the <a class="reference external" href="https://github.com/HuntingBears/aguilas/wiki">GitHub Wiki</a> (<tt class="docutils literal"><span class="pre">documentation/githubwiki</span></tt>), which both update through the command <tt class="docutils literal"><span class="pre">make</span> <span class="pre">gen-wiki</span></tt> on the main project.</p>
+<p>There are four main functions you will need to understand in order to work with Git submodules. In order, you will need to know how to add, make use of, remove, and update submodules.</p>
+<div class="section" id="adding-submodules-to-a-git-repository">
+<span id="id39"></span><h4>1.8.10.1. Adding Submodules to a Git Repository<a class="headerlink" href="#adding-submodules-to-a-git-repository" title="Permalink to this headline">¶</a></h4>
+<p>Adding a submodule to a git repository is actually quite simple. For example, let&#8217;s suppose we want to add support for another (fictionary) wiki: the mediawiki format wiki, on the <tt class="docutils literal"><span class="pre">documentation/mediawiki</span></tt> folder. You can do so with the following command:</p>
+<div class="highlight-python"><pre>git submodule add git@github.com:mediawiki/wiki.git documentation/mediawiki</pre>
+</div>
+<p>There are three main parts to this command:</p>
+<ul class="simple">
+<li><strong>git submodule add</strong>:  This simply tells Git that we are adding a submodule. This syntax will always remain the same.</li>
+<li><strong>git&#64;github.com:mediawiki/wiki.git</strong>:  This is the external repository that is to be added as a submodule. The exact syntax will vary depending on the setup of the Git repository you are connecting to. You need to ensure that you have the ability to clone the given repository.</li>
+<li><strong>documentation/mediawiki</strong>:  This is the path where the submodule repository will be added to the main repository.</li>
+</ul>
+<p>If you make <tt class="docutils literal"><span class="pre">git</span> <span class="pre">status</span></tt>, you will notice how the supplied path was created and added to the changes to be committed. In addition, a new file called <tt class="docutils literal"><span class="pre">.gitmodules</span></tt> was created. This new file contains the details we supplied about the new submodule. Out of curiosity, if you check out the contents of that new file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">cat</span> <span class="o">.</span><span class="n">gitmodules</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>[submodule "documentation/mediawiki"]
+path = documentation/mediawiki
+url = git@github.com:mediawiki/wiki.git</pre>
+</div>
+<p>Being able to modify this file later will come in handy later.</p>
+<p>All that is left to do now is to commit the changes and then push the commit to a remote system if necessary.</p>
+</div>
+<div class="section" id="using-submodules">
+<span id="id40"></span><h4>1.8.10.2. Using Submodules<a class="headerlink" href="#using-submodules" title="Permalink to this headline">¶</a></h4>
+<p>Having submodules in a repository is great and all, but if you look inside, all you will have is an empty folder rather than the actual contents of the submodule&#8217;s repository. In order to fill in the submodule&#8217;s path with the files from the external repository, you must first initialize the submodules and then update them.</p>
+<p>First, you need to initialize the submodule(s). You can do that with the following command on the root folder of the main project:</p>
+<div class="highlight-python"><pre>git submodule init</pre>
+</div>
+<p>Then you need to run the update in order to pull down the files:</p>
+<div class="highlight-python"><pre>git submodule update</pre>
+</div>
+<p>Looking in the <tt class="docutils literal"><span class="pre">documentation/mediawiki</span></tt> directory now shows a nice listing of the needed files.</p>
+</div>
+<div class="section" id="removing-submodules">
+<span id="id41"></span><h4>1.8.10.3. Removing Submodules<a class="headerlink" href="#removing-submodules" title="Permalink to this headline">¶</a></h4>
+<p>What happens if we need to remove a submodule? Maybe I made a mistake. It could also be that the design of the project has changed, and the submodules need to change with it. Unfortunately, Git does not have a built in way to remove submodules. we have to do it manually.</p>
+<p>Sticking with the example, we&#8217;ll remove the <tt class="docutils literal"><span class="pre">documentation/mediawiki</span></tt> module from Aguilas. All the instructions will be run from the working directory of the Aguilas repository. In order, we need to do the following:</p>
+<ul>
+<li><p class="first"><strong>Remove the submodule&#8217;s entry in the .gitmodules file</strong>: Open it up in vim, or your favorite text editor, and remove the three lines relevant to the submodule being removed. In this case, these lines will be removed:</p>
+<div class="highlight-python"><pre>[submodule "documentation/mediawiki"]
+path = documentation/mediawiki
+url = git@github.com:mediawiki/wiki.git</pre>
+</div>
+</li>
+<li><p class="first"><strong>Remove the submodule&#8217;s entry in the .git/config file</strong>: Open it up in vim, or your favorite text editor, and remove the two lines relevant to the submodule being removed. In this case, these lines will be removed:</p>
+<div class="highlight-python"><pre>[submodule "documentation/mediawiki"]
+url = git@github.com:mediawiki/wiki.git</pre>
+</div>
+</li>
+<li><p class="first"><strong>Remove the path created for the submodule</strong>: Run the following command to finish removing the submodule:</p>
+<div class="highlight-python"><pre>git rm --cached documentation/mediawiki</pre>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="updating-submodules">
+<span id="id42"></span><h4>1.8.10.4. Updating Submodules<a class="headerlink" href="#updating-submodules" title="Permalink to this headline">¶</a></h4>
+<p>Unfortunately, like removing submodules, Git does not make it clear how to update a submodule to a later commit. Fortunately though, it&#8217;s not that tough.</p>
+<p>Initialize the repository&#8217;s submodules by running <tt class="docutils literal"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">init</span></tt> followed by <tt class="docutils literal"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span></tt>:</p>
+<div class="highlight-python"><pre>git submodule init
+git submodule update</pre>
+</div>
+<p>Change into the submodule&#8217;s directory. In this example, <tt class="docutils literal"><span class="pre">documentation/mediawiki</span></tt>:</p>
+<div class="highlight-python"><pre>cd documentation/mediawiki</pre>
+</div>
+<p>The submodule repositories added by <tt class="docutils literal"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span></tt> are &#8220;headless&#8221;. This means that they aren&#8217;t on a current branch.To fix this, we simply need to switch to a branch. In this example, that would be the development branch:</p>
+<div class="highlight-python"><pre>git checkout development</pre>
+</div>
+<p>Next, we simply need to update the repository to ensure that we have the latest updates:</p>
+<div class="highlight-python"><pre>git pull</pre>
+</div>
+<p>Now switch back to the root working directory of the repository:</p>
+<div class="highlight-python"><pre>cd ../..</pre>
+</div>
+<p>Everything is now ready to be committed and pushed back in. If you run <tt class="docutils literal"><span class="pre">git</span> <span class="pre">status</span></tt>, you&#8217;ll notice that the path to the submodule is listed as modified. This is what you should expect to see. Simply add the path to be committed and do a commit. When you do the commit, the index will update the commit string for the submodule:</p>
+<div class="highlight-python"><pre>git add .
+git commit -a</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="git-cheat-sheet">
+<span id="id43"></span><h2>1.9. Git Cheat Sheet<a class="headerlink" href="#git-cheat-sheet" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="setup">
+<h3>1.9.1. Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>git clone &lt;repo&gt;</dt>
+<dd>clone the repository specified by &lt;repo&gt;; this is similar to &#8220;checkout&#8221; in
+some other version control systems such as Subversion and CVS</dd>
+</dl>
+<p>Add colors to your ~/.gitconfig file:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>[color]</dt>
+<dd>ui = auto</dd>
+<dt>[color &#8220;branch&#8221;]</dt>
+<dd>current = yellow reverse
+local = yellow
+remote = green</dd>
+<dt>[color &#8220;diff&#8221;]</dt>
+<dd>meta = yellow bold
+frag = magenta bold
+old = red bold
+new = green bold</dd>
+<dt>[color &#8220;status&#8221;]</dt>
+<dd>added = yellow
+changed = green
+untracked = cyan</dd>
+</dl>
+</div></blockquote>
+<p>Highlight whitespace in diffs</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>[color]</dt>
+<dd>ui = true</dd>
+<dt>[color &#8220;diff&#8221;]</dt>
+<dd>whitespace = red reverse</dd>
+<dt>[core]</dt>
+<dd>whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol</dd>
+</dl>
+</div></blockquote>
+<p>Add aliases to your ~/.gitconfig file:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>[alias]</dt>
+<dd><p class="first">st = status
+ci = commit
+br = branch
+co = checkout
+df = diff
+dc = diff &#8211;cached
+lg = log -p
+lol = log &#8211;graph &#8211;decorate &#8211;pretty=oneline &#8211;abbrev-commit
+lola = log &#8211;graph &#8211;decorate &#8211;pretty=oneline &#8211;abbrev-commit &#8211;all
+ls = ls-files</p>
+<p class="last"># Show files ignored by git:
+ign = ls-files -o -i &#8211;exclude-standard</p>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="id44">
+<h3>1.9.2. Configuration<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>git config -e [&#8211;global]</dt>
+<dd>edit the .git/config [or ~/.gitconfig] file in your $EDITOR</dd>
+</dl>
+<p>git config &#8211;global user.name &#8216;John Doe&#8217;
+git config &#8211;global user.email <a class="reference external" href="mailto:johndoe&#37;&#52;&#48;example&#46;com">johndoe<span>&#64;</span>example<span>&#46;</span>com</a>
+sets your name and email for commit messages</p>
+<dl class="docutils">
+<dt>git config branch.autosetupmerge true</dt>
+<dd>tells git-branch and git-checkout to setup new branches so that git-pull(1)
+will appropriately merge from that remote branch.  Recommended.  Without this,
+you will have to add &#8211;track to your branch command or manually merge remote
+tracking branches with &#8220;fetch&#8221; and then &#8220;merge&#8221;.</dd>
+<dt>git config core.autocrlf true</dt>
+<dd>This setting tells git to convert the newlines to the system&#8217;s standard
+when checking out files, and to LF newlines when committing in</dd>
+<dt>git config &#8211;list</dt>
+<dd>To view all options</dd>
+<dt>git config apply.whitespace nowarn</dt>
+<dd>To ignore whitespace</dd>
+</dl>
+<p>You can add &#8220;&#8211;global&#8221; after &#8220;git config&#8221; to any of these commands to make it
+apply to all git repos (writes to ~/.gitconfig).</p>
+</div>
+<div class="section" id="info">
+<h3>1.9.3. Info<a class="headerlink" href="#info" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>git reflog</dt>
+<dd>Use this to recover from <em>major</em> mess ups! It&#8217;s basically a log of the
+last few actions and you might have luck and find old commits that
+have been lost by doing a complex merge.</dd>
+<dt>git diff</dt>
+<dd>show a diff of the changes made since your last commit
+to diff one file: &#8220;git diff &#8211; &lt;filename&gt;&#8221;
+to show a diff between staging area and HEAD: <cite>git diff &#8211;cached</cite></dd>
+<dt>git status</dt>
+<dd>show files added to the staging area, files with changes, and untracked files</dd>
+<dt>git log</dt>
+<dd>show recent commits, most recent on top. Useful options:
+&#8211;color       with color
+&#8211;graph       with an ASCII-art commit graph on the left
+&#8211;decorate    with branch and tag names on appropriate commits
+&#8211;stat        with stats (files changed, insertions, and deletions)
+-p            with full diffs
+&#8211;author=foo  only by a certain author
+&#8211;after=&#8221;MMM DD YYYY&#8221; ex. (&#8220;Jun 20 2008&#8221;) only commits after a certain date
+&#8211;before=&#8221;MMM DD YYYY&#8221; only commits that occur before a certain date
+&#8211;merge       only the commits involved in the current merge conflicts</dd>
+<dt>git log &lt;ref&gt;..&lt;ref&gt;</dt>
+<dd>show commits between the specified range. Useful for seeing changes from
+remotes:
+git log HEAD..origin/master # after git remote update</dd>
+<dt>git show &lt;rev&gt;</dt>
+<dd>show the changeset (diff) of a commit specified by &lt;rev&gt;, which can be any
+SHA1 commit ID, branch name, or tag (shows the last commit (HEAD) by default)
+also to show the contents of a file at a specific revision, use git show &lt;rev&gt;:&lt;filename&gt;
+this is similar to cat-file but much simpler syntax.</dd>
+<dt>git show &#8211;name-only &lt;rev&gt;</dt>
+<dd>show only the names of the files that changed, no diff information.</dd>
+<dt>git blame &lt;file&gt;</dt>
+<dd>show who authored each line in &lt;file&gt;</dd>
+<dt>git blame &lt;file&gt; &lt;rev&gt;</dt>
+<dd>show who authored each line in &lt;file&gt; as of &lt;rev&gt; (allows blame to go back in
+time)</dd>
+<dt>git gui blame</dt>
+<dd>really nice GUI interface to git blame</dd>
+<dt>git whatchanged &lt;file&gt;</dt>
+<dd>show only the commits which affected &lt;file&gt; listing the most recent first
+E.g. view all changes made to a file on a branch: git whatchanged &lt;branch&gt; &lt;file&gt;  | grep commit | colrm 1 7 | xargs -I % git show % &lt;file&gt;
+this could be combined with git remote show &lt;remote&gt; to find all changes on
+all branches to a particular file.</dd>
+<dt>git diff &lt;commit&gt; head path/to/fubar</dt>
+<dd>show the diff between a file on the current branch and potentially another
+branch</dd>
+<dt>git diff &#8211;cached [&lt;file&gt;]</dt>
+<dd>shows diff for staged (git-add&#8217;ed) files (which includes uncommitted git
+cherry-pick&#8217;ed files)</dd>
+<dt>git ls-files</dt>
+<dd>list all files in the index and under version control.</dd>
+<dt>git ls-remote &lt;remote&gt; [HEAD]</dt>
+<dd>show the current version on the remote repo. This can be used to check whether
+a local is required by comparing the local head revision.</dd>
+</dl>
+</div>
+<div class="section" id="adding-deleting">
+<h3>1.9.4. Adding / Deleting<a class="headerlink" href="#adding-deleting" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>git add &lt;file1&gt; &lt;file2&gt; ...</dt>
+<dd>add &lt;file1&gt;, &lt;file2&gt;, etc... to the project</dd>
+<dt>git add &lt;dir&gt;</dt>
+<dd>add all files under directory &lt;dir&gt; to the project, including subdirectories</dd>
+<dt>git add .</dt>
+<dd>add all files under the current directory to the project
+<em>WARNING</em>: including untracked files.</dd>
+<dt>git rm &lt;file1&gt; &lt;file2&gt; ...</dt>
+<dd>remove &lt;file1&gt;, &lt;file2&gt;, etc... from the project</dd>
+<dt>git rm $(git ls-files &#8211;deleted)</dt>
+<dd>remove all deleted files from the project</dd>
+<dt>git rm &#8211;cached &lt;file1&gt; &lt;file2&gt; ...</dt>
+<dd>commits absence of &lt;file1&gt;, &lt;file2&gt;, etc... from the project</dd>
+</dl>
+</div>
+<div class="section" id="ignoring">
+<h3>1.9.5. Ignoring<a class="headerlink" href="#ignoring" title="Permalink to this headline">¶</a></h3>
+<p>Option 1:</p>
+<p>Edit $GIT_DIR/info/exclude. See Environment Variables below for explanation on
+$GIT_DIR.</p>
+<p>Option 2:</p>
+<p>Add a file .gitignore to the root of your project. This file will be checked in.</p>
+<p>Either way you need to add patterns to exclude to these files.</p>
+</div>
+<div class="section" id="staging">
+<h3>1.9.6. Staging<a class="headerlink" href="#staging" title="Permalink to this headline">¶</a></h3>
+<p>git add &lt;file1&gt; &lt;file2&gt; ...
+git stage &lt;file1&gt; &lt;file2&gt; ...
+add changes in &lt;file1&gt;, &lt;file2&gt; ... to the staging area (to be included in the next commit</p>
+<p>git add -p
+git stage &#8211;patch
+interactively walk through the current changes (hunks) in the working tree, and decide which changes to add to the staging area.</p>
+<p>git add -i
+git stage &#8211;interactive
+interactively add files/changes to the staging area. For a simpler mode (no menu), try <cite>git add &#8211;patch</cite> (above)</p>
+</div>
+<div class="section" id="unstaging">
+<h3>1.9.7. Unstaging<a class="headerlink" href="#unstaging" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>git reset HEAD &lt;file1&gt; &lt;file2&gt; ...</dt>
+<dd>remove the specified files from the next commit</dd>
+</dl>
+</div>
+<div class="section" id="committing">
+<h3>1.9.8. Committing<a class="headerlink" href="#committing" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>git commit &lt;file1&gt; &lt;file2&gt; ... [-m &lt;msg&gt;]</dt>
+<dd>commit &lt;file1&gt;, &lt;file2&gt;, etc..., optionally using commit message &lt;msg&gt;,
+otherwise opening your editor to let you type a commit message</dd>
+<dt>git commit -a</dt>
+<dd>commit all files changed since your last commit
+(does not include new (untracked) files)</dd>
+<dt>git commit -v</dt>
+<dd>commit verbosely, i.e. includes the diff of the contents being committed in
+the commit message screen</dd>
+<dt>git commit &#8211;amend</dt>
+<dd>edit the commit message of the most recent commit</dd>
+<dt>git commit &#8211;amend &lt;file1&gt; &lt;file2&gt; ...</dt>
+<dd>redo previous commit, including changes made to &lt;file1&gt;, &lt;file2&gt;, etc...</dd>
+</dl>
+</div>
+<div class="section" id="branching">
+<h3>1.9.9. Branching<a class="headerlink" href="#branching" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>git branch</dt>
+<dd>list all local branches</dd>
+<dt>git branch -r</dt>
+<dd>list all remote branches</dd>
+<dt>git branch -a</dt>
+<dd>list all local and remote branches</dd>
+<dt>git branch &lt;branch&gt;</dt>
+<dd>create a new branch named &lt;branch&gt;, referencing the same point in history as
+the current branch</dd>
+<dt>git branch &lt;branch&gt; &lt;start-point&gt;</dt>
+<dd>create a new branch named &lt;branch&gt;, referencing &lt;start-point&gt;, which may be
+specified any way you like, including using a branch name or a tag name</dd>
+<dt>git push &lt;repo&gt; &lt;start-point&gt;:refs/heads/&lt;branch&gt;</dt>
+<dd>create a new remote branch named &lt;branch&gt;, referencing &lt;start-point&gt; on the
+remote. Repo is the name of the remote.
+Example: git push origin origin:refs/heads/branch-1
+Example: git push origin origin/branch-1:refs/heads/branch-2
+Example: git push origin branch-1 ## shortcut</dd>
+<dt>git branch &#8211;track &lt;branch&gt; &lt;remote-branch&gt;</dt>
+<dd>create a tracking branch. Will push/pull changes to/from another repository.
+Example: git branch &#8211;track experimental origin/experimental</dd>
+<dt>git branch &#8211;set-upstream &lt;branch&gt; &lt;remote-branch&gt; (As of Git 1.7.0)</dt>
+<dd>Make an existing branch track a remote branch
+Example: git branch &#8211;set-upstream foo origin/foo</dd>
+<dt>git branch -d &lt;branch&gt;</dt>
+<dd>delete the branch &lt;branch&gt;; if the branch you are deleting points to a
+commit which is not reachable from the current branch, this command
+will fail with a warning.</dd>
+<dt>git branch -r -d &lt;remote-branch&gt;</dt>
+<dd>delete a remote-tracking branch.
+Example: git branch -r -d wycats/master</dd>
+<dt>git branch -D &lt;branch&gt;</dt>
+<dd>even if the branch points to a commit not reachable from the current branch,
+you may know that that commit is still reachable from some other branch or
+tag. In that case it is safe to use this command to force git to delete the
+branch.</dd>
+<dt>git checkout &lt;branch&gt;</dt>
+<dd>make the current branch &lt;branch&gt;, updating the working directory to reflect
+the version referenced by &lt;branch&gt;</dd>
+<dt>git checkout -b &lt;new&gt; &lt;start-point&gt;</dt>
+<dd>create a new branch &lt;new&gt; referencing &lt;start-point&gt;, and check it out.</dd>
+<dt>git push &lt;repository&gt; :&lt;branch&gt;</dt>
+<dd>removes a branch from a remote repository.
+Example: git push origin :old_branch_to_be_deleted</dd>
+<dt>git co &lt;branch&gt; &lt;path to new file&gt;</dt>
+<dd>Checkout a file from another branch and add it to this branch. File
+will still need to be added to the git branch, but it&#8217;s present.
+Eg. git co remote_at_origin__tick702_antifraud_blocking
+..../...nt_elements_for_iframe_blocked_page.rb</dd>
+<dt>git show &lt;branch&gt; &#8211; &lt;path to file that does not exist&gt;</dt>
+<dd>Eg. git show remote_tick702 &#8211; path/to/fubar.txt
+show the contents of a file that was created on another branch and that
+does not exist on the current branch.</dd>
+<dt>git show &lt;rev&gt;:&lt;repo path to file&gt;</dt>
+<dd>Show the contents of a file at the specific revision. Note: path has to be
+absolute within the repo.</dd>
+</dl>
+</div>
+<div class="section" id="merging">
+<h3>1.9.10. Merging<a class="headerlink" href="#merging" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>git merge &lt;branch&gt;</dt>
+<dd>merge branch &lt;branch&gt; into the current branch; this command is idempotent
+and can be run as many times as needed to keep the current branch
+up-to-date with changes in &lt;branch&gt;</dd>
+<dt>git merge &lt;branch&gt; &#8211;no-commit</dt>
+<dd>merge branch &lt;branch&gt; into the current branch, but do not autocommit the
+result; allows you to make further tweaks</dd>
+<dt>git merge &lt;branch&gt; -s ours</dt>
+<dd>merge branch &lt;branch&gt; into the current branch, but drops any changes in
+&lt;branch&gt;, using the current tree as the new tree</dd>
+</dl>
+</div>
+<div class="section" id="cherry-picking">
+<h3>1.9.11. Cherry-Picking<a class="headerlink" href="#cherry-picking" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>git cherry-pick [&#8211;edit] [-n] [-m parent-number] [-s] [-x] &lt;commit&gt;</dt>
+<dd>selectively merge a single commit from another local branch
+Example: git cherry-pick 7300a6130d9447e18a931e898b64eefedea19544</dd>
+</dl>
+</div>
+<div class="section" id="squashing">
+<h3>1.9.12. Squashing<a class="headerlink" href="#squashing" title="Permalink to this headline">¶</a></h3>
+<p>WARNING: &#8220;git rebase&#8221; changes history. Be careful. Google it.</p>
+<dl class="docutils">
+<dt>git rebase &#8211;interactive HEAD~10</dt>
+<dd>(then change all but the first &#8220;pick&#8221; to &#8220;squash&#8221;)
+squash the last 10 commits into one big commit</dd>
+</dl>
+</div>
+<div class="section" id="conflicts">
+<h3>1.9.13. Conflicts<a class="headerlink" href="#conflicts" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>git mergetool</dt>
+<dd>work through conflicted files by opening them in your mergetool (opendiff,
+kdiff3, etc.) and choosing left/right chunks. The merged result is staged for
+commit.</dd>
+</dl>
+<p>For binary files or if mergetool won&#8217;t do, resolve the conflict(s) manually
+and then do:</p>
+<blockquote>
+<div>git add &lt;file1&gt; [&lt;file2&gt; ...]</div></blockquote>
+<p>Once all conflicts are resolved and staged, commit the pending merge with:</p>
+<blockquote>
+<div>git commit</div></blockquote>
+</div>
+<div class="section" id="sharing">
+<h3>1.9.14. Sharing<a class="headerlink" href="#sharing" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>git fetch &lt;remote&gt;</dt>
+<dd>update the remote-tracking branches for &lt;remote&gt; (defaults to &#8220;origin&#8221;).
+Does not initiate a merge into the current branch (see &#8220;git pull&#8221; below).</dd>
+<dt>git pull</dt>
+<dd>fetch changes from the server, and merge them into the current branch.
+Note: .git/config must have a [branch &#8220;some_name&#8221;] section for the current
+branch, to know which remote-tracking branch to merge into the current
+branch.  Git 1.5.3 and above adds this automatically.</dd>
+<dt>git push</dt>
+<dd>update the server with your commits across all branches that are <em>COMMON</em>
+between your local copy and the server.  Local branches that were never
+pushed to the server in the first place are not shared.</dd>
+<dt>git push origin &lt;branch&gt;</dt>
+<dd>update the server with your commits made to &lt;branch&gt; since your last push.
+This is always <em>required</em> for new branches that you wish to share. After
+the first explicit push, &#8220;git push&#8221; by itself is sufficient.</dd>
+<dt>git push origin &lt;branch&gt;:refs/heads/&lt;branch&gt;</dt>
+<dd>E.g. git push origin twitter-experiment:refs/heads/twitter-experiment
+Which, in fact, is the same as git push origin &lt;branch&gt; but a little
+more obvious what is happening.</dd>
+</dl>
+</div>
+<div class="section" id="reverting">
+<h3>1.9.15. Reverting<a class="headerlink" href="#reverting" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>git revert &lt;rev&gt;</dt>
+<dd>reverse commit specified by &lt;rev&gt; and commit the result.  This does <em>not</em> do
+the same thing as similarly named commands in other VCS&#8217;s such as &#8220;svn
+revert&#8221; or &#8220;bzr revert&#8221;, see below</dd>
+<dt>git checkout &lt;file&gt;</dt>
+<dd>re-checkout &lt;file&gt;, overwriting any local changes</dd>
+<dt>git checkout .</dt>
+<dd>re-checkout all files, overwriting any local changes.  This is most similar
+to &#8220;svn revert&#8221; if you&#8217;re used to Subversion commands</dd>
+</dl>
+</div>
+<div class="section" id="fix-mistakes-undo">
+<h3>1.9.16. Fix mistakes / Undo<a class="headerlink" href="#fix-mistakes-undo" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>git reset &#8211;hard</dt>
+<dd>abandon everything since your last commit; this command can be DANGEROUS.
+If merging has resulted in conflicts and you&#8217;d like to just forget about
+the merge, this command will do that.</dd>
+<dt>git reset &#8211;hard ORIG_HEAD or git reset &#8211;hard origin/master</dt>
+<dd>undo your most recent <em>successful</em> merge <em>and</em> any changes that occurred
+after.  Useful for forgetting about the merge you just did.  If there are
+conflicts (the merge was not successful), use &#8220;git reset &#8211;hard&#8221; (above)
+instead.</dd>
+<dt>git reset &#8211;soft HEAD^</dt>
+<dd>forgot something in your last commit? That&#8217;s easy to fix. Undo your last
+commit, but keep the changes in the staging area for editing.</dd>
+<dt>git commit &#8211;amend</dt>
+<dd>redo previous commit, including changes you&#8217;ve staged in the meantime.
+Also used to edit commit message of previous commit.</dd>
+</dl>
+</div>
+<div class="section" id="plumbing">
+<h3>1.9.17. Plumbing<a class="headerlink" href="#plumbing" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>test &lt;sha1-A&gt; = $(git merge-base &lt;sha1-A&gt; &lt;sha1-B&gt;)</dt>
+<dd>determine if merging sha1-B into sha1-A is achievable as a fast forward;
+non-zero exit status is false.</dd>
+</dl>
+</div>
+<div class="section" id="stashing">
+<h3>1.9.18. Stashing<a class="headerlink" href="#stashing" title="Permalink to this headline">¶</a></h3>
+<p>git stash
+git stash save &lt;optional-name&gt;
+save your local modifications to a new stash (so you can for example &#8220;git svn rebase&#8221; or &#8220;git pull&#8221;)</p>
+<dl class="docutils">
+<dt>git stash apply</dt>
+<dd>restore the changes recorded in the stash on top of the current working tree
+state</dd>
+<dt>git stash pop</dt>
+<dd>restore the changes from the most recent stash, and remove it from the stack
+of stashed changes</dd>
+<dt>git stash list</dt>
+<dd>list all current stashes</dd>
+<dt>git stash show &lt;stash-name&gt; -p</dt>
+<dd>show the contents of a stash - accepts all diff args</dd>
+<dt>git stash drop [&lt;stash-name&gt;]</dt>
+<dd>delete the stash</dd>
+<dt>git stash clear</dt>
+<dd>delete all current stashes</dd>
+</dl>
+</div>
+<div class="section" id="remotes">
+<h3>1.9.19. Remotes<a class="headerlink" href="#remotes" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>git remote add &lt;remote&gt; &lt;remote_URL&gt;</dt>
+<dd>adds a remote repository to your git config.  Can be then fetched locally.
+Example:
+git remote add coreteam git://github.com/wycats/merb-plugins.git
+git fetch coreteam</dd>
+<dt>git push &lt;remote&gt; :refs/heads/&lt;branch&gt;</dt>
+<dd>delete a branch in a remote repository</dd>
+<dt>git push &lt;remote&gt; &lt;remote&gt;:refs/heads/&lt;remote_branch&gt;</dt>
+<dd>create a branch on a remote repository
+Example: git push origin origin:refs/heads/new_feature_name</dd>
+<dt>git push &lt;repository&gt; +&lt;remote&gt;:&lt;new_remote&gt;</dt>
+<dd>replace a &lt;remote&gt; branch with &lt;new_remote&gt;
+think twice before do this
+Example: git push origin +master:my_branch</dd>
+<dt>git remote prune &lt;remote&gt;</dt>
+<dd>prune deleted remote-tracking branches from &#8220;git branch -r&#8221; listing</dd>
+<dt>git remote add -t master -m master origin git://example.com/git.git/</dt>
+<dd>add a remote and track its master</dd>
+<dt>git remote show &lt;remote&gt;</dt>
+<dd>show information about the remote server.</dd>
+<dt>git checkout -b &lt;local branch&gt; &lt;remote&gt;/&lt;remote branch&gt;</dt>
+<dd>Eg git checkout -b myfeature origin/myfeature
+Track a remote branch as a local branch.</dd>
+</dl>
+<p>git pull &lt;remote&gt; &lt;branch&gt;
+git push
+For branches that are remotely tracked (via git push) but that complain about non-fast forward commits when doing a git push. The pull synchronizes local and remote, and if all goes well, the result is pushable.</p>
+<dl class="docutils">
+<dt>git fetch &lt;remote&gt;</dt>
+<dd>Retrieves all branches from the remote repository. After
+this &#8216;git branch &#8211;track ...&#8217; can be used to track a branch
+from the new remote.</dd>
+</dl>
+</div>
+<div class="section" id="submodules">
+<h3>1.9.20. Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>git submodule add &lt;remote_repository&gt; &lt;path/to/submodule&gt;</dt>
+<dd>add the given repository at the given path. The addition will be part of the
+next commit.</dd>
+<dt>git submodule update [&#8211;init]</dt>
+<dd>Update the registered submodules (clone missing submodules, and checkout
+the commit specified by the super-repo). &#8211;init is needed the first time.</dd>
+<dt>git submodule foreach &lt;command&gt;</dt>
+<dd>Executes the given command within each checked out submodule.</dd>
+</dl>
+<p>Removing submodules</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Delete the relevant line from the .gitmodules file.</li>
+<li>Delete the relevant section from .git/config.</li>
+<li>Run git rm &#8211;cached path_to_submodule (no trailing slash).</li>
+<li>Commit and delete the now untracked submodule files.</li>
+</ol>
+</div></blockquote>
+<dl class="docutils">
+<dt>Updating submodules</dt>
+<dd><dl class="first docutils">
+<dt>To update a submodule to a new commit:</dt>
+<dd><ol class="first last arabic">
+<li><dl class="first docutils">
+<dt>update submodule:</dt>
+<dd><p class="first last">cd &lt;path to submodule&gt;
+git pull</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>commit the new version of submodule:</dt>
+<dd><p class="first last">cd &lt;path to toplevel&gt;
+git commit -m &#8220;update submodule version&#8221;</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>check that the submodule has the correct version</dt>
+<dd><p class="first last">git submodule status</p>
+</dd>
+</dl>
+</li>
+</ol>
+</dd>
+</dl>
+<p class="last">If the update in the submodule is not committed in the
+main repository, it is lost and doing git submodule
+update will revert to the previous version.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="patches">
+<h3>1.9.21. Patches<a class="headerlink" href="#patches" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>git format-patch HEAD^</dt>
+<dd>Generate the last commit as a patch that can be applied on another
+clone (or branch) using &#8216;git am&#8217;. Format patch can also generate a
+patch for all commits using &#8216;git format-patch HEAD^ HEAD&#8217;
+All page files will be enumerated with a prefix, e.g. 0001 is the
+first patch.</dd>
+<dt>git format-patch &lt;Revision&gt;^..&lt;Revision&gt;</dt>
+<dd>Generate a patch for a single commit. E.g.
+git format-patch d8efce43099^..d8efce43099
+Revision does not need to be fully specified.</dd>
+<dt>git am &lt;patch file&gt;</dt>
+<dd>Applies the patch file generated by format-patch.</dd>
+<dt>git diff &#8211;no-prefix &gt; patchfile</dt>
+<dd>Generates a patch file that can be applied using patch:
+patch -p0 &lt; patchfile
+Useful for sharing changes without generating a git commit.</dd>
+</dl>
+</div>
+<div class="section" id="tags">
+<h3>1.9.22. Tags<a class="headerlink" href="#tags" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>git tag -l</dt>
+<dd>Will list all tags defined in the repository.</dd>
+<dt>git co &lt;tag_name&gt;</dt>
+<dd>Will checkout the code for a particular tag. After this you&#8217;ll
+probably want to do: &#8216;git co -b &lt;some branch name&gt;&#8217; to define
+a branch. Any changes you now make can be committed to that
+branch and later merged.</dd>
+</dl>
+</div>
+<div class="section" id="archive">
+<h3>1.9.23. Archive<a class="headerlink" href="#archive" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>git archive master | tar -x -C /somewhere/else</dt>
+<dd>Will export expanded tree as tar archive at given path</dd>
+<dt>git archive master | bzip2 &gt; source-tree.tar.bz2</dt>
+<dd>Will export archive as bz2</dd>
+<dt>git archive &#8211;format zip &#8211;output /full/path master</dt>
+<dd>Will export as zip</dd>
+</dl>
+</div>
+<div class="section" id="git-instaweb">
+<h3>1.9.24. Git Instaweb<a class="headerlink" href="#git-instaweb" title="Permalink to this headline">¶</a></h3>
+<p>git instaweb &#8211;httpd=webrick [&#8211;start | &#8211;stop | &#8211;restart]</p>
+</div>
+<div class="section" id="environment-variables">
+<h3>1.9.25. Environment Variables<a class="headerlink" href="#environment-variables" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>GIT_AUTHOR_NAME, GIT_COMMITTER_NAME</dt>
+<dd>Your full name to be recorded in any newly created commits.  Overrides
+user.name in .git/config</dd>
+<dt>GIT_AUTHOR_EMAIL, GIT_COMMITTER_EMAIL</dt>
+<dd>Your email address to be recorded in any newly created commits.  Overrides
+user.email in .git/config</dd>
+<dt>GIT_DIR</dt>
+<dd>Location of the repository to use (for out of working directory repositories)</dd>
+<dt>GIT_WORKING_TREE</dt>
+<dd>Location of the Working Directory - use with GIT_DIR to specifiy the working
+directory root
+or to work without being in the working directory at all.</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1. <strong>CONTENTS</strong></a><ul>
+<li><a class="reference internal" href="#installation-methods">1.1. Installation Methods</a><ul>
+<li><a class="reference internal" href="#installing-software-dependencies">1.1.1. Installing software dependencies</a><ul>
+<li><a class="reference internal" href="#installing-apache-and-php">1.1.1.1. Installing Apache and PHP</a></li>
+<li><a class="reference internal" href="#installing-the-mysql-server">1.1.1.2. Installing the MYSQL server</a></li>
+<li><a class="reference internal" href="#installing-the-ldap-server">1.1.1.3. Installing the LDAP server</a></li>
+<li><a class="reference internal" href="#installing-python-modules-and-other-applications">1.1.1.4. Installing Python modules and other applications</a></li>
+<li><a class="reference internal" href="#installing-the-mail-transport-agent">1.1.1.5. Installing the Mail Transport Agent</a><ul>
+<li><a class="reference internal" href="#installation">1.1.1.5.1. Installation</a></li>
+<li><a class="reference internal" href="#configuration">1.1.1.5.2. Configuration</a></li>
+<li><a class="reference internal" href="#certification">1.1.1.5.3. Certification</a></li>
+<li><a class="reference internal" href="#testing">1.1.1.5.4. Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#installing-the-stable-version">1.1.2. Installing the stable version</a></li>
+<li><a class="reference internal" href="#installing-the-stable-version-using-a-debian-package">1.1.3. Installing the stable version using a debian package</a></li>
+<li><a class="reference internal" href="#download-the-development-version">1.1.4. Download the development version</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#getting-help">1.2. Getting help</a></li>
+<li><a class="reference internal" href="#contributing-to-aguilas">1.3. Contributing to Aguilas</a><ul>
+<li><a class="reference internal" href="#reporting-bugs">1.3.1. Reporting bugs</a></li>
+<li><a class="reference internal" href="#submitting-patches">1.3.2. Submitting patches</a></li>
+<li><a class="reference internal" href="#submitting-pull-requests">1.3.3. Submitting pull requests</a></li>
+<li><a class="reference internal" href="#writing-documentation">1.3.4. Writing documentation</a></li>
+<li><a class="reference internal" href="#translating-aguilas">1.3.5. Translating Aguilas</a><ul>
+<li><a class="reference internal" href="#generating-pot-templates">1.3.5.1. Generating POT templates</a></li>
+<li><a class="reference internal" href="#updating-po-files-from-pot-template">1.3.5.2. Updating PO files from POT template</a></li>
+<li><a class="reference internal" href="#generate-a-new-po-with-aguilas-translation-assistant">1.3.5.3. Generate a new PO with Aguilas translation assistant</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#contributing-code-through-pull-requests">1.4. Contributing code through pull requests</a><ul>
+<li><a class="reference internal" href="#getting-started">1.4.1. Getting Started</a></li>
+<li><a class="reference internal" href="#submitting-the-pull-request">1.4.2. Submitting the pull request</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#working-with-patches">1.5. Working with patches</a><ul>
+<li><a class="reference internal" href="#what-s-a-patch">1.5.1. What&#8217;s a patch?</a></li>
+<li><a class="reference internal" href="#creating-a-patch-using-diff">1.5.2. Creating a patch using diff</a></li>
+<li><a class="reference internal" href="#creating-a-patch-using-git">1.5.3. Creating a patch using git</a></li>
+<li><a class="reference internal" href="#submitting-the-patch">1.5.4. Submitting the patch</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#describing-aguilas-s-develpment-cycle">1.6. Describing Aguilas&#8217;s develpment cycle</a></li>
+<li><a class="reference internal" href="#understanding-aguilas-s-source-code">1.7. Understanding Aguilas&#8217;s Source Code</a><ul>
+<li><a class="reference internal" href="#aguilas-repositories">1.7.1. Aguilas repositories</a></li>
+<li><a class="reference internal" href="#branches-and-tags">1.7.2. Branches and Tags</a></li>
+<li><a class="reference internal" href="#common-tasks-and-procedures">1.7.3. Common tasks and procedures</a><ul>
+<li><a class="reference internal" href="#checking-dependencies">1.7.3.1. Checking dependencies</a></li>
+<li><a class="reference internal" href="#maintainer-tasks">1.7.3.2. Maintainer tasks</a></li>
+<li><a class="reference internal" href="#build-tasks">1.7.3.3. Build tasks</a></li>
+<li><a class="reference internal" href="#clean-tasks">1.7.3.4. Clean tasks</a></li>
+<li><a class="reference internal" href="#install-tasks">1.7.3.5. Install tasks</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#files-and-directories">1.7.4. Files and Directories</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#working-with-git">1.8. Working with git</a><ul>
+<li><a class="reference internal" href="#installing-git">1.8.1. Installing git</a></li>
+<li><a class="reference internal" href="#configuring-git">1.8.2. Configuring git</a></li>
+<li><a class="reference internal" href="#creating-a-new-repository">1.8.3. Creating a New Repository</a></li>
+<li><a class="reference internal" href="#making-changes">1.8.4. Making Changes</a></li>
+<li><a class="reference internal" href="#browsing-the-repository">1.8.5. Browsing the repository</a></li>
+<li><a class="reference internal" href="#branching-and-tagging">1.8.6. Branching and Tagging</a></li>
+<li><a class="reference internal" href="#merging-branches">1.8.7. Merging branches</a></li>
+<li><a class="reference internal" href="#working-with-remote-servers">1.8.8. Working with remote servers</a></li>
+<li><a class="reference internal" href="#sharing-your-work">1.8.9. Sharing your Work</a></li>
+<li><a class="reference internal" href="#working-with-submodules">1.8.10. Working with submodules</a><ul>
+<li><a class="reference internal" href="#adding-submodules-to-a-git-repository">1.8.10.1. Adding Submodules to a Git Repository</a></li>
+<li><a class="reference internal" href="#using-submodules">1.8.10.2. Using Submodules</a></li>
+<li><a class="reference internal" href="#removing-submodules">1.8.10.3. Removing Submodules</a></li>
+<li><a class="reference internal" href="#updating-submodules">1.8.10.4. Updating Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#git-cheat-sheet">1.9. Git Cheat Sheet</a><ul>
+<li><a class="reference internal" href="#setup">1.9.1. Setup</a></li>
+<li><a class="reference internal" href="#id44">1.9.2. Configuration</a></li>
+<li><a class="reference internal" href="#info">1.9.3. Info</a></li>
+<li><a class="reference internal" href="#adding-deleting">1.9.4. Adding / Deleting</a></li>
+<li><a class="reference internal" href="#ignoring">1.9.5. Ignoring</a></li>
+<li><a class="reference internal" href="#staging">1.9.6. Staging</a></li>
+<li><a class="reference internal" href="#unstaging">1.9.7. Unstaging</a></li>
+<li><a class="reference internal" href="#committing">1.9.8. Committing</a></li>
+<li><a class="reference internal" href="#branching">1.9.9. Branching</a></li>
+<li><a class="reference internal" href="#merging">1.9.10. Merging</a></li>
+<li><a class="reference internal" href="#cherry-picking">1.9.11. Cherry-Picking</a></li>
+<li><a class="reference internal" href="#squashing">1.9.12. Squashing</a></li>
+<li><a class="reference internal" href="#conflicts">1.9.13. Conflicts</a></li>
+<li><a class="reference internal" href="#sharing">1.9.14. Sharing</a></li>
+<li><a class="reference internal" href="#reverting">1.9.15. Reverting</a></li>
+<li><a class="reference internal" href="#fix-mistakes-undo">1.9.16. Fix mistakes / Undo</a></li>
+<li><a class="reference internal" href="#plumbing">1.9.17. Plumbing</a></li>
+<li><a class="reference internal" href="#stashing">1.9.18. Stashing</a></li>
+<li><a class="reference internal" href="#remotes">1.9.19. Remotes</a></li>
+<li><a class="reference internal" href="#submodules">1.9.20. Submodules</a></li>
+<li><a class="reference internal" href="#patches">1.9.21. Patches</a></li>
+<li><a class="reference internal" href="#tags">1.9.22. Tags</a></li>
+<li><a class="reference internal" href="#archive">1.9.23. Archive</a></li>
+<li><a class="reference internal" href="#git-instaweb">1.9.24. Git Instaweb</a></li>
+<li><a class="reference internal" href="#environment-variables">1.9.25. Environment Variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter"><strong>AGUILAS</strong></a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/contents.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="AGUILAS"
+             >previous</a> |</li>
+        <li><a href="index.html">AGUILAS Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 11-02-2012, Luis Alejandro Martínez Faneyth.
+      Last updated on Feb 11, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>
