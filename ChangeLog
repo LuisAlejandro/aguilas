@@ -1,3 +1,7 @@
+DEVELOPMENT RELEASE v1.0.1+20120211110749 (02/11/12)
+    Changing location of Catpcha library
+    
+
 DEVELOPMENT RELEASE v1.0.1+20120209164343 (02/09/12)
     Exclude of the tarball generation must match the debian/ folder only
     
