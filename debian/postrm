@@ -95,6 +95,14 @@ fi
 
 if [ "${ACTION}" == "purge" ]; then
 
+	for ext in '~' '%' .bak .ucf-new .ucf-old .ucf-dist;  do
+		rm -rf /etc/aguilas/config.php$ext
+	done
+
+	rm -rf /etc/aguilas
+	rm -rf /var/log/aguilas
+	rm -rf /usr/share/aguilas
+
 	if which ucf >/dev/null; then
 		ucf --debconf-ok --purge /etc/aguilas/config.php
 		ucf --debconf-ok --purge /etc/aguilas/apache.conf
@@ -108,14 +116,6 @@ if [ "${ACTION}" == "purge" ]; then
 		ucfr --purge aguilas /etc/aguilas/lighttpd.conf
 		ucfr --purge aguilas /etc/aguilas/dbconfig-common.php
 	fi
-
-	for ext in '~' '%' .bak .ucf-new .ucf-old .ucf-dist;  do
-		rm -rf /etc/aguilas/config.php$ext
-	done
-
-	rm -rf /etc/aguilas
-	rm -rf /var/log/aguilas
-	rm -rf /usr/share/aguilas
 fi
 
 #DEBHELPER#
