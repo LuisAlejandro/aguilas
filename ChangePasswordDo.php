@@ -80,19 +80,15 @@ if (!isset($uid) || !isset($mail) || !isset($userPasswordOld) || !isset($userPas
 } else {
 
     // VALIDATION PASSED -------------------------------------------------------
-
-    // Encoding the passwords
-    $userPassword = EncodePassword($userPassword, $ldap_enc);
-    $userPasswordOld = EncodePassword($userPasswordOld, $ldap_enc);
     
     // We are going to search for a user entry matching the data provided by
     // the user on the form 
 
     // We stablish what attributes are going to be retrieved from each entry
-    $search_limit = array("dn");
+    $search_limit = array("dn", "userPassword");
 
     // The filter string to search through LDAP
-    $search_string = "(&(mail=" . $mail . ")(userPassword=" . $userPasswordOld . ")(uid=" . $uid . "))";
+    $search_string = "(&(mail=" . $mail . ")(uid=" . $uid . "))";
 
     // The attribute the array of entries is going to be sorted by
     $sort_string = 'dn';
@@ -102,6 +98,9 @@ if (!isset($uid) || !isset($mail) || !isset($userPasswordOld) || !isset($userPas
 
     // How much did we get?
     $result_count = $search_entries['count'];
+    
+    // What's the stored password?
+    $storedpass = $search_entries['0']['userPassword'];
 
     // If we didn't get any entries, there are no user entries matching the 
     // data provided by the user. Maybe the user doesn't exist or the user made
@@ -118,30 +117,43 @@ if (!isset($uid) || !isset($mail) || !isset($userPasswordOld) || !isset($userPas
 
     // If we got one coincidence, then we can proceed to modification
     } elseif ($result_count == 1) {
-
-        // What dn are we going to modify?
-        $moddn = $search_entries['0']['dn'];
-
-        // We fill in our attribute modificator array
-        $in['userPassword'] = $userPassword;
-
-        // Modifying ...
-        $mod = AssistedLDAPModify($ldapc, $moddn, $in);
-
-        // If the modifying went OK, we send the notification e-mail to the user
-        if ($mod) {
-            $send = AssistedEMail("ChangePasswordDo", $mail);
-        }
-
-        // If the mailing went OK ... 
-        if ($send) {
-            // We log the event
-            WriteLog("ChangePasswordDo");
-            // Print the good news to the user
-            Success("ChangePasswordDo");
+        
+        $storedpass = $search_entries['0']['userPassword'];
+        
+        if (!CheckPassword($storedpass,$userPasswordOld)) {
+            
+            NoResults();
+            
         } else {
-            // We fail nicely, at least
-            Fail("ChangePasswordDo");
+
+            // Encoding the password
+            $userPassword = EncodePassword($userPassword, $ldap_enc);
+            
+            // What dn are we going to modify?
+            $moddn = $search_entries['0']['dn'];
+
+            // We fill in our attribute modificator array
+            $in['userPassword'] = $userPassword;
+
+            // Modifying ...
+            $mod = AssistedLDAPModify($ldapc, $moddn, $in);
+
+            // If the modifying went OK, we send the notification e-mail to the user
+            if ($mod) {
+                $send = AssistedEMail("ChangePasswordDo", $mail);
+            }
+
+            // If the mailing went OK ... 
+            if ($send) {
+                // We log the event
+                WriteLog("ChangePasswordDo");
+                // Print the good news to the user
+                Success("ChangePasswordDo");
+            } else {
+                // We fail nicely, at least
+                Fail("ChangePasswordDo");
+            }
+            
         }
         
     }

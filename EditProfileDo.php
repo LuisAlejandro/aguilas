@@ -61,16 +61,13 @@ if (!isset($uid) || !isset($userPassword) || !isset($image_captcha)) {
 
     // VALIDATION PASSED -------------------------------------------------------
 
-    // Encoding the password
-    $userPassword = EncodePassword($userPassword, $ldap_enc);
-        
     // We are going to search for a user matching the data entered 
 
     // We stablish what attributes are going to be retrieved from each entry
     $search_limit = array("dn", "givenName", "sn", "cn", "uid", "userPassword", "mail", "uidNumber", "gidNumber");
 
     // The filter string to search through LDAP
-    $search_string = "(&(userPassword=" . $userPassword . ")(uid=" . $uid . "))";
+    $search_string = "(uid=" . $uid . ")";
 
     // The attribute the array of entries is going to be sorted by
     $sort_string = 'uid';
@@ -94,47 +91,58 @@ if (!isset($uid) || !isset($userPassword) || !isset($image_captcha)) {
     // If we got one coincidence, then we can proceed to deletion
     } elseif ($result_count == 1) {
 
-        // Constructing an array of the name of theelements we want to edit ...
-        $objects = array("uid", "uidNumber", "givenName", "sn", "cn", "mail", "userPassword", "gidNumber");
+        $storedpass = $search_entries['0']['userPassword'];
         
-        // ... and it's descriptive tags
-        $tags = array(  _("Username"),
-                        _("ID"),
-                        _("First Name"),
-                        _("Last Name"),
-                        _("Complete Name"),
-                        _("E-Mail"),
-                        _("Password"),
-                        _("Group"));
-        
-        // We get their respective values in an array too
-        $contents = array(  $search_entries[0]['uid'][0],
-                            $search_entries[0]['uidnumber'][0],
-                            $search_entries[0]['givenname'][0],
-                            $search_entries[0]['sn'][0],
-                            $search_entries[0]['cn'][0],
-                            $search_entries[0]['mail'][0],
-                            substr(preg_replace("/[A-Za-z0-9{}@#$%^&+=!.-_]/", "*", $search_entries[0]['userpassword'][0]), 0, 8),
-                            $ldap_gid_flip[$search_entries[0]['gidnumber'][0]]);
-        
-        // Tell me which ones you want to make editable and which don't
-        // 1 = editable
-        // 0 = uneditable
-        $edit = array(0, 0, 1, 1, 0, 1, 0, 0);
-        
-        // How much do we have?
-        $num = count($edit) - 1;
-        
-        // Let's filter some ajax-incompatible characters first
-        $who = str_replace(",", "__@_@_@__", $search_entries[0]['dn']);
-        $who = str_replace("=", "__%_%_%__", $who);
+        if (!CheckPassword($storedpass,$userPassword)) {
+            
+            NoResults();
+            
+        } else {
 
-        // Finally, we build up all the AJAX form with our assistant
-        echo "<table>";
-        for ($i = 0; $i <= $num; $i++) {
-            AJAXAssistant($objects[$i], $tags[$i], $contents[$i], $edit[$i], $who);
+            // Constructing an array of the name of theelements we want to edit ...
+            $objects = array("uid", "uidNumber", "givenName", "sn", "cn", "mail", "userPassword", "gidNumber");
+
+            // ... and it's descriptive tags
+            $tags = array(  _("Username"),
+                            _("ID"),
+                            _("First Name"),
+                            _("Last Name"),
+                            _("Complete Name"),
+                            _("E-Mail"),
+                            _("Password"),
+                            _("Group"));
+
+            // We get their respective values in an array too
+            $contents = array(  $search_entries[0]['uid'][0],
+                                $search_entries[0]['uidnumber'][0],
+                                $search_entries[0]['givenname'][0],
+                                $search_entries[0]['sn'][0],
+                                $search_entries[0]['cn'][0],
+                                $search_entries[0]['mail'][0],
+                                "************",
+                                $ldap_gid_flip[$search_entries[0]['gidnumber'][0]]);
+
+            // Tell me which ones you want to make editable and which don't
+            // 1 = editable
+            // 0 = uneditable
+            $edit = array(0, 0, 1, 1, 0, 1, 0, 0);
+
+            // How much do we have?
+            $num = count($edit) - 1;
+
+            // Let's filter some ajax-incompatible characters first
+            $who = str_replace(",", "__@_@_@__", $search_entries[0]['dn']);
+            $who = str_replace("=", "__%_%_%__", $who);
+
+            // Finally, we build up all the AJAX form with our assistant
+            echo "<table>";
+            for ($i = 0; $i <= $num; $i++) {
+                AJAXAssistant($objects[$i], $tags[$i], $contents[$i], $edit[$i], $who);
+            }
+            echo "</table>";
+            
         }
-        echo "</table>";
+        
     }
     
 }

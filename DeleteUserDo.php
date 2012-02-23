@@ -65,17 +65,14 @@ if (!isset($uid) || !isset($mail) || !isset($userPassword) || !isset($image_capt
 } else {
 
     // VALIDATION PASSED -------------------------------------------------------
-
-    // Encoding the password
-    $userPassword = EncodePassword($userPassword, $ldap_enc);
     
     // We are going to search for a user matching the data entered 
 
     // We stablish what attributes are going to be retrieved from each entry
-    $search_limit = array("dn");
+    $search_limit = array("dn", "userPassword");
 
     // The filter string to search through LDAP
-    $search_string = "(&(mail=" . $mail . ")(userPassword=" . $userPassword . ")(uid=" . $uid . "))";
+    $search_string = "(&(mail=" . $mail . ")(uid=" . $uid . "))";
 
     // The attribute the array of entries is going to be sorted by
     $sort_string = 'dn';
@@ -101,26 +98,36 @@ if (!isset($uid) || !isset($mail) || !isset($userPassword) || !isset($image_capt
     // If we got one coincidence, then we can proceed to deletion
     } elseif ($result_count == 1) {
 
-        // Assigning DN to delete
-        $dn = $search_entries[0]["dn"];
-
-        // Deleting ...
-        $del = AssistedLDAPDelete($ldapc, $dn);
-
-        // If the deleting went OK, we send the notification e-mail to the user
-        if ($del) {
-            $send = AssistedEMail("DeleteUserDo", $mail);
-        }
-
-        // If the mailing went OK ... 
-        if ($send) {
-            // We log the event
-            WriteLog("DeleteUserDo");
-            // Print the good news to the user
-            Success("DeleteUserDo");
+        $storedpass = $search_entries['0']['userPassword'];
+        
+        if (!CheckPassword($storedpass,$userPassword)) {
+            
+            NoResults();
+            
         } else {
-            // We fail nicely, at least
-            Fail("DeleteUserDo");
+            
+            // Assigning DN to delete
+            $dn = $search_entries[0]["dn"];
+
+            // Deleting ...
+            $del = AssistedLDAPDelete($ldapc, $dn);
+
+            // If the deleting went OK, we send the notification e-mail to the user
+            if ($del) {
+                $send = AssistedEMail("DeleteUserDo", $mail);
+            }
+
+            // If the mailing went OK ... 
+            if ($send) {
+                // We log the event
+                WriteLog("DeleteUserDo");
+                // Print the good news to the user
+                Success("DeleteUserDo");
+            } else {
+                // We fail nicely, at least
+                Fail("DeleteUserDo");
+            }
+
         }
 
     }

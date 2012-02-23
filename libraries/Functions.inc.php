@@ -408,28 +408,289 @@ function WriteLog($log_file) {
 }
 
 /******************************************************************************
+ *                            PASSWORD FUNCTIONS                              *
+ ******************************************************************************/
+
+/**
+ * EncType
+ * Detects password encryption type
+ *
+ * Returns crypto string listed in braces. If it is 'CRYPT' password,
+ * returns crypto detected in password hash. Function should detect
+ * md5crypt, blowfish and extended DES crypt. If function fails to detect
+ * encryption type, it returns NULL.
+ * @param string Hashed password
+ * @return string
+ */
+function EncType($password) {
+
+    $type = null;
+
+    if (preg_match('/{([^}]+)}/',$password,$type)) {
+        $type = strtoupper($type[1]);
+    } else {
+        return null;
+    }
+
+    if (strcasecmp($type,'CRYPT') == 0) {
+
+        if (preg_match('/{[^}]+}\\$1\\$+/',$password)) {
+            $type = 'MD5CRYPT';
+        } elseif (preg_match('/{[^}]+}\\$2+/',$password)) {
+            $type = 'BLOWFISH';
+        } elseif (preg_match('/{[^}]+}_+/',$password)) {
+            $type = 'EXT_DES';
+        }
+    }
+
+    return $type;
+}
+
+/**
+ * RandomSalt
+ * Used to generate a random salt for crypt-style passwords. Salt strings are used
+ * to make pre-built hash cracking dictionaries difficult to use as the hash algorithm uses
+ * not only the user's password but also a randomly generated string. The string is
+ * stored as the first N characters of the hash for reference of hashing algorithms later.
+ *
+ * @param int The length of the salt string to generate.
+ * @return string The generated salt string.
+ */
+function RandomSalt($length) {
+    $possible = '0123456789'.
+                'abcdefghijklmnopqrstuvwxyz'.
+                'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.
+                './';
+    $str = '';
+    mt_srand((double)microtime() * 1000000);
+    
+    while (strlen($str) < $length)
+        $str .= substr($possible,(rand()%strlen($possible)),1);
+
+    return $str;
+}
+
+/**
+ * EncodePassword
+ * Hashes a password and returns the hash based on the specified enc_type.
+ *
+ * @param string The password to hash in clear text.
+ * @param string Standard LDAP encryption type which must be one of
+ *        crypt, ext_des, md5crypt, blowfish, md5, sha, smd5, ssha, or clear.
+ * @return string The hashed password.
+ */
+function EncodePassword($password, $type) {
+
+	$type = strtoupper($type);
+
+	switch($type) {
+		case 'MD5':
+                    $hash = sprintf('{MD5}%s',base64_encode(pack('H*',md5($password))));
+                    break;
+
+		case 'CRYPT':
+                    $hash = sprintf('{CRYPT}%s',crypt($password_clear,substr($password,0,2)));
+                    break;
+
+		case 'MD5CRYPT':
+                    if (! defined('CRYPT_MD5') || CRYPT_MD5 == 0)
+                        EncryptionNotSupported();
+                    
+                    $hash = sprintf('{CRYPT}%s',crypt($password,'$1$'.RandomSalt(9)));
+                    break;
+
+		case 'BLOWFISH':
+                    if (! defined('CRYPT_BLOWFISH') || CRYPT_BLOWFISH == 0)
+                        EncryptionNotSupported();
+                    
+                    $hash = sprintf('{CRYPT}%s',crypt($password,'$2a$12$'.RandomSalt(13)));
+                    break;
+
+		case 'EXT_DES':
+                    if (! defined('CRYPT_EXT_DES') || CRYPT_EXT_DES == 0)
+                        EncryptionNotSupported();
+                    
+                    $hash = sprintf('{CRYPT}%s',crypt($password,'_'.RandomSalt(8)));
+                    break;
+
+		case 'SHA':
+                    if (!function_exists('sha1'))
+                        EncryptionNotSupported();
+                    
+                    $hash = sprintf('{SHA}%s',base64_encode(pack('H*',sha1($password))));
+                    break;
+
+		case 'SSHA':
+                    if (!function_exists('mhash') || !function_exists('mhash_keygen_s2k'))
+                        EncryptionNotSupported();
+                    
+                    mt_srand((double)microtime()*1000000);
+                    $salt = mhash_keygen_s2k(MHASH_SHA1,$password,substr(pack('h*',md5(mt_rand())),0,8),4);
+                    $hash = sprintf('{SSHA}%s',base64_encode(mhash(MHASH_SHA1,$password.$salt).$salt));
+                    break;
+
+		case 'SMD5':
+                    if (!function_exists('mhash') || !function_exists('mhash_keygen_s2k'))
+                        EncryptionNotSupported();
+                    
+                    mt_srand((double)microtime()*1000000);
+                    $salt = mhash_keygen_s2k(MHASH_MD5,$password,substr(pack('h*',md5(mt_rand())),0,8),4);
+                    $hash = sprintf('{SMD5}%s',base64_encode(mhash(MHASH_MD5,$password.$salt).$salt));
+                    break;
+
+		case 'CLEAR':
+		default:
+                    $hash = $password;
+                    break;
+	}
+
+	return $hash;
+}
+
+/**
+ * CheckPassword
+ * Given a clear-text password and a hash, this function determines if the clear-text password
+ * is the password that was used to generate the hash. This is handy to verify a user's password
+ * when all that is given is the hash and a "guess".
+ * @param String The hash.
+ * @param String The password in clear text to test.
+ * @return Boolean True if the clear password matches the hash, and false otherwise.
+ */
+function CheckPassword($crypted,$plain) {
+
+    	if (preg_match('/{([^}]+)}(.*)/',$crypted,$matches)) {
+		$crypted = $matches[2];
+		$cypher = strtoupper($matches[1]);
+
+	} else {
+		$cypher = null;
+	}
+
+	switch($cypher) {
+		case 'SSHA':
+                    if (function_exists('mhash')) {
+
+                        $cryptedhash = base64_decode($crypted);
+                        $salt = substr($cryptedhash,20);
+                        $plainhash = base64_encode(mhash(MHASH_SHA1,$plain.$salt).$salt);
+
+                        if (strcmp($crypted,$plainhash) == 0) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+
+                    } else {
+                        EncryptionNotSupported();
+                    }
+                    
+                    break;
+
+		case 'SMD5':
+                    if (function_exists('mhash')) {
+
+                            $cryptedhash = base64_decode($crypted);
+                            $salt = substr($cryptedhash,16);
+                            $plainhash = base64_encode(mhash(MHASH_MD5,$plain.$salt).$salt);
+
+                        if (strcmp($crypted,$plainhash) == 0) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+
+                    } else {
+                        EncryptionNotSupported();
+                    }
+
+                    break;
+                        
+		case 'SHA':
+                    if (strcasecmp(EncodePassword($plain,$cypher),'{SHA}'.$crypted) == 0) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+
+                    break;
+                        
+		case 'MD5':
+                    if( strcasecmp(EncodePassword($plain,$cypher),'{MD5}'.$crypted) == 0) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+
+                    break;
+                        
+		case 'CRYPT':
+                    if (preg_match('/^\\$2+/',$crypted)) {
+                        
+                        if (! defined('CRYPT_BLOWFISH') || CRYPT_BLOWFISH == 0)
+                            EncryptionNotSupported();
+
+                        list($version,$rounds,$salt) = explode('$',$crypted);
+
+                        if (crypt($plain,'$'.$version.'$'.$rounds.'$'.$salt) == $crypted) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+
+                    } elseif (strstr($crypted,'$1$')) {
+                        if (! defined('CRYPT_MD5') || CRYPT_MD5 == 0)
+                            EncryptionNotSupported();
+
+                        list($dummy,$type,$salt,$hash) = explode('$',$crypted);
+
+                        if (crypt($plain,'$1$'.$salt) == $crypted) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+
+                    } elseif (strstr($crypted,'_')) {
+                        if (! defined('CRYPT_EXT_DES') || CRYPT_EXT_DES == 0)
+                            EncryptionNotSupported();
+
+                        if (crypt($plain,$crypted) == $crypted) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+
+                    } else {
+                        if (crypt($plain,$crypted) == $crypted) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+
+                    break;
+
+                case '':
+		default:
+                    if ($plain == $crypted) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+	}
+}
+
+/******************************************************************************
  *                           VALIDATION FUNCTIONS                             *
  ******************************************************************************/
 
-function EncodePassword($password, $type) {
-    switch ($type) {
-        case "CLEAR":
-            $hash = $password;
-            break;
-        
-        case "CRYPT":
-            $hash = "{CRYPT}" . crypt($password);
-            break;
-        
-        case "SHA":
-            $hash = "{SHA}" . base64_encode(pack("H*", sha1($password)));
-            break;
-            
-        case "MD5":
-            $hash = "{MD5}" . base64_encode(pack("H*", md5($password)));
-            break;
-    }
-    return $hash;
+function EncryptionNotSupported() {
+    ?>
+    <div class="error">
+        <?= _("Type of password encryption not supported.") ?>
+        <br /><br />
+        <a href="javascript:history.back(1);"><?= _("Back") ?></a>
+    </div>
+    <?php
 }
 
 function ExpiredCaptcha() {

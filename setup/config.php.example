@@ -71,7 +71,7 @@ $ldap_pass = "@@LDAP_PASS@@";
 $ldap_base = "@@LDAP_BASE@@";
 // Encrypt algorithm used to save passwords on LDAP
 // Options:
-// CLEAR | MD5 | SHA (default) | CRYPT
+// CLEAR | MD5 | SHA | CRYPT | SSHA | SMD5 | BLOWFISH | EXT_DES | MD5CRYPT
 $ldap_enc = "SHA";
 // Use secure tunnel connection (TLS)
 // Must have a valid certificate for autentication
