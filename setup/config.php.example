@@ -24,8 +24,8 @@ $app_locale = "@@APP_LOCALE@@";
 //  Application theme
 /// The theme applied to the application. Must be available in the themes/ folder
 $app_theme = "@@APP_THEME@@";
-//  Application URL
-/// The public address of the aplication, in the form of "example.org" (without http://)
+// Application URL
+// The public address of the aplication, in the form of "example.org" (without http://)
 $app_url = $_SERVER['SERVER_NAME'];
 // Application links
 // an array of link_title => link of the applications connected
