@@ -99,7 +99,7 @@ if (!isset($uid) || !isset($userPassword) || !isset($image_captcha)) {
             
         } else {
 
-            // Constructing an array of the name of theelements we want to edit ...
+            // Constructing an array of the name of the elements we want to edit ...
             $objects = array("uid", "uidNumber", "givenName", "sn", "cn", "mail", "userPassword", "gidNumber");
 
             // ... and it's descriptive tags

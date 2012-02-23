@@ -618,7 +618,7 @@ msgstr "Escriba un término de búsqueda y pulse enter"
 
 #: ../../../libraries/Functions.inc.php:689
 msgid "Type of password encryption not supported."
-msgstr ""
+msgstr "Tipo de encriptado de contraseñas no soportado."
 
 #: ../../../EditProfileDo.php:14
 msgid "User Profile"
