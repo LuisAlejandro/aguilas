@@ -1,3 +1,12 @@
+DEVELOPMENT RELEASE v1.0.2+20120223150129 (02/23/12)
+    Starting development of security release 1.0.2.
+    Removing functions file from phpldapadmin and extra README file from documentation, they are no longer needed.
+    Adding support for MD5, SHA, CRYPT, SSHA, SMD5, BLOWFISH, EXT_DES and MD5CRYPT password encryption algorithms.
+    Adding support for automatic recognition of the encryption algorithm present of the retrieved password from LDAP, on ChangePassword, DeleteUser and EditProfile modules.
+    Updating po strings.
+    Importing phpldapadmin functions
+    
+
 DEVELOPMENT RELEASE v1.0.1+20120211110749 (02/11/12)
     Changing location of Catpcha library
     
