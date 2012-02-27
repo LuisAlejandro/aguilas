@@ -20,23 +20,23 @@ msgstr ""
 
 #: ../../../Search.php:52
 msgid " Users found matching the given criteria."
-msgstr "Los usuarios que se ajusten a los criterios dados."
+msgstr " Usuarios que se ajustan a los criterios proporcionados."
 
 #: ../../../Browse.php:75
 msgid " Users found whose real name starts with letter "
-msgstr "Usuarios encuentrados cuyo verdadero nombre empieza con la letra"
+msgstr " Usuarios encontrados cuyo verdadero nombre empieza con la letra "
 
 #: ../../../libraries/Functions.inc.php:225
 msgid " in "
-msgstr "in"
+msgstr " in "
 
 #: ../../../themes/canaima/footer.php:29 ../../../themes/debian/footer.php:29
 msgid " is powered by "
-msgstr "es impulsado por"
+msgstr " es impulsado por "
 
 #: ../../../Ajax.php:79
 msgid " of the user "
-msgstr "del usuario"
+msgstr " del usuario "
 
 #: ../../../themes/canaima/index.php:5 ../../../themes/debian/index.php:5
 msgid ". Creating an account will allow you to connect to the following services:"
@@ -44,7 +44,7 @@ msgstr ". La creación de una cuenta le permitirá conectarse a los siguientes s
 
 #: ../../../NewUserForm.php:10
 msgid ". With this account your will be able to authenticate in the platform services. In the second column of the form we have placed some examples to help you with the process. Please follow the instructions to finish the process."
-msgstr ". Con esta cuentapodrás autenticarte en la plataforma de servicios. En la segunda columna del formulario hemos colocado algunos ejemplos para ayudarte con el proceso. Por favor, sigue las instrucciones para finalizar el proceso."
+msgstr ". Con esta cuenta podrás autenticarte en la plataforma de servicios. En la segunda columna del formulario hemos colocado algunos ejemplos para ayudarte con el proceso. Por favor, sigue las instrucciones para finalizar el proceso."
 
 #: ../../../EditProfileForm.php:10
 msgid "After introducing your user data, you will be able to edit your profile information."
@@ -52,11 +52,11 @@ msgstr "Después de introducir sus datos de usuario, usted podrá editar su info
 
 #: ../../../libraries/Functions.inc.php:80 ../../../Ajax.php:90
 msgid "An error has ocurred trying to close the connection to the LDAP database: "
-msgstr "Se produjo un error tratando de cerrar la conexión con la base de datos LDAP:"
+msgstr "Se produjo un error tratando de cerrar la conexión con la base de datos LDAP: "
 
 #: ../../../libraries/Functions.inc.php:164
 msgid "An error has ocurred trying to close the connection to the MYSQL database: "
-msgstr "Se produjo un error tratando de cerrar la conexión con la base de datos MYSQL:"
+msgstr "Se produjo un error tratando de cerrar la conexión con la base de datos MYSQL: "
 
 #: ../../../libraries/MYSQLConnection.inc.php:15
 msgid "An error has ocurred trying to connect to the MYSQL database."
@@ -64,40 +64,40 @@ msgstr "Ocurrió un error tratando de conectarse a la base de datos MYSQL."
 
 #: ../../../libraries/Functions.inc.php:61
 msgid "An error has ocurred trying to delete entries on the LDAP database: "
-msgstr "Se produjo un error tratando de borrar las entradas en la base de datos LDAP:"
+msgstr "Se produjo un error tratando de borrar las entradas en la base de datos LDAP: "
 
 #: ../../../libraries/Functions.inc.php:23
 msgid "An error has ocurred trying to insert entries on the LDAP database: "
-msgstr "Ocurrió un error tratando de insertar entradas en la base de datos LDAP:"
+msgstr "Ocurrió un error tratando de insertar entradas en la base de datos LDAP: "
 
 #: ../../../libraries/Functions.inc.php:42
 msgid "An error has ocurred trying to modify entries on the LDAP database: "
-msgstr "Se produjo un error tratando de modificar las entradas de la base de datos LDAP:"
+msgstr "Se produjo un error tratando de modificar las entradas de la base de datos LDAP: "
 
 #: ../../../libraries/MYSQLConnection.inc.php:34
 msgid "An error has ocurred trying to select database "
-msgstr "Se produjo un error tratando de seleccionar la base de datos"
+msgstr "Se produjo un error tratando de seleccionar la base de datos "
 
 #: ../../../libraries/Functions.inc.php:145
 msgid "An error has ocurred while the system was performing a MYSQL query on the database: "
-msgstr "Se produjo un error mientras el sistema se realizaba una consulta MySQL en la base de datos:"
+msgstr "Se produjo un error mientras el sistema se realizaba una consulta MySQL en la base de datos: "
 
 #: ../../../libraries/Functions.inc.php:98
 msgid "An error has ocurred while the system was performing a search: "
-msgstr "Se produjo un error cuando el sistema estaba realizando una búsqueda"
+msgstr "Se produjo un error cuando el sistema estaba realizando una búsqueda: "
 
 #: ../../../libraries/LDAPConnection.inc.php:71
 msgid "An error ocurred while trying to bind with LDAP: "
-msgstr "Ha ocurrido un error al intentar enlazar con el LDAP:"
+msgstr "Ha ocurrido un error al intentar enlazar con el LDAP: "
 
 #: ../../../libraries/LDAPConnection.inc.php:29
 #: ../../../libraries/LDAPConnection.inc.php:42
 msgid "An error ocurred while trying to configure LDAP: "
-msgstr "Ha ocurrido un error al intentar configurar el LDAP:"
+msgstr "Ha ocurrido un error al intentar configurar el LDAP: "
 
 #: ../../../libraries/LDAPConnection.inc.php:56
 msgid "An error ocurred while trying to start a secure connection with LDAP: "
-msgstr "Ha ocurrido un error al intentar iniciar una conexión segura con el LDAP:"
+msgstr "Ha ocurrido un error al intentar iniciar una conexión segura con el LDAP: "
 
 #: ../../../libraries/LDAPConnection.inc.php:17
 msgid "An error ucurred while trying to connect to the LDAP"
@@ -237,7 +237,7 @@ msgstr "¡Hecho!"
 
 #: ../../../libraries/Functions.inc.php:347
 msgid "Dear user "
-msgstr "Estimado usuario"
+msgstr "Estimado usuario "
 
 #: ../../../themes/canaima/footer.php:18 ../../../themes/canaima/header.php:51
 #: ../../../themes/canaima/index.php:45 ../../../themes/debian/footer.php:18
@@ -248,7 +248,7 @@ msgstr "Eliminar usuario"
 
 #: ../../../libraries/Functions.inc.php:337
 msgid "Deleted User in "
-msgstr "usuario eliminado"
+msgstr "Usuario Eliminado en "
 
 #: ../../../setup/uninstall.php:20
 msgid "Deleting LDAP maxUID entry ..."
@@ -256,7 +256,7 @@ msgstr "Eliminando entrada maxUID del LDAP ..."
 
 #: ../../../setup/uninstall.php:16
 msgid "Deleting database "
-msgstr "Eliminando base de datos"
+msgstr "Eliminando base de datos "
 
 #: ../../../ResendMailForm.php:16 ../../../ResetPasswordForm.php:40
 #: ../../../ChangePasswordForm.php:38 ../../../DeleteUserForm.php:38
@@ -285,7 +285,7 @@ msgstr "Nombres"
 
 #: ../../../themes/canaima/index.php:4 ../../../themes/debian/index.php:4
 msgid "From here you will be able to manage directly your users in "
-msgstr "Desde aquí podrá gestionar directamente sus usuarios"
+msgstr "Desde aquí podrá gestionar directamente sus usuarios en "
 
 #: ../../../libraries/Functions.inc.php:748 ../../../EditProfileDo.php:108
 #: ../../../EditProfileDo.php:113 ../../../libraries/Functions.inc.php:1009
@@ -298,17 +298,17 @@ msgstr "¡Hey! ¿Qué estás tratando de hacer?"
 
 #: ../../../libraries/Functions.inc.php:199
 msgid "Hi! Your password in "
-msgstr "¡Hola! Su contraseña"
+msgstr "¡Hola! Su contraseña en "
 
 #: ../../../libraries/Functions.inc.php:268
 #: ../../../libraries/Functions.inc.php:293
 #: ../../../libraries/Functions.inc.php:322
 msgid "Hi, "
-msgstr "¡Hola!"
+msgstr "Hola, "
 
 #: ../../../libraries/Functions.inc.php:248
 msgid "Hi, your new password is: "
-msgstr "Hola, tu nueva contraseña es:"
+msgstr "Hola, tu nueva contraseña es: "
 
 #: ../../../themes/canaima/index.php:24 ../../../themes/debian/index.php:24
 msgid "I did not get the confirmation e-mail when i requested an account"
@@ -327,7 +327,7 @@ msgstr "ID"
 #: ../../../ChangePasswordForm.php:53 ../../../DeleteUserForm.php:53
 #: ../../../ForgotUsernameForm.php:31 ../../../NewUserForm.php:91
 msgid "Invalid Format."
-msgstr "formato no válido."
+msgstr "Formato no válido."
 
 #: ../../../Browse.php:32
 msgid "Invalid letter."
@@ -348,11 +348,11 @@ msgstr "Nueva contraseña (repetir)"
 
 #: ../../../libraries/Functions.inc.php:237
 msgid "New Password in "
-msgstr "Nueva contraseña en"
+msgstr "Nueva Contraseña en "
 
 #: ../../../libraries/Functions.inc.php:208
 msgid "New Password petition in "
-msgstr "petición nueva contraseña en"
+msgstr "Petición de nueva contraseña en "
 
 #: ../../../themes/canaima/footer.php:6 ../../../themes/canaima/header.php:31
 #: ../../../themes/debian/footer.php:6 ../../../themes/debian/header.php:31
@@ -366,7 +366,7 @@ msgstr "Nuevo usuario en "
 #: ../../../libraries/Functions.inc.php:279
 #: ../../../libraries/Functions.inc.php:308
 msgid "New user activation in "
-msgstr "La activación de usuario de nuevo en"
+msgstr "La activación de usuario de nuevo en "
 
 #: ../../../DeleteUserForm.php:60 ../../../EditProfileDo.php:107
 #: ../../../EditProfileForm.php:38 ../../../NewUserForm.php:98
@@ -380,12 +380,12 @@ msgstr "Contraseña (repetir)"
 
 #: ../../../libraries/Functions.inc.php:188
 msgid "Password Change in "
-msgstr "Cambiar contraseña"
+msgstr "Cambio de contraseña en "
 
 #: ../../../libraries/Functions.inc.php:548
 #: ../../../libraries/Functions.inc.php:809
 msgid "Password length must be shorter than 30 characters and longer than 8."
-msgstr "la longitud de la contraseña debe ser inferior a 30 caracteres y superior a 8."
+msgstr "La longitud de la contraseña debe ser inferior a 30 caracteres y superior a 8."
 
 #: ../../../ChangePasswordForm.php:75 ../../../ChangePasswordForm.php:97
 #: ../../../ChangePasswordForm.php:122 ../../../DeleteUserForm.php:75
@@ -410,11 +410,11 @@ msgstr "Por favor, complete el siguiente formulario para cambiar su contraseña.
 
 #: ../../../DeleteUserForm.php:10
 msgid "Please complete the following form to erase DEFINITELY your user from "
-msgstr "Por favor, complete el siguiente formulario para borrar definitivamente tu usuario"
+msgstr "Por favor, complete el siguiente formulario para borrar DEFINITIVAMENTE tu usuario de "
 
 #: ../../../NewUserForm.php:10
 msgid "Please complete the following form to request a new user account in "
-msgstr "Por favor, complete el siguiente formulario para solicitar una nueva cuenta de usuario en"
+msgstr "Por favor, complete el siguiente formulario para solicitar una nueva cuenta de usuario en "
 
 #: ../../../ResendMailForm.php:10
 msgid "Please enter the e-mail you used to register your new user account, so we can resend the confirmation e-mail."
@@ -573,7 +573,7 @@ msgstr "No hay ninguna petición que corresponda con los datos proporcionados."
 #: ../../../libraries/Functions.inc.php:652
 #: ../../../libraries/Functions.inc.php:913
 msgid "There is an inconsistency with the database. There are two or more accounts sharing some user data (username, e-mail, etc...), which generates errors and inaccuracies on the system. This error has been informed to system administrators."
-msgstr "Existe una incongruencia en la base de datos. Hay dos o más cuentas que comparten algunos datos de usuario (nombre de usuario, correo, etc ..), lo que genera errores e imprecisiones en el sistema. Este error se ha informado a los administradores del sistema para que sea corregido manualmente. "
+msgstr "Existe una incongruencia en la base de datos. Hay dos o más cuentas que comparten algunos datos de usuario (nombre de usuario, correo, etc ..), lo que genera errores e imprecisiones en el sistema. Este error se ha informado a los administradores del sistema para que sea corregido manualmente."
 
 #: ../../../libraries/Functions.inc.php:684
 #: ../../../libraries/Functions.inc.php:945
@@ -592,7 +592,7 @@ msgstr "Se produjo un error al generar una contraseña nueva. Por favor, intént
 
 #: ../../../libraries/Functions.inc.php:112
 msgid "There was an error organizing the LDAP search results: "
-msgstr "Hubo un error organizando los resultados de búsqueda del LDAP:"
+msgstr "Hubo un error organizando los resultados de búsqueda del LDAP: "
 
 #: ../../../libraries/Functions.inc.php:458
 #: ../../../libraries/Functions.inc.php:468
@@ -603,7 +603,7 @@ msgstr "Se produjo un error al procesar el formulario. Por favor, vuelve atrás 
 
 #: ../../../libraries/Functions.inc.php:126
 msgid "There was an error retrieving the LDAP search results: "
-msgstr "Se produjo un error al recuperar los resultados de búsqueda del LDAP:"
+msgstr "Se produjo un error al recuperar los resultados de búsqueda del LDAP: "
 
 #: ../../../libraries/Functions.inc.php:675
 #: ../../../libraries/Functions.inc.php:688
@@ -645,15 +645,15 @@ msgstr "El nombre de usuario debe tener al menos 3 caracteres."
 
 #: ../../../Browse.php:14
 msgid "Users from "
-msgstr "Los usuarios de"
+msgstr "Los usuarios de "
 
 #: ../../../Ajax.php:78
 msgid "We have modified the attribute "
-msgstr "Hemos modificado el atributo"
+msgstr "Hemos modificado el atributo "
 
 #: ../../../themes/canaima/index.php:2 ../../../themes/debian/index.php:2
 msgid "Welcome to "
-msgstr "Bienvenido a"
+msgstr "Bienvenido a "
 
 #: ../../../ResendMailForm.php:25 ../../../ResendMailForm.php:47
 #: ../../../ResetPasswordForm.php:27 ../../../ResetPasswordForm.php:49
@@ -703,12 +703,12 @@ msgstr "Has introducido el código de verificación incorrectamente, por favor v
 
 #: ../../../libraries/Functions.inc.php:223
 msgid "You have received this e-mail because someone made a new password petition for the user "
-msgstr "Usted ha recibido este correo electrónico porque alguien hizo una petición nueva contraseña para el usuario"
+msgstr "Usted ha recibido este correo electrónico porque alguien hizo una petición nueva contraseña para el usuario "
 
 #: ../../../libraries/Functions.inc.php:295
 #: ../../../libraries/Functions.inc.php:324
 msgid "You have received this e-mail because you made a new user request in "
-msgstr "Usted ha recibido este e-mail porque usted hizo una petición de usuario en"
+msgstr "Usted ha recibido este e-mail porque usted hizo una petición de usuario en "
 
 #: ../../../ChangePasswordForm.php:60
 msgid "Your Password"
@@ -720,7 +720,7 @@ msgstr "Su cuenta ha sido creada satisfactoriamente"
 
 #: ../../../libraries/Functions.inc.php:349
 msgid "Your account has been successfully deleted from "
-msgstr "Su cuenta ha sido eliminada de"
+msgstr "Su cuenta ha sido eliminada de "
 
 #: ../../../libraries/Functions.inc.php:712
 #: ../../../libraries/Functions.inc.php:973

@@ -2,7 +2,7 @@
 
 $allowed_ops = "captcha";
 
-require_once "../setup/config.php";
+require_once "setup/config.php";
 
 session_start();
 

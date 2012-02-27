@@ -1,9 +1,7 @@
 ../../../Ajax.php
 ../../../Browse.php
-../../../Captcha.inc.php
 ../../../ChangePasswordForm.php
 ../../../DeleteUserForm.php
-../../../EditProfileForm.php
 ../../../ForgotUsernameDo.php
 ../../../ForgotUsernameForm.php
 ../../../NewUserDo.php
@@ -36,3 +34,5 @@
 ../../../ChangePasswordDo.php
 ../../../DeleteUserDo.php
 ../../../EditProfileDo.php
+../../../Captcha.inc.php
+../../../EditProfileForm.php
