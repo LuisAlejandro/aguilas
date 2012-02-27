@@ -51,7 +51,7 @@ Basically, You will need:
 
 + A web server like Apache, Lighttpd or Nginx.
 + A Mail Transport Agent (MTA) like Exim, Pastfix or Sendmail.
-+ PHP 5 or higher (with LDAP, MYSQL and CLI support).
++ PHP 5 or higher (with LDAP, MYSQL, MHASH, MCRYPT and CLI support).
 + Imagemagick image conversion utility with SVG support.
 + Python with Sphinx and Docutils support.
 + Icoutils.
@@ -63,7 +63,7 @@ Optionally, you will have to install an LDAP and a MYSQL server depending on whe
 
 If you are impatient, you can install all dependencies at once with the following command::
 
-	aptitude install apache2 php5 php5-gd php5-ldap php5-mcrypt php5-mysql php5-suhosin php5-cli make bash gettext python-sphinx icoutils python-docutils libmagickcore-extra imagemagick apache2 mysql-server slapd postfix
+	aptitude install apache2 php5 php5-gd php5-ldap php5-mcrypt php5-mysql php5-mhash php5-suhosin php5-cli make bash gettext python-sphinx icoutils python-docutils libmagickcore-extra imagemagick apache2 mysql-server slapd postfix
 
 If you want to keep reading, We will now explain how to install and configure each one of these dependencies. If you already have them installed in your working environment, please ignore it and proceed to the next step.
 
@@ -74,7 +74,7 @@ Installing Apache and PHP
 
 Run the following command as superuser::
 
-	aptitude install apache2 php5 php5-gd php5-ldap php5-mcrypt php5-mysql php5-suhosin php5-cli
+	aptitude install apache2 php5 php5-gd php5-ldap php5-mcrypt php5-mhash php5-mysql php5-suhosin php5-cli
 
 .. _installing the mysql server:
 

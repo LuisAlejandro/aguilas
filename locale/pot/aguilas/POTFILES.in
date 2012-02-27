@@ -31,8 +31,8 @@
 ../../../themes/debian/footer.php
 ../../../themes/debian/header.php
 ../../../themes/debian/index.php
+../../../EditProfileForm.php
+../../../Captcha.inc.php
 ../../../ChangePasswordDo.php
 ../../../DeleteUserDo.php
 ../../../EditProfileDo.php
-../../../Captcha.inc.php
-../../../EditProfileForm.php

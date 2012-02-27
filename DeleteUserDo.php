@@ -98,8 +98,8 @@ if (!isset($uid) || !isset($mail) || !isset($userPassword) || !isset($image_capt
     // If we got one coincidence, then we can proceed to deletion
     } elseif ($result_count == 1) {
 
-        $storedpass = $search_entries['0']['userPassword'];
-        
+        $storedpass = $search_entries['0']['userpassword']['0'];
+       
         if (!CheckPassword($storedpass,$userPassword)) {
             
             NoResults();

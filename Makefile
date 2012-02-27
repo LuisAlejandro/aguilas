@@ -52,6 +52,8 @@ LIBSVG = $(shell find /usr/lib/ -maxdepth 1 -type d -iname "imagemagick-*")/modu
 PHP = $(shell which php5)
 PHPLDAP = $(shell find /usr/lib/ -name "mysql.so" | grep "php5")
 PHPMYSQL = $(shell find /usr/lib/ -name "ldap.so" | grep "php5")
+PHPMCRYPT = $(shell find /usr/lib/ -name "mcrypt.so" | grep "php5")
+PHPMHASH = $(shell find /usr/lib/ -name "mhash.so" | grep "php5")
 
 # Maintainer tasks depends
 # generatepot: generates POT template from php sources. Uses XGETTEXT.
@@ -149,10 +151,11 @@ install: copy config
 
 config: check-instdep
 
-	@mkdir -p $(DESTDIR)/var/www/
-	@mkdir -p $(DESTDIR)/var/log/aguilas/
-	@touch $(DESTDIR)/var/log/aguilas/{ChangePasswordDo.log,DeleteUserDo.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
-	@ln -s $(DESTDIR)/usr/share/aguilas /var/www/aguilas
+	@mkdir -p /var/www/
+	@mkdir -p /var/log/aguilas/
+	@touch /var/log/aguilas/{Ajax.log,ChangePasswordDo.log,DeleteUserDo.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
+	@chown www-data:www-data /var/log/aguilas/*.log
+	@ln -s /usr/share/aguilas/ /var/www/aguilas
 	@$(PHP) -f setup/install.php
 	@echo "AGUILAS configured and running!"
 
@@ -177,9 +180,9 @@ copy:
 uninstall: check-instdep
 
 	@$(PHP) -f setup/uninstall.php
-	@rm -rf $(DESTDIR)/usr/share/aguilas/
-	@rm -rf $(DESTDIR)/var/log/aguilas/
-	@rm -rf $(DESTDIR)/var/www/aguilas/
+	@rm -rf /usr/share/aguilas/
+	@rm -rf /var/log/aguilas/
+	@rm -rf /var/www/aguilas
 	@echo "Uninstalled"
 
 reinstall: uninstall install
@@ -323,6 +326,23 @@ check-instdep:
 	@if [ -z $(PHPMYSQL) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"php5-mysql\" package."; \
+		exit 1; \
+	fi
+	@echo
+
+	@printf "Checking if we have PHP MCRYPT support ... "
+	@if [ -z $(PHPMCRYPT) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"php5-mcrypt\" package."; \
+		exit 1; \
+	fi
+	@echo
+
+
+	@printf "Checking if we have PHP MHASH support ... "
+	@if [ -z $(PHPMHASH) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"php5-mhash\" package."; \
 		exit 1; \
 	fi
 	@echo
