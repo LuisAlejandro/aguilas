@@ -1,3 +1,8 @@
+DEVELOPMENT RELEASE v1.0.2+20120226202933 (02/26/12)
+    Fixing inclusion of configuration in Captcha library.
+    Correcting some translation strings for es_VE and es.
+    
+
 DEVELOPMENT RELEASE v1.0.2+20120226160957 (02/26/12)
     Changing the way sphinx-build cache files are handled in Makefile. Deleting them because they generate trouble when merging branches.
     Removing binary files from source
