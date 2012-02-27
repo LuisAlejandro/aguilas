@@ -153,8 +153,9 @@ config: check-instdep
 
 	@mkdir -p /var/www/
 	@mkdir -p /var/log/aguilas/
-	@touch /var/log/aguilas/{Ajax.log,ChangePasswordDo.log,DeleteUserDo.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
+	@touch /var/log/aguilas/{Ajax.log,ChangePasswordDo.log,DeleteUserDo.log,NewUserMail.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
 	@chown www-data:www-data /var/log/aguilas/*.log
+	@chmod 640 /var/log/aguilas/*.log
 	@ln -s /usr/share/aguilas/ /var/www/aguilas
 	@$(PHP) -f setup/install.php
 	@echo "AGUILAS configured and running!"
@@ -202,6 +203,7 @@ gen-po: check-maintdep gen-pot
 	@echo "Updating PO files ["
 	@for LOCALE in $(LOCALES); do \
 		$(MSGMERGE) --no-wrap -s -U locale/$${LOCALE}/LC_MESSAGES/messages.po $(POTFILE); \
+		sed -i -e ':a;N;$$!ba;s|#, fuzzy\n||g' locale/$${LOCALE}/LC_MESSAGES/messages.po; \
 		rm -rf locale/$${LOCALE}/LC_MESSAGES/messages.po~; \
 	done
 	@echo "]"
@@ -225,6 +227,7 @@ gen-pot: check-maintdep
 		-e 's/"Last-Translator: FULL NAME <EMAIL@ADDRESS>\\n"/"Last-Translator: $(AUTHOR) <$(EMAIL)>\\n"/' \
 		-e 's/"Language-Team: LANGUAGE <LL@li.org>\\n"/"Language-Team: $(POTEAM) <$(MAILIST)>\\n"/' \
 		-e 's/"Language: \\n"/"Language: English\\n"/g' $(POTFILE)
+	@sed -i -e ':a;N;$$!ba;s|#, fuzzy\n||g' $(POTFILE)
 
 snapshot: check-maintdep prepare gen-html gen-wiki gen-po clean
 

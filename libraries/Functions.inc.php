@@ -25,7 +25,7 @@ function AssistedLDAPAdd($ldapc, $newdn, $in) {
                 . '.<br /><br /><a href="javascript:history.back(1);">'
                 . _("Back")
                 . '</a></div>';
-        include "../themes/$app_theme/footer.php";
+        include "./themes/$app_theme/footer.php";
         die();
     }
     return($r_add);
@@ -44,7 +44,7 @@ function AssistedLDAPModify($ldapc, $moddn, $in) {
                 . '.<br /><br /><a href="javascript:history.back(1);">'
                 . _("Back")
                 . '</a></div>';
-        include "../themes/$app_theme/footer.php";
+        include "./themes/$app_theme/footer.php";
         die();
     }
     return($r_mod);
@@ -63,7 +63,7 @@ function AssistedLDAPDelete($ldapc, $dn) {
                 . '.<br /><br /><a href="javascript:history.back(1);">'
                 . _("Back")
                 . '</a></div>';
-        include "../themes/$app_theme/footer.php";
+        include "./themes/$app_theme/footer.php";
         die();
     }
     return($r_del);
@@ -82,7 +82,7 @@ function AssistedLDAPClose($ldapc) {
                 . '.<br /><br /><a href="javascript:history.back(1);">'
                 . _("Back")
                 . '</a></div>';
-        include "../themes/$app_theme/footer.php";
+        include "./themes/$app_theme/footer.php";
         die();
     }
     return($ldapx);
@@ -100,7 +100,7 @@ function AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $
                 . '.<br /><br /><a href="javascript:history.back(1);">'
                 . _("Back")
                 . '</a></div>';
-        include "../themes/$app_theme/footer.php";
+        include "./themes/$app_theme/footer.php";
         die();
     }
 
@@ -114,7 +114,7 @@ function AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $
                 . '.<br /><br /><a href="javascript:history.back(1);">'
                 . _("Back")
                 . '</a></div>';
-        include "../themes/$app_theme/footer.php";
+        include "./themes/$app_theme/footer.php";
         die();
     }
 
@@ -128,7 +128,7 @@ function AssistedLDAPSearch($ldapc, $ldap_base, $search_string, $search_limit, $
                 . '.<br /><br /><a href="javascript:history.back(1);">'
                 . _("Back")
                 . '</a></div>';
-        include "../themes/$app_theme/footer.php";
+        include "./themes/$app_theme/footer.php";
         die();
     }
     return($search_entries);
@@ -147,7 +147,7 @@ function AssistedMYSQLQuery($query) {
                 . '.<br /><br /><a href="javascript:history.back(1);">'
                 . _("Back")
                 . '</a></div>';
-        include "../themes/$app_theme/footer.php";
+        include "./themes/$app_theme/footer.php";
         die();
     }
     return($result);
@@ -166,7 +166,7 @@ function AssistedMYSQLClose($mysqlc) {
                 . '.<br /><br /><a href="javascript:history.back(1);">'
                 . _("Back")
                 . '</a></div>';
-        include "../themes/$app_theme/footer.php";
+        include "./themes/$app_theme/footer.php";
         die();
     }
     return($mysqlx);
@@ -364,7 +364,7 @@ function AssistedEMail($what, $where) {
  ******************************************************************************/
 
 function WriteLog($log_file) {
-    global $uid, $mail, $token, $time_today;
+    global $uid, $mail, $token, $time_today, $log_dir;
     $log_location = $log_dir . $log_file . ".log";
     switch ($log_file) {
         case "ChangePasswordDo":

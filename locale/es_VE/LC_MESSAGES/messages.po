@@ -231,7 +231,6 @@ msgid "Creating table for storing the reset password requests ..."
 msgstr "Creando tabla para almacenar las solicitudes de restablecimiento de contraseñas ..."
 
 #: ../../../setup/install.php:54 ../../../setup/uninstall.php:23
-#, fuzzy
 msgid "DONE!"
 msgstr "¡Hecho!"
 
@@ -495,19 +494,16 @@ msgstr "Inicio"
 
 #: ../../../libraries/Functions.inc.php:709
 #: ../../../libraries/Functions.inc.php:970
-#, fuzzy
 msgid "Success! We have generated a new password for you. Please check your e-mail to find it."
 msgstr "¡ÉXITO! Hemos generado una nueva contraseña para usted. Por favor, revise su correo electrónico para encontrarlo."
 
 #: ../../../libraries/Functions.inc.php:715
 #: ../../../libraries/Functions.inc.php:976
-#, fuzzy
 msgid "Success! Your account has been successfully created."
 msgstr "¡ÉXITO! Tu cuenta ha sido creada."
 
 #: ../../../libraries/Functions.inc.php:703
 #: ../../../libraries/Functions.inc.php:964
-#, fuzzy
 msgid "Success! Your password has been changed."
 msgstr "¡ÉXITO! Tu contraseña ha sido cambiada."
 
