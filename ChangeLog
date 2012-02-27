@@ -1,3 +1,10 @@
+DEVELOPMENT RELEASE v1.0.2+20120226233443 (02/26/12)
+    Correcting location of Captcha image source.
+    Correcting storage location of the user password in ChangePassword, EditProfile and DeleteUser modules.
+    Correcting small bugs in Makefile.
+    Adding dependencies for php5-mhash library in Makefile and documentation.
+    
+
 DEVELOPMENT RELEASE v1.0.2+20120226202933 (02/26/12)
     Fixing inclusion of configuration in Captcha library.
     Correcting some translation strings for es_VE and es.
