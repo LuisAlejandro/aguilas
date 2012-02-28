@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aguilas\n"
 "Report-Msgid-Bugs-To: aguilas-list@googlegroups.com\n"
-"POT-Creation-Date: 2012-02-23 16:18-0430\n"
-"PO-Revision-Date: 2012-02-14 09:00+0000\n"
+"POT-Creation-Date: 2012-02-28 11:12-0430\n"
+"PO-Revision-Date: 2012-02-24 08:35+0000\n"
 "Last-Translator: chris <christiancaraceni@hotmail.it>\n"
 "Language-Team: Italian (http://www.transifex.net/projects/p/aguilas/language/it/)\n"
 "Language: it\n"
@@ -616,7 +616,7 @@ msgstr "Digita un termine di ricerca e premi invio"
 
 #: ../../../libraries/Functions.inc.php:689
 msgid "Type of password encryption not supported."
-msgstr "Tipo di crittografia delle password non è supportato."
+msgstr ""
 
 #: ../../../EditProfileDo.php:14
 msgid "User Profile"

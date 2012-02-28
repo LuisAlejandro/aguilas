@@ -73,6 +73,7 @@ LINTIAN = $(shell which lintian)
 GNUPG = $(shell which gpg)
 MD5SUM = $(shell which md5sum)
 TAR = $(shell which tar)
+TRANSIFEX = $(shell which tx)
 
 # BUILD TASKS ------------------------------------------------------------------------------
 
@@ -197,6 +198,14 @@ prepare: check-maintdep
 	@git submodule update
 	@cd documentation/githubwiki/ && git checkout development && git pull origin development
 	@cd documentation/googlewiki/ && git checkout development && git pull origin development
+
+pull-po:
+
+	@tx pull -a
+
+push-po:
+
+	@tx push --source --translations
 
 gen-po: check-maintdep gen-pot
 
@@ -440,7 +449,7 @@ check-maintdep:
 	fi
 	@echo
 
-	@printf "Checking if we have md5sum... "
+	@printf "Checking if we have md5sum ... "
 	@if [ -z $(MD5SUM) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"coreutils\" package."; \
@@ -452,6 +461,14 @@ check-maintdep:
 	@if [ -z $(TAR) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"tar\" package."; \
+		exit 1; \
+	fi
+	@echo
+
+	@printf "Checking if we have tx ... "
+	@if [ -z $(TRANSIFEX) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"transifex-client\" package."; \
 		exit 1; \
 	fi
 	@echo
