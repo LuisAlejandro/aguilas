@@ -1,3 +1,8 @@
+DEVELOPMENT RELEASE v1.0.2+20120228111638 (02/28/12)
+    Adding transifex-client support.
+    Updating po source files from transifex.
+    
+
 DEVELOPMENT RELEASE v1.0.2+20120227012239 (02/27/12)
     Removing fuzzy entries from es/es_VE translations. Automatizing removal on Makefile.
     Correcting location of log files and footer in Functions.inc.php
