@@ -26,7 +26,7 @@ $app_locale = "@@APP_LOCALE@@";
 $app_theme = "@@APP_THEME@@";
 // Application URL
 // The public address of the aplication, in the form of "example.org" (without http://)
-$app_url = $_SERVER['SERVER_NAME'];
+$app_url = $_SERVER['SERVER_NAME']."/aguilas";
 // Application links
 // an array of link_title => link of the applications connected
 // to the LDAP and whose registration process have been delegated to AGUILAS

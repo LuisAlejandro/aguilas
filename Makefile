@@ -73,7 +73,6 @@ LINTIAN = $(shell which lintian)
 GNUPG = $(shell which gpg)
 MD5SUM = $(shell which md5sum)
 TAR = $(shell which tar)
-TRANSIFEX = $(shell which tx)
 
 # BUILD TASKS ------------------------------------------------------------------------------
 
@@ -461,14 +460,6 @@ check-maintdep:
 	@if [ -z $(TAR) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"tar\" package."; \
-		exit 1; \
-	fi
-	@echo
-
-	@printf "Checking if we have tx ... "
-	@if [ -z $(TRANSIFEX) ]; then \
-		echo "[ABSENT]"; \
-		echo "If you are using Debian, Ubuntu or Canaima, please install the \"transifex-client\" package."; \
 		exit 1; \
 	fi
 	@echo
