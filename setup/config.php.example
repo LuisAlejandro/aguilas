@@ -24,9 +24,9 @@ $app_locale = "@@APP_LOCALE@@";
 //  Application theme
 /// The theme applied to the application. Must be available in the themes/ folder
 $app_theme = "@@APP_THEME@@";
-//  Application URL
-/// The public address of the aplication, in the form of "example.org" (without http://)
-$app_url = $_SERVER['SERVER_NAME'];
+// Application URL
+// The public address of the aplication, in the form of "example.org" (without http://)
+$app_url = $_SERVER['SERVER_NAME']."/aguilas";
 // Application links
 // an array of link_title => link of the applications connected
 // to the LDAP and whose registration process have been delegated to AGUILAS
@@ -71,7 +71,7 @@ $ldap_pass = "@@LDAP_PASS@@";
 $ldap_base = "@@LDAP_BASE@@";
 // Encrypt algorithm used to save passwords on LDAP
 // Options:
-// CLEAR | MD5 | SHA (default) | CRYPT
+// CLEAR | MD5 | SHA | CRYPT | SSHA | SMD5 | BLOWFISH | EXT_DES | MD5CRYPT
 $ldap_enc = "SHA";
 // Use secure tunnel connection (TLS)
 // Must have a valid certificate for autentication

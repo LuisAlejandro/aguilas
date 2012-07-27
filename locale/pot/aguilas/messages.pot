@@ -5,13 +5,12 @@
 # Translators:
 # Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>, 2012
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Aguilas 1.0.1\n"
+"Project-Id-Version: Aguilas 1.0.2\n"
 "Report-Msgid-Bugs-To: aguilas-list@googlegroups.com\n"
-"POT-Creation-Date: 2012-02-11 11:07-0430\n"
-"PO-Revision-Date: 2012-02-11 11:07-0430\n"
+"POT-Creation-Date: 2012-05-10 10:25-0430\n"
+"PO-Revision-Date: 2012-05-10 10:25-0430\n"
 "Last-Translator: Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>\n"
 "Language-Team: Aguilas Translation Team <aguilas-list@googlegroups.com>\n"
 "Language: English\n"
@@ -142,6 +141,29 @@ msgstr ""
 #: ../../../libraries/Functions.inc.php:654
 #: ../../../libraries/Functions.inc.php:664
 #: ../../../libraries/Functions.inc.php:695 ../../../Browse.php:34
+#: ../../../libraries/Functions.inc.php:691
+#: ../../../libraries/Functions.inc.php:701
+#: ../../../libraries/Functions.inc.php:711
+#: ../../../libraries/Functions.inc.php:721
+#: ../../../libraries/Functions.inc.php:731
+#: ../../../libraries/Functions.inc.php:741
+#: ../../../libraries/Functions.inc.php:751
+#: ../../../libraries/Functions.inc.php:761
+#: ../../../libraries/Functions.inc.php:771
+#: ../../../libraries/Functions.inc.php:781
+#: ../../../libraries/Functions.inc.php:791
+#: ../../../libraries/Functions.inc.php:801
+#: ../../../libraries/Functions.inc.php:811
+#: ../../../libraries/Functions.inc.php:821
+#: ../../../libraries/Functions.inc.php:831
+#: ../../../libraries/Functions.inc.php:841
+#: ../../../libraries/Functions.inc.php:851
+#: ../../../libraries/Functions.inc.php:881
+#: ../../../libraries/Functions.inc.php:891
+#: ../../../libraries/Functions.inc.php:905
+#: ../../../libraries/Functions.inc.php:915
+#: ../../../libraries/Functions.inc.php:925
+#: ../../../libraries/Functions.inc.php:956
 msgid "Back"
 msgstr ""
 
@@ -161,6 +183,7 @@ msgid "CONFIRM"
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:803
+#: ../../../libraries/Functions.inc.php:1064
 msgid "Cancel"
 msgstr ""
 
@@ -187,7 +210,7 @@ msgstr ""
 msgid "Click the following link to confirm your petition."
 msgstr ""
 
-#: ../../../EditProfileDo.php:105
+#: ../../../EditProfileDo.php:105 ../../../EditProfileDo.php:110
 msgid "Complete Name"
 msgstr ""
 
@@ -237,7 +260,7 @@ msgstr ""
 #: ../../../ResendMailForm.php:16 ../../../ResetPasswordForm.php:40
 #: ../../../ChangePasswordForm.php:38 ../../../DeleteUserForm.php:38
 #: ../../../EditProfileDo.php:106 ../../../ForgotUsernameForm.php:16
-#: ../../../NewUserForm.php:76
+#: ../../../NewUserForm.php:76 ../../../EditProfileDo.php:111
 msgid "E-Mail"
 msgstr ""
 
@@ -255,6 +278,7 @@ msgid "Edit user profile"
 msgstr ""
 
 #: ../../../EditProfileDo.php:103 ../../../NewUserForm.php:16
+#: ../../../EditProfileDo.php:108
 msgid "First Name"
 msgstr ""
 
@@ -263,6 +287,7 @@ msgid "From here you will be able to manage directly your users in "
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:748 ../../../EditProfileDo.php:108
+#: ../../../EditProfileDo.php:113 ../../../libraries/Functions.inc.php:1009
 msgid "Group"
 msgstr ""
 
@@ -293,6 +318,7 @@ msgid "I forgot my username"
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:739 ../../../EditProfileDo.php:102
+#: ../../../EditProfileDo.php:107 ../../../libraries/Functions.inc.php:1000
 msgid "ID"
 msgstr ""
 
@@ -307,6 +333,7 @@ msgid "Invalid letter."
 msgstr ""
 
 #: ../../../EditProfileDo.php:104 ../../../NewUserForm.php:35
+#: ../../../EditProfileDo.php:109
 msgid "Last Name"
 msgstr ""
 
@@ -342,6 +369,7 @@ msgstr ""
 
 #: ../../../DeleteUserForm.php:60 ../../../EditProfileDo.php:107
 #: ../../../EditProfileForm.php:38 ../../../NewUserForm.php:98
+#: ../../../EditProfileDo.php:112
 msgid "Password"
 msgstr ""
 
@@ -354,6 +382,7 @@ msgid "Password Change in "
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:548
+#: ../../../libraries/Functions.inc.php:809
 msgid "Password length must be shorter than 30 characters and longer than 8."
 msgstr ""
 
@@ -366,6 +395,7 @@ msgstr ""
 
 #: ../../../libraries/Functions.inc.php:538
 #: ../../../ChangePasswordForm.php:116 ../../../NewUserForm.php:132
+#: ../../../libraries/Functions.inc.php:799
 msgid "Passwords do not match."
 msgstr ""
 
@@ -394,6 +424,7 @@ msgid "Please enter the e-mail you used to register your user account."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:745
+#: ../../../libraries/Functions.inc.php:1006
 msgid "Real Name"
 msgstr ""
 
@@ -443,6 +474,7 @@ msgid "SEND"
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:802
+#: ../../../libraries/Functions.inc.php:1063
 msgid "Save"
 msgstr ""
 
@@ -456,34 +488,42 @@ msgstr ""
 
 #: ../../../libraries/Functions.inc.php:726
 #: ../../../themes/canaima/header.php:84 ../../../themes/debian/header.php:84
+#: ../../../libraries/Functions.inc.php:987
 msgid "Start"
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:709
+#: ../../../libraries/Functions.inc.php:970
 msgid "Success! We have generated a new password for you. Please check your e-mail to find it."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:715
+#: ../../../libraries/Functions.inc.php:976
 msgid "Success! Your account has been successfully created."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:703
+#: ../../../libraries/Functions.inc.php:964
 msgid "Success! Your password has been changed."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:498
+#: ../../../libraries/Functions.inc.php:759
 msgid "The confirmation token is invalid. Please make the request again."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:662
+#: ../../../libraries/Functions.inc.php:923
 msgid "The data provided doesn't match any existing account. Please go back and check the information you gave us."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:628
+#: ../../../libraries/Functions.inc.php:889
 msgid "The e-mail you provided is already asociated to an existing account."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:488 ../../../Ajax.php:56
+#: ../../../libraries/Functions.inc.php:749
 msgid "The e-mail you provided is not valid. Please go back and verify that you have entered it correctly."
 msgstr ""
 
@@ -492,46 +532,57 @@ msgid "The following users are associated to the email account "
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:719
+#: ../../../libraries/Functions.inc.php:980
 msgid "The new user account has been processed correctly. Please check your e-mail to finish the process."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:528
+#: ../../../libraries/Functions.inc.php:789
 msgid "The old password has invalid characters, which is very strange. Please use the Reset Password form to change your password, and then come back here."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:438
+#: ../../../libraries/Functions.inc.php:699
 msgid "The page has expired, please go back and try again."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:518
+#: ../../../libraries/Functions.inc.php:779
 msgid "The password has invalid characters. You can only use letters (uppercase, lowercase), numbers and these symbols: . ! @ # $ % ^ + = - _"
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:618
+#: ../../../libraries/Functions.inc.php:879
 msgid "The username already exists."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:508
+#: ../../../libraries/Functions.inc.php:769
 msgid "The username is invalid. You can only use letters (uppercase, lowercase), numbers, dashes and underscores."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:642
+#: ../../../libraries/Functions.inc.php:903
 msgid "There are no petitions matching the data provided."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:652
+#: ../../../libraries/Functions.inc.php:913
 msgid "There is an inconsistency with the database. There are two or more accounts sharing some user data (username, e-mail, etc...), which generates errors and inaccuracies on the system. This error has been informed to system administrators."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:684
+#: ../../../libraries/Functions.inc.php:945
 msgid "There was an error creating your account. Please try again later."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:681
+#: ../../../libraries/Functions.inc.php:942
 msgid "There was an error deleting your account. Please try again later."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:678
+#: ../../../libraries/Functions.inc.php:939
 msgid "There was an error generating your new password. Please try again later."
 msgstr ""
 
@@ -541,6 +592,8 @@ msgstr ""
 
 #: ../../../libraries/Functions.inc.php:458
 #: ../../../libraries/Functions.inc.php:468
+#: ../../../libraries/Functions.inc.php:719
+#: ../../../libraries/Functions.inc.php:729
 msgid "There was an error processing the form. Please go back and verify that you have entered the information correctly."
 msgstr ""
 
@@ -550,11 +603,17 @@ msgstr ""
 
 #: ../../../libraries/Functions.inc.php:675
 #: ../../../libraries/Functions.inc.php:688
+#: ../../../libraries/Functions.inc.php:936
+#: ../../../libraries/Functions.inc.php:949
 msgid "There was an error sending the confirmation e-mail. Please try again later."
 msgstr ""
 
 #: ../../../themes/canaima/header.php:74 ../../../themes/debian/header.php:74
 msgid "Type a search term and press enter"
+msgstr ""
+
+#: ../../../libraries/Functions.inc.php:689
+msgid "Type of password encryption not supported."
 msgstr ""
 
 #: ../../../EditProfileDo.php:14
@@ -564,11 +623,13 @@ msgstr ""
 #: ../../../libraries/Functions.inc.php:742 ../../../ResetPasswordForm.php:18
 #: ../../../ChangePasswordForm.php:16 ../../../DeleteUserForm.php:16
 #: ../../../EditProfileDo.php:101 ../../../EditProfileForm.php:16
-#: ../../../NewUserForm.php:54
+#: ../../../NewUserForm.php:54 ../../../EditProfileDo.php:106
+#: ../../../libraries/Functions.inc.php:1003
 msgid "Username"
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:558
+#: ../../../libraries/Functions.inc.php:819
 msgid "Username length must be shorter than 30 characters and longer than 3."
 msgstr ""
 
@@ -632,6 +693,7 @@ msgid "You exceeded the limit of 8 characters."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:448
+#: ../../../libraries/Functions.inc.php:709
 msgid "You have entered the verification code (captcha) incorrectly, please go back and try again."
 msgstr ""
 
@@ -657,34 +719,42 @@ msgid "Your account has been successfully deleted from "
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:712
+#: ../../../libraries/Functions.inc.php:973
 msgid "Your account has been successfully deleted."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:598 ../../../Ajax.php:36
+#: ../../../libraries/Functions.inc.php:859
 msgid "Your first name has invalid characters. You can only use letters (uppercase, lowercase), accented letters or with umlaut."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:568 ../../../Ajax.php:41
+#: ../../../libraries/Functions.inc.php:829
 msgid "Your first name is longer than 60 characters."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:608 ../../../Ajax.php:46
+#: ../../../libraries/Functions.inc.php:869
 msgid "Your last name has invalid characters. You can only use letters (uppercase, lowercase), accented letters or with umlaut."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:578 ../../../Ajax.php:51
+#: ../../../libraries/Functions.inc.php:839
 msgid "Your last name is longer than 60 characters."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:706
+#: ../../../libraries/Functions.inc.php:967
 msgid "Your new password request has been correctly processed. Please check your e-mail to finish the process."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:588
+#: ../../../libraries/Functions.inc.php:849
 msgid "Your old password length is too short or too long, which is very strange. Please use the Reset Password form to change your password, and then come back here."
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:478
+#: ../../../libraries/Functions.inc.php:739
 msgid "Your search terms have invalid characters. You can only use letters (uppercase, lowercase), accented letters, umlaut and underscore."
 msgstr ""
 
@@ -717,6 +787,7 @@ msgid "[ Reset Password ] A success e-mail has been sent to "
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:672
+#: ../../../libraries/Functions.inc.php:933
 msgid "again later."
 msgstr ""
 
@@ -726,6 +797,7 @@ msgid "at least 8 characters"
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:774
+#: ../../../libraries/Functions.inc.php:1035
 msgid "click the field to edit"
 msgstr ""
 
@@ -770,5 +842,6 @@ msgid "repeat your new password"
 msgstr ""
 
 #: ../../../libraries/Functions.inc.php:776
+#: ../../../libraries/Functions.inc.php:1037
 msgid "this field cannot be edited"
 msgstr ""

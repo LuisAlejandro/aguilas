@@ -2,7 +2,7 @@
 
 $allowed_ops = "captcha";
 
-require_once "../setup/config.php";
+require_once "setup/config.php";
 
 session_start();
 
@@ -34,7 +34,7 @@ $hash_md5 = md5($hash_string);
 $_SESSION['captcha'] = $hash_md5;
 
 //Create an array of the images available to us as backgrounds
-$bgs = array("../themes/$app_theme/images/captcha.png");
+$bgs = array("themes/$app_theme/images/captcha.png");
 
 //Choose the background image using the handy array_rand function
 $background = array_rand($bgs, 1);

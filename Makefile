@@ -52,6 +52,8 @@ LIBSVG = $(shell find /usr/lib/ -maxdepth 1 -type d -iname "imagemagick-*")/modu
 PHP = $(shell which php5)
 PHPLDAP = $(shell find /usr/lib/ -name "mysql.so" | grep "php5")
 PHPMYSQL = $(shell find /usr/lib/ -name "ldap.so" | grep "php5")
+PHPMCRYPT = $(shell find /usr/lib/ -name "mcrypt.so" | grep "php5")
+PHPMHASH = $(shell find /usr/lib/ -name "mhash.so" | grep "php5")
 
 # Maintainer tasks depends
 # generatepot: generates POT template from php sources. Uses XGETTEXT.
@@ -105,8 +107,8 @@ gen-html: check-buildep gen-predoc clean-html
 
 	@echo "Generating documentation from source [RST > HTML]"
 	@cp documentation/sphinx.index documentation/rest/index.rest
-	@$(SPHINX) -Q -b html -d documentation/html/doctrees documentation/rest documentation/html
-	@rm -rf documentation/rest/index.rest
+	@$(SPHINX) -E -Q -b html -d documentation/html/doctrees documentation/rest documentation/html
+	@rm -rf documentation/rest/index.rest documentation/html/doctrees documentation/html/objects.inv
 
 gen-man: check-buildep gen-predoc clean-man
 
@@ -149,10 +151,12 @@ install: copy config
 
 config: check-instdep
 
-	@mkdir -p $(DESTDIR)/var/www/
-	@mkdir -p $(DESTDIR)/var/log/aguilas/
-	@touch $(DESTDIR)/var/log/aguilas/{ChangePasswordDo.log,DeleteUserDo.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
-	@ln -s $(DESTDIR)/usr/share/aguilas /var/www/aguilas
+	@mkdir -p /var/www/
+	@mkdir -p /var/log/aguilas/
+	@touch /var/log/aguilas/{Ajax.log,ChangePasswordDo.log,DeleteUserDo.log,NewUserMail.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
+	@chown www-data:www-data /var/log/aguilas/*.log
+	@chmod 640 /var/log/aguilas/*.log
+	@ln -s /usr/share/aguilas/ /var/www/aguilas
 	@$(PHP) -f setup/install.php
 	@echo "AGUILAS configured and running!"
 
@@ -177,9 +181,9 @@ copy:
 uninstall: check-instdep
 
 	@$(PHP) -f setup/uninstall.php
-	@rm -rf $(DESTDIR)/usr/share/aguilas/
-	@rm -rf $(DESTDIR)/var/log/aguilas/
-	@rm -rf $(DESTDIR)/var/www/aguilas/
+	@rm -rf /usr/share/aguilas/
+	@rm -rf /var/log/aguilas/
+	@rm -rf /var/www/aguilas
 	@echo "Uninstalled"
 
 reinstall: uninstall install
@@ -194,11 +198,20 @@ prepare: check-maintdep
 	@cd documentation/githubwiki/ && git checkout development && git pull origin development
 	@cd documentation/googlewiki/ && git checkout development && git pull origin development
 
+pull-po:
+
+	@tx pull -a
+
+push-po:
+
+	@tx push --source --translations
+
 gen-po: check-maintdep gen-pot
 
 	@echo "Updating PO files ["
 	@for LOCALE in $(LOCALES); do \
 		$(MSGMERGE) --no-wrap -s -U locale/$${LOCALE}/LC_MESSAGES/messages.po $(POTFILE); \
+		sed -i -e ':a;N;$$!ba;s|#, fuzzy\n||g' locale/$${LOCALE}/LC_MESSAGES/messages.po; \
 		rm -rf locale/$${LOCALE}/LC_MESSAGES/messages.po~; \
 	done
 	@echo "]"
@@ -206,7 +219,8 @@ gen-po: check-maintdep gen-pot
 gen-pot: check-maintdep
 
 	@echo "Updating POT template ..."
-	@rm $(POTLIST)
+	@rm $(POTLIST) locale/pot/aguilas/messages.pot
+	@mv locale/pot/aguilas/messages.pot.in locale/pot/aguilas/messages.pot
 	@for FILE in $(ALLPHPS); do \
 		echo "../../.$${FILE}" >> $(POTLIST); \
 	done
@@ -222,6 +236,7 @@ gen-pot: check-maintdep
 		-e 's/"Last-Translator: FULL NAME <EMAIL@ADDRESS>\\n"/"Last-Translator: $(AUTHOR) <$(EMAIL)>\\n"/' \
 		-e 's/"Language-Team: LANGUAGE <LL@li.org>\\n"/"Language-Team: $(POTEAM) <$(MAILIST)>\\n"/' \
 		-e 's/"Language: \\n"/"Language: English\\n"/g' $(POTFILE)
+	@sed -i -e ':a;N;$$!ba;s|#, fuzzy\n||g' $(POTFILE)
 
 snapshot: check-maintdep prepare gen-html gen-wiki gen-po clean
 
@@ -327,6 +342,23 @@ check-instdep:
 	fi
 	@echo
 
+	@printf "Checking if we have PHP MCRYPT support ... "
+	@if [ -z $(PHPMCRYPT) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"php5-mcrypt\" package."; \
+		exit 1; \
+	fi
+	@echo
+
+
+	@printf "Checking if we have PHP MHASH support ... "
+	@if [ -z $(PHPMHASH) ]; then \
+		echo "[ABSENT]"; \
+		echo "If you are using Debian, Ubuntu or Canaima, please install the \"php5-mhash\" package."; \
+		exit 1; \
+	fi
+	@echo
+
 check-maintdep:
 
 	@printf "Checking if we have python ... "
@@ -417,7 +449,7 @@ check-maintdep:
 	fi
 	@echo
 
-	@printf "Checking if we have md5sum... "
+	@printf "Checking if we have md5sum ... "
 	@if [ -z $(MD5SUM) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"coreutils\" package."; \

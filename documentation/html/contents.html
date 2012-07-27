@@ -1,29 +1,23 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>1. CONTENTS &mdash; AGUILAS Documentation</title>
-    
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '1.0.1',
-        COLLAPSE_INDEX: false,
+        VERSION:     '1.0.2',
+        COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="AGUILAS Documentation" href="index.html" />
     <link rel="prev" title="AGUILAS" href="index.html" /> 
@@ -59,7 +53,7 @@
 <ul class="simple">
 <li>A web server like Apache, Lighttpd or Nginx.</li>
 <li>A Mail Transport Agent (MTA) like Exim, Pastfix or Sendmail.</li>
-<li>PHP 5 or higher (with LDAP, MYSQL and CLI support).</li>
+<li>PHP 5 or higher (with LDAP, MYSQL, MHASH, MCRYPT and CLI support).</li>
 <li>Imagemagick image conversion utility with SVG support.</li>
 <li>Python with Sphinx and Docutils support.</li>
 <li>Icoutils.</li>
@@ -69,13 +63,13 @@
 </ul>
 <p>Optionally, you will have to install an LDAP and a MYSQL server depending on where is located the computer you are going to use as a server. If you are going to use a local computer as a server (e.g. your personal computer), then you will have to install and configure both on that computer. If you are going to use a remote computer as a server (e.g. a shared hosting server), then you will have to install and configure LDAP and MYSQL on that remote machine.</p>
 <p>If you are impatient, you can install all dependencies at once with the following command:</p>
-<div class="highlight-python"><pre>aptitude install apache2 php5 php5-gd php5-ldap php5-mcrypt php5-mysql php5-suhosin php5-cli make bash gettext python-sphinx icoutils python-docutils libmagickcore-extra imagemagick apache2 mysql-server slapd postfix</pre>
+<div class="highlight-python"><pre>aptitude install apache2 php5 php5-gd php5-ldap php5-mcrypt php5-mysql php5-mhash php5-suhosin php5-cli make bash gettext python-sphinx icoutils python-docutils libmagickcore-extra imagemagick apache2 mysql-server slapd postfix</pre>
 </div>
 <p>If you want to keep reading, We will now explain how to install and configure each one of these dependencies. If you already have them installed in your working environment, please ignore it and proceed to the next step.</p>
 <div class="section" id="installing-apache-and-php">
 <span id="id3"></span><h4>1.1.1.1. Installing Apache and PHP<a class="headerlink" href="#installing-apache-and-php" title="Permalink to this headline">¶</a></h4>
 <p>Run the following command as superuser:</p>
-<div class="highlight-python"><pre>aptitude install apache2 php5 php5-gd php5-ldap php5-mcrypt php5-mysql php5-suhosin php5-cli</pre>
+<div class="highlight-python"><pre>aptitude install apache2 php5 php5-gd php5-ldap php5-mcrypt php5-mhash php5-mysql php5-suhosin php5-cli</pre>
 </div>
 </div>
 <div class="section" id="installing-the-mysql-server">
@@ -200,7 +194,7 @@ Dec 18 18:33:44 OKComputer postfix/qmgr[10946]: 75D4A243BD: removed</pre>
 </li>
 </ol>
 <blockquote>
-<div><dl class="docutils">
+<dl class="docutils">
 <dt>You will be promted with the following questions to configure AGUILAS:</dt>
 <dd><ul class="first last simple">
 <li>Name of the Application, e.g.: Aguilas for Debian User Management</li>
@@ -222,7 +216,7 @@ Dec 18 18:33:44 OKComputer postfix/qmgr[10946]: 75D4A243BD: removed</pre>
 </dd>
 </dl>
 <p>If you need to modify these parameters, you can always edit <tt class="docutils literal"><span class="pre">/usr/share/aguilas/setup/config.php</span></tt> after installation.</p>
-</div></blockquote>
+</blockquote>
 <ol class="arabic">
 <li><p class="first">Obtain superuser priviledges, and install aguilas:</p>
 <div class="highlight-python"><pre>sudo make install</pre>
@@ -703,8 +697,8 @@ git show [COMMIT]</pre>
 <span id="id34"></span><h3>1.8.6. Branching and Tagging<a class="headerlink" href="#branching-and-tagging" title="Permalink to this headline">¶</a></h3>
 <p>Git marks checkpoints in history by applying a label to a commit. You can create a branch with the following commands:</p>
 <blockquote>
-<div>git branch [NEW] [OLD]
-git checkout [NEW]</div></blockquote>
+git branch [NEW] [OLD]
+git checkout [NEW]</blockquote>
 <p>The first command creates a branch, the second command switches your tree to the new branch. You can pass an extra argument to <tt class="docutils literal"><span class="pre">git</span> <span class="pre">branch</span></tt> to base your new branch on a different revision than the latest one.</p>
 <p>Running <tt class="docutils literal"><span class="pre">git</span> <span class="pre">branch</span></tt> without arguments lists your branches. The * in the output marks the current branch:</p>
 <div class="highlight-python"><pre>git branch</pre>
@@ -874,7 +868,7 @@ some other version control systems such as Subversion and CVS</dd>
 </dl>
 <p>Add colors to your ~/.gitconfig file:</p>
 <blockquote>
-<div><dl class="docutils">
+<dl class="docutils">
 <dt>[color]</dt>
 <dd>ui = auto</dd>
 <dt>[color &#8220;branch&#8221;]</dt>
@@ -891,10 +885,10 @@ new = green bold</dd>
 changed = green
 untracked = cyan</dd>
 </dl>
-</div></blockquote>
+</blockquote>
 <p>Highlight whitespace in diffs</p>
 <blockquote>
-<div><dl class="docutils">
+<dl class="docutils">
 <dt>[color]</dt>
 <dd>ui = true</dd>
 <dt>[color &#8220;diff&#8221;]</dt>
@@ -902,10 +896,10 @@ untracked = cyan</dd>
 <dt>[core]</dt>
 <dd>whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol</dd>
 </dl>
-</div></blockquote>
+</blockquote>
 <p>Add aliases to your ~/.gitconfig file:</p>
 <blockquote>
-<div><dl class="docutils">
+<dl class="docutils">
 <dt>[alias]</dt>
 <dd><p class="first">st = status
 ci = commit
@@ -921,7 +915,7 @@ ls = ls-files</p>
 ign = ls-files -o -i &#8211;exclude-standard</p>
 </dd>
 </dl>
-</div></blockquote>
+</blockquote>
 </div>
 <div class="section" id="id44">
 <h3>1.9.2. Configuration<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h3>
@@ -1177,10 +1171,10 @@ commit.</dd>
 <p>For binary files or if mergetool won&#8217;t do, resolve the conflict(s) manually
 and then do:</p>
 <blockquote>
-<div>git add &lt;file1&gt; [&lt;file2&gt; ...]</div></blockquote>
+git add &lt;file1&gt; [&lt;file2&gt; ...]</blockquote>
 <p>Once all conflicts are resolved and staged, commit the pending merge with:</p>
 <blockquote>
-<div>git commit</div></blockquote>
+git commit</blockquote>
 </div>
 <div class="section" id="sharing">
 <h3>1.9.14. Sharing<a class="headerlink" href="#sharing" title="Permalink to this headline">¶</a></h3>
@@ -1322,13 +1316,13 @@ the commit specified by the super-repo). &#8211;init is needed the first time.</
 </dl>
 <p>Removing submodules</p>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>Delete the relevant line from the .gitmodules file.</li>
 <li>Delete the relevant section from .git/config.</li>
 <li>Run git rm &#8211;cached path_to_submodule (no trailing slash).</li>
 <li>Commit and delete the now untracked submodule files.</li>
 </ol>
-</div></blockquote>
+</blockquote>
 <dl class="docutils">
 <dt>Updating submodules</dt>
 <dd><dl class="first docutils">
@@ -1437,142 +1431,142 @@ or to work without being in the working directory at all.</dd>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">1. <strong>CONTENTS</strong></a><ul>
-<li><a class="reference internal" href="#installation-methods">1.1. Installation Methods</a><ul>
-<li><a class="reference internal" href="#installing-software-dependencies">1.1.1. Installing software dependencies</a><ul>
-<li><a class="reference internal" href="#installing-apache-and-php">1.1.1.1. Installing Apache and PHP</a></li>
-<li><a class="reference internal" href="#installing-the-mysql-server">1.1.1.2. Installing the MYSQL server</a></li>
-<li><a class="reference internal" href="#installing-the-ldap-server">1.1.1.3. Installing the LDAP server</a></li>
-<li><a class="reference internal" href="#installing-python-modules-and-other-applications">1.1.1.4. Installing Python modules and other applications</a></li>
-<li><a class="reference internal" href="#installing-the-mail-transport-agent">1.1.1.5. Installing the Mail Transport Agent</a><ul>
-<li><a class="reference internal" href="#installation">1.1.1.5.1. Installation</a></li>
-<li><a class="reference internal" href="#configuration">1.1.1.5.2. Configuration</a></li>
-<li><a class="reference internal" href="#certification">1.1.1.5.3. Certification</a></li>
-<li><a class="reference internal" href="#testing">1.1.1.5.4. Testing</a></li>
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">1. <strong>CONTENTS</strong></a><ul>
+<li><a class="reference external" href="#installation-methods">1.1. Installation Methods</a><ul>
+<li><a class="reference external" href="#installing-software-dependencies">1.1.1. Installing software dependencies</a><ul>
+<li><a class="reference external" href="#installing-apache-and-php">1.1.1.1. Installing Apache and PHP</a></li>
+<li><a class="reference external" href="#installing-the-mysql-server">1.1.1.2. Installing the MYSQL server</a></li>
+<li><a class="reference external" href="#installing-the-ldap-server">1.1.1.3. Installing the LDAP server</a></li>
+<li><a class="reference external" href="#installing-python-modules-and-other-applications">1.1.1.4. Installing Python modules and other applications</a></li>
+<li><a class="reference external" href="#installing-the-mail-transport-agent">1.1.1.5. Installing the Mail Transport Agent</a><ul>
+<li><a class="reference external" href="#installation">1.1.1.5.1. Installation</a></li>
+<li><a class="reference external" href="#configuration">1.1.1.5.2. Configuration</a></li>
+<li><a class="reference external" href="#certification">1.1.1.5.3. Certification</a></li>
+<li><a class="reference external" href="#testing">1.1.1.5.4. Testing</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#installing-the-stable-version">1.1.2. Installing the stable version</a></li>
-<li><a class="reference internal" href="#installing-the-stable-version-using-a-debian-package">1.1.3. Installing the stable version using a debian package</a></li>
-<li><a class="reference internal" href="#download-the-development-version">1.1.4. Download the development version</a></li>
+<li><a class="reference external" href="#installing-the-stable-version">1.1.2. Installing the stable version</a></li>
+<li><a class="reference external" href="#installing-the-stable-version-using-a-debian-package">1.1.3. Installing the stable version using a debian package</a></li>
+<li><a class="reference external" href="#download-the-development-version">1.1.4. Download the development version</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#getting-help">1.2. Getting help</a></li>
-<li><a class="reference internal" href="#contributing-to-aguilas">1.3. Contributing to Aguilas</a><ul>
-<li><a class="reference internal" href="#reporting-bugs">1.3.1. Reporting bugs</a></li>
-<li><a class="reference internal" href="#submitting-patches">1.3.2. Submitting patches</a></li>
-<li><a class="reference internal" href="#submitting-pull-requests">1.3.3. Submitting pull requests</a></li>
-<li><a class="reference internal" href="#writing-documentation">1.3.4. Writing documentation</a></li>
-<li><a class="reference internal" href="#translating-aguilas">1.3.5. Translating Aguilas</a><ul>
-<li><a class="reference internal" href="#generating-pot-templates">1.3.5.1. Generating POT templates</a></li>
-<li><a class="reference internal" href="#updating-po-files-from-pot-template">1.3.5.2. Updating PO files from POT template</a></li>
-<li><a class="reference internal" href="#generate-a-new-po-with-aguilas-translation-assistant">1.3.5.3. Generate a new PO with Aguilas translation assistant</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#contributing-code-through-pull-requests">1.4. Contributing code through pull requests</a><ul>
-<li><a class="reference internal" href="#getting-started">1.4.1. Getting Started</a></li>
-<li><a class="reference internal" href="#submitting-the-pull-request">1.4.2. Submitting the pull request</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#working-with-patches">1.5. Working with patches</a><ul>
-<li><a class="reference internal" href="#what-s-a-patch">1.5.1. What&#8217;s a patch?</a></li>
-<li><a class="reference internal" href="#creating-a-patch-using-diff">1.5.2. Creating a patch using diff</a></li>
-<li><a class="reference internal" href="#creating-a-patch-using-git">1.5.3. Creating a patch using git</a></li>
-<li><a class="reference internal" href="#submitting-the-patch">1.5.4. Submitting the patch</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#describing-aguilas-s-develpment-cycle">1.6. Describing Aguilas&#8217;s develpment cycle</a></li>
-<li><a class="reference internal" href="#understanding-aguilas-s-source-code">1.7. Understanding Aguilas&#8217;s Source Code</a><ul>
-<li><a class="reference internal" href="#aguilas-repositories">1.7.1. Aguilas repositories</a></li>
-<li><a class="reference internal" href="#branches-and-tags">1.7.2. Branches and Tags</a></li>
-<li><a class="reference internal" href="#common-tasks-and-procedures">1.7.3. Common tasks and procedures</a><ul>
-<li><a class="reference internal" href="#checking-dependencies">1.7.3.1. Checking dependencies</a></li>
-<li><a class="reference internal" href="#maintainer-tasks">1.7.3.2. Maintainer tasks</a></li>
-<li><a class="reference internal" href="#build-tasks">1.7.3.3. Build tasks</a></li>
-<li><a class="reference internal" href="#clean-tasks">1.7.3.4. Clean tasks</a></li>
-<li><a class="reference internal" href="#install-tasks">1.7.3.5. Install tasks</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#files-and-directories">1.7.4. Files and Directories</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#working-with-git">1.8. Working with git</a><ul>
-<li><a class="reference internal" href="#installing-git">1.8.1. Installing git</a></li>
-<li><a class="reference internal" href="#configuring-git">1.8.2. Configuring git</a></li>
-<li><a class="reference internal" href="#creating-a-new-repository">1.8.3. Creating a New Repository</a></li>
-<li><a class="reference internal" href="#making-changes">1.8.4. Making Changes</a></li>
-<li><a class="reference internal" href="#browsing-the-repository">1.8.5. Browsing the repository</a></li>
-<li><a class="reference internal" href="#branching-and-tagging">1.8.6. Branching and Tagging</a></li>
-<li><a class="reference internal" href="#merging-branches">1.8.7. Merging branches</a></li>
-<li><a class="reference internal" href="#working-with-remote-servers">1.8.8. Working with remote servers</a></li>
-<li><a class="reference internal" href="#sharing-your-work">1.8.9. Sharing your Work</a></li>
-<li><a class="reference internal" href="#working-with-submodules">1.8.10. Working with submodules</a><ul>
-<li><a class="reference internal" href="#adding-submodules-to-a-git-repository">1.8.10.1. Adding Submodules to a Git Repository</a></li>
-<li><a class="reference internal" href="#using-submodules">1.8.10.2. Using Submodules</a></li>
-<li><a class="reference internal" href="#removing-submodules">1.8.10.3. Removing Submodules</a></li>
-<li><a class="reference internal" href="#updating-submodules">1.8.10.4. Updating Submodules</a></li>
+<li><a class="reference external" href="#getting-help">1.2. Getting help</a></li>
+<li><a class="reference external" href="#contributing-to-aguilas">1.3. Contributing to Aguilas</a><ul>
+<li><a class="reference external" href="#reporting-bugs">1.3.1. Reporting bugs</a></li>
+<li><a class="reference external" href="#submitting-patches">1.3.2. Submitting patches</a></li>
+<li><a class="reference external" href="#submitting-pull-requests">1.3.3. Submitting pull requests</a></li>
+<li><a class="reference external" href="#writing-documentation">1.3.4. Writing documentation</a></li>
+<li><a class="reference external" href="#translating-aguilas">1.3.5. Translating Aguilas</a><ul>
+<li><a class="reference external" href="#generating-pot-templates">1.3.5.1. Generating POT templates</a></li>
+<li><a class="reference external" href="#updating-po-files-from-pot-template">1.3.5.2. Updating PO files from POT template</a></li>
+<li><a class="reference external" href="#generate-a-new-po-with-aguilas-translation-assistant">1.3.5.3. Generate a new PO with Aguilas translation assistant</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#git-cheat-sheet">1.9. Git Cheat Sheet</a><ul>
-<li><a class="reference internal" href="#setup">1.9.1. Setup</a></li>
-<li><a class="reference internal" href="#id44">1.9.2. Configuration</a></li>
-<li><a class="reference internal" href="#info">1.9.3. Info</a></li>
-<li><a class="reference internal" href="#adding-deleting">1.9.4. Adding / Deleting</a></li>
-<li><a class="reference internal" href="#ignoring">1.9.5. Ignoring</a></li>
-<li><a class="reference internal" href="#staging">1.9.6. Staging</a></li>
-<li><a class="reference internal" href="#unstaging">1.9.7. Unstaging</a></li>
-<li><a class="reference internal" href="#committing">1.9.8. Committing</a></li>
-<li><a class="reference internal" href="#branching">1.9.9. Branching</a></li>
-<li><a class="reference internal" href="#merging">1.9.10. Merging</a></li>
-<li><a class="reference internal" href="#cherry-picking">1.9.11. Cherry-Picking</a></li>
-<li><a class="reference internal" href="#squashing">1.9.12. Squashing</a></li>
-<li><a class="reference internal" href="#conflicts">1.9.13. Conflicts</a></li>
-<li><a class="reference internal" href="#sharing">1.9.14. Sharing</a></li>
-<li><a class="reference internal" href="#reverting">1.9.15. Reverting</a></li>
-<li><a class="reference internal" href="#fix-mistakes-undo">1.9.16. Fix mistakes / Undo</a></li>
-<li><a class="reference internal" href="#plumbing">1.9.17. Plumbing</a></li>
-<li><a class="reference internal" href="#stashing">1.9.18. Stashing</a></li>
-<li><a class="reference internal" href="#remotes">1.9.19. Remotes</a></li>
-<li><a class="reference internal" href="#submodules">1.9.20. Submodules</a></li>
-<li><a class="reference internal" href="#patches">1.9.21. Patches</a></li>
-<li><a class="reference internal" href="#tags">1.9.22. Tags</a></li>
-<li><a class="reference internal" href="#archive">1.9.23. Archive</a></li>
-<li><a class="reference internal" href="#git-instaweb">1.9.24. Git Instaweb</a></li>
-<li><a class="reference internal" href="#environment-variables">1.9.25. Environment Variables</a></li>
+<li><a class="reference external" href="#contributing-code-through-pull-requests">1.4. Contributing code through pull requests</a><ul>
+<li><a class="reference external" href="#getting-started">1.4.1. Getting Started</a></li>
+<li><a class="reference external" href="#submitting-the-pull-request">1.4.2. Submitting the pull request</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#working-with-patches">1.5. Working with patches</a><ul>
+<li><a class="reference external" href="#what-s-a-patch">1.5.1. What&#8217;s a patch?</a></li>
+<li><a class="reference external" href="#creating-a-patch-using-diff">1.5.2. Creating a patch using diff</a></li>
+<li><a class="reference external" href="#creating-a-patch-using-git">1.5.3. Creating a patch using git</a></li>
+<li><a class="reference external" href="#submitting-the-patch">1.5.4. Submitting the patch</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#describing-aguilas-s-develpment-cycle">1.6. Describing Aguilas&#8217;s develpment cycle</a></li>
+<li><a class="reference external" href="#understanding-aguilas-s-source-code">1.7. Understanding Aguilas&#8217;s Source Code</a><ul>
+<li><a class="reference external" href="#aguilas-repositories">1.7.1. Aguilas repositories</a></li>
+<li><a class="reference external" href="#branches-and-tags">1.7.2. Branches and Tags</a></li>
+<li><a class="reference external" href="#common-tasks-and-procedures">1.7.3. Common tasks and procedures</a><ul>
+<li><a class="reference external" href="#checking-dependencies">1.7.3.1. Checking dependencies</a></li>
+<li><a class="reference external" href="#maintainer-tasks">1.7.3.2. Maintainer tasks</a></li>
+<li><a class="reference external" href="#build-tasks">1.7.3.3. Build tasks</a></li>
+<li><a class="reference external" href="#clean-tasks">1.7.3.4. Clean tasks</a></li>
+<li><a class="reference external" href="#install-tasks">1.7.3.5. Install tasks</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#files-and-directories">1.7.4. Files and Directories</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#working-with-git">1.8. Working with git</a><ul>
+<li><a class="reference external" href="#installing-git">1.8.1. Installing git</a></li>
+<li><a class="reference external" href="#configuring-git">1.8.2. Configuring git</a></li>
+<li><a class="reference external" href="#creating-a-new-repository">1.8.3. Creating a New Repository</a></li>
+<li><a class="reference external" href="#making-changes">1.8.4. Making Changes</a></li>
+<li><a class="reference external" href="#browsing-the-repository">1.8.5. Browsing the repository</a></li>
+<li><a class="reference external" href="#branching-and-tagging">1.8.6. Branching and Tagging</a></li>
+<li><a class="reference external" href="#merging-branches">1.8.7. Merging branches</a></li>
+<li><a class="reference external" href="#working-with-remote-servers">1.8.8. Working with remote servers</a></li>
+<li><a class="reference external" href="#sharing-your-work">1.8.9. Sharing your Work</a></li>
+<li><a class="reference external" href="#working-with-submodules">1.8.10. Working with submodules</a><ul>
+<li><a class="reference external" href="#adding-submodules-to-a-git-repository">1.8.10.1. Adding Submodules to a Git Repository</a></li>
+<li><a class="reference external" href="#using-submodules">1.8.10.2. Using Submodules</a></li>
+<li><a class="reference external" href="#removing-submodules">1.8.10.3. Removing Submodules</a></li>
+<li><a class="reference external" href="#updating-submodules">1.8.10.4. Updating Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference external" href="#git-cheat-sheet">1.9. Git Cheat Sheet</a><ul>
+<li><a class="reference external" href="#setup">1.9.1. Setup</a></li>
+<li><a class="reference external" href="#id44">1.9.2. Configuration</a></li>
+<li><a class="reference external" href="#info">1.9.3. Info</a></li>
+<li><a class="reference external" href="#adding-deleting">1.9.4. Adding / Deleting</a></li>
+<li><a class="reference external" href="#ignoring">1.9.5. Ignoring</a></li>
+<li><a class="reference external" href="#staging">1.9.6. Staging</a></li>
+<li><a class="reference external" href="#unstaging">1.9.7. Unstaging</a></li>
+<li><a class="reference external" href="#committing">1.9.8. Committing</a></li>
+<li><a class="reference external" href="#branching">1.9.9. Branching</a></li>
+<li><a class="reference external" href="#merging">1.9.10. Merging</a></li>
+<li><a class="reference external" href="#cherry-picking">1.9.11. Cherry-Picking</a></li>
+<li><a class="reference external" href="#squashing">1.9.12. Squashing</a></li>
+<li><a class="reference external" href="#conflicts">1.9.13. Conflicts</a></li>
+<li><a class="reference external" href="#sharing">1.9.14. Sharing</a></li>
+<li><a class="reference external" href="#reverting">1.9.15. Reverting</a></li>
+<li><a class="reference external" href="#fix-mistakes-undo">1.9.16. Fix mistakes / Undo</a></li>
+<li><a class="reference external" href="#plumbing">1.9.17. Plumbing</a></li>
+<li><a class="reference external" href="#stashing">1.9.18. Stashing</a></li>
+<li><a class="reference external" href="#remotes">1.9.19. Remotes</a></li>
+<li><a class="reference external" href="#submodules">1.9.20. Submodules</a></li>
+<li><a class="reference external" href="#patches">1.9.21. Patches</a></li>
+<li><a class="reference external" href="#tags">1.9.22. Tags</a></li>
+<li><a class="reference external" href="#archive">1.9.23. Archive</a></li>
+<li><a class="reference external" href="#git-instaweb">1.9.24. Git Instaweb</a></li>
+<li><a class="reference external" href="#environment-variables">1.9.25. Environment Variables</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter"><strong>AGUILAS</strong></a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/contents.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="index.html"
+                                  title="previous chapter"><strong>AGUILAS</strong></a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/contents.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -1590,9 +1584,9 @@ or to work without being in the working directory at all.</dd>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 11-02-2012, Luis Alejandro Martínez Faneyth.
-      Last updated on Feb 11, 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+      &copy; Copyright 10-05-2012, Luis Alejandro Martínez Faneyth.
+      Last updated on May 10, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
     </div>
   </body>
 </html>

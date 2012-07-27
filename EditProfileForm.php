@@ -7,7 +7,7 @@ require_once "./themes/$app_theme/header.php";
 
 <h2><?= _("Edit User Profile") ?></h2>
 
-<p><?= _("After introducing your user data, you will be able to edit your profile information.") . $app_name . "." ?></p>
+<p><?= _("After introducing your user data, you will be able to edit your profile information.") ?></p>
 
 <form method="post" action="EditProfileDo.php">
     <table>
