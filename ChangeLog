@@ -1,3 +1,7 @@
+DEVELOPMENT RELEASE v1.0.2+20121030211931 (10/30/12)
+    Correcting Copyright.
+    
+
 DEVELOPMENT RELEASE v1.0.2+20120510102513 (05/10/12)
     Correcting $APP_URL. It didn't have /aguilas attached to the domain name.
     
