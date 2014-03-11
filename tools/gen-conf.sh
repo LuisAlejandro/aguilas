@@ -29,8 +29,8 @@
 ROOTFLDR="$( pwd )"
 SAMPLE="${ROOTFLDR}/setup/config.php.example"
 FILE="${ROOTFLDR}/setup/config.php"
-VARTMP="$( tempfile )"
-COMTMP="$( tempfile )"
+VARTMP="$( mktemp )"
+COMTMP="$( mktemp )"
 
 echo
 echo "We are going to ask you a couple of questions regarding AGUILAS configuration."
