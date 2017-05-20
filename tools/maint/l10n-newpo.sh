@@ -1,10 +1,10 @@
 #!/bin/bash
 #
 # ====================================================================
-# PACKAGE: aguilas
+# PACKAGE: stanlee
 # FILE: tools/maint/l10n-newpo.sh
 # DESCRIPTION:	Generates a PO file for a new translated language,
-#		based on the Aguilas POT template.
+#		based on the Stanlee POT template.
 # USAGE: ./tools/maint/l10n-newpo.sh [L10N CODE]
 # COPYRIGHT:
 # (C) 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
@@ -28,7 +28,7 @@
 
 CODE="${1}"
 ROOTDIR="$( pwd )"
-POT="${ROOTDIR}/locale/pot/aguilas/messages.pot"
+POT="${ROOTDIR}/locale/pot/stanlee/messages.pot"
 PO="${ROOTDIR}/locale/${CODE}/LC_MESSAGES/messages.po"
 PODIR="$( dirname ${PO} )"
 MSGID="$( tempfile )"

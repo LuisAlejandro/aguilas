@@ -1,0 +1,39 @@
+============
+**CONTENTS**
+============
+
+.. LINK LIST
+.. _Google Mail: http://gmail.com
+.. _Google Code: https://code.google.com/p/stanlee
+.. _GitHub: https://github.com/HuntingBears/stanlee
+.. _Gitorious: https://gitorious.org/huntingbears/stanlee 
+.. _Stanlee download page: http://code.google.com/p/stanlee/downloads/list
+.. _Stanlee IRC Channel: irc://irc.freenode.net/stanlee
+.. _Stanlee Mailing List: http://groups.google.com/group/stanlee-list
+.. _Ticket Tracker: https://github.com/HuntingBears/stanlee/issues
+.. _open an account:
+.. _Signup at GitHub: https://github.com/signup/free
+.. _open a new ticket:
+.. _New Issue Form: https://github.com/HuntingBears/stanlee/issues/new
+.. _Gist: https://gist.github.com/
+.. _New public Gist: https://gist.github.com/gists/new
+.. _Sphinx Documentation System: http://sphinx.pocoo.org
+.. _reStructuredText basics: http://docutils.sourceforge.net/docs/user/rst/quickref.html
+.. _Stanlee Project Page:
+.. _Transifex: https://www.transifex.net/projects/p/stanlee/
+.. _Signup at Transifex: https://www.transifex.net/plans/signup/free/
+.. _Translation Teams Page: https://www.transifex.net/projects/p/stanlee/teams/
+.. _get hacking:
+.. _Stanlee Repository Page:
+.. _fork a project: https://github.com/HuntingBears/stanlee/ 
+.. _fork: http://help.github.com/fork-a-repo
+.. _pull request: http://help.github.com/send-pull-requests/
+.. _provide your SSH key: http://help.github.com/linux-set-up-git/
+.. _graphical summary: http://zrusin.blogspot.com/2007/09/git-cheat-sheet.html
+.. _Google Code Wiki: http://code.google.com/p/stanlee/w/list
+.. _GitHub Wiki: https://github.com/HuntingBears/stanlee/wiki
+
+
+
+
+

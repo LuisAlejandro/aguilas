@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # ====================================================================
-# PACKAGE: aguilas
+# PACKAGE: stanlee
 # FILE: tools/maint/ldap-debugging.sh
 # DESCRIPTION:  Prints debugging information for an LDAP server
 # USAGE: ./ldap-debugging.sh [ADMINDN] [PASS] [SERVER] [BASE]

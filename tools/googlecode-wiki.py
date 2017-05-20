@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # ====================================================================
-# PACKAGE: aguilas
+# PACKAGE: stanlee
 # FILE: tools/googlecode-wiki.py
 # DESCRIPTION:	Converts all REST sources in documentation/rest/ to
 #		Google Code Wiki format using the wikir module.

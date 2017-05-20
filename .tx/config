@@ -1,8 +1,8 @@
 [main]
 host = https://www.transifex.net
 
-[aguilas.core]
+[stanlee.core]
 host = https://www.transifex.net
 file_filter = locale/<lang>/LC_MESSAGES/messages.po
-source_file = locale/pot/aguilas/messages.pot
+source_file = locale/pot/stanlee/messages.pot
 source_lang = en

@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # ====================================================================
-# PACKAGE: aguilas
+# PACKAGE: stanlee
 # FILE: tools/maint/l10n-chmsgid-global.sh
 # DESCRIPTION:  Changes each MSGID string from all sources and POT
 #		template if the user provides an alternative.
@@ -27,7 +27,7 @@
 # CODE IS POETRY
 
 ROOTDIR="$( pwd )"
-POT="${ROOTDIR}/locale/pot/aguilas/messages.pot"
+POT="${ROOTDIR}/locale/pot/stanlee/messages.pot"
 TMP="$( tempfile )"
 FILES=$( find ../.. -name *.php )
 

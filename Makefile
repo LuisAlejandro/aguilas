@@ -5,18 +5,18 @@ SHELL = sh -e
 # Project data
 AUTHOR = Luis Alejandro Martínez Faneyth
 EMAIL = luis@huntingbears.com.ve
-MAILIST = aguilas-list@googlegroups.com
-PACKAGE = Aguilas
+MAILIST = stanlee-list@googlegroups.com
+PACKAGE = Stanlee
 CHARSET = UTF-8
 VERSION = $(shell cat VERSION | grep "VERSION" | sed 's/VERSION = //g;s/+.*//g')
 YEAR = $(shell date +%Y)
 
 # Translation data
-LANGUAGETEAM = Aguilas Translation Team <aguilas-list@googlegroups.com>
-POTLIST = locale/pot/aguilas/POTFILES.in
-POTFILE = locale/pot/aguilas/messages.pot
-POTITLE = Aguilas Translation Template
-POTEAM = Aguilas Translation Team
+LANGUAGETEAM = Stanlee Translation Team <stanlee-list@googlegroups.com>
+POTLIST = locale/pot/stanlee/POTFILES.in
+POTFILE = locale/pot/stanlee/messages.pot
+POTITLE = Stanlee Translation Template
+POTEAM = Stanlee Translation Team
 PODATE = $(shell date +%F\ %R%z)
 
 # Common files lists
@@ -46,7 +46,7 @@ LIBSVG = $(shell find /usr/lib/ -maxdepth 1 -type d -iname "imagemagick-*")/modu
 
 # Install depends
 # User install tasks
-# install: install aguilas
+# install: install stanlee
 #	- copy: copies files over their destination. They need PHP, PHPLDAP and PHPMYSQL.
 #	- config: creates MYSQL tables and LDAP entries.
 PHP = $(shell which php5)
@@ -113,7 +113,7 @@ gen-html: check-buildep gen-predoc clean-html
 gen-man: check-buildep gen-predoc clean-man
 
 	@echo "Generating documentation from source [RST > MAN]"
-	@$(RST2MAN) --language="en" --title="AGUILAS" documentation/man/aguilas.rest documentation/man/aguilas.1
+	@$(RST2MAN) --language="en" --title="AGUILAS" documentation/man/stanlee.rest documentation/man/stanlee.1
 
 gen-img: check-buildep clean-img
 
@@ -152,27 +152,27 @@ install: copy config
 config: check-instdep
 
 	@mkdir -p /var/www/
-	@mkdir -p /var/log/aguilas/
-	@touch /var/log/aguilas/{Ajax.log,ChangePasswordDo.log,DeleteUserDo.log,NewUserMail.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
-	@chown www-data:www-data /var/log/aguilas/*.log
-	@chmod 640 /var/log/aguilas/*.log
-	@ln -s /usr/share/aguilas/ /var/www/aguilas
+	@mkdir -p /var/log/stanlee/
+	@touch /var/log/stanlee/{Ajax.log,ChangePasswordDo.log,DeleteUserDo.log,NewUserMail.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
+	@chown www-data:www-data /var/log/stanlee/*.log
+	@chmod 640 /var/log/stanlee/*.log
+	@ln -s /usr/share/stanlee/ /var/www/stanlee
 	@$(PHP) -f setup/install.php
 	@echo "AGUILAS configured and running!"
 
 copy:
 
-	@mkdir -p $(DESTDIR)/usr/share/aguilas/setup/
+	@mkdir -p $(DESTDIR)/usr/share/stanlee/setup/
 
 	@# Installing application
-	@cp -r locale libraries themes $(DESTDIR)/usr/share/aguilas/
-	@install -D -m 644 $(PHPS) $(DESTDIR)/usr/share/aguilas/
-	@install -D -m 644 setup/config.* $(DESTDIR)/usr/share/aguilas/setup/
+	@cp -r locale libraries themes $(DESTDIR)/usr/share/stanlee/
+	@install -D -m 644 $(PHPS) $(DESTDIR)/usr/share/stanlee/
+	@install -D -m 644 setup/config.* $(DESTDIR)/usr/share/stanlee/setup/
 
 	@# Removing unnecesary svg's
 	@for THEME in $(THEMES); do \
 		for IMAGE in $(IMAGES); do \
-			rm -rf $(DESTDIR)/usr/share/aguilas/themes/$${THEME}/images/$${IMAGE}.svg; \
+			rm -rf $(DESTDIR)/usr/share/stanlee/themes/$${THEME}/images/$${IMAGE}.svg; \
 		done; \
 		rm -rf themes/$${THEME}/images/favicon.png; \
 	done
@@ -181,9 +181,9 @@ copy:
 uninstall: check-instdep
 
 	@$(PHP) -f setup/uninstall.php
-	@rm -rf /usr/share/aguilas/
-	@rm -rf /var/log/aguilas/
-	@rm -rf /var/www/aguilas
+	@rm -rf /usr/share/stanlee/
+	@rm -rf /var/log/stanlee/
+	@rm -rf /var/www/stanlee
 	@echo "Uninstalled"
 
 reinstall: uninstall install
@@ -223,7 +223,7 @@ gen-pot: check-maintdep
 	@for FILE in $(ALLPHPS); do \
 		echo "../../.$${FILE}" >> $(POTLIST); \
 	done
-	@cd locale/pot/aguilas/ && $(XGETTEXT) --msgid-bugs-address="$(MAILIST)" \
+	@cd locale/pot/stanlee/ && $(XGETTEXT) --msgid-bugs-address="$(MAILIST)" \
 		--package-version="$(VERSION)" --package-name="$(PACKAGE)" \
 		--copyright-holder="$(AUTHOR)" --no-wrap --from-code=utf-8 \
 		--language=php -k_ -s -j -o messages.pot -f POTFILES.in
@@ -306,7 +306,7 @@ clean-wiki:
 clean-man:
 
 	@echo "Cleaning generated man pages ..."
-	@rm -rf documentation/man/aguilas.1
+	@rm -rf documentation/man/stanlee.1
 
 clean-conf:
 

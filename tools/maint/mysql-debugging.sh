@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # ====================================================================
-# PACKAGE: aguilas
+# PACKAGE: stanlee
 # FILE: tools/maint/mysql-debugging.sh
 # DESCRIPTION:  Prints debugging information for a MYSQL server
 # USAGE: ./mysql-debugging.sh [ADMIN] [PASS] [HOST]

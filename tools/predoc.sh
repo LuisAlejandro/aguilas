@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # ====================================================================
-# PACKAGE: aguilas
+# PACKAGE: stanlee
 # FILE: tools/predoc.sh
 # DESCRIPTION:	build: Replaces @@DATA@@ tokens with correct values
 #		on documentation and generates proper output files.
@@ -37,7 +37,7 @@ SUBS="AUTHOR DATE VERSION URL DESCRIPTION DESCRIPTIONLINES COMMONINTRO RSTLIST L
 AUTHOR="Luis Alejandro Martínez Faneyth"
 DATE=$( date +%d-%m-%Y )
 VERSION=$( cat ${VERSIONFILE} | grep "VERSION = " | sed 's/VERSION = //g;s/+.*//g' )
-URL="http://code.google.com/p/aguilas"
+URL="http://code.google.com/p/stanlee"
 DESCRIPTION="A web-based LDAP user management system"
 DESCRIPTIONLINES="---------------------------------------"
 COMMONINTRO=$( cat ${DOCDIR}/common.index.in | sed ':a;N;$!ba;s/\n/______/g' )

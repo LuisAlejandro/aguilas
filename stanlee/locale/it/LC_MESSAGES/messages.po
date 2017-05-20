@@ -1,0 +1,849 @@
+# Stanlee Translation Template.
+# Copyright (C) 2012 Luis Alejandro Martínez Faneyth
+# This file is distributed under the same license as the Stanlee package.
+#
+# Translators:
+#
+# Translators:
+# chris  <christiancaraceni@hotmail.it>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: stanlee\n"
+"Report-Msgid-Bugs-To: stanlee-list@googlegroups.com\n"
+"POT-Creation-Date: 2012-02-28 11:12-0430\n"
+"PO-Revision-Date: 2012-02-24 08:35+0000\n"
+"Last-Translator: chris <christiancaraceni@hotmail.it>\n"
+"Language-Team: Italian (http://www.transifex.net/projects/p/stanlee/language/it/)\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: ../../../Search.php:52
+msgid " Users found matching the given criteria."
+msgstr "  Utenti trovati che corrispondono ai criteri specificati."
+
+#: ../../../Browse.php:75
+msgid " Users found whose real name starts with letter "
+msgstr "  Utenti trovati il cui nome reale inizia con la lettera"
+
+#: ../../../libraries/Functions.inc.php:225
+msgid " in "
+msgstr " in"
+
+#: ../../../themes/canaima/footer.php:29 ../../../themes/debian/footer.php:29
+msgid " is powered by "
+msgstr "  è offerto da  "
+
+#: ../../../Ajax.php:79
+msgid " of the user "
+msgstr "  dell'utente"
+
+#: ../../../themes/canaima/index.php:5 ../../../themes/debian/index.php:5
+msgid ". Creating an account will allow you to connect to the following services:"
+msgstr ". Creando un account sarai abilitato a connetterti ai seguenti servizi:"
+
+#: ../../../NewUserForm.php:10
+msgid ". With this account your will be able to authenticate in the platform services. In the second column of the form we have placed some examples to help you with the process. Please follow the instructions to finish the process."
+msgstr ". Con questo account potrai autenticarti nella piattaforma dei servizi. Nella seconda colonna del modulo abbiamo posto alcuni esempi per aiutarti con il processo. Segui le istruzioni per finire il processo."
+
+#: ../../../EditProfileForm.php:10
+msgid "After introducing your user data, you will be able to edit your profile information."
+msgstr "Dopo aver introdotto i dati utente, potrai modificare le informazioni del profilo."
+
+#: ../../../libraries/Functions.inc.php:80 ../../../Ajax.php:90
+msgid "An error has ocurred trying to close the connection to the LDAP database: "
+msgstr "Si è verificato un errore chiudendo la connessione al database LDAP:"
+
+#: ../../../libraries/Functions.inc.php:164
+msgid "An error has ocurred trying to close the connection to the MYSQL database: "
+msgstr "Si è verificato un errore provando a chiudere la connessione al database MYSQL:"
+
+#: ../../../libraries/MYSQLConnection.inc.php:15
+msgid "An error has ocurred trying to connect to the MYSQL database."
+msgstr "Si è verificato un errore connettendosi al database MYSQL"
+
+#: ../../../libraries/Functions.inc.php:61
+msgid "An error has ocurred trying to delete entries on the LDAP database: "
+msgstr "Si è verificato un errore provando a cancellare le voci nel database LDAP:"
+
+#: ../../../libraries/Functions.inc.php:23
+msgid "An error has ocurred trying to insert entries on the LDAP database: "
+msgstr "Si è verificato un errore provando a inserire le voci nel database LDAP:"
+
+#: ../../../libraries/Functions.inc.php:42
+msgid "An error has ocurred trying to modify entries on the LDAP database: "
+msgstr "Si è verificato un errore provando a modificare le voci nel database LDAP:"
+
+#: ../../../libraries/MYSQLConnection.inc.php:34
+msgid "An error has ocurred trying to select database "
+msgstr "Si è verificato un errore scegliendo il database "
+
+#: ../../../libraries/Functions.inc.php:145
+msgid "An error has ocurred while the system was performing a MYSQL query on the database: "
+msgstr "Si è verificato un errore mentre il sistema stava effettuando una query MYSQL nel database:"
+
+#: ../../../libraries/Functions.inc.php:98
+msgid "An error has ocurred while the system was performing a search: "
+msgstr "Si è verificato un errore mentre il sistema stava effettuando una ricerca:"
+
+#: ../../../libraries/LDAPConnection.inc.php:71
+msgid "An error ocurred while trying to bind with LDAP: "
+msgstr "Si è verificato un errore provando a collegarsi con LDAP:"
+
+#: ../../../libraries/LDAPConnection.inc.php:29
+#: ../../../libraries/LDAPConnection.inc.php:42
+msgid "An error ocurred while trying to configure LDAP: "
+msgstr "Si è verificato un errore provando a configurare LDAP:"
+
+#: ../../../libraries/LDAPConnection.inc.php:56
+msgid "An error ocurred while trying to start a secure connection with LDAP: "
+msgstr "Si è verificato un errore avviando una connessione sicora con LDAP:"
+
+#: ../../../libraries/LDAPConnection.inc.php:17
+msgid "An error ucurred while trying to connect to the LDAP"
+msgstr "Si è verificato un errore provando a connettersi a LDAP"
+
+#: ../../../libraries/LDAPConnection.inc.php:19
+#: ../../../libraries/LDAPConnection.inc.php:32
+#: ../../../libraries/LDAPConnection.inc.php:45
+#: ../../../libraries/LDAPConnection.inc.php:59
+#: ../../../libraries/LDAPConnection.inc.php:74
+#: ../../../libraries/MYSQLConnection.inc.php:17
+#: ../../../libraries/MYSQLConnection.inc.php:38
+#: ../../../libraries/Functions.inc.php:26
+#: ../../../libraries/Functions.inc.php:45
+#: ../../../libraries/Functions.inc.php:64
+#: ../../../libraries/Functions.inc.php:83
+#: ../../../libraries/Functions.inc.php:101
+#: ../../../libraries/Functions.inc.php:115
+#: ../../../libraries/Functions.inc.php:129
+#: ../../../libraries/Functions.inc.php:148
+#: ../../../libraries/Functions.inc.php:167
+#: ../../../libraries/Functions.inc.php:440
+#: ../../../libraries/Functions.inc.php:450
+#: ../../../libraries/Functions.inc.php:460
+#: ../../../libraries/Functions.inc.php:470
+#: ../../../libraries/Functions.inc.php:480
+#: ../../../libraries/Functions.inc.php:490
+#: ../../../libraries/Functions.inc.php:500
+#: ../../../libraries/Functions.inc.php:510
+#: ../../../libraries/Functions.inc.php:520
+#: ../../../libraries/Functions.inc.php:530
+#: ../../../libraries/Functions.inc.php:540
+#: ../../../libraries/Functions.inc.php:550
+#: ../../../libraries/Functions.inc.php:560
+#: ../../../libraries/Functions.inc.php:570
+#: ../../../libraries/Functions.inc.php:580
+#: ../../../libraries/Functions.inc.php:590
+#: ../../../libraries/Functions.inc.php:620
+#: ../../../libraries/Functions.inc.php:630
+#: ../../../libraries/Functions.inc.php:644
+#: ../../../libraries/Functions.inc.php:654
+#: ../../../libraries/Functions.inc.php:664
+#: ../../../libraries/Functions.inc.php:695 ../../../Browse.php:34
+#: ../../../libraries/Functions.inc.php:691
+#: ../../../libraries/Functions.inc.php:701
+#: ../../../libraries/Functions.inc.php:711
+#: ../../../libraries/Functions.inc.php:721
+#: ../../../libraries/Functions.inc.php:731
+#: ../../../libraries/Functions.inc.php:741
+#: ../../../libraries/Functions.inc.php:751
+#: ../../../libraries/Functions.inc.php:761
+#: ../../../libraries/Functions.inc.php:771
+#: ../../../libraries/Functions.inc.php:781
+#: ../../../libraries/Functions.inc.php:791
+#: ../../../libraries/Functions.inc.php:801
+#: ../../../libraries/Functions.inc.php:811
+#: ../../../libraries/Functions.inc.php:821
+#: ../../../libraries/Functions.inc.php:831
+#: ../../../libraries/Functions.inc.php:841
+#: ../../../libraries/Functions.inc.php:851
+#: ../../../libraries/Functions.inc.php:881
+#: ../../../libraries/Functions.inc.php:891
+#: ../../../libraries/Functions.inc.php:905
+#: ../../../libraries/Functions.inc.php:915
+#: ../../../libraries/Functions.inc.php:925
+#: ../../../libraries/Functions.inc.php:956
+msgid "Back"
+msgstr "Indietro"
+
+#: ../../../themes/canaima/footer.php:24 ../../../themes/canaima/header.php:61
+#: ../../../themes/debian/footer.php:24 ../../../themes/debian/header.php:61
+msgid "Browse Users"
+msgstr "Sfoglia Utenti"
+
+#: ../../../themes/canaima/index.php:55 ../../../themes/debian/index.php:55
+msgid "Browse users"
+msgstr "Sfoglia utenti"
+
+#: ../../../libraries/Functions.inc.php:229
+#: ../../../libraries/Functions.inc.php:300
+#: ../../../libraries/Functions.inc.php:329
+msgid "CONFIRM"
+msgstr "CONFERMA"
+
+#: ../../../libraries/Functions.inc.php:803
+#: ../../../libraries/Functions.inc.php:1064
+msgid "Cancel"
+msgstr "Cancella"
+
+#: ../../../ResendMailForm.php:38 ../../../ResetPasswordForm.php:62
+#: ../../../ChangePasswordForm.php:129 ../../../DeleteUserForm.php:82
+#: ../../../EditProfileForm.php:60 ../../../ForgotUsernameForm.php:38
+#: ../../../NewUserForm.php:145
+msgid "Captcha"
+msgstr "Captcha"
+
+#: ../../../themes/canaima/footer.php:9 ../../../themes/canaima/header.php:36
+#: ../../../themes/debian/footer.php:9 ../../../themes/debian/header.php:36
+#: ../../../ChangePasswordForm.php:8
+msgid "Change Password"
+msgstr "Cambia Password"
+
+#: ../../../themes/canaima/index.php:30 ../../../themes/debian/index.php:30
+msgid "Change user password"
+msgstr "Cambia password utente"
+
+#: ../../../libraries/Functions.inc.php:227
+#: ../../../libraries/Functions.inc.php:298
+#: ../../../libraries/Functions.inc.php:327
+msgid "Click the following link to confirm your petition."
+msgstr "Clicca sul seguente link per confermare il cambiamento"
+
+#: ../../../EditProfileDo.php:105 ../../../EditProfileDo.php:110
+msgid "Complete Name"
+msgstr "Nome Completo"
+
+#: ../../../setup/install.php:43
+msgid "Creating LDAP maxUID entry ..."
+msgstr "Creando la voce LDAP maxUID..."
+
+#: ../../../setup/install.php:16
+msgid "Creating database "
+msgstr "Creando database"
+
+#: ../../../setup/install.php:30
+msgid "Creating table for storing the new user requests ..."
+msgstr "Creando una tavola per la memorizzazione delle richieste di un nuovo utente..."
+
+#: ../../../setup/install.php:20
+msgid "Creating table for storing the reset password requests ..."
+msgstr "Creando una tavola per la memorizzazione delle richieste di reset password..."
+
+#: ../../../setup/install.php:54 ../../../setup/uninstall.php:23
+msgid "DONE!"
+msgstr "FATTO!"
+
+#: ../../../libraries/Functions.inc.php:347
+msgid "Dear user "
+msgstr "Caro utente"
+
+#: ../../../themes/canaima/footer.php:18 ../../../themes/canaima/header.php:51
+#: ../../../themes/canaima/index.php:45 ../../../themes/debian/footer.php:18
+#: ../../../themes/debian/header.php:51 ../../../themes/debian/index.php:45
+#: ../../../DeleteUserForm.php:8
+msgid "Delete User"
+msgstr "Cancella utente"
+
+#: ../../../libraries/Functions.inc.php:337
+msgid "Deleted User in "
+msgstr "Cancella Utente in"
+
+#: ../../../setup/uninstall.php:20
+msgid "Deleting LDAP maxUID entry ..."
+msgstr "Cancellando voce LDAP maxUID"
+
+#: ../../../setup/uninstall.php:16
+msgid "Deleting database "
+msgstr "Cancellando il database"
+
+#: ../../../ResendMailForm.php:16 ../../../ResetPasswordForm.php:40
+#: ../../../ChangePasswordForm.php:38 ../../../DeleteUserForm.php:38
+#: ../../../EditProfileDo.php:106 ../../../ForgotUsernameForm.php:16
+#: ../../../NewUserForm.php:76 ../../../EditProfileDo.php:111
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: ../../../themes/canaima/footer.php:21 ../../../themes/canaima/header.php:56
+#: ../../../themes/debian/footer.php:21 ../../../themes/debian/header.php:56
+msgid "Edit Profile"
+msgstr "Modifica Profilo"
+
+#: ../../../EditProfileForm.php:8
+msgid "Edit User Profile"
+msgstr "Modifica Profilo Utente"
+
+#: ../../../themes/canaima/index.php:50 ../../../themes/debian/index.php:50
+msgid "Edit user profile"
+msgstr "Modifica profilo utente"
+
+#: ../../../EditProfileDo.php:103 ../../../NewUserForm.php:16
+#: ../../../EditProfileDo.php:108
+msgid "First Name"
+msgstr "Nome"
+
+#: ../../../themes/canaima/index.php:4 ../../../themes/debian/index.php:4
+msgid "From here you will be able to manage directly your users in "
+msgstr "Da qui potrai gestire direttamente i tuoi utenti in"
+
+#: ../../../libraries/Functions.inc.php:748 ../../../EditProfileDo.php:108
+#: ../../../EditProfileDo.php:113 ../../../libraries/Functions.inc.php:1009
+msgid "Group"
+msgstr "Gruppo"
+
+#: ../../../Ajax.php:26
+msgid "Hey! What are you trying to do?"
+msgstr "Hey! Cosa stai cercando di fare?"
+
+#: ../../../libraries/Functions.inc.php:199
+msgid "Hi! Your password in "
+msgstr "Ciao! La tua password in"
+
+#: ../../../libraries/Functions.inc.php:268
+#: ../../../libraries/Functions.inc.php:293
+#: ../../../libraries/Functions.inc.php:322
+msgid "Hi, "
+msgstr "Ciao"
+
+#: ../../../libraries/Functions.inc.php:248
+msgid "Hi, your new password is: "
+msgstr "Ciao, la tua nuova password è:"
+
+#: ../../../themes/canaima/index.php:24 ../../../themes/debian/index.php:24
+msgid "I did not get the confirmation e-mail when i requested an account"
+msgstr "Non ho ricevuto un e-mail di conferma quando ho richiesto un account"
+
+#: ../../../themes/canaima/index.php:40 ../../../themes/debian/index.php:40
+msgid "I forgot my username"
+msgstr "Ho dimenticato il nome utente"
+
+#: ../../../libraries/Functions.inc.php:739 ../../../EditProfileDo.php:102
+#: ../../../EditProfileDo.php:107 ../../../libraries/Functions.inc.php:1000
+msgid "ID"
+msgstr "ID"
+
+#: ../../../ResendMailForm.php:31 ../../../ResetPasswordForm.php:55
+#: ../../../ChangePasswordForm.php:53 ../../../DeleteUserForm.php:53
+#: ../../../ForgotUsernameForm.php:31 ../../../NewUserForm.php:91
+msgid "Invalid Format."
+msgstr "Formato Invalido."
+
+#: ../../../Browse.php:32
+msgid "Invalid letter."
+msgstr "Carattere invalido."
+
+#: ../../../EditProfileDo.php:104 ../../../NewUserForm.php:35
+#: ../../../EditProfileDo.php:109
+msgid "Last Name"
+msgstr "Cognome"
+
+#: ../../../ChangePasswordForm.php:82
+msgid "New Password"
+msgstr "Nuova Password"
+
+#: ../../../ChangePasswordForm.php:104
+msgid "New Password (repeat)"
+msgstr "Nuova Password (ripeti)"
+
+#: ../../../libraries/Functions.inc.php:237
+msgid "New Password in "
+msgstr "Nuova Password in"
+
+#: ../../../libraries/Functions.inc.php:208
+msgid "New Password petition in "
+msgstr "Petizione Nuova Password in"
+
+#: ../../../themes/canaima/footer.php:6 ../../../themes/canaima/header.php:31
+#: ../../../themes/debian/footer.php:6 ../../../themes/debian/header.php:31
+msgid "New User"
+msgstr "Nuovo Utente"
+
+#: ../../../libraries/Functions.inc.php:258
+msgid "New User in "
+msgstr "Nuovo User in"
+
+#: ../../../libraries/Functions.inc.php:279
+#: ../../../libraries/Functions.inc.php:308
+msgid "New user activation in "
+msgstr "Attivazione nuovo utente in"
+
+#: ../../../DeleteUserForm.php:60 ../../../EditProfileDo.php:107
+#: ../../../EditProfileForm.php:38 ../../../NewUserForm.php:98
+#: ../../../EditProfileDo.php:112
+msgid "Password"
+msgstr "Password"
+
+#: ../../../NewUserForm.php:120
+msgid "Password (repeat)"
+msgstr "Password (ripeti)"
+
+#: ../../../libraries/Functions.inc.php:188
+msgid "Password Change in "
+msgstr "Cambia Password in"
+
+#: ../../../libraries/Functions.inc.php:548
+#: ../../../libraries/Functions.inc.php:809
+msgid "Password length must be shorter than 30 characters and longer than 8."
+msgstr "La lunghezza della password deve essere minore di 30 caratteri e maggiore di 8."
+
+#: ../../../ChangePasswordForm.php:75 ../../../ChangePasswordForm.php:97
+#: ../../../ChangePasswordForm.php:122 ../../../DeleteUserForm.php:75
+#: ../../../EditProfileForm.php:53 ../../../NewUserForm.php:113
+#: ../../../NewUserForm.php:138
+msgid "Password must have at least 8 characters."
+msgstr "La password deve avere almeno 8 caratteri"
+
+#: ../../../libraries/Functions.inc.php:538
+#: ../../../ChangePasswordForm.php:116 ../../../NewUserForm.php:132
+#: ../../../libraries/Functions.inc.php:799
+msgid "Passwords do not match."
+msgstr "Le password non corrispondono."
+
+#: ../../../ResetPasswordForm.php:11
+msgid "Please complete the following form to automatically generate a new password for your user."
+msgstr "Completa il seguente modulo per generare automaticamente una nuova password per il tuo utente."
+
+#: ../../../ChangePasswordForm.php:10
+msgid "Please complete the following form to change your password."
+msgstr "Completa il seguente modulo per cambiare la tua password."
+
+#: ../../../DeleteUserForm.php:10
+msgid "Please complete the following form to erase DEFINITELY your user from "
+msgstr "Completa il seguente modulo per cancellare DEFINITIVAMENTE il tuo utente da"
+
+#: ../../../NewUserForm.php:10
+msgid "Please complete the following form to request a new user account in "
+msgstr "Completa il seguente modulo per richiedere un nuovo account utente in"
+
+#: ../../../ResendMailForm.php:10
+msgid "Please enter the e-mail you used to register your new user account, so we can resend the confirmation e-mail."
+msgstr "Inserisci l'indirizzo e-mail che hai usato per registrare il nuovo account utente, poi potremo rinviare l'e-mail di conferma."
+
+#: ../../../ForgotUsernameForm.php:10
+msgid "Please enter the e-mail you used to register your user account."
+msgstr "Inserisci l'indirizzo e-mail che hai usato per registrare l'account utente."
+
+#: ../../../libraries/Functions.inc.php:745
+#: ../../../libraries/Functions.inc.php:1006
+msgid "Real Name"
+msgstr "Nome Reale"
+
+#: ../../../themes/canaima/footer.php:15 ../../../themes/canaima/header.php:46
+#: ../../../themes/debian/footer.php:15 ../../../themes/debian/header.php:46
+msgid "Remind User"
+msgstr "Ricorda Utente"
+
+#: ../../../ForgotUsernameForm.php:8
+msgid "Remind Username"
+msgstr "Ricorda Nome Utente"
+
+#: ../../../NewUserMail.php:15 ../../../ResendMailDo.php:14
+#: ../../../ResetPasswordDo.php:15 ../../../ResetPasswordMail.php:16
+#: ../../../ChangePasswordDo.php:14 ../../../DeleteUserDo.php:14
+#: ../../../NewUserDo.php:15
+msgid "Request Status"
+msgstr "Richiedi Status"
+
+#: ../../../NewUserForm.php:8
+msgid "Request a User Account"
+msgstr "Richiedi un Account Utente"
+
+#: ../../../themes/canaima/index.php:20 ../../../themes/debian/index.php:20
+msgid "Request a new user account"
+msgstr "Richiedi un nuovo account utente"
+
+#: ../../../ResendMailForm.php:8
+msgid "Resend E-Mail"
+msgstr "Rinvia E-Mail"
+
+#: ../../../themes/canaima/footer.php:12 ../../../themes/canaima/header.php:41
+#: ../../../themes/debian/footer.php:12 ../../../themes/debian/header.php:41
+#: ../../../ResetPasswordForm.php:8
+msgid "Reset Password"
+msgstr "Resetta Password"
+
+#: ../../../themes/canaima/index.php:34 ../../../themes/debian/index.php:34
+msgid "Reset user password"
+msgstr "Resetta password utente"
+
+#: ../../../ResendMailForm.php:56 ../../../ResetPasswordForm.php:80
+#: ../../../ChangePasswordForm.php:147 ../../../DeleteUserForm.php:100
+#: ../../../EditProfileForm.php:78 ../../../ForgotUsernameForm.php:56
+#: ../../../NewUserForm.php:163
+msgid "SEND"
+msgstr "INVIA"
+
+#: ../../../libraries/Functions.inc.php:802
+#: ../../../libraries/Functions.inc.php:1063
+msgid "Save"
+msgstr "Salva"
+
+#: ../../../Search.php:14 ../../../ForgotUsernameDo.php:14
+msgid "Search Results"
+msgstr "Risultati Ricerca"
+
+#: ../../../themes/canaima/header.php:76 ../../../themes/debian/header.php:76
+msgid "Search User"
+msgstr "Trova Utente"
+
+#: ../../../libraries/Functions.inc.php:726
+#: ../../../themes/canaima/header.php:84 ../../../themes/debian/header.php:84
+#: ../../../libraries/Functions.inc.php:987
+msgid "Start"
+msgstr "Avvia"
+
+#: ../../../libraries/Functions.inc.php:709
+#: ../../../libraries/Functions.inc.php:970
+msgid "Success! We have generated a new password for you. Please check your e-mail to find it."
+msgstr "Successo! Abbiamo generato una nuova password per te. Controlla il tuo indirizzo e-mail per trovarla."
+
+#: ../../../libraries/Functions.inc.php:715
+#: ../../../libraries/Functions.inc.php:976
+msgid "Success! Your account has been successfully created."
+msgstr "Successo! Il tuo account è stato creato con successo."
+
+#: ../../../libraries/Functions.inc.php:703
+#: ../../../libraries/Functions.inc.php:964
+msgid "Success! Your password has been changed."
+msgstr "Successo! La tua password è stata cambiata."
+
+#: ../../../libraries/Functions.inc.php:498
+#: ../../../libraries/Functions.inc.php:759
+msgid "The confirmation token is invalid. Please make the request again."
+msgstr "Il segno di conferma non è valido. Torna indietro e richiedilo ancora."
+
+#: ../../../libraries/Functions.inc.php:662
+#: ../../../libraries/Functions.inc.php:923
+msgid "The data provided doesn't match any existing account. Please go back and check the information you gave us."
+msgstr "I dati inseriti non corrispondono in nessun account esistente. Torna indietro e controlla le informazioni inserite."
+
+#: ../../../libraries/Functions.inc.php:628
+#: ../../../libraries/Functions.inc.php:889
+msgid "The e-mail you provided is already asociated to an existing account."
+msgstr "L'indirizzo e-mail che hai inserito è già associato a un account esistente."
+
+#: ../../../libraries/Functions.inc.php:488 ../../../Ajax.php:56
+#: ../../../libraries/Functions.inc.php:749
+msgid "The e-mail you provided is not valid. Please go back and verify that you have entered it correctly."
+msgstr "L'indirizzo e-mail fornitoci non è valido. Torna indietro e verifica di averlo inserito correttamente."
+
+#: ../../../ForgotUsernameDo.php:71
+msgid "The following users are associated to the email account "
+msgstr "I seguenti utenti sono associati all'account e-mail"
+
+#: ../../../libraries/Functions.inc.php:719
+#: ../../../libraries/Functions.inc.php:980
+msgid "The new user account has been processed correctly. Please check your e-mail to finish the process."
+msgstr "Il nuovo account utente è stato processato correttamente. Controlla le tue e-mail per completare."
+
+#: ../../../libraries/Functions.inc.php:528
+#: ../../../libraries/Functions.inc.php:789
+msgid "The old password has invalid characters, which is very strange. Please use the Reset Password form to change your password, and then come back here."
+msgstr "La vecchia password contiene caratteri non validi, è molto strano. Usa il modulo di Reset Password per cambiare la tua password, poi torna qui."
+
+#: ../../../libraries/Functions.inc.php:438
+#: ../../../libraries/Functions.inc.php:699
+msgid "The page has expired, please go back and try again."
+msgstr "La pagina è scaduta, torna indietro e prova ancora."
+
+#: ../../../libraries/Functions.inc.php:518
+#: ../../../libraries/Functions.inc.php:779
+msgid "The password has invalid characters. You can only use letters (uppercase, lowercase), numbers and these symbols: . ! @ # $ % ^ + = - _"
+msgstr "La password contiene caratteri non validi. Puoi usare solamente lettere (maiuscole, minuscole), numeri e questi simboli: . ! @ # $ % ^ + = - _"
+
+#: ../../../libraries/Functions.inc.php:618
+#: ../../../libraries/Functions.inc.php:879
+msgid "The username already exists."
+msgstr "Il nome utente esiste già."
+
+#: ../../../libraries/Functions.inc.php:508
+#: ../../../libraries/Functions.inc.php:769
+msgid "The username is invalid. You can only use letters (uppercase, lowercase), numbers, dashes and underscores."
+msgstr "Il nome utente non è valido. Puoi usare dolamente lettere (maiuscole, minuscole), numeri, trattini e trattini bassi."
+
+#: ../../../libraries/Functions.inc.php:642
+#: ../../../libraries/Functions.inc.php:903
+msgid "There are no petitions matching the data provided."
+msgstr "Non ci sono moduli contententi i dati inseriti."
+
+#: ../../../libraries/Functions.inc.php:652
+#: ../../../libraries/Functions.inc.php:913
+msgid "There is an inconsistency with the database. There are two or more accounts sharing some user data (username, e-mail, etc...), which generates errors and inaccuracies on the system. This error has been informed to system administrators."
+msgstr "C'è un'incoerenza con il database. Ci sono due o più account che condividono gli stessi dati utente (nome utente, e-mail, ecc...), che generano errori e imprecisioni sul sistema. Questo errore è stato segnalato agli amministratori del sistema."
+
+#: ../../../libraries/Functions.inc.php:684
+#: ../../../libraries/Functions.inc.php:945
+msgid "There was an error creating your account. Please try again later."
+msgstr "Si è verificato un errore creando il tuo account. Prova più tardi"
+
+#: ../../../libraries/Functions.inc.php:681
+#: ../../../libraries/Functions.inc.php:942
+msgid "There was an error deleting your account. Please try again later."
+msgstr "Si è verificato un errore cancellando il tuo account. Prova più tardi."
+
+#: ../../../libraries/Functions.inc.php:678
+#: ../../../libraries/Functions.inc.php:939
+msgid "There was an error generating your new password. Please try again later."
+msgstr "Si è verificato un errore generando la tua nuova password. Prova più tardi."
+
+#: ../../../libraries/Functions.inc.php:112
+msgid "There was an error organizing the LDAP search results: "
+msgstr "Si è verificato un errore organizzando i risultati della ricerca in LDAP:"
+
+#: ../../../libraries/Functions.inc.php:458
+#: ../../../libraries/Functions.inc.php:468
+#: ../../../libraries/Functions.inc.php:719
+#: ../../../libraries/Functions.inc.php:729
+msgid "There was an error processing the form. Please go back and verify that you have entered the information correctly."
+msgstr "Si è verificato un errore processando il modulo. Torna indietro e verifica di aver inserito correttamente le informazioni."
+
+#: ../../../libraries/Functions.inc.php:126
+msgid "There was an error retrieving the LDAP search results: "
+msgstr "Si è verificato un errore recuperando i risultati della ricerca in LDAP;"
+
+#: ../../../libraries/Functions.inc.php:675
+#: ../../../libraries/Functions.inc.php:688
+#: ../../../libraries/Functions.inc.php:936
+#: ../../../libraries/Functions.inc.php:949
+msgid "There was an error sending the confirmation e-mail. Please try again later."
+msgstr "Si è verificato un errore inviando la e-mail di conferma. Prova più tardi."
+
+#: ../../../themes/canaima/header.php:74 ../../../themes/debian/header.php:74
+msgid "Type a search term and press enter"
+msgstr "Digita un termine di ricerca e premi invio"
+
+#: ../../../libraries/Functions.inc.php:689
+msgid "Type of password encryption not supported."
+msgstr ""
+
+#: ../../../EditProfileDo.php:14
+msgid "User Profile"
+msgstr "Profilo Utente"
+
+#: ../../../libraries/Functions.inc.php:742 ../../../ResetPasswordForm.php:18
+#: ../../../ChangePasswordForm.php:16 ../../../DeleteUserForm.php:16
+#: ../../../EditProfileDo.php:101 ../../../EditProfileForm.php:16
+#: ../../../NewUserForm.php:54 ../../../EditProfileDo.php:106
+#: ../../../libraries/Functions.inc.php:1003
+msgid "Username"
+msgstr "Nome Utente"
+
+#: ../../../libraries/Functions.inc.php:558
+#: ../../../libraries/Functions.inc.php:819
+msgid "Username length must be shorter than 30 characters and longer than 3."
+msgstr "La lunghezza del nome utente deve essere minore di 30 caratteri e maggiore di 8."
+
+#: ../../../ResetPasswordForm.php:33 ../../../ChangePasswordForm.php:31
+#: ../../../DeleteUserForm.php:31 ../../../EditProfileForm.php:31
+#: ../../../NewUserForm.php:69
+msgid "Username must have at least 3 characters."
+msgstr "Il Nome Utente deve avere almeno 3 caratteri."
+
+#: ../../../Browse.php:14
+msgid "Users from "
+msgstr "Utenti da"
+
+#: ../../../Ajax.php:78
+msgid "We have modified the attribute "
+msgstr "Abbiamo modificato l'attributo"
+
+#: ../../../themes/canaima/index.php:2 ../../../themes/debian/index.php:2
+msgid "Welcome to "
+msgstr "Benvenuto a  "
+
+#: ../../../ResendMailForm.php:25 ../../../ResendMailForm.php:47
+#: ../../../ResetPasswordForm.php:27 ../../../ResetPasswordForm.php:49
+#: ../../../ResetPasswordForm.php:71 ../../../Ajax.php:31
+#: ../../../ChangePasswordForm.php:25 ../../../ChangePasswordForm.php:47
+#: ../../../ChangePasswordForm.php:69 ../../../ChangePasswordForm.php:91
+#: ../../../ChangePasswordForm.php:113 ../../../ChangePasswordForm.php:138
+#: ../../../DeleteUserForm.php:25 ../../../DeleteUserForm.php:47
+#: ../../../DeleteUserForm.php:69 ../../../DeleteUserForm.php:91
+#: ../../../EditProfileForm.php:25 ../../../EditProfileForm.php:47
+#: ../../../EditProfileForm.php:69 ../../../ForgotUsernameForm.php:25
+#: ../../../ForgotUsernameForm.php:47 ../../../NewUserForm.php:25
+#: ../../../NewUserForm.php:44 ../../../NewUserForm.php:63
+#: ../../../NewUserForm.php:85 ../../../NewUserForm.php:107
+#: ../../../NewUserForm.php:129 ../../../NewUserForm.php:154
+msgid "You cannot leave empty fields."
+msgstr "Non puoi lasciare campi vuoti."
+
+#: ../../../ChangePasswordForm.php:28 ../../../ChangePasswordForm.php:72
+#: ../../../ChangePasswordForm.php:94 ../../../ChangePasswordForm.php:119
+#: ../../../DeleteUserForm.php:28 ../../../DeleteUserForm.php:72
+#: ../../../EditProfileForm.php:28 ../../../EditProfileForm.php:50
+#: ../../../NewUserForm.php:66 ../../../NewUserForm.php:110
+#: ../../../NewUserForm.php:135
+msgid "You exceeded the limit of 30 characters."
+msgstr "Hai oltrepassato il limite di 30 caratteri."
+
+#: ../../../ResendMailForm.php:28 ../../../ResetPasswordForm.php:30
+#: ../../../ResetPasswordForm.php:52 ../../../ChangePasswordForm.php:50
+#: ../../../DeleteUserForm.php:50 ../../../ForgotUsernameForm.php:28
+#: ../../../NewUserForm.php:28 ../../../NewUserForm.php:47
+#: ../../../NewUserForm.php:88
+msgid "You exceeded the limit of 60 characters."
+msgstr "Hai oltrepassato il limite di 60 caratteri."
+
+#: ../../../ResendMailForm.php:50 ../../../ResetPasswordForm.php:74
+#: ../../../ChangePasswordForm.php:141 ../../../DeleteUserForm.php:94
+#: ../../../EditProfileForm.php:72 ../../../ForgotUsernameForm.php:50
+#: ../../../NewUserForm.php:157
+msgid "You exceeded the limit of 8 characters."
+msgstr "Hai oltrepassato il limite di 8 caratteri."
+
+#: ../../../libraries/Functions.inc.php:448
+#: ../../../libraries/Functions.inc.php:709
+msgid "You have entered the verification code (captcha) incorrectly, please go back and try again."
+msgstr "Hai inserito il codice di verifica (captcha) incorrettamente, torna indietro e prova ancora."
+
+#: ../../../libraries/Functions.inc.php:223
+msgid "You have received this e-mail because someone made a new password petition for the user "
+msgstr "Hai ricevuto questa e-mail perchè qualcuno ha richiesto una nuova password per l'utente "
+
+#: ../../../libraries/Functions.inc.php:295
+#: ../../../libraries/Functions.inc.php:324
+msgid "You have received this e-mail because you made a new user request in "
+msgstr "Hai ricevuto questa e-mail perchè hai fatto richiesta di un nuovo nome utente in"
+
+#: ../../../ChangePasswordForm.php:60
+msgid "Your Password"
+msgstr "La Tua Password"
+
+#: ../../../libraries/Functions.inc.php:270
+msgid "Your account has been successfully created"
+msgstr "Il tuo account è stato creato con successo"
+
+#: ../../../libraries/Functions.inc.php:349
+msgid "Your account has been successfully deleted from "
+msgstr "Il tuo account è stato cancellato con successo da"
+
+#: ../../../libraries/Functions.inc.php:712
+#: ../../../libraries/Functions.inc.php:973
+msgid "Your account has been successfully deleted."
+msgstr "Il tuo account è stato cancellato con successo."
+
+#: ../../../libraries/Functions.inc.php:598 ../../../Ajax.php:36
+#: ../../../libraries/Functions.inc.php:859
+msgid "Your first name has invalid characters. You can only use letters (uppercase, lowercase), accented letters or with umlaut."
+msgstr "Il tuo nome ha caratteri non validi. Puoi usare solamente lettere (maiuscole, minuscole), lettere accentate o con umlaut."
+
+#: ../../../libraries/Functions.inc.php:568 ../../../Ajax.php:41
+#: ../../../libraries/Functions.inc.php:829
+msgid "Your first name is longer than 60 characters."
+msgstr "Il tuo nome è più lungo di 60 caratteri."
+
+#: ../../../libraries/Functions.inc.php:608 ../../../Ajax.php:46
+#: ../../../libraries/Functions.inc.php:869
+msgid "Your last name has invalid characters. You can only use letters (uppercase, lowercase), accented letters or with umlaut."
+msgstr "Il tuo cognome ha caratteri non validi. Puoi usare solamente lettere (maiuscole, minuscole), lettere accentate o con umlaut."
+
+#: ../../../libraries/Functions.inc.php:578 ../../../Ajax.php:51
+#: ../../../libraries/Functions.inc.php:839
+msgid "Your last name is longer than 60 characters."
+msgstr "Il tuo cognome è più lungo di 60 caratteri."
+
+#: ../../../libraries/Functions.inc.php:706
+#: ../../../libraries/Functions.inc.php:967
+msgid "Your new password request has been correctly processed. Please check your e-mail to finish the process."
+msgstr "La richiesta della nuova password è stata processata con successo. Controlla le tue e-mail per completare."
+
+#: ../../../libraries/Functions.inc.php:588
+#: ../../../libraries/Functions.inc.php:849
+msgid "Your old password length is too short or too long, which is very strange. Please use the Reset Password form to change your password, and then come back here."
+msgstr "La lunghezza della tua vecchia password è troppo corta o troppo lunga, molto strano. Usa il modulo di Reset Password per cambiare la tua password, poi torna qui."
+
+#: ../../../libraries/Functions.inc.php:478
+#: ../../../libraries/Functions.inc.php:739
+msgid "Your search terms have invalid characters. You can only use letters (uppercase, lowercase), accented letters, umlaut and underscore."
+msgstr "I tuoi termini di ricerca hanno caratteri invalidi. Puoi usare solamente lettere (maiuscole, minuscole), lettere accentate, umlaut e trattini bassi."
+
+#: ../../../libraries/Functions.inc.php:372
+msgid "[ Change Password ] A success e-mail has been sent to "
+msgstr "[ Cambio Password ] Una e-mail è stata inviata a"
+
+#: ../../../libraries/Functions.inc.php:397
+msgid "[ Delete User ] A success e-mail has been sent to "
+msgstr "[ Cancella Utente ] Una e-mail di successo è stata inviata a"
+
+#: ../../../libraries/Functions.inc.php:387
+msgid "[ New User ] A confirmation e-mail has been re-sent to "
+msgstr "[ Nuovo Utente ] Una e-mail di conferma è stata rinviata a"
+
+#: ../../../libraries/Functions.inc.php:392
+msgid "[ New User ] A confirmation e-mail has been sent to "
+msgstr "[ Nuovo Utente ] Una e-mail di conferma è stata inviata a"
+
+#: ../../../libraries/Functions.inc.php:402
+msgid "[ New User ] A success e-mail has been sent to "
+msgstr "[ Nuovo Utente ] Una e-mail di successo è stata inviata a"
+
+#: ../../../libraries/Functions.inc.php:377
+msgid "[ Reset Password ] A confirmation e-mail has been sent to "
+msgstr "[ Reset Password ] Una e-mail di conferma è stata inviata a"
+
+#: ../../../libraries/Functions.inc.php:382
+msgid "[ Reset Password ] A success e-mail has been sent to "
+msgstr "[ Reset Password ] Una e-mail di successo è stata inviata a"
+
+#: ../../../libraries/Functions.inc.php:672
+#: ../../../libraries/Functions.inc.php:933
+msgid "again later."
+msgstr "ancora più tardi."
+
+#: ../../../DeleteUserForm.php:63 ../../../NewUserForm.php:101
+#: ../../../NewUserForm.php:123
+msgid "at least 8 characters"
+msgstr "almeno 8 caratteri"
+
+#: ../../../libraries/Functions.inc.php:774
+#: ../../../libraries/Functions.inc.php:1035
+msgid "click the field to edit"
+msgstr "clicca nel campo per modificarlo"
+
+#: ../../../NewUserForm.php:38
+msgid "e.g., Guy Greenwood"
+msgstr "es., Rossi "
+
+#: ../../../NewUserForm.php:19
+msgid "e.g., Jonathan Richard"
+msgstr "es., Mario Andrea"
+
+#: ../../../ResetPasswordForm.php:21 ../../../ChangePasswordForm.php:19
+#: ../../../DeleteUserForm.php:19 ../../../EditProfileForm.php:19
+#: ../../../NewUserForm.php:57
+msgid "e.g., Us3r"
+msgstr "es., Us3r"
+
+#: ../../../ResendMailForm.php:19 ../../../ResetPasswordForm.php:43
+#: ../../../ChangePasswordForm.php:41 ../../../DeleteUserForm.php:41
+#: ../../../ForgotUsernameForm.php:19 ../../../NewUserForm.php:79
+msgid "e.g., user@email.com"
+msgstr "es., user@email.com"
+
+#: ../../../ChangePasswordForm.php:85
+msgid "enter your new password"
+msgstr "inserisci la nuova password"
+
+#: ../../../EditProfileForm.php:41
+msgid "enter your password"
+msgstr "inserisci la tua password"
+
+#: ../../../ChangePasswordForm.php:63
+msgid "enter your present password"
+msgstr "inserisci la password attuale"
+
+#: ../../../libraries/Functions.inc.php:199
+msgid "has been changed."
+msgstr "è stata cambiata"
+
+#: ../../../ChangePasswordForm.php:107
+msgid "repeat your new password"
+msgstr "ripeti la nuova password"
+
+#: ../../../libraries/Functions.inc.php:776
+#: ../../../libraries/Functions.inc.php:1037
+msgid "this field cannot be edited"
+msgstr "questo campo non può essere modificato"

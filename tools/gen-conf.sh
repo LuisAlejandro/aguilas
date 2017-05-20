@@ -1,7 +1,7 @@
 #!/bin/bash -e
 #
 # ====================================================================
-# PACKAGE: aguilas
+# PACKAGE: stanlee
 # FILE: tools/gen-conf.sh
 # DESCRIPTION:	Asks the user to fill in the configuration information
 #		to generate the setup/config.php file.

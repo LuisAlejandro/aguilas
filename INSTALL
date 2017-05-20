@@ -37,14 +37,14 @@ aptitude install make bash gettext python-sphinx icoutils python-docutils libmag
 INSTALLING AGUILAS
 ------------------
 
-1.- Download the source tarball from aguilas download page: http://code.google.com/p/aguilas/downloads/list
+1.- Download the source tarball from stanlee download page: http://code.google.com/p/stanlee/downloads/list
     Select the version of your preference, usually the last one will be more complete.
 
 2.- Decompress the source with your favorite program.
-	e.g.: tar -xvf aguilas-1.0.0.tar.gz
+	e.g.: tar -xvf stanlee-1.0.0.tar.gz
 
 3.- Access the uncompressed source.
-	e.g.: cd aguilas-1.0.0/
+	e.g.: cd stanlee-1.0.0/
 
 4.- Build the sources.
 	make
@@ -66,7 +66,7 @@ INSTALLING AGUILAS
 	+ Password for the writer DN
 	+ Base DN to perform searches and include new users
 
-5.- Obtain superuser priviledges, and install aguilas.
+5.- Obtain superuser priviledges, and install stanlee.
 	sudo make install
 
 DONE!

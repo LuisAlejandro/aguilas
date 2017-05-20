@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # ====================================================================
-# PACKAGE: aguilas
+# PACKAGE: stanlee
 # FILE: tools/buildpackage.sh
 # DESCRIPTION:  Makes a new debian package of a stable release.
 # USAGE: ./tools/buildpackage.sh
@@ -98,7 +98,7 @@ git add .
 git commit -q -a -m "Importing New Upstream Release (${NEWRELVERSION})"
 
 WARNING "Generating tarball ..."
-tar --anchored --exclude="debian" -czf ../aguilas_${NEWRELVERSION}.orig.tar.gz *
+tar --anchored --exclude="debian" -czf ../stanlee_${NEWRELVERSION}.orig.tar.gz *
 
 WARNING "Generating Debian package ..."
 git buildpackage ${OPTIONS}
@@ -107,15 +107,15 @@ git reset --hard
 
 if [ "${TYPE}" == "final-release" ]; then
 	WARNING "Uploading changes to remote servers ..."
-	git push -q --tags git@github.com:HuntingBears/aguilas.git master
-	git push -q --tags git@gitorious.org:huntingbears/aguilas.git master
-	git push -q --tags https://code.google.com/p/aguilas/ master
+	git push -q --tags git@github.com:HuntingBears/stanlee.git master
+	git push -q --tags git@gitorious.org:huntingbears/stanlee.git master
+	git push -q --tags https://code.google.com/p/stanlee/ master
 
 	WARNING "Uploading Debian package to Google Code ..."
-	python -B tools/googlecode-upload.py -s "Aguilas debian package [${NEWDEBVERSION}]" -p "aguilas" -l "Featured,Type-Package,Type-Installer,OpSys-Linux,Stable" ../aguilas_${NEWDEBVERSION}_all.deb
-	python -B tools/googlecode-upload.py -s "Aguilas debian source (dsc) [${NEWDEBVERSION}]" -p "aguilas" -l "Type-Source,OpSys-Linux,Stable" ../aguilas_${NEWDEBVERSION}.dsc
-	python -B tools/googlecode-upload.py -s "Aguilas debian source (debian.tar.gz) [${NEWDEBVERSION}]" -p "aguilas" -l "Type-Archive,Type-Source,OpSys-Linux,Stable" ../aguilas_${NEWDEBVERSION}.debian.tar.gz
-	python -B tools/googlecode-upload.py -s "Aguilas upstream source (orig.tar.gz) [${NEWRELVERSION}]" -p "aguilas" -l "Featured,Type-Archive,Type-Source,OpSys-Linux,Stable" ../aguilas_${NEWRELVERSION}.orig.tar.gz
+	python -B tools/googlecode-upload.py -s "Stanlee debian package [${NEWDEBVERSION}]" -p "stanlee" -l "Featured,Type-Package,Type-Installer,OpSys-Linux,Stable" ../stanlee_${NEWDEBVERSION}_all.deb
+	python -B tools/googlecode-upload.py -s "Stanlee debian source (dsc) [${NEWDEBVERSION}]" -p "stanlee" -l "Type-Source,OpSys-Linux,Stable" ../stanlee_${NEWDEBVERSION}.dsc
+	python -B tools/googlecode-upload.py -s "Stanlee debian source (debian.tar.gz) [${NEWDEBVERSION}]" -p "stanlee" -l "Type-Archive,Type-Source,OpSys-Linux,Stable" ../stanlee_${NEWDEBVERSION}.debian.tar.gz
+	python -B tools/googlecode-upload.py -s "Stanlee upstream source (orig.tar.gz) [${NEWRELVERSION}]" -p "stanlee" -l "Featured,Type-Archive,Type-Source,OpSys-Linux,Stable" ../stanlee_${NEWRELVERSION}.orig.tar.gz
 fi
 
 if [ "${TYPE}" != "final-release" ]; then
