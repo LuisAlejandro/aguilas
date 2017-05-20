@@ -51,7 +51,6 @@ Table of Contents
    :maxdepth: 2
 
    installation
-   usage
    contributing
    patches
    git
