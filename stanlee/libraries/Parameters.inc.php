@@ -37,7 +37,7 @@ $time_today = date("d-m-Y-H:i:s");
 $newtoken = md5(mt_rand() . "-" . time() . "-" . $_SERVER['REMOTE_ADDR'] . "-" . mt_rand());
 
 // A little description
-$description = "INSERTED BY AGUILAS";
+$description = "INSERTED BY STANLEE";
 
 // Starting session (cookies)
 session_start();

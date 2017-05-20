@@ -194,7 +194,7 @@ Installing the stable version
 	make
 
 
-  You will be promted with the following questions to configure AGUILAS:
+  You will be promted with the following questions to configure STANLEE:
     + Name of the Application, e.g.: Stanlee for Debian User Management
     + The person or group responsible for managing the application, e.g.: Debian Admins
     + The e-mail address that will appear as sender in all operation e-mails to registered users, e.g.: stanlee@debian.org

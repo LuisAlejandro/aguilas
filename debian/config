@@ -1,0 +1,91 @@
+#!/bin/bash -e
+#
+# ====================================================================
+# PACKAGE: stanlee
+# FILE: debian/config
+# DESCRIPTION:  Takes care of debconf and dbconfig-common questions to
+#		autoconfigure stanlee
+# USAGE: Executes automatically after package installation
+# COPYRIGHT:
+# (C) 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
+# LICENCE: GPL3
+# ====================================================================
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# COPYING file for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+# CODE IS POETRY
+
+. /usr/share/debconf/confmodule
+db_version 2.0
+
+if [ "${STANLEEDEBUG}" == "true" ]; then
+	set -x
+	DEBCONF_DEBUG="developer"
+fi
+
+if [ -f /usr/share/dbconfig-common/dpkg/config.mysql ]; then
+	. /usr/share/dbconfig-common/dpkg/config.mysql
+
+	if [ "${STANLEEDEBUG}" == "true" ]; then
+		dbc_debug=1
+	fi
+
+	dbc_first_version="1.0.1-1"
+	dbc_load_include="php:/etc/stanlee/dbconfig-common.php"
+	dbc_load_include_args="-dmysql_dbname -smysql_host -pmysql_pass -umysql_user"
+	dbc_dbtypes="mysql"
+	dbc_dbname="stanlee"
+	dbc_dbuser="stanlee"
+
+	if ! dbc_go stanlee $@ ; then
+		echo 'Automatic configuration using dbconfig-common failed!'
+	fi
+fi
+
+if [ -z ${dbc_dbserver} ]; then
+	db_input high stanlee/mysql-server || true
+	db_go || true
+fi
+
+if [ -z ${dbc_dbpass} ]; then
+	db_input high stanlee/mysql-pass || true
+	db_go || true
+fi
+
+db_input high stanlee/ldap-server || true
+db_go || true
+
+db_input high stanlee/ldap-base || true
+db_go || true
+db_get stanlee/ldap-base || true
+LDAPBASE="${RET}"
+
+db_set stanlee/ldap-bind "cn=admin,${LDAPBASE}"
+db_input high stanlee/ldap-bind || true
+db_go || true
+
+db_input high stanlee/ldap-pass || true
+db_go || true
+
+db_input high stanlee/reconfigure-webserver || true
+db_go || true
+
+db_input high stanlee/restart-webserver || true
+db_go || true
+
+db_stop || true
+
+#DEBHELPER#
+
+exit 0

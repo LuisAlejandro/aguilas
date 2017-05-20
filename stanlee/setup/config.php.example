@@ -1,7 +1,7 @@
 <?php
 
 /**********************************
- * CONFIGURATION FILE FOR AGUILAS *
+ * CONFIGURATION FILE FOR STANLEE *
  **********************************/
 
 /* ========== Branding ========== */
@@ -29,7 +29,7 @@ $app_theme = "@@APP_THEME@@";
 $app_url = $_SERVER['SERVER_NAME']."/stanlee";
 // Application links
 // an array of link_title => link of the applications connected
-// to the LDAP and whose registration process have been delegated to AGUILAS
+// to the LDAP and whose registration process have been delegated to STANLEE
 // this will appear on the main menu
 $app_links = array(	"APP1" => "http://$app_url",
 			"APP2" => "http://$app_url",

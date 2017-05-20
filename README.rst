@@ -102,4 +102,4 @@ If you are in trouble, you can alwas ask for help here:
 
 --
 
-* AGUILAS is the achronym for "Aplicación para la Gestión de Usuarios con Interfaz para LDAP Amigable y Segura" in spanish. The `original author <http://www.huntingbears.com.ve/acerca>`_ is from Caracas, Venezuela.
+* STANLEE is the achronym for "Aplicación para la Gestión de Usuarios con Interfaz para LDAP Amigable y Segura" in spanish. The `original author <http://www.huntingbears.com.ve/acerca>`_ is from Caracas, Venezuela.

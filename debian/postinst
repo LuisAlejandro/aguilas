@@ -1,0 +1,187 @@
+#!/bin/bash -e
+#
+# ====================================================================
+# PACKAGE: stanlee
+# FILE: debian/postinst
+# DESCRIPTION: Configures stanlee after installation
+# USAGE: Executes automatically after package installation
+# COPYRIGHT:
+# (C) 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
+# LICENCE: GPL3
+# ====================================================================
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# COPYING file for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+# CODE IS POETRY
+
+. /usr/share/debconf/confmodule
+db_version 2.0
+
+ACTION="${1}"
+VERSION="${2}"
+APPNAME="Stanlee"
+APPOPERATOR="Administrator"
+APPTHEME="canaima"
+APPMAIL="root@localhost"
+OPMAIL="root@localhost"
+MYSQLDB="stanlee"
+MYSQLUSER="stanlee"
+TMPSTANLEE="$( tempfile )"
+TMPAPACHE="$( tempfile )"
+TMPLIGHT="$( tempfile )"
+
+if [ -z ${LC_ALL} ]; then
+	APPLOCALE="en_US"
+else
+	APPLOCALE="$( echo ${LC_ALL} | sed "s|\..*||" )"
+fi
+
+if [ "${STANLEEDEBUG}" == "true" ]; then
+	set -x
+fi
+
+if [ -f /usr/share/dbconfig-common/dpkg/postinst.mysql ]; then
+	. /usr/share/dbconfig-common/dpkg/postinst.mysql
+
+	if [ "${STANLEEDEBUG}" == "true" ]; then
+		dbc_debug=1
+	fi
+
+	dbc_first_version="1.0.1-1"
+	dbc_generate_include_owner="root:www-data"
+	dbc_generate_include_perms="0640"
+	dbc_generate_include="php:/etc/stanlee/dbconfig-common.php"
+	dbc_generate_include_args="-dmysql_dbname -smysql_host -pmysql_pass -umysql_user"
+
+	if ! dbc_go stanlee $@ ; then
+       		echo 'Automatic configuration using dbconfig-common failed!'
+	fi
+fi
+
+if [ "${ACTION}" = "configure" ]; then
+
+	cp /usr/share/stanlee/setup/config.php.example ${TMPSTANLEE}
+	cp /usr/share/doc/stanlee/config-ex/apache.conf ${TMPAPACHE}
+	cp /usr/share/doc/stanlee/config-ex/lighttpd.conf ${TMPLIGHT}
+
+	MYSQLSERVER="${dbc_dbserver}"
+	MYSQLPASS="${dbc_dbpass}"
+
+	if [ -z ${MYSQLSERVER} ]; then
+		db_get stanlee/mysql-server || true
+		MYSQLSERVER="${RET}"
+	fi
+
+	if [ -z ${MYSQLPASS} ]; then
+		db_get stanlee/mysql-pass || true
+		MYSQLPASS="${RET}"
+	fi
+
+	db_get stanlee/ldap-server || true
+	LDAPSERVER="${RET}"
+
+	db_get stanlee/ldap-base || true
+	LDAPBASE="${RET}"
+
+	db_get stanlee/ldap-bind || true
+	LDAPBIND="${RET}"
+
+	db_get stanlee/ldap-pass || true
+	LDAPPASS="${RET}"
+
+	db_get stanlee/reconfigure-webserver || true
+	WEBSERVERS="${RET}"
+
+	db_get stanlee/restart-webserver || true
+	RESTART="${RET}"
+
+	sed -i	-e "s|@@APP_NAME@@|${APPNAME}|g" \
+		-e "s|@@APP_OPERATOR@@|${APPOPERATOR}|g" \
+		-e "s|@@APP_MAIL@@|${APPMAIL}|g" \
+		-e "s|@@OP_MAIL@@|${OPMAIL}|g" \
+		-e "s|@@APP_LOCALE@@|${APPLOCALE}|g" \
+		-e "s|@@APP_THEME@@|${APPTHEME}|g" \
+		-e "s|@@APP_URL@@|${APPURL}|g" \
+		-e "s|@@MYSQL_SERVER@@|${MYSQLSERVER}|g" \
+		-e "s|@@MYSQL_DB@@|${MYSQLDB}|g" \
+		-e "s|@@MYSQL_USER@@|${MYSLQUSER}|g" \
+		-e "s|@@MYSQL_PASS@@|${MYSQLPASS}|g" \
+		-e "s|@@LDAP_SERVER@@|${LDAPSERVER}|g" \
+		-e "s|@@LDAP_BIND@@|${LDAPBIND}|g" \
+		-e "s|@@LDAP_PASS@@|${LDAPPASS}|g" \
+		-e "s|@@LDAP_BASE@@|${LDAPBASE}|g" ${TMPSTANLEE}
+
+	if which ucf >/dev/null; then
+		ucf --debconf-ok ${TMPSTANLEE} /etc/stanlee/config.php
+		ucf --debconf-ok ${TMPAPACHE} /etc/stanlee/apache.conf
+		ucf --debconf-ok ${TMPLIGHT} /etc/stanlee/lighttpd.conf
+	fi
+
+	if which ucfr >/dev/null; then
+		ucfr stanlee /etc/stanlee/config.php
+		ucfr stanlee /etc/stanlee/apache.conf
+		ucfr stanlee /etc/stanlee/lighttpd.conf
+	fi
+
+	chown root:www-data /etc/stanlee/config.php /etc/stanlee/apache.conf /etc/stanlee/lighttpd.conf
+	chmod 0640 /etc/stanlee/config.php /etc/stanlee/apache.conf /etc/stanlee/lighttpd.conf
+
+	if [ ! -e /usr/share/stanlee/setup/config.php ] && [ -e /etc/stanlee/config.php ]; then
+		ln -s  /etc/stanlee/config.php /usr/share/stanlee/setup/config.php
+	fi
+
+	rm -rf ${TMPSTANLEE} ${TMPAPACHE} ${TMPLIGHT}
+
+	touch /var/log/stanlee/{ChangePasswordDo.log,DeleteUserDo.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
+	chown -R www-data:www-data /var/log/stanlee/*
+	chmod 0640 /var/log/stanlee/*
+
+	for WEBSERVER in ${WEBSERVERS}; do
+
+	        WEBSERVER=${WEBSERVER%,}
+		test -x /usr/sbin/${WEBSERVER} || continue
+
+		case "${WEBSERVER}" in
+			lighttpd)
+				if [ ! -f /etc/lighttpd/conf-available/50-stanlee.conf ]; then
+					if which lighty-enable-mod >/dev/null 2>&1; then
+						ln -s /etc/stanlee/lighttpd.conf /etc/lighttpd/conf-available/50-stanlee.conf
+						lighty-enable-mod stanlee
+					else
+						echo "Lighttpd not installed, skipping"
+					fi
+				fi
+			;;
+			apache2)
+				if [ -d /etc/${WEBSERVER}/conf.d ] && [ ! -e /etc/${WEBSERVER}/conf.d/stanlee.conf ]; then
+					ln -s /etc/stanlee/apache.conf /etc/${WEBSERVER}/conf.d/stanlee.conf
+				fi
+			;;
+		esac
+
+		if [ "${RESTART}" == "true" ]; then
+			if [ -x /usr/sbin/invoke-rc.d ]; then
+				invoke-rc.d ${WEBSERVER} restart 3>/dev/null || true
+			else
+				/etc/init.d/${WEBSERVER} restart 3>/dev/null || true
+			fi
+		fi
+	done
+fi
+
+#DEBHELPER#
+
+db_stop || true
+
+exit 0

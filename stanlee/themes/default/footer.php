@@ -27,7 +27,7 @@
     
     <div>
         <?= $app_name . " " . _(" is powered by ") ?>
-        <strong><a href="http://code.google.com/p/stanlee/">AGUILAS</a></strong>.
+        <strong><a href="http://code.google.com/p/stanlee/">STANLEE</a></strong>.
     </div>
 </div>
 </div>

@@ -1,0 +1,20 @@
+#!/usr/bin/make -f
+
+%:
+
+	dh ${@} --with sphinxdoc
+
+override_dh_auto_build:
+
+	$(MAKE) DESTDIR=$(CURDIR)/debian/stanlee build
+
+override_dh_auto_install:
+
+	$(MAKE) DESTDIR=$(CURDIR)/debian/stanlee copy
+	dh_install debian/conf/apache.conf /usr/share/doc/stanlee/config-ex/
+	dh_install debian/conf/lighttpd.conf /usr/share/doc/stanlee/config-ex/
+	dh_install debian/conf/mysql /usr/share/dbconfig-common/data/stanlee/install/
+	rm -rf debian/stanlee/usr/share/stanlee/themes/canaima/js/jquery.js
+	rm -rf debian/stanlee/usr/share/stanlee/themes/debian/js/jquery.js
+	dh_link usr/share/javascript/jquery/jquery.js usr/share/stanlee/themes/canaima/js/jquery.js
+	dh_link usr/share/javascript/jquery/jquery.js usr/share/stanlee/themes/debian/js/jquery.js

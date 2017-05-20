@@ -1,0 +1,49 @@
+Source: stanlee
+Section: admin
+Priority: optional
+Maintainer: Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
+Build-Depends: debhelper (>= 7.0.50~),
+               python-sphinx (>= 1.0.7+dfsg),
+               python-docutils,
+               po-debconf,
+               gettext,
+               imagemagick,
+               libmagickcore3-extra | libmagickcore4-extra | libmagickcore-extra,
+               icoutils
+Standards-Version: 3.9.2
+Homepage: http://code.google.com/p/stanlee
+Vcs-Git: git://github.com/HuntingBears/stanlee.git
+Vcs-Browser: https://github.com/HuntingBears/stanlee
+
+Package: stanlee
+Architecture: all
+Depends:  apache2 | nginx | lighttpd | httpd,
+          libapache2-mod-php5 | libapache-mod-php5 | php5-cgi | php5,
+          php5-ldap,
+          php5-mysql,
+          php5-mcrypt,
+          php5-gd,
+          libjs-jquery,
+          ${misc:Depends},
+          ${shlibs:Depends},
+          ${sphinxdoc:Depends}
+Pre-Depends: dbconfig-common, ucf
+Suggests: php5-suhosin,
+          postfix | sendmail | exim4 | mail-transport-agent,
+          slapd,
+          mysql-server
+Description: web-based LDAP user management system
+ Stanlee is a centralized registration system that allows users to create and
+ manage their accounts on an LDAP authentication platform.
+ .
+ It has the following features:
+ .
+   * Creates user accounts based on determined LDAP attributes.
+   * Resends confirmation email in case it gets lost on spam folders.
+   * Changes user password, if the user knows it.
+   * Resets user password, using email as confirmation.
+   * Reminds username.
+   * Deletes user accounts.
+   * Edits user profile (ajax enabled).
+   * Lists all registered users.
+   * Searches for a term in the user database.

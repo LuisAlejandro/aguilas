@@ -33,12 +33,12 @@ VARTMP="$( tempfile )"
 COMTMP="$( tempfile )"
 
 echo
-echo "We are going to ask you a couple of questions regarding AGUILAS configuration."
+echo "We are going to ask you a couple of questions regarding STANLEE configuration."
 echo "If you have not yet defined your LDAP/MYSQL server, then cancel"
 echo "the process and check the INSTALL file for more instructions."
 
 echo
-echo "Are you ready to configure AGUILAS? Press Y to continue or N to cancel."
+echo "Are you ready to configure STANLEE? Press Y to continue or N to cancel."
 
 read -p "[Y/N]"
 CONTINUE="${REPLY}"

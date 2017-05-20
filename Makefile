@@ -5,18 +5,15 @@ SHELL = sh -e
 # Project data
 AUTHOR = Luis Alejandro Martínez Faneyth
 EMAIL = luis@huntingbears.com.ve
-MAILIST = stanlee-list@googlegroups.com
 PACKAGE = Stanlee
 CHARSET = UTF-8
-VERSION = $(shell cat VERSION | grep "VERSION" | sed 's/VERSION = //g;s/+.*//g')
+VERSION = 1.0.2+20121030211931
 YEAR = $(shell date +%Y)
 
 # Translation data
-LANGUAGETEAM = Stanlee Translation Team <stanlee-list@googlegroups.com>
 POTLIST = locale/pot/stanlee/POTFILES.in
 POTFILE = locale/pot/stanlee/messages.pot
 POTITLE = Stanlee Translation Template
-POTEAM = Stanlee Translation Team
 PODATE = $(shell date +%F\ %R%z)
 
 # Common files lists
@@ -84,12 +81,7 @@ build-all: gen-img gen-po gen-mo gen-doc gen-conf
 
 gen-doc: gen-wiki gen-html gen-man
 
-gen-predoc: clean-predoc
-
-	@echo "Preprocessing documentation ..."
-	@$(BASH) tools/predoc.sh build
-
-gen-wiki: check-buildep gen-predoc clean-wiki
+gen-wiki: check-buildep clean-wiki
 
 	@echo "Generating documentation from source [RST > WIKI]"
 	@cp documentation/githubwiki.index documentation/rest/Home.md
@@ -103,17 +95,17 @@ gen-wiki: check-buildep gen-predoc clean-wiki
 	@mv documentation/rest/contents.tmp documentation/rest/contents.rest
 	@rm -rf documentation/rest/index.rest
 
-gen-html: check-buildep gen-predoc clean-html
+gen-html: check-buildep clean-html
 
 	@echo "Generating documentation from source [RST > HTML]"
 	@cp documentation/sphinx.index documentation/rest/index.rest
 	@$(SPHINX) -E -Q -b html -d documentation/html/doctrees documentation/rest documentation/html
 	@rm -rf documentation/rest/index.rest documentation/html/doctrees documentation/html/objects.inv
 
-gen-man: check-buildep gen-predoc clean-man
+gen-man: check-buildep clean-man
 
 	@echo "Generating documentation from source [RST > MAN]"
-	@$(RST2MAN) --language="en" --title="AGUILAS" documentation/man/stanlee.rest documentation/man/stanlee.1
+	@$(RST2MAN) --language="en" --title="STANLEE" documentation/man/stanlee.rest documentation/man/stanlee.1
 
 gen-img: check-buildep clean-img
 
@@ -158,7 +150,7 @@ config: check-instdep
 	@chmod 640 /var/log/stanlee/*.log
 	@ln -s /usr/share/stanlee/ /var/www/stanlee
 	@$(PHP) -f setup/install.php
-	@echo "AGUILAS configured and running!"
+	@echo "STANLEE configured and running!"
 
 copy:
 
@@ -223,7 +215,7 @@ gen-pot: check-maintdep
 	@for FILE in $(ALLPHPS); do \
 		echo "../../.$${FILE}" >> $(POTLIST); \
 	done
-	@cd locale/pot/stanlee/ && $(XGETTEXT) --msgid-bugs-address="$(MAILIST)" \
+	@cd locale/pot/stanlee/ && $(XGETTEXT) --msgid-bugs-address="$(EMAIL)" \
 		--package-version="$(VERSION)" --package-name="$(PACKAGE)" \
 		--copyright-holder="$(AUTHOR)" --no-wrap --from-code=utf-8 \
 		--language=php -k_ -s -j -o messages.pot -f POTFILES.in
@@ -233,7 +225,7 @@ gen-pot: check-maintdep
 		-e 's/# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR./#\n# Translators:\n# $(AUTHOR) <$(EMAIL)>, $(YEAR)/' \
 		-e 's/"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\\n"/"PO-Revision-Date: $(PODATE)\\n"/' \
 		-e 's/"Last-Translator: FULL NAME <EMAIL@ADDRESS>\\n"/"Last-Translator: $(AUTHOR) <$(EMAIL)>\\n"/' \
-		-e 's/"Language-Team: LANGUAGE <LL@li.org>\\n"/"Language-Team: $(POTEAM) <$(MAILIST)>\\n"/' \
+		-e 's/"Language-Team: LANGUAGE <LL@li.org>\\n"/"Language-Team: $(AUTHOR) <$(EMAIL)>\\n"/' \
 		-e 's/"Language: \\n"/"Language: English\\n"/g' $(POTFILE)
 	@sed -i -e ':a;N;$$!ba;s|#, fuzzy\n||g' $(POTFILE)
 
@@ -260,15 +252,9 @@ deb-final-release: check-maintdep
 
 # CLEAN TASKS ------------------------------------------------------------------------------
 
-clean: clean-img clean-mo clean-man clean-conf clean-predoc
+clean: clean-img clean-mo clean-man clean-conf
 
-clean-all: clean-img clean-mo clean-html clean-wiki clean-man clean-conf clean-predoc
-
-clean-predoc:
-
-	@echo "Cleaning preprocessed documentation files ..."
-	@$(BASH) tools/predoc.sh clean
-	@rm -rf documentation/rest/index.rest
+clean-all: clean-img clean-mo clean-html clean-wiki clean-man clean-conf
 
 clean-img:
 
