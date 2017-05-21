@@ -6,8 +6,8 @@
 # DESCRIPTION:  Changes each MSGID string from all sources and POT
 #		template if the user provides an alternative.
 # USAGE: ./tools/maint/l10n-chmsgid-global.sh
-# COPYRIGHT:
-# (C) 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
+# COPYRIGHT: (C) 2017 Stanlee Developers
+# Please refer to AUTHORS.rst for a complete list of Copyright holders.
 # LICENCE: GPL3
 # ====================================================================
 #

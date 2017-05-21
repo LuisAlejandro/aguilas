@@ -5,8 +5,8 @@
 # FILE: tools/snapshot.sh
 # DESCRIPTION:  Makes a new development snapshot of Stanlee.
 # USAGE: ./tools/snapshot.sh
-# COPYRIGHT:
-# (C) 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
+# COPYRIGHT: (C) 2017 Stanlee Developers
+# Please refer to AUTHORS.rst for a complete list of Copyright holders.
 # LICENCE: GPL3
 # ====================================================================
 #

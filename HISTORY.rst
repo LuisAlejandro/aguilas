@@ -1,501 +1,537 @@
 Changelog
 =========
 
-0.1.10 (2017-05-19)
--------------------
+%%version%% (unreleased)
+------------------------
 
 Changes
 ~~~~~~~
 
-- [REF] Minor documentation changes. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Modifying parsing of URL to fix download errrors. [Luis
-  Alejandro Martínez Faneyth]
-
-- [REF] Fixing python 2.6 support. [Luis Alejandro Martínez Faneyth]
-
-0.1.9 (2017-05-18)
-------------------
-
-Changes
-~~~~~~~
-
-- [REF] Improving memory management. [Luis Alejandro Martínez Faneyth]
-
-Other
-~~~~~
-
-- Updating Changelog and version. [Luis Alejandro Martínez Faneyth]
-
-0.1.8 (2017-05-18)
-------------------
-
-Changes
-~~~~~~~
-
-- [REF] Extending available memory limit to 600MB. [Luis Alejandro
+- [REF] Including debian folder for package creation. [Luis Alejandro
   Martínez Faneyth]
 
+- [REF] Introducing "default" theme. [REF] Adding documentation. [Luis
+  Alejandro Martínez Faneyth]
+
+- [REF] General reorganization of code. [REF] Changing name and
+  graphical look. [DEL] Deleting "Canaima" theme. [REF] Reorganizing
+  documentation. [Luis Alejandro Martínez Faneyth]
+
 Other
 ~~~~~
 
-- Updating Changelog and version. [Luis Alejandro Martínez Faneyth]
-
-0.1.7 (2017-05-18)
-------------------
-
-Changes
-~~~~~~~
-
-- [REF] Adding check to avoid running out of memory. Fixes #11. [Luis
-  Alejandro Martínez Faneyth]
-
-Fix
-~~~
-
-- [FIX] Fixing memory usage calculation. Fixes #10. [Luis Alejandro
+- New development snapshot 1.0.2+20121030211931. [Luis Alejandro
   Martínez Faneyth]
 
-Other
-~~~~~
+- Correcting Copyright. [Luis Alejandro Martínez Faneyth]
 
-- Updating Changelog and version. [Luis Alejandro Martínez Faneyth]
-
-0.1.6 (2017-05-13)
-------------------
-
-Changes
-~~~~~~~
-
-- [REF] Adding Maintainer guide and changing landscape.io for Code
-  Climate. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Refactoring `pypicontents pypi` to allow the reading of .whl and
-  .egg formats. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Changing location of pip cache. [Luis Alejandro Martínez
-  Faneyth]
-
-- [REF] Adding minimal test. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Only try to download a file once (closes #7). [REF] Refactoring
-  pypicontents.wrapper to be better organized. [REF] Updating regexes in
-  pypicontents.api.errors and pypicontents.api.stats to match new
-  strings. [REF] Allowing exception logs to show in
-  pypicontents.api.pypi. [REF] Removing the portion of code that removes
-  directories from pip cache. Let the user remove them at will. [REF]
-  Moving inspection of setup.py to pypicontents.wrapper to isolate
-  better the importing of foreign modules. [Luis Alejandro Martínez
-  Faneyth]
-
-- [REF] Monkeypatching logging._levelNames for python >= 3.4 (closes
-  #9). [Luis Alejandro Martínez Faneyth]
-
-Fix
-~~~
-
-- [FIX] Fixing error strings. [REF] Refactoring functional tests. [Luis
-  Alejandro Martínez Faneyth]
-
-Other
-~~~~~
-
-- Updating Changelog and version. [Luis Alejandro Martínez Faneyth]
-
-- Fixing python 3.2 incompatibility. Adding functional tests with
-  docker. Updating module level documentation. Removing xmlrpc api
-  because json api is enough. Adding support for whl and egg archive
-  extensions. Removing unused code, unused functions and general
-  linting. [Luis Alejandro Martínez Faneyth]
-
-0.1.5 (2017-01-05)
-------------------
-
-Fix
-~~~
-
-- [FIX] Fixing logger behaviour in python 2.6 and adding case for
-  inventory v1 in the stdlib command. [Luis Alejandro Martínez Faneyth]
-
-Other
-~~~~~
-
-- Updating Changelog and version. [Luis Alejandro Martínez Faneyth]
-
-0.1.4 (2017-01-05)
-------------------
-
-Fix
-~~~
-
-- [FIX] Hotfix to fix python 2.6 support. [Luis Alejandro Martínez
-  Faneyth]
-
-Other
-~~~~~
-
-- Updating Changelog and version. [Luis Alejandro Martínez Faneyth]
-
-0.1.3 (2017-01-04)
-------------------
-
-Fix
-~~~
-
-- [FIX] Adding coding to commands to avoid encoding issues. [Luis
-  Alejandro Martínez Faneyth]
-
-Other
-~~~~~
-
-- Updating Changelog and version. [Luis Alejandro Martínez Faneyth]
-
-0.1.2 (2017-01-04)
-------------------
-
-New
-~~~
-
-- [ADD] Adding configuration file for gitchangelog. [Luis Alejandro
+- New development snapshot 1.0.2+20120510102513. [Luis Alejandro
   Martínez Faneyth]
 
-Changes
-~~~~~~~
+- Correcting $APP_URL. It didn't have /aguilas attached to the domain
+  name. [Luis Alejandro Martínez Faneyth]
 
-- [REF] Updating year in copyright. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Adding support for python 2.6. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Removing dependency on `sphinx` (closes #6). By importing
-  `fetch_inventory` from `sphinx.ext.intersphinx`, we remove the
-  dependency on sphinx and will be able to modify to add compatibility
-  with python 3.2. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Updating documentation. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Improving maintainer info. [Luis Alejandro Martínez Faneyth]
-
-Fix
-~~~
-
-- [FIX] Fixing errors reported by flake8. [Luis Alejandro Martínez
-  Faneyth]
-
-- [FIX] Fixing stdlib errors (closes #5). Various errors in different
-  python versions fixed. [Luis Alejandro Martínez Faneyth]
-
-- [FIX] Removing fixed versions of python interpreters and replacing for
-  dynamic discovery. [FIX] Only killing Popen if is running. [FIX]
-  setupdir was misplaced. [REF] Improving documentation. [Luis Alejandro
+- New development snapshot 1.0.2+20120228111638. [Luis Alejandro
   Martínez Faneyth]
 
-Other
-~~~~~
+- Adding transifex-client support. Updating po source files from
+  transifex. [Luis Alejandro Martínez Faneyth]
 
-- Updating Changelog and version. [Luis Alejandro Martínez Faneyth]
-
-- Updating Changelog and version. [Luis Alejandro Martínez Faneyth]
-
-- Removing branch CI restrictions. [Luis Alejandro Martínez Faneyth]
-
-0.1.1 (2016-12-19)
-------------------
-
-Changes
-~~~~~~~
-
-- [REF] Updating documentation. [Luis Alejandro Martínez Faneyth]
-
-Fix
-~~~
-
-- [FIX] Removing fixed versions of python interpreters and replacing for
-  dynamic discovery. [FIX] Only killing Popen if is running. [FIX]
-  setupdir was misplaced. [REF] Improving documentation. [Luis Alejandro
+- New development snapshot 1.0.2+20120227012239. [Luis Alejandro
   Martínez Faneyth]
 
-Other
-~~~~~
+- Removing fuzzy entries from es/es_VE translations. Automatizing
+  removal on Makefile. Correcting location of log files and footer in
+  Functions.inc.php. [Luis Alejandro Martínez Faneyth]
 
-- Updating Changelog and version. [Luis Alejandro Martínez Faneyth]
+- New development snapshot 1.0.2+20120226233443. [Luis Alejandro
+  Martínez Faneyth]
 
-0.1.0 (2016-12-19)
-------------------
-
-New
-~~~
-
-- [ADD] Adding project's metadata. [Luis Alejandro Martínez Faneyth]
-
-- [ADD] .travis.yml: Configuring the generation of the json file in the
-  script section. [ADD] process.py: First version of the script. [Luis
-  Alejandro Martínez Faneyth]
-
-Changes
-~~~~~~~
-
-- [REF] Improving docs. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Commiting changelog. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Improving docs. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Adding maintainer info. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Improving documentation. [REF] Refactoring commands. [Luis
-  Alejandro Martínez Faneyth]
-
-- [REF] Improving documentation. [REF] Improving commandline parser.
+- Correcting location of Captcha image source. Correcting storage
+  location of the user password in ChangePassword, EditProfile and
+  DeleteUser modules. Correcting small bugs in Makefile. Adding
+  dependencies for php5-mhash library in Makefile and documentation.
   [Luis Alejandro Martínez Faneyth]
 
-- [REF] Renaming commands. [REF] Improving documentation. [Luis
-  Alejandro Martínez Faneyth]
+- New development snapshot 1.0.2+20120226202933. [Luis Alejandro
+  Martínez Faneyth]
 
-- [REF] Improving documentation. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Restrict branches to build on Travis. [Luis Alejandro Martínez
+- Fixing inclusion of configuration in Captcha library. Correcting some
+  translation strings for es_VE and es. [Luis Alejandro Martínez
   Faneyth]
 
-- [REF] Improving README. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Updating graphic image. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Removing unnecessary code. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Deprecating python 3.3 in favor of python 3.6. [Luis Alejandro
+- New development snapshot 1.0.2+20120226160957. [Luis Alejandro
   Martínez Faneyth]
 
-- [REF] Integrating script contents to .travis.yml. [Luis Alejandro
-  Martínez Faneyth]
-
-- [REF] Moving Dockerfiles to LuisAlejandro/dockerfiles. [Luis Alejandro
-  Martínez Faneyth]
-
-- [REF] Stablishing limits. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Implementing stdlib population in this branch. [Luis Alejandro
-  Martínez Faneyth]
-
-- [REF] Adding inspection functions for when the setup.py file cannot be
-  executed. [REF] Adding case for when a download release is nor found,
-  search in download_url. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Restricting build branches. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Changing json name to pypi. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Updating secure keys. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Passing time measuring to python process. [Luis Alejandro
-  Martínez Faneyth]
-
-- [REF] Correcting code style. [FIX] Fixing typo in README. [REF] Adding
-  summary report. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Improving exceptions. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Enabling logging by file. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Refactoring to correct download url. [FIX] Fixing problem with
-  variable. [REF] Adding timeout to max 40min to allow push from Travis.
+- Changing the way sphinx-build cache files are handled in Makefile.
+  Deleting them because they generate trouble when merging branches.
   [Luis Alejandro Martínez Faneyth]
 
-- [REF] Improving commit from Travis. [Luis Alejandro Martínez Faneyth]
+- Removing binary files from source. [Luis Alejandro Martínez Faneyth]
 
-- [REF] Adding more complete .gitignore. [Luis Alejandro Martínez
-  Faneyth]
-
-- [REF] Refactoring the parse of entry_points. [Luis Alejandro Martínez
-  Faneyth]
-
-- [REF] Refactoring setupargs. [ADD] Adding logs. [Luis Alejandro
+- New development snapshot 1.0.2+20120223174310. [Luis Alejandro
   Martínez Faneyth]
 
-- [REF] Refactoring import procedure to cover more failing packages.
+- Correcting configuration file. [Luis Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.2+20120223162050. [Luis Alejandro
+  Martínez Faneyth]
+
+- Updating po strings. Including Italian translation. Thanks Chris!
+  Updating AUTHORS file to reflect recent contribution. [Luis Alejandro
+  Martínez Faneyth]
+
+- New development snapshot 1.0.2+20120223150129. [Luis Alejandro
+  Martínez Faneyth]
+
+- Starting development of security release 1.0.2. Removing functions
+  file from phpldapadmin and extra README file from documentation, they
+  are no longer needed. Adding support for MD5, SHA, CRYPT, SSHA, SMD5,
+  BLOWFISH, EXT_DES and MD5CRYPT password encryption algorithms. Adding
+  support for automatic recognition of the encryption algorithm present
+  of the retrieved password from LDAP, on ChangePassword, DeleteUser and
+  EditProfile modules. Updating po strings. [Luis Alejandro Martínez
+  Faneyth]
+
+- Importing phpldapadmin functions. [Luis Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120211110749. [Luis Alejandro
+  Martínez Faneyth]
+
+- Changing location of Catpcha library. [Luis Alejandro Martínez
+  Faneyth]
+
+- New development snapshot 1.0.1+20120209164343. [Luis Alejandro
+  Martínez Faneyth]
+
+- Exclude of the tarball generation must match the debian/ folder only.
   [Luis Alejandro Martínez Faneyth]
 
-- [REF] Introducing a wrapper script to be able to execute setup with
-  different python versions. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Implementing a better __import__ replacement. [Luis Alejandro
+- New development snapshot 1.0.1+20120209160751. [Luis Alejandro
   Martínez Faneyth]
 
-- [REF] Implementing a better module mocking. [Luis Alejandro Martínez
-  Faneyth]
-
-- [REF] Implementing a false module patch. [Luis Alejandro Martínez
-  Faneyth]
-
-- [REF] Refactoring globals overwriting. [Luis Alejandro Martínez
-  Faneyth]
-
-- [REF] Refactoring thread execution and overwriting modules through
-  exec's globals. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Remove package number limit. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Implementing JSON API instead of XMLRPC because the latter
-  complains about ssl stuff with too much requests. [Luis Alejandro
-  Martínez Faneyth]
-
-- [REF] General refactoring. Creating a package for better organization
-  of code. [FIX] Filling pypicontents.json with preliminar data. [IMP]
-  Monkey patching for setup.py is done now through globals() parameter
-  of exec. [IMP] Filling README.md. [Luis Alejandro Martínez Faneyth]
-
-- [REF] Adding methods to access each setup.py and ask him directly
-  which packages provides. [Luis Alejandro Martínez Faneyth]
-
-Fix
-~~~
-
-- [FIX] Fixing travis syntax. [Luis Alejandro Martínez Faneyth]
-
-- [FIX] Fixing case when a json gets corrupted. [Luis Alejandro Martínez
-  Faneyth]
-
-- [FIX] Minor message change. [Luis Alejandro Martínez Faneyth]
-
-- [FIX] Fixing commit errors. [Luis Alejandro Martínez Faneyth]
-
-- [FIX] Fixing various errors. [Luis Alejandro Martínez Faneyth]
-
-- [FIX] Updating auth token. [REF] Refactoring to make less calls to
-  read/write on disk per package. [Luis Alejandro Martínez Faneyth]
-
-- [FIX] Fixing Travis push to github. [Luis Alejandro Martínez Faneyth]
-
-- [FIX] Fixing Travis syntax. [Luis Alejandro Martínez Faneyth]
-
-- [FIX] Bypassing open function. [Luis Alejandro Martínez Faneyth]
-
-- [FIX] Fixing unicode mess. [Luis Alejandro Martínez Faneyth]
-
-- [FIX] StringIO input can't be str. [IMP] Catching download errors.
+- Implementing autogeneration of orig source tarball before packaging.
   [Luis Alejandro Martínez Faneyth]
 
-- [FIX] Only fail open when en reading mode and file doesn't exist.
+- New development snapshot 1.0.1+20120207165923. [Luis Alejandro
+  Martínez Faneyth]
+
+- New version of python-sphinx, generating html docs. [Luis Alejandro
+  Martínez Faneyth]
+
+- Including extra Maintainer scripts dependencies Guess domain name
+  automatically through $_SERVER['SERVER_NAME'] in config.php. [Luis
+  Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120206154036. [Luis Alejandro
+  Martínez Faneyth]
+
+- Correcting some small bugs from release scripts. [Luis Alejandro
+  Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120206143338. [Luis Alejandro
+  Martínez Faneyth]
+
+- Correcting small bug on buildpackage script. [Luis Alejandro Martínez
+  Faneyth]
+
+- New development snapshot 1.0.1+20120206142933. [Luis Alejandro
+  Martínez Faneyth]
+
+- Improving buildpackage script. [Luis Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120205143243. [Luis Alejandro
+  Martínez Faneyth]
+
+- Correcting small bug un buildpackage script. [Luis Alejandro Martínez
+  Faneyth]
+
+- New development snapshot 1.0.1+20120205114622. [Luis Alejandro
+  Martínez Faneyth]
+
+- Removing man and documentation installation from Makefile. Leave that
+  to Debian package. [Luis Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120205011532. [Luis Alejandro
+  Martínez Faneyth]
+
+- Modifying Makefile to avoid checking installation dependencies on
+  copying. [Luis Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120205010215. [Luis Alejandro
+  Martínez Faneyth]
+
+- Correcting small bug on README.rst. [Luis Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120204201936. [Luis Alejandro
+  Martínez Faneyth]
+
+- Removing log files from /var/log to avoid lintian warnings. [Luis
+  Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120204184209. [Luis Alejandro
+  Martínez Faneyth]
+
+- Correcting small bug on scripts. [Luis Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120204182005. [Luis Alejandro
+  Martínez Faneyth]
+
+- Avoiding update of submodules in package building time. [Luis
+  Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120204175134. [Luis Alejandro
+  Martínez Faneyth]
+
+- Improving generation of debian sources and package. [Luis Alejandro
+  Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120204162201. [Luis Alejandro
+  Martínez Faneyth]
+
+- Correcting bugs in documentation. [Luis Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120204152950. [Luis Alejandro
+  Martínez Faneyth]
+
+- Giving last touches to release, snapshot and buildpackage scripts.
   [Luis Alejandro Martínez Faneyth]
 
-- [FIX] Improving method to remove comments and docstrings. [Luis
-  Alejandro Martínez Faneyth]
-
-- [FIX] pypicontents/utils.py: Removing multiline comments from original
-  setup.py too. [Luis Alejandro Martínez Faneyth]
-
-- [FIX] Escaping URLs because someone uploaded a package file with
-  spcaes in its name. One see things in this life ... [Luis Alejandro
+- New development snapshot 1.0.1+20120204143418. [Luis Alejandro
   Martínez Faneyth]
 
-- [FIX] Catch SSL error on XMLRPC API. [Luis Alejandro Martínez Faneyth]
+- Improving buildpackage script. [Luis Alejandro Martínez Faneyth]
 
-- [FIX] Fixing typos, dah. [Luis Alejandro Martínez Faneyth]
+- New development snapshot 1.0.1+20120204131847. [Luis Alejandro
+  Martínez Faneyth]
 
-- [FIX] Catching post cleaning exceptions. [Luis Alejandro Martínez
+- Improving buildpackage script, and proper targets on Makefile. [Luis
+  Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120204122606. [Luis Alejandro
+  Martínez Faneyth]
+
+- Improving release script. [Luis Alejandro Martínez Faneyth]
+
+- Improving release script. [Luis Alejandro Martínez Faneyth]
+
+- Improving release script. [Luis Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120203173505. [Luis Alejandro
+  Martínez Faneyth]
+
+- Correcting issues with release script. [Luis Alejandro Martínez
   Faneyth]
 
-- [FIX] Moving monkeypatchs into the loop because these fuckers can
-  override my monkepatching. Seriously, dudes. [Luis Alejandro Martínez
+- New development snapshot 1.0.1+20120203172936. [Luis Alejandro
+  Martínez Faneyth]
+
+- Finishing release script. [Luis Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120203131803. [Luis Alejandro
+  Martínez Faneyth]
+
+- Correcting a bug in the release script. [Luis Alejandro Martínez
   Faneyth]
 
-- [FIX] Catching exit be cause i don't want you to. [Luis Alejandro
+- New development snapshot 1.0.1+20120203131048. [Luis Alejandro
   Martínez Faneyth]
 
-- [FIX] Adding condition for when packages is an empty list. [Luis
+- Updating documentation. [Luis Alejandro Martínez Faneyth]
+
+- Finishing release script. [Luis Alejandro Martínez Faneyth]
+
+- Improving Package creation script. [Luis Alejandro Martínez Faneyth]
+
+- Fixing some bugs in config.php.example Improving release script to
+  also generate the debian package Correcting some minor bugs. [Luis
   Alejandro Martínez Faneyth]
 
-- [FIX] Fixing parameter order. [Luis Alejandro Martínez Faneyth]
+- Starting development of buildpackage script. [Luis Alejandro Martínez
+  Faneyth]
 
-- [FIX] Fixing pygrep function, which wasn't what i wanted. [Luis
-  Alejandro Martínez Faneyth]
-
-- [FIX] Fixing typo. [Luis Alejandro Martínez Faneyth]
-
-- [FIX] Adding method to find correct setup.py if not present where it
-  should be. [Luis Alejandro Martínez Faneyth]
-
-- [FIX] Add try-except to handle erroneous setup.py (shame). [Luis
-  Alejandro Martínez Faneyth]
-
-- [FIX] Adding package path to sys.path in case someone imports itself
-  on setup.py. [Luis Alejandro Martínez Faneyth]
-
-- [FIX] Changing cache dir so that we can tak advantage from Travis's
-  cache. [Luis Alejandro Martínez Faneyth]
-
-- [FIX] Fixing typo. [Luis Alejandro Martínez Faneyth]
-
-- [FIX] Fin tunning travis file for pushing to GH. [Luis Alejandro
+- New development snapshot 1.0.1+20120129200521. [Luis Alejandro
   Martínez Faneyth]
 
-Other
-~~~~~
+- Removing some autogenerated docs. [Luis Alejandro Martínez Faneyth]
 
-- Importing PyPIrazzi source code. [Luis Alejandro Martínez Faneyth]
+- New development snapshot 1.0.1+20120129135542. [Luis Alejandro
+  Martínez Faneyth]
 
-- Simplifying dockerfiles. [Luis Alejandro Martínez Faneyth]
+- Finishing Documentation Organizing Makefile Improving and finishing
+  Maintainer Scripts. [Luis Alejandro Martínez Faneyth]
 
-- Including dockerfiles. Moving scripts to separate package: pypirazzi.
+- Reestructuring REST sources to one file. [Luis Alejandro Martínez
+  Faneyth]
+
+- New development snapshot 1.0.1+20120125152220. [Luis Alejandro
+  Martínez Faneyth]
+
+- Updating HTML documentation. [Luis Alejandro Martínez Faneyth]
+
+- Writing more documentation on git, contributing and source code.
+  Organizing Makefile. [Luis Alejandro Martínez Faneyth]
+
+- Improving documentation. [Luis Alejandro Martínez Faneyth]
+
+- Updating locales. [Luis Alejandro Martínez Faneyth]
+
+- Adding target on Makefile to automatize the generation and update of
+  po, pot and mo files. [Luis Alejandro Martínez Faneyth]
+
+- Changing translation strings for a more intuitive i18n process
+  Introducing "es" and "en" localizations. [Luis Alejandro Martínez
+  Faneyth]
+
+- Adding documentation for contributing, installing, understanding the
+  source code. Changing the localization model for a more intuitive
+  process. [Luis Alejandro Martínez Faneyth]
+
+- Removing garbage from previous commit Improving the automatic removal
+  of *.pyc files. [Luis Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120119135126. [Luis Alejandro
+  Martínez Faneyth]
+
+- Improving Makefile Improving documentation system Updating
+  documentation. [Luis Alejandro Martínez Faneyth]
+
+- Updating AUTHORS information. [Luis Alejandro Martínez Faneyth]
+
+- Removing obsolete documentation. [Luis Alejandro Martínez Faneyth]
+
+- Improving tools that automate code generation. [Luis Alejandro
+  Martínez Faneyth]
+
+- Improving susbstitution system for generating documentation. [Luis
+  Alejandro Martínez Faneyth]
+
+- Improving preprocessing of documentation. [Luis Alejandro Martínez
+  Faneyth]
+
+- Removing NetBeans configuration folder Removing scripts in development
+  Improving the process of generating the documentation Including
+  suppport for github wiki. [Luis Alejandro Martínez Faneyth]
+
+- Improving generation of documentation. [Luis Alejandro Martínez
+  Faneyth]
+
+- Adding "wikir" python script to convert to Google Code Wiki format
+  from RST. More info on http://code.google.com/p/wikir Embedding Google
+  Code Wiki pages as a git submodule so that they could be autogenerated
+  and pushed directly from project's documentation. Redoing sphinx build
+  structure. [Luis Alejandro Martínez Faneyth]
+
+- Redoing "debian" theme style Correcting bug on the "NewUser" table
+  creation script that limited the row input to 30 chracters, which
+  severed the SHA,CRYPT and MD5 password encryption. [Luis Alejandro
+  Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120110122441. [Luis Alejandro
+  Martínez Faneyth]
+
+- Correcting major bugs on password encription Correcting ajax errors
+  Adding new translation strings Changing deafult configuration. [Luis
+  Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120110015052. [Luis Alejandro
+  Martínez Faneyth]
+
+- Implementing the use of global variables inside functions Updating
+  {po,pot} files. [Luis Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120110010824. [Luis Alejandro
+  Martínez Faneyth]
+
+- Correcting minor rendering and translation messages bugs Correcting
+  uninstallation bug Correcting error messages bugs Correcting errors on
+  javascript Moving pot to separate folder. [Luis Alejandro Martínez
+  Faneyth]
+
+- New development snapshot 1.0.1+20120109153854. [Luis Alejandro
+  Martínez Faneyth]
+
+- Updating locales Correcting small bugs on release and snapshot scripts
+  Creating POT file. [Luis Alejandro Martínez Faneyth]
+
+- Correcting minor bugs on uninstallation. [Luis Alejandro Martínez
+  Faneyth]
+
+- New development snapshot 1.0.1+20120108210255. [Luis Alejandro
+  Martínez Faneyth]
+
+- Correcting some minor localization bugs Correcting uninstallation bug
+  Correcting token generation bug. [Luis Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20120108185705. [Luis Alejandro
+  Martínez Faneyth]
+
+- Passing AssistedEmail function parameters. [Luis Alejandro Martínez
+  Faneyth]
+
+- Modifying googlecode script. [Luis Alejandro Martínez Faneyth]
+
+- Correcting filter_var e-mail validation. Correcting Captcha
+  initialization. Deprecating InitCaptcha function. Correcting minor
+  details on Makefile. [Luis Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20111220205134. [Luis Alejandro
+  Martínez Faneyth]
+
+- Correcting minor details on libraries location. Adding PHP, PHP-LDAP
+  and PHP-MYSQL checking support on Makefile. Correcting minor detail
+  with locale string. [Luis Alejandro Martínez Faneyth]
+
+- New development snapshot 1.0.1+20111220191855. [Luis Alejandro
+  Martínez Faneyth]
+
+- Structuring documentation. Improving README and INSTALL files.
+  Correcting release and snapshot scripts. [Luis Alejandro Martínez
+  Faneyth]
+
+- New development snapshot 1.0.1+20111220154618. [Luis Alejandro
+  Martínez Faneyth]
+
+- Various improvements:   * Changing the preg_match that validates the
+  email for a filter_var approach.   * Moving in-development scripts to
+  a separate directory.        * Begging to automate update POT files
+  procedure. [Luis Alejandro Martínez Faneyth]
+
+- Various modifications:  * Changing the form that variables are passed
+  to query strings  * Avoiding direct load of libraries     * Changing
+  directory names to proper ones       * Classifying setup scripts.
   [Luis Alejandro Martínez Faneyth]
 
-- Fixing logger and scripts. [Luis Alejandro Martínez Faneyth]
+- Improving release and snapshot scripts Improving security on
+  parameters passed to modules. [Luis Alejandro Martínez Faneyth]
 
-- General improvements. [Luis Alejandro Martínez Faneyth]
-
-- Fixing minor bug. [Luis Alejandro Martínez Faneyth]
-
-- Fixing some errored packages. [Luis Alejandro Martínez Faneyth]
-
-- Improving Readme. [Luis Alejandro Martínez Faneyth]
-
-- [IMP] Implementing theard stop. [Luis Alejandro Martínez Faneyth]
-
-- [IMP] Disabling location of setup.py. [Luis Alejandro Martínez
+- New development release 1.0.0+20111216175312. [Luis Alejandro Martínez
   Faneyth]
 
-- [IMP] Configuring a logger for output messages. [IMP] Adding Python 3+
-  compatibility. [IMP] Dividing package parsing by letter to take
-  advantage of travis parallel jobs. [FIX] Leaving package archive for
-  travis to cache. [FIX] Correcting duplicate logger issue. [IMP]
-  Handling KeyboardInterruption and timeouts. [IMP] Fixing logging.
-  [Luis Alejandro Martínez Faneyth]
+- Correcting errors in es_VE localization. [Luis Alejandro Martínez
+  Faneyth]
 
-- [IMP] Changing back multiprocessing to threading. [Luis Alejandro
+- New development release 1.0.0+20111216172924. [Luis Alejandro Martínez
+  Faneyth]
+
+- Improving documentation. [Luis Alejandro Martínez Faneyth]
+
+- New development release 1.0.0+20111216103827. [Luis Alejandro Martínez
+  Faneyth]
+
+- Improving es_VE translation Adding README.rst documentation Correcting
+  some password encoding mistakes. [Luis Alejandro Martínez Faneyth]
+
+- New development release 1.0.0~20111216030223. [Luis Alejandro Martínez
+  Faneyth]
+
+- * Automating the generation of stable and development releases. [Luis
+  Alejandro Martínez Faneyth]
+
+- * Starting development of release script. [Luis Alejandro Martínez
+  Faneyth]
+
+- * Correcting setting of localization. * Minos style adjustments. [Luis
+  Alejandro Martínez Faneyth]
+
+- * Changing gettext strings. [Luis Alejandro Martínez Faneyth]
+
+- * Updating localization. [Luis Alejandro Martínez Faneyth]
+
+- * Including Functions.php on MYSQLConnection.php. [Luis Alejandro
   Martínez Faneyth]
 
-- [IMP] Configuring thread to stop after 20s if the setup hasn't
-  finished. [Luis Alejandro Martínez Faneyth]
+- * Adding unnistall script. [Luis Alejandro Martínez Faneyth]
 
-- [IMP] Adding more modules to fake. [Luis Alejandro Martínez Faneyth]
+- * Correcting location of media files (css, js, ...) * Including MYSQL
+  and LDAP Connection functions on install script. [Luis Alejandro
+  Martínez Faneyth]
 
-- [IMP] Adding more modules to fake. [Luis Alejandro Martínez Faneyth]
+- * Correcting more details on Makefile, scripts/gen-conf.sh, and
+  config.php.example. [Luis Alejandro Martínez Faneyth]
 
-- [IMP] Improving the creation of missing file. [Luis Alejandro Martínez
+- * Correcting details on Makefile. [Luis Alejandro Martínez Faneyth]
+
+- * Correcting error on pre-configuration. [Luis Alejandro Martínez
   Faneyth]
 
-- [IMP] Improve the handling of IOError. [Luis Alejandro Martínez
+- * Adding RST manual. [Luis Alejandro Martínez Faneyth]
+
+- * Adding gettext specification of language and including Locale.php in
+  all files where needed. * Improving Makefile. [Luis Alejandro Martínez
   Faneyth]
 
-- [IMP] Improving module logic. [Luis Alejandro Martínez Faneyth]
+- Improving locales. [Luis Alejandro Martínez Faneyth]
 
-- [IMP] Improving function to remove comments and docstrings. [Luis
-  Alejandro Martínez Faneyth]
+- * Improving Makefile * Introducing googlecode upload python script *
+  Removing NetBeans project folder. [Luis Alejandro Martínez Faneyth]
 
-- [IMP] Write to disk in every package and not at the end. [Luis
-  Alejandro Martínez Faneyth]
-
-- [IMP] README.md: Improving use cases and description. [IMP]
-  pypicontents/utils.py: Implementing threading. [IMP]
-  pypicontents/patches.py: improving excecution of setup.py. [Luis
-  Alejandro Martínez Faneyth]
-
-- Updating $GHTOKEN on .travis.yml [FIX] If we find an unsupported
-  archive type, continue and do not break. [Luis Alejandro Martínez
+- Various improvements:   * Introducing sphinx documentation      *
+  Creating log files to simplify Makefile       * Deleting xcf banners
+  to simplify generation of images from source, and maintain images
+  "patchable"    * Creating aguilas logo. [Luis Alejandro Martínez
   Faneyth]
 
-- [IMP] Improving try-except on setup.py execution. [ADD] Moving
-  functions to separate script. [Luis Alejandro Martínez Faneyth]
+- Improving the way users config AGUILAS at installation time. [Luis
+  Alejandro Martínez Faneyth]
 
-- Initial commit. [Luis Alejandro Martínez Faneyth]
+- Improving locales. [Luis Alejandro Martínez Faneyth]
+
+- New Script. [Luis Alejandro Martínez Faneyth]
+
+- Improving install methods. [Luis Alejandro Martínez Faneyth]
+
+- Translating to es_VE. [Luis Alejandro Martínez Faneyth]
+
+- Generating locales. [Luis Alejandro Martínez Faneyth]
+
+- Estructural changes:    * Better validation     * Creating gettext
+  *.po and *.mo files  * Beauty of code improvements   * Inclusion of
+  TLS and secure passwords options         * Install script        *
+  Automatization with Makefile. [Luis Alejandro Martínez Faneyth]
+
+- Adding install script. [Usuario de Canaima LiveDVD]
+
+- Implementing function upgrades and automatization. [Luis Alejandro
+  Martínez Faneyth]
+
+- Upgrading the form that the images are represented. Leaving only the
+  source code (*.xcf, *.svg) and converting them to binary (*.jpg,
+  *.png) dinamically on the Makefile. [Luis Alejandro Martínez Faneyth]
+
+- New version 1.2:        * Complete redoing of filenames and structure
+  * Implementation of NetBeans IDE        * Implementetion of multiple
+  functions to atomatize various processes   * Implementation of
+  internationalization system through gettext         * Added
+  functionality of changing visual themes         * Automatize the
+  creation of the maxUID entry   * New Debian and Canaima themes. [Luis
+  Alejandro Martínez Faneyth]
+
+- Modificando index.php para manejar diferentes temas. [Luis Alejandro
+  Martínez Faneyth]
+
+- Actualizando versión a 1.1. [Luis Alejandro Martínez Faneyth]
+
+- Mejoras varias: [Luis Alejandro Martínez Faneyth]
+
+  	* Cambio de permisos a *.php
+  	* Mejora de la lectura de la configuración
+  	* Auto-incremento del uidNumber
+  	* Perfeccionamiento del código
+
+
+1.0.2 (2012-07-27)
+------------------
+
+- New stable release 1.0.2. [Luis Alejandro Martínez Faneyth]
+
+1.0.1 (2012-02-11)
+------------------
+
+- New stable release 1.0.1. [Luis Alejandro Martínez Faneyth]
+
+- Updating VERSION. [Luis Alejandro Martínez Faneyth]
+
+- Versión inicial. [Luis Alejandro Martínez Faneyth]
 
 

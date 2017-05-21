@@ -6,8 +6,8 @@
 # DESCRIPTION:	Generates a PO file for a new translated language,
 #		based on the Stanlee POT template.
 # USAGE: ./tools/maint/l10n-newpo.sh [L10N CODE]
-# COPYRIGHT:
-# (C) 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
+# COPYRIGHT: (C) 2017 Stanlee Developers
+# Please refer to AUTHORS.rst for a complete list of Copyright holders.
 # LICENCE: GPL3
 # ====================================================================
 #

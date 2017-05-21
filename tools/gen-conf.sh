@@ -6,8 +6,8 @@
 # DESCRIPTION:	Asks the user to fill in the configuration information
 #		to generate the setup/config.php file.
 # USAGE: ./tools/gen-conf.sh
-# COPYRIGHT:
-# (C) 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
+# COPYRIGHT: (C) 2017 Stanlee Developers
+# Please refer to AUTHORS.rst for a complete list of Copyright holders.
 # LICENCE: GPL3
 # ====================================================================
 #

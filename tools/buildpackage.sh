@@ -5,8 +5,8 @@
 # FILE: tools/buildpackage.sh
 # DESCRIPTION:  Makes a new debian package of a stable release.
 # USAGE: ./tools/buildpackage.sh
-# COPYRIGHT:
-# (C) 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
+# COPYRIGHT: (C) 2017 Stanlee Developers
+# Please refer to AUTHORS.rst for a complete list of Copyright holders.
 # LICENCE: GPL3
 # ====================================================================
 #

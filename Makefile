@@ -17,7 +17,7 @@ POTITLE = Stanlee Translation Template
 PODATE = $(shell date +%F\ %R%z)
 
 # Common files lists
-IMAGES = $(shell ls themes/canaima/images/ | grep "\.svg" | sed 's/\.svg//g')
+IMAGES = $(shell ls themes/default/images/ | grep "\.svg" | sed 's/\.svg//g')
 THEMES = $(shell ls themes/)
 LOCALES = $(shell find locale -mindepth 1 -maxdepth 1 -type d | sed 's|locale/pot||g;s|locale/||g')
 PHPS = $(wildcard *.php)
@@ -80,27 +80,6 @@ build: gen-img gen-mo gen-doc
 build-all: gen-img gen-po gen-mo gen-doc gen-conf
 
 gen-doc: gen-wiki gen-html gen-man
-
-gen-wiki: check-buildep clean-wiki
-
-	@echo "Generating documentation from source [RST > WIKI]"
-	@cp documentation/githubwiki.index documentation/rest/Home.md
-	@cp documentation/rest/*.md documentation/rest/*.rest documentation/githubwiki/
-	@rm -rf documentation/rest/Home.md
-	@cp documentation/googlewiki.index documentation/rest/index.rest
-	@echo "" >> documentation/rest/index.rest
-	@cat documentation/rest/contents.rest >> documentation/rest/index.rest
-	@mv documentation/rest/contents.rest documentation/rest/contents.tmp
-	@$(PYTHON) -B tools/googlecode-wiki.py
-	@mv documentation/rest/contents.tmp documentation/rest/contents.rest
-	@rm -rf documentation/rest/index.rest
-
-gen-html: check-buildep clean-html
-
-	@echo "Generating documentation from source [RST > HTML]"
-	@cp documentation/sphinx.index documentation/rest/index.rest
-	@$(SPHINX) -E -Q -b html -d documentation/html/doctrees documentation/rest documentation/html
-	@rm -rf documentation/rest/index.rest documentation/html/doctrees documentation/html/objects.inv
 
 gen-man: check-buildep clean-man
 
@@ -182,13 +161,6 @@ reinstall: uninstall install
 
 
 # MAINTAINER TASKS ---------------------------------------------------------------------------------
-
-prepare: check-maintdep
-
-	@git submodule init
-	@git submodule update
-	@cd documentation/githubwiki/ && git checkout development && git pull origin development
-	@cd documentation/googlewiki/ && git checkout development && git pull origin development
 
 pull-po:
 
