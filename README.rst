@@ -1,3 +1,6 @@
+.. image:: https://badge.waffle.io/LuisAlejandro/stanlee.png?label=ready&title=Ready 
+ :target: https://waffle.io/LuisAlejandro/stanlee?utm_source=badge
+ :alt: 'Stories in Ready'
 Summary
 -------
 
