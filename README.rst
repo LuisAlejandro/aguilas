@@ -1,6 +1,10 @@
 Summary
 -------
 
+.. image:: https://badges.gitter.im/LuisAlejandro/stanlee.svg
+   :alt: Join the chat at https://gitter.im/LuisAlejandro/stanlee
+   :target: https://gitter.im/LuisAlejandro/stanlee?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+
 *Aguilas* is a centralized registration system that allows users to create and manage their accounts on an LDAP authentication platform and (in some cases) using MYSQL databases to store temporary records. It's mostly written in PHP, and depends heavily on the use of LDAP and MYSQL servers. It has the following features:
 
 * Creates user accounts based on determined LDAP attributes.
