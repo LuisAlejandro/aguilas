@@ -27,7 +27,7 @@ Stanlee repositories
 
 The Stanlee development model uses *git* (see `working with git`_) to track changes to the code over time and manage collaboration. You'll need a copy of the git client program on your computer, and you'll want to familiarize yourself with the basics of `working with git`_.
 
-The Stanlee git repository is located online at various places, all syncronized with the last code from the authors. We host Stanlee on `Google Code`_, GitHub_, and Gitorious_. In terms of source code, all of them have the same information, so, you can choose the one you like the most. We use GitHub for tracking bugs and other project management stuff. If you want to contribute to Stanlee, please read our `contributing to stanlee`_ section.
+The Stanlee git repository is located online at various places, all syncronized with the last code from the authors. We host Stanlee on GitHub_. In terms of source code, all of them have the same information, so, you can choose the one you like the most. We use GitHub for tracking bugs and other project management stuff. If you want to contribute to Stanlee, please read our `contributing to stanlee`_ section.
 
 .. _branches and tags:
 

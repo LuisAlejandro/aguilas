@@ -10,9 +10,9 @@
    :target: https://travis-ci.org/LuisAlejandro/stanlee
    :alt: Travis CI
 
-.. image:: https://coveralls.io/repos/github/LuisAlejandro/stanlee/badge.svg?branch=master
-   :target: https://coveralls.io/github/LuisAlejandro/stanlee?branch=master
-   :alt: Coveralls
+.. image:: https://scrutinizer-ci.com/g/LuisAlejandro/stanlee/badges/coverage.png?b=master
+   :target: https://scrutinizer-ci.com/g/LuisAlejandro/stanlee/?branch=master
+   :alt: Scrutinizer CI
 
 .. image:: https://landscape.io/github/LuisAlejandro/stanlee/master/landscape.svg?style=flat
    :target: https://landscape.io/github/LuisAlejandro/stanlee/master
@@ -71,7 +71,7 @@ Take a look at the `wiki <http://code.google.com/p/stanlee/w/list>`_.
 Contributing
 ------------
 
-+ Report bugs and request features in our `ticket tracker <https://github.com/HuntingBears/stanlee/issues>`_.
++ Report bugs and request features in our `ticket tracker <https://github.com/LuisAlejandro/stanlee/issues>`_.
 + Submit patches or pull requests for new and/or fixed behavior.
 + Join the `Stanlee mailing list <http://groups.google.com/group/stanlee-list>`_ and share your ideas.
 + Improve Stanlee documentation by reading, writing new articles or correcting existing ones.

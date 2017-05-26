@@ -78,6 +78,8 @@ Run the following command as superuser::
 Installing the Mail Transport Agent
 +++++++++++++++++++++++++++++++++++
 
+.. _Google Mail: http://gmail.com
+
 If you already have a working Mail Transport Agent, please proceed to the next step.
 
 Normally you can install a *Mail Transport Agent (MTA)* like ``postfix`` or ``exim`` to serve as a mail server on any computer connected to the internet with a public IP address assigned. However, due to the problem of SPAM, many Internet mail servers block mail from unauthenticated dynamic IP addresses, which are common in domestic connections.
@@ -179,7 +181,9 @@ If you did things right, on the other console you should see something like this
 Installing the stable version
 -----------------------------
 
-#. Download the source tarball from `Stanlee download page`_. Select the version of your preference, usually the last one will be more complete.
+.. _Stanlee releases page: https://github.com/LuisAlejandro/stanlee/releases
+
+#. Download the source tarball from `Stanlee releases page`_. Select the version of your preference, usually the last one will be more complete.
 
 #. Decompress the source with your favorite program::
 
@@ -237,7 +241,7 @@ That being said:
 
 #. Start cloning the development branch from Stanlee (you will need to install the ``git-core`` package first)::
 
-	git clone --branch development https://github.com/HuntingBears/stanlee.git
+	git clone --branch development https://github.com/LuisAlejandro/stanlee.git
 
 #. Access the folder that has just been created::
 

@@ -38,9 +38,7 @@ Note that there are several slight variants of the patch format. The example abo
 
 If you want to create a patch, the first thing you will have to do is to download the latest snapshot (development stage) of Stanlee to your computer. Use git to clone the project and obtain a copy from github (you only need to do this once)::
 
-        git clone --branch development https://github.com/HuntingBears/stanlee.git
-
-Stanlee code is also mirrored on `Google Code`_ and Gitorious_.
+        git clone --branch development https://github.com/LuisAlejandro/stanlee.git
 
 If you already have cloned the code, then pull the latest changes down to ensure you're working with the latest snapshot::
 
@@ -101,5 +99,13 @@ Creating a patch using git
 
 Submitting the patch
 --------------------
+
+.. _open an account:
+.. _Signup at GitHub: https://github.com/signup/free
+.. _open a new ticket:
+.. _New Issue Form: https://github.com/LuisAlejandro/stanlee/issues/new
+.. _Ticket Tracker: https://github.com/LuisAlejandro/stanlee/issues
+.. _New public Gist: https://gist.github.com/gists/new
+.. _Gist: https://gist.github.com/
 
 A patch can be sent to Stanlee developers through the `Ticket Tracker`_ and the Gist_. Add the patch code in a `New Public Gist`_ and then `open a new ticket`_ describing the patch you made. Remember to add the link to the public gist so it can be referenced and checked out by developers. Also, you will need to `open an account`_ on github to do all of this.

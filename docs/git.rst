@@ -4,6 +4,8 @@
 Working with git
 ================
 
+.. _graphical summary: http://zrusin.blogspot.com/2007/09/git-cheat-sheet.html
+
 Git is a free and open source, distributed version control system designed to handle everything from small to very large projects with speed and efficiency. If you want a list of common commands, see the `git cheat sheet`_ or it's `graphical summary`_.
 
 For those too impatient to read, here's what you need to work with someone else's Git project::
@@ -257,7 +259,7 @@ This command works only if you cloned from a server to which you have write acce
 Working with submodules
 -----------------------
 
-Git submodules allows you to attach or include an external repository inside another repository at a specific path. It basically permits to handle various "subprojects" inside one big project. For example, Stanlee has two subprojects inside: the `Google code Wiki`_ (``documentation/googlewiki``) and the `GitHub Wiki`_ (``documentation/githubwiki``), which both update through the command ``make gen-wiki`` on the main project.
+Git submodules allows you to attach or include an external repository inside another repository at a specific path. It basically permits to handle various "subprojects" inside one big project.
 
 There are four main functions you will need to understand in order to work with Git submodules. In order, you will need to know how to add, make use of, remove, and update submodules.
 

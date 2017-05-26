@@ -168,7 +168,7 @@ Now you've got your own fork. This is your own personal copy of the Stanlee sour
 Congratulations! You now have your very own Stanlee repository. Now you'll want to make sure that you can always pull down changes from the upstream canonical repository. To do so, do this::
 
 	cd stanlee
-	git remote add upstream git://github.com/HuntingBears/stanlee.git 
+	git remote add upstream git://github.com/LuisAlejandro/stanlee.git 
 	git pull upstream development
 
 Anytime you want to merge in the latest changes from the upstream repository, just issue the command ``git pull upstream development`` to pull the latest from the development branch of the upstream repository and you'll be good to go. You should also push it up to your fork::

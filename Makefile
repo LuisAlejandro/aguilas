@@ -5,19 +5,22 @@ SHELL = sh -e
 # Project data
 AUTHOR = Luis Alejandro Martínez Faneyth
 EMAIL = luis@huntingbears.com.ve
+MAILIST = luis@huntingbears.com.ve
 PACKAGE = Stanlee
 CHARSET = UTF-8
 VERSION = 1.0.2+20121030211931
 YEAR = $(shell date +%Y)
 
 # Translation data
+LANGUAGETEAM = Stanlee Translation Team <luis@huntingbears.com.ve>
 POTLIST = locale/pot/stanlee/POTFILES.in
 POTFILE = locale/pot/stanlee/messages.pot
 POTITLE = Stanlee Translation Template
+POTEAM = Stanlee Translation Team
 PODATE = $(shell date +%F\ %R%z)
 
 # Common files lists
-IMAGES = $(shell ls themes/default/images/ | grep "\.svg" | sed 's/\.svg//g')
+IMAGES = $(shell ls themes/canaima/images/ | grep "\.svg" | sed 's/\.svg//g')
 THEMES = $(shell ls themes/)
 LOCALES = $(shell find locale -mindepth 1 -maxdepth 1 -type d | sed 's|locale/pot||g;s|locale/||g')
 PHPS = $(wildcard *.php)
@@ -29,7 +32,6 @@ ALLPHPS = $(shell find . -type f -iname "*.php")
 # gen-mo: generates mo files from po files. Uses MSGFMT.
 # gen-doc: builds all documentation.
 # 	- gen-man: generates a man page. Uses RST2MAN.
-# 	- gen-wiki: generates github and google code wikis from rest sources. Uses PYTHON.
 # 	- gen-html: generates the HTML manual from rest sources. Uses SPHINX
 # gen-conf: generates configuration file from user input. Uses BASH.
 PYTHON = $(shell which python)
@@ -49,8 +51,6 @@ LIBSVG = $(shell find /usr/lib/ -maxdepth 1 -type d -iname "imagemagick-*")/modu
 PHP = $(shell which php5)
 PHPLDAP = $(shell find /usr/lib/ -name "mysql.so" | grep "php5")
 PHPMYSQL = $(shell find /usr/lib/ -name "ldap.so" | grep "php5")
-PHPMCRYPT = $(shell find /usr/lib/ -name "mcrypt.so" | grep "php5")
-PHPMHASH = $(shell find /usr/lib/ -name "mhash.so" | grep "php5")
 
 # Maintainer tasks depends
 # generatepot: generates POT template from php sources. Uses XGETTEXT.
@@ -81,7 +81,19 @@ build-all: gen-img gen-po gen-mo gen-doc gen-conf
 
 gen-doc: gen-wiki gen-html gen-man
 
-gen-man: check-buildep clean-man
+gen-predoc: clean-predoc
+
+	@echo "Preprocessing documentation ..."
+	@$(BASH) tools/predoc.sh build
+
+gen-html: check-buildep gen-predoc clean-html
+
+	@echo "Generating documentation from source [RST > HTML]"
+	@cp documentation/sphinx.index documentation/rest/index.rest
+	@$(SPHINX) -Q -b html -d documentation/html/doctrees documentation/rest documentation/html
+	@rm -rf documentation/rest/index.rest
+
+gen-man: check-buildep gen-predoc clean-man
 
 	@echo "Generating documentation from source [RST > MAN]"
 	@$(RST2MAN) --language="en" --title="STANLEE" documentation/man/stanlee.rest documentation/man/stanlee.1
@@ -122,12 +134,10 @@ install: copy config
 
 config: check-instdep
 
-	@mkdir -p /var/www/
-	@mkdir -p /var/log/stanlee/
-	@touch /var/log/stanlee/{Ajax.log,ChangePasswordDo.log,DeleteUserDo.log,NewUserMail.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
-	@chown www-data:www-data /var/log/stanlee/*.log
-	@chmod 640 /var/log/stanlee/*.log
-	@ln -s /usr/share/stanlee/ /var/www/stanlee
+	@mkdir -p $(DESTDIR)/var/www/
+	@mkdir -p $(DESTDIR)/var/log/stanlee/
+	@touch $(DESTDIR)/var/log/stanlee/{ChangePasswordDo.log,DeleteUserDo.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
+	@ln -s $(DESTDIR)/usr/share/stanlee /var/www/stanlee
 	@$(PHP) -f setup/install.php
 	@echo "STANLEE configured and running!"
 
@@ -152,9 +162,9 @@ copy:
 uninstall: check-instdep
 
 	@$(PHP) -f setup/uninstall.php
-	@rm -rf /usr/share/stanlee/
-	@rm -rf /var/log/stanlee/
-	@rm -rf /var/www/stanlee
+	@rm -rf $(DESTDIR)/usr/share/stanlee/
+	@rm -rf $(DESTDIR)/var/log/stanlee/
+	@rm -rf $(DESTDIR)/var/www/stanlee/
 	@echo "Uninstalled"
 
 reinstall: uninstall install
@@ -162,20 +172,18 @@ reinstall: uninstall install
 
 # MAINTAINER TASKS ---------------------------------------------------------------------------------
 
-pull-po:
+prepare: check-maintdep
 
-	@tx pull -a
-
-push-po:
-
-	@tx push --source --translations
+	@git submodule init
+	@git submodule update
+	@cd documentation/githubwiki/ && git checkout development && git pull origin development
+	@cd documentation/googlewiki/ && git checkout development && git pull origin development
 
 gen-po: check-maintdep gen-pot
 
 	@echo "Updating PO files ["
 	@for LOCALE in $(LOCALES); do \
 		$(MSGMERGE) --no-wrap -s -U locale/$${LOCALE}/LC_MESSAGES/messages.po $(POTFILE); \
-		sed -i -e ':a;N;$$!ba;s|#, fuzzy\n||g' locale/$${LOCALE}/LC_MESSAGES/messages.po; \
 		rm -rf locale/$${LOCALE}/LC_MESSAGES/messages.po~; \
 	done
 	@echo "]"
@@ -187,7 +195,7 @@ gen-pot: check-maintdep
 	@for FILE in $(ALLPHPS); do \
 		echo "../../.$${FILE}" >> $(POTLIST); \
 	done
-	@cd locale/pot/stanlee/ && $(XGETTEXT) --msgid-bugs-address="$(EMAIL)" \
+	@cd locale/pot/stanlee/ && $(XGETTEXT) --msgid-bugs-address="$(MAILIST)" \
 		--package-version="$(VERSION)" --package-name="$(PACKAGE)" \
 		--copyright-holder="$(AUTHOR)" --no-wrap --from-code=utf-8 \
 		--language=php -k_ -s -j -o messages.pot -f POTFILES.in
@@ -197,9 +205,8 @@ gen-pot: check-maintdep
 		-e 's/# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR./#\n# Translators:\n# $(AUTHOR) <$(EMAIL)>, $(YEAR)/' \
 		-e 's/"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\\n"/"PO-Revision-Date: $(PODATE)\\n"/' \
 		-e 's/"Last-Translator: FULL NAME <EMAIL@ADDRESS>\\n"/"Last-Translator: $(AUTHOR) <$(EMAIL)>\\n"/' \
-		-e 's/"Language-Team: LANGUAGE <LL@li.org>\\n"/"Language-Team: $(AUTHOR) <$(EMAIL)>\\n"/' \
+		-e 's/"Language-Team: LANGUAGE <LL@li.org>\\n"/"Language-Team: $(POTEAM) <$(MAILIST)>\\n"/' \
 		-e 's/"Language: \\n"/"Language: English\\n"/g' $(POTFILE)
-	@sed -i -e ':a;N;$$!ba;s|#, fuzzy\n||g' $(POTFILE)
 
 snapshot: check-maintdep prepare gen-html gen-wiki gen-po clean
 
@@ -224,9 +231,15 @@ deb-final-release: check-maintdep
 
 # CLEAN TASKS ------------------------------------------------------------------------------
 
-clean: clean-img clean-mo clean-man clean-conf
+clean: clean-img clean-mo clean-man clean-conf clean-predoc
 
-clean-all: clean-img clean-mo clean-html clean-wiki clean-man clean-conf
+clean-all: clean-img clean-mo clean-html clean-wiki clean-man clean-conf clean-predoc
+
+clean-predoc:
+
+	@echo "Cleaning preprocessed documentation files ..."
+	@$(BASH) tools/predoc.sh clean
+	@rm -rf documentation/rest/index.rest
 
 clean-img:
 
@@ -295,23 +308,6 @@ check-instdep:
 	@if [ -z $(PHPMYSQL) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"php5-mysql\" package."; \
-		exit 1; \
-	fi
-	@echo
-
-	@printf "Checking if we have PHP MCRYPT support ... "
-	@if [ -z $(PHPMCRYPT) ]; then \
-		echo "[ABSENT]"; \
-		echo "If you are using Debian, Ubuntu or Canaima, please install the \"php5-mcrypt\" package."; \
-		exit 1; \
-	fi
-	@echo
-
-
-	@printf "Checking if we have PHP MHASH support ... "
-	@if [ -z $(PHPMHASH) ]; then \
-		echo "[ABSENT]"; \
-		echo "If you are using Debian, Ubuntu or Canaima, please install the \"php5-mhash\" package."; \
 		exit 1; \
 	fi
 	@echo
@@ -406,7 +402,7 @@ check-maintdep:
 	fi
 	@echo
 
-	@printf "Checking if we have md5sum ... "
+	@printf "Checking if we have md5sum... "
 	@if [ -z $(MD5SUM) ]; then \
 		echo "[ABSENT]"; \
 		echo "If you are using Debian, Ubuntu or Canaima, please install the \"coreutils\" package."; \

@@ -12,8 +12,8 @@ Build-Depends: debhelper (>= 7.0.50~),
                icoutils
 Standards-Version: 3.9.2
 Homepage: http://code.google.com/p/stanlee
-Vcs-Git: git://github.com/HuntingBears/stanlee.git
-Vcs-Browser: https://github.com/HuntingBears/stanlee
+Vcs-Git: git://github.com/LuisAlejandro/stanlee.git
+Vcs-Browser: https://github.com/LuisAlejandro/stanlee
 
 Package: stanlee
 Architecture: all
