@@ -1,0 +1,24 @@
+{
+    "name": "luisalejandro/stanlee",
+    "type": "project",
+    "description": "A web-based LDAP user management system written in PHP.",
+    "keywords": [""],
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "Luis Alejandro Martínez Faneyth",
+            "email": "luis@huntingbears.com.ve",
+            "homepage": "http://huntingbears.com.ve",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.0"
+    },
+    "scripts": {
+      "test": "phpunit --verbose"
+    }
+}

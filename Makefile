@@ -20,7 +20,7 @@ POTEAM = Stanlee Translation Team
 PODATE = $(shell date +%F\ %R%z)
 
 # Common files lists
-IMAGES = $(shell ls themes/canaima/images/ | grep "\.svg" | sed 's/\.svg//g')
+IMAGES = $(shell ls themes/default/images/ | grep "\.svg" | sed 's/\.svg//g')
 THEMES = $(shell ls themes/)
 LOCALES = $(shell find locale -mindepth 1 -maxdepth 1 -type d | sed 's|locale/pot||g;s|locale/||g')
 PHPS = $(wildcard *.php)
@@ -79,7 +79,7 @@ build: gen-img gen-mo gen-doc
 
 build-all: gen-img gen-po gen-mo gen-doc gen-conf
 
-gen-doc: gen-wiki gen-html gen-man
+gen-doc: gen-html gen-man
 
 gen-predoc: clean-predoc
 
@@ -89,7 +89,6 @@ gen-predoc: clean-predoc
 gen-html: check-buildep gen-predoc clean-html
 
 	@echo "Generating documentation from source [RST > HTML]"
-	@cp documentation/sphinx.index documentation/rest/index.rest
 	@$(SPHINX) -Q -b html -d documentation/html/doctrees documentation/rest documentation/html
 	@rm -rf documentation/rest/index.rest
 
@@ -208,7 +207,7 @@ gen-pot: check-maintdep
 		-e 's/"Language-Team: LANGUAGE <LL@li.org>\\n"/"Language-Team: $(POTEAM) <$(MAILIST)>\\n"/' \
 		-e 's/"Language: \\n"/"Language: English\\n"/g' $(POTFILE)
 
-snapshot: check-maintdep prepare gen-html gen-wiki gen-po clean
+snapshot: check-maintdep prepare gen-html gen-po clean
 
 	@$(MAKE) clean
 	@$(BASH) tools/snapshot.sh
