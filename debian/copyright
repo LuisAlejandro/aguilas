@@ -1,6 +1,6 @@
 Format: http://dep.debian.net/deps/dep5
-Upstream-Name: aguilas
-Source: <http://code.google.com/p/aguilas>
+Upstream-Name: stanlee
+Source: <http://code.google.com/p/stanlee>
 
 Files: *
 Copyright: 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>

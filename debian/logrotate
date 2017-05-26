@@ -1,4 +1,4 @@
-/var/log/aguilas/*.log {
+/var/log/stanlee/*.log {
         weekly
         missingok
         rotate 52

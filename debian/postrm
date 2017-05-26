@@ -1,12 +1,12 @@
 #! /bin/bash -e
 #
 # ====================================================================
-# PACKAGE: aguilas
+# PACKAGE: stanlee
 # FILE: debian/postrm
 # DESCRIPTION: Removes/purges conffiles after package uninstallation
 # USAGE: Executes automatically after package uninstallation
-# COPYRIGHT:
-# (C) 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
+# COPYRIGHT: (C) 2017 Stanlee Developers
+# Please refer to AUTHORS.rst for a complete list of Copyright holders.
 # LICENCE: GPL3
 # ====================================================================
 #
@@ -31,7 +31,7 @@ db_version 2.0
 ACTION="${1}"
 VERSION="${2}"
 
-if [ "${AGUILASDEBUG}" == "true" ]; then
+if [ "${STANLEEDEBUG}" == "true" ]; then
 	set -x
 fi
 
@@ -40,19 +40,19 @@ if [ "${ACTION}" == "remove" ] || [ "${ACTION}" == "purge" ]; then
 	if [ -f /usr/share/dbconfig-common/dpkg/postrm.mysql ]; then
 		. /usr/share/dbconfig-common/dpkg/postrm.mysql
 
-		if [ "${AGUILASDEBUG}" == "true" ]; then
+		if [ "${STANLEEDEBUG}" == "true" ]; then
 			dbc_debug=1
 		fi
 
-		if ! dbc_go aguilas $@ ; then
+		if ! dbc_go stanlee $@ ; then
 			echo 'Automatic configuration using dbconfig-common failed!'
 		fi
 	fi
 
-	db_get aguilas/reconfigure-webserver || true
+	db_get stanlee/reconfigure-webserver || true
 	WEBSERVER="${RET}"
 
-	db_get aguilas/restart-webserver || true
+	db_get stanlee/restart-webserver || true
 	RESTART="${RET}"
 
 	for WEBSERVER in ${WEBSERVERS}; do
@@ -62,23 +62,23 @@ if [ "${ACTION}" == "remove" ] || [ "${ACTION}" == "purge" ]; then
 
 		case "${WEBSERVER}" in
 			lighttpd)
-				if [ -f /etc/lighttpd/conf-available/50-aguilas.conf ]; then
+				if [ -f /etc/lighttpd/conf-available/50-stanlee.conf ]; then
 					if which lighty-disable-mod >/dev/null 2>&1; then
-						lighty-disable-mod aguilas
-						rm -rf /etc/lighttpd/conf-available/50-aguilas.conf
+						lighty-disable-mod stanlee
+						rm -rf /etc/lighttpd/conf-available/50-stanlee.conf
 					else
 						echo "Lighttpd not installed, skipping"
 					fi
 				fi
 
-				if [ -h /etc/lighttpd/conf-enabled/50-aguilas.conf ] ; then
-					rm -rf /etc/lighttpd/conf-enabled/50-aguilas.conf
+				if [ -h /etc/lighttpd/conf-enabled/50-stanlee.conf ] ; then
+					rm -rf /etc/lighttpd/conf-enabled/50-stanlee.conf
 				fi
 			;;
 
 			apache2)
-				if [ -d /etc/${WEBSERVER}/conf.d ] && [ -e /etc/${WEBSERVER}/conf.d/aguilas.conf ]; then
-					rm -rf /etc/${WEBSERVER}/conf.d/aguilas.conf
+				if [ -d /etc/${WEBSERVER}/conf.d ] && [ -e /etc/${WEBSERVER}/conf.d/stanlee.conf ]; then
+					rm -rf /etc/${WEBSERVER}/conf.d/stanlee.conf
 				fi
 			;;
 		esac
@@ -96,25 +96,25 @@ fi
 if [ "${ACTION}" == "purge" ]; then
 
 	for ext in '~' '%' .bak .ucf-new .ucf-old .ucf-dist;  do
-		rm -rf /etc/aguilas/config.php$ext
+		rm -rf /etc/stanlee/config.php$ext
 	done
 
-	rm -rf /etc/aguilas
-	rm -rf /var/log/aguilas
-	rm -rf /usr/share/aguilas
+	rm -rf /etc/stanlee
+	rm -rf /var/log/stanlee
+	rm -rf /usr/share/stanlee
 
 	if which ucf >/dev/null; then
-		ucf --debconf-ok --purge /etc/aguilas/config.php
-		ucf --debconf-ok --purge /etc/aguilas/apache.conf
-		ucf --debconf-ok --purge /etc/aguilas/lighttpd.conf
-		ucf --debconf-ok --purge /etc/aguilas/dbconfig-common.php
+		ucf --debconf-ok --purge /etc/stanlee/config.php
+		ucf --debconf-ok --purge /etc/stanlee/apache.conf
+		ucf --debconf-ok --purge /etc/stanlee/lighttpd.conf
+		ucf --debconf-ok --purge /etc/stanlee/dbconfig-common.php
 	fi
 
 	if which ucfr >/dev/null; then
-		ucfr --purge aguilas /etc/aguilas/config.php
-		ucfr --purge aguilas /etc/aguilas/apache.conf
-		ucfr --purge aguilas /etc/aguilas/lighttpd.conf
-		ucfr --purge aguilas /etc/aguilas/dbconfig-common.php
+		ucfr --purge stanlee /etc/stanlee/config.php
+		ucfr --purge stanlee /etc/stanlee/apache.conf
+		ucfr --purge stanlee /etc/stanlee/lighttpd.conf
+		ucfr --purge stanlee /etc/stanlee/dbconfig-common.php
 	fi
 fi
 

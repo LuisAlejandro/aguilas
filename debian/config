@@ -1,13 +1,13 @@
 #!/bin/bash -e
 #
 # ====================================================================
-# PACKAGE: aguilas
+# PACKAGE: stanlee
 # FILE: debian/config
 # DESCRIPTION:  Takes care of debconf and dbconfig-common questions to
-#		autoconfigure aguilas
+#		autoconfigure stanlee
 # USAGE: Executes automatically after package installation
-# COPYRIGHT:
-# (C) 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
+# COPYRIGHT: (C) 2017 Stanlee Developers
+# Please refer to AUTHORS.rst for a complete list of Copyright holders.
 # LICENCE: GPL3
 # ====================================================================
 #
@@ -29,7 +29,7 @@
 . /usr/share/debconf/confmodule
 db_version 2.0
 
-if [ "${AGUILASDEBUG}" == "true" ]; then
+if [ "${STANLEEDEBUG}" == "true" ]; then
 	set -x
 	DEBCONF_DEBUG="developer"
 fi
@@ -37,51 +37,51 @@ fi
 if [ -f /usr/share/dbconfig-common/dpkg/config.mysql ]; then
 	. /usr/share/dbconfig-common/dpkg/config.mysql
 
-	if [ "${AGUILASDEBUG}" == "true" ]; then
+	if [ "${STANLEEDEBUG}" == "true" ]; then
 		dbc_debug=1
 	fi
 
 	dbc_first_version="1.0.1-1"
-	dbc_load_include="php:/etc/aguilas/dbconfig-common.php"
+	dbc_load_include="php:/etc/stanlee/dbconfig-common.php"
 	dbc_load_include_args="-dmysql_dbname -smysql_host -pmysql_pass -umysql_user"
 	dbc_dbtypes="mysql"
-	dbc_dbname="aguilas"
-	dbc_dbuser="aguilas"
+	dbc_dbname="stanlee"
+	dbc_dbuser="stanlee"
 
-	if ! dbc_go aguilas $@ ; then
+	if ! dbc_go stanlee $@ ; then
 		echo 'Automatic configuration using dbconfig-common failed!'
 	fi
 fi
 
 if [ -z ${dbc_dbserver} ]; then
-	db_input high aguilas/mysql-server || true
+	db_input high stanlee/mysql-server || true
 	db_go || true
 fi
 
 if [ -z ${dbc_dbpass} ]; then
-	db_input high aguilas/mysql-pass || true
+	db_input high stanlee/mysql-pass || true
 	db_go || true
 fi
 
-db_input high aguilas/ldap-server || true
+db_input high stanlee/ldap-server || true
 db_go || true
 
-db_input high aguilas/ldap-base || true
+db_input high stanlee/ldap-base || true
 db_go || true
-db_get aguilas/ldap-base || true
+db_get stanlee/ldap-base || true
 LDAPBASE="${RET}"
 
-db_set aguilas/ldap-bind "cn=admin,${LDAPBASE}"
-db_input high aguilas/ldap-bind || true
+db_set stanlee/ldap-bind "cn=admin,${LDAPBASE}"
+db_input high stanlee/ldap-bind || true
 db_go || true
 
-db_input high aguilas/ldap-pass || true
+db_input high stanlee/ldap-pass || true
 db_go || true
 
-db_input high aguilas/reconfigure-webserver || true
+db_input high stanlee/reconfigure-webserver || true
 db_go || true
 
-db_input high aguilas/restart-webserver || true
+db_input high stanlee/restart-webserver || true
 db_go || true
 
 db_stop || true

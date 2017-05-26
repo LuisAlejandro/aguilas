@@ -1,7 +1,7 @@
-Index: aguilas/setup/config.php.example
+Index: stanlee/setup/config.php.example
 ===================================================================
---- aguilas.orig/setup/config.php.example	2012-02-07 13:45:38.044334390 -0430
-+++ aguilas/setup/config.php.example	2012-02-07 13:54:49.424361085 -0430
+--- stanlee.orig/setup/config.php.example	2012-02-07 13:45:38.044334390 -0430
++++ stanlee/setup/config.php.example	2012-02-07 13:54:49.424361085 -0430
 @@ -44,15 +44,22 @@
  
  /* ========== MYSQL Database ========== */
@@ -14,9 +14,9 @@ Index: aguilas/setup/config.php.example
 -$mysql_user = "@@MYSQL_USER@@";
 -/// Password for the user
 -$mysql_pass = "@@MYSQL_PASS@@";
-+## Included by Aguilas debian package ==============================================
-+## Including automatic configuration of Aguilas by dbconfig-common
-+require "/etc/aguilas/dbconfig-common.php";
++## Included by Stanlee debian package ==============================================
++## Including automatic configuration of Stanlee by dbconfig-common
++require "/etc/stanlee/dbconfig-common.php";
  
 +## If you want to override automatic configuration, uncomment the variables
 +## below and edit at your convinience
@@ -29,7 +29,7 @@ Index: aguilas/setup/config.php.example
 +## /// Password for the user
 +## $mysql_pass = "@@MYSQL_PASS@@";
 +
-+## Included by Aguilas debian package ==============================================
++## Included by Stanlee debian package ==============================================
  
  /* ========== LDAP Database ========== */
  

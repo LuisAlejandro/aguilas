@@ -1,34 +1,34 @@
-Template: aguilas/mysql-server
+Template: stanlee/mysql-server
 Type: string
 Default: localhost
 _Description: Enter the MYSQL server host address:
  Please enter the host name or the address of the MYSQL server you want to
  connect to.
 
-Template: aguilas/mysql-user
+Template: stanlee/mysql-user
 Type: string
 Default: root
 _Description: Enter a valid MYSQL user:
  Please enter the name of a user that has adminstrative permissions on the
  database.
 
-Template: aguilas/mysql-pass
+Template: stanlee/mysql-pass
 Type: password
 _Description: Enter the password for the admin user:
  Enter the password of the administrative user that will be used to access
  the MYSQL server.
  .
  Note: the password will be stored in clear text in
- "/etc/aguilas/config.php", which is not world-readable.
+ "/etc/stanlee/config.php", which is not world-readable.
 
-Template: aguilas/ldap-server
+Template: stanlee/ldap-server
 Type: string
 Default: localhost
 _Description: Enter the LDAP server host address:
  Please enter the host name or the address of the LDAP server you want to
  connect to.
 
-Template: aguilas/ldap-base
+Template: stanlee/ldap-base
 Type: string
 Default: dc=nodomain
 _Description: Enter the DN of the search base:
@@ -37,34 +37,34 @@ _Description: Enter the DN of the search base:
  the domain "example.com" would use "dc=example,dc=com" as the
  distinguished name of the search base.
 
-Template: aguilas/ldap-bind
+Template: stanlee/ldap-bind
 Type: string
 Default: cn=admin,dc=nodomain
 _Description: Enter the login DN for the LDAP server:
  Enter the name of the account that will be used to log in to the LDAP
  server.
 
-Template: aguilas/ldap-pass
+Template: stanlee/ldap-pass
 Type: password
 _Description: Enter the login password for the LDAP server:
  Enter the password of the account that will be used to log in to the
  LDAP server.
  .
  Note: the password will be stored in clear text in
- "/etc/aguilas/config.php", which is not world-readable.
+ "/etc/stanlee/config.php", which is not world-readable.
 
-Template: aguilas/reconfigure-webserver
+Template: stanlee/reconfigure-webserver
 Type: select
 Choices: apache2, lighttpd, none/other
 Default: apache2
 _Description: Web server which will be reconfigured automatically
- Aguilas can reconfigure your webserver so that it can be accessed
- through "yourhostname.com/aguilas".
+ Stanlee can reconfigure your webserver so that it can be accessed
+ through "yourhostname.com/stanlee".
  .
  Choose "none/other" if you are going to configure your webserver
  manually.
 
-Template: aguilas/restart-webserver
+Template: stanlee/restart-webserver
 Type: boolean
 Default: true
 _Description: Do you want to restart your webserver(s)?

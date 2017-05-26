@@ -1,12 +1,12 @@
 #!/bin/bash
 #
 # ====================================================================
-# PACKAGE: aguilas
+# PACKAGE: stanlee
 # FILE: tools/snapshot.sh
-# DESCRIPTION:  Makes a new development snapshot of Aguilas.
+# DESCRIPTION:  Makes a new development snapshot of Stanlee.
 # USAGE: ./tools/snapshot.sh
-# COPYRIGHT:
-# (C) 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
+# COPYRIGHT: (C) 2017 Stanlee Developers
+# Please refer to AUTHORS.rst for a complete list of Copyright holders.
 # LICENCE: GPL3
 # ====================================================================
 #
@@ -77,14 +77,14 @@ WARNING "Updating Google Code wiki ..."
 cd ${GOOGLEWIKI}
 git add .
 git commit -q -a -m "Updating documentation"
-git push -q --tags https://code.google.com/p/aguilas.wiki/ development
+git push -q --tags https://code.google.com/p/stanlee.wiki/ development
 cd ${ROOTDIR}
 
 WARNING "Updating Github wiki ..."
 cd ${GITHUBWIKI}
 git add .
 git commit -q -a -m "Updating documentation"
-git push -q --tags git@github.com:HuntingBears/aguilas.wiki.git development
+git push -q --tags git@github.com:HuntingBears/stanlee.wiki.git development
 cd ${ROOTDIR}
 
 WARNING "Committing changes ..."
@@ -124,11 +124,11 @@ git commit -q -a -m "New development snapshot ${NEWVERSION}+${SNAPSHOT}"
 git tag ${NEWVERSION}+${SNAPSHOT} -m "New development snapshot ${NEWVERSION}+${SNAPSHOT}"
  
 WARNING "Creating tarball ..."
-tar -czf ../aguilas_${NEWVERSION}+${SNAPSHOT}.orig.tar.gz *
+tar -czf ../stanlee_${NEWVERSION}+${SNAPSHOT}.orig.tar.gz *
 
 WARNING "Pushing changes to remote repositories ..."
-git push -q --tags git@github.com:HuntingBears/aguilas.git development
-git push -q --tags git@gitorious.org:huntingbears/aguilas.git development
-git push -q --tags https://code.google.com/p/aguilas/ development
+git push -q --tags git@github.com:HuntingBears/stanlee.git development
+git push -q --tags git@gitorious.org:huntingbears/stanlee.git development
+git push -q --tags https://code.google.com/p/stanlee/ development
 
 SUCCESS "Snapshot Published"

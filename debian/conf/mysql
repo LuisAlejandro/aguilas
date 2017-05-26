@@ -1,5 +1,5 @@
 -- --------------------------------------------------------
--- SQL Commands to set up the Aguilas DB
+-- SQL Commands to set up the Stanlee DB
 -- --------------------------------------------------------
 
 -- 
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `ResetPassword` (
   `description` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`main_id`)
 )
-  ENGINE=MyISAM COMMENT='Aguilas reset password petition'
+  ENGINE=MyISAM COMMENT='Stanlee reset password petition'
   DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 
 -- 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `NewUser` (
   `token` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`main_id`)
 )
-  ENGINE=MyISAM COMMENT='Aguilas new user petition'
+  ENGINE=MyISAM COMMENT='Stanlee new user petition'
   DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 
 

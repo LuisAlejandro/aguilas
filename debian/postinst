@@ -1,12 +1,12 @@
 #!/bin/bash -e
 #
 # ====================================================================
-# PACKAGE: aguilas
+# PACKAGE: stanlee
 # FILE: debian/postinst
-# DESCRIPTION: Configures aguilas after installation
+# DESCRIPTION: Configures stanlee after installation
 # USAGE: Executes automatically after package installation
-# COPYRIGHT:
-# (C) 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
+# COPYRIGHT: (C) 2017 Stanlee Developers
+# Please refer to AUTHORS.rst for a complete list of Copyright holders.
 # LICENCE: GPL3
 # ====================================================================
 #
@@ -30,14 +30,14 @@ db_version 2.0
 
 ACTION="${1}"
 VERSION="${2}"
-APPNAME="Aguilas"
+APPNAME="Stanlee"
 APPOPERATOR="Administrator"
 APPTHEME="canaima"
 APPMAIL="root@localhost"
 OPMAIL="root@localhost"
-MYSQLDB="aguilas"
-MYSQLUSER="aguilas"
-TMPAGUILAS="$( tempfile )"
+MYSQLDB="stanlee"
+MYSQLUSER="stanlee"
+TMPSTANLEE="$( tempfile )"
 TMPAPACHE="$( tempfile )"
 TMPLIGHT="$( tempfile )"
 
@@ -47,63 +47,63 @@ else
 	APPLOCALE="$( echo ${LC_ALL} | sed "s|\..*||" )"
 fi
 
-if [ "${AGUILASDEBUG}" == "true" ]; then
+if [ "${STANLEEDEBUG}" == "true" ]; then
 	set -x
 fi
 
 if [ -f /usr/share/dbconfig-common/dpkg/postinst.mysql ]; then
 	. /usr/share/dbconfig-common/dpkg/postinst.mysql
 
-	if [ "${AGUILASDEBUG}" == "true" ]; then
+	if [ "${STANLEEDEBUG}" == "true" ]; then
 		dbc_debug=1
 	fi
 
 	dbc_first_version="1.0.1-1"
 	dbc_generate_include_owner="root:www-data"
 	dbc_generate_include_perms="0640"
-	dbc_generate_include="php:/etc/aguilas/dbconfig-common.php"
+	dbc_generate_include="php:/etc/stanlee/dbconfig-common.php"
 	dbc_generate_include_args="-dmysql_dbname -smysql_host -pmysql_pass -umysql_user"
 
-	if ! dbc_go aguilas $@ ; then
+	if ! dbc_go stanlee $@ ; then
        		echo 'Automatic configuration using dbconfig-common failed!'
 	fi
 fi
 
 if [ "${ACTION}" = "configure" ]; then
 
-	cp /usr/share/aguilas/setup/config.php.example ${TMPAGUILAS}
-	cp /usr/share/doc/aguilas/config-ex/apache.conf ${TMPAPACHE}
-	cp /usr/share/doc/aguilas/config-ex/lighttpd.conf ${TMPLIGHT}
+	cp /usr/share/stanlee/setup/config.php.example ${TMPSTANLEE}
+	cp /usr/share/doc/stanlee/config-ex/apache.conf ${TMPAPACHE}
+	cp /usr/share/doc/stanlee/config-ex/lighttpd.conf ${TMPLIGHT}
 
 	MYSQLSERVER="${dbc_dbserver}"
 	MYSQLPASS="${dbc_dbpass}"
 
 	if [ -z ${MYSQLSERVER} ]; then
-		db_get aguilas/mysql-server || true
+		db_get stanlee/mysql-server || true
 		MYSQLSERVER="${RET}"
 	fi
 
 	if [ -z ${MYSQLPASS} ]; then
-		db_get aguilas/mysql-pass || true
+		db_get stanlee/mysql-pass || true
 		MYSQLPASS="${RET}"
 	fi
 
-	db_get aguilas/ldap-server || true
+	db_get stanlee/ldap-server || true
 	LDAPSERVER="${RET}"
 
-	db_get aguilas/ldap-base || true
+	db_get stanlee/ldap-base || true
 	LDAPBASE="${RET}"
 
-	db_get aguilas/ldap-bind || true
+	db_get stanlee/ldap-bind || true
 	LDAPBIND="${RET}"
 
-	db_get aguilas/ldap-pass || true
+	db_get stanlee/ldap-pass || true
 	LDAPPASS="${RET}"
 
-	db_get aguilas/reconfigure-webserver || true
+	db_get stanlee/reconfigure-webserver || true
 	WEBSERVERS="${RET}"
 
-	db_get aguilas/restart-webserver || true
+	db_get stanlee/restart-webserver || true
 	RESTART="${RET}"
 
 	sed -i	-e "s|@@APP_NAME@@|${APPNAME}|g" \
@@ -120,32 +120,32 @@ if [ "${ACTION}" = "configure" ]; then
 		-e "s|@@LDAP_SERVER@@|${LDAPSERVER}|g" \
 		-e "s|@@LDAP_BIND@@|${LDAPBIND}|g" \
 		-e "s|@@LDAP_PASS@@|${LDAPPASS}|g" \
-		-e "s|@@LDAP_BASE@@|${LDAPBASE}|g" ${TMPAGUILAS}
+		-e "s|@@LDAP_BASE@@|${LDAPBASE}|g" ${TMPSTANLEE}
 
 	if which ucf >/dev/null; then
-		ucf --debconf-ok ${TMPAGUILAS} /etc/aguilas/config.php
-		ucf --debconf-ok ${TMPAPACHE} /etc/aguilas/apache.conf
-		ucf --debconf-ok ${TMPLIGHT} /etc/aguilas/lighttpd.conf
+		ucf --debconf-ok ${TMPSTANLEE} /etc/stanlee/config.php
+		ucf --debconf-ok ${TMPAPACHE} /etc/stanlee/apache.conf
+		ucf --debconf-ok ${TMPLIGHT} /etc/stanlee/lighttpd.conf
 	fi
 
 	if which ucfr >/dev/null; then
-		ucfr aguilas /etc/aguilas/config.php
-		ucfr aguilas /etc/aguilas/apache.conf
-		ucfr aguilas /etc/aguilas/lighttpd.conf
+		ucfr stanlee /etc/stanlee/config.php
+		ucfr stanlee /etc/stanlee/apache.conf
+		ucfr stanlee /etc/stanlee/lighttpd.conf
 	fi
 
-	chown root:www-data /etc/aguilas/config.php /etc/aguilas/apache.conf /etc/aguilas/lighttpd.conf
-	chmod 0640 /etc/aguilas/config.php /etc/aguilas/apache.conf /etc/aguilas/lighttpd.conf
+	chown root:www-data /etc/stanlee/config.php /etc/stanlee/apache.conf /etc/stanlee/lighttpd.conf
+	chmod 0640 /etc/stanlee/config.php /etc/stanlee/apache.conf /etc/stanlee/lighttpd.conf
 
-	if [ ! -e /usr/share/aguilas/setup/config.php ] && [ -e /etc/aguilas/config.php ]; then
-		ln -s  /etc/aguilas/config.php /usr/share/aguilas/setup/config.php
+	if [ ! -e /usr/share/stanlee/setup/config.php ] && [ -e /etc/stanlee/config.php ]; then
+		ln -s  /etc/stanlee/config.php /usr/share/stanlee/setup/config.php
 	fi
 
-	rm -rf ${TMPAGUILAS} ${TMPAPACHE} ${TMPLIGHT}
+	rm -rf ${TMPSTANLEE} ${TMPAPACHE} ${TMPLIGHT}
 
-	touch /var/log/aguilas/{ChangePasswordDo.log,DeleteUserDo.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
-	chown -R www-data:www-data /var/log/aguilas/*
-	chmod 0640 /var/log/aguilas/*
+	touch /var/log/stanlee/{ChangePasswordDo.log,DeleteUserDo.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
+	chown -R www-data:www-data /var/log/stanlee/*
+	chmod 0640 /var/log/stanlee/*
 
 	for WEBSERVER in ${WEBSERVERS}; do
 
@@ -154,18 +154,18 @@ if [ "${ACTION}" = "configure" ]; then
 
 		case "${WEBSERVER}" in
 			lighttpd)
-				if [ ! -f /etc/lighttpd/conf-available/50-aguilas.conf ]; then
+				if [ ! -f /etc/lighttpd/conf-available/50-stanlee.conf ]; then
 					if which lighty-enable-mod >/dev/null 2>&1; then
-						ln -s /etc/aguilas/lighttpd.conf /etc/lighttpd/conf-available/50-aguilas.conf
-						lighty-enable-mod aguilas
+						ln -s /etc/stanlee/lighttpd.conf /etc/lighttpd/conf-available/50-stanlee.conf
+						lighty-enable-mod stanlee
 					else
 						echo "Lighttpd not installed, skipping"
 					fi
 				fi
 			;;
 			apache2)
-				if [ -d /etc/${WEBSERVER}/conf.d ] && [ ! -e /etc/${WEBSERVER}/conf.d/aguilas.conf ]; then
-					ln -s /etc/aguilas/apache.conf /etc/${WEBSERVER}/conf.d/aguilas.conf
+				if [ -d /etc/${WEBSERVER}/conf.d ] && [ ! -e /etc/${WEBSERVER}/conf.d/stanlee.conf ]; then
+					ln -s /etc/stanlee/apache.conf /etc/${WEBSERVER}/conf.d/stanlee.conf
 				fi
 			;;
 		esac

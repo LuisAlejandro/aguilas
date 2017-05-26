@@ -5,22 +5,22 @@ SHELL = sh -e
 # Project data
 AUTHOR = Luis Alejandro Martínez Faneyth
 EMAIL = luis@huntingbears.com.ve
-MAILIST = aguilas-list@googlegroups.com
-PACKAGE = Aguilas
+MAILIST = luis@huntingbears.com.ve
+PACKAGE = Stanlee
 CHARSET = UTF-8
-VERSION = $(shell cat VERSION | grep "VERSION" | sed 's/VERSION = //g;s/+.*//g')
+VERSION = 1.0.2+20121030211931
 YEAR = $(shell date +%Y)
 
 # Translation data
-LANGUAGETEAM = Aguilas Translation Team <aguilas-list@googlegroups.com>
-POTLIST = locale/pot/aguilas/POTFILES.in
-POTFILE = locale/pot/aguilas/messages.pot
-POTITLE = Aguilas Translation Template
-POTEAM = Aguilas Translation Team
+LANGUAGETEAM = Stanlee Translation Team <luis@huntingbears.com.ve>
+POTLIST = locale/pot/stanlee/POTFILES.in
+POTFILE = locale/pot/stanlee/messages.pot
+POTITLE = Stanlee Translation Template
+POTEAM = Stanlee Translation Team
 PODATE = $(shell date +%F\ %R%z)
 
 # Common files lists
-IMAGES = $(shell ls themes/canaima/images/ | grep "\.svg" | sed 's/\.svg//g')
+IMAGES = $(shell ls themes/default/images/ | grep "\.svg" | sed 's/\.svg//g')
 THEMES = $(shell ls themes/)
 LOCALES = $(shell find locale -mindepth 1 -maxdepth 1 -type d | sed 's|locale/pot||g;s|locale/||g')
 PHPS = $(wildcard *.php)
@@ -32,7 +32,6 @@ ALLPHPS = $(shell find . -type f -iname "*.php")
 # gen-mo: generates mo files from po files. Uses MSGFMT.
 # gen-doc: builds all documentation.
 # 	- gen-man: generates a man page. Uses RST2MAN.
-# 	- gen-wiki: generates github and google code wikis from rest sources. Uses PYTHON.
 # 	- gen-html: generates the HTML manual from rest sources. Uses SPHINX
 # gen-conf: generates configuration file from user input. Uses BASH.
 PYTHON = $(shell which python)
@@ -46,7 +45,7 @@ LIBSVG = $(shell find /usr/lib/ -maxdepth 1 -type d -iname "imagemagick-*")/modu
 
 # Install depends
 # User install tasks
-# install: install aguilas
+# install: install stanlee
 #	- copy: copies files over their destination. They need PHP, PHPLDAP and PHPMYSQL.
 #	- config: creates MYSQL tables and LDAP entries.
 PHP = $(shell which php5)
@@ -80,38 +79,23 @@ build: gen-img gen-mo gen-doc
 
 build-all: gen-img gen-po gen-mo gen-doc gen-conf
 
-gen-doc: gen-wiki gen-html gen-man
+gen-doc: gen-html gen-man
 
 gen-predoc: clean-predoc
 
 	@echo "Preprocessing documentation ..."
 	@$(BASH) tools/predoc.sh build
 
-gen-wiki: check-buildep gen-predoc clean-wiki
-
-	@echo "Generating documentation from source [RST > WIKI]"
-	@cp documentation/githubwiki.index documentation/rest/Home.md
-	@cp documentation/rest/*.md documentation/rest/*.rest documentation/githubwiki/
-	@rm -rf documentation/rest/Home.md
-	@cp documentation/googlewiki.index documentation/rest/index.rest
-	@echo "" >> documentation/rest/index.rest
-	@cat documentation/rest/contents.rest >> documentation/rest/index.rest
-	@mv documentation/rest/contents.rest documentation/rest/contents.tmp
-	@$(PYTHON) -B tools/googlecode-wiki.py
-	@mv documentation/rest/contents.tmp documentation/rest/contents.rest
-	@rm -rf documentation/rest/index.rest
-
 gen-html: check-buildep gen-predoc clean-html
 
 	@echo "Generating documentation from source [RST > HTML]"
-	@cp documentation/sphinx.index documentation/rest/index.rest
 	@$(SPHINX) -Q -b html -d documentation/html/doctrees documentation/rest documentation/html
 	@rm -rf documentation/rest/index.rest
 
 gen-man: check-buildep gen-predoc clean-man
 
 	@echo "Generating documentation from source [RST > MAN]"
-	@$(RST2MAN) --language="en" --title="AGUILAS" documentation/man/aguilas.rest documentation/man/aguilas.1
+	@$(RST2MAN) --language="en" --title="STANLEE" documentation/man/stanlee.rest documentation/man/stanlee.1
 
 gen-img: check-buildep clean-img
 
@@ -150,25 +134,25 @@ install: copy config
 config: check-instdep
 
 	@mkdir -p $(DESTDIR)/var/www/
-	@mkdir -p $(DESTDIR)/var/log/aguilas/
-	@touch $(DESTDIR)/var/log/aguilas/{ChangePasswordDo.log,DeleteUserDo.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
-	@ln -s $(DESTDIR)/usr/share/aguilas /var/www/aguilas
+	@mkdir -p $(DESTDIR)/var/log/stanlee/
+	@touch $(DESTDIR)/var/log/stanlee/{ChangePasswordDo.log,DeleteUserDo.log,NewUserDo.log,ResendMailDo.log,ResetPasswordDo.log,ResetPasswordMail.log}
+	@ln -s $(DESTDIR)/usr/share/stanlee /var/www/stanlee
 	@$(PHP) -f setup/install.php
-	@echo "AGUILAS configured and running!"
+	@echo "STANLEE configured and running!"
 
 copy:
 
-	@mkdir -p $(DESTDIR)/usr/share/aguilas/setup/
+	@mkdir -p $(DESTDIR)/usr/share/stanlee/setup/
 
 	@# Installing application
-	@cp -r locale libraries themes $(DESTDIR)/usr/share/aguilas/
-	@install -D -m 644 $(PHPS) $(DESTDIR)/usr/share/aguilas/
-	@install -D -m 644 setup/config.* $(DESTDIR)/usr/share/aguilas/setup/
+	@cp -r locale libraries themes $(DESTDIR)/usr/share/stanlee/
+	@install -D -m 644 $(PHPS) $(DESTDIR)/usr/share/stanlee/
+	@install -D -m 644 setup/config.* $(DESTDIR)/usr/share/stanlee/setup/
 
 	@# Removing unnecesary svg's
 	@for THEME in $(THEMES); do \
 		for IMAGE in $(IMAGES); do \
-			rm -rf $(DESTDIR)/usr/share/aguilas/themes/$${THEME}/images/$${IMAGE}.svg; \
+			rm -rf $(DESTDIR)/usr/share/stanlee/themes/$${THEME}/images/$${IMAGE}.svg; \
 		done; \
 		rm -rf themes/$${THEME}/images/favicon.png; \
 	done
@@ -177,9 +161,9 @@ copy:
 uninstall: check-instdep
 
 	@$(PHP) -f setup/uninstall.php
-	@rm -rf $(DESTDIR)/usr/share/aguilas/
-	@rm -rf $(DESTDIR)/var/log/aguilas/
-	@rm -rf $(DESTDIR)/var/www/aguilas/
+	@rm -rf $(DESTDIR)/usr/share/stanlee/
+	@rm -rf $(DESTDIR)/var/log/stanlee/
+	@rm -rf $(DESTDIR)/var/www/stanlee/
 	@echo "Uninstalled"
 
 reinstall: uninstall install
@@ -210,7 +194,7 @@ gen-pot: check-maintdep
 	@for FILE in $(ALLPHPS); do \
 		echo "../../.$${FILE}" >> $(POTLIST); \
 	done
-	@cd locale/pot/aguilas/ && $(XGETTEXT) --msgid-bugs-address="$(MAILIST)" \
+	@cd locale/pot/stanlee/ && $(XGETTEXT) --msgid-bugs-address="$(MAILIST)" \
 		--package-version="$(VERSION)" --package-name="$(PACKAGE)" \
 		--copyright-holder="$(AUTHOR)" --no-wrap --from-code=utf-8 \
 		--language=php -k_ -s -j -o messages.pot -f POTFILES.in
@@ -223,7 +207,7 @@ gen-pot: check-maintdep
 		-e 's/"Language-Team: LANGUAGE <LL@li.org>\\n"/"Language-Team: $(POTEAM) <$(MAILIST)>\\n"/' \
 		-e 's/"Language: \\n"/"Language: English\\n"/g' $(POTFILE)
 
-snapshot: check-maintdep prepare gen-html gen-wiki gen-po clean
+snapshot: check-maintdep prepare gen-html gen-po clean
 
 	@$(MAKE) clean
 	@$(BASH) tools/snapshot.sh
@@ -292,7 +276,7 @@ clean-wiki:
 clean-man:
 
 	@echo "Cleaning generated man pages ..."
-	@rm -rf documentation/man/aguilas.1
+	@rm -rf documentation/man/stanlee.1
 
 clean-conf:
 

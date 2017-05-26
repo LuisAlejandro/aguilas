@@ -1,12 +1,12 @@
 #!/bin/bash -e
 #
 # ====================================================================
-# PACKAGE: aguilas
+# PACKAGE: stanlee
 # FILE: debian/prerm
-# DESCRIPTION: Configures aguilas before package uninstallation
+# DESCRIPTION: Configures stanlee before package uninstallation
 # USAGE: Executes automatically before package uninstallation
-# COPYRIGHT:
-# (C) 2012 Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
+# COPYRIGHT: (C) 2017 Stanlee Developers
+# Please refer to AUTHORS.rst for a complete list of Copyright holders.
 # LICENCE: GPL3
 # ====================================================================
 #
@@ -31,18 +31,18 @@ db_version 2.0
 ACTION="${1}"
 VERSION="${2}"
 
-if [ "${AGUILASDEBUG}" == "true" ]; then
+if [ "${STANLEEDEBUG}" == "true" ]; then
         set -x
 fi
 
 if [ -f /usr/share/dbconfig-common/dpkg/prerm.mysql ]; then
 	. /usr/share/dbconfig-common/dpkg/prerm.mysql
 
-	if [ "${AGUILASDEBUG}" == "true" ]; then
+	if [ "${STANLEEDEBUG}" == "true" ]; then
 		dbc_debug=1
 	fi
 
-	if ! dbc_go aguilas $@ ; then
+	if ! dbc_go stanlee $@ ; then
 		echo 'Automatic configuration using dbconfig-common failed!'
 	fi
 fi

@@ -1,4 +1,4 @@
-Source: aguilas
+Source: stanlee
 Section: admin
 Priority: optional
 Maintainer: Luis Alejandro Martínez Faneyth <luis@huntingbears.com.ve>
@@ -11,11 +11,11 @@ Build-Depends: debhelper (>= 7.0.50~),
                libmagickcore3-extra | libmagickcore4-extra | libmagickcore-extra,
                icoutils
 Standards-Version: 3.9.2
-Homepage: http://code.google.com/p/aguilas
-Vcs-Git: git://github.com/HuntingBears/aguilas.git
-Vcs-Browser: https://github.com/HuntingBears/aguilas
+Homepage: http://code.google.com/p/stanlee
+Vcs-Git: git://github.com/LuisAlejandro/stanlee.git
+Vcs-Browser: https://github.com/LuisAlejandro/stanlee
 
-Package: aguilas
+Package: stanlee
 Architecture: all
 Depends:  apache2 | nginx | lighttpd | httpd,
           libapache2-mod-php5 | libapache-mod-php5 | php5-cgi | php5,
@@ -33,7 +33,7 @@ Suggests: php5-suhosin,
           slapd,
           mysql-server
 Description: web-based LDAP user management system
- Aguilas is a centralized registration system that allows users to create and
+ Stanlee is a centralized registration system that allows users to create and
  manage their accounts on an LDAP authentication platform.
  .
  It has the following features:

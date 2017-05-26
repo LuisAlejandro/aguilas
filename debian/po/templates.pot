@@ -6,8 +6,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: aguilas\n"
-"Report-Msgid-Bugs-To: aguilas@packages.debian.org\n"
+"Project-Id-Version: stanlee\n"
+"Report-Msgid-Bugs-To: stanlee@packages.debian.org\n"
 "POT-Creation-Date: 2012-02-07 13:34-0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
@@ -65,7 +65,7 @@ msgstr ""
 #. Description
 #: ../templates:3001 ../templates:7001
 msgid ""
-"Note: the password will be stored in clear text in \"/etc/aguilas/config.php"
+"Note: the password will be stored in clear text in \"/etc/stanlee/config.php"
 "\", which is not world-readable."
 msgstr ""
 
@@ -136,8 +136,8 @@ msgstr ""
 #. Description
 #: ../templates:8001
 msgid ""
-"Aguilas can reconfigure your webserver so that it can be accessed through "
-"\"yourhostname.com/aguilas\"."
+"Stanlee can reconfigure your webserver so that it can be accessed through "
+"\"yourhostname.com/stanlee\"."
 msgstr ""
 
 #. Type: select
