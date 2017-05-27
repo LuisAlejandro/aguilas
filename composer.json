@@ -2,7 +2,7 @@
     "name": "luisalejandro/stanlee",
     "type": "project",
     "description": "A web-based LDAP user management system written in PHP.",
-    "keywords": [""],
+    "keywords": ["ldap", "user", "authentication", "management"],
     "license": "GPL-3.0+",
     "authors": [
         {
