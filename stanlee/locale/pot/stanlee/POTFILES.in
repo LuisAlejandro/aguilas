@@ -30,9 +30,6 @@
 ../../../libraries/Parameters.inc.php
 ../../../setup/install.php
 ../../../setup/uninstall.php
-../../../themes/canaima/footer.php
-../../../themes/canaima/header.php
-../../../themes/canaima/index.php
-../../../themes/debian/footer.php
-../../../themes/debian/header.php
-../../../themes/debian/index.php
+../../../themes/default/footer.php
+../../../themes/default/header.php
+../../../themes/default/index.php

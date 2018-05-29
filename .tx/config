@@ -1,8 +1,7 @@
 [main]
-host = https://www.transifex.net
+host = https://www.transifex.com
 
 [stanlee.core]
-host = https://www.transifex.net
-file_filter = locale/<lang>/LC_MESSAGES/messages.po
-source_file = locale/pot/stanlee/messages.pot
+file_filter = stanlee/locale/<lang>/LC_MESSAGES/messages.po
+source_file = stanlee/locale/pot/stanlee/messages.pot
 source_lang = en

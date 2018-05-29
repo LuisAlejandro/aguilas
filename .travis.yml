@@ -5,6 +5,9 @@ php:
     - '5.6'
     - '7.0'
     - '7.1'
+env:
+    - MODE="test"
+    - MODE="update"
 before_script:
     - composer self-update
     - composer install --prefer-source --no-interaction --dev

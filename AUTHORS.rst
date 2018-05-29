@@ -12,4 +12,4 @@ Contributors
 
 * chris <christiancaraceni@hotmail.it>
 	- Italian translation team coordinator
-	- https://www.transifex.net/projects/p/stanlee/language/it/
+	- https://www.transifex.com/luisalejandro/stanlee/language/it/
