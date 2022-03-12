@@ -1,3 +1,9 @@
+Deprecation notice
+------------------
+
+This repository is now archived. I no longer wish to maintain this code and have no more use to it.
+
+
 Summary
 -------
 
